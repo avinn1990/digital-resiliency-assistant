@@ -11,55 +11,107 @@ A modular assistant that gathers information from users through conversation, th
 | `services/conversation/` | Question flow and information extraction from user messages |
 | `services/assessment/` | Scoring and reporting against a loaded framework |
 | `services/framework/` | Upload, storage, and retrieval of assessment frameworks |
-| `shared/` | Cross-cutting types and JSON schemas |
+| `shared/` | Cross-cutting types, JSON schemas, and shared Python helpers |
+| `render.yaml` | **Primary** deployment — Render Blueprint (5 services) |
 
 Each new capability you request should live in its own folder under `services/<name>/`.
 
-## Quick start
+## Deploy on Render (recommended)
 
-### Prerequisites
+This project is set up for [Render](https://render.com) as separate web services — no Docker required.
 
-- Docker and Docker Compose, **or**
-- Node.js 20+, Python 3.11+
+### One-click Blueprint
 
-### Run with Docker Compose
+1. Push this repo to GitHub.
+2. In Render: **New → Blueprint** → connect the repository.
+3. Render reads `render.yaml` and creates:
+   - `dra-framework` — framework storage
+   - `dra-conversation` — Q&A and extraction
+   - `dra-assessment` — scoring
+   - `dra-backend` — public API gateway
+   - `dra-ui` — static React site
+
+Service URLs are wired automatically via `fromService` env vars. Hostnames from Render are normalized to `https://` in application code.
+
+### After deploy
+
+- Open the **dra-ui** URL for the chat interface.
+- Use **dra-backend** `/docs` for the API (e.g. `https://dra-backend-xxxx.onrender.com/docs`).
+
+### Render notes
+
+| Topic | Detail |
+|-------|--------|
+| **Framework uploads** | `render.yaml` mounts a persistent disk on `dra-framework` at `data/`. Remove the `disk` block if your plan does not support disks; bundled example frameworks still work. |
+| **Sessions** | Conversation sessions are in-memory today. For multiple instances or restarts, add Redis or a database in a follow-up. |
+| **Cold starts** | Free-tier services spin down when idle; first request may be slow. |
+| **Custom domains** | Add in each Render service’s Settings → Custom Domains. |
+
+### Manual Render setup (without Blueprint)
+
+Create five services and match `render.yaml` settings: Python web services use `uvicorn app.main:app --host 0.0.0.0 --port $PORT` with the `rootDir` values from the blueprint. Set cross-service env vars to each service’s `https://<host>` (or hostname only — the apps add `https://`).
+
+## Local development (no Docker)
+
+Prerequisites: Node.js 20+, Python 3.11+
+
+Copy `.env.example` values into `backend/.env` and `ui/.env` as needed.
+
+**Terminal 1 — framework**
+
+```bash
+cd services/framework
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8003
+```
+
+**Terminal 2 — conversation**
+
+```bash
+cd services/conversation
+pip install -r requirements.txt
+export FRAMEWORK_SERVICE_URL=http://localhost:8003
+uvicorn app.main:app --reload --port 8001
+```
+
+**Terminal 3 — assessment**
+
+```bash
+cd services/assessment
+pip install -r requirements.txt
+export FRAMEWORK_SERVICE_URL=http://localhost:8003
+uvicorn app.main:app --reload --port 8002
+```
+
+**Terminal 4 — backend**
+
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload --port 8000
+```
+
+**Terminal 5 — UI**
+
+```bash
+cd ui
+npm install
+echo "VITE_API_URL=http://localhost:8000" > .env
+npm run dev
+```
+
+- UI: http://localhost:5173  
+- API docs: http://localhost:8000/docs  
+
+## Optional: Docker Compose
+
+If you prefer containers locally or elsewhere:
 
 ```bash
 docker compose up --build
 ```
 
-- UI: http://localhost:5173
-- Backend API: http://localhost:8000
-- API docs: http://localhost:8000/docs
-
-### Run locally (development)
-
-**Backend**
-
-```bash
-cd backend
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload --port 8000
-```
-
-**Services** (each in its own terminal)
-
-```bash
-cd services/conversation && pip install -r requirements.txt && uvicorn app.main:app --reload --port 8001
-cd services/assessment && pip install -r requirements.txt && uvicorn app.main:app --reload --port 8002
-cd services/framework && pip install -r requirements.txt && uvicorn app.main:app --reload --port 8003
-```
-
-**UI**
-
-```bash
-cd ui
-npm install
-npm run dev
-```
-
-Set `VITE_API_URL=http://localhost:8000` in `ui/.env` if needed.
+See `docker-compose.yml`. Dockerfiles in `backend/`, `ui/`, and each `services/*/` folder are maintained for this path only.
 
 ## Assessment flow
 
@@ -69,10 +121,10 @@ Set `VITE_API_URL=http://localhost:8000` in `ui/.env` if needed.
 
 ## Adding a new service
 
-1. Create `services/<service-name>/` with `app/`, `requirements.txt`, and `Dockerfile` (mirror existing services).
+1. Create `services/<service-name>/` with `app/`, `requirements.txt`, and optionally `Dockerfile`.
 2. Register the service URL in `backend/app/config.py` and add a client in `backend/app/clients/`.
 3. Expose routes on the backend that proxy or compose the new service.
-4. Add the service to `docker-compose.yml`.
+4. Add the service to `render.yaml` (required for Render) and optionally `docker-compose.yml`.
 
 ## License
 

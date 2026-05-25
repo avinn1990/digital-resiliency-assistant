@@ -1,0 +1,105 @@
+# Render Blueprint — primary deployment path for this project.
+# Deploy: connect repo on Render → New → Blueprint → select render.yaml
+# Docs: https://render.com/docs/blueprint-spec
+#
+# Docker Compose remains optional for local containerized runs (see README).
+
+services:
+  # --- Framework service (deploy first; others depend on its URL) ---
+  - type: web
+    name: dra-framework
+    runtime: python
+    rootDir: services/framework
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+    # Persistent disk keeps uploaded frameworks across deploys (paid plans).
+    # Remove this block on the free tier if disk is unavailable; bundled JSON still works.
+    disk:
+      name: dra-framework-data
+      mountPath: data
+      sizeGB: 1
+
+  - type: web
+    name: dra-conversation
+    runtime: python
+    rootDir: services/conversation
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: FRAMEWORK_SERVICE_URL
+        fromService:
+          type: web
+          name: dra-framework
+          property: host
+
+  - type: web
+    name: dra-assessment
+    runtime: python
+    rootDir: services/assessment
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: FRAMEWORK_SERVICE_URL
+        fromService:
+          type: web
+          name: dra-framework
+          property: host
+
+  # --- API gateway (UI and external clients call this service) ---
+  - type: web
+    name: dra-backend
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.11
+      - key: CONVERSATION_SERVICE_URL
+        fromService:
+          type: web
+          name: dra-conversation
+          property: host
+      - key: ASSESSMENT_SERVICE_URL
+        fromService:
+          type: web
+          name: dra-assessment
+          property: host
+      - key: FRAMEWORK_SERVICE_URL
+        fromService:
+          type: web
+          name: dra-framework
+          property: host
+
+  # --- Static UI (build-time VITE_API_URL points at the backend) ---
+  - type: web
+    name: dra-ui
+    runtime: static
+    rootDir: ui
+    buildCommand: npm ci && npm run build
+    staticPublishPath: dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: dra-backend
+          property: host

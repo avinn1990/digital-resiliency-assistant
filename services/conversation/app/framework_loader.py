@@ -1,12 +1,20 @@
 import json
 import os
+import sys
 from pathlib import Path
 
 import httpx
 
-FRAMEWORK_SERVICE_URL = os.getenv(
-    "FRAMEWORK_SERVICE_URL", "http://localhost:8003"
-).rstrip("/")
+_REPO_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[3],
+)
+sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
+from service_url import normalize_service_url  # noqa: E402
+
+FRAMEWORK_SERVICE_URL = normalize_service_url(
+    os.getenv("FRAMEWORK_SERVICE_URL", "http://localhost:8003")
+)
 
 # Local fallback for development without framework service
 _LOCAL_DATA = (

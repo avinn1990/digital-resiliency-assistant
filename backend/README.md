@@ -13,8 +13,10 @@ Orchestrates calls to services under `services/`. The UI should talk only to thi
 
 ## Configuration
 
-| Variable | Default |
-|----------|---------|
-| `CONVERSATION_SERVICE_URL` | `http://localhost:8001` |
-| `ASSESSMENT_SERVICE_URL` | `http://localhost:8002` |
-| `FRAMEWORK_SERVICE_URL` | `http://localhost:8003` |
+| Variable | Default (local) | Render |
+|----------|-----------------|--------|
+| `CONVERSATION_SERVICE_URL` | `http://localhost:8001` | Set via Blueprint `fromService` → `dra-conversation` |
+| `ASSESSMENT_SERVICE_URL` | `http://localhost:8002` | `dra-assessment` |
+| `FRAMEWORK_SERVICE_URL` | `http://localhost:8003` | `dra-framework` |
+
+Host-only values (e.g. `my-service.onrender.com`) are normalized to `https://` automatically.

@@ -1,3 +1,6 @@
+# Optional local deployment — not required for Render hosting.
+# See render.yaml for the primary deployment path.
+
 services:
   backend:
     build: ./backend
