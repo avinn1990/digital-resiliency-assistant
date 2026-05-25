@@ -6,7 +6,7 @@ A modular assistant that gathers information from users through conversation, th
 
 | Path | Role |
 |------|------|
-| `ui/` | Web interface for chat and assessment results |
+| `ui/` | **UI module** — chat interface to access and talk with the backend agent (see `ui/README.md`) |
 | `backend/` | API gateway that orchestrates services |
 | `services/conversation/` | Question flow and information extraction from user messages |
 | `services/assessment/` | Scoring and reporting against a loaded framework |
