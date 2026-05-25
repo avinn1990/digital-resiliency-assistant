@@ -6,11 +6,11 @@ Evaluation content for the LLM agent.
 
 | File | Purpose |
 |------|---------|
-| `capabilities.json` | Capabilities measured (placeholder set — **you will provide the final list**) |
-| `reference-questions.json` | Base reference questions (placeholder set — **you will provide the final list**) |
+| `capabilities.json` | Fifteen merged capabilities (foundational program metrics + strategy/planning depth) |
+| `reference-questions.json` | Reference questions per capability (measurement criteria to be added later) |
 | `assessed-capabilities.schema.json` | Per-session state shape from the LLM |
 
-> **Next step:** Share your official capabilities and reference questions; we will replace the placeholder JSON in this folder.
+> **Next step:** Add official measurement criteria (scoring rubrics) per capability when ready.
 
 ## OpenAI environment variables
 

@@ -1,17 +1,77 @@
 {
   "service_id": "information-security-strategy-planning",
   "service_name": "Information Security Strategy and Planning Services",
-  "version": "1.0",
-  "description": "Evaluates whether the organization has a coherent information security strategy aligned to business risk, with actionable planning, governance, and measurable outcomes.",
+  "version": "1.1",
+  "description": "Evaluates whether the organization has a defined information security program with sponsorship, vision, team, roadmap, and measurable strategy-and-planning outcomes.",
   "capabilities": [
+    {
+      "id": "issp-00",
+      "name": "Service exists and is in good condition",
+      "description": "The information security strategy and planning function (or equivalent service) is established, funded, and operating effectively.",
+      "evaluation_focus": [
+        "Documented service or function charter",
+        "Operating model and delivery cadence",
+        "Stakeholder satisfaction and continuous improvement"
+      ]
+    },
+    {
+      "id": "issp-11",
+      "name": "Information Security Program",
+      "description": "A formal information security program exists with defined scope, objectives, and organizational coverage.",
+      "evaluation_focus": [
+        "Documented program definition or charter",
+        "Program scope across business units and technology",
+        "Program leadership and reporting line"
+      ]
+    },
+    {
+      "id": "issp-12",
+      "name": "Security Vision and Mission",
+      "description": "Documented security vision and mission statements guide program direction and stakeholder expectations.",
+      "evaluation_focus": [
+        "Published security vision",
+        "Published security mission",
+        "Communication and alignment with enterprise strategy"
+      ]
+    },
+    {
+      "id": "issp-13",
+      "name": "Security Sponsor",
+      "description": "An executive security sponsor provides authority, advocacy, and accountability for the information security program.",
+      "evaluation_focus": [
+        "Named executive sponsor for the program",
+        "Sponsor role in decisions, funding, and escalations",
+        "Regular sponsor engagement with security leadership"
+      ]
+    },
+    {
+      "id": "issp-14",
+      "name": "Strategy and Planning Team",
+      "description": "A dedicated strategy and planning team (or clearly assigned roles) exists to develop and maintain security strategy and plans.",
+      "evaluation_focus": [
+        "Team or role assignment for strategy and planning",
+        "Skills and capacity for planning activities",
+        "Collaboration with security operations and business stakeholders"
+      ]
+    },
     {
       "id": "issp-01",
       "name": "Security strategy alignment with business objectives",
       "description": "Information security strategy is explicitly linked to business goals, risk appetite, and enterprise planning cycles.",
       "evaluation_focus": [
         "Documented security strategy or charter",
-        "Stakeholder ownership (executive sponsor)",
+        "Linkage to business objectives and risk appetite",
         "Refresh cadence tied to business planning"
+      ]
+    },
+    {
+      "id": "issp-04",
+      "name": "Information security program roadmap",
+      "description": "A security adoption roadmap for the information security program spans near-, mid-, and long-term horizons (including 3- and 5-year views where applicable).",
+      "evaluation_focus": [
+        "Roadmap for the information security program",
+        "Horizons including 3-year and 5-year planning views",
+        "Initiative prioritization, dependencies, and change control"
       ]
     },
     {
@@ -32,16 +92,6 @@
         "Risk taxonomy alignment",
         "Risk treatment plans and owners",
         "Board or executive risk reporting"
-      ]
-    },
-    {
-      "id": "issp-04",
-      "name": "Multi-year security roadmap",
-      "description": "A prioritized roadmap connects strategy to initiatives, dependencies, and timelines.",
-      "evaluation_focus": [
-        "Roadmap horizons (12–36 months)",
-        "Initiative prioritization method",
-        "Dependency and constraint tracking"
       ]
     },
     {
@@ -66,10 +116,10 @@
     },
     {
       "id": "issp-07",
-      "name": "Metrics, KPIs, and reporting",
-      "description": "Security performance is measured and reported to leadership with actionable insights.",
+      "name": "KPIs and KRIs",
+      "description": "Key performance and risk indicators measure security program health and inform leadership decisions.",
       "evaluation_focus": [
-        "Defined KPIs/KRIs",
+        "Defined KPIs and KRIs",
         "Reporting cadence to leadership",
         "Use of metrics in decisions"
       ]
