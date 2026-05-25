@@ -1,17 +1,31 @@
+import { getCurrentStep } from "../../lib/userMessages";
+import { useChatSession } from "../../hooks/useChatSession";
 import { AssessmentPanel } from "../assessment/AssessmentPanel";
 import { ChatHeader } from "../chat/ChatHeader";
 import { ChatWorkspace } from "../chat/ChatWorkspace";
+import { StatusAnnouncer } from "../common/StatusAnnouncer";
 import { WelcomePanel } from "../setup/WelcomePanel";
-import { useChatSession } from "../../hooks/useChatSession";
 
 export function AppShell() {
   const chat = useChatSession();
+  const currentStep = getCurrentStep(chat.sessionId, !!chat.assessment);
+
+  const statusMessage = chat.loading
+    ? "Loading, please wait."
+    : chat.assessing
+      ? "Running your assessment."
+      : chat.error
+        ? chat.error
+        : chat.assessment
+          ? `Assessment complete. Overall score ${chat.assessment.overall_score} out of 100.`
+          : "";
 
   return (
     <div className="app-shell">
       <ChatHeader
         frameworkName={chat.selectedFramework?.name}
         sessionId={chat.sessionId}
+        currentStep={currentStep}
         progress={chat.progress}
         completed={chat.completed}
         backendOnline={chat.backendOnline}
@@ -19,7 +33,9 @@ export function AppShell() {
         onRetryHealth={chat.refreshHealth}
       />
 
-      <main className="app-main">
+      <StatusAnnouncer message={statusMessage} />
+
+      <main id="main-content" className="app-main" tabIndex={-1}>
         {!chat.sessionId ? (
           <WelcomePanel
             frameworks={chat.frameworks}
@@ -27,6 +43,7 @@ export function AppShell() {
             onFrameworkChange={chat.setSelectedFrameworkId}
             onStart={chat.beginSession}
             loading={chat.loading}
+            frameworksLoading={chat.frameworksLoading}
             backendOnline={chat.backendOnline}
             onRetryHealth={chat.refreshHealth}
             error={chat.error}
@@ -50,7 +67,9 @@ export function AppShell() {
           </div>
         )}
         {chat.sessionId && chat.error && (
-          <p className="error-banner floating">{chat.error}</p>
+          <div className="error-banner floating" role="alert">
+            <strong>Something went wrong.</strong> {chat.error}
+          </div>
         )}
       </main>
     </div>

@@ -21,11 +21,15 @@ ui/
 └── vite.config.ts
 ```
 
-## User flow
+## User flow (people-first UX)
 
-1. **Welcome** — Pick an assessment framework and confirm the backend agent is online.
-2. **Chat** — Message the agent; it asks framework questions and extracts your answers.
-3. **Assess** — Run scoring when questions are complete; results appear in a side panel.
+Designed around practical usability: one clear goal per screen, supportive microcopy, visible progress, and accessible defaults.
+
+1. **Choose framework** — Single primary action; connection status and plain-language errors.
+2. **Answer questions** — Step indicator + progress bar; Enter to send; helpful empty states.
+3. **View results** — Plain labels (“Gap found”, “On track”), success confirmation, optional hide panel.
+
+See `src/lib/userMessages.ts` for shared copy and friendly error text.
 
 ## Development
 

@@ -10,9 +10,9 @@ export function ProgressBar({ current, total, completed }: Props) {
     <div className="progress-bar-wrap" aria-label={`Progress ${current} of ${total}`}>
       <div className="progress-bar-meta">
         <span>
-          {current} / {total} questions
+          Question {Math.min(current + 1, total || 1)} of {total || "—"}
         </span>
-        {completed && <span className="progress-ready">Ready to assess</span>}
+        {completed && <span className="progress-ready">Ready for results</span>}
       </div>
       <div className="progress-bar-track">
         <div className="progress-bar-fill" style={{ width: `${pct}%` }} />

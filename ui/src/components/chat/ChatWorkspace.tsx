@@ -1,4 +1,5 @@
 import type { ChatMessage } from "../../services/types";
+import { ContextHelp } from "../common/ContextHelp";
 import { ChatComposer } from "./ChatComposer";
 import { MessageList } from "./MessageList";
 
@@ -20,31 +21,40 @@ export function ChatWorkspace({
   assessmentLoading,
 }: Props) {
   return (
-    <section className="chat-workspace">
+    <section
+      className="chat-workspace"
+      aria-label="Chat with assessment agent"
+    >
       <MessageList messages={messages} loading={loading} />
       <div className="chat-workspace-footer">
-        {completed && (
-          <div className="chat-hint">
-            All questions answered. You can keep chatting or run the assessment.
+        {completed ? (
+          <div className="chat-hint success" role="status">
+            <strong>All set.</strong> Run your assessment below, or add more
+            detail if something changed.
           </div>
+        ) : (
+          <ContextHelp>
+            Answer the question above. The agent will ask the next one
+            automatically.
+          </ContextHelp>
         )}
         <ChatComposer
           onSend={onSend}
           disabled={loading || assessmentLoading}
           placeholder={
             completed
-              ? "Optional: add more detail for the agent…"
-              : "Type your answer and press Enter…"
+              ? "Add more detail (optional)…"
+              : "Type your answer here…"
           }
         />
         <div className="chat-toolbar">
           <button
             type="button"
-            className="btn-secondary"
+            className="btn-primary"
             onClick={onRunAssessment}
             disabled={loading || assessmentLoading}
           >
-            {assessmentLoading ? "Running assessment…" : "Run assessment"}
+            {assessmentLoading ? "Building your report…" : "Get my assessment"}
           </button>
         </div>
       </div>

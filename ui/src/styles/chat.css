@@ -8,8 +8,93 @@
 }
 
 .chat-header {
+  position: relative;
   padding-bottom: 0.75rem;
   border-bottom: 1px solid var(--border);
+}
+
+.app-eyebrow {
+  margin: 0 0 0.15rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+}
+
+/* Step navigation (clear path: start → chat → results) */
+.step-indicator {
+  margin-top: 0.85rem;
+}
+
+.step-indicator ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.step-item {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border: 1px solid transparent;
+}
+
+.step-item.current {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border);
+  font-weight: 600;
+}
+
+.step-item.done {
+  color: var(--success);
+}
+
+.step-marker {
+  flex-shrink: 0;
+  width: 1.35rem;
+  height: 1.35rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  background: var(--surface-elevated);
+  border: 1px solid var(--border);
+}
+
+.step-item.current .step-marker {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.step-item.done .step-marker {
+  background: rgba(74, 222, 128, 0.15);
+  border-color: rgba(74, 222, 128, 0.4);
+  color: var(--success);
+}
+
+.step-label-short {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .step-label-full {
+    display: none;
+  }
+  .step-label-short {
+    display: inline;
+  }
 }
 
 .chat-header-top {
@@ -62,44 +147,62 @@
   }
 }
 
-/* Welcome */
+/* Welcome — one goal per screen: pick framework and start */
 .welcome-panel {
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  max-width: 420px;
-  margin: 2rem auto;
-  padding: 2rem 1.5rem;
+  max-width: 440px;
+  margin: 1.5rem auto 2rem;
+  padding: 1.75rem 1.5rem;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
-}
-
-.welcome-icon {
-  width: 64px;
-  height: 64px;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.welcome-icon svg {
-  width: 100%;
-  height: 100%;
+  text-align: left;
 }
 
 .welcome-panel h2 {
-  margin: 0 0 0.5rem;
-  font-size: 1.25rem;
+  margin: 0 0 0.35rem;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
 }
 
-.welcome-panel > p {
-  margin: 0;
+.welcome-panel .connection-status {
+  margin-top: 1rem;
+}
+
+.empty-state-inline {
+  margin: 1rem 0;
+  padding: 0.85rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
   color: var(--text-muted);
-  font-size: 0.95rem;
+}
+
+.how-it-works {
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.how-it-works summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.how-it-works summary:hover {
+  color: var(--accent);
+}
+
+.how-it-works ol {
+  margin: 0.65rem 0 0;
+  padding-left: 1.2rem;
+  line-height: 1.55;
 }
 
 .welcome-panel select {
@@ -275,10 +378,27 @@
 }
 
 .chat-hint {
-  font-size: 0.8rem;
-  color: var(--success);
+  font-size: 0.85rem;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
-  padding: 0.35rem 0.5rem;
+  padding: 0.5rem 0.65rem;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--border);
+}
+
+.chat-hint.success {
+  color: var(--text);
+  border-left-color: var(--success);
+  background: rgba(74, 222, 128, 0.08);
+}
+
+.chat-composer-wrap {
+  margin-top: 0.35rem;
+}
+
+.chat-composer-wrap .context-help {
+  margin-top: 0.25rem;
 }
 
 .chat-composer {
@@ -324,13 +444,44 @@
 .assessment-panel-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  gap: 0.5rem;
   margin-bottom: 0.75rem;
+}
+
+.success-eyebrow {
+  margin: 0 0 0.2rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--success);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .assessment-panel h2 {
   margin: 0;
-  font-size: 1rem;
+  font-size: 1.1rem;
+}
+
+.controls-heading {
+  margin: 0 0 0.65rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.score-label {
+  margin: 0 0 0.25rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.score-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
 }
 
 .assessment-score-card {
@@ -426,8 +577,18 @@
   color: var(--text-muted);
 }
 
+.control-field-label {
+  display: block;
+  margin: 0.5rem 0 0.15rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
 .control-evidence {
-  margin: 0.25rem 0 0;
+  margin: 0;
 }
 
 .control-recommendations {

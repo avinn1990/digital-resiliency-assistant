@@ -1,5 +1,12 @@
 import type { AssessmentResult } from "../../services/types";
 
+const STATUS_LABELS: Record<string, string> = {
+  met: "On track",
+  partial: "Needs work",
+  gap: "Gap found",
+  unknown: "Not enough info",
+};
+
 type Props = {
   result: AssessmentResult;
   onDismiss?: () => void;
@@ -7,38 +14,69 @@ type Props = {
 
 export function AssessmentPanel({ result, onDismiss }: Props) {
   return (
-    <aside className="assessment-panel" aria-labelledby="assessment-title">
+    <aside
+      className="assessment-panel"
+      aria-labelledby="assessment-title"
+      role="region"
+    >
       <div className="assessment-panel-header">
-        <h2 id="assessment-title">Assessment results</h2>
+        <div>
+          <p className="success-eyebrow" role="status">
+            Assessment complete
+          </p>
+          <h2 id="assessment-title">Your results</h2>
+        </div>
         {onDismiss && (
-          <button type="button" className="btn-ghost" onClick={onDismiss}>
-            Close
+          <button
+            type="button"
+            className="btn-ghost"
+            onClick={onDismiss}
+            aria-label="Hide results panel"
+          >
+            Hide
           </button>
         )}
       </div>
+
       <div className="assessment-score-card">
-        <span className="score-value">{result.overall_score}</span>
-        <span className="score-max">/ 100</span>
-        <span className="score-maturity">{result.maturity_label}</span>
+        <p className="score-label">Overall score</p>
+        <div className="score-row">
+          <span className="score-value">{result.overall_score}</span>
+          <span className="score-max">out of 100</span>
+        </div>
+        <p className="score-maturity">
+          Maturity level: <strong>{result.maturity_label}</strong>
+        </p>
       </div>
+
       <p className="assessment-summary">{result.summary}</p>
+
+      <h3 className="controls-heading">By control area</h3>
       <ul className="control-results">
         {result.control_results.map((control) => (
           <li key={control.control_id} className="control-card">
             <div className="control-card-head">
               <strong>{control.control_id}</strong>
               <span className={`status-pill ${control.status}`}>
-                {control.status}
+                {STATUS_LABELS[control.status] ?? control.status}
               </span>
             </div>
-            <p className="control-score">Score: {control.score}</p>
-            <p className="control-evidence">{control.evidence}</p>
+            <p className="control-score">Score: {control.score} / 100</p>
+            {control.evidence && (
+              <p className="control-evidence">
+                <span className="control-field-label">What we heard:</span>{" "}
+                {control.evidence}
+              </p>
+            )}
             {control.recommendations.length > 0 && (
-              <ul className="control-recommendations">
-                {control.recommendations.map((rec, i) => (
-                  <li key={i}>{rec}</li>
-                ))}
-              </ul>
+              <>
+                <p className="control-field-label">Suggested next steps</p>
+                <ul className="control-recommendations">
+                  {control.recommendations.map((rec, i) => (
+                    <li key={i}>{rec}</li>
+                  ))}
+                </ul>
+              </>
             )}
           </li>
         ))}

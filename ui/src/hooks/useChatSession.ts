@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { toFriendlyError } from "../lib/userMessages";
 import {
   checkBackendHealth,
   listFrameworks,
@@ -31,6 +32,7 @@ export function useChatSession() {
   const [completed, setCompleted] = useState(false);
   const [assessment, setAssessment] = useState<AssessmentResult | null>(null);
   const [loading, setLoading] = useState(false);
+  const [frameworksLoading, setFrameworksLoading] = useState(true);
   const [assessing, setAssessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
@@ -43,6 +45,7 @@ export function useChatSession() {
 
   useEffect(() => {
     refreshHealth();
+    setFrameworksLoading(true);
     listFrameworks()
       .then((items) => {
         setFrameworks(items);
@@ -50,7 +53,8 @@ export function useChatSession() {
           setSelectedFrameworkId(items[0].id);
         }
       })
-      .catch((err) => setError(String(err)));
+      .catch((err) => setError(toFriendlyError(err)))
+      .finally(() => setFrameworksLoading(false));
   }, [refreshHealth]);
 
   const beginSession = useCallback(async () => {
@@ -73,7 +77,7 @@ export function useChatSession() {
       setProgress(result.progress);
       setCompleted(false);
     } catch (err) {
-      setError(err instanceof Error ? err.message : String(err));
+      setError(toFriendlyError(err));
     } finally {
       setLoading(false);
     }
@@ -95,7 +99,7 @@ export function useChatSession() {
         setProgress(result.progress);
         setCompleted(result.completed);
       } catch (err) {
-        setError(err instanceof Error ? err.message : String(err));
+        setError(toFriendlyError(err));
       } finally {
         setLoading(false);
       }
@@ -111,7 +115,7 @@ export function useChatSession() {
       const result = await runAssessment(sessionId);
       setAssessment(result);
     } catch (err) {
-      setError(err instanceof Error ? err.message : String(err));
+      setError(toFriendlyError(err));
     } finally {
       setAssessing(false);
     }
@@ -143,6 +147,7 @@ export function useChatSession() {
     completed,
     assessment,
     loading,
+    frameworksLoading,
     assessing,
     error,
     backendOnline,

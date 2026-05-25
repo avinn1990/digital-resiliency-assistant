@@ -5,17 +5,25 @@ type Props = {
 
 export function ConnectionStatus({ online, onRetry }: Props) {
   if (online === null) {
-    return <span className="connection-status checking">Checking API…</span>;
+    return (
+      <span className="connection-status checking" role="status">
+        Checking connection…
+      </span>
+    );
   }
   if (online) {
-    return <span className="connection-status online">Agent online</span>;
+    return (
+      <span className="connection-status online" role="status">
+        Ready to chat
+      </span>
+    );
   }
   return (
-    <span className="connection-status offline">
-      Agent offline
+    <span className="connection-status offline" role="status">
+      Agent unavailable — start the API first
       {onRetry && (
         <button type="button" className="link-btn" onClick={onRetry}>
-          Retry
+          Check again
         </button>
       )}
     </span>
