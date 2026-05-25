@@ -1,24 +1,37 @@
 import json
 import re
+import sys
+from pathlib import Path
 from typing import Any
 
 from fastapi import HTTPException
 from openai import OpenAI
 
-from app.config import settings
 from app.prompts import SYSTEM_PROMPT
+
+_REPO_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[4],
+)
+sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
+from env_constants import OPENAI_API_KEY as ENV_OPENAI_API_KEY  # noqa: E402
+from openai_env import (  # noqa: E402
+    OPENAI_MODEL,
+    is_openai_configured,
+    openai_client_kwargs,
+)
 
 
 def _client() -> OpenAI:
-    if not settings.openai_api_key:
+    if not is_openai_configured():
         raise HTTPException(
             status_code=503,
-            detail="OPENAI_API_KEY is not configured. Add your key to the llm-conversation service environment.",
+            detail=(
+                f"{ENV_OPENAI_API_KEY} is not set. "
+                "Export your OpenAI key as an environment variable before starting this service."
+            ),
         )
-    kwargs: dict[str, Any] = {"api_key": settings.openai_api_key}
-    if settings.openai_base_url:
-        kwargs["base_url"] = settings.openai_base_url
-    return OpenAI(**kwargs)
+    return OpenAI(**openai_client_kwargs())
 
 
 def _parse_json_content(text: str) -> dict[str, Any]:
@@ -38,7 +51,7 @@ def _parse_json_content(text: str) -> dict[str, Any]:
 async def complete_json(user_prompt: str) -> dict[str, Any]:
     client = _client()
     response = client.chat.completions.create(
-        model=settings.openai_model,
+        model=OPENAI_MODEL,
         temperature=0.3,
         response_format={"type": "json_object"},
         messages=[

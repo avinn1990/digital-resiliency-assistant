@@ -105,6 +105,10 @@ services:
           type: web
           name: dra-llm-conversation
           property: host
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4o-mini
 
   # --- Static UI (build-time VITE_API_URL points at the backend) ---
   - type: web

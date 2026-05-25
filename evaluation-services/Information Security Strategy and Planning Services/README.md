@@ -1,29 +1,28 @@
 # Information Security Strategy and Planning Services
 
-Evaluation content for the Digital Resiliency Assistant LLM agent.
+Evaluation content for the LLM agent.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `capabilities.json` | Capabilities measured in this evaluation (10 areas) |
-| `reference-questions.json` | Base reference questions the LLM uses as a starting point |
-| `assessed-capabilities.schema.json` | Shape of LLM output stored per session (documentation) |
+| `capabilities.json` | Capabilities measured (placeholder set — **you will provide the final list**) |
+| `reference-questions.json` | Base reference questions (placeholder set — **you will provide the final list**) |
+| `assessed-capabilities.schema.json` | Per-session state shape from the LLM |
 
-## How the LLM uses this
+> **Next step:** Share your official capabilities and reference questions; we will replace the placeholder JSON in this folder.
 
-1. **Start** — Loads capabilities and reference questions from this folder.
-2. **Chat** — Uses reference questions as anchors, then asks **dynamic follow-ups** until each capability has enough context.
-3. **Assess** — Scores each capability from collected evidence (maturity, gaps, recommendations).
+## OpenAI environment variables
 
-## Configuration
+Set once for the whole project (see root `.env.example`):
 
-Set on the `llm-conversation` service (see root `.env.example`):
+```bash
+export OPENAI_API_KEY=your-key-here
+export OPENAI_MODEL=gpt-4o-mini   # optional
+```
 
-- `OPENAI_API_KEY` — your provider key
-- `OPENAI_MODEL` — default `gpt-4o-mini`
-- `EVALUATION_SERVICE_DIR` — optional override; defaults to this folder
+Used by `services/llm-conversation` via `shared/python/openai_env.py`.
 
 ## Service ID
 
-Use framework / session id: **`information-security-strategy-planning`**
+`information-security-strategy-planning`

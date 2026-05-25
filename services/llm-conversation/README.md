@@ -11,9 +11,11 @@ Conducts **dynamic** assessments using an LLM (OpenAI-compatible API).
 
 ## Environment
 
+Read from `shared/python/openai_env.py` (same names everywhere):
+
 | Variable | Required | Description |
 |----------|----------|-------------|
-| `OPENAI_API_KEY` | Yes | API key you provide |
+| `OPENAI_API_KEY` | Yes | Your API key |
 | `OPENAI_MODEL` | No | Default `gpt-4o-mini` |
 | `OPENAI_BASE_URL` | No | Custom endpoint (Azure, etc.) |
 | `EVALUATION_SERVICE_DIR` | No | Path to evaluation content folder |

@@ -1,16 +1,20 @@
-import os
+import sys
 from pathlib import Path
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+_REPO_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[3],
+)
+sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
+from env_constants import OPENAI_API_KEY as ENV_OPENAI_API_KEY  # noqa: E402
+from openai_env import is_openai_configured  # noqa: E402
+
 
 def _default_evaluation_dir() -> Path:
-    root = next(
-        (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
-        Path(__file__).resolve().parents[4],
-    )
     return (
-        root
+        _REPO_ROOT
         / "evaluation-services"
         / "Information Security Strategy and Planning Services"
     )
@@ -19,9 +23,6 @@ def _default_evaluation_dir() -> Path:
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
-    openai_api_key: str = ""
-    openai_model: str = "gpt-4o-mini"
-    openai_base_url: str | None = None
     evaluation_service_dir: str = ""
     default_service_id: str = "information-security-strategy-planning"
 
@@ -29,6 +30,10 @@ class Settings(BaseSettings):
         if self.evaluation_service_dir.strip():
             return Path(self.evaluation_service_dir)
         return _default_evaluation_dir()
+
+    @property
+    def llm_ready(self) -> bool:
+        return is_openai_configured()
 
 
 settings = Settings()

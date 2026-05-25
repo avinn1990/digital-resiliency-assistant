@@ -1,7 +1,27 @@
+import sys
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any
 
+from fastapi import HTTPException
+
 from app.llm_client import complete_json
+
+_REPO = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[4],
+)
+sys.path.insert(0, str(_REPO / "shared" / "python"))
+from env_constants import OPENAI_API_KEY as ENV_OPENAI_API_KEY  # noqa: E402
+from openai_env import is_openai_configured  # noqa: E402
+
+
+def _require_openai() -> None:
+    if not is_openai_configured():
+        raise HTTPException(
+            status_code=503,
+            detail=f"{ENV_OPENAI_API_KEY} must be set before starting an LLM session.",
+        )
 from app.loader import load_evaluation_bundle
 from app.prompts import build_assessment_prompt, build_turn_prompt
 from app.store import LlmSession, initial_capability_states, store
@@ -37,6 +57,7 @@ def _progress(session: LlmSession) -> dict[str, int]:
 
 
 async def start_session(framework_id: str) -> dict[str, Any]:
+    _require_openai()
     bundle = load_evaluation_bundle()
     service_id = bundle["capabilities"]["service_id"]
     caps = bundle["capabilities"]["capabilities"]
@@ -80,6 +101,7 @@ async def start_session(framework_id: str) -> dict[str, Any]:
 
 
 async def handle_message(session: LlmSession, user_message: str) -> dict[str, Any]:
+    _require_openai()
     bundle = load_evaluation_bundle()
     session.messages.append({"role": "user", "content": user_message})
 
@@ -111,6 +133,7 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
 
 
 async def run_llm_assessment(session: LlmSession) -> dict[str, Any]:
+    _require_openai()
     bundle = load_evaluation_bundle()
     prompt = build_assessment_prompt(
         bundle=bundle,

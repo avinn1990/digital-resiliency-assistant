@@ -1,7 +1,22 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
+import sys
+from pathlib import Path
+
 from app.config import settings
+
+_REPO = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[3],
+)
+sys.path.insert(0, str(_REPO / "shared" / "python"))
+from env_constants import (  # noqa: E402
+    OPENAI_API_KEY,
+    OPENAI_BASE_URL,
+    OPENAI_MODEL,
+)
+from openai_env import is_openai_configured  # noqa: E402
 from app.orchestrator import handle_message, run_llm_assessment, start_session
 from app.store import store
 
@@ -29,7 +44,12 @@ async def health() -> dict:
     return {
         "status": "ok",
         "service": "llm-conversation",
-        "llm_configured": bool(settings.openai_api_key),
+        "llm_configured": is_openai_configured(),
+        "env": {
+            OPENAI_API_KEY: "set" if is_openai_configured() else "missing",
+            OPENAI_MODEL: OPENAI_MODEL,
+            OPENAI_BASE_URL: OPENAI_BASE_URL or "default",
+        },
         "evaluation_dir": str(settings.evaluation_dir()),
     }
 

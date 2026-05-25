@@ -105,7 +105,8 @@ uvicorn app.main:app --reload --port 8002
 ```bash
 cd services/llm-conversation
 pip install -r requirements.txt
-export OPENAI_API_KEY=your-key-here
+export OPENAI_API_KEY=your-key-here   # required — used by shared/python/openai_env.py
+export OPENAI_MODEL=gpt-4o-mini       # optional
 export EVALUATION_SERVICE_DIR="../../evaluation-services/Information Security Strategy and Planning Services"
 uvicorn app.main:app --reload --port 8004
 ```

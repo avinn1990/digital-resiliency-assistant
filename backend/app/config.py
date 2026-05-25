@@ -9,6 +9,12 @@ _REPO_ROOT = next(
     Path(__file__).resolve().parents[2],
 )
 sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
+from openai_env import (  # noqa: E402
+    OPENAI_API_KEY,
+    OPENAI_BASE_URL,
+    OPENAI_MODEL,
+    is_openai_configured,
+)
 from service_url import normalize_service_url  # noqa: E402
 
 
@@ -31,5 +37,18 @@ class Settings(BaseSettings):
     def normalize_urls(cls, value: str) -> str:
         return normalize_service_url(value)
 
+    @property
+    def openai_configured(self) -> bool:
+        return is_openai_configured()
+
 
 settings = Settings()
+
+# Re-export for other backend modules
+__all__ = [
+    "settings",
+    "OPENAI_API_KEY",
+    "OPENAI_MODEL",
+    "OPENAI_BASE_URL",
+    "is_openai_configured",
+]

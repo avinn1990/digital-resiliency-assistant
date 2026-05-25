@@ -6,7 +6,13 @@ from app.clients.assessment import AssessmentClient
 from app.clients.conversation import ConversationClient
 from app.clients.framework import FrameworkClient
 from app.clients.llm_conversation import LLM_FRAMEWORK_IDS, LlmConversationClient
-from app.config import settings
+from app.config import (
+    OPENAI_API_KEY,
+    OPENAI_BASE_URL,
+    OPENAI_MODEL,
+    is_openai_configured,
+    settings,
+)
 from app.session_registry import is_llm_session, register_llm_session
 
 app = FastAPI(
@@ -47,7 +53,16 @@ class RegisterFrameworkRequest(BaseModel):
 
 @app.get("/health")
 async def health() -> dict:
-    return {"status": "ok", "service": "backend"}
+    return {
+        "status": "ok",
+        "service": "backend",
+        "openai_configured": is_openai_configured(),
+        "env": {
+            OPENAI_API_KEY: "set" if is_openai_configured() else "missing",
+            OPENAI_MODEL: OPENAI_MODEL,
+            OPENAI_BASE_URL: OPENAI_BASE_URL or "default",
+        },
+    }
 
 
 @app.get("/frameworks")
