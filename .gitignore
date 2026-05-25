@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+__pycache__/
+*.py[cod]
+.Python
+.venv/
+venv/
+env/
+
+# Build & cache
+dist/
+ui/dist/
+build/
+*.egg-info/
+*.tsbuildinfo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment
+.env
+.env.local
+*.local
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs & coverage
+*.log
+coverage/
+htmlcov/
+.coverage
+
+# Framework uploads (keep example only in repo)
+services/framework/data/uploads/*

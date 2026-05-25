@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://digital-resiliency-assistant/schemas/assessment-framework.json",
+  "title": "AssessmentFramework",
+  "type": "object",
+  "required": ["id", "name", "version", "domains"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "version": { "type": "string" },
+    "description": { "type": "string" },
+    "domains": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "controls"],
+        "properties": {
+          "id": { "type": "string" },
+          "name": { "type": "string" },
+          "description": { "type": "string" },
+          "controls": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "questions"],
+              "properties": {
+                "id": { "type": "string" },
+                "title": { "type": "string" },
+                "description": { "type": "string" },
+                "weight": { "type": "number", "minimum": 0 },
+                "questions": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["id", "prompt", "field_key"],
+                    "properties": {
+                      "id": { "type": "string" },
+                      "prompt": { "type": "string" },
+                      "field_key": { "type": "string" },
+                      "response_type": {
+                        "type": "string",
+                        "enum": ["text", "boolean", "number", "choice"]
+                      },
+                      "choices": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    }
+                  }
+                },
+                "scoring": {
+                  "type": "object",
+                  "properties": {
+                    "maturity_levels": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "required": ["level", "label"],
+                        "properties": {
+                          "level": { "type": "integer" },
+                          "label": { "type": "string" },
+                          "criteria": { "type": "string" }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

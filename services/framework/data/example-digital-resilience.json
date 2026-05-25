@@ -1,0 +1,72 @@
+{
+  "id": "example-digital-resilience",
+  "name": "Example Digital Resilience Framework",
+  "version": "1.0",
+  "description": "Starter framework for backup, incident response, and recovery objectives.",
+  "domains": [
+    {
+      "id": "data-protection",
+      "name": "Data Protection",
+      "controls": [
+        {
+          "id": "dr-backup",
+          "title": "Backup and restoration",
+          "weight": 1.0,
+          "questions": [
+            {
+              "id": "q-backup",
+              "prompt": "How often are critical systems backed up, and where are backups stored?",
+              "field_key": "backup_frequency_and_location",
+              "response_type": "text"
+            }
+          ],
+          "scoring": {
+            "maturity_levels": [
+              { "level": 1, "label": "Initial", "criteria": "Ad hoc or missing backups" },
+              { "level": 3, "label": "Defined", "criteria": "Documented schedule and offsite copies" },
+              { "level": 5, "label": "Optimized", "criteria": "Tested restores and monitored RPO" }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "id": "operations",
+      "name": "Security Operations",
+      "controls": [
+        {
+          "id": "dr-incident-response",
+          "title": "Incident response",
+          "weight": 1.0,
+          "questions": [
+            {
+              "id": "q-ir-plan",
+              "prompt": "Do you have a documented incident response plan that is tested at least annually?",
+              "field_key": "incident_response_plan_tested",
+              "response_type": "boolean"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "continuity",
+      "name": "Business Continuity",
+      "controls": [
+        {
+          "id": "dr-recovery",
+          "title": "Recovery objectives",
+          "weight": 1.0,
+          "questions": [
+            {
+              "id": "q-rto",
+              "prompt": "What is your target recovery time (RTO in hours) for your most critical service?",
+              "field_key": "critical_rto_hours",
+              "response_type": "number"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

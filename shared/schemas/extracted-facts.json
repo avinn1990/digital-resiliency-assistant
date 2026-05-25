@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://digital-resiliency-assistant/schemas/extracted-facts.json",
+  "title": "ExtractedFacts",
+  "type": "object",
+  "required": ["session_id", "framework_id", "facts"],
+  "properties": {
+    "session_id": { "type": "string" },
+    "framework_id": { "type": "string" },
+    "facts": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "confidence": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "updated_at": { "type": "string", "format": "date-time" }
+  }
+}

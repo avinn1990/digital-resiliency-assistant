@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://digital-resiliency-assistant/schemas/assessment-result.json",
+  "title": "AssessmentResult",
+  "type": "object",
+  "required": ["session_id", "framework_id", "overall_score", "control_results"],
+  "properties": {
+    "session_id": { "type": "string" },
+    "framework_id": { "type": "string" },
+    "overall_score": { "type": "number", "minimum": 0, "maximum": 100 },
+    "maturity_label": { "type": "string" },
+    "control_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["control_id", "score", "status"],
+        "properties": {
+          "control_id": { "type": "string" },
+          "score": { "type": "number" },
+          "status": {
+            "type": "string",
+            "enum": ["met", "partial", "gap", "unknown"]
+          },
+          "evidence": { "type": "string" },
+          "recommendations": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "summary": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" }
+  }
+}
