@@ -36,3 +36,4 @@ htmlcov/
 
 # Framework uploads (keep example only in repo)
 services/framework/data/uploads/*
+!services/framework/data/uploads/.gitkeep
