@@ -16,6 +16,21 @@ A modular assistant that gathers information from users through conversation, th
 
 Each new capability you request should live in its own folder under `services/<name>/`.
 
+## Git branches
+
+| Branch | Purpose |
+|--------|---------|
+| `main` | Stable, production-ready code |
+| `dev` | Active development — **all changes land here first** |
+
+```bash
+git checkout dev
+# make changes, commit, push
+git push origin dev
+```
+
+When `dev` is ready for release, merge into `main` (via PR or locally). Do not use short-lived feature branches for routine work.
+
 ## Deploy on Render (recommended)
 
 This project is set up for [Render](https://render.com) as separate web services — no Docker required.
