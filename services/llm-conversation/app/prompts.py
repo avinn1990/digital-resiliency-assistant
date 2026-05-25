@@ -22,13 +22,18 @@ def build_turn_prompt(
     is_start: bool,
 ) -> str:
     caps = bundle["capabilities"]["capabilities"]
-    refs = bundle["reference_questions"]["reference_questions"]
+    refs_by_capability = bundle["reference_questions"]["capability_questions"]
 
     payload = {
         "task": "start_session" if is_start else "process_user_message",
         "service": bundle["capabilities"]["service_name"],
         "capabilities_to_assess": caps,
-        "reference_questions": refs,
+        "reference_questions_by_capability": refs_by_capability,
+        "rules": [
+            "Each reference question evaluates exactly one capability_id in its group.",
+            "Do not use a question to score a different capability.",
+            "Mark reference_questions_covered using the question id from the active capability group.",
+        ],
         "current_capability_states": capability_states,
         "conversation_so_far": conversation[-20:],
         "user_message": user_message,

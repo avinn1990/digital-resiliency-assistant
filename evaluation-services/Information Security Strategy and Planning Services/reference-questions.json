@@ -1,265 +1,355 @@
 {
   "service_id": "information-security-strategy-planning",
   "service_name": "Information Security Strategy and Planning Services",
-  "reference_questions": [
+  "capability_questions": [
     {
-      "id": "rq-issp-00-1",
       "capability_id": "issp-00",
-      "prompt": "Does the enterprise have a strategy and planning service?",
-      "intent": "Establish whether the strategy and planning service exists",
-      "field_key": "issp_00_enterprise_strategy_planning_service"
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-issp-00-1",
+          "prompt": "Does the enterprise have a strategy and planning service?",
+          "intent": "Evaluate whether the strategy and planning service exists",
+          "field_key": "issp_00_enterprise_strategy_planning_service",
+          "evaluation_focus": "Documented service or function charter"
+        },
+        {
+          "id": "rq-issp-00-2",
+          "prompt": "Is there a documented Strategy and Planning Service Description?",
+          "intent": "Evaluate whether the service description is documented",
+          "field_key": "issp_00_service_description_documented",
+          "evaluation_focus": "Documented service or function charter"
+        },
+        {
+          "id": "rq-issp-00-3",
+          "prompt": "Is the service adopted enterprise wide?",
+          "intent": "Evaluate enterprise-wide adoption of the service",
+          "field_key": "issp_00_service_enterprise_wide_adoption",
+          "evaluation_focus": "Operating model and delivery cadence"
+        },
+        {
+          "id": "rq-issp-00-4",
+          "prompt": "Is the service audited or reviewed frequently?",
+          "intent": "Evaluate whether the service is audited or reviewed on a regular cadence",
+          "field_key": "issp_00_service_audit_review_frequency",
+          "evaluation_focus": "Stakeholder satisfaction and continuous improvement"
+        }
+      ]
     },
     {
-      "id": "rq-issp-00-2",
-      "capability_id": "issp-00",
-      "prompt": "Is there a documented Strategy and Planning Service Description?",
-      "intent": "Confirm documented service description",
-      "field_key": "issp_00_service_description_documented"
-    },
-    {
-      "id": "rq-issp-00-3",
-      "capability_id": "issp-00",
-      "prompt": "Is the service adopted enterprise wide?",
-      "intent": "Assess enterprise-wide service adoption",
-      "field_key": "issp_00_service_enterprise_wide_adoption"
-    },
-    {
-      "id": "rq-issp-00-4",
-      "capability_id": "issp-00",
-      "prompt": "Is the service audited or reviewed frequently?",
-      "intent": "Assess service audit and review cadence",
-      "field_key": "issp_00_service_audit_review_frequency"
-    },
-    {
-      "id": "rq-issp-07-1",
-      "capability_id": "issp-07",
-      "prompt": "Are there documented KPIs, KRIs, or other metrics for the strategy and planning service?",
-      "intent": "Confirm documented KPIs and KRIs for the service",
-      "field_key": "issp_07_kpis_kris_documented"
-    },
-    {
-      "id": "rq-issp-07-2",
-      "capability_id": "issp-07",
-      "prompt": "Are the KPIs and KRIs reviewed frequently (quarterly, semi-annually, or annually) based on the type of metric?",
-      "intent": "Assess KPI and KRI review cadence by metric type",
-      "field_key": "issp_07_kpis_kris_review_cadence"
-    },
-    {
-      "id": "rq-issp-14-1",
-      "capability_id": "issp-14",
-      "prompt": "Is there a dedicated team that manages the strategic decisions relevant to the business, specifically security?",
-      "intent": "Determine whether a dedicated security strategy and planning team exists",
-      "field_key": "issp_14_dedicated_strategy_planning_team"
-    },
-    {
-      "id": "rq-issp-13-1",
-      "capability_id": "issp-13",
-      "prompt": "Who is the sponsor or leader for the strategy and planning service?",
-      "intent": "Identify sponsor or leader for the strategy and planning service",
-      "field_key": "issp_13_strategy_planning_sponsor_leader"
-    },
-    {
-      "id": "rq-issp-12-1",
-      "capability_id": "issp-12",
-      "prompt": "What is the security vision of the enterprise?",
-      "intent": "Capture the enterprise security vision",
-      "field_key": "issp_12_enterprise_security_vision"
-    },
-    {
-      "id": "rq-issp-12-2",
-      "capability_id": "issp-12",
-      "prompt": "Is the security vision reviewed once every five years?",
-      "intent": "Assess five-year security vision review cadence",
-      "field_key": "issp_12_security_vision_five_year_review"
-    },
-    {
-      "id": "rq-issp-12-3",
-      "capability_id": "issp-12",
-      "prompt": "What are the mission statements that enable the enterprise to achieve the security vision?",
-      "intent": "Capture mission statements aligned to the security vision",
-      "field_key": "issp_12_security_mission_statements"
-    },
-    {
-      "id": "rq-issp-12-4",
-      "capability_id": "issp-12",
-      "prompt": "Is the efficacy of mission statements reviewed annually?",
-      "intent": "Assess annual review of mission statement efficacy",
-      "field_key": "issp_12_mission_efficacy_annual_review"
-    },
-    {
-      "id": "rq-issp-04-1",
-      "capability_id": "issp-04",
-      "prompt": "Does the enterprise have a current 3-year or 5-year roadmap in place for IT security enhancement and adoption?",
-      "intent": "Assess existence of a 3- or 5-year IT security adoption roadmap",
-      "field_key": "issp_04_three_five_year_security_roadmap"
-    },
-    {
-      "id": "rq-issp-04-2",
-      "capability_id": "issp-04",
-      "prompt": "Does the roadmap cover the entire enterprise, subsidiaries, and all physical locations including cloud segments?",
-      "intent": "Assess enterprise-wide roadmap scope including cloud",
-      "field_key": "issp_04_roadmap_enterprise_scope"
-    },
-    {
-      "id": "rq-issp-04-3",
-      "capability_id": "issp-04",
-      "prompt": "How frequently is the roadmap reviewed (semi-annually or annually)?",
-      "intent": "Assess roadmap review frequency",
-      "field_key": "issp_04_roadmap_review_frequency"
-    },
-    {
-      "id": "rq-issp-11-1",
       "capability_id": "issp-11",
-      "prompt": "As part of strategy and planning, does the enterprise have an information security program?",
-      "intent": "Determine whether an information security program exists",
-      "field_key": "issp_11_enterprise_information_security_program"
+      "capability_name": "Information Security Program",
+      "questions": [
+        {
+          "id": "rq-issp-11-1",
+          "prompt": "As part of strategy and planning, does the enterprise have an information security program?",
+          "intent": "Evaluate whether a formal information security program exists",
+          "field_key": "issp_11_enterprise_information_security_program",
+          "evaluation_focus": "Documented program definition or charter"
+        },
+        {
+          "id": "rq-issp-11-2",
+          "prompt": "Who leads the information security program and how is it reported into the organization?",
+          "intent": "Evaluate program leadership and reporting line",
+          "field_key": "issp_11_program_leadership",
+          "evaluation_focus": "Program leadership and reporting line"
+        }
+      ]
     },
     {
-      "id": "rq-issp-11-2",
-      "capability_id": "issp-11",
-      "prompt": "Who leads the information security program and how is it reported into the organization?",
-      "intent": "Understand program leadership and organizational placement",
-      "field_key": "issp_11_program_leadership"
+      "capability_id": "issp-12",
+      "capability_name": "Security Vision and Mission",
+      "questions": [
+        {
+          "id": "rq-issp-12-1",
+          "prompt": "What is the security vision of the enterprise?",
+          "intent": "Evaluate whether a security vision is defined",
+          "field_key": "issp_12_enterprise_security_vision",
+          "evaluation_focus": "Published security vision"
+        },
+        {
+          "id": "rq-issp-12-2",
+          "prompt": "Is the security vision reviewed once every five years?",
+          "intent": "Evaluate security vision review cadence",
+          "field_key": "issp_12_security_vision_five_year_review",
+          "evaluation_focus": "Published security vision"
+        },
+        {
+          "id": "rq-issp-12-3",
+          "prompt": "What are the mission statements that enable the enterprise to achieve the security vision?",
+          "intent": "Evaluate whether security mission statements exist and support the vision",
+          "field_key": "issp_12_security_mission_statements",
+          "evaluation_focus": "Published security mission"
+        },
+        {
+          "id": "rq-issp-12-4",
+          "prompt": "Is the efficacy of mission statements reviewed annually?",
+          "intent": "Evaluate annual review of mission statement efficacy",
+          "field_key": "issp_12_mission_efficacy_annual_review",
+          "evaluation_focus": "Communication and alignment with enterprise strategy"
+        }
+      ]
     },
     {
-      "id": "rq-issp-13-2",
       "capability_id": "issp-13",
-      "prompt": "How often does the security sponsor engage with security leadership on program priorities, funding, and escalations?",
-      "intent": "Assess sponsor engagement and accountability",
-      "field_key": "issp_13_sponsor_engagement"
+      "capability_name": "Security Sponsor",
+      "questions": [
+        {
+          "id": "rq-issp-13-1",
+          "prompt": "Who is the sponsor or leader for the strategy and planning service?",
+          "intent": "Evaluate identification of the security sponsor or service leader",
+          "field_key": "issp_13_strategy_planning_sponsor_leader",
+          "evaluation_focus": "Named executive sponsor for the program"
+        },
+        {
+          "id": "rq-issp-13-2",
+          "prompt": "How often does the security sponsor engage with security leadership on program priorities, funding, and escalations?",
+          "intent": "Evaluate sponsor engagement and accountability for the program",
+          "field_key": "issp_13_sponsor_engagement",
+          "evaluation_focus": "Regular sponsor engagement with security leadership"
+        }
+      ]
     },
     {
-      "id": "rq-issp-14-2",
       "capability_id": "issp-14",
-      "prompt": "How does the strategy and planning team work with security operations, risk, and business stakeholders?",
-      "intent": "Assess team operating model and collaboration",
-      "field_key": "issp_14_team_collaboration"
+      "capability_name": "Strategy and Planning Team",
+      "questions": [
+        {
+          "id": "rq-issp-14-1",
+          "prompt": "Is there a dedicated team that manages the strategic decisions relevant to the business, specifically security?",
+          "intent": "Evaluate whether a dedicated strategy and planning team exists",
+          "field_key": "issp_14_dedicated_strategy_planning_team",
+          "evaluation_focus": "Team or role assignment for strategy and planning"
+        },
+        {
+          "id": "rq-issp-14-2",
+          "prompt": "How does the strategy and planning team work with security operations, risk, and business stakeholders?",
+          "intent": "Evaluate collaboration between the planning team and stakeholders",
+          "field_key": "issp_14_team_collaboration",
+          "evaluation_focus": "Collaboration with security operations and business stakeholders"
+        }
+      ]
     },
     {
-      "id": "rq-issp-01-1",
       "capability_id": "issp-01",
-      "prompt": "How is your information security strategy linked to business objectives and risk appetite today?",
-      "intent": "Establish whether strategy exists and is business-aligned",
-      "field_key": "issp_01_strategy_business_alignment"
+      "capability_name": "Security strategy alignment with business objectives",
+      "questions": [
+        {
+          "id": "rq-issp-01-1",
+          "prompt": "How is your information security strategy linked to business objectives and risk appetite today?",
+          "intent": "Evaluate linkage between security strategy and business objectives",
+          "field_key": "issp_01_strategy_business_alignment",
+          "evaluation_focus": "Linkage to business objectives and risk appetite"
+        },
+        {
+          "id": "rq-issp-01-2",
+          "prompt": "How often is the security strategy reviewed and updated in line with enterprise planning cycles?",
+          "intent": "Evaluate security strategy refresh cadence",
+          "field_key": "issp_01_strategy_review_cadence",
+          "evaluation_focus": "Refresh cadence tied to business planning"
+        }
+      ]
     },
     {
-      "id": "rq-issp-01-2",
-      "capability_id": "issp-01",
-      "prompt": "How often is the security strategy reviewed and updated in line with enterprise planning cycles?",
-      "intent": "Assess strategy refresh cadence",
-      "field_key": "issp_01_strategy_review_cadence"
-    },
-    {
-      "id": "rq-issp-04-4",
       "capability_id": "issp-04",
-      "prompt": "How are roadmap initiatives prioritized, and how do you manage dependencies, constraints, and changes over time?",
-      "intent": "Understand roadmap prioritization and maintenance",
-      "field_key": "issp_04_roadmap_prioritization_maintenance"
+      "capability_name": "Information security program roadmap",
+      "questions": [
+        {
+          "id": "rq-issp-04-1",
+          "prompt": "Does the enterprise have a current 3-year or 5-year roadmap in place for IT security enhancement and adoption?",
+          "intent": "Evaluate existence of a 3- or 5-year information security adoption roadmap",
+          "field_key": "issp_04_three_five_year_security_roadmap",
+          "evaluation_focus": "Horizons including 3-year and 5-year planning views"
+        },
+        {
+          "id": "rq-issp-04-2",
+          "prompt": "Does the roadmap cover the entire enterprise, subsidiaries, and all physical locations including cloud segments?",
+          "intent": "Evaluate enterprise-wide scope of the security roadmap",
+          "field_key": "issp_04_roadmap_enterprise_scope",
+          "evaluation_focus": "Roadmap for the information security program"
+        },
+        {
+          "id": "rq-issp-04-3",
+          "prompt": "How frequently is the roadmap reviewed (semi-annually or annually)?",
+          "intent": "Evaluate roadmap review frequency",
+          "field_key": "issp_04_roadmap_review_frequency",
+          "evaluation_focus": "Initiative prioritization, dependencies, and change control"
+        },
+        {
+          "id": "rq-issp-04-4",
+          "prompt": "How are roadmap initiatives prioritized, and how do you manage dependencies, constraints, and changes over time?",
+          "intent": "Evaluate roadmap prioritization and change control",
+          "field_key": "issp_04_roadmap_prioritization_maintenance",
+          "evaluation_focus": "Initiative prioritization, dependencies, and change control"
+        }
+      ]
     },
     {
-      "id": "rq-issp-02-1",
       "capability_id": "issp-02",
-      "prompt": "What governance bodies or forums own security strategy decisions, and what decisions do they make?",
-      "intent": "Understand governance operating model",
-      "field_key": "issp_02_governance_forums"
+      "capability_name": "Governance and accountability model",
+      "questions": [
+        {
+          "id": "rq-issp-02-1",
+          "prompt": "What governance bodies or forums own security strategy decisions, and what decisions do they make?",
+          "intent": "Evaluate security governance forums and decision scope",
+          "field_key": "issp_02_governance_forums",
+          "evaluation_focus": "Security governance forum or equivalent"
+        },
+        {
+          "id": "rq-issp-02-2",
+          "prompt": "How are accountabilities documented (e.g., RACI) for strategy, risk acceptance, and funding?",
+          "intent": "Evaluate documented accountability for strategy decisions",
+          "field_key": "issp_02_accountability_raci",
+          "evaluation_focus": "RACI for strategy decisions"
+        }
+      ]
     },
     {
-      "id": "rq-issp-02-2",
-      "capability_id": "issp-02",
-      "prompt": "How are accountabilities documented (e.g., RACI) for strategy, risk acceptance, and funding?",
-      "intent": "Assess clarity of accountability",
-      "field_key": "issp_02_accountability_raci"
-    },
-    {
-      "id": "rq-issp-03-1",
       "capability_id": "issp-03",
-      "prompt": "How are cyber and information security risks represented in your enterprise risk register?",
-      "intent": "Check ERM integration",
-      "field_key": "issp_03_erm_integration"
+      "capability_name": "Enterprise risk management integration",
+      "questions": [
+        {
+          "id": "rq-issp-03-1",
+          "prompt": "How are cyber and information security risks represented in your enterprise risk register?",
+          "intent": "Evaluate integration of security risks into enterprise risk management",
+          "field_key": "issp_03_erm_integration",
+          "evaluation_focus": "Risk taxonomy alignment"
+        },
+        {
+          "id": "rq-issp-03-2",
+          "prompt": "Describe your process for risk treatment plans, owners, and tracking to closure.",
+          "intent": "Evaluate risk treatment planning and tracking",
+          "field_key": "issp_03_risk_treatment_process",
+          "evaluation_focus": "Risk treatment plans and owners"
+        }
+      ]
     },
     {
-      "id": "rq-issp-03-2",
-      "capability_id": "issp-03",
-      "prompt": "Describe your process for risk treatment plans, owners, and tracking to closure.",
-      "intent": "Evaluate risk treatment discipline",
-      "field_key": "issp_03_risk_treatment_process"
-    },
-    {
-      "id": "rq-issp-05-1",
       "capability_id": "issp-05",
-      "prompt": "How are security policies and standards structured, owned, and kept current?",
-      "intent": "Map policy framework maturity",
-      "field_key": "issp_05_policy_framework"
+      "capability_name": "Policy and standards framework",
+      "questions": [
+        {
+          "id": "rq-issp-05-1",
+          "prompt": "How are security policies and standards structured, owned, and kept current?",
+          "intent": "Evaluate policy and standards framework maturity",
+          "field_key": "issp_05_policy_framework",
+          "evaluation_focus": "Policy hierarchy and ownership"
+        },
+        {
+          "id": "rq-issp-05-2",
+          "prompt": "What is your process for policy exceptions and how are exceptions tracked?",
+          "intent": "Evaluate policy exception governance",
+          "field_key": "issp_05_policy_exceptions",
+          "evaluation_focus": "Review and exception process"
+        }
+      ]
     },
     {
-      "id": "rq-issp-05-2",
-      "capability_id": "issp-05",
-      "prompt": "What is your process for policy exceptions and how are exceptions tracked?",
-      "intent": "Evaluate exception governance",
-      "field_key": "issp_05_policy_exceptions"
-    },
-    {
-      "id": "rq-issp-06-1",
       "capability_id": "issp-06",
-      "prompt": "How is the security budget planned and tied to strategic initiatives on your roadmap?",
-      "intent": "Link funding to strategy",
-      "field_key": "issp_06_budget_roadmap_link"
+      "capability_name": "Budget and resource planning",
+      "questions": [
+        {
+          "id": "rq-issp-06-1",
+          "prompt": "How is the security budget planned and tied to strategic initiatives on your roadmap?",
+          "intent": "Evaluate budget linkage to the security roadmap",
+          "field_key": "issp_06_budget_roadmap_link",
+          "evaluation_focus": "Budget linkage to roadmap"
+        },
+        {
+          "id": "rq-issp-06-2",
+          "prompt": "How do you plan for security staffing, skills gaps, and managed service needs?",
+          "intent": "Evaluate security resource and capacity planning",
+          "field_key": "issp_06_resource_capacity_planning",
+          "evaluation_focus": "Skills and capacity planning"
+        }
+      ]
     },
     {
-      "id": "rq-issp-06-2",
-      "capability_id": "issp-06",
-      "prompt": "How do you plan for security staffing, skills gaps, and managed service needs?",
-      "intent": "Assess resource planning",
-      "field_key": "issp_06_resource_capacity_planning"
-    },
-    {
-      "id": "rq-issp-07-3",
       "capability_id": "issp-07",
-      "prompt": "Give an example where KPIs or KRIs changed a strategic or funding decision.",
-      "intent": "Test metrics-driven decisions",
-      "field_key": "issp_07_kpis_kris_decision_example"
+      "capability_name": "KPIs and KRIs",
+      "questions": [
+        {
+          "id": "rq-issp-07-1",
+          "prompt": "Are there documented KPIs, KRIs, or other metrics for the strategy and planning service?",
+          "intent": "Evaluate whether KPIs and KRIs are documented for the service",
+          "field_key": "issp_07_kpis_kris_documented",
+          "evaluation_focus": "Defined KPIs and KRIs"
+        },
+        {
+          "id": "rq-issp-07-2",
+          "prompt": "Are the KPIs and KRIs reviewed frequently (quarterly, semi-annually, or annually) based on the type of metric?",
+          "intent": "Evaluate KPI and KRI review cadence",
+          "field_key": "issp_07_kpis_kris_review_cadence",
+          "evaluation_focus": "Reporting cadence to leadership"
+        },
+        {
+          "id": "rq-issp-07-3",
+          "prompt": "Give an example where KPIs or KRIs changed a strategic or funding decision.",
+          "intent": "Evaluate use of KPIs and KRIs in leadership decisions",
+          "field_key": "issp_07_kpis_kris_decision_example",
+          "evaluation_focus": "Use of metrics in decisions"
+        }
+      ]
     },
     {
-      "id": "rq-issp-08-1",
       "capability_id": "issp-08",
-      "prompt": "How do you maintain an inventory of regulatory, contractual, and assurance obligations?",
-      "intent": "Check obligations management",
-      "field_key": "issp_08_obligations_inventory"
+      "capability_name": "Regulatory and compliance alignment",
+      "questions": [
+        {
+          "id": "rq-issp-08-1",
+          "prompt": "How do you maintain an inventory of regulatory, contractual, and assurance obligations?",
+          "intent": "Evaluate compliance obligations inventory",
+          "field_key": "issp_08_obligations_inventory",
+          "evaluation_focus": "Compliance obligations inventory"
+        },
+        {
+          "id": "rq-issp-08-2",
+          "prompt": "How are controls and roadmap items mapped to compliance obligations?",
+          "intent": "Evaluate mapping of controls and roadmap items to obligations",
+          "field_key": "issp_08_control_obligation_mapping",
+          "evaluation_focus": "Control mapping to obligations"
+        }
+      ]
     },
     {
-      "id": "rq-issp-08-2",
-      "capability_id": "issp-08",
-      "prompt": "How are controls and roadmap items mapped to compliance obligations?",
-      "intent": "Assess compliance-driven planning",
-      "field_key": "issp_08_control_obligation_mapping"
-    },
-    {
-      "id": "rq-issp-09-1",
       "capability_id": "issp-09",
-      "prompt": "How does your security strategy address third-party and supply chain risk?",
-      "intent": "Evaluate third-party strategy",
-      "field_key": "issp_09_third_party_strategy"
+      "capability_name": "Third-party and supply chain security strategy",
+      "questions": [
+        {
+          "id": "rq-issp-09-1",
+          "prompt": "How does your security strategy address third-party and supply chain risk?",
+          "intent": "Evaluate third-party and supply chain security strategy",
+          "field_key": "issp_09_third_party_strategy",
+          "evaluation_focus": "Tiering or criticality model"
+        },
+        {
+          "id": "rq-issp-09-2",
+          "prompt": "How are critical vendors tiered, assessed, and monitored over time?",
+          "intent": "Evaluate vendor tiering, assessment, and monitoring",
+          "field_key": "issp_09_vendor_tiering_monitoring",
+          "evaluation_focus": "Ongoing monitoring approach"
+        }
+      ]
     },
     {
-      "id": "rq-issp-09-2",
-      "capability_id": "issp-09",
-      "prompt": "How are critical vendors tiered, assessed, and monitored over time?",
-      "intent": "Understand vendor lifecycle",
-      "field_key": "issp_09_vendor_tiering_monitoring"
-    },
-    {
-      "id": "rq-issp-10-1",
       "capability_id": "issp-10",
-      "prompt": "What workforce security awareness and training plans support your strategy?",
-      "intent": "Assess culture and training planning",
-      "field_key": "issp_10_workforce_training_plan"
-    },
-    {
-      "id": "rq-issp-10-2",
-      "capability_id": "issp-10",
-      "prompt": "How do you measure security culture or human-risk outcomes?",
-      "intent": "Check culture measurement",
-      "field_key": "issp_10_culture_metrics"
+      "capability_name": "Workforce and security culture planning",
+      "questions": [
+        {
+          "id": "rq-issp-10-1",
+          "prompt": "What workforce security awareness and training plans support your strategy?",
+          "intent": "Evaluate workforce security training plans",
+          "field_key": "issp_10_workforce_training_plan",
+          "evaluation_focus": "Role-based training plan"
+        },
+        {
+          "id": "rq-issp-10-2",
+          "prompt": "How do you measure security culture or human-risk outcomes?",
+          "intent": "Evaluate measurement of security culture outcomes",
+          "field_key": "issp_10_culture_metrics",
+          "evaluation_focus": "Phishing or culture metrics"
+        }
+      ]
     }
   ]
 }

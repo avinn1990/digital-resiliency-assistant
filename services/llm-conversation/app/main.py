@@ -63,7 +63,10 @@ async def get_evaluation_content() -> dict:
         "service_id": bundle["capabilities"]["service_id"],
         "service_name": bundle["capabilities"]["service_name"],
         "capabilities": bundle["capabilities"]["capabilities"],
-        "reference_questions": bundle["reference_questions"]["reference_questions"],
+        "reference_questions_by_capability": bundle["reference_questions"][
+            "capability_questions"
+        ],
+        "reference_questions": bundle["reference_questions_flat"],
         "path": bundle["path"],
     }
 
