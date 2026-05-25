@@ -1,0 +1,21 @@
+{
+  "id": "information-security-strategy-planning",
+  "name": "Information Security Strategy and Planning Services",
+  "version": "1.0",
+  "description": "LLM-guided evaluation of 10 strategy and planning capabilities with dynamic follow-up questions.",
+  "evaluation_mode": "llm",
+  "domains": [
+    {
+      "id": "issp",
+      "name": "Strategy and Planning",
+      "controls": [
+        {
+          "id": "issp-llm",
+          "title": "LLM capability assessment",
+          "weight": 1,
+          "questions": []
+        }
+      ]
+    }
+  ]
+}

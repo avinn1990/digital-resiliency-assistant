@@ -1,0 +1,145 @@
+{
+  "service_id": "information-security-strategy-planning",
+  "reference_questions": [
+    {
+      "id": "rq-issp-01-1",
+      "capability_id": "issp-01",
+      "prompt": "How is your information security strategy linked to business objectives and risk appetite today?",
+      "intent": "Establish whether strategy exists and is business-aligned",
+      "field_key": "issp_01_strategy_business_alignment"
+    },
+    {
+      "id": "rq-issp-01-2",
+      "capability_id": "issp-01",
+      "prompt": "Who sponsors your security strategy at executive level, and how often is it reviewed?",
+      "intent": "Identify ownership and refresh cadence",
+      "field_key": "issp_01_executive_sponsor_review"
+    },
+    {
+      "id": "rq-issp-02-1",
+      "capability_id": "issp-02",
+      "prompt": "What governance bodies or forums own security strategy decisions, and what decisions do they make?",
+      "intent": "Understand governance operating model",
+      "field_key": "issp_02_governance_forums"
+    },
+    {
+      "id": "rq-issp-02-2",
+      "capability_id": "issp-02",
+      "prompt": "How are accountabilities documented (e.g., RACI) for strategy, risk acceptance, and funding?",
+      "intent": "Assess clarity of accountability",
+      "field_key": "issp_02_accountability_raci"
+    },
+    {
+      "id": "rq-issp-03-1",
+      "capability_id": "issp-03",
+      "prompt": "How are cyber and information security risks represented in your enterprise risk register?",
+      "intent": "Check ERM integration",
+      "field_key": "issp_03_erm_integration"
+    },
+    {
+      "id": "rq-issp-03-2",
+      "capability_id": "issp-03",
+      "prompt": "Describe your process for risk treatment plans, owners, and tracking to closure.",
+      "intent": "Evaluate risk treatment discipline",
+      "field_key": "issp_03_risk_treatment_process"
+    },
+    {
+      "id": "rq-issp-04-1",
+      "capability_id": "issp-04",
+      "prompt": "Do you maintain a multi-year security roadmap? What horizons and prioritization method do you use?",
+      "intent": "Assess roadmap existence and method",
+      "field_key": "issp_04_roadmap_horizon_priority"
+    },
+    {
+      "id": "rq-issp-04-2",
+      "capability_id": "issp-04",
+      "prompt": "How do you handle dependencies, constraints, and changes to the roadmap?",
+      "intent": "Understand roadmap maintenance",
+      "field_key": "issp_04_roadmap_dependencies"
+    },
+    {
+      "id": "rq-issp-05-1",
+      "capability_id": "issp-05",
+      "prompt": "How are security policies and standards structured, owned, and kept current?",
+      "intent": "Map policy framework maturity",
+      "field_key": "issp_05_policy_framework"
+    },
+    {
+      "id": "rq-issp-05-2",
+      "capability_id": "issp-05",
+      "prompt": "What is your process for policy exceptions and how are exceptions tracked?",
+      "intent": "Evaluate exception governance",
+      "field_key": "issp_05_policy_exceptions"
+    },
+    {
+      "id": "rq-issp-06-1",
+      "capability_id": "issp-06",
+      "prompt": "How is the security budget planned and tied to strategic initiatives on your roadmap?",
+      "intent": "Link funding to strategy",
+      "field_key": "issp_06_budget_roadmap_link"
+    },
+    {
+      "id": "rq-issp-06-2",
+      "capability_id": "issp-06",
+      "prompt": "How do you plan for security staffing, skills gaps, and managed service needs?",
+      "intent": "Assess resource planning",
+      "field_key": "issp_06_resource_capacity_planning"
+    },
+    {
+      "id": "rq-issp-07-1",
+      "capability_id": "issp-07",
+      "prompt": "Which security KPIs or KRIs do you report to leadership, and how often?",
+      "intent": "Identify measurement program",
+      "field_key": "issp_07_kpis_reporting"
+    },
+    {
+      "id": "rq-issp-07-2",
+      "capability_id": "issp-07",
+      "prompt": "Give an example where metrics changed a strategic or funding decision.",
+      "intent": "Test metrics-driven decisions",
+      "field_key": "issp_07_metrics_decision_example"
+    },
+    {
+      "id": "rq-issp-08-1",
+      "capability_id": "issp-08",
+      "prompt": "How do you maintain an inventory of regulatory, contractual, and assurance obligations?",
+      "intent": "Check obligations management",
+      "field_key": "issp_08_obligations_inventory"
+    },
+    {
+      "id": "rq-issp-08-2",
+      "capability_id": "issp-08",
+      "prompt": "How are controls and roadmap items mapped to compliance obligations?",
+      "intent": "Assess compliance-driven planning",
+      "field_key": "issp_08_control_obligation_mapping"
+    },
+    {
+      "id": "rq-issp-09-1",
+      "capability_id": "issp-09",
+      "prompt": "How does your security strategy address third-party and supply chain risk?",
+      "intent": "Evaluate third-party strategy",
+      "field_key": "issp_09_third_party_strategy"
+    },
+    {
+      "id": "rq-issp-09-2",
+      "capability_id": "issp-09",
+      "prompt": "How are critical vendors tiered, assessed, and monitored over time?",
+      "intent": "Understand vendor lifecycle",
+      "field_key": "issp_09_vendor_tiering_monitoring"
+    },
+    {
+      "id": "rq-issp-10-1",
+      "capability_id": "issp-10",
+      "prompt": "What workforce security awareness and training plans support your strategy?",
+      "intent": "Assess culture and training planning",
+      "field_key": "issp_10_workforce_training_plan"
+    },
+    {
+      "id": "rq-issp-10-2",
+      "capability_id": "issp-10",
+      "prompt": "How do you measure security culture or human-risk outcomes?",
+      "intent": "Check culture measurement",
+      "field_key": "issp_10_culture_metrics"
+    }
+  ]
+}

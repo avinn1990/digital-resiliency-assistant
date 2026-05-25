@@ -5,7 +5,9 @@ from pydantic import BaseModel, Field
 from app.clients.assessment import AssessmentClient
 from app.clients.conversation import ConversationClient
 from app.clients.framework import FrameworkClient
+from app.clients.llm_conversation import LLM_FRAMEWORK_IDS, LlmConversationClient
 from app.config import settings
+from app.session_registry import is_llm_session, register_llm_session
 
 app = FastAPI(
     title="Digital Resiliency Assistant API",
@@ -22,8 +24,13 @@ app.add_middleware(
 )
 
 conversation = ConversationClient(settings.conversation_service_url)
+llm_conversation = LlmConversationClient(settings.llm_conversation_service_url)
 assessment = AssessmentClient(settings.assessment_service_url)
 framework = FrameworkClient(settings.framework_service_url)
+
+
+def _uses_llm(framework_id: str) -> bool:
+    return framework_id in LLM_FRAMEWORK_IDS
 
 
 class StartSessionRequest(BaseModel):
@@ -67,9 +74,25 @@ async def register_framework(body: RegisterFrameworkRequest) -> dict:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
+@app.get("/evaluation-services/{service_id}/content")
+async def get_evaluation_content(service_id: str) -> dict:
+    if service_id not in LLM_FRAMEWORK_IDS:
+        raise HTTPException(status_code=404, detail="Evaluation service not found")
+    try:
+        response = await llm_conversation.get("/evaluation-content")
+        response.raise_for_status()
+        return response.json()
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+
 @app.post("/sessions")
 async def start_session(body: StartSessionRequest) -> dict:
     try:
+        if _uses_llm(body.framework_id):
+            result = await llm_conversation.start_session(body.framework_id)
+            register_llm_session(result["session_id"])
+            return result
         return await conversation.start_session(body.framework_id)
     except Exception as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
@@ -78,6 +101,8 @@ async def start_session(body: StartSessionRequest) -> dict:
 @app.post("/sessions/{session_id}/messages")
 async def send_message(session_id: str, body: SendMessageRequest) -> dict:
     try:
+        if is_llm_session(session_id):
+            return await llm_conversation.send_message(session_id, body.message)
         return await conversation.send_message(session_id, body.message)
     except Exception as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
@@ -86,6 +111,8 @@ async def send_message(session_id: str, body: SendMessageRequest) -> dict:
 @app.get("/sessions/{session_id}/facts")
 async def get_session_facts(session_id: str) -> dict:
     try:
+        if is_llm_session(session_id):
+            return await llm_conversation.get_facts(session_id)
         return await conversation.get_facts(session_id)
     except Exception as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
@@ -94,6 +121,8 @@ async def get_session_facts(session_id: str) -> dict:
 @app.post("/sessions/{session_id}/assess")
 async def run_assessment(session_id: str) -> dict:
     try:
+        if is_llm_session(session_id):
+            return await llm_conversation.run_assessment(session_id)
         facts_payload = await conversation.get_facts(session_id)
         return await assessment.run_assessment(
             session_id=session_id,

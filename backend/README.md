@@ -18,5 +18,8 @@ Orchestrates calls to services under `services/`. The UI should talk only to thi
 | `CONVERSATION_SERVICE_URL` | `http://localhost:8001` | Set via Blueprint `fromService` → `dra-conversation` |
 | `ASSESSMENT_SERVICE_URL` | `http://localhost:8002` | `dra-assessment` |
 | `FRAMEWORK_SERVICE_URL` | `http://localhost:8003` | `dra-framework` |
+| `LLM_CONVERSATION_SERVICE_URL` | `http://localhost:8004` | `dra-llm-conversation` |
+
+LLM evaluation framework id: `information-security-strategy-planning`
 
 Host-only values (e.g. `my-service.onrender.com`) are normalized to `https://` automatically.

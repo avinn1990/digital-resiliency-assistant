@@ -1,0 +1,108 @@
+{
+  "service_id": "information-security-strategy-planning",
+  "service_name": "Information Security Strategy and Planning Services",
+  "version": "1.0",
+  "description": "Evaluates whether the organization has a coherent information security strategy aligned to business risk, with actionable planning, governance, and measurable outcomes.",
+  "capabilities": [
+    {
+      "id": "issp-01",
+      "name": "Security strategy alignment with business objectives",
+      "description": "Information security strategy is explicitly linked to business goals, risk appetite, and enterprise planning cycles.",
+      "evaluation_focus": [
+        "Documented security strategy or charter",
+        "Stakeholder ownership (executive sponsor)",
+        "Refresh cadence tied to business planning"
+      ]
+    },
+    {
+      "id": "issp-02",
+      "name": "Governance and accountability model",
+      "description": "Roles, committees, and decision rights for security strategy are defined and operating.",
+      "evaluation_focus": [
+        "Security governance forum or equivalent",
+        "RACI for strategy decisions",
+        "Escalation paths for risk acceptance"
+      ]
+    },
+    {
+      "id": "issp-03",
+      "name": "Enterprise risk management integration",
+      "description": "Cyber and information security risks are integrated into enterprise risk registers and treatment planning.",
+      "evaluation_focus": [
+        "Risk taxonomy alignment",
+        "Risk treatment plans and owners",
+        "Board or executive risk reporting"
+      ]
+    },
+    {
+      "id": "issp-04",
+      "name": "Multi-year security roadmap",
+      "description": "A prioritized roadmap connects strategy to initiatives, dependencies, and timelines.",
+      "evaluation_focus": [
+        "Roadmap horizons (12–36 months)",
+        "Initiative prioritization method",
+        "Dependency and constraint tracking"
+      ]
+    },
+    {
+      "id": "issp-05",
+      "name": "Policy and standards framework",
+      "description": "Policies and standards translate strategy into enforceable requirements across the organization.",
+      "evaluation_focus": [
+        "Policy hierarchy and ownership",
+        "Review and exception process",
+        "Standards mapping to controls"
+      ]
+    },
+    {
+      "id": "issp-06",
+      "name": "Budget and resource planning",
+      "description": "Security funding, staffing, and capability investments are planned and tracked against strategy.",
+      "evaluation_focus": [
+        "Budget linkage to roadmap",
+        "Skills and capacity planning",
+        "Buy vs build decisions"
+      ]
+    },
+    {
+      "id": "issp-07",
+      "name": "Metrics, KPIs, and reporting",
+      "description": "Security performance is measured and reported to leadership with actionable insights.",
+      "evaluation_focus": [
+        "Defined KPIs/KRIs",
+        "Reporting cadence to leadership",
+        "Use of metrics in decisions"
+      ]
+    },
+    {
+      "id": "issp-08",
+      "name": "Regulatory and compliance alignment",
+      "description": "Strategy and planning account for applicable regulations, contracts, and assurance obligations.",
+      "evaluation_focus": [
+        "Compliance obligations inventory",
+        "Control mapping to obligations",
+        "Planning for audit and assurance"
+      ]
+    },
+    {
+      "id": "issp-09",
+      "name": "Third-party and supply chain security strategy",
+      "description": "Third-party risk is addressed in strategy with consistent requirements and oversight.",
+      "evaluation_focus": [
+        "Tiering or criticality model",
+        "Contractual security requirements",
+        "Ongoing monitoring approach"
+      ]
+    },
+    {
+      "id": "issp-10",
+      "name": "Workforce and security culture planning",
+      "description": "Awareness, training, and culture initiatives are planned to support strategic outcomes.",
+      "evaluation_focus": [
+        "Role-based training plan",
+        "Phishing or culture metrics",
+        "Executive tone and accountability"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AssessedCapabilitiesState",
+  "description": "Per-session state written by the LLM conversation service",
+  "type": "object",
+  "properties": {
+    "service_id": { "type": "string" },
+    "capabilities": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "capability_id": { "type": "string" },
+          "name": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["not_started", "exploring", "sufficient", "insufficient"]
+          },
+          "evidence_summary": { "type": "string" },
+          "reference_questions_covered": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "dynamic_questions_asked": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "confidence": { "type": "number", "minimum": 0, "maximum": 1 }
+        }
+      }
+    }
+  }
+}

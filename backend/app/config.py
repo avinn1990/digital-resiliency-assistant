@@ -18,11 +18,13 @@ class Settings(BaseSettings):
     conversation_service_url: str = "http://localhost:8001"
     assessment_service_url: str = "http://localhost:8002"
     framework_service_url: str = "http://localhost:8003"
+    llm_conversation_service_url: str = "http://localhost:8004"
 
     @field_validator(
         "conversation_service_url",
         "assessment_service_url",
         "framework_service_url",
+        "llm_conversation_service_url",
         mode="before",
     )
     @classmethod

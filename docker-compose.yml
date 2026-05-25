@@ -10,10 +10,12 @@ services:
       CONVERSATION_SERVICE_URL: http://conversation:8001
       ASSESSMENT_SERVICE_URL: http://assessment:8002
       FRAMEWORK_SERVICE_URL: http://framework:8003
+      LLM_CONVERSATION_SERVICE_URL: http://llm-conversation:8004
     depends_on:
       - conversation
       - assessment
       - framework
+      - llm-conversation
 
   conversation:
     build: ./services/conversation
@@ -23,6 +25,17 @@ services:
       FRAMEWORK_SERVICE_URL: http://framework:8003
     depends_on:
       - framework
+
+  llm-conversation:
+    build: ./services/llm-conversation
+    ports:
+      - "8004:8004"
+    environment:
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: gpt-4o-mini
+      EVALUATION_SERVICE_DIR: /app/evaluation-content
+    volumes:
+      - ./evaluation-services/Information Security Strategy and Planning Services:/app/evaluation-content:ro
 
   assessment:
     build: ./services/assessment

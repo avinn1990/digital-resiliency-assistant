@@ -11,6 +11,8 @@ A modular assistant that gathers information from users through conversation, th
 | `services/conversation/` | Question flow and information extraction from user messages |
 | `services/assessment/` | Scoring and reporting against a loaded framework |
 | `services/framework/` | Upload, storage, and retrieval of assessment frameworks |
+| `services/llm-conversation/` | LLM-driven dynamic Q&A for evaluation services |
+| `evaluation-services/` | Capability definitions and reference questions per offering |
 | `shared/` | Cross-cutting types, JSON schemas, and shared Python helpers |
 | `render.yaml` | **Primary** deployment — Render Blueprint (5 services) |
 
@@ -98,15 +100,26 @@ export FRAMEWORK_SERVICE_URL=http://localhost:8003
 uvicorn app.main:app --reload --port 8002
 ```
 
-**Terminal 4 — backend**
+**Terminal 4 — LLM conversation** (for Information Security Strategy and Planning)
+
+```bash
+cd services/llm-conversation
+pip install -r requirements.txt
+export OPENAI_API_KEY=your-key-here
+export EVALUATION_SERVICE_DIR="../../evaluation-services/Information Security Strategy and Planning Services"
+uvicorn app.main:app --reload --port 8004
+```
+
+**Terminal 5 — backend**
 
 ```bash
 cd backend
 pip install -r requirements.txt
+export LLM_CONVERSATION_SERVICE_URL=http://localhost:8004
 uvicorn app.main:app --reload --port 8000
 ```
 
-**Terminal 5 — UI**
+**Terminal 6 — UI**
 
 ```bash
 cd ui
