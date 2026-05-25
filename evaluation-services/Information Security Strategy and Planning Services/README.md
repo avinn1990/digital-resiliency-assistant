@@ -7,7 +7,7 @@ Evaluation content for the LLM agent.
 | File | Purpose |
 |------|---------|
 | `capabilities.json` | Fifteen merged capabilities (foundational program metrics + strategy/planning depth) |
-| `reference-questions.json` | Reference questions per capability (measurement criteria to be added later) |
+| `reference-questions.json` | Official checklist questions plus supplemental questions per capability |
 | `assessed-capabilities.schema.json` | Per-session state shape from the LLM |
 
 > **Next step:** Add official measurement criteria (scoring rubrics) per capability when ready.
