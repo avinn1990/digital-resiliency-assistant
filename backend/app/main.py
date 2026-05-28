@@ -13,6 +13,7 @@ from app.config import (
     is_openai_configured,
     settings,
 )
+from app.evaluation_loader import list_evaluation_services, load_evaluation_service_bundle
 from app.session_registry import is_llm_session, register_llm_session
 
 app = FastAPI(
@@ -89,8 +90,18 @@ async def register_framework(body: RegisterFrameworkRequest) -> dict:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
+@app.get("/evaluation-services")
+async def list_eval_services() -> list[dict]:
+    return list_evaluation_services()
+
+
 @app.get("/evaluation-services/{service_id}/content")
 async def get_evaluation_content(service_id: str) -> dict:
+    bundle = load_evaluation_service_bundle(service_id)
+    if bundle:
+        return bundle
+
+    # Backwards-compatible fallback: proxy LLM service content (older deployments)
     if service_id not in LLM_FRAMEWORK_IDS:
         raise HTTPException(status_code=404, detail="Evaluation service not found")
     try:

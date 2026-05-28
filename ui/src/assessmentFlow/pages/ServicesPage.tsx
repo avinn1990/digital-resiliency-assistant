@@ -1,0 +1,163 @@
+import { useEffect, useMemo, useState } from "react";
+import type { EvaluationServiceSummary, UserProfile } from "../types";
+
+type Props = {
+  profile: UserProfile;
+  services: EvaluationServiceSummary[];
+  servicesLoading: boolean;
+  servicesError: string | null;
+  initialSelectedServiceIds?: string[];
+  onConfirm: (selectedServiceIds: string[]) => void;
+  allowBackToSplash?: boolean;
+};
+
+function normalizeRole(value: string) {
+  return value.trim().toLowerCase();
+}
+
+export function ServicesPage({
+  profile,
+  services,
+  servicesLoading,
+  servicesError,
+  initialSelectedServiceIds,
+  onConfirm,
+  allowBackToSplash,
+}: Props) {
+  const relevant = useMemo(() => {
+    const role = normalizeRole(profile.role);
+    if (!role) return services;
+    const matched = services.filter((s) =>
+      (s.target_audience ?? []).some((r) => normalizeRole(String(r)) === role)
+    );
+    return matched.length > 0 ? matched : services;
+  }, [profile.role, services]);
+
+  const [selected, setSelected] = useState<Record<string, boolean>>({});
+
+  useEffect(() => {
+    if (initialSelectedServiceIds?.length) {
+      setSelected(
+        Object.fromEntries(initialSelectedServiceIds.map((id) => [id, true]))
+      );
+      return;
+    }
+    setSelected(Object.fromEntries(relevant.map((s) => [s.service_id, true])));
+  }, [initialSelectedServiceIds, relevant]);
+
+  const selectedIds = useMemo(() => {
+    return Object.entries(selected)
+      .filter(([, v]) => v)
+      .map(([k]) => k);
+  }, [selected]);
+
+  const canContinue = selectedIds.length > 0 && !servicesLoading;
+
+  return (
+    <div className="af-page">
+      <div className="af-page-inner">
+        <div className="af-topbar">
+          <div>
+            <div className="af-kicker">Step 2</div>
+            <h1 className="af-h1">Select services for your role</h1>
+            <p className="context-help">
+              Based on <strong>{profile.role}</strong>, we pre-selected the services
+              that typically map to this role. You can deselect anything you don’t
+              own.
+            </p>
+          </div>
+          <a className="af-link" href={allowBackToSplash ? "/" : "/profile"}>
+            Back
+          </a>
+        </div>
+
+        {servicesError && (
+          <div className="error-banner" role="alert">
+            <strong>Service catalog error.</strong> {servicesError}
+          </div>
+        )}
+
+        <div className="af-card af-card-page">
+          {servicesLoading ? (
+            <div className="context-help">Loading services…</div>
+          ) : services.length === 0 ? (
+            <div className="context-help">
+              No evaluation services are available yet.
+            </div>
+          ) : (
+            <div className="af-service-list">
+              {services.map((s) => {
+                const checked = !!selected[s.service_id];
+                const isRelevant = relevant.some((r) => r.service_id === s.service_id);
+                return (
+                  <label
+                    key={s.service_id}
+                    className={`af-service ${isRelevant ? "relevant" : ""}`}
+                  >
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={(e) =>
+                        setSelected((prev) => ({
+                          ...prev,
+                          [s.service_id]: e.target.checked,
+                        }))
+                      }
+                    />
+                    <div className="af-service-main">
+                      <div className="af-service-title">
+                        {s.service_name ?? s.service_id}
+                        {s.version ? (
+                          <span className="af-pill">v{s.version}</span>
+                        ) : null}
+                      </div>
+                      {s.description && (
+                        <div className="af-service-desc">{s.description}</div>
+                      )}
+                      <div className="af-service-meta">
+                        <span className="af-mono">{s.service_id}</span>
+                        {isRelevant ? <span className="af-pill ok">Suggested</span> : null}
+                      </div>
+                    </div>
+                  </label>
+                );
+              })}
+            </div>
+          )}
+
+          <div className="af-actions-row">
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={() => setSelected(Object.fromEntries(services.map((s) => [s.service_id, true])))}
+              disabled={servicesLoading || services.length === 0}
+            >
+              Select all
+            </button>
+            <button
+              type="button"
+              className="btn-ghost"
+              onClick={() => setSelected({})}
+              disabled={servicesLoading || services.length === 0}
+            >
+              Clear
+            </button>
+            <div className="af-spacer" />
+            <button
+              type="button"
+              className="btn-primary"
+              onClick={() => onConfirm(selectedIds)}
+              disabled={!canContinue}
+            >
+              Confirm & start questions
+            </button>
+          </div>
+          <p className="context-help">
+            Selected: <strong>{selectedIds.length}</strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
