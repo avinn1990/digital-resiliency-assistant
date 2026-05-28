@@ -1,8 +1,8 @@
 {
   "service_id": "information-security-strategy-planning",
   "service_name": "Information Security Strategy and Planning Services",
-  "version": "1.1",
-  "description": "Evaluates whether the organization has a defined information security program with sponsorship, vision, team, roadmap, and measurable strategy-and-planning outcomes.",
+  "version": "1.4",
+  "description": "Evaluates whether the organization has a defined information security program with sponsorship, vision, team, roadmap, and measurable strategy-and-planning outcomes. Target audience: CISO/Head of Security; security program/strategy lead; GRC leader; security PMO/portfolio manager; and key contributors as needed (ERM owner, compliance/audit lead, TPRM/vendor risk lead, metrics owner, awareness lead, finance partner).",
   "capabilities": [
     {
       "id": "issp-00",
@@ -12,7 +12,9 @@
         "Documented service or function charter",
         "Operating model and delivery cadence",
         "Stakeholder satisfaction and continuous improvement"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-11",
@@ -22,7 +24,9 @@
         "Documented program definition or charter",
         "Program scope across business units and technology",
         "Program leadership and reporting line"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-12",
@@ -32,7 +36,9 @@
         "Published security vision",
         "Published security mission",
         "Communication and alignment with enterprise strategy"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-13",
@@ -42,7 +48,9 @@
         "Named executive sponsor for the program",
         "Sponsor role in decisions, funding, and escalations",
         "Regular sponsor engagement with security leadership"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
     },
     {
       "id": "issp-14",
@@ -52,7 +60,9 @@
         "Team or role assignment for strategy and planning",
         "Skills and capacity for planning activities",
         "Collaboration with security operations and business stakeholders"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
     },
     {
       "id": "issp-01",
@@ -62,7 +72,9 @@
         "Documented security strategy or charter",
         "Linkage to business objectives and risk appetite",
         "Refresh cadence tied to business planning"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-04",
@@ -72,7 +84,9 @@
         "Roadmap for the information security program",
         "Horizons including 3-year and 5-year planning views",
         "Initiative prioritization, dependencies, and change control"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-02",
@@ -82,7 +96,9 @@
         "Security governance forum or equivalent",
         "RACI for strategy decisions",
         "Escalation paths for risk acceptance"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-03",
@@ -92,7 +108,9 @@
         "Risk taxonomy alignment",
         "Risk treatment plans and owners",
         "Board or executive risk reporting"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-05",
@@ -102,7 +120,9 @@
         "Policy hierarchy and ownership",
         "Review and exception process",
         "Standards mapping to controls"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-06",
@@ -112,7 +132,9 @@
         "Budget linkage to roadmap",
         "Skills and capacity planning",
         "Buy vs build decisions"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-07",
@@ -122,7 +144,9 @@
         "Defined KPIs and KRIs",
         "Reporting cadence to leadership",
         "Use of metrics in decisions"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-08",
@@ -132,7 +156,9 @@
         "Compliance obligations inventory",
         "Control mapping to obligations",
         "Planning for audit and assurance"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-09",
@@ -142,7 +168,9 @@
         "Tiering or criticality model",
         "Contractual security requirements",
         "Ongoing monitoring approach"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-10",
@@ -152,7 +180,74 @@
         "Role-based training plan",
         "Phishing or culture metrics",
         "Executive tone and accountability"
-      ]
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
     }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience": [
+    "CISO / Head of Security",
+    "Security program / strategy lead",
+    "GRC leader",
+    "Security PMO / portfolio manager",
+    "Enterprise Risk Management (ERM) owner",
+    "Compliance / Audit lead",
+    "Third-party risk / Vendor risk (TPRM) lead",
+    "Security metrics owner",
+    "Security awareness / culture lead",
+    "Finance partner for security budgeting"
   ]
 }

@@ -12,7 +12,7 @@ Evaluation content for the LLM agent.
 | `validate_evaluation_content.py` | Validates 1:1 mapping between capabilities and questions |
 | `assessed-capabilities.schema.json` | Per-session state shape from the LLM |
 
-> **Next step:** Add official measurement criteria (scoring rubrics) per capability when ready.
+Shared assessment rubric (common to all services): `shared/docs/evaluation-rubric.md`.
 
 ## OpenAI environment variables
 
