@@ -6,13 +6,13 @@ Evaluation content for the LLM agent.
 
 | File | Purpose |
 |------|---------|
-| `capabilities.json` | Fifteen capabilities; each has `resiliency_weight` (all **1** for this service) and shared rubric metadata |
+| `capabilities.json` | Fifteen merged capabilities (foundational program metrics + strategy/planning depth) |
 | `reference-questions.json` | Questions grouped by `capability_id` — each question evaluates one capability |
 | `reference-questions.schema.json` | JSON schema for capability-grouped questions |
 | `validate_evaluation_content.py` | Validates 1:1 mapping between capabilities and questions |
 | `assessed-capabilities.schema.json` | Per-session state shape from the LLM |
 
-> **Next step:** Add official measurement criteria (scoring rubrics) per capability when ready.
+Shared assessment rubric (common to all services): `shared/docs/evaluation-rubric.md`.
 
 ## OpenAI environment variables
 
