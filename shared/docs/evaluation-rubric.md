@@ -5,6 +5,7 @@ When a new service is designed, capabilities are classified into pillars and you
 - capability pillar mapping (Strategy / People / Process/Service / Technology)
 - which pillars are relevant for that service (irrelevant pillars are not scored)
 - per-capability `resiliency_weight` (default varies by service; for ISSP it is 1)
+- key stakeholders / target audience for that service (recorded in `shared/docs/service-target-audience.json`)
 
 Shared rubric and scoring rules for every folder under `evaluation-services/`.
 
