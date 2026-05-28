@@ -90,6 +90,18 @@ def main() -> int:
         print("error: service_id mismatch between capabilities and questions", file=sys.stderr)
         return 1
 
+    for cap in capabilities:
+        weight = cap.get("resiliency_weight")
+        if weight is None:
+            print(f"error: capability {cap['id']!r} missing resiliency_weight", file=sys.stderr)
+            return 1
+        if not isinstance(weight, (int, float)) or weight <= 0:
+            print(
+                f"error: capability {cap['id']!r} resiliency_weight must be a positive number, got {weight!r}",
+                file=sys.stderr,
+            )
+            return 1
+
     print(
         f"ok: {len(capabilities)} capabilities, {len(seen_question_ids)} questions, "
         "1:1 capability mapping enforced"

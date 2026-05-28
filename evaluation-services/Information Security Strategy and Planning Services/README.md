@@ -6,7 +6,7 @@ Evaluation content for the LLM agent.
 
 | File | Purpose |
 |------|---------|
-| `capabilities.json` | Fifteen merged capabilities (foundational program metrics + strategy/planning depth) |
+| `capabilities.json` | Fifteen capabilities; each has `resiliency_weight` (all **1** for this service) and shared rubric metadata |
 | `reference-questions.json` | Questions grouped by `capability_id` — each question evaluates one capability |
 | `reference-questions.schema.json` | JSON schema for capability-grouped questions |
 | `validate_evaluation_content.py` | Validates 1:1 mapping between capabilities and questions |
