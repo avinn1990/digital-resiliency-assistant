@@ -1,7 +1,7 @@
 {
   "service_id": "information-security-strategy-planning",
   "service_name": "Information Security Strategy and Planning Services",
-  "version": "1.2",
+  "version": "1.3",
   "description": "Evaluates whether the organization has a defined information security program with sponsorship, vision, team, roadmap, and measurable strategy-and-planning outcomes.",
   "capabilities": [
     {
@@ -13,7 +13,8 @@
         "Operating model and delivery cadence",
         "Stakeholder satisfaction and continuous improvement"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-11",
@@ -24,7 +25,8 @@
         "Program scope across business units and technology",
         "Program leadership and reporting line"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-12",
@@ -35,7 +37,8 @@
         "Published security mission",
         "Communication and alignment with enterprise strategy"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-13",
@@ -46,7 +49,8 @@
         "Sponsor role in decisions, funding, and escalations",
         "Regular sponsor engagement with security leadership"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "People"
     },
     {
       "id": "issp-14",
@@ -57,7 +61,8 @@
         "Skills and capacity for planning activities",
         "Collaboration with security operations and business stakeholders"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "People"
     },
     {
       "id": "issp-01",
@@ -68,7 +73,8 @@
         "Linkage to business objectives and risk appetite",
         "Refresh cadence tied to business planning"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-04",
@@ -79,7 +85,8 @@
         "Horizons including 3-year and 5-year planning views",
         "Initiative prioritization, dependencies, and change control"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-02",
@@ -90,7 +97,8 @@
         "RACI for strategy decisions",
         "Escalation paths for risk acceptance"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-03",
@@ -101,7 +109,8 @@
         "Risk treatment plans and owners",
         "Board or executive risk reporting"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-05",
@@ -112,7 +121,8 @@
         "Review and exception process",
         "Standards mapping to controls"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-06",
@@ -123,7 +133,8 @@
         "Skills and capacity planning",
         "Buy vs build decisions"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-07",
@@ -134,7 +145,8 @@
         "Reporting cadence to leadership",
         "Use of metrics in decisions"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
     },
     {
       "id": "issp-08",
@@ -145,7 +157,8 @@
         "Control mapping to obligations",
         "Planning for audit and assurance"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-09",
@@ -156,7 +169,8 @@
         "Contractual security requirements",
         "Ongoing monitoring approach"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     },
     {
       "id": "issp-10",
@@ -167,7 +181,8 @@
         "Phishing or culture metrics",
         "Executive tone and accountability"
       ],
-      "resiliency_weight": 1
+      "resiliency_weight": 1,
+      "pillar": "People"
     }
   ],
   "evaluation": {
@@ -220,6 +235,7 @@
         }
       }
     ],
-    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale"
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
   }
 }

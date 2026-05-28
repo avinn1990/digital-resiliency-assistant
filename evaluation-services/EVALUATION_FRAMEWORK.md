@@ -31,6 +31,8 @@ Tag each capability to one of: **Strategy**, **People**, **Process/Service**, **
 
 Report normalized scores per pillar using the same formula, restricted to capabilities in that pillar.
 
+Some services may have **no Technology capabilities**; in those cases, do not compute or report a Technology pillar score.
+
 ## Normalized score (scale of 5)
 
 For any rollup (overall, service, or pillar):
