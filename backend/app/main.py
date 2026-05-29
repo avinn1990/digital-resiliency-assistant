@@ -1,9 +1,13 @@
 import asyncio
 
 import httpx
-from fastapi import FastAPI, HTTPException
+from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
+
+from app.auth import router as auth_router
+from app.auth.deps import get_current_user
+from app.auth.models import AuthUser
 
 from app.clients.assessment import AssessmentClient
 from app.clients.base import ServiceClient
@@ -39,6 +43,8 @@ llm_conversation = LlmConversationClient(settings.llm_conversation_service_url)
 assessment = AssessmentClient(settings.assessment_service_url)
 framework = FrameworkClient(settings.framework_service_url)
 
+app.include_router(auth_router, prefix="/auth", tags=["auth"])
+
 
 def _uses_llm(framework_id: str) -> bool:
     return framework_id in LLM_FRAMEWORK_IDS
@@ -71,10 +77,14 @@ async def health() -> dict:
         "status": "ok",
         "service": "backend",
         "openai_configured": is_openai_configured(),
+        "auth_enabled": settings.auth_enabled,
+        "auth_required": settings.auth_required,
         "env": {
             "OPENAI_API_KEY": "set" if is_openai_configured() else "missing",
             "OPENAI_MODEL": OPENAI_MODEL,
             "OPENAI_BASE_URL": OPENAI_BASE_URL or "default",
+            "GOOGLE_CLIENT_ID": "set" if settings.google_client_id else "missing",
+            "JWT_SECRET": "set" if settings.jwt_secret else "missing",
         },
     }
 
@@ -122,12 +132,15 @@ async def register_framework(body: RegisterFrameworkRequest) -> dict:
 
 
 @app.get("/evaluation-services")
-async def list_eval_services() -> list[dict]:
+async def list_eval_services(_user: AuthUser | None = Depends(get_current_user)) -> list[dict]:
     return list_evaluation_services()
 
 
 @app.get("/evaluation-services/{service_id}/content")
-async def get_evaluation_content(service_id: str) -> dict:
+async def get_evaluation_content(
+    service_id: str,
+    _user: AuthUser | None = Depends(get_current_user),
+) -> dict:
     bundle = load_evaluation_service_bundle(service_id)
     if bundle:
         return bundle
