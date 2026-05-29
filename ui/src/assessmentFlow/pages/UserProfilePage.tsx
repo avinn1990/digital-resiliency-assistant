@@ -7,6 +7,8 @@ type Props = {
   initialProfile?: {
     username?: string;
     fullName?: string;
+    company?: string;
+    role?: string;
   };
   onNext: (profile: {
     username: string;
@@ -25,8 +27,8 @@ export function UserProfilePage({
 }: Props) {
   const [username, setUsername] = useState(initialProfile?.username ?? "");
   const [fullName, setFullName] = useState(initialProfile?.fullName ?? "");
-  const [company, setCompany] = useState("");
-  const [role, setRole] = useState("");
+  const [company, setCompany] = useState(initialProfile?.company ?? "");
+  const [role, setRole] = useState(initialProfile?.role ?? "");
 
   const canContinue = useMemo(() => {
     return (

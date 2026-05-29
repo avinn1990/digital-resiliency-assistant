@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { EvaluationServiceSummary, UserProfile } from "../types";
+import { servicesForRole } from "../roles";
 
 type Props = {
   profile: UserProfile;
@@ -11,10 +12,6 @@ type Props = {
   allowBackToDashboard?: boolean;
 };
 
-function normalizeRole(value: string) {
-  return value.trim().toLowerCase();
-}
-
 export function ServicesPage({
   profile,
   services,
@@ -24,12 +21,8 @@ export function ServicesPage({
   onConfirm,
   allowBackToDashboard,
 }: Props) {
-  const relevant = useMemo(() => {
-    const role = normalizeRole(profile.role);
-    if (!role) return services;
-    const matched = services.filter((s) =>
-      (s.target_audience ?? []).some((r) => normalizeRole(String(r)) === role)
-    );
+  const visibleServices = useMemo(() => {
+    const matched = servicesForRole(profile.role, services);
     return matched.length > 0 ? matched : services;
   }, [profile.role, services]);
 
@@ -42,8 +35,8 @@ export function ServicesPage({
       );
       return;
     }
-    setSelected(Object.fromEntries(relevant.map((s) => [s.service_id, true])));
-  }, [initialSelectedServiceIds, relevant]);
+    setSelected(Object.fromEntries(visibleServices.map((s) => [s.service_id, true])));
+  }, [initialSelectedServiceIds, visibleServices]);
 
   const selectedIds = useMemo(() => {
     return Object.entries(selected)
@@ -61,9 +54,8 @@ export function ServicesPage({
             <div className="af-kicker">Step 2</div>
             <h1 className="af-h1">Select services for your role</h1>
             <p className="context-help">
-              Based on <strong>{profile.role}</strong>, we pre-selected the services
-              that typically map to this role. You can deselect anything you don’t
-              own.
+              Based on <strong>{profile.role}</strong>, these are the services mapped
+              to your role. You can deselect anything you don’t own.
             </p>
           </div>
           <a className="af-link" href={allowBackToDashboard ? "/dashboard" : "/profile"}>
@@ -80,48 +72,41 @@ export function ServicesPage({
         <div className="af-card af-card-page">
           {servicesLoading ? (
             <div className="context-help">Loading services…</div>
-          ) : services.length === 0 ? (
+          ) : visibleServices.length === 0 ? (
             <div className="context-help">
               No evaluation services are available yet.
             </div>
           ) : (
             <div className="af-service-list">
-              {services.map((s) => {
-                const checked = !!selected[s.service_id];
-                const isRelevant = relevant.some((r) => r.service_id === s.service_id);
-                return (
-                  <label
-                    key={s.service_id}
-                    className={`af-service ${isRelevant ? "relevant" : ""}`}
-                  >
-                    <input
-                      type="checkbox"
-                      checked={checked}
-                      onChange={(e) =>
-                        setSelected((prev) => ({
-                          ...prev,
-                          [s.service_id]: e.target.checked,
-                        }))
-                      }
-                    />
-                    <div className="af-service-main">
-                      <div className="af-service-title">
-                        {s.service_name ?? s.service_id}
-                        {s.version ? (
-                          <span className="af-pill">v{s.version}</span>
-                        ) : null}
-                      </div>
-                      {s.description && (
-                        <div className="af-service-desc">{s.description}</div>
-                      )}
-                      <div className="af-service-meta">
-                        <span className="af-mono">{s.service_id}</span>
-                        {isRelevant ? <span className="af-pill ok">Suggested</span> : null}
-                      </div>
+              {visibleServices.map((s) => (
+                <label key={s.service_id} className="af-service relevant">
+                  <input
+                    type="checkbox"
+                    checked={!!selected[s.service_id]}
+                    onChange={(e) =>
+                      setSelected((prev) => ({
+                        ...prev,
+                        [s.service_id]: e.target.checked,
+                      }))
+                    }
+                  />
+                  <div className="af-service-main">
+                    <div className="af-service-title">
+                      {s.service_name ?? s.service_id}
+                      {s.version ? (
+                        <span className="af-pill">v{s.version}</span>
+                      ) : null}
                     </div>
-                  </label>
-                );
-              })}
+                    {s.description && (
+                      <div className="af-service-desc">{s.description}</div>
+                    )}
+                    <div className="af-service-meta">
+                      <span className="af-mono">{s.service_id}</span>
+                      <span className="af-pill ok">Mapped to your role</span>
+                    </div>
+                  </div>
+                </label>
+              ))}
             </div>
           )}
 
@@ -129,8 +114,12 @@ export function ServicesPage({
             <button
               type="button"
               className="btn-secondary"
-              onClick={() => setSelected(Object.fromEntries(services.map((s) => [s.service_id, true])))}
-              disabled={servicesLoading || services.length === 0}
+              onClick={() =>
+                setSelected(
+                  Object.fromEntries(visibleServices.map((s) => [s.service_id, true]))
+                )
+              }
+              disabled={servicesLoading || visibleServices.length === 0}
             >
               Select all
             </button>
@@ -138,7 +127,7 @@ export function ServicesPage({
               type="button"
               className="btn-ghost"
               onClick={() => setSelected({})}
-              disabled={servicesLoading || services.length === 0}
+              disabled={servicesLoading || visibleServices.length === 0}
             >
               Clear
             </button>
@@ -160,4 +149,3 @@ export function ServicesPage({
     </div>
   );
 }
-

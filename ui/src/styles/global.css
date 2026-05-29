@@ -488,6 +488,45 @@ button {
   color: var(--text-muted);
 }
 
+.af-onboarding {
+  max-width: 1080px;
+}
+
+.af-onboarding-service-list {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.af-onboarding-service {
+  padding: 0.9rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(36, 48, 68, 0.25);
+}
+
+.af-onboarding-service-title {
+  font-weight: 700;
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.af-onboarding-service-desc {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-top: 0.35rem;
+}
+
+.af-onboarding-service-meta {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 0.55rem;
+}
+
 .af-link {
   color: var(--accent);
   text-decoration: none;
