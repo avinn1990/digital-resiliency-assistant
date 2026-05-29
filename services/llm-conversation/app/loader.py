@@ -3,6 +3,8 @@ import re
 from pathlib import Path
 from typing import Any
 
+from functools import lru_cache
+
 from app.config import settings
 
 _QUESTION_ID_RE = re.compile(r"^rq-(issp-\d{2})-\d+$")
@@ -76,8 +78,38 @@ def _validate_capability_question_mapping(
         raise ValueError("service_id mismatch between capabilities and reference questions")
 
 
-def load_evaluation_bundle(service_dir: Path | None = None) -> dict[str, Any]:
-    base = service_dir or settings.evaluation_dir()
+@lru_cache(maxsize=64)
+def _service_dir_by_id() -> dict[str, Path]:
+    root = settings.evaluation_services_root()
+    if not root.is_dir():
+        return {}
+    mapping: dict[str, Path] = {}
+    for child in root.iterdir():
+        if not child.is_dir():
+            continue
+        cap_path = child / "capabilities.json"
+        if not cap_path.is_file():
+            continue
+        try:
+            with cap_path.open(encoding="utf-8") as f:
+                capabilities_doc = json.load(f)
+            service_id = capabilities_doc.get("service_id")
+            if service_id and str(service_id) not in mapping:
+                mapping[str(service_id)] = child
+        except Exception:
+            continue
+    return mapping
+
+
+def load_evaluation_bundle(
+    service_dir: Path | None = None, *, service_id: str | None = None
+) -> dict[str, Any]:
+    if service_dir is not None:
+        base = service_dir
+    elif service_id:
+        base = _service_dir_by_id().get(service_id) or settings.evaluation_dir()
+    else:
+        base = settings.evaluation_dir()
     if not base.is_dir():
         raise FileNotFoundError(f"Evaluation service directory not found: {base}")
 

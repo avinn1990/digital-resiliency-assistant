@@ -65,7 +65,9 @@ def on_startup() -> None:
 
 
 def _uses_llm(framework_id: str) -> bool:
-    return framework_id in LLM_FRAMEWORK_IDS
+    # Prefer LLM for any evaluation-service pack present in this deployment.
+    # Keep the explicit allowlist as a backwards-compatible fallback.
+    return load_evaluation_service_bundle(framework_id) is not None or framework_id in LLM_FRAMEWORK_IDS
 
 
 class StartSessionRequest(BaseModel):

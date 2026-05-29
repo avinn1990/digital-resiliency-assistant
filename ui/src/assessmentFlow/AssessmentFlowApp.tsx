@@ -18,7 +18,9 @@ import {
   clearAuthSession,
   loadAuthToken,
   loadAuthUser,
+  loadSelectedServiceIds,
   saveAuthSession,
+  saveSelectedServiceIds,
 } from "../auth/storage";
 import type { AuthUser } from "../auth/types";
 import { toFriendlyError } from "../lib/userMessages";
@@ -35,7 +37,7 @@ import { createAssessmentId } from "./id";
 import { DashboardPage } from "./pages/DashboardPage";
 import { OnboardingPage } from "./pages/OnboardingPage";
 import type { AssessmentDraft, EvaluationServiceSummary, UserProfile } from "./types";
-import { collectRoles } from "./roles";
+import { collectRoles, servicesForRole } from "./roles";
 import { QuestionnairePage } from "./pages/QuestionnairePage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { SplashAuthPage } from "./pages/SplashAuthPage";
@@ -52,6 +54,7 @@ type AppState = {
   profile: UserProfile | null;
   onboardingProfile: UserOnboardingProfile | null;
   onboardingReady: boolean;
+  selectedServiceIds: string[];
   assessments: UserDraftSummary[];
   assessmentsLoading: boolean;
   assessmentsError: string | null;
@@ -71,6 +74,7 @@ const DEFAULT_STATE: AppState = {
   profile: null,
   onboardingProfile: null,
   onboardingReady: false,
+  selectedServiceIds: [],
   assessments: [],
   assessmentsLoading: false,
   assessmentsError: null,
@@ -151,11 +155,13 @@ export function AssessmentFlowApp() {
 
       const cachedUser = loadAuthUser();
       if (cachedUser && !cancelled) {
+        const cachedSelected = loadSelectedServiceIds(cachedUser.email);
         setState((s) => ({
           ...s,
           authToken,
           authUser: cachedUser,
           authReady: true,
+          selectedServiceIds: cachedSelected,
         }));
       }
 
@@ -163,7 +169,14 @@ export function AssessmentFlowApp() {
         const user = await fetchCurrentUser(authToken);
         if (cancelled) return;
         saveAuthSession(authToken, user);
-        setState((s) => ({ ...s, authToken, authUser: user, authReady: true }));
+        const cachedSelected = loadSelectedServiceIds(user.email);
+        setState((s) => ({
+          ...s,
+          authToken,
+          authUser: user,
+          authReady: true,
+          selectedServiceIds: cachedSelected,
+        }));
       } catch {
         if (cancelled) return;
         clearAuthSession();
@@ -342,14 +355,19 @@ export function AssessmentFlowApp() {
     // Stay on splash until profile bootstrap finishes; "/" then redirects once.
   }
 
-  async function handleOnboardingComplete(onboarding: UserOnboardingProfile) {
+  async function handleOnboardingComplete(
+    onboarding: UserOnboardingProfile,
+    selectedServiceIds: string[]
+  ) {
     if (!state.authUser || !state.authToken) return;
     const saved = await saveUserProfile(onboarding, state.authToken);
     const profile = buildUserProfile(state.authUser, saved);
+    saveSelectedServiceIds(state.authUser.email, selectedServiceIds);
     setState((s) => ({
       ...s,
       onboardingProfile: saved,
       profile,
+      selectedServiceIds,
     }));
     navigate("/dashboard", { replace: true });
   }
@@ -363,7 +381,16 @@ export function AssessmentFlowApp() {
   }
 
   function handleStartNewAssessment() {
-    navigate("/chat", { replace: true });
+    const ids =
+      state.selectedServiceIds.length > 0
+        ? state.selectedServiceIds
+        : state.onboardingProfile
+          ? servicesForRole(state.onboardingProfile.role, state.services).map(
+              (s) => s.service_id
+            )
+          : [];
+    const query = ids.length > 0 ? `?services=${encodeURIComponent(ids.join(","))}` : "";
+    navigate(`/chat${query}`, { replace: true });
   }
 
   async function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
@@ -488,7 +515,10 @@ export function AssessmentFlowApp() {
               servicesLoading={!state.authReady || state.loadingServices}
               servicesError={state.servicesError}
               onComplete={(profile) => {
-                void handleOnboardingComplete(profile);
+                void handleOnboardingComplete(
+                  { company: profile.company, role: profile.role },
+                  profile.selectedServiceIds
+                );
               }}
             />
           ) : (

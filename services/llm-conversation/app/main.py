@@ -26,11 +26,6 @@ app = FastAPI(
     version="0.1.0",
 )
 
-LLM_FRAMEWORK_IDS = {
-    "information-security-strategy-planning",
-}
-
-
 class StartSessionBody(BaseModel):
     framework_id: str = Field(default=settings.default_service_id)
 
@@ -73,11 +68,6 @@ async def get_evaluation_content() -> dict:
 
 @app.post("/sessions")
 async def create_session(body: StartSessionBody) -> dict:
-    if body.framework_id not in LLM_FRAMEWORK_IDS:
-        raise HTTPException(
-            status_code=400,
-            detail=f"Framework {body.framework_id} is not configured for LLM evaluation.",
-        )
     return await start_session(body.framework_id)
 
 

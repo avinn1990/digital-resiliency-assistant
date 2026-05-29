@@ -24,12 +24,18 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 
     evaluation_service_dir: str = ""
+    evaluation_services_dir: str = ""
     default_service_id: str = "information-security-strategy-planning"
 
     def evaluation_dir(self) -> Path:
         if self.evaluation_service_dir.strip():
             return Path(self.evaluation_service_dir)
         return _default_evaluation_dir()
+
+    def evaluation_services_root(self) -> Path:
+        if self.evaluation_services_dir.strip():
+            return Path(self.evaluation_services_dir)
+        return _REPO_ROOT / "evaluation-services"
 
     @property
     def llm_ready(self) -> bool:

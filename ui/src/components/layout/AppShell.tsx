@@ -5,9 +5,18 @@ import { ChatHeader } from "../chat/ChatHeader";
 import { ChatWorkspace } from "../chat/ChatWorkspace";
 import { StatusAnnouncer } from "../common/StatusAnnouncer";
 import { WelcomePanel } from "../setup/WelcomePanel";
+import { useLocation } from "react-router-dom";
 
 export function AppShell() {
-  const chat = useChatSession();
+  const location = useLocation();
+  const serviceIds = (() => {
+    const raw = new URLSearchParams(location.search).get("services") ?? "";
+    return raw
+      .split(",")
+      .map((s) => decodeURIComponent(s).trim())
+      .filter(Boolean);
+  })();
+  const chat = useChatSession({ serviceIds });
   const currentStep = getCurrentStep(chat.sessionId, !!chat.assessment);
 
   const statusMessage = chat.loading

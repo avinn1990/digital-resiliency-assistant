@@ -513,6 +513,17 @@ button {
   flex-wrap: wrap;
 }
 
+.af-inline-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.af-inline-check input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+}
+
 .af-onboarding-service-desc {
   color: var(--text-muted);
   font-size: 0.92rem;

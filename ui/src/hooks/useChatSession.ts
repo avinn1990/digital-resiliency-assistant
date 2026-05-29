@@ -23,7 +23,7 @@ function createMessage(role: ChatMessage["role"], content: string): ChatMessage 
   };
 }
 
-export function useChatSession() {
+export function useChatSession(options?: { serviceIds?: string[] }) {
   const [frameworks, setFrameworks] = useState<FrameworkSummary[]>([]);
   const [selectedFrameworkId, setSelectedFrameworkId] = useState("");
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -36,6 +36,12 @@ export function useChatSession() {
   const [assessing, setAssessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
+  const [serviceQueue, setServiceQueue] = useState<string[]>(
+    options?.serviceIds?.length ? options.serviceIds : []
+  );
+  const [activeServiceId, setActiveServiceId] = useState<string>(
+    options?.serviceIds?.[0] ?? ""
+  );
 
   const refreshHealth = useCallback(async () => {
     const ok = await checkBackendHealth();
@@ -49,13 +55,20 @@ export function useChatSession() {
     listFrameworks()
       .then((items) => {
         setFrameworks(items);
-        if (items.length > 0) {
+        if (!options?.serviceIds?.length && items.length > 0) {
           setSelectedFrameworkId(items[0].id);
         }
       })
       .catch((err) => setError(toFriendlyError(err)))
       .finally(() => setFrameworksLoading(false));
   }, [refreshHealth]);
+
+  useEffect(() => {
+    if (!options?.serviceIds?.length) return;
+    setServiceQueue(options.serviceIds);
+    setActiveServiceId(options.serviceIds[0] ?? "");
+    setSelectedFrameworkId(options.serviceIds[0] ?? "");
+  }, [options?.serviceIds?.join(",")]);
 
   useEffect(() => {
     if (backendOnline !== false) return undefined;
@@ -85,6 +98,14 @@ export function useChatSession() {
     }
   }, [selectedFrameworkId, refreshHealth]);
 
+  useEffect(() => {
+    if (!options?.serviceIds?.length) return;
+    if (sessionId || loading) return;
+    if (backendOnline === false) return;
+    if (!selectedFrameworkId) return;
+    void beginSession();
+  }, [options?.serviceIds?.length, backendOnline, beginSession, loading, selectedFrameworkId, sessionId]);
+
   const submitUserMessage = useCallback(
     async (text: string) => {
       if (!sessionId || !text.trim() || loading) return;
@@ -100,13 +121,35 @@ export function useChatSession() {
         ]);
         setProgress(result.progress);
         setCompleted(result.completed);
+        if (result.completed && serviceQueue.length > 1) {
+          const next = serviceQueue[1];
+          setMessages((prev) => [
+            ...prev,
+            createMessage(
+              "assistant",
+              "Great — moving to the next service assessment."
+            ),
+          ]);
+          setServiceQueue((q) => q.slice(1));
+          setActiveServiceId(next);
+          setSelectedFrameworkId(next);
+          // Start the next service session immediately.
+          const nextSession = await startSession(next);
+          setSessionId(nextSession.session_id);
+          setMessages((prev) => [
+            ...prev,
+            createMessage("assistant", nextSession.reply),
+          ]);
+          setProgress(nextSession.progress);
+          setCompleted(false);
+        }
       } catch (err) {
         setError(toFriendlyError(err));
       } finally {
         setLoading(false);
       }
     },
-    [sessionId, loading]
+    [sessionId, loading, serviceQueue]
   );
 
   const executeAssessment = useCallback(async () => {
@@ -143,6 +186,8 @@ export function useChatSession() {
     selectedFrameworkId,
     setSelectedFrameworkId,
     selectedFramework,
+    activeServiceId,
+    serviceQueue,
     sessionId,
     messages,
     progress,

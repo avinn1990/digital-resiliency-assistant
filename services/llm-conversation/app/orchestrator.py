@@ -58,7 +58,7 @@ def _progress(session: LlmSession) -> dict[str, int]:
 
 async def start_session(framework_id: str) -> dict[str, Any]:
     _require_openai()
-    bundle = load_evaluation_bundle()
+    bundle = load_evaluation_bundle(service_id=framework_id)
     service_id = bundle["capabilities"]["service_id"]
     caps = bundle["capabilities"]["capabilities"]
     states = initial_capability_states(caps)
@@ -102,7 +102,7 @@ async def start_session(framework_id: str) -> dict[str, Any]:
 
 async def handle_message(session: LlmSession, user_message: str) -> dict[str, Any]:
     _require_openai()
-    bundle = load_evaluation_bundle()
+    bundle = load_evaluation_bundle(service_id=session.service_id)
     session.messages.append({"role": "user", "content": user_message})
 
     prompt = build_turn_prompt(
