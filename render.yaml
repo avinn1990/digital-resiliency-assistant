@@ -10,13 +10,15 @@ services:
     name: dra-framework
     runtime: python
     rootDir: services/framework
-    plan: standard
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
+    # Persistent disk keeps uploaded frameworks across deploys (paid plans).
+    # Remove this block on the free tier if disk is unavailable; bundled JSON still works.
     disk:
       name: dra-framework-data
       mountPath: data
@@ -72,13 +74,13 @@ services:
           property: host
 
   # --- API gateway (UI and external clients call this service) ---
+  # Full repo at build/runtime so evaluation-services/ is available.
   - type: web
     name: dra-backend
     runtime: python
-    rootDir: backend
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
