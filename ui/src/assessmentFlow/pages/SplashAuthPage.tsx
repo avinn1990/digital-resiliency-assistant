@@ -15,9 +15,9 @@ export function SplashAuthPage({ onSignedIn }: Props) {
 
   const helpText = useMemo(() => {
     if (googleAuthConfigured) {
-      return "Sign in with Google to access your assessments dashboard.";
+      return "Sign in with Google to start your AI-guided resiliency assessment.";
     }
-    return "Google sign-in is not configured for this build. You can continue without signing in while running locally.";
+    return "Google sign-in is not configured for this build. You can continue to the chat assessment without signing in while running locally.";
   }, [googleAuthConfigured]);
 
   async function handleGoogleSuccess(response: CredentialResponse) {
@@ -97,14 +97,14 @@ export function SplashAuthPage({ onSignedIn }: Props) {
               )}
             </>
           ) : (
-            <a className="btn-primary btn-large" href="/dashboard">
-              Continue to dashboard
+            <a className="btn-primary btn-large" href="/chat">
+              Continue to chat assessment
             </a>
           )}
 
           <div className="af-card-footer">
-            <a className="af-link" href="/chat">
-              Or use the chat-based assessment
+            <a className="af-link" href="/dashboard">
+              View saved assessments (form-based drafts)
             </a>
           </div>
         </div>

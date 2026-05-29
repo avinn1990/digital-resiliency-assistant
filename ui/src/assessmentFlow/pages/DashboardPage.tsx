@@ -141,8 +141,8 @@ export function DashboardPage({
           <div className="af-card af-card-page af-dashboard-empty">
             <h2 className="af-h2">No assessments yet</h2>
             <p className="context-help">
-              Start your first assessment to answer role-based questions across the
-              services you own. Progress is saved automatically in your browser.
+              Start an AI-guided chat assessment. The assistant asks questions
+              conversationally and tracks your progress as you go.
             </p>
             <button
               type="button"
@@ -157,7 +157,15 @@ export function DashboardPage({
           <>
             {pending.length > 0 && (
               <section className="af-dashboard-section">
-                <h2 className="af-h2">In progress</h2>
+                <h2 className="af-h2">In progress (saved form drafts)</h2>
+                <p className="context-help">
+                  These were started in the form-based flow. Resume opens the saved
+                  questionnaire, or start fresh in the{" "}
+                  <a className="af-link" href="/chat">
+                    AI chat assessment
+                  </a>
+                  .
+                </p>
                 <div className="af-dashboard-list">
                   {pending.map((draft) => (
                     <DraftCard
@@ -193,7 +201,7 @@ export function DashboardPage({
 
         <div className="af-dashboard-footer">
           <a className="af-link" href="/chat">
-            Or use the chat-based assessment
+            Start or continue in the AI chat assessment
           </a>
         </div>
       </div>

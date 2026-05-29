@@ -102,7 +102,7 @@ function buildUserProfile(
 }
 
 function postAuthPath(hasOnboarding: boolean): string {
-  return hasOnboarding ? "/dashboard" : "/onboarding";
+  return hasOnboarding ? "/chat" : "/onboarding";
 }
 
 function AuthLoadingPage({
@@ -351,7 +351,7 @@ export function AssessmentFlowApp() {
       onboardingProfile: saved,
       profile,
     }));
-    navigate("/dashboard", { replace: true });
+    navigate("/chat", { replace: true });
   }
 
   function handleSignOut() {
@@ -363,15 +363,7 @@ export function AssessmentFlowApp() {
   }
 
   function handleStartNewAssessment() {
-    if (state.authUser && state.onboardingProfile) {
-      setState((s) => ({
-        ...s,
-        profile: buildUserProfile(state.authUser!, state.onboardingProfile!),
-      }));
-      navigate("/select-services");
-      return;
-    }
-    navigate("/profile");
+    navigate("/chat", { replace: true });
   }
 
   async function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
@@ -500,7 +492,7 @@ export function AssessmentFlowApp() {
               }}
             />
           ) : (
-            <Navigate to="/dashboard" replace />
+            <Navigate to="/chat" replace />
           )
         }
       />
