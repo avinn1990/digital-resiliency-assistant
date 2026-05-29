@@ -78,6 +78,7 @@ export function SplashAuthPage({ onSignedIn }: Props) {
                   onSuccess={handleGoogleSuccess}
                   onError={() => setSignInError("Google sign-in was cancelled or failed.")}
                   useOneTap={false}
+                  use_fedcm_for_button
                   theme="outline"
                   size="large"
                   text="signin_with"
