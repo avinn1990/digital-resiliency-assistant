@@ -51,7 +51,11 @@ export async function fetchUserProfile(
     throw new Error(detail || `Request failed: ${response.status}`);
   }
 
-  return response.json() as Promise<UserOnboardingProfile>;
+  const data = (await response.json()) as UserOnboardingProfile | null;
+  if (!data?.company?.trim() || !data?.role?.trim()) {
+    return null;
+  }
+  return data;
 }
 
 export function saveUserProfile(profile: UserOnboardingProfile, authToken: string) {
