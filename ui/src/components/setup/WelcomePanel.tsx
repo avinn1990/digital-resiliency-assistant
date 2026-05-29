@@ -69,8 +69,12 @@ export function WelcomePanel({
             id="framework-select"
             value={selectedFrameworkId}
             onChange={(e) => onFrameworkChange(e.target.value)}
-            disabled={loading}
           >
+            {!selectedFrameworkId && (
+              <option value="" disabled>
+                Select a framework
+              </option>
+            )}
             {frameworks.map((f) => (
               <option key={f.id} value={f.id}>
                 {f.name} (version {f.version})

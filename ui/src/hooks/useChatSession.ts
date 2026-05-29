@@ -59,19 +59,20 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     listFrameworks()
       .then((items) => {
         setFrameworks(items);
-        if (!options?.serviceIds?.length && items.length > 0) {
-          setSelectedFrameworkId(items[0].id);
-        }
+        if (items.length === 0) return;
+        const preferred = options?.serviceIds?.find((id) =>
+          items.some((framework) => framework.id === id)
+        );
+        setSelectedFrameworkId(preferred ?? items[0].id);
       })
       .catch((err) => setError(toFriendlyError(err)))
       .finally(() => setFrameworksLoading(false));
-  }, [refreshHealth]);
+  }, [refreshHealth, options?.serviceIds?.join(",")]);
 
   useEffect(() => {
     if (!options?.serviceIds?.length) return;
     setServiceQueue(options.serviceIds);
     setActiveServiceId(options.serviceIds[0] ?? "");
-    setSelectedFrameworkId(options.serviceIds[0] ?? "");
   }, [options?.serviceIds?.join(",")]);
 
   useEffect(() => {
@@ -102,14 +103,6 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
       setLoading(false);
     }
   }, [selectedFrameworkId, refreshHealth]);
-
-  useEffect(() => {
-    if (!options?.serviceIds?.length) return;
-    if (sessionId || loading) return;
-    if (!canReachBackend(backendHealth)) return;
-    if (!selectedFrameworkId) return;
-    void beginSession();
-  }, [options?.serviceIds?.length, backendHealth, beginSession, loading, selectedFrameworkId, sessionId]);
 
   const submitUserMessage = useCallback(
     async (text: string) => {
@@ -183,8 +176,16 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     setCompleted(false);
     setAssessment(null);
     setError(null);
+    setServiceQueue([]);
+    setActiveServiceId("");
+    setSelectedFrameworkId((current) => {
+      if (frameworks.some((framework) => framework.id === current)) {
+        return current;
+      }
+      return frameworks[0]?.id ?? "";
+    });
     void refreshHealth();
-  }, [refreshHealth]);
+  }, [refreshHealth, frameworks]);
 
   const selectedFramework = frameworks.find((f) => f.id === selectedFrameworkId);
   const connectionStatus: BackendHealthStatus = sessionId ? "ready" : backendHealth;

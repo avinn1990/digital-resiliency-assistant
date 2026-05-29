@@ -41,7 +41,10 @@ export function AppShell() {
         progress={chat.progress}
         completed={chat.completed}
         connectionStatus={chat.connectionStatus}
-        onNewChat={chat.resetSession}
+        onNewChat={() => {
+          chat.resetSession();
+          navigate("/chat", { replace: true });
+        }}
         onRetryHealth={chat.refreshHealth}
         signedIn={signedIn}
         onSignOut={() => {
