@@ -1,12 +1,16 @@
 import { useCallback, useEffect, useState } from "react";
 import { toFriendlyError } from "../lib/userMessages";
 import {
-  checkBackendHealth,
   listFrameworks,
   runAssessment,
   sendMessage,
   startSession,
 } from "../services/agentApi";
+import {
+  canReachBackend,
+  fetchBackendHealth,
+  type BackendHealthStatus,
+} from "../services/health";
 import type {
   AssessmentResult,
   ChatMessage,
@@ -35,7 +39,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   const [frameworksLoading, setFrameworksLoading] = useState(true);
   const [assessing, setAssessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [backendOnline, setBackendOnline] = useState<boolean | null>(null);
+  const [backendHealth, setBackendHealth] = useState<BackendHealthStatus>("checking");
   const [serviceQueue, setServiceQueue] = useState<string[]>(
     options?.serviceIds?.length ? options.serviceIds : []
   );
@@ -44,9 +48,9 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   );
 
   const refreshHealth = useCallback(async () => {
-    const ok = await checkBackendHealth();
-    setBackendOnline(ok);
-    return ok;
+    const health = await fetchBackendHealth();
+    setBackendHealth(health.status);
+    return canReachBackend(health.status);
   }, []);
 
   useEffect(() => {
@@ -71,12 +75,12 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   }, [options?.serviceIds?.join(",")]);
 
   useEffect(() => {
-    if (backendOnline !== false) return undefined;
+    if (backendHealth !== "offline" && backendHealth !== "warming") return undefined;
     const intervalId = window.setInterval(() => {
       void refreshHealth();
     }, 10_000);
     return () => window.clearInterval(intervalId);
-  }, [backendOnline, refreshHealth]);
+  }, [backendHealth, refreshHealth]);
 
   const beginSession = useCallback(async () => {
     if (!selectedFrameworkId) return;
@@ -101,10 +105,10 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   useEffect(() => {
     if (!options?.serviceIds?.length) return;
     if (sessionId || loading) return;
-    if (backendOnline === false) return;
+    if (!canReachBackend(backendHealth)) return;
     if (!selectedFrameworkId) return;
     void beginSession();
-  }, [options?.serviceIds?.length, backendOnline, beginSession, loading, selectedFrameworkId, sessionId]);
+  }, [options?.serviceIds?.length, backendHealth, beginSession, loading, selectedFrameworkId, sessionId]);
 
   const submitUserMessage = useCallback(
     async (text: string) => {
@@ -197,7 +201,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     frameworksLoading,
     assessing,
     error,
-    backendOnline,
+    backendHealth,
     beginSession,
     submitUserMessage,
     executeAssessment,

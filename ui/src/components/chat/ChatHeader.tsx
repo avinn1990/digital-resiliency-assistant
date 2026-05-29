@@ -1,4 +1,5 @@
 import type { AppStep } from "../../lib/userMessages";
+import type { BackendHealthStatus } from "../../services/health";
 import { ConnectionStatus } from "../common/ConnectionStatus";
 import { ProgressBar } from "../common/ProgressBar";
 import { StepIndicator } from "../common/StepIndicator";
@@ -9,7 +10,7 @@ type Props = {
   currentStep: AppStep;
   progress: { current: number; total: number };
   completed: boolean;
-  backendOnline: boolean | null;
+  backendHealth: BackendHealthStatus;
   onNewChat: () => void;
   onRetryHealth: () => void;
 };
@@ -20,7 +21,7 @@ export function ChatHeader({
   currentStep,
   progress,
   completed,
-  backendOnline,
+  backendHealth,
   onNewChat,
   onRetryHealth,
 }: Props) {
@@ -40,7 +41,7 @@ export function ChatHeader({
           )}
         </div>
         <div className="chat-header-actions">
-          <ConnectionStatus online={backendOnline} onRetry={onRetryHealth} />
+          <ConnectionStatus status={backendHealth} onRetry={onRetryHealth} />
           {sessionId && (
             <button
               type="button"

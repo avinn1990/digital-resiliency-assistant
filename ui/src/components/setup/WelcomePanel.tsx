@@ -1,3 +1,5 @@
+import type { BackendHealthStatus } from "../../services/health";
+import { canReachBackend } from "../../services/health";
 import type { FrameworkSummary } from "../../services/types";
 import { ConnectionStatus } from "../common/ConnectionStatus";
 import { ContextHelp } from "../common/ContextHelp";
@@ -10,7 +12,7 @@ type Props = {
   onStart: () => void;
   loading: boolean;
   frameworksLoading: boolean;
-  backendOnline: boolean | null;
+  backendHealth: BackendHealthStatus;
   onRetryHealth: () => void;
   error: string | null;
 };
@@ -22,7 +24,7 @@ export function WelcomePanel({
   onStart,
   loading,
   frameworksLoading,
-  backendOnline,
+  backendHealth,
   onRetryHealth,
   error,
 }: Props) {
@@ -30,7 +32,7 @@ export function WelcomePanel({
   const canStart =
     !loading &&
     !!selectedFrameworkId &&
-    backendOnline !== false &&
+    canReachBackend(backendHealth) &&
     frameworks.length > 0;
 
   if (frameworksLoading) {
@@ -49,7 +51,7 @@ export function WelcomePanel({
         report — usually under five minutes.
       </ContextHelp>
 
-      <ConnectionStatus online={backendOnline} onRetry={onRetryHealth} />
+      <ConnectionStatus status={backendHealth} onRetry={onRetryHealth} />
 
       {frameworks.length === 0 ? (
         <div className="empty-state-inline">
@@ -92,9 +94,11 @@ export function WelcomePanel({
         {loading ? "Starting your chat…" : "Start assessment chat"}
       </button>
       <ContextHelp id="start-help">
-        {backendOnline === false
-          ? "The agent needs to be online before you can start."
-          : "You'll answer one question at a time. No account needed."}
+        {backendHealth === "offline"
+          ? "The API must be reachable before you can start. Check VITE_API_URL on dra-ui."
+          : backendHealth === "warming"
+            ? "Services may still be waking on Render — try starting; retries are built in."
+            : "You'll answer one question at a time in chat."}
       </ContextHelp>
 
       {error && (

@@ -45,22 +45,8 @@ async function requestWithRetry<T>(
   throw lastError ?? new Error("Request failed");
 }
 
-export async function checkBackendHealth(): Promise<boolean> {
-  try {
-    const apiBase = await getApiBase();
-    const readyResponse = await fetch(`${apiBase}/health/ready`, {
-      method: "GET",
-    });
-    if (readyResponse.ok) {
-      const data = (await readyResponse.json()) as { status?: string };
-      return data.status === "ok";
-    }
-    const healthResponse = await fetch(`${apiBase}/health`, { method: "GET" });
-    return healthResponse.ok;
-  } catch {
-    return false;
-  }
-}
+export { checkBackendHealth, fetchBackendHealth } from "./health";
+export type { BackendHealth, BackendHealthStatus } from "./health";
 
 export function listFrameworks() {
   return requestWithRetry<FrameworkSummary[]>("/frameworks");
