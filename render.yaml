@@ -9,6 +9,11 @@
 # - Apps normalize host-only values to https:// automatically (see shared/python/service_url.py).
 # - After changing URLs, redeploy dra-backend then dra-ui.
 
+databases:
+  - name: dra-postgres
+    plan: basic-256mb
+    region: oregon
+
 services:
   # --- Framework service (deploy first; others depend on its URL) ---
   # IMPORTANT: dra-framework must stay on plan: standard (persistent disk + production SLA).
@@ -127,6 +132,10 @@ services:
         value: "1440"
       - key: AUTH_REQUIRED
         value: "true"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dra-postgres
+          property: connectionString
 
   # --- Static UI (build-time VITE_API_URL points at the backend public URL) ---
   - type: web

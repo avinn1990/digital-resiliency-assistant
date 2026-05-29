@@ -33,3 +33,15 @@ def get_current_user(
             detail="Invalid or expired access token",
             headers={"WWW-Authenticate": "Bearer"},
         ) from exc
+
+
+def require_authenticated_user(
+    user: Annotated[AuthUser | None, Depends(get_current_user)],
+) -> AuthUser:
+    if user is None:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Authentication required",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+    return user

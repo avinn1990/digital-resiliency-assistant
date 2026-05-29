@@ -1,9 +1,11 @@
 import type { AuthUser } from "../../auth/types";
-import type { UserDraftSummary } from "../storage";
+import type { UserDraftSummary } from "../assessmentsApi";
 
 type Props = {
   authUser: AuthUser | null;
   drafts: UserDraftSummary[];
+  assessmentsLoading: boolean;
+  assessmentsError: string | null;
   servicesLoading: boolean;
   servicesError: string | null;
   servicesCount: number;
@@ -60,6 +62,8 @@ function DraftCard({
 export function DashboardPage({
   authUser,
   drafts,
+  assessmentsLoading,
+  assessmentsError,
   servicesLoading,
   servicesError,
   servicesCount,
@@ -115,13 +119,25 @@ export function DashboardPage({
           </div>
         )}
 
+        {assessmentsError && (
+          <div className="error-banner" role="alert">
+            <strong>Assessment load error.</strong> {assessmentsError}
+          </div>
+        )}
+
         <div className="af-dashboard-status">
-          {servicesLoading
-            ? "Loading assessment services…"
-            : `${servicesCount} assessment service${servicesCount === 1 ? "" : "s"} available.`}
+          {assessmentsLoading
+            ? "Loading your assessments…"
+            : servicesLoading
+              ? "Loading assessment services…"
+              : `${servicesCount} assessment service${servicesCount === 1 ? "" : "s"} available.`}
         </div>
 
-        {drafts.length === 0 ? (
+        {assessmentsLoading ? (
+          <div className="af-card af-card-page af-dashboard-empty">
+            <p className="context-help">Loading your assessments…</p>
+          </div>
+        ) : drafts.length === 0 ? (
           <div className="af-card af-card-page af-dashboard-empty">
             <h2 className="af-h2">No assessments yet</h2>
             <p className="context-help">

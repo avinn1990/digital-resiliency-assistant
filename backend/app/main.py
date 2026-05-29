@@ -1,13 +1,16 @@
 import asyncio
+import logging
 
 import httpx
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+from app.assessments.routes import router as assessments_router
 from app.auth import router as auth_router
 from app.auth.deps import get_current_user
 from app.auth.models import AuthUser
+from app.users.routes import router as users_router
 
 from app.clients.assessment import AssessmentClient
 from app.clients.base import ServiceClient
@@ -23,6 +26,8 @@ from app.config import (
 )
 from app.evaluation_loader import list_evaluation_services, load_evaluation_service_bundle
 from app.session_registry import is_llm_session, register_llm_session
+
+logger = logging.getLogger(__name__)
 
 app = FastAPI(
     title="Digital Resiliency Assistant API",
@@ -44,6 +49,19 @@ assessment = AssessmentClient(settings.assessment_service_url)
 framework = FrameworkClient(settings.framework_service_url)
 
 app.include_router(auth_router, prefix="/auth", tags=["auth"])
+app.include_router(users_router, prefix="/users", tags=["users"])
+app.include_router(assessments_router, prefix="/assessments", tags=["assessments"])
+
+
+@app.on_event("startup")
+def on_startup() -> None:
+    if not settings.database_enabled:
+        logger.warning("DATABASE_URL is not set — assessment persistence is disabled")
+        return
+    from app.db.session import init_db
+
+    init_db()
+    logger.info("Database tables initialized")
 
 
 def _uses_llm(framework_id: str) -> bool:
@@ -79,12 +97,14 @@ async def health() -> dict:
         "openai_configured": is_openai_configured(),
         "auth_enabled": settings.auth_enabled,
         "auth_required": settings.auth_required,
+        "database_enabled": settings.database_enabled,
         "env": {
             "OPENAI_API_KEY": "set" if is_openai_configured() else "missing",
             "OPENAI_MODEL": OPENAI_MODEL,
             "OPENAI_BASE_URL": OPENAI_BASE_URL or "default",
             "GOOGLE_CLIENT_ID": "set" if settings.google_client_id else "missing",
             "JWT_SECRET": "set" if settings.jwt_secret else "missing",
+            "DATABASE_URL": "set" if settings.database_enabled else "missing",
         },
     }
 

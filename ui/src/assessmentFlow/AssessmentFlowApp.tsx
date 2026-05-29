@@ -1,24 +1,38 @@
-import { useEffect, useMemo, useState } from "react";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  matchPath,
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { fetchCurrentUser } from "../auth/authApi";
 import { isGoogleAuthConfigured } from "../auth/googleClientId";
+import {
+  fetchUserProfile,
+  saveUserProfile,
+  type UserOnboardingProfile,
+} from "../auth/profileApi";
 import {
   clearAuthSession,
   loadAuthToken,
   saveAuthSession,
 } from "../auth/storage";
-import {
-  getUserOnboarding,
-  hasUserOnboarding,
-  saveUserOnboarding,
-} from "../auth/userOnboarding";
 import type { AuthUser } from "../auth/types";
 import { toFriendlyError } from "../lib/userMessages";
+import {
+  createAssessment,
+  deleteAssessment,
+  getAssessment,
+  listAssessments,
+  updateAssessment,
+  type UserDraftSummary,
+} from "./assessmentsApi";
 import { listEvaluationServices } from "./api";
 import { createAssessmentId } from "./id";
 import { DashboardPage } from "./pages/DashboardPage";
 import { OnboardingPage } from "./pages/OnboardingPage";
-import { deleteDraft, listUserDrafts, loadDraft, saveDraft } from "./storage";
 import type { AssessmentDraft, EvaluationServiceSummary, UserProfile } from "./types";
 import { collectRoles } from "./roles";
 import { QuestionnairePage } from "./pages/QuestionnairePage";
@@ -35,9 +49,15 @@ type AppState = {
   servicesError: string | null;
   loadingServices: boolean;
   profile: UserProfile | null;
-  selectedServiceIds: string[];
+  onboardingProfile: UserOnboardingProfile | null;
+  onboardingReady: boolean;
+  assessments: UserDraftSummary[];
+  assessmentsLoading: boolean;
+  assessmentsError: string | null;
   activeAssessmentId: string | null;
-  draftRevision: number;
+  activeDraft: AssessmentDraft | null;
+  activeDraftLoading: boolean;
+  saveError: string | null;
 };
 
 const DEFAULT_STATE: AppState = {
@@ -48,9 +68,15 @@ const DEFAULT_STATE: AppState = {
   servicesError: null,
   loadingServices: false,
   profile: null,
-  selectedServiceIds: [],
+  onboardingProfile: null,
+  onboardingReady: false,
+  assessments: [],
+  assessmentsLoading: false,
+  assessmentsError: null,
   activeAssessmentId: null,
-  draftRevision: 0,
+  activeDraft: null,
+  activeDraftLoading: false,
+  saveError: null,
 };
 
 function nowIso() {
@@ -64,7 +90,7 @@ function usernameFromEmail(email: string): string {
 
 function buildUserProfile(
   authUser: AuthUser,
-  onboarding: { company: string; role: string }
+  onboarding: UserOnboardingProfile
 ): UserProfile {
   return {
     username: usernameFromEmail(authUser.email),
@@ -74,15 +100,21 @@ function buildUserProfile(
   };
 }
 
-function postAuthPath(authUser: AuthUser | null): string {
-  if (!authUser) return "/dashboard";
-  return hasUserOnboarding(authUser.email) ? "/dashboard" : "/onboarding";
+function postAuthPath(hasOnboarding: boolean): string {
+  return hasOnboarding ? "/dashboard" : "/onboarding";
 }
 
 export function AssessmentFlowApp() {
   const [state, setState] = useState<AppState>(DEFAULT_STATE);
   const navigate = useNavigate();
+  const location = useLocation();
   const googleAuthConfigured = isGoogleAuthConfigured();
+  const saveTimerRef = useRef<number | null>(null);
+  const authTokenRef = useRef(state.authToken);
+
+  useEffect(() => {
+    authTokenRef.current = state.authToken;
+  }, [state.authToken]);
 
   useEffect(() => {
     let cancelled = false;
@@ -92,7 +124,13 @@ export function AssessmentFlowApp() {
 
       if (!authToken) {
         if (!cancelled) {
-          setState((s) => ({ ...s, authToken: "", authUser: null, authReady: true }));
+          setState((s) => ({
+            ...s,
+            authToken: "",
+            authUser: null,
+            authReady: true,
+            onboardingReady: true,
+          }));
         }
         return;
       }
@@ -105,7 +143,13 @@ export function AssessmentFlowApp() {
       } catch {
         if (cancelled) return;
         clearAuthSession();
-        setState((s) => ({ ...s, authToken: "", authUser: null, authReady: true }));
+        setState((s) => ({
+          ...s,
+          authToken: "",
+          authUser: null,
+          authReady: true,
+          onboardingReady: true,
+        }));
       }
     }
 
@@ -114,6 +158,48 @@ export function AssessmentFlowApp() {
       cancelled = true;
     };
   }, []);
+
+  useEffect(() => {
+    if (!state.authReady || !state.authToken) {
+      if (state.authReady) {
+        setState((s) => ({ ...s, onboardingReady: true }));
+      }
+      return;
+    }
+
+    let cancelled = false;
+    setState((s) => ({ ...s, onboardingReady: false, assessmentsLoading: true }));
+
+    Promise.all([
+      fetchUserProfile(state.authToken),
+      listAssessments(state.authToken),
+    ])
+      .then(([onboardingProfile, assessments]) => {
+        if (cancelled) return;
+        setState((s) => ({
+          ...s,
+          onboardingProfile,
+          onboardingReady: true,
+          assessments,
+          assessmentsLoading: false,
+          assessmentsError: null,
+        }));
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setState((s) => ({
+          ...s,
+          onboardingReady: true,
+          assessments: [],
+          assessmentsLoading: false,
+          assessmentsError: toFriendlyError(err),
+        }));
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [state.authReady, state.authToken]);
 
   useEffect(() => {
     if (!state.authReady) return;
@@ -148,22 +234,57 @@ export function AssessmentFlowApp() {
     };
   }, [state.authReady, state.authToken, googleAuthConfigured]);
 
+  useEffect(() => {
+    const match = matchPath("/assessment/:assessmentId/*", location.pathname);
+    const assessmentId = match?.params?.assessmentId;
+    if (!assessmentId) return;
+    setState((s) =>
+      s.activeAssessmentId === assessmentId
+        ? s
+        : { ...s, activeAssessmentId: assessmentId, activeDraft: null }
+    );
+  }, [location.pathname]);
+
+  useEffect(() => {
+    if (!state.activeAssessmentId || !state.authToken) return;
+    if (state.activeDraft?.assessmentId === state.activeAssessmentId) return;
+
+    let cancelled = false;
+    setState((s) => ({ ...s, activeDraftLoading: true, activeDraft: null }));
+
+    getAssessment(state.activeAssessmentId, state.authToken)
+      .then((draft) => {
+        if (cancelled) return;
+        setState((s) => ({
+          ...s,
+          activeDraft: draft,
+          activeDraftLoading: false,
+          profile: draft.profile,
+        }));
+      })
+      .catch((err) => {
+        if (cancelled) return;
+        setState((s) => ({
+          ...s,
+          activeDraft: null,
+          activeDraftLoading: false,
+          activeAssessmentId: null,
+          saveError: toFriendlyError(err),
+        }));
+        navigate("/dashboard", { replace: true });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    state.activeAssessmentId,
+    state.authToken,
+    state.activeDraft?.assessmentId,
+    navigate,
+  ]);
+
   const allRoles = useMemo(() => collectRoles(state.services), [state.services]);
-
-  const userDrafts = useMemo(
-    () => listUserDrafts(state.authUser?.email),
-    [state.authUser?.email, state.draftRevision, state.activeAssessmentId]
-  );
-
-  const activeDraft = useMemo(() => {
-    if (!state.activeAssessmentId) return null;
-    return loadDraft(state.activeAssessmentId);
-  }, [state.activeAssessmentId]);
-
-  const storedOnboarding = useMemo(() => {
-    if (!state.authUser) return null;
-    return getUserOnboarding(state.authUser.email);
-  }, [state.authUser]);
 
   const profileDefaults = useMemo(() => {
     if (!state.authUser) return undefined;
@@ -171,53 +292,56 @@ export function AssessmentFlowApp() {
       username: usernameFromEmail(state.authUser.email),
       fullName: state.authUser.name,
     };
-    if (storedOnboarding) {
+    if (state.onboardingProfile) {
       return {
         ...base,
-        company: storedOnboarding.company,
-        role: storedOnboarding.role,
+        company: state.onboardingProfile.company,
+        role: state.onboardingProfile.role,
       };
     }
     return base;
-  }, [state.authUser, storedOnboarding]);
+  }, [state.authUser, state.onboardingProfile]);
 
-  function bumpDraftRevision() {
-    setState((s) => ({ ...s, draftRevision: s.draftRevision + 1 }));
+  async function refreshAssessments(authToken: string) {
+    const assessments = await listAssessments(authToken);
+    setState((s) => ({ ...s, assessments, assessmentsError: null }));
   }
 
   function handleSignedIn(token: string, user: AuthUser) {
     saveAuthSession(token, user);
-    setState((s) => ({ ...s, authToken: token, authUser: user }));
-    navigate(postAuthPath(user), { replace: true });
+    setState((s) => ({
+      ...s,
+      authToken: token,
+      authUser: user,
+      onboardingReady: false,
+    }));
+    navigate("/dashboard", { replace: true });
   }
 
-  function handleOnboardingComplete(onboarding: { company: string; role: string }) {
-    if (!state.authUser) return;
-    saveUserOnboarding(state.authUser.email, onboarding);
-    const profile = buildUserProfile(state.authUser, onboarding);
-    setState((s) => ({ ...s, profile }));
+  async function handleOnboardingComplete(onboarding: UserOnboardingProfile) {
+    if (!state.authUser || !state.authToken) return;
+    const saved = await saveUserProfile(onboarding, state.authToken);
+    const profile = buildUserProfile(state.authUser, saved);
+    setState((s) => ({
+      ...s,
+      onboardingProfile: saved,
+      profile,
+    }));
     navigate("/dashboard", { replace: true });
   }
 
   function handleSignOut() {
+    if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
     clearAuthSession();
-    setState((s) => ({
-      ...s,
-      authToken: "",
-      authUser: null,
-      services: [],
-      servicesError: null,
-      profile: null,
-      activeAssessmentId: null,
-    }));
+    setState({ ...DEFAULT_STATE, authReady: true, onboardingReady: true });
     navigate("/", { replace: true });
   }
 
   function handleStartNewAssessment() {
-    if (state.authUser && storedOnboarding) {
+    if (state.authUser && state.onboardingProfile) {
       setState((s) => ({
         ...s,
-        profile: buildUserProfile(state.authUser!, storedOnboarding),
+        profile: buildUserProfile(state.authUser!, state.onboardingProfile!),
       }));
       navigate("/select-services");
       return;
@@ -225,7 +349,10 @@ export function AssessmentFlowApp() {
     navigate("/profile");
   }
 
-  function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
+  async function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
+    const authToken = authTokenRef.current;
+    if (!authToken) return;
+
     const assessmentId = createAssessmentId({
       company: profile.company,
       role: profile.role,
@@ -236,7 +363,6 @@ export function AssessmentFlowApp() {
       assessmentId,
       createdAt: nowIso(),
       updatedAt: nowIso(),
-      authToken: state.authToken || undefined,
       ownerEmail: state.authUser?.email,
       profile,
       selectedServiceIds,
@@ -245,63 +371,72 @@ export function AssessmentFlowApp() {
         selectedServiceIds.map((id) => [id, { responses: {} }])
       ),
     };
-    saveDraft(draft);
+
+    const saved = await createAssessment(draft, authToken);
+    await refreshAssessments(authToken);
     setState((s) => ({
       ...s,
       profile,
-      selectedServiceIds,
-      activeAssessmentId: assessmentId,
-      draftRevision: s.draftRevision + 1,
+      activeAssessmentId: saved.assessmentId,
+      activeDraft: saved,
     }));
-    navigate(`/assessment/${encodeURIComponent(assessmentId)}/services`, {
+    navigate(`/assessment/${encodeURIComponent(saved.assessmentId)}/questions`, {
       replace: true,
     });
   }
 
-  function openDraft(assessmentId: string) {
-    const draft = loadDraft(assessmentId);
-    if (!draft) return;
-    setState((s) => ({
-      ...s,
-      profile: draft.profile,
-      selectedServiceIds: draft.selectedServiceIds,
-      activeAssessmentId: draft.assessmentId,
-      authToken: draft.authToken ?? s.authToken,
-    }));
-  }
-
   function resumeDraft(assessmentId: string) {
-    openDraft(assessmentId);
+    setState((s) => ({ ...s, activeAssessmentId: assessmentId, activeDraft: null }));
     navigate(`/assessment/${encodeURIComponent(assessmentId)}/questions`, {
       replace: true,
     });
   }
 
   function viewSummary(assessmentId: string) {
-    openDraft(assessmentId);
+    setState((s) => ({ ...s, activeAssessmentId: assessmentId, activeDraft: null }));
     navigate(`/assessment/${encodeURIComponent(assessmentId)}/summary`, {
       replace: true,
     });
   }
 
-  function discardDraft(assessmentId: string) {
-    deleteDraft(assessmentId);
+  async function discardDraft(assessmentId: string) {
+    const authToken = authTokenRef.current;
+    if (!authToken) return;
+    await deleteAssessment(assessmentId, authToken);
+    await refreshAssessments(authToken);
     if (state.activeAssessmentId === assessmentId) {
       setState((s) => ({
         ...s,
         profile: null,
-        selectedServiceIds: [],
         activeAssessmentId: null,
-        draftRevision: s.draftRevision + 1,
+        activeDraft: null,
       }));
-    } else {
-      bumpDraftRevision();
     }
   }
 
+  function persistDraft(nextDraft: AssessmentDraft) {
+    const authToken = authTokenRef.current;
+    if (!authToken) return;
+
+    setState((s) => ({ ...s, activeDraft: nextDraft, saveError: null }));
+
+    if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = window.setTimeout(() => {
+      updateAssessment(nextDraft.assessmentId, nextDraft, authToken)
+        .then((saved) => {
+          setState((s) => ({ ...s, activeDraft: saved }));
+          void refreshAssessments(authToken);
+        })
+        .catch((err) => {
+          setState((s) => ({ ...s, saveError: toFriendlyError(err) }));
+        });
+    }, 400);
+  }
+
   const isAuthenticated = Boolean(state.authToken);
+  const hasOnboarding = Boolean(state.onboardingProfile);
   const needsOnboarding =
-    isAuthenticated && state.authUser && !hasUserOnboarding(state.authUser.email);
+    isAuthenticated && state.onboardingReady && !hasOnboarding;
 
   return (
     <Routes>
@@ -309,7 +444,7 @@ export function AssessmentFlowApp() {
         path="/"
         element={
           !state.authReady ? null : isAuthenticated && googleAuthConfigured ? (
-            <Navigate to={postAuthPath(state.authUser)} replace />
+            <Navigate to={postAuthPath(hasOnboarding)} replace />
           ) : (
             <SplashAuthPage onSignedIn={handleSignedIn} />
           )
@@ -319,7 +454,8 @@ export function AssessmentFlowApp() {
       <Route
         path="/onboarding"
         element={
-          !state.authReady ? null : googleAuthConfigured && !isAuthenticated ? (
+          !state.authReady || !state.onboardingReady ? null : googleAuthConfigured &&
+            !isAuthenticated ? (
             <Navigate to="/" replace />
           ) : state.authUser && needsOnboarding ? (
             <OnboardingPage
@@ -328,7 +464,9 @@ export function AssessmentFlowApp() {
               services={state.services}
               servicesLoading={!state.authReady || state.loadingServices}
               servicesError={state.servicesError}
-              onComplete={handleOnboardingComplete}
+              onComplete={(profile) => {
+                void handleOnboardingComplete(profile);
+              }}
             />
           ) : (
             <Navigate to="/dashboard" replace />
@@ -339,23 +477,31 @@ export function AssessmentFlowApp() {
       <Route
         path="/dashboard"
         element={
-          !state.authReady ? null : googleAuthConfigured && !isAuthenticated ? (
+          !state.authReady || !state.onboardingReady ? (
+            <div className="af-page">
+              <div className="af-page-inner context-help">Loading your workspace…</div>
+            </div>
+          ) : googleAuthConfigured && !isAuthenticated ? (
             <Navigate to="/" replace />
           ) : needsOnboarding ? (
             <Navigate to="/onboarding" replace />
           ) : (
             <DashboardPage
               authUser={state.authUser}
-              drafts={userDrafts}
+              drafts={state.assessments}
+              assessmentsLoading={state.assessmentsLoading}
+              assessmentsError={state.assessmentsError}
               servicesLoading={!state.authReady || state.loadingServices}
               servicesError={state.servicesError}
               servicesCount={state.services.length}
-              company={storedOnboarding?.company}
-              role={storedOnboarding?.role}
+              company={state.onboardingProfile?.company}
+              role={state.onboardingProfile?.role}
               onStartNew={handleStartNewAssessment}
               onResume={resumeDraft}
               onViewSummary={viewSummary}
-              onDiscard={discardDraft}
+              onDiscard={(assessmentId) => {
+                void discardDraft(assessmentId);
+              }}
               onSignOut={handleSignOut}
             />
           )
@@ -395,7 +541,9 @@ export function AssessmentFlowApp() {
               services={state.services}
               servicesLoading={state.loadingServices}
               servicesError={state.servicesError}
-              onConfirm={(selectedServiceIds) => startNewDraft(state.profile!, selectedServiceIds)}
+              onConfirm={(selectedServiceIds) => {
+                void startNewDraft(state.profile!, selectedServiceIds);
+              }}
             />
           ) : (
             <Navigate to="/dashboard" replace />
@@ -406,14 +554,20 @@ export function AssessmentFlowApp() {
       <Route
         path="/assessment/:assessmentId/services"
         element={
-          activeDraft ? (
+          state.activeDraftLoading ? (
+            <div className="af-page">
+              <div className="af-page-inner context-help">Loading assessment…</div>
+            </div>
+          ) : state.activeDraft ? (
             <ServicesPage
-              profile={activeDraft.profile}
+              profile={state.activeDraft.profile}
               services={state.services}
               servicesLoading={state.loadingServices}
               servicesError={state.servicesError}
-              initialSelectedServiceIds={activeDraft.selectedServiceIds}
-              onConfirm={(selectedServiceIds) => startNewDraft(activeDraft.profile, selectedServiceIds)}
+              initialSelectedServiceIds={state.activeDraft.selectedServiceIds}
+              onConfirm={(selectedServiceIds) => {
+                void startNewDraft(state.activeDraft!.profile, selectedServiceIds);
+              }}
               allowBackToDashboard
             />
           ) : (
@@ -425,28 +579,29 @@ export function AssessmentFlowApp() {
       <Route
         path="/assessment/:assessmentId/questions"
         element={
-          activeDraft ? (
-            <QuestionnairePage
-              draft={activeDraft}
-              services={state.services}
-              authToken={state.authToken}
-              onDraftChange={(nextDraft) => {
-                const draftWithOwner: AssessmentDraft = {
-                  ...nextDraft,
-                  ownerEmail: nextDraft.ownerEmail ?? state.authUser?.email,
-                  authToken: nextDraft.authToken ?? (state.authToken || undefined),
-                };
-                saveDraft(draftWithOwner);
-                setState((s) => ({
-                  ...s,
-                  activeAssessmentId: draftWithOwner.assessmentId,
-                  draftRevision: s.draftRevision + 1,
-                }));
-              }}
-              onFinish={() =>
-                navigate(`/assessment/${encodeURIComponent(activeDraft.assessmentId)}/summary`)
-              }
-            />
+          state.activeDraftLoading ? (
+            <div className="af-page">
+              <div className="af-page-inner context-help">Loading assessment…</div>
+            </div>
+          ) : state.activeDraft ? (
+            <>
+              {state.saveError && (
+                <div className="error-banner" role="alert">
+                  <strong>Save error.</strong> {state.saveError}
+                </div>
+              )}
+              <QuestionnairePage
+                draft={state.activeDraft}
+                services={state.services}
+                authToken={state.authToken}
+                onDraftChange={persistDraft}
+                onFinish={() =>
+                  navigate(
+                    `/assessment/${encodeURIComponent(state.activeDraft!.assessmentId)}/summary`
+                  )
+                }
+              />
+            </>
           ) : (
             <Navigate to="/dashboard" replace />
           )
@@ -456,12 +611,16 @@ export function AssessmentFlowApp() {
       <Route
         path="/assessment/:assessmentId/summary"
         element={
-          activeDraft ? (
+          state.activeDraftLoading ? (
+            <div className="af-page">
+              <div className="af-page-inner context-help">Loading assessment…</div>
+            </div>
+          ) : state.activeDraft ? (
             <SummaryPage
-              draft={activeDraft}
+              draft={state.activeDraft}
               services={state.services}
               onDiscard={() => {
-                discardDraft(activeDraft.assessmentId);
+                void discardDraft(state.activeDraft!.assessmentId);
                 navigate("/dashboard", { replace: true });
               }}
             />
