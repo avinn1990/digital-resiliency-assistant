@@ -2,10 +2,11 @@ import type { BackendHealthStatus } from "../../services/health";
 
 type Props = {
   status: BackendHealthStatus;
+  sessionActive?: boolean;
   onRetry?: () => void;
 };
 
-export function ConnectionStatus({ status, onRetry }: Props) {
+export function ConnectionStatus({ status, sessionActive = false, onRetry }: Props) {
   if (status === "checking") {
     return (
       <span className="connection-status checking" role="status">
@@ -16,15 +17,15 @@ export function ConnectionStatus({ status, onRetry }: Props) {
   if (status === "ready") {
     return (
       <span className="connection-status online" role="status">
-        Ready to chat
+        {sessionActive ? "Chat connected" : "Ready to chat"}
       </span>
     );
   }
-  if (status === "warming") {
+  if (status === "warming" && !sessionActive) {
     return (
       <span className="connection-status warming" role="status">
-        Assessment services are starting — you can begin; the first message may
-        take a moment.
+        Some background services are still starting. You can begin chatting; the
+        first reply may take a little longer.
         {onRetry && (
           <button type="button" className="link-btn" onClick={onRetry}>
             Check again

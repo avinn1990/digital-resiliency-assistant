@@ -10,7 +10,7 @@ type Props = {
   currentStep: AppStep;
   progress: { current: number; total: number };
   completed: boolean;
-  backendHealth: BackendHealthStatus;
+  connectionStatus: BackendHealthStatus;
   onNewChat: () => void;
   onRetryHealth: () => void;
 };
@@ -21,7 +21,7 @@ export function ChatHeader({
   currentStep,
   progress,
   completed,
-  backendHealth,
+  connectionStatus,
   onNewChat,
   onRetryHealth,
 }: Props) {
@@ -41,7 +41,11 @@ export function ChatHeader({
           )}
         </div>
         <div className="chat-header-actions">
-          <ConnectionStatus status={backendHealth} onRetry={onRetryHealth} />
+          <ConnectionStatus
+            status={connectionStatus}
+            sessionActive={Boolean(sessionId)}
+            onRetry={onRetryHealth}
+          />
           {sessionId && (
             <button
               type="button"

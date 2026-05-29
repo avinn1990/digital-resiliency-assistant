@@ -37,7 +37,7 @@ export function AppShell() {
         currentStep={currentStep}
         progress={chat.progress}
         completed={chat.completed}
-        backendHealth={chat.backendHealth}
+        connectionStatus={chat.connectionStatus}
         onNewChat={chat.resetSession}
         onRetryHealth={chat.refreshHealth}
       />
@@ -53,7 +53,7 @@ export function AppShell() {
             onStart={chat.beginSession}
             loading={chat.loading}
             frameworksLoading={chat.frameworksLoading}
-            backendHealth={chat.backendHealth}
+            backendHealth={chat.connectionStatus}
             onRetryHealth={chat.refreshHealth}
             error={chat.error}
           />

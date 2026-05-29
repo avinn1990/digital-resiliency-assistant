@@ -95,6 +95,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
       setMessages([createMessage("assistant", result.reply)]);
       setProgress(result.progress);
       setCompleted(false);
+      setBackendHealth("ready");
     } catch (err) {
       setError(toFriendlyError(err));
     } finally {
@@ -125,6 +126,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
         ]);
         setProgress(result.progress);
         setCompleted(result.completed);
+        setBackendHealth("ready");
         if (result.completed && serviceQueue.length > 1) {
           const next = serviceQueue[1];
           setMessages((prev) => [
@@ -181,9 +183,11 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     setCompleted(false);
     setAssessment(null);
     setError(null);
-  }, []);
+    void refreshHealth();
+  }, [refreshHealth]);
 
   const selectedFramework = frameworks.find((f) => f.id === selectedFrameworkId);
+  const connectionStatus: BackendHealthStatus = sessionId ? "ready" : backendHealth;
 
   return {
     frameworks,
@@ -202,6 +206,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     assessing,
     error,
     backendHealth,
+    connectionStatus,
     beginSession,
     submitUserMessage,
     executeAssessment,
