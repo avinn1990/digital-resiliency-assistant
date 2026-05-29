@@ -30,6 +30,7 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
     jwt_expire_minutes: int = 1440
     auth_required: bool = False
+    database_url: str = ""
 
     @field_validator(
         "conversation_service_url",
@@ -49,6 +50,10 @@ class Settings(BaseSettings):
     @property
     def auth_enabled(self) -> bool:
         return bool(self.google_client_id.strip() and self.jwt_secret.strip())
+
+    @property
+    def database_enabled(self) -> bool:
+        return bool(self.database_url.strip())
 
 
 settings = Settings()
