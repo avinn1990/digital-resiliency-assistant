@@ -122,7 +122,7 @@ services:
       - key: GOOGLE_CLIENT_ID
         value: 842344870402-fu23ib77n6ph4kv5c9c5lqaqunghejpa.apps.googleusercontent.com
       - key: JWT_SECRET
-        sync: false
+        value: Zp_NRvUl_lBSU96f9GOXM7XpELqhLjWIEwZe7_cxw3K0R37erXcMgN2CN2B_qwbb
       - key: JWT_EXPIRE_MINUTES
         value: "1440"
       - key: AUTH_REQUIRED
