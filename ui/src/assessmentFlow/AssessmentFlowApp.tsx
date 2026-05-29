@@ -17,6 +17,7 @@ import {
 import {
   clearAuthSession,
   loadAuthToken,
+  loadAuthUser,
   saveAuthSession,
 } from "../auth/storage";
 import type { AuthUser } from "../auth/types";
@@ -105,7 +106,7 @@ function postAuthPath(hasOnboarding: boolean): string {
 }
 
 function AuthLoadingPage({
-  message = "Loading your workspace…",
+  message = "Loading…",
 }: {
   message?: string;
 }) {
@@ -123,6 +124,7 @@ export function AssessmentFlowApp() {
   const googleAuthConfigured = isGoogleAuthConfigured();
   const saveTimerRef = useRef<number | null>(null);
   const authTokenRef = useRef(state.authToken);
+  const profileLoadGenRef = useRef(0);
 
   useEffect(() => {
     authTokenRef.current = state.authToken;
@@ -145,6 +147,16 @@ export function AssessmentFlowApp() {
           }));
         }
         return;
+      }
+
+      const cachedUser = loadAuthUser();
+      if (cachedUser && !cancelled) {
+        setState((s) => ({
+          ...s,
+          authToken,
+          authUser: cachedUser,
+          authReady: true,
+        }));
       }
 
       try {
@@ -179,15 +191,14 @@ export function AssessmentFlowApp() {
       return;
     }
 
+    const token = state.authToken;
+    const loadGen = ++profileLoadGenRef.current;
     let cancelled = false;
     setState((s) => ({ ...s, onboardingReady: false, assessmentsLoading: true }));
 
-    Promise.all([
-      fetchUserProfile(state.authToken),
-      listAssessments(state.authToken),
-    ])
+    Promise.all([fetchUserProfile(token), listAssessments(token)])
       .then(([onboardingProfile, assessments]) => {
-        if (cancelled) return;
+        if (cancelled || profileLoadGenRef.current !== loadGen) return;
         setState((s) => ({
           ...s,
           onboardingProfile,
@@ -198,7 +209,7 @@ export function AssessmentFlowApp() {
         }));
       })
       .catch((err) => {
-        if (cancelled) return;
+        if (cancelled || profileLoadGenRef.current !== loadGen) return;
         setState((s) => ({
           ...s,
           onboardingReady: true,
@@ -328,7 +339,7 @@ export function AssessmentFlowApp() {
       authReady: true,
       onboardingReady: false,
     }));
-    navigate("/dashboard", { replace: true });
+    // Stay on splash until profile bootstrap finishes; "/" then redirects once.
   }
 
   async function handleOnboardingComplete(onboarding: UserOnboardingProfile) {
@@ -345,6 +356,7 @@ export function AssessmentFlowApp() {
 
   function handleSignOut() {
     if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+    profileLoadGenRef.current += 1;
     clearAuthSession();
     setState({ ...DEFAULT_STATE, authReady: true, onboardingReady: true });
     navigate("/", { replace: true });
@@ -447,23 +459,22 @@ export function AssessmentFlowApp() {
   }
 
   const isAuthenticated = Boolean(state.authToken);
+  const sessionReady = state.authReady && (!state.authToken || Boolean(state.authUser));
   const hasOnboarding = Boolean(state.onboardingProfile);
   const needsOnboarding =
     isAuthenticated && state.onboardingReady && !hasOnboarding;
+  const sessionLoading =
+    !sessionReady || (isAuthenticated && !state.onboardingReady);
 
   return (
     <Routes>
       <Route
         path="/"
         element={
-          !state.authReady ? (
-            <AuthLoadingPage message="Loading…" />
+          sessionLoading ? (
+            <AuthLoadingPage />
           ) : isAuthenticated && googleAuthConfigured ? (
-            !state.onboardingReady ? (
-              <AuthLoadingPage />
-            ) : (
-              <Navigate to={postAuthPath(hasOnboarding)} replace />
-            )
+            <Navigate to={postAuthPath(hasOnboarding)} replace />
           ) : (
             <SplashAuthPage onSignedIn={handleSignedIn} />
           )
@@ -473,12 +484,11 @@ export function AssessmentFlowApp() {
       <Route
         path="/onboarding"
         element={
-          !state.authReady || !state.onboardingReady ? (
+          sessionLoading ? (
             <AuthLoadingPage />
-          ) : googleAuthConfigured &&
-            !isAuthenticated ? (
+          ) : googleAuthConfigured && !isAuthenticated ? (
             <Navigate to="/" replace />
-          ) : state.authUser && needsOnboarding ? (
+          ) : needsOnboarding && state.authUser ? (
             <OnboardingPage
               authUser={state.authUser}
               roles={allRoles}
@@ -498,7 +508,7 @@ export function AssessmentFlowApp() {
       <Route
         path="/dashboard"
         element={
-          !state.authReady || !state.onboardingReady ? (
+          sessionLoading ? (
             <AuthLoadingPage />
           ) : googleAuthConfigured && !isAuthenticated ? (
             <Navigate to="/" replace />

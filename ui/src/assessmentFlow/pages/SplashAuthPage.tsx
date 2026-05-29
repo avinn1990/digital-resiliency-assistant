@@ -93,7 +93,7 @@ export function SplashAuthPage({ onSignedIn }: Props) {
               )}
 
               {signingIn && (
-                <p className="context-help">Signing you in and opening your dashboard…</p>
+                <p className="context-help">Signing you in…</p>
               )}
             </>
           ) : (
