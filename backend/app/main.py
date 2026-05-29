@@ -25,7 +25,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=False,
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -59,9 +59,9 @@ async def health() -> dict:
         "service": "backend",
         "openai_configured": is_openai_configured(),
         "env": {
-            OPENAI_API_KEY: "set" if is_openai_configured() else "missing",
-            OPENAI_MODEL: OPENAI_MODEL,
-            OPENAI_BASE_URL: OPENAI_BASE_URL or "default",
+            "OPENAI_API_KEY": "set" if is_openai_configured() else "missing",
+            "OPENAI_MODEL": OPENAI_MODEL,
+            "OPENAI_BASE_URL": OPENAI_BASE_URL or "default",
         },
     }
 
