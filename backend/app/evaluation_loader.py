@@ -1,17 +1,26 @@
 import json
+import os
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
 
 
 def _repo_root() -> Path:
-    return next(
-        (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
-        Path(__file__).resolve().parents[2],
-    )
+    override = os.environ.get("REPO_ROOT", "").strip()
+    if override:
+        return Path(override)
+    for parent in Path(__file__).resolve().parents:
+        if (parent / "evaluation-services").is_dir():
+            return parent
+        if (parent / "render.yaml").is_file():
+            return parent
+    return Path(__file__).resolve().parents[2]
 
 
 def _evaluation_services_root() -> Path:
+    override = os.environ.get("EVALUATION_SERVICES_DIR", "").strip()
+    if override:
+        return Path(override)
     return _repo_root() / "evaluation-services"
 
 

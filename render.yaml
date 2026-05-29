@@ -10,16 +10,18 @@ services:
     name: dra-framework
     runtime: python
     rootDir: services/framework
-    plan: starter
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
+    # Persistent disk keeps uploaded frameworks across deploys (paid plans).
+    # Remove this block on the free tier if disk is unavailable; bundled JSON still works.
     disk:
       name: dra-framework-data
-      mountPath: /data
+      mountPath: data
       sizeGB: 1
 
   - type: web
@@ -120,8 +122,9 @@ services:
         source: /*
         destination: /index.html
     envVars:
+      # Browsers need the public URL, not the private-network "host" property.
       - key: VITE_API_URL
         fromService:
           type: web
           name: dra-backend
-          property: host
+          envVarKey: RENDER_EXTERNAL_URL

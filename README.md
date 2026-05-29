@@ -54,12 +54,13 @@ Service URLs are wired automatically via `fromService` env vars. Hostnames from 
 
 - Open the **dra-ui** URL for the chat interface.
 - Use **dra-backend** `/docs` for the API (e.g. `https://dra-backend-xxxx.onrender.com/docs`).
+- If the UI shows **“Service catalog error” / “couldn’t reach the server”**, the static site is usually calling the wrong API URL. In Render → **dra-ui** → Environment, confirm `VITE_API_URL` is the **public** `https://…onrender.com` URL for **dra-backend** (not a private `host` value), then trigger a **manual redeploy** of **dra-ui** so Vite rebakes the URL into the build.
 
 ### Render notes
 
 | Topic | Detail |
 |-------|--------|
-| **Framework uploads** | `dra-framework` uses the Render **Starter** plan with a persistent disk at `data/` so uploads survive deploys. Other services remain on the free tier. |
+| **Framework uploads** | `render.yaml` mounts a persistent disk on `dra-framework` at `data/`. Remove the `disk` block if your plan does not support disks; bundled example frameworks still work. |
 | **Sessions** | Conversation sessions are in-memory today. For multiple instances or restarts, add Redis or a database in a follow-up. |
 | **Cold starts** | Free-tier services spin down when idle; first request may be slow. |
 | **Custom domains** | Add in each Render service’s Settings → Custom Domains. |
