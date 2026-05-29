@@ -20,7 +20,7 @@ export function ConnectionStatus({ online, onRetry }: Props) {
   }
   return (
     <span className="connection-status offline" role="status">
-      Agent unavailable — start the API first
+      Services are waking up or unreachable — check the API URL and try again
       {onRetry && (
         <button type="button" className="link-btn" onClick={onRetry}>
           Check again

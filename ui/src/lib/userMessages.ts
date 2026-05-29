@@ -7,7 +7,7 @@ export function toFriendlyError(err: unknown): string {
     return "We couldn't reach the server. The app may be pointed at the wrong API URL — on Render, set dra-ui VITE_API_URL to your public dra-backend URL (https://….onrender.com) and redeploy dra-ui.";
   }
   if (/502|503|bad gateway|service unavailable/i.test(raw)) {
-    return "The assessment service is busy right now. Wait a few seconds and try again.";
+    return "The assessment services are still starting on Render (this can take up to a minute on the free tier). Wait a moment, then try again.";
   }
   if (/404|not found/i.test(raw)) {
     return "That resource wasn't found. Start a new chat or pick a different framework.";

@@ -56,10 +56,13 @@ export async function getApiBase(): Promise<string> {
       return cachedBase;
     }
 
-    const fromRuntime = await loadRuntimeConfig();
-    if (fromRuntime && isBrowserReachableApiBase(fromRuntime)) {
-      cachedBase = fromRuntime;
-      return cachedBase;
+    // Only use runtime-config when VITE_API_URL was not set at build time.
+    if (!fromVite) {
+      const fromRuntime = await loadRuntimeConfig();
+      if (fromRuntime && isBrowserReachableApiBase(fromRuntime)) {
+        cachedBase = fromRuntime;
+        return cachedBase;
+      }
     }
 
     if (fromVite) {

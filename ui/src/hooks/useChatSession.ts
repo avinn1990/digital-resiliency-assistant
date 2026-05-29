@@ -57,6 +57,14 @@ export function useChatSession() {
       .finally(() => setFrameworksLoading(false));
   }, [refreshHealth]);
 
+  useEffect(() => {
+    if (backendOnline !== false) return undefined;
+    const intervalId = window.setInterval(() => {
+      void refreshHealth();
+    }, 10_000);
+    return () => window.clearInterval(intervalId);
+  }, [backendOnline, refreshHealth]);
+
   const beginSession = useCallback(async () => {
     if (!selectedFrameworkId) return;
     setLoading(true);
@@ -65,12 +73,6 @@ export function useChatSession() {
     setMessages([]);
     setSessionId(null);
     try {
-      const online = await refreshHealth();
-      if (!online) {
-        throw new Error(
-          "Cannot reach the backend agent. Check that the API is running and VITE_API_URL is set."
-        );
-      }
       const result = await startSession(selectedFrameworkId);
       setSessionId(result.session_id);
       setMessages([createMessage("assistant", result.reply)]);

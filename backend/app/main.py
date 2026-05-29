@@ -1,8 +1,12 @@
+import asyncio
+
+import httpx
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from app.clients.assessment import AssessmentClient
+from app.clients.base import ServiceClient
 from app.clients.conversation import ConversationClient
 from app.clients.framework import FrameworkClient
 from app.clients.llm_conversation import LLM_FRAMEWORK_IDS, LlmConversationClient
@@ -25,7 +29,7 @@ app = FastAPI(
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
-    allow_credentials=True,
+    allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -52,6 +56,15 @@ class RegisterFrameworkRequest(BaseModel):
     framework: dict
 
 
+async def _probe_service(client: ServiceClient, name: str) -> tuple[str, bool]:
+    try:
+        async with httpx.AsyncClient(timeout=httpx.Timeout(20.0, connect=10.0)) as http:
+            response = await http.get(f"{client.base_url}/health")
+        return name, response.status_code == 200
+    except Exception:
+        return name, False
+
+
 @app.get("/health")
 async def health() -> dict:
     return {
@@ -63,6 +76,24 @@ async def health() -> dict:
             "OPENAI_MODEL": OPENAI_MODEL,
             "OPENAI_BASE_URL": OPENAI_BASE_URL or "default",
         },
+    }
+
+
+@app.get("/health/ready")
+async def health_ready() -> dict:
+    """Checks downstream microservices (conversation, LLM, assessment, framework)."""
+    probes = await asyncio.gather(
+        _probe_service(conversation, "conversation"),
+        _probe_service(llm_conversation, "llm_conversation"),
+        _probe_service(assessment, "assessment"),
+        _probe_service(framework, "framework"),
+    )
+    checks = dict(probes)
+    all_ok = all(checks.values())
+    return {
+        "status": "ok" if all_ok else "degraded",
+        "service": "backend",
+        "checks": checks,
     }
 
 

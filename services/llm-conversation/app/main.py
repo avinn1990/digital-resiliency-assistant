@@ -46,9 +46,9 @@ async def health() -> dict:
         "service": "llm-conversation",
         "llm_configured": is_openai_configured(),
         "env": {
-            OPENAI_API_KEY: "set" if is_openai_configured() else "missing",
-            OPENAI_MODEL: OPENAI_MODEL,
-            OPENAI_BASE_URL: OPENAI_BASE_URL or "default",
+            "OPENAI_API_KEY": "set" if is_openai_configured() else "missing",
+            "OPENAI_MODEL": OPENAI_MODEL,
+            "OPENAI_BASE_URL": OPENAI_BASE_URL or "default",
         },
         "evaluation_dir": str(settings.evaluation_dir()),
     }
