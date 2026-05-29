@@ -1,4 +1,4 @@
-import { API_BASE } from "../lib/apiBase";
+import { getApiBase } from "../lib/apiBase";
 import type { EvaluationServiceBundle, EvaluationServiceSummary } from "./types";
 
 async function request<T>(
@@ -14,7 +14,8 @@ async function request<T>(
     headers.Authorization = `Bearer ${authToken.trim()}`;
   }
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const apiBase = await getApiBase();
+  const response = await fetch(`${apiBase}${path}`, {
     ...options,
     headers,
   });

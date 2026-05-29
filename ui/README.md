@@ -44,7 +44,7 @@ Open http://localhost:5173. The dev server proxies `/api` to the backend when `V
 
 ## Production (Render)
 
-Deployed as static site `dra-ui` via root `render.yaml`. `VITE_API_URL` must be the **public** `dra-backend` URL (`RENDER_EXTERNAL_URL`, e.g. `https://dra-backend-xxxx.onrender.com`), not Render’s private-network `host` value. Redeploy **dra-ui** after changing it.
+Deployed as static site `dra-ui` via root `render.yaml`. `VITE_API_URL` must be the **public** `dra-backend` URL (`https://….onrender.com`). After changing it on Render, **manual redeploy dra-ui** (Vite bakes it at build time).
 
 ## Backend API used
 

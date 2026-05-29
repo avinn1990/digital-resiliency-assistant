@@ -1,4 +1,4 @@
-import { API_BASE } from "../lib/apiBase";
+import { getApiBase } from "../lib/apiBase";
 import type {
   AssessmentResult,
   FrameworkSummary,
@@ -6,7 +6,8 @@ import type {
 } from "./types";
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
-  const response = await fetch(`${API_BASE}${path}`, {
+  const apiBase = await getApiBase();
+  const response = await fetch(`${apiBase}${path}`, {
     headers: { "Content-Type": "application/json", ...options?.headers },
     ...options,
   });
@@ -19,7 +20,8 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
 
 export async function checkBackendHealth(): Promise<boolean> {
   try {
-    const response = await fetch(`${API_BASE}/health`, { method: "GET" });
+    const apiBase = await getApiBase();
+    const response = await fetch(`${apiBase}/health`, { method: "GET" });
     return response.ok;
   } catch {
     return false;
