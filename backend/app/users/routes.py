@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.assessments.schemas import UserOnboardingProfile
@@ -12,14 +12,14 @@ from app.db.session import get_db
 router = APIRouter()
 
 
-@router.get("/me/profile", response_model=UserOnboardingProfile)
+@router.get("/me/profile", response_model=UserOnboardingProfile | None)
 def read_my_profile(
     user: Annotated[AuthUser, Depends(require_authenticated_user)],
     db: Annotated[Session, Depends(get_db)],
-) -> UserOnboardingProfile:
+) -> UserOnboardingProfile | None:
     row = get_user_profile(db, user.email)
     if row is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Profile not found")
+        return None
     return UserOnboardingProfile(company=row.company, role=row.role)
 
 
