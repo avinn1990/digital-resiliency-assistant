@@ -77,6 +77,7 @@ export function DashboardPage({
 }: Props) {
   const pending = drafts.filter((d) => d.status === "pending");
   const completed = drafts.filter((d) => d.status === "completed");
+  const hasExisting = drafts.length > 0;
 
   return (
     <div className="af-page">
@@ -85,11 +86,9 @@ export function DashboardPage({
           <div>
             <div className="af-kicker">Your workspace</div>
             <h1 className="af-h1">
-              {authUser ? `Welcome, ${authUser.name.split(" ")[0]}` : "Your assessments"}
+              {authUser ? `Welcome back, ${authUser.name.split(" ")[0]}` : "Your assessments"}
             </h1>
-            {authUser && (
-              <p className="context-help">{authUser.email}</p>
-            )}
+            {authUser && <p className="context-help">{authUser.email}</p>}
             {company && role && (
               <p className="context-help">
                 {company} · {role}
@@ -121,7 +120,7 @@ export function DashboardPage({
 
         {assessmentsError && (
           <div className="error-banner" role="alert">
-            <strong>Assessment load error.</strong> {assessmentsError}
+            <strong>Could not load your assessments.</strong> {assessmentsError}
           </div>
         )}
 
@@ -130,19 +129,21 @@ export function DashboardPage({
             ? "Loading your assessments…"
             : servicesLoading
               ? "Loading assessment services…"
-              : `${servicesCount} assessment service${servicesCount === 1 ? "" : "s"} available.`}
+              : hasExisting
+                ? `${pending.length} in progress · ${completed.length} completed`
+                : `${servicesCount} assessment service${servicesCount === 1 ? "" : "s"} available for your role.`}
         </div>
 
         {assessmentsLoading ? (
           <div className="af-card af-card-page af-dashboard-empty">
             <p className="context-help">Loading your assessments…</p>
           </div>
-        ) : drafts.length === 0 ? (
+        ) : !hasExisting ? (
           <div className="af-card af-card-page af-dashboard-empty">
             <h2 className="af-h2">No assessments yet</h2>
             <p className="context-help">
-              Start an AI-guided chat assessment. The assistant asks questions
-              conversationally and tracks your progress as you go.
+              Start a new AI-guided assessment when you are ready. Your progress will
+              appear here so you can continue later.
             </p>
             <button
               type="button"
@@ -157,21 +158,17 @@ export function DashboardPage({
           <>
             {pending.length > 0 && (
               <section className="af-dashboard-section">
-                <h2 className="af-h2">In progress (saved form drafts)</h2>
+                <h2 className="af-h2">Continue an assessment</h2>
                 <p className="context-help">
-                  These were started in the form-based flow. Resume opens the saved
-                  questionnaire, or start fresh in the{" "}
-                  <a className="af-link" href="/chat">
-                    AI chat assessment
-                  </a>
-                  .
+                  Pick up where you left off, or start a new assessment using the button
+                  above.
                 </p>
                 <div className="af-dashboard-list">
                   {pending.map((draft) => (
                     <DraftCard
                       key={draft.assessmentId}
                       draft={draft}
-                      openLabel="Resume"
+                      openLabel="Continue"
                       onOpen={() => onResume(draft.assessmentId)}
                       onDiscard={() => onDiscard(draft.assessmentId)}
                     />
@@ -196,14 +193,26 @@ export function DashboardPage({
                 </div>
               </section>
             )}
+
+            {pending.length === 0 && (
+              <div className="af-card af-card-page">
+                <h2 className="af-h2">Start another assessment</h2>
+                <p className="context-help">
+                  You do not have any assessments in progress. Start a new AI chat
+                  assessment when you are ready.
+                </p>
+                <button
+                  type="button"
+                  className="btn-primary"
+                  onClick={onStartNew}
+                  disabled={servicesLoading}
+                >
+                  Start new assessment
+                </button>
+              </div>
+            )}
           </>
         )}
-
-        <div className="af-dashboard-footer">
-          <a className="af-link" href="/chat">
-            Start or continue in the AI chat assessment
-          </a>
-        </div>
       </div>
     </div>
   );

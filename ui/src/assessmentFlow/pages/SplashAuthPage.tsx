@@ -102,11 +102,6 @@ export function SplashAuthPage({ onSignedIn }: Props) {
             </a>
           )}
 
-          <div className="af-card-footer">
-            <a className="af-link" href="/dashboard">
-              View saved assessments (form-based drafts)
-            </a>
-          </div>
         </div>
       </div>
     </div>

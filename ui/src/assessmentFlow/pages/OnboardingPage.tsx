@@ -102,7 +102,7 @@ export function OnboardingPage({
               }
               disabled={!canContinue}
             >
-              Continue to dashboard
+              Continue
             </button>
 
             {role && matchedServices.length === 0 && !servicesLoading && (

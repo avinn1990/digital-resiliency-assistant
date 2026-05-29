@@ -102,7 +102,7 @@ function buildUserProfile(
 }
 
 function postAuthPath(hasOnboarding: boolean): string {
-  return hasOnboarding ? "/chat" : "/onboarding";
+  return hasOnboarding ? "/dashboard" : "/onboarding";
 }
 
 function AuthLoadingPage({
@@ -351,7 +351,7 @@ export function AssessmentFlowApp() {
       onboardingProfile: saved,
       profile,
     }));
-    navigate("/chat", { replace: true });
+    navigate("/dashboard", { replace: true });
   }
 
   function handleSignOut() {
@@ -492,7 +492,7 @@ export function AssessmentFlowApp() {
               }}
             />
           ) : (
-            <Navigate to="/chat" replace />
+            <Navigate to="/dashboard" replace />
           )
         }
       />
