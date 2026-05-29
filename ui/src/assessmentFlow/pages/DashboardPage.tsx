@@ -7,6 +7,8 @@ type Props = {
   servicesLoading: boolean;
   servicesError: string | null;
   servicesCount: number;
+  company?: string;
+  role?: string;
   onStartNew: () => void;
   onResume: (assessmentId: string) => void;
   onViewSummary: (assessmentId: string) => void;
@@ -61,6 +63,8 @@ export function DashboardPage({
   servicesLoading,
   servicesError,
   servicesCount,
+  company,
+  role,
   onStartNew,
   onResume,
   onViewSummary,
@@ -81,6 +85,11 @@ export function DashboardPage({
             </h1>
             {authUser && (
               <p className="context-help">{authUser.email}</p>
+            )}
+            {company && role && (
+              <p className="context-help">
+                {company} · {role}
+              </p>
             )}
           </div>
           <div className="af-dashboard-top-actions">
