@@ -104,6 +104,18 @@ function postAuthPath(hasOnboarding: boolean): string {
   return hasOnboarding ? "/dashboard" : "/onboarding";
 }
 
+function AuthLoadingPage({
+  message = "Loading your workspace…",
+}: {
+  message?: string;
+}) {
+  return (
+    <div className="af-page">
+      <div className="af-page-inner context-help">{message}</div>
+    </div>
+  );
+}
+
 export function AssessmentFlowApp() {
   const [state, setState] = useState<AppState>(DEFAULT_STATE);
   const navigate = useNavigate();
@@ -313,6 +325,7 @@ export function AssessmentFlowApp() {
       ...s,
       authToken: token,
       authUser: user,
+      authReady: true,
       onboardingReady: false,
     }));
     navigate("/dashboard", { replace: true });
@@ -443,8 +456,14 @@ export function AssessmentFlowApp() {
       <Route
         path="/"
         element={
-          !state.authReady ? null : isAuthenticated && googleAuthConfigured ? (
-            <Navigate to={postAuthPath(hasOnboarding)} replace />
+          !state.authReady ? (
+            <AuthLoadingPage message="Loading…" />
+          ) : isAuthenticated && googleAuthConfigured ? (
+            !state.onboardingReady ? (
+              <AuthLoadingPage />
+            ) : (
+              <Navigate to={postAuthPath(hasOnboarding)} replace />
+            )
           ) : (
             <SplashAuthPage onSignedIn={handleSignedIn} />
           )
@@ -454,7 +473,9 @@ export function AssessmentFlowApp() {
       <Route
         path="/onboarding"
         element={
-          !state.authReady || !state.onboardingReady ? null : googleAuthConfigured &&
+          !state.authReady || !state.onboardingReady ? (
+            <AuthLoadingPage />
+          ) : googleAuthConfigured &&
             !isAuthenticated ? (
             <Navigate to="/" replace />
           ) : state.authUser && needsOnboarding ? (
@@ -478,9 +499,7 @@ export function AssessmentFlowApp() {
         path="/dashboard"
         element={
           !state.authReady || !state.onboardingReady ? (
-            <div className="af-page">
-              <div className="af-page-inner context-help">Loading your workspace…</div>
-            </div>
+            <AuthLoadingPage />
           ) : googleAuthConfigured && !isAuthenticated ? (
             <Navigate to="/" replace />
           ) : needsOnboarding ? (
