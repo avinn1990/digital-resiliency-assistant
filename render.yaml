@@ -1,13 +1,28 @@
-# Render Blueprint — primary deployment path for this project.
-# Deploy: connect repo on Render → New → Blueprint → select render.yaml
-# Docs: https://render.com/docs/blueprint-spec
+# Render Blueprint — single source of truth for production configuration.
+# Deploy: Render Dashboard → New → Blueprint → connect this repository.
+# Do not duplicate these settings manually in the Render UI; change this file and sync the blueprint.
 #
-# Docker Compose remains optional for local containerized runs (see README).
-#
-# Wiring notes:
-# - All service URLs use RENDER_EXTERNAL_URL (public https://….onrender.com).
-# - Apps normalize host-only values to https:// automatically (see shared/python/service_url.py).
-# - After changing URLs, redeploy dra-backend then dra-ui.
+# Wiring:
+# - Service URLs use fromService + RENDER_EXTERNAL_URL (public https://….onrender.com).
+# - UI custom domain and backend CORS are declared below (digitally-resilient.com).
+# - Secrets marked sync: false must be set once in the dashboard (Render cannot store them in git).
+
+envVarGroups:
+  - name: dra-auth
+    envVars:
+      - key: GOOGLE_CLIENT_ID
+        value: 842344870402-fu23ib77n6ph4kv5c9c5lqaqunghejpa.apps.googleusercontent.com
+      - key: VITE_GOOGLE_CLIENT_ID
+        value: 842344870402-fu23ib77n6ph4kv5c9c5lqaqunghejpa.apps.googleusercontent.com
+      - key: JWT_SECRET
+        value: Zp_NRvUl_lBSU96f9GOXM7XpELqhLjWIEwZe7_cxw3K0R37erXcMgN2CN2B_qwbb
+      - key: JWT_EXPIRE_MINUTES
+        value: "1440"
+  - name: dra-cors
+    envVars:
+      # Browser origins allowed to call dra-backend (must match dra-ui domains + any extra UI hosts).
+      - key: CORS_ORIGINS
+        value: https://digitally-resilient.com,https://www.digitally-resilient.com
 
 databases:
   - name: dra-postgres
@@ -22,6 +37,7 @@ services:
     runtime: python
     rootDir: services/framework
     plan: standard
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
@@ -38,6 +54,7 @@ services:
     runtime: python
     rootDir: services/conversation
     plan: free
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
@@ -55,6 +72,7 @@ services:
     runtime: python
     rootDir: services/llm-conversation
     plan: free
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
@@ -65,15 +83,17 @@ services:
         sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
-      # Full repo is checked out; evaluation content lives outside rootDir.
-      - key: EVALUATION_SERVICE_DIR
-        value: /opt/render/project/src/evaluation-services/Information Security Strategy and Planning Services
+      - key: EVALUATION_SERVICES_DIR
+        value: /opt/render/project/src/evaluation-services
+      - key: REPO_ROOT
+        value: /opt/render/project/src
 
   - type: web
     name: dra-assessment
     runtime: python
     rootDir: services/assessment
     plan: free
+    region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
@@ -86,18 +106,22 @@ services:
           name: dra-framework
           envVarKey: RENDER_EXTERNAL_URL
 
-  # --- API gateway (UI and external clients call this service) ---
-  # No rootDir: full repo required so evaluation-services/ exists at runtime.
+  # --- API gateway (browser + UI call this service) ---
   - type: web
     name: dra-backend
     runtime: python
     plan: free
+    region: oregon
     buildCommand: pip install -r backend/requirements.txt
     startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
+      - fromGroup: dra-auth
+      - fromGroup: dra-cors
       - key: PYTHON_VERSION
         value: 3.11.11
+      - key: REPO_ROOT
+        value: /opt/render/project/src
       - key: EVALUATION_SERVICES_DIR
         value: /opt/render/project/src/evaluation-services
       - key: CONVERSATION_SERVICE_URL
@@ -124,34 +148,30 @@ services:
         sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
-      - key: GOOGLE_CLIENT_ID
-        value: 842344870402-fu23ib77n6ph4kv5c9c5lqaqunghejpa.apps.googleusercontent.com
-      - key: JWT_SECRET
-        value: Zp_NRvUl_lBSU96f9GOXM7XpELqhLjWIEwZe7_cxw3K0R37erXcMgN2CN2B_qwbb
-      - key: JWT_EXPIRE_MINUTES
-        value: "1440"
       - key: AUTH_REQUIRED
         value: "true"
-      - key: CORS_ORIGINS
-        value: https://digitally-resilient.com,https://www.digitally-resilient.com
       - key: DATABASE_URL
         fromDatabase:
           name: dra-postgres
           property: connectionString
 
-  # --- Static UI (build-time VITE_API_URL points at the backend public URL) ---
+  # --- Static UI (VITE_API_URL wired to dra-backend at build time) ---
   - type: web
     name: dra-ui
     runtime: static
     rootDir: ui
+    region: oregon
     buildCommand: |
       if [ -z "$VITE_API_URL" ]; then
-        echo "FATAL: VITE_API_URL is empty. Link dra-ui to dra-backend RENDER_EXTERNAL_URL in render.yaml."
+        echo "FATAL: VITE_API_URL is empty — check render.yaml dra-ui envVars (fromService dra-backend)."
         exit 1
       fi
       echo "Building dra-ui with VITE_API_URL=${VITE_API_URL}"
       npm ci && npm run build
     staticPublishPath: dist
+    domains:
+      - digitally-resilient.com
+      - www.digitally-resilient.com
     headers:
       - path: /*
         name: Cross-Origin-Opener-Policy
@@ -161,10 +181,9 @@ services:
         source: /*
         destination: /index.html
     envVars:
+      - fromGroup: dra-auth
       - key: VITE_API_URL
         fromService:
           type: web
           name: dra-backend
           envVarKey: RENDER_EXTERNAL_URL
-      - key: VITE_GOOGLE_CLIENT_ID
-        value: 842344870402-fu23ib77n6ph4kv5c9c5lqaqunghejpa.apps.googleusercontent.com

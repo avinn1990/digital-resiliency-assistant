@@ -62,7 +62,8 @@ Service URLs are wired automatically via `fromService` env vars. Hostnames from 
 | **Framework uploads** | `dra-framework` is always **`plan: standard`** with a persistent disk at `data/`. Do not downgrade to free — the blueprint and disk depend on Standard. |
 | **Sessions** | Conversation sessions are in-memory today. For multiple instances or restarts, add Redis or a database in a follow-up. |
 | **Cold starts** | Free-tier services spin down when idle; first request may be slow. |
-| **Custom domains** | Add in each Render service’s Settings → Custom Domains. |
+| **Custom domains** | Declared in `render.yaml` on `dra-ui` (`domains:`). Point DNS at Render as shown in the Render dashboard after blueprint sync. |
+| **CORS / API URL** | Declared in `render.yaml` (`CORS_ORIGINS`, `VITE_API_URL` via `fromService`). Sync the blueprint after changes — do not duplicate in the dashboard. |
 
 ### Manual Render setup (without Blueprint)
 

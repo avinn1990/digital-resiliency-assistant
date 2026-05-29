@@ -35,8 +35,8 @@ export function ConnectionStatus({ status, onRetry }: Props) {
   }
   return (
     <span className="connection-status offline" role="status">
-      Cannot reach the API — check that dra-ui VITE_API_URL points to your public
-      dra-backend URL (https://….onrender.com), then redeploy.
+      Cannot reach the API — services may still be starting, or the blueprint
+      deploy may need to finish syncing.
       {onRetry && (
         <button type="button" className="link-btn" onClick={onRetry}>
           Check again

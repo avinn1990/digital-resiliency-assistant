@@ -95,7 +95,7 @@ export function WelcomePanel({
       </button>
       <ContextHelp id="start-help">
         {backendHealth === "offline"
-          ? "The API must be reachable before you can start. Check VITE_API_URL on dra-ui."
+          ? "The API must be reachable before you can start. If this persists, sync the Render blueprint."
           : backendHealth === "warming"
             ? "Services may still be waking on Render — try starting; retries are built in."
             : "You'll answer one question at a time in chat."}

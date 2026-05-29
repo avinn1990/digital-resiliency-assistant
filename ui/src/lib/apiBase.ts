@@ -72,7 +72,7 @@ export async function getApiBase(): Promise<string> {
 
     if (import.meta.env.PROD) {
       console.error(
-        "API base URL is missing or not reachable from the browser. On Render, set dra-ui VITE_API_URL to the public https URL of dra-backend (RENDER_EXTERNAL_URL), then redeploy dra-ui."
+        "API base URL is missing or not reachable from the browser. Check render.yaml (dra-ui VITE_API_URL from dra-backend) and redeploy via the Render blueprint."
       );
     }
     cachedBase = "/api";

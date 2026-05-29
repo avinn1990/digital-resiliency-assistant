@@ -4,7 +4,7 @@ export function toFriendlyError(err: unknown): string {
   const raw = err instanceof Error ? err.message : String(err);
 
   if (/failed to fetch|networkerror|load failed/i.test(raw)) {
-    return "We couldn't reach the server. The app may be pointed at the wrong API URL — on Render, set dra-ui VITE_API_URL to your public dra-backend URL (https://….onrender.com) and redeploy dra-ui.";
+    return "We couldn't reach the server. The API may still be starting, or production wiring in render.yaml may need a sync and redeploy.";
   }
   if (/502|503|bad gateway|service unavailable/i.test(raw)) {
     return "The assessment services are still starting on Render (this can take up to a minute on the free tier). Wait a moment, then try again.";
