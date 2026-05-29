@@ -25,6 +25,11 @@ class Settings(BaseSettings):
     assessment_service_url: str = "http://localhost:8002"
     framework_service_url: str = "http://localhost:8003"
     llm_conversation_service_url: str = "http://localhost:8004"
+    google_client_id: str = ""
+    jwt_secret: str = ""
+    jwt_algorithm: str = "HS256"
+    jwt_expire_minutes: int = 1440
+    auth_required: bool = False
 
     @field_validator(
         "conversation_service_url",
@@ -40,6 +45,10 @@ class Settings(BaseSettings):
     @property
     def openai_configured(self) -> bool:
         return is_openai_configured()
+
+    @property
+    def auth_enabled(self) -> bool:
+        return bool(self.google_client_id.strip() and self.jwt_secret.strip())
 
 
 settings = Settings()

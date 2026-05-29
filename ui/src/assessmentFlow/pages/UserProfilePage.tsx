@@ -4,6 +4,10 @@ type Props = {
   roles: string[];
   servicesLoading: boolean;
   servicesError: string | null;
+  initialProfile?: {
+    username?: string;
+    fullName?: string;
+  };
   onNext: (profile: {
     username: string;
     fullName: string;
@@ -16,10 +20,11 @@ export function UserProfilePage({
   roles,
   servicesLoading,
   servicesError,
+  initialProfile,
   onNext,
 }: Props) {
-  const [username, setUsername] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [username, setUsername] = useState(initialProfile?.username ?? "");
+  const [fullName, setFullName] = useState(initialProfile?.fullName ?? "");
   const [company, setCompany] = useState("");
   const [role, setRole] = useState("");
 

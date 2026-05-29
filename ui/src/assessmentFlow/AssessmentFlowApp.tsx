@@ -1,5 +1,13 @@
 import { useEffect, useMemo, useState } from "react";
 import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { fetchCurrentUser } from "../auth/authApi";
+import { isGoogleAuthConfigured } from "../auth/googleClientId";
+import {
+  clearAuthSession,
+  loadAuthToken,
+  saveAuthSession,
+} from "../auth/storage";
+import type { AuthUser } from "../auth/types";
 import { toFriendlyError } from "../lib/userMessages";
 import { listEvaluationServices } from "./api";
 import { createAssessmentId } from "./id";
@@ -13,6 +21,8 @@ import { UserProfilePage } from "./pages/UserProfilePage";
 
 type AppState = {
   authToken: string;
+  authUser: AuthUser | null;
+  authReady: boolean;
   services: EvaluationServiceSummary[];
   servicesError: string | null;
   loadingServices: boolean;
@@ -23,6 +33,8 @@ type AppState = {
 
 const DEFAULT_STATE: AppState = {
   authToken: "",
+  authUser: null,
+  authReady: false,
   services: [],
   servicesError: null,
   loadingServices: false,
@@ -35,16 +47,59 @@ function nowIso() {
   return new Date().toISOString();
 }
 
+function usernameFromEmail(email: string): string {
+  const localPart = email.split("@")[0]?.trim() ?? "";
+  return localPart || email;
+}
+
 export function AssessmentFlowApp() {
   const [state, setState] = useState<AppState>(DEFAULT_STATE);
   const navigate = useNavigate();
+  const googleAuthConfigured = isGoogleAuthConfigured();
 
   useEffect(() => {
-    const authToken = localStorage.getItem("dra.authToken") ?? "";
-    setState((s) => ({ ...s, authToken }));
+    let cancelled = false;
+
+    async function bootstrapAuth() {
+      const authToken = loadAuthToken();
+
+      if (!authToken) {
+        if (!cancelled) {
+          setState((s) => ({ ...s, authToken: "", authUser: null, authReady: true }));
+        }
+        return;
+      }
+
+      try {
+        const user = await fetchCurrentUser(authToken);
+        if (cancelled) return;
+        saveAuthSession(authToken, user);
+        setState((s) => ({ ...s, authToken, authUser: user, authReady: true }));
+      } catch {
+        if (cancelled) return;
+        clearAuthSession();
+        setState((s) => ({ ...s, authToken: "", authUser: null, authReady: true }));
+      }
+    }
+
+    void bootstrapAuth();
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useEffect(() => {
+    if (!state.authReady) return;
+    if (googleAuthConfigured && !state.authToken) {
+      setState((s) => ({
+        ...s,
+        services: [],
+        servicesError: null,
+        loadingServices: false,
+      }));
+      return;
+    }
+
     let cancelled = false;
     setState((s) => ({ ...s, loadingServices: true, servicesError: null }));
     listEvaluationServices(state.authToken)
@@ -64,7 +119,7 @@ export function AssessmentFlowApp() {
     return () => {
       cancelled = true;
     };
-  }, [state.authToken]);
+  }, [state.authReady, state.authToken, googleAuthConfigured]);
 
   const allRoles = useMemo(() => {
     const seen = new Set<string>();
@@ -87,9 +142,28 @@ export function AssessmentFlowApp() {
     return loadDraft(state.activeAssessmentId);
   }, [state.activeAssessmentId]);
 
-  function setAuthToken(token: string) {
-    localStorage.setItem("dra.authToken", token);
-    setState((s) => ({ ...s, authToken: token }));
+  const profileDefaults = useMemo(() => {
+    if (!state.authUser) return undefined;
+    return {
+      username: usernameFromEmail(state.authUser.email),
+      fullName: state.authUser.name,
+    };
+  }, [state.authUser]);
+
+  function handleSignedIn(token: string, user: AuthUser) {
+    saveAuthSession(token, user);
+    setState((s) => ({ ...s, authToken: token, authUser: user }));
+  }
+
+  function handleSignOut() {
+    clearAuthSession();
+    setState((s) => ({
+      ...s,
+      authToken: "",
+      authUser: null,
+      services: [],
+      servicesError: null,
+    }));
   }
 
   function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
@@ -141,13 +215,19 @@ export function AssessmentFlowApp() {
   function discardDraft(assessmentId: string) {
     deleteDraft(assessmentId);
     if (state.activeAssessmentId === assessmentId) {
-      setState(DEFAULT_STATE);
+      setState((s) => ({
+        ...DEFAULT_STATE,
+        authToken: s.authToken,
+        authUser: s.authUser,
+        authReady: true,
+      }));
       navigate("/", { replace: true });
     } else {
-      // Force refresh of memoized index list
       setState((s) => ({ ...s, activeAssessmentId: s.activeAssessmentId }));
     }
   }
+
+  const isAuthenticated = Boolean(state.authToken);
 
   return (
     <Routes>
@@ -155,12 +235,14 @@ export function AssessmentFlowApp() {
         path="/"
         element={
           <SplashAuthPage
-            authToken={state.authToken}
-            onAuthTokenChange={setAuthToken}
+            authUser={state.authUser}
+            isAuthenticated={isAuthenticated}
+            onSignedIn={handleSignedIn}
+            onSignOut={handleSignOut}
             drafts={draftIndex}
             onResume={resumeDraft}
             onDiscard={discardDraft}
-            servicesLoading={state.loadingServices}
+            servicesLoading={!state.authReady || state.loadingServices}
             servicesError={state.servicesError}
             servicesCount={state.services.length}
             onStart={() => navigate("/profile")}
@@ -171,15 +253,20 @@ export function AssessmentFlowApp() {
       <Route
         path="/profile"
         element={
-          <UserProfilePage
-            roles={allRoles}
-            servicesLoading={state.loadingServices}
-            servicesError={state.servicesError}
-            onNext={(profile) => {
-              setState((s) => ({ ...s, profile }));
-              navigate("/select-services");
-            }}
-          />
+          googleAuthConfigured && !isAuthenticated ? (
+            <Navigate to="/" replace />
+          ) : (
+            <UserProfilePage
+              roles={allRoles}
+              servicesLoading={state.loadingServices}
+              servicesError={state.servicesError}
+              initialProfile={profileDefaults}
+              onNext={(profile) => {
+                setState((s) => ({ ...s, profile }));
+                navigate("/select-services");
+              }}
+            />
+          )
         }
       />
 
@@ -260,4 +347,3 @@ export function AssessmentFlowApp() {
     </Routes>
   );
 }
-
