@@ -8,7 +8,7 @@ type Props = {
   servicesError: string | null;
   initialSelectedServiceIds?: string[];
   onConfirm: (selectedServiceIds: string[]) => void;
-  allowBackToSplash?: boolean;
+  allowBackToDashboard?: boolean;
 };
 
 function normalizeRole(value: string) {
@@ -22,7 +22,7 @@ export function ServicesPage({
   servicesError,
   initialSelectedServiceIds,
   onConfirm,
-  allowBackToSplash,
+  allowBackToDashboard,
 }: Props) {
   const relevant = useMemo(() => {
     const role = normalizeRole(profile.role);
@@ -66,7 +66,7 @@ export function ServicesPage({
               own.
             </p>
           </div>
-          <a className="af-link" href={allowBackToSplash ? "/" : "/profile"}>
+          <a className="af-link" href={allowBackToDashboard ? "/dashboard" : "/profile"}>
             Back
           </a>
         </div>

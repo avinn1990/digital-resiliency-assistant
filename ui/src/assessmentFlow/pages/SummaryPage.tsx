@@ -54,8 +54,8 @@ export function SummaryPage({ draft, services, onDiscard }: Props) {
               Assessment ID: <span className="af-mono">{draft.assessmentId}</span>
             </p>
           </div>
-          <a className="af-link" href={`/assessment/${encodeURIComponent(draft.assessmentId)}/questions`}>
-            Back to questions
+          <a className="af-link" href="/dashboard">
+            Back to dashboard
           </a>
         </div>
 

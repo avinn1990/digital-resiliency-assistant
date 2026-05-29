@@ -4,56 +4,21 @@ import { exchangeGoogleIdToken } from "../../auth/authApi";
 import { isGoogleAuthConfigured } from "../../auth/googleClientId";
 import type { AuthUser } from "../../auth/types";
 
-type DraftIndexItem = {
-  assessmentId: string;
-  updatedAt: string;
-  company: string;
-  username: string;
-  role: string;
-};
-
 type Props = {
-  authUser: AuthUser | null;
-  isAuthenticated: boolean;
   onSignedIn: (token: string, user: AuthUser) => void;
-  onSignOut: () => void;
-  drafts: DraftIndexItem[];
-  onResume: (assessmentId: string) => void;
-  onDiscard: (assessmentId: string) => void;
-  servicesLoading: boolean;
-  servicesError: string | null;
-  servicesCount: number;
-  onStart: () => void;
 };
 
-export function SplashAuthPage({
-  authUser,
-  isAuthenticated,
-  onSignedIn,
-  onSignOut,
-  drafts,
-  onResume,
-  onDiscard,
-  servicesLoading,
-  servicesError,
-  servicesCount,
-  onStart,
-}: Props) {
+export function SplashAuthPage({ onSignedIn }: Props) {
   const [signInError, setSignInError] = useState<string | null>(null);
   const [signingIn, setSigningIn] = useState(false);
   const googleAuthConfigured = isGoogleAuthConfigured();
 
-  const statusText = useMemo(() => {
-    if (!isAuthenticated && googleAuthConfigured) {
-      return "Sign in with Google to load assessment services.";
+  const helpText = useMemo(() => {
+    if (googleAuthConfigured) {
+      return "Sign in with Google to access your assessments dashboard.";
     }
-    if (servicesLoading) return "Loading assessment services…";
-    if (servicesError) return "Couldn’t load assessment services.";
-    if (servicesCount === 0) return "No assessment services found yet.";
-    return `${servicesCount} assessment service${servicesCount === 1 ? "" : "s"} ready.`;
-  }, [isAuthenticated, googleAuthConfigured, servicesLoading, servicesError, servicesCount]);
-
-  const canStart = !servicesLoading && (!googleAuthConfigured || isAuthenticated);
+    return "Google sign-in is not configured for this build. You can continue without signing in while running locally.";
+  }, [googleAuthConfigured]);
 
   async function handleGoogleSuccess(response: CredentialResponse) {
     const credential = response.credential;
@@ -98,105 +63,43 @@ export function SplashAuthPage({
             <li>Auto-save after each service (and while you type)</li>
             <li>Clear summary at the end</li>
           </ul>
-          <div className="af-status">{statusText}</div>
-          {servicesError && (
-            <div className="error-banner" role="alert">
-              <strong>Service catalog error.</strong> {servicesError}
-            </div>
-          )}
         </div>
-
-        {drafts.length > 0 && (
-          <div className="af-drafts">
-            <h2>Continue where you left off</h2>
-            <div className="af-draft-list">
-              {drafts.slice(0, 5).map((d) => (
-                <div key={d.assessmentId} className="af-draft">
-                  <div className="af-draft-main">
-                    <div className="af-draft-title">
-                      {d.company} · {d.role}
-                    </div>
-                    <div className="af-draft-meta">
-                      {d.username} · last saved{" "}
-                      {new Date(d.updatedAt).toLocaleString()}
-                    </div>
-                  </div>
-                  <div className="af-draft-actions">
-                    <button
-                      type="button"
-                      className="btn-secondary"
-                      onClick={() => onResume(d.assessmentId)}
-                    >
-                      Resume
-                    </button>
-                    <button
-                      type="button"
-                      className="btn-ghost"
-                      onClick={() => onDiscard(d.assessmentId)}
-                    >
-                      Discard
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
 
       <div className="af-splash-right">
         <div className="af-card">
           <h2>Sign in</h2>
+          <p className="context-help">{helpText}</p>
+
           {googleAuthConfigured ? (
             <>
-              <p className="context-help">
-                Use your Google account to access the assessment. Your session is stored
-                locally in your browser.
-              </p>
-
-              {isAuthenticated && authUser ? (
-                <div className="af-signed-in">
-                  <div className="af-signed-in-name">{authUser.name}</div>
-                  <div className="af-signed-in-email">{authUser.email}</div>
-                  <button type="button" className="btn-ghost" onClick={onSignOut}>
-                    Sign out
-                  </button>
-                </div>
-              ) : (
-                <div className="af-google-login">
-                  <GoogleLogin
-                    onSuccess={handleGoogleSuccess}
-                    onError={() => setSignInError("Google sign-in was cancelled or failed.")}
-                    useOneTap={false}
-                    theme="outline"
-                    size="large"
-                    text="signin_with"
-                    shape="rectangular"
-                  />
-                </div>
-              )}
+              <div className="af-google-login">
+                <GoogleLogin
+                  onSuccess={handleGoogleSuccess}
+                  onError={() => setSignInError("Google sign-in was cancelled or failed.")}
+                  useOneTap={false}
+                  theme="outline"
+                  size="large"
+                  text="signin_with"
+                  shape="rectangular"
+                />
+              </div>
 
               {signInError && (
                 <div className="error-banner" role="alert">
                   <strong>Sign-in error.</strong> {signInError}
                 </div>
               )}
+
+              {signingIn && (
+                <p className="context-help">Signing you in and opening your dashboard…</p>
+              )}
             </>
           ) : (
-            <p className="context-help">
-              Google sign-in is not configured for this build. You can continue without
-              signing in while running locally.
-            </p>
+            <a className="btn-primary btn-large" href="/dashboard">
+              Continue to dashboard
+            </a>
           )}
-
-          <button
-            type="button"
-            className="btn-primary btn-large"
-            onClick={onStart}
-            disabled={!canStart || signingIn}
-          >
-            Start assessment
-          </button>
 
           <div className="af-card-footer">
             <a className="af-link" href="/chat">

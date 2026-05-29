@@ -50,6 +50,7 @@ export type AssessmentDraft = {
   createdAt: string;
   updatedAt: string;
   authToken?: string;
+  ownerEmail?: string;
   profile: UserProfile;
   selectedServiceIds: string[];
   currentServiceId?: string;

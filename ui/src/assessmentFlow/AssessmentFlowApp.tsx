@@ -11,7 +11,8 @@ import type { AuthUser } from "../auth/types";
 import { toFriendlyError } from "../lib/userMessages";
 import { listEvaluationServices } from "./api";
 import { createAssessmentId } from "./id";
-import { deleteDraft, listDrafts, loadDraft, saveDraft } from "./storage";
+import { DashboardPage } from "./pages/DashboardPage";
+import { deleteDraft, listUserDrafts, loadDraft, saveDraft } from "./storage";
 import type { AssessmentDraft, EvaluationServiceSummary, UserProfile } from "./types";
 import { QuestionnairePage } from "./pages/QuestionnairePage";
 import { ServicesPage } from "./pages/ServicesPage";
@@ -29,6 +30,7 @@ type AppState = {
   profile: UserProfile | null;
   selectedServiceIds: string[];
   activeAssessmentId: string | null;
+  draftRevision: number;
 };
 
 const DEFAULT_STATE: AppState = {
@@ -41,6 +43,7 @@ const DEFAULT_STATE: AppState = {
   profile: null,
   selectedServiceIds: [],
   activeAssessmentId: null,
+  draftRevision: 0,
 };
 
 function nowIso() {
@@ -136,7 +139,11 @@ export function AssessmentFlowApp() {
     return roles.sort((a, b) => a.localeCompare(b));
   }, [state.services]);
 
-  const draftIndex = useMemo(() => listDrafts(), [state.activeAssessmentId]);
+  const userDrafts = useMemo(
+    () => listUserDrafts(state.authUser?.email),
+    [state.authUser?.email, state.draftRevision, state.activeAssessmentId]
+  );
+
   const activeDraft = useMemo(() => {
     if (!state.activeAssessmentId) return null;
     return loadDraft(state.activeAssessmentId);
@@ -150,9 +157,14 @@ export function AssessmentFlowApp() {
     };
   }, [state.authUser]);
 
+  function bumpDraftRevision() {
+    setState((s) => ({ ...s, draftRevision: s.draftRevision + 1 }));
+  }
+
   function handleSignedIn(token: string, user: AuthUser) {
     saveAuthSession(token, user);
     setState((s) => ({ ...s, authToken: token, authUser: user }));
+    navigate("/dashboard", { replace: true });
   }
 
   function handleSignOut() {
@@ -163,7 +175,10 @@ export function AssessmentFlowApp() {
       authUser: null,
       services: [],
       servicesError: null,
+      profile: null,
+      activeAssessmentId: null,
     }));
+    navigate("/", { replace: true });
   }
 
   function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
@@ -178,6 +193,7 @@ export function AssessmentFlowApp() {
       createdAt: nowIso(),
       updatedAt: nowIso(),
       authToken: state.authToken || undefined,
+      ownerEmail: state.authUser?.email,
       profile,
       selectedServiceIds,
       currentServiceId: selectedServiceIds[0],
@@ -191,13 +207,14 @@ export function AssessmentFlowApp() {
       profile,
       selectedServiceIds,
       activeAssessmentId: assessmentId,
+      draftRevision: s.draftRevision + 1,
     }));
     navigate(`/assessment/${encodeURIComponent(assessmentId)}/services`, {
       replace: true,
     });
   }
 
-  function resumeDraft(assessmentId: string) {
+  function openDraft(assessmentId: string) {
     const draft = loadDraft(assessmentId);
     if (!draft) return;
     setState((s) => ({
@@ -207,7 +224,18 @@ export function AssessmentFlowApp() {
       activeAssessmentId: draft.assessmentId,
       authToken: draft.authToken ?? s.authToken,
     }));
+  }
+
+  function resumeDraft(assessmentId: string) {
+    openDraft(assessmentId);
     navigate(`/assessment/${encodeURIComponent(assessmentId)}/questions`, {
+      replace: true,
+    });
+  }
+
+  function viewSummary(assessmentId: string) {
+    openDraft(assessmentId);
+    navigate(`/assessment/${encodeURIComponent(assessmentId)}/summary`, {
       replace: true,
     });
   }
@@ -216,14 +244,14 @@ export function AssessmentFlowApp() {
     deleteDraft(assessmentId);
     if (state.activeAssessmentId === assessmentId) {
       setState((s) => ({
-        ...DEFAULT_STATE,
-        authToken: s.authToken,
-        authUser: s.authUser,
-        authReady: true,
+        ...s,
+        profile: null,
+        selectedServiceIds: [],
+        activeAssessmentId: null,
+        draftRevision: s.draftRevision + 1,
       }));
-      navigate("/", { replace: true });
     } else {
-      setState((s) => ({ ...s, activeAssessmentId: s.activeAssessmentId }));
+      bumpDraftRevision();
     }
   }
 
@@ -234,19 +262,33 @@ export function AssessmentFlowApp() {
       <Route
         path="/"
         element={
-          <SplashAuthPage
-            authUser={state.authUser}
-            isAuthenticated={isAuthenticated}
-            onSignedIn={handleSignedIn}
-            onSignOut={handleSignOut}
-            drafts={draftIndex}
-            onResume={resumeDraft}
-            onDiscard={discardDraft}
-            servicesLoading={!state.authReady || state.loadingServices}
-            servicesError={state.servicesError}
-            servicesCount={state.services.length}
-            onStart={() => navigate("/profile")}
-          />
+          !state.authReady ? null : isAuthenticated && googleAuthConfigured ? (
+            <Navigate to="/dashboard" replace />
+          ) : (
+            <SplashAuthPage onSignedIn={handleSignedIn} />
+          )
+        }
+      />
+
+      <Route
+        path="/dashboard"
+        element={
+          !state.authReady ? null : googleAuthConfigured && !isAuthenticated ? (
+            <Navigate to="/" replace />
+          ) : (
+            <DashboardPage
+              authUser={state.authUser}
+              drafts={userDrafts}
+              servicesLoading={!state.authReady || state.loadingServices}
+              servicesError={state.servicesError}
+              servicesCount={state.services.length}
+              onStartNew={() => navigate("/profile")}
+              onResume={resumeDraft}
+              onViewSummary={viewSummary}
+              onDiscard={discardDraft}
+              onSignOut={handleSignOut}
+            />
+          )
         }
       />
 
@@ -282,7 +324,7 @@ export function AssessmentFlowApp() {
               onConfirm={(selectedServiceIds) => startNewDraft(state.profile!, selectedServiceIds)}
             />
           ) : (
-            <Navigate to="/profile" replace />
+            <Navigate to="/dashboard" replace />
           )
         }
       />
@@ -298,10 +340,10 @@ export function AssessmentFlowApp() {
               servicesError={state.servicesError}
               initialSelectedServiceIds={activeDraft.selectedServiceIds}
               onConfirm={(selectedServiceIds) => startNewDraft(activeDraft.profile, selectedServiceIds)}
-              allowBackToSplash
+              allowBackToDashboard
             />
           ) : (
-            <Navigate to="/" replace />
+            <Navigate to="/dashboard" replace />
           )
         }
       />
@@ -315,15 +357,24 @@ export function AssessmentFlowApp() {
               services={state.services}
               authToken={state.authToken}
               onDraftChange={(nextDraft) => {
-                saveDraft(nextDraft);
-                setState((s) => ({ ...s, activeAssessmentId: nextDraft.assessmentId }));
+                const draftWithOwner: AssessmentDraft = {
+                  ...nextDraft,
+                  ownerEmail: nextDraft.ownerEmail ?? state.authUser?.email,
+                  authToken: nextDraft.authToken ?? (state.authToken || undefined),
+                };
+                saveDraft(draftWithOwner);
+                setState((s) => ({
+                  ...s,
+                  activeAssessmentId: draftWithOwner.assessmentId,
+                  draftRevision: s.draftRevision + 1,
+                }));
               }}
               onFinish={() =>
                 navigate(`/assessment/${encodeURIComponent(activeDraft.assessmentId)}/summary`)
               }
             />
           ) : (
-            <Navigate to="/" replace />
+            <Navigate to="/dashboard" replace />
           )
         }
       />
@@ -335,10 +386,13 @@ export function AssessmentFlowApp() {
             <SummaryPage
               draft={activeDraft}
               services={state.services}
-              onDiscard={() => discardDraft(activeDraft.assessmentId)}
+              onDiscard={() => {
+                discardDraft(activeDraft.assessmentId);
+                navigate("/dashboard", { replace: true });
+              }}
             />
           ) : (
-            <Navigate to="/" replace />
+            <Navigate to="/dashboard" replace />
           )
         }
       />
