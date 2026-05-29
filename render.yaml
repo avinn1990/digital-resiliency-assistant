@@ -150,6 +150,10 @@ services:
       echo "Building dra-ui with VITE_API_URL=${VITE_API_URL}"
       npm ci && npm run build
     staticPublishPath: dist
+    headers:
+      - path: /*
+        name: Cross-Origin-Opener-Policy
+        value: same-origin-allow-popups
     routes:
       - type: rewrite
         source: /*
