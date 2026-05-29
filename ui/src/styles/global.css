@@ -415,6 +415,79 @@ button {
   margin-bottom: 0.65rem;
 }
 
+.af-dashboard {
+  max-width: 960px;
+}
+
+.af-dashboard-top-actions {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.af-dashboard-status {
+  margin-bottom: 1.25rem;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.af-dashboard-section {
+  margin-bottom: 1.75rem;
+}
+
+.af-dashboard-section .af-h2 {
+  margin-bottom: 0.85rem;
+}
+
+.af-dashboard-list {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.af-dashboard-card {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(18, 26, 36, 0.72);
+}
+
+.af-dashboard-card-title {
+  font-weight: 700;
+}
+
+.af-dashboard-card-meta {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
+}
+
+.af-dashboard-card-progress {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+  margin-top: 0.55rem;
+}
+
+.af-dashboard-card-actions {
+  display: flex;
+  gap: 0.45rem;
+  flex-shrink: 0;
+}
+
+.af-dashboard-empty {
+  text-align: left;
+}
+
+.af-dashboard-footer {
+  margin-top: 1.5rem;
+  color: var(--text-muted);
+}
+
 .af-link {
   color: var(--accent);
   text-decoration: none;

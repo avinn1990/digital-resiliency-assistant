@@ -46,7 +46,7 @@ export function UserProfilePage({
             <div className="af-kicker">New assessment</div>
             <h1 className="af-h1">Tell us about you</h1>
           </div>
-          <a className="af-link" href="/">
+          <a className="af-link" href="/dashboard">
             Back
           </a>
         </div>

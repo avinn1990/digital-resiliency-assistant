@@ -9,6 +9,15 @@ type DraftIndexItem = {
   company: string;
   username: string;
   role: string;
+  ownerEmail?: string;
+};
+
+export type DraftStatus = "pending" | "completed";
+
+export type UserDraftSummary = DraftIndexItem & {
+  status: DraftStatus;
+  servicesDone: number;
+  servicesTotal: number;
 };
 
 function safeJsonParse<T>(raw: string | null): T | null {
@@ -26,6 +35,48 @@ function readIndex(): DraftIndexItem[] {
 
 function writeIndex(items: DraftIndexItem[]) {
   localStorage.setItem(INDEX_KEY, JSON.stringify(items));
+}
+
+export function getDraftStatus(draft: AssessmentDraft): DraftStatus {
+  if (draft.selectedServiceIds.length === 0) return "pending";
+  const allDone = draft.selectedServiceIds.every(
+    (id) => !!draft.responsesByService[id]?.answeredAt
+  );
+  return allDone ? "completed" : "pending";
+}
+
+export function getDraftProgress(draft: AssessmentDraft) {
+  const servicesTotal = draft.selectedServiceIds.length;
+  const servicesDone = draft.selectedServiceIds.filter(
+    (id) => !!draft.responsesByService[id]?.answeredAt
+  ).length;
+  return { servicesDone, servicesTotal };
+}
+
+export function listUserDrafts(ownerEmail?: string): UserDraftSummary[] {
+  const summaries: UserDraftSummary[] = [];
+
+  for (const item of listDrafts()) {
+    const draft = loadDraft(item.assessmentId);
+    if (!draft) continue;
+
+    if (ownerEmail) {
+      const draftOwner = draft.ownerEmail?.trim().toLowerCase();
+      const viewer = ownerEmail.trim().toLowerCase();
+      if (draftOwner && draftOwner !== viewer) continue;
+    }
+
+    const { servicesDone, servicesTotal } = getDraftProgress(draft);
+    summaries.push({
+      ...item,
+      ownerEmail: draft.ownerEmail,
+      status: getDraftStatus(draft),
+      servicesDone,
+      servicesTotal,
+    });
+  }
+
+  return summaries;
 }
 
 export function listDrafts(): DraftIndexItem[] {
@@ -53,6 +104,7 @@ export function saveDraft(draft: AssessmentDraft) {
     company: draft.profile.company,
     username: draft.profile.username,
     role: draft.profile.role,
+    ownerEmail: draft.ownerEmail,
   };
   const merged = [next, ...index.filter((i) => i.assessmentId !== next.assessmentId)];
   writeIndex(merged.slice(0, 25));
