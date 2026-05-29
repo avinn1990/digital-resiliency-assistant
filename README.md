@@ -59,7 +59,7 @@ Service URLs are wired automatically via `fromService` env vars. Hostnames from 
 
 | Topic | Detail |
 |-------|--------|
-| **Framework uploads** | On the free tier, uploaded frameworks are not persisted across deploys or restarts; bundled example frameworks in the repo still work. |
+| **Framework uploads** | `dra-framework` uses the Render **Starter** plan with a persistent disk at `data/` so uploads survive deploys. Other services remain on the free tier. |
 | **Sessions** | Conversation sessions are in-memory today. For multiple instances or restarts, add Redis or a database in a follow-up. |
 | **Cold starts** | Free-tier services spin down when idle; first request may be slow. |
 | **Custom domains** | Add in each Render service’s Settings → Custom Domains. |

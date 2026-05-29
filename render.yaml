@@ -10,13 +10,17 @@ services:
     name: dra-framework
     runtime: python
     rootDir: services/framework
-    plan: free
+    plan: starter
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
+    disk:
+      name: dra-framework-data
+      mountPath: data
+      sizeGB: 1
 
   - type: web
     name: dra-conversation
