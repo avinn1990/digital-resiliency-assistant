@@ -17,12 +17,6 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
-    # Persistent disk keeps uploaded frameworks across deploys (paid plans).
-    # Remove this block on the free tier if disk is unavailable; bundled JSON still works.
-    disk:
-      name: dra-framework-data
-      mountPath: data
-      sizeGB: 1
 
   - type: web
     name: dra-conversation
