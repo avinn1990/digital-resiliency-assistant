@@ -3,6 +3,11 @@
 # Docs: https://render.com/docs/blueprint-spec
 #
 # Docker Compose remains optional for local containerized runs (see README).
+#
+# Wiring notes:
+# - Server-to-server calls use fromService property: hostport (private network).
+# - The browser UI uses VITE_API_URL from dra-backend RENDER_EXTERNAL_URL (public https).
+# - After changing service URLs, redeploy dra-backend then dra-ui.
 
 services:
   # --- Framework service (deploy first; others depend on its URL) ---
@@ -38,7 +43,7 @@ services:
         fromService:
           type: web
           name: dra-framework
-          envVarKey: RENDER_EXTERNAL_URL
+          property: hostport
 
   - type: web
     name: dra-llm-conversation
@@ -55,6 +60,10 @@ services:
         sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
+      # Full repo is checked out; evaluation content lives outside rootDir.
+      - key: EVALUATION_SERVICE_DIR
+        value: /opt/render/project/src/evaluation-services/Information Security Strategy and Planning Services
+
   - type: web
     name: dra-assessment
     runtime: python
@@ -70,7 +79,7 @@ services:
         fromService:
           type: web
           name: dra-framework
-          envVarKey: RENDER_EXTERNAL_URL
+          property: hostport
 
   # --- API gateway (UI and external clients call this service) ---
   # No rootDir: full repo required so evaluation-services/ exists at runtime.
@@ -84,41 +93,44 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
+      - key: EVALUATION_SERVICES_DIR
+        value: /opt/render/project/src/evaluation-services
       - key: CONVERSATION_SERVICE_URL
         fromService:
           type: web
           name: dra-conversation
-          envVarKey: RENDER_EXTERNAL_URL
+          property: hostport
       - key: ASSESSMENT_SERVICE_URL
         fromService:
           type: web
           name: dra-assessment
-          envVarKey: RENDER_EXTERNAL_URL
+          property: hostport
       - key: FRAMEWORK_SERVICE_URL
         fromService:
           type: web
           name: dra-framework
-          envVarKey: RENDER_EXTERNAL_URL
+          property: hostport
       - key: LLM_CONVERSATION_SERVICE_URL
         fromService:
           type: web
           name: dra-llm-conversation
-          envVarKey: RENDER_EXTERNAL_URL
+          property: hostport
       - key: OPENAI_API_KEY
         sync: false
       - key: OPENAI_MODEL
         value: gpt-4o-mini
 
-  # --- Static UI (build-time VITE_API_URL points at the backend) ---
+  # --- Static UI (build-time VITE_API_URL points at the backend public URL) ---
   - type: web
     name: dra-ui
     runtime: static
     rootDir: ui
     buildCommand: |
       if [ -z "$VITE_API_URL" ]; then
-        echo "FATAL: VITE_API_URL is empty. Use dra-backend public URL (RENDER_EXTERNAL_URL)."
+        echo "FATAL: VITE_API_URL is empty. Link dra-ui to dra-backend RENDER_EXTERNAL_URL in render.yaml."
         exit 1
       fi
+      echo "Building dra-ui with VITE_API_URL=${VITE_API_URL}"
       npm ci && npm run build
     staticPublishPath: dist
     routes:
@@ -126,6 +138,7 @@ services:
         source: /*
         destination: /index.html
     envVars:
+      # Browsers cannot use private-network hostport; must be the public https URL.
       - key: VITE_API_URL
         fromService:
           type: web
