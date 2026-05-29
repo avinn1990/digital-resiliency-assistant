@@ -58,6 +58,15 @@ def get_user_profile(db: Session, email: str) -> UserProfileRecord | None:
     return db.get(UserProfileRecord, _normalize_email(email))
 
 
+def delete_user_profile(db: Session, email: str) -> bool:
+    row = get_user_profile(db, email)
+    if row is None:
+        return False
+    db.delete(row)
+    db.commit()
+    return True
+
+
 def save_user_profile(db: Session, email: str, profile: UserOnboardingProfile) -> UserProfileRecord:
     normalized = _normalize_email(email)
     existing = db.get(UserProfileRecord, normalized)

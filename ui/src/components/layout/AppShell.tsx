@@ -5,10 +5,13 @@ import { ChatHeader } from "../chat/ChatHeader";
 import { ChatWorkspace } from "../chat/ChatWorkspace";
 import { StatusAnnouncer } from "../common/StatusAnnouncer";
 import { WelcomePanel } from "../setup/WelcomePanel";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { clearProfile, isSignedIn, signOut } from "../../auth/accountActions";
 
 export function AppShell() {
   const location = useLocation();
+  const navigate = useNavigate();
+  const signedIn = isSignedIn();
   const serviceIds = (() => {
     const raw = new URLSearchParams(location.search).get("services") ?? "";
     return raw
@@ -40,6 +43,17 @@ export function AppShell() {
         connectionStatus={chat.connectionStatus}
         onNewChat={chat.resetSession}
         onRetryHealth={chat.refreshHealth}
+        signedIn={signedIn}
+        onSignOut={() => {
+          signOut();
+          navigate("/", { replace: true });
+        }}
+        onClearProfile={() => {
+          void clearProfile().then(() => {
+            navigate("/onboarding", { replace: true });
+          });
+        }}
+        onOpenWorkspace={() => navigate("/dashboard")}
       />
 
       <StatusAnnouncer message={statusMessage} />

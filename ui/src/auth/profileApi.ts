@@ -68,3 +68,22 @@ export function saveUserProfile(profile: UserOnboardingProfile, authToken: strin
     authToken
   );
 }
+
+export async function deleteUserProfile(authToken: string): Promise<void> {
+  const apiBase = await getApiBase();
+  const response = await fetch(`${apiBase}/users/me/profile`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${authToken.trim()}`,
+    },
+  });
+
+  if (response.status === 404 || response.status === 204) {
+    return;
+  }
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(detail || `Request failed: ${response.status}`);
+  }
+}

@@ -16,6 +16,7 @@ type Props = {
   onViewSummary: (assessmentId: string) => void;
   onDiscard: (assessmentId: string) => void;
   onSignOut: () => void;
+  onClearProfile: () => void;
 };
 
 function DraftCard({
@@ -74,6 +75,7 @@ export function DashboardPage({
   onViewSummary,
   onDiscard,
   onSignOut,
+  onClearProfile,
 }: Props) {
   const pending = drafts.filter((d) => d.status === "pending");
   const completed = drafts.filter((d) => d.status === "completed");
@@ -97,9 +99,14 @@ export function DashboardPage({
           </div>
           <div className="af-dashboard-top-actions">
             {authUser && (
-              <button type="button" className="btn-ghost" onClick={onSignOut}>
-                Sign out
-              </button>
+              <>
+                <button type="button" className="btn-ghost" onClick={onClearProfile}>
+                  Change role
+                </button>
+                <button type="button" className="btn-ghost" onClick={onSignOut}>
+                  Sign out
+                </button>
+              </>
             )}
             <button
               type="button"

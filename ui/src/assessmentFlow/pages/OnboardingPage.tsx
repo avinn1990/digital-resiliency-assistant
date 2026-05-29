@@ -9,6 +9,7 @@ type Props = {
   services: EvaluationServiceSummary[];
   servicesLoading: boolean;
   servicesError: string | null;
+  onSignOut: () => void;
   onComplete: (profile: {
     company: string;
     role: string;
@@ -22,6 +23,7 @@ export function OnboardingPage({
   services,
   servicesLoading,
   servicesError,
+  onSignOut,
   onComplete,
 }: Props) {
   const [company, setCompany] = useState("");
@@ -77,6 +79,11 @@ export function OnboardingPage({
               Hi {authUser.name.split(" ")[0]}, tell us where you work and what you do.
               We’ll show the assessment services mapped to your role.
             </p>
+          </div>
+          <div className="af-dashboard-top-actions">
+            <button type="button" className="btn-ghost" onClick={onSignOut}>
+              Sign out
+            </button>
           </div>
         </div>
 

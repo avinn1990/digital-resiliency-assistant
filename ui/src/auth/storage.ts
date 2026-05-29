@@ -52,3 +52,7 @@ export function saveSelectedServiceIds(email: string, serviceIds: string[]) {
   );
   localStorage.setItem(key, JSON.stringify(normalized));
 }
+
+export function clearSelectedServiceIds(email: string) {
+  localStorage.removeItem(selectedServicesKey(email));
+}

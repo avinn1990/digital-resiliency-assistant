@@ -8,6 +8,7 @@ import {
   useNavigate,
 } from "react-router-dom";
 import { fetchCurrentUser } from "../auth/authApi";
+import { clearProfile, signOut } from "../auth/accountActions";
 import { isGoogleAuthConfigured } from "../auth/googleClientId";
 import {
   fetchUserProfile,
@@ -15,7 +16,6 @@ import {
   type UserOnboardingProfile,
 } from "../auth/profileApi";
 import {
-  clearAuthSession,
   loadAuthToken,
   loadAuthUser,
   loadSelectedServiceIds,
@@ -179,7 +179,7 @@ export function AssessmentFlowApp() {
         }));
       } catch {
         if (cancelled) return;
-        clearAuthSession();
+        signOut();
         setState((s) => ({
           ...s,
           authToken: "",
@@ -375,9 +375,24 @@ export function AssessmentFlowApp() {
   function handleSignOut() {
     if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
     profileLoadGenRef.current += 1;
-    clearAuthSession();
+    signOut(state.authUser?.email);
     setState({ ...DEFAULT_STATE, authReady: true, onboardingReady: true });
     navigate("/", { replace: true });
+  }
+
+  async function handleClearProfile() {
+    if (!state.authUser || !state.authToken) return;
+    if (saveTimerRef.current) window.clearTimeout(saveTimerRef.current);
+    profileLoadGenRef.current += 1;
+    await clearProfile({ token: state.authToken, email: state.authUser.email });
+    setState((s) => ({
+      ...s,
+      onboardingProfile: null,
+      profile: null,
+      selectedServiceIds: [],
+      onboardingReady: true,
+    }));
+    navigate("/onboarding", { replace: true });
   }
 
   function handleStartNewAssessment() {
@@ -514,6 +529,7 @@ export function AssessmentFlowApp() {
               services={state.services}
               servicesLoading={!state.authReady || state.loadingServices}
               servicesError={state.servicesError}
+              onSignOut={handleSignOut}
               onComplete={(profile) => {
                 void handleOnboardingComplete(
                   { company: profile.company, role: profile.role },
@@ -554,6 +570,9 @@ export function AssessmentFlowApp() {
                 void discardDraft(assessmentId);
               }}
               onSignOut={handleSignOut}
+              onClearProfile={() => {
+                void handleClearProfile();
+              }}
             />
           )
         }

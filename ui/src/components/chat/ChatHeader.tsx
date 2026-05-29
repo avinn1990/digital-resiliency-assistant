@@ -13,6 +13,10 @@ type Props = {
   connectionStatus: BackendHealthStatus;
   onNewChat: () => void;
   onRetryHealth: () => void;
+  signedIn?: boolean;
+  onSignOut?: () => void;
+  onClearProfile?: () => void;
+  onOpenWorkspace?: () => void;
 };
 
 export function ChatHeader({
@@ -24,6 +28,10 @@ export function ChatHeader({
   connectionStatus,
   onNewChat,
   onRetryHealth,
+  signedIn = false,
+  onSignOut,
+  onClearProfile,
+  onOpenWorkspace,
 }: Props) {
   return (
     <header className="chat-header">
@@ -46,6 +54,21 @@ export function ChatHeader({
             sessionActive={Boolean(sessionId)}
             onRetry={onRetryHealth}
           />
+          {signedIn && onOpenWorkspace && (
+            <button type="button" className="btn-ghost" onClick={onOpenWorkspace}>
+              Workspace
+            </button>
+          )}
+          {signedIn && onClearProfile && (
+            <button type="button" className="btn-ghost" onClick={onClearProfile}>
+              Change role
+            </button>
+          )}
+          {signedIn && onSignOut && (
+            <button type="button" className="btn-ghost" onClick={onSignOut}>
+              Sign out
+            </button>
+          )}
           {sessionId && (
             <button
               type="button"
