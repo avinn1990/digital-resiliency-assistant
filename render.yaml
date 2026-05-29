@@ -6,19 +6,18 @@
 
 services:
   # --- Framework service (deploy first; others depend on its URL) ---
+  # IMPORTANT: dra-framework must stay on plan: standard (persistent disk + production SLA).
   - type: web
     name: dra-framework
     runtime: python
     rootDir: services/framework
-    plan: free
+    plan: standard
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
-    # Persistent disk keeps uploaded frameworks across deploys (paid plans).
-    # Remove this block on the free tier if disk is unavailable; bundled JSON still works.
     disk:
       name: dra-framework-data
       mountPath: data
@@ -74,13 +73,13 @@ services:
           envVarKey: RENDER_EXTERNAL_URL
 
   # --- API gateway (UI and external clients call this service) ---
+  # No rootDir: full repo required so evaluation-services/ exists at runtime.
   - type: web
     name: dra-backend
     runtime: python
-    rootDir: backend
     plan: free
-    buildCommand: pip install -r requirements.txt
-    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
       - key: PYTHON_VERSION
@@ -115,7 +114,12 @@ services:
     name: dra-ui
     runtime: static
     rootDir: ui
-    buildCommand: npm ci && npm run build
+    buildCommand: |
+      if [ -z "$VITE_API_URL" ]; then
+        echo "FATAL: VITE_API_URL is empty. Use dra-backend public URL (RENDER_EXTERNAL_URL)."
+        exit 1
+      fi
+      npm ci && npm run build
     staticPublishPath: dist
     routes:
       - type: rewrite

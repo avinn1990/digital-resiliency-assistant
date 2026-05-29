@@ -54,14 +54,12 @@ Service URLs are wired automatically via `fromService` env vars. Hostnames from 
 
 - Open the **dra-ui** URL for the chat interface.
 - Use **dra-backend** `/docs` for the API (e.g. `https://dra-backend-xxxx.onrender.com/docs`).
-- **Merging Git does not redeploy Render.** After blueprint changes, use **Sync Blueprint** or **Manual Deploy** on **dra-ui** and **dra-backend**.
-- If the UI shows **Service catalog error** / **couldn't reach the server**, set **dra-ui** `VITE_API_URL` to the **public** `https://…onrender.com` URL of **dra-backend** (not Render’s private `host`), redeploy **dra-ui**, and verify `https://<dra-backend>/evaluation-services` returns JSON in your browser.
 
 ### Render notes
 
 | Topic | Detail |
 |-------|--------|
-| **Framework uploads** | `dra-framework` uses the **Standard** plan with a persistent disk at `data/`. |
+| **Framework uploads** | `dra-framework` is always **`plan: standard`** with a persistent disk at `data/`. Do not downgrade to free — the blueprint and disk depend on Standard. |
 | **Sessions** | Conversation sessions are in-memory today. For multiple instances or restarts, add Redis or a database in a follow-up. |
 | **Cold starts** | Free-tier services spin down when idle; first request may be slow. |
 | **Custom domains** | Add in each Render service’s Settings → Custom Domains. |
