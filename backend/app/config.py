@@ -31,6 +31,25 @@ class Settings(BaseSettings):
     jwt_expire_minutes: int = 1440
     auth_required: bool = False
     database_url: str = ""
+    # Comma-separated browser origins (scheme + host, no path), e.g. https://digitally-resilient.com
+    cors_origins: str = ""
+
+    @property
+    def cors_allowed_origins(self) -> list[str]:
+        defaults = [
+            "http://localhost:5173",
+            "http://127.0.0.1:5173",
+            "https://digitally-resilient.com",
+            "https://www.digitally-resilient.com",
+        ]
+        extra = [o.strip().rstrip("/") for o in self.cors_origins.split(",") if o.strip()]
+        seen: set[str] = set()
+        merged: list[str] = []
+        for origin in defaults + extra:
+            if origin not in seen:
+                seen.add(origin)
+                merged.append(origin)
+        return merged
 
     @field_validator(
         "conversation_service_url",

@@ -35,12 +35,17 @@ app = FastAPI(
     version="0.1.0",
 )
 
+# Explicit origins for the production UI custom domain; regex covers Render *.onrender.com hosts.
+# Wildcard "*" is not used — some error responses and proxies omit ACAO with "*".
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=settings.cors_allowed_origins,
+    allow_origin_regex=r"https://([a-zA-Z0-9-]+\.)*onrender\.com",
+    allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
+    max_age=600,
 )
 
 conversation = ConversationClient(settings.conversation_service_url)
