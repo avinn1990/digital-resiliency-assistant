@@ -5,9 +5,9 @@
 # Docker Compose remains optional for local containerized runs (see README).
 #
 # Wiring notes:
-# - Server-to-server calls use fromService property: hostport (private network).
-# - The browser UI uses VITE_API_URL from dra-backend RENDER_EXTERNAL_URL (public https).
-# - After changing service URLs, redeploy dra-backend then dra-ui.
+# - All service URLs use RENDER_EXTERNAL_URL (public https://….onrender.com).
+# - Apps normalize host-only values to https:// automatically (see shared/python/service_url.py).
+# - After changing URLs, redeploy dra-backend then dra-ui.
 
 services:
   # --- Framework service (deploy first; others depend on its URL) ---
@@ -43,7 +43,7 @@ services:
         fromService:
           type: web
           name: dra-framework
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
 
   - type: web
     name: dra-llm-conversation
@@ -79,7 +79,7 @@ services:
         fromService:
           type: web
           name: dra-framework
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
 
   # --- API gateway (UI and external clients call this service) ---
   # No rootDir: full repo required so evaluation-services/ exists at runtime.
@@ -99,22 +99,22 @@ services:
         fromService:
           type: web
           name: dra-conversation
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
       - key: ASSESSMENT_SERVICE_URL
         fromService:
           type: web
           name: dra-assessment
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
       - key: FRAMEWORK_SERVICE_URL
         fromService:
           type: web
           name: dra-framework
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
       - key: LLM_CONVERSATION_SERVICE_URL
         fromService:
           type: web
           name: dra-llm-conversation
-          property: hostport
+          envVarKey: RENDER_EXTERNAL_URL
       - key: OPENAI_API_KEY
         sync: false
       - key: OPENAI_MODEL
@@ -138,7 +138,6 @@ services:
         source: /*
         destination: /index.html
     envVars:
-      # Browsers cannot use private-network hostport; must be the public https URL.
       - key: VITE_API_URL
         fromService:
           type: web
