@@ -48,7 +48,7 @@ def _parse_json_content(text: str) -> dict[str, Any]:
         ) from None
 
 
-async def complete_json(user_prompt: str) -> dict[str, Any]:
+def _complete_json_sync(user_prompt: str) -> dict[str, Any]:
     client = _client()
     response = client.chat.completions.create(
         model=OPENAI_MODEL,
@@ -61,3 +61,9 @@ async def complete_json(user_prompt: str) -> dict[str, Any]:
     )
     content = response.choices[0].message.content or "{}"
     return _parse_json_content(content)
+
+
+async def complete_json(user_prompt: str) -> dict[str, Any]:
+    import asyncio
+
+    return await asyncio.to_thread(_complete_json_sync, user_prompt)

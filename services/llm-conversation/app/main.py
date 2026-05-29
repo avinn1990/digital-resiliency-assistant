@@ -68,7 +68,15 @@ async def get_evaluation_content() -> dict:
 
 @app.post("/sessions")
 async def create_session(body: StartSessionBody) -> dict:
-    return await start_session(body.framework_id)
+    try:
+        return await start_session(body.framework_id)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Failed to start assessment session: {exc}",
+        ) from exc
 
 
 @app.post("/sessions/{session_id}/messages")

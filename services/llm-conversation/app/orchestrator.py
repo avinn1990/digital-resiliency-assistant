@@ -58,7 +58,18 @@ def _progress(session: LlmSession) -> dict[str, int]:
 
 async def start_session(framework_id: str) -> dict[str, Any]:
     _require_openai()
-    bundle = load_evaluation_bundle(service_id=framework_id)
+    try:
+        bundle = load_evaluation_bundle(service_id=framework_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Evaluation content not found for service_id={framework_id!r}. {exc}",
+        ) from exc
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Invalid evaluation content for service_id={framework_id!r}. {exc}",
+        ) from exc
     service_id = bundle["capabilities"]["service_id"]
     caps = bundle["capabilities"]["capabilities"]
     states = initial_capability_states(caps)

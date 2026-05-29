@@ -25,6 +25,7 @@ from app.config import (
     settings,
 )
 from app.evaluation_loader import list_evaluation_services, load_evaluation_service_bundle
+from app.http_errors import raise_gateway_error
 from app.session_registry import is_llm_session, register_llm_session
 
 logger = logging.getLogger(__name__)
@@ -191,8 +192,10 @@ async def start_session(body: StartSessionRequest) -> dict:
             register_llm_session(result["session_id"])
             return result
         return await conversation.start_session(body.framework_id)
+    except HTTPException:
+        raise
     except Exception as exc:
-        raise HTTPException(status_code=502, detail=str(exc)) from exc
+        raise_gateway_error(exc)
 
 
 @app.post("/sessions/{session_id}/messages")

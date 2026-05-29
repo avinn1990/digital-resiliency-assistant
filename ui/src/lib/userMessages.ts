@@ -1,7 +1,27 @@
 /** Plain-language copy and error text (people-first, low cognitive load). */
 
+function detailFromApiError(raw: string): string | null {
+  try {
+    const parsed = JSON.parse(raw) as { detail?: unknown };
+    if (typeof parsed.detail === "string") return parsed.detail;
+    if (Array.isArray(parsed.detail)) {
+      return parsed.detail.map((d) => JSON.stringify(d)).join("; ");
+    }
+  } catch {
+    /* not JSON */
+  }
+  return null;
+}
+
 export function toFriendlyError(err: unknown): string {
   const raw = err instanceof Error ? err.message : String(err);
+  const apiDetail = detailFromApiError(raw);
+  if (apiDetail) {
+    if (/OPENAI_API_KEY|must be set/i.test(apiDetail)) {
+      return "OpenAI is not configured on the assessment service. Sync the Render blueprint and set OPENAI_API_KEY on the dra-openai environment group.";
+    }
+    if (apiDetail.length < 220) return apiDetail;
+  }
 
   if (/failed to fetch|networkerror|load failed/i.test(raw)) {
     return "We couldn't reach the server. The API may still be starting, or production wiring in render.yaml may need a sync and redeploy.";
