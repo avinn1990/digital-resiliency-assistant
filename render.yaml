@@ -57,7 +57,7 @@ services:
         value: 3.11.11
     disk:
       name: dra-framework-data-dev
-      mountPath: data
+      mountPath: /data
       sizeGB: 1
 
   - type: web
