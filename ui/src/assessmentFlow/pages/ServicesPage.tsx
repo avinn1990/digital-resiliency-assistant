@@ -10,6 +10,7 @@ type Props = {
   initialSelectedServiceIds?: string[];
   onConfirm: (selectedServiceIds: string[]) => void;
   allowBackToDashboard?: boolean;
+  confirmLabel?: string;
 };
 
 export function ServicesPage({
@@ -20,11 +21,17 @@ export function ServicesPage({
   initialSelectedServiceIds,
   onConfirm,
   allowBackToDashboard,
+  confirmLabel = "Confirm & start questions",
 }: Props) {
+  const matchedServices = useMemo(
+    () => servicesForRole(profile.role, services),
+    [profile.role, services]
+  );
+  const noRoleMapping = matchedServices.length === 0;
+
   const visibleServices = useMemo(() => {
-    const matched = servicesForRole(profile.role, services);
-    return matched.length > 0 ? matched : services;
-  }, [profile.role, services]);
+    return noRoleMapping ? services : matchedServices;
+  }, [noRoleMapping, matchedServices, services]);
 
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
@@ -54,8 +61,17 @@ export function ServicesPage({
             <div className="af-kicker">Step 2</div>
             <h1 className="af-h1">Select services for your role</h1>
             <p className="context-help">
-              Based on <strong>{profile.role}</strong>, these are the services mapped
-              to your role. You can deselect anything you don’t own.
+              {noRoleMapping ? (
+                <>
+                  No services are attached to <strong>{profile.role}</strong>. Select
+                  from the available services below.
+                </>
+              ) : (
+                <>
+                  Based on <strong>{profile.role}</strong>, these are the services mapped
+                  to your role. You can deselect anything you don’t own.
+                </>
+              )}
             </p>
           </div>
           <a className="af-link" href={allowBackToDashboard ? "/dashboard" : "/profile"}>
@@ -102,7 +118,9 @@ export function ServicesPage({
                     )}
                     <div className="af-service-meta">
                       <span className="af-mono">{s.service_id}</span>
-                      <span className="af-pill ok">Mapped to your role</span>
+                      {!noRoleMapping && (
+                        <span className="af-pill ok">Mapped to your role</span>
+                      )}
                     </div>
                   </div>
                 </label>
@@ -138,7 +156,7 @@ export function ServicesPage({
               onClick={() => onConfirm(selectedIds)}
               disabled={!canContinue}
             >
-              Confirm & start questions
+              {confirmLabel}
             </button>
           </div>
           <p className="context-help">

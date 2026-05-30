@@ -35,22 +35,32 @@ export function OnboardingPage({
     [role, services]
   );
 
+  const noRoleMapping =
+    Boolean(role.trim()) && !servicesLoading && matchedServices.length === 0;
+
+  const visibleServices = useMemo(() => {
+    if (!role.trim()) return [];
+    return noRoleMapping ? services : matchedServices;
+  }, [role, services, noRoleMapping, matchedServices]);
+
   useEffect(() => {
     if (!role || servicesLoading) return;
     setSelectedById((prev) => {
       const next = { ...prev };
-      // Default all role-mapped services to selected when a role is chosen.
-      matchedServices.forEach((s) => {
-        if (next[s.service_id] === undefined) next[s.service_id] = true;
+      visibleServices.forEach((service) => {
+        if (next[service.service_id] === undefined) {
+          next[service.service_id] = true;
+        }
       });
-      // Drop selections that are no longer visible for the role.
-      const visible = new Set(matchedServices.map((s) => s.service_id));
-      for (const key of Object.keys(next)) {
-        if (!visible.has(key)) delete next[key];
+      if (!noRoleMapping) {
+        const visible = new Set(visibleServices.map((service) => service.service_id));
+        for (const key of Object.keys(next)) {
+          if (!visible.has(key)) delete next[key];
+        }
       }
       return next;
     });
-  }, [matchedServices, role, servicesLoading]);
+  }, [visibleServices, role, servicesLoading, noRoleMapping]);
 
   const selectedServiceIds = useMemo(() => {
     return Object.entries(selectedById)
@@ -63,10 +73,9 @@ export function OnboardingPage({
       company.trim().length >= 2 &&
       role.trim().length >= 2 &&
       !servicesLoading &&
-      matchedServices.length > 0 &&
       selectedServiceIds.length > 0
     );
-  }, [company, role, servicesLoading, matchedServices.length, selectedServiceIds.length]);
+  }, [company, role, servicesLoading, selectedServiceIds.length]);
 
   return (
     <div className="af-page">
@@ -139,15 +148,8 @@ export function OnboardingPage({
               }
               disabled={!canContinue}
             >
-              Continue
+              Confirm & start chat
             </button>
-
-            {role && matchedServices.length === 0 && !servicesLoading && (
-              <p className="context-help">
-                No services are mapped to this role yet. Choose a different role or
-                contact your administrator.
-              </p>
-            )}
           </div>
 
           <div className="af-card af-card-page">
@@ -158,10 +160,48 @@ export function OnboardingPage({
               </p>
             ) : servicesLoading ? (
               <p className="context-help">Loading services…</p>
-            ) : matchedServices.length === 0 ? (
-              <p className="context-help">
-                No services are currently mapped to <strong>{role}</strong>.
-              </p>
+            ) : noRoleMapping ? (
+              <>
+                <p className="context-help">
+                  No services are attached to <strong>{role}</strong>. Select from
+                  the available services below.
+                </p>
+                {services.length === 0 ? (
+                  <p className="context-help">
+                    No evaluation services are available yet.
+                  </p>
+                ) : (
+                  <div className="af-onboarding-service-list">
+                    {services.map((service) => (
+                      <div key={service.service_id} className="af-onboarding-service">
+                        <div className="af-onboarding-service-title">
+                          <label className="af-inline-check">
+                            <input
+                              type="checkbox"
+                              checked={selectedById[service.service_id] ?? false}
+                              onChange={(e) =>
+                                setSelectedById((prev) => ({
+                                  ...prev,
+                                  [service.service_id]: e.target.checked,
+                                }))
+                              }
+                            />
+                            <span>{service.service_name ?? service.service_id}</span>
+                          </label>
+                          {service.version ? (
+                            <span className="af-pill">v{service.version}</span>
+                          ) : null}
+                        </div>
+                        {service.description && (
+                          <div className="af-onboarding-service-desc">
+                            {service.description}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </>
             ) : (
               <>
                 <p className="context-help">

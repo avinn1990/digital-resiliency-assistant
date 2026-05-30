@@ -24,6 +24,7 @@ import {
 } from "../auth/storage";
 import type { AuthUser } from "../auth/types";
 import { toFriendlyError } from "../lib/userMessages";
+import { buildChatPath, chatLocationState } from "../lib/chatNavigation";
 import {
   createAssessment,
   deleteAssessment,
@@ -369,7 +370,10 @@ export function AssessmentFlowApp() {
       profile,
       selectedServiceIds,
     }));
-    navigate("/dashboard", { replace: true });
+    navigate(buildChatPath(selectedServiceIds), {
+      replace: true,
+      state: chatLocationState(true),
+    });
   }
 
   function handleSignOut() {
@@ -395,17 +399,42 @@ export function AssessmentFlowApp() {
     navigate("/onboarding", { replace: true });
   }
 
+  function resolveChatServiceIds(): string[] {
+    if (state.selectedServiceIds.length > 0) {
+      return state.selectedServiceIds;
+    }
+    if (state.onboardingProfile) {
+      return servicesForRole(state.onboardingProfile.role, state.services).map(
+        (service) => service.service_id
+      );
+    }
+    return [];
+  }
+
   function handleStartNewAssessment() {
-    const ids =
-      state.selectedServiceIds.length > 0
-        ? state.selectedServiceIds
-        : state.onboardingProfile
-          ? servicesForRole(state.onboardingProfile.role, state.services).map(
-              (s) => s.service_id
-            )
-          : [];
-    const query = ids.length > 0 ? `?services=${encodeURIComponent(ids.join(","))}` : "";
-    navigate(`/chat${query}`, { replace: true });
+    const ids = resolveChatServiceIds();
+    if (ids.length > 0) {
+      navigate(buildChatPath(ids), {
+        replace: true,
+        state: chatLocationState(true),
+      });
+      return;
+    }
+    if (state.onboardingProfile) {
+      navigate("/select-services");
+      return;
+    }
+    navigate("/onboarding", { replace: true });
+  }
+
+  function startChatWithServices(selectedServiceIds: string[]) {
+    if (!state.authUser) return;
+    saveSelectedServiceIds(state.authUser.email, selectedServiceIds);
+    setState((s) => ({ ...s, selectedServiceIds }));
+    navigate(buildChatPath(selectedServiceIds), {
+      replace: true,
+      state: chatLocationState(true),
+    });
   }
 
   async function startNewDraft(profile: UserProfile, selectedServiceIds: string[]) {
@@ -614,6 +643,17 @@ export function AssessmentFlowApp() {
               onConfirm={(selectedServiceIds) => {
                 void startNewDraft(state.profile!, selectedServiceIds);
               }}
+            />
+          ) : state.onboardingProfile && state.authUser ? (
+            <ServicesPage
+              profile={buildUserProfile(state.authUser, state.onboardingProfile)}
+              services={state.services}
+              servicesLoading={state.loadingServices}
+              servicesError={state.servicesError}
+              initialSelectedServiceIds={state.selectedServiceIds}
+              allowBackToDashboard
+              confirmLabel="Confirm & start chat"
+              onConfirm={startChatWithServices}
             />
           ) : (
             <Navigate to="/dashboard" replace />

@@ -1,91 +1,85 @@
+import type { EvaluationServiceSummary } from "../../assessmentFlow/types";
 import type { BackendHealthStatus } from "../../services/health";
 import { canReachBackend } from "../../services/health";
-import type { FrameworkSummary } from "../../services/types";
 import { ConnectionStatus } from "../common/ConnectionStatus";
 import { ContextHelp } from "../common/ContextHelp";
-import { WelcomeSkeleton } from "../common/LoadingSkeleton";
 
 type Props = {
-  frameworks: FrameworkSummary[];
-  selectedFrameworkId: string;
-  onFrameworkChange: (id: string) => void;
+  serviceIds: string[];
+  services: EvaluationServiceSummary[];
+  servicesLoading: boolean;
   onStart: () => void;
   loading: boolean;
-  frameworksLoading: boolean;
   backendHealth: BackendHealthStatus;
   onRetryHealth: () => void;
   error: string | null;
 };
 
 export function WelcomePanel({
-  frameworks,
-  selectedFrameworkId,
-  onFrameworkChange,
+  serviceIds,
+  services,
+  servicesLoading,
   onStart,
   loading,
-  frameworksLoading,
   backendHealth,
   onRetryHealth,
   error,
 }: Props) {
-  const selected = frameworks.find((f) => f.id === selectedFrameworkId);
+  const selectedServices = serviceIds
+    .map((id) => services.find((service) => service.service_id === id))
+    .filter((service): service is EvaluationServiceSummary => Boolean(service));
+
   const canStart =
     !loading &&
-    !!selectedFrameworkId &&
+    serviceIds.length > 0 &&
     canReachBackend(backendHealth) &&
-    frameworks.length > 0;
-
-  if (frameworksLoading) {
-    return (
-      <section className="welcome-panel" aria-busy="true" aria-label="Loading">
-        <WelcomeSkeleton />
-      </section>
-    );
-  }
+    !servicesLoading;
 
   return (
     <section className="welcome-panel" aria-labelledby="welcome-title">
-      <h2 id="welcome-title">Get your resiliency score</h2>
+      <h2 id="welcome-title">Ready to start your assessment</h2>
       <ContextHelp>
-        Pick a framework, answer a few questions in chat, then get a clear
-        report — usually under five minutes.
+        These are the services you selected. Click below when you are ready to
+        begin the chat assessment.
       </ContextHelp>
 
       <ConnectionStatus status={backendHealth} onRetry={onRetryHealth} />
 
-      {frameworks.length === 0 ? (
+      {servicesLoading ? (
+        <p className="context-help">Loading services…</p>
+      ) : serviceIds.length === 0 ? (
         <div className="empty-state-inline">
           <p>
-            <strong>No frameworks loaded yet.</strong> Add one via the API or
-            use the example framework in the framework service.
+            <strong>No services selected.</strong> Go back to your workspace and
+            choose services before starting chat.
           </p>
         </div>
+      ) : selectedServices.length === 0 ? (
+        <div className="af-onboarding-service-list">
+          {serviceIds.map((id) => (
+            <div key={id} className="af-onboarding-service">
+              <div className="af-onboarding-service-title">
+                <span>{id}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       ) : (
-        <>
-          <label className="field-label" htmlFor="framework-select">
-            Which framework should we use?
-          </label>
-          <select
-            id="framework-select"
-            value={selectedFrameworkId}
-            onChange={(e) => onFrameworkChange(e.target.value)}
-          >
-            {!selectedFrameworkId && (
-              <option value="" disabled>
-                Select a framework
-              </option>
-            )}
-            {frameworks.map((f) => (
-              <option key={f.id} value={f.id}>
-                {f.name} (version {f.version})
-              </option>
-            ))}
-          </select>
-
-          {selected?.description && (
-            <p className="framework-description">{selected.description}</p>
-          )}
-        </>
+        <div className="af-onboarding-service-list">
+          {selectedServices.map((service) => (
+            <div key={service.service_id} className="af-onboarding-service">
+              <div className="af-onboarding-service-title">
+                <span>{service.service_name ?? service.service_id}</span>
+                {service.version ? (
+                  <span className="af-pill">v{service.version}</span>
+                ) : null}
+              </div>
+              {service.description && (
+                <div className="af-onboarding-service-desc">{service.description}</div>
+              )}
+            </div>
+          ))}
+        </div>
       )}
 
       <button
@@ -110,15 +104,6 @@ export function WelcomePanel({
           <strong>Something went wrong.</strong> {error}
         </div>
       )}
-
-      <details className="how-it-works">
-        <summary>How this works</summary>
-        <ol>
-          <li>Choose the assessment framework that matches your organization.</li>
-          <li>Reply to the agent's questions in your own words.</li>
-          <li>Run the assessment to see scores and what to improve.</li>
-        </ol>
-      </details>
     </section>
   );
 }

@@ -6,6 +6,7 @@ import { StepIndicator } from "../common/StepIndicator";
 
 type Props = {
   frameworkName?: string;
+  serviceName?: string;
   sessionId: string | null;
   currentStep: AppStep;
   progress: { current: number; total: number };
@@ -21,6 +22,7 @@ type Props = {
 
 export function ChatHeader({
   frameworkName,
+  serviceName,
   sessionId,
   currentStep,
   progress,
@@ -44,9 +46,11 @@ export function ChatHeader({
           <h1>
             {sessionId ? "Assessment chat" : "Get started"}
           </h1>
-          {frameworkName && (
+          {serviceName ? (
+            <p className="chat-header-sub">Assessing {serviceName}</p>
+          ) : frameworkName ? (
             <p className="chat-header-sub">Using {frameworkName}</p>
-          )}
+          ) : null}
         </div>
         <div className="chat-header-actions">
           <ConnectionStatus

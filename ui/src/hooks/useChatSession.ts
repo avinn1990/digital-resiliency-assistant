@@ -1,11 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { toFriendlyError } from "../lib/userMessages";
-import {
-  listFrameworks,
-  runAssessment,
-  sendMessage,
-  startSession,
-} from "../services/agentApi";
+import { runAssessment, sendMessage, startSession } from "../services/agentApi";
 import {
   canReachBackend,
   fetchBackendHealth,
@@ -14,7 +9,6 @@ import {
 import type {
   AssessmentResult,
   ChatMessage,
-  FrameworkSummary,
   SessionProgress,
 } from "../services/types";
 
@@ -28,15 +22,12 @@ function createMessage(role: ChatMessage["role"], content: string): ChatMessage 
 }
 
 export function useChatSession(options?: { serviceIds?: string[] }) {
-  const [frameworks, setFrameworks] = useState<FrameworkSummary[]>([]);
-  const [selectedFrameworkId, setSelectedFrameworkId] = useState("");
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [progress, setProgress] = useState<SessionProgress>({ current: 0, total: 0 });
   const [completed, setCompleted] = useState(false);
   const [assessment, setAssessment] = useState<AssessmentResult | null>(null);
   const [loading, setLoading] = useState(false);
-  const [frameworksLoading, setFrameworksLoading] = useState(true);
   const [assessing, setAssessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [backendHealth, setBackendHealth] = useState<BackendHealthStatus>("checking");
@@ -55,19 +46,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
 
   useEffect(() => {
     refreshHealth();
-    setFrameworksLoading(true);
-    listFrameworks()
-      .then((items) => {
-        setFrameworks(items);
-        if (items.length === 0) return;
-        const preferred = options?.serviceIds?.find((id) =>
-          items.some((framework) => framework.id === id)
-        );
-        setSelectedFrameworkId(preferred ?? items[0].id);
-      })
-      .catch((err) => setError(toFriendlyError(err)))
-      .finally(() => setFrameworksLoading(false));
-  }, [refreshHealth, options?.serviceIds?.join(",")]);
+  }, [refreshHealth]);
 
   useEffect(() => {
     if (!options?.serviceIds?.length) return;
@@ -84,25 +63,32 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   }, [backendHealth, refreshHealth]);
 
   const beginSession = useCallback(async () => {
-    if (!selectedFrameworkId) return;
+    const serviceId = activeServiceId || serviceQueue[0];
+    if (!serviceId) {
+      setError("No assessment services were selected.");
+      return false;
+    }
+
     setLoading(true);
     setError(null);
     setAssessment(null);
     setMessages([]);
     setSessionId(null);
     try {
-      const result = await startSession(selectedFrameworkId);
+      const result = await startSession(serviceId);
       setSessionId(result.session_id);
       setMessages([createMessage("assistant", result.reply)]);
       setProgress(result.progress);
       setCompleted(false);
       setBackendHealth("ready");
+      return true;
     } catch (err) {
       setError(toFriendlyError(err));
+      return false;
     } finally {
       setLoading(false);
     }
-  }, [selectedFrameworkId, refreshHealth]);
+  }, [activeServiceId, serviceQueue]);
 
   const submitUserMessage = useCallback(
     async (text: string) => {
@@ -131,8 +117,6 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
           ]);
           setServiceQueue((q) => q.slice(1));
           setActiveServiceId(next);
-          setSelectedFrameworkId(next);
-          // Start the next service session immediately.
           const nextSession = await startSession(next);
           setSessionId(nextSession.session_id);
           setMessages((prev) => [
@@ -176,25 +160,15 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     setCompleted(false);
     setAssessment(null);
     setError(null);
-    setServiceQueue([]);
-    setActiveServiceId("");
-    setSelectedFrameworkId((current) => {
-      if (frameworks.some((framework) => framework.id === current)) {
-        return current;
-      }
-      return frameworks[0]?.id ?? "";
-    });
+    const ids = options?.serviceIds ?? [];
+    setServiceQueue(ids);
+    setActiveServiceId(ids[0] ?? "");
     void refreshHealth();
-  }, [refreshHealth, frameworks]);
+  }, [options?.serviceIds?.join(","), refreshHealth]);
 
-  const selectedFramework = frameworks.find((f) => f.id === selectedFrameworkId);
   const connectionStatus: BackendHealthStatus = sessionId ? "ready" : backendHealth;
 
   return {
-    frameworks,
-    selectedFrameworkId,
-    setSelectedFrameworkId,
-    selectedFramework,
     activeServiceId,
     serviceQueue,
     sessionId,
@@ -203,7 +177,6 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     completed,
     assessment,
     loading,
-    frameworksLoading,
     assessing,
     error,
     backendHealth,

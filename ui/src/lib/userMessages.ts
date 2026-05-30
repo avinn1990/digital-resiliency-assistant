@@ -30,7 +30,7 @@ export function toFriendlyError(err: unknown): string {
     return "The assessment services are still starting on Render (this can take up to a minute on the free tier). Wait a moment, then try again.";
   }
   if (/404|not found/i.test(raw)) {
-    return "That resource wasn't found. Start a new chat or pick a different framework.";
+    return "That resource wasn't found. Start a new chat or pick different services.";
   }
   if (/cannot reach the backend|VITE_API_URL/i.test(raw)) {
     return "The agent isn't reachable. Make sure the API is running and the app is pointed at the right URL.";
@@ -42,7 +42,7 @@ export function toFriendlyError(err: unknown): string {
 }
 
 export const STEPS = [
-  { id: 1, label: "Choose framework", short: "Start" },
+  { id: 1, label: "Start assessment", short: "Start" },
   { id: 2, label: "Answer questions", short: "Chat" },
   { id: 3, label: "View results", short: "Results" },
 ] as const;
