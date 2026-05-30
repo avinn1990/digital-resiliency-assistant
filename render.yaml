@@ -7,6 +7,8 @@
 # - No custom domains; UI is served at https://dra-ui-dev.onrender.com (default Render subdomain).
 # - CORS_ORIGINS must match the dev UI origin (update if Render assigns a suffixed hostname).
 # - Add dev onrender.com URLs to Google OAuth authorized origins after first deploy.
+# - All services and Postgres use Render free tier (no persistent disks).
+# - Free Postgres expires after 30 days; free web services spin down when idle.
 # - Secrets marked sync: false must be set once in the dashboard (Render cannot store them in git).
 
 envVarGroups:
@@ -35,7 +37,7 @@ envVarGroups:
 
 databases:
   - name: dra-postgres-dev
-    plan: basic-256mb
+    plan: free
     region: oregon
 
 services:
@@ -44,7 +46,7 @@ services:
     name: dra-framework-dev
     runtime: python
     rootDir: services/framework
-    plan: standard
+    plan: free
     region: oregon
     branch: dev
     buildCommand: pip install -r requirements.txt
@@ -53,10 +55,6 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.11
-    disk:
-      name: dra-framework-data-dev
-      mountPath: data
-      sizeGB: 1
 
   - type: web
     name: dra-conversation-dev
@@ -119,7 +117,7 @@ services:
   - type: web
     name: dra-backend-dev
     runtime: python
-    plan: standard
+    plan: free
     region: oregon
     branch: dev
     buildCommand: pip install -r backend/requirements.txt
