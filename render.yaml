@@ -161,7 +161,6 @@ services:
     name: dra-ui
     runtime: static
     rootDir: ui
-    region: oregon
     buildCommand: |
       if [ -z "$VITE_API_URL" ]; then
         echo "FATAL: VITE_API_URL is empty — check render.yaml dra-ui envVars (fromService dra-backend)."
