@@ -23,6 +23,11 @@ def _require_openai() -> None:
             detail=f"{ENV_OPENAI_API_KEY} must be set before starting an LLM session.",
         )
 from app.loader import load_evaluation_bundle
+from app.progression import (
+    all_capabilities_resolved,
+    enforce_follow_up_limits,
+    merge_capability_state_update,
+)
 from app.prompts import build_assessment_prompt, build_turn_prompt
 from app.store import LlmSession, initial_capability_states, store
 
@@ -35,8 +40,13 @@ def _merge_capability_states(
         if not cid:
             continue
         existing = session.capability_states.get(cid, {})
-        existing.update({k: v for k, v in item.items() if v is not None})
-        session.capability_states[cid] = existing
+        session.capability_states[cid] = merge_capability_state_update(existing, item)
+
+
+def _apply_progression_rules(session: LlmSession) -> None:
+    enforce_follow_up_limits(session.capability_states)
+    if all_capabilities_resolved(session.capability_states):
+        session.completed = True
 
 
 def _merge_facts(session: LlmSession, extracted: dict[str, Any]) -> None:
@@ -96,7 +106,8 @@ async def start_session(framework_id: str) -> dict[str, Any]:
     )
     _merge_capability_states(session, result.get("capability_updates", []))
     _merge_facts(session, result.get("extracted_facts", {}))
-    session.completed = bool(result.get("completed", False))
+    _apply_progression_rules(session)
+    session.completed = bool(result.get("completed", False)) or session.completed
     session.messages.append({"role": "assistant", "content": reply})
     session.updated_at = datetime.now(timezone.utc).isoformat()
 
@@ -128,7 +139,8 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
     reply = result.get("reply") or "Could you tell me more about that?"
     _merge_capability_states(session, result.get("capability_updates", []))
     _merge_facts(session, result.get("extracted_facts", {}))
-    session.completed = bool(result.get("completed", False))
+    _apply_progression_rules(session)
+    session.completed = bool(result.get("completed", False)) or session.completed
     session.messages.append({"role": "assistant", "content": reply})
     session.updated_at = datetime.now(timezone.utc).isoformat()
 

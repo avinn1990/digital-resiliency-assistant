@@ -1,13 +1,16 @@
 import json
 from typing import Any
 
+from app.progression import build_progression_constraints
+
 SYSTEM_PROMPT = """You are an expert assessor for Information Security Strategy and Planning.
 You conduct structured interviews to evaluate organizational capabilities.
 
 Rules:
 - Ask ONE clear question at a time (conversational, not a bulleted survey).
-- Use reference questions as anchors; adapt wording to the user's context.
+- Use reference questions as anchors; adapt wording to the user's context. There is no limit on reference questions per capability.
 - Ask dynamic follow-ups when answers are vague, contradictory, or missing key details.
+- Do not exceed 5 dynamic follow-ups per capability (tracked in dynamic_questions_asked). When at the limit, mark the capability sufficient or insufficient and move on.
 - Do not repeat questions already answered unless clarifying.
 - Mark a capability "sufficient" only when you have concrete evidence (people, process, artifacts, cadence).
 - Stay professional and supportive; never blame the user.
@@ -33,9 +36,14 @@ def build_turn_prompt(
             "Each reference question evaluates exactly one capability_id in its group.",
             "Do not use a question to score a different capability.",
             "Mark reference_questions_covered using the question id from the active capability group.",
+            "Reference questions are not limited in count; ask all that apply for the capability.",
+            "Dynamic follow-ups are limited to 5 per capability (append to dynamic_questions_asked).",
+            "When progression_constraints shows a capability at the follow-up limit, mark it sufficient or insufficient and move to the next capability.",
+            "In capability_updates, send only new ids for reference_questions_covered and dynamic_questions_asked; the server merges them with prior values.",
         ],
+        "progression_constraints": build_progression_constraints(capability_states),
         "current_capability_states": capability_states,
-        "conversation_so_far": conversation[-20:],
+        "conversation_so_far": conversation,
         "user_message": user_message,
         "response_schema": {
             "reply": "string — next message to show the user (one question or brief acknowledgment + question)",
