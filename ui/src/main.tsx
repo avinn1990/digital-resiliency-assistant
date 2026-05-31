@@ -4,6 +4,7 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import App from "./App";
 import { getGoogleClientId } from "./auth/googleClientId";
 import "./styles/global.css";
+import "./styles/landing.css";
 import "./styles/chat.css";
 
 const googleClientId = getGoogleClientId();
