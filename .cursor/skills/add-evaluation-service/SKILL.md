@@ -1,6 +1,6 @@
 ---
 name: add-evaluation-service
-description: Add a new evaluation service pack (service management offering) under evaluation-services/ so the LLM can assess capabilities and ask the right questions. Use when the user wants a new service, offering, or assessment pack like Enterprise Architecture Management—not a new microservice under services/.
+description: Add a new evaluation service pack (service management offering) under evaluation-services/ so the LLM can assess capabilities and ask the right questions. Use when the user wants a new service, offering, or assessment pack like Enterprise Architecture Management, or Network Management or Incident Management.
 paths:
   - "evaluation-services/**"
   - "shared/docs/service-target-audience.json"
@@ -10,7 +10,7 @@ paths:
 
 # Add evaluation service pack
 
-An **evaluation service** is a content pack under `evaluation-services/<Display Name>/` that defines what to assess and which questions the LLM asks. It is **not** a Python microservice in `services/`.
+An **evaluation service** is a content pack under `evaluation-services/<Display Name>/` that defines what to assess and which questions the LLM asks. It is **not** a Python microservice in `services/`. This is an important distinction.
 
 **Reference implementation:** `evaluation-services/Information Security Strategy and Planning Services/`  
 **Reference `service_id`:** `information-security-strategy-planning`  
@@ -31,6 +31,7 @@ If the user asks to add a "service" or "new offering":
 
 ## Step 1 — Discovery (ask before writing JSON)
 
+Try to create these yourself and then confirm with the user vs asking the user to type all the information. Evaluate each first before asking the user.
 Do not create files until these are agreed (ask the user or infer clearly from their message):
 
 | Topic | What to capture |
@@ -39,10 +40,10 @@ Do not create files until these are agreed (ask the user or infer clearly from t
 | **ID prefix** | Short prefix for capability IDs (ISSP uses `issp`; EAM might use `eam`) |
 | **Capabilities** | List: `id`, `name`, `description`, `evaluation_focus[]`, `pillar` (Strategy / People / Process/Service / Technology) |
 | **Foundational capability** | Include a first capability like ISSP `issp-00`: "Service exists and is in good condition" adapted to the new domain |
-| **Pillars in scope** | Which pillars apply; if no Technology capabilities, document that Technology pillar is not scored (per rubric) |
-| **Resiliency weights** | `resiliency_weight` per capability (ISSP uses `1` for all; rubric requires explicit weights for new services) |
-| **Target audience** | Roles for onboarding / role filter (e.g. Chief Architect, EA lead) |
-| **Reference questions** | At least one question per capability; prompts should match `evaluation_focus` |
+| **Pillars in scope** | Which pillars apply; if no Technology capabilities, document that Technology pillar is not scored (per rubric). Evaluate yourself and confirm with the user |
+| **Resiliency weights** | `resiliency_weight` per capability (ISSP uses `1` for all; rubric requires explicit weights for new services). If the user is not sure use `1` for all |
+| **Target audience** | Roles for onboarding / role filter (e.g. Chief Architect, EA lead). Assess yoursel on who the target audience could be and then confirm with the user. |
+| **Reference questions** | At least one question per capability; prompts should match `evaluation_focus`. Ask for a list if possible.|
 | **Version** | e.g. `1.0` in `capabilities.json` |
 
 **Naming conventions** (must be consistent across all files):
