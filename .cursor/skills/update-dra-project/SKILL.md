@@ -34,6 +34,7 @@ Per `CONTRIBUTING.md`:
 - **`dev`** — all day-to-day development; commit and push here
 - **`main`** — stable releases only; merge `dev` → `main` when ready for production
 - Avoid long-lived `cursor/*` branches unless explicitly requested
+- You can directly push to dev as needed. When pushing to main , ask the user for confirmation.
 - Typical flow:
 
 ```bash
@@ -253,7 +254,8 @@ cd services/llm-conversation && PYTHONPATH=. python3 -m unittest tests.test_prog
 5. **Render** — if env or URLs change, update `render.yaml` not dashboard-only
 6. **Build/test** — `npm run build`; run relevant Python tests
 7. **Docs** — update README only when behavior or env vars change
-8. **Commit** — clear message; push to `dev`
+8. **Commit** — clear message; push to `dev`. Keep render.yaml separate for both main and dev branches
+9. **New Feature Addition** - Any new implementation or feature addition must be validated for dependancies with existing features. This skill file must then be updated everytime there is a push or merge to the repository.
 
 ---
 
