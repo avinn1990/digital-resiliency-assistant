@@ -1,26 +1,22 @@
-/* Teal + cream marketing landing — scoped to .landing */
-
-body:has(.landing) {
-  background: #1a3438;
-}
+/* Marketing landing — uses site-wide tokens from :root */
 
 .landing {
-  --landing-teal: #1a3438;
-  --landing-teal-deep: #122629;
-  --landing-teal-card: #1f3f44;
-  --landing-cream: #f5f0e8;
-  --landing-cream-deep: #ebe4d8;
-  --landing-tan: #c4a574;
-  --landing-tan-hover: #d4b88a;
-  --landing-text-on-teal: #f5f0e8;
-  --landing-text-muted-on-teal: rgba(245, 240, 232, 0.78);
-  --landing-text-on-cream: #1a3438;
-  --landing-text-muted-on-cream: #4a5c5f;
-  --landing-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --landing-teal: var(--teal);
+  --landing-teal-deep: var(--teal-deep);
+  --landing-teal-card: var(--teal-card);
+  --landing-cream: var(--cream);
+  --landing-cream-deep: var(--cream-deep);
+  --landing-tan: var(--tan);
+  --landing-tan-hover: var(--tan-hover);
+  --landing-text-on-teal: var(--text-on-teal);
+  --landing-text-muted-on-teal: var(--text-muted-on-teal);
+  --landing-text-on-cream: var(--text-on-surface);
+  --landing-text-muted-on-cream: var(--text-muted-on-surface);
+  --landing-serif: var(--serif);
   --landing-sans: "DM Sans", system-ui, sans-serif;
   --landing-radius-lg: 24px;
-  --landing-radius-pill: 999px;
-  --landing-shadow: 0 20px 50px rgba(18, 38, 41, 0.22);
+  --landing-radius-pill: var(--radius-pill);
+  --landing-shadow: var(--shadow);
 
   font-family: var(--landing-sans);
   color: var(--landing-text-on-teal);
