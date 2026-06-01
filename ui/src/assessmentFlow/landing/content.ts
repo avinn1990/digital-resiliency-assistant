@@ -15,6 +15,16 @@ export const LANDING = {
     headline: "You're in the right place",
     body:
       "Whether you're starting fresh or returning to an in-progress assessment, this experience is designed to feel focused—not frantic. Take it one service at a time.",
+    book: {
+      title: "In Zero Trust We Trust",
+      subtitle: "A Practical Guide to Adopting Zero Trust Architectures",
+      author: "Avinash Naduvath",
+      description:
+        "This assessment is grounded in the Zero Trust principles and practical framing from the book—helping teams ask the right questions and implement the right controls.",
+      href: "https://www.amazon.sg/Zero-Trust-We-Practical-Architectures/dp/0138237409",
+      coverSrc: "/zero-trust-we-trust-cover.jpg",
+      coverAlt: "Book cover: In Zero Trust We Trust by Avinash Naduvath",
+    },
     quote:
       "Clarity comes from steady progress, not from checking every box in a single sitting.",
     quoteAttribution: "Assessment design principle",
@@ -51,7 +61,7 @@ export const LANDING = {
         quote:
           "Auto-save meant we could pause for meetings and resume without losing momentum.",
         image:
-          "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=600&q=80",
+          "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
       },
     ],
   },
