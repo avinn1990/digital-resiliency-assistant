@@ -47,7 +47,9 @@ export function LandingPage({ onSignedIn }: Props) {
       <header className="landing-hero landing-section--teal">
         <div className="landing-hero__header">
           <div className="landing-brand">
-            <div className="landing-brand__mark" aria-hidden="true" />
+            <div className="landing-brand__mark" aria-hidden="true">
+              <img src="/site-icon.svg" alt="" />
+            </div>
             <div className="landing-brand__name">
               Digital Resiliency
               <span>Assessment</span>
@@ -77,10 +79,7 @@ export function LandingPage({ onSignedIn }: Props) {
 
         <div className="landing-hero__footer">
           <LandingWave fill="var(--landing-cream)" />
-          <div className="landing-seal" aria-hidden>
-            <span>Assess with</span>
-            <span>intention</span>
-          </div>
+          <div className="landing-seal">Assess with intention</div>
         </div>
       </header>
 
