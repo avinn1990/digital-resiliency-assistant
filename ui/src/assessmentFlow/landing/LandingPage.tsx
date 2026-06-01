@@ -77,10 +77,6 @@ export function LandingPage({ onSignedIn }: Props) {
 
         <div className="landing-hero__footer">
           <LandingWave fill="var(--landing-cream)" />
-          <div className="landing-seal" aria-hidden>
-            <span>Assess with</span>
-            <span>intention</span>
-          </div>
         </div>
       </header>
 

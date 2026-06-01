@@ -295,8 +295,7 @@
 
 /* Intro */
 .landing-intro {
-  /* Extra top space so the seal doesn't collide with the headline. */
-  padding: calc(clamp(4.5rem, 10vw, 6.5rem) + 64px) clamp(1.25rem, 4vw, 3.5rem) 4rem;
+  padding: clamp(4.5rem, 10vw, 6.5rem) clamp(1.25rem, 4vw, 3.5rem) 4rem;
 }
 
 .landing-intro__grid {
@@ -756,9 +755,5 @@
 
   .landing-footer__grid {
     grid-template-columns: 1fr;
-  }
-
-  .landing-seal {
-    font-size: 0.55rem;
   }
 }
