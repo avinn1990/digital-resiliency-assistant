@@ -31,3 +31,12 @@ export function servicesForRole(
     )
   );
 }
+
+export function serviceDescriptionForDisplay(description?: string): string {
+  if (!description) return "";
+  const marker = /target audience\s*:/i;
+  const idx = description.search(marker);
+  const summary = (idx >= 0 ? description.slice(0, idx) : description).trim();
+  if (!summary) return "";
+  return summary.endsWith(".") ? summary : `${summary}.`;
+}
