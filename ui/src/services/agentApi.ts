@@ -58,9 +58,25 @@ export function startSession(frameworkId: string) {
     framework_id: string;
     reply: string;
     progress: SessionProgress;
+    completed?: boolean;
+    capability_states?: Record<string, unknown>;
   }>("/sessions", {
     method: "POST",
     body: JSON.stringify({ framework_id: frameworkId }),
+  });
+}
+
+export function restoreSession(frameworkId: string, snapshot: Record<string, unknown>) {
+  return requestWithRetry<{
+    session_id: string;
+    framework_id: string;
+    reply: string;
+    progress: SessionProgress;
+    completed: boolean;
+    capability_states?: Record<string, unknown>;
+  }>("/sessions/restore", {
+    method: "POST",
+    body: JSON.stringify({ framework_id: frameworkId, snapshot }),
   });
 }
 
@@ -69,6 +85,8 @@ export function sendMessage(sessionId: string, message: string) {
     reply: string;
     completed: boolean;
     progress: SessionProgress;
+    capability_states?: Record<string, unknown>;
+    facts_preview?: Record<string, unknown>;
   }>(`/sessions/${sessionId}/messages`, {
     method: "POST",
     body: JSON.stringify({ message }),

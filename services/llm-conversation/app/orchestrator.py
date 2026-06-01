@@ -66,6 +66,56 @@ def _progress(session: LlmSession) -> dict[str, int]:
     return {"current": done, "total": total}
 
 
+async def restore_session(framework_id: str, snapshot: dict[str, Any]) -> dict[str, Any]:
+    try:
+        bundle = load_evaluation_bundle(service_id=framework_id)
+    except FileNotFoundError as exc:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Evaluation content not found for service_id={framework_id!r}. {exc}",
+        ) from exc
+    except ValueError as exc:
+        raise HTTPException(
+            status_code=500,
+            detail=f"Invalid evaluation content for service_id={framework_id!r}. {exc}",
+        ) from exc
+
+    service_id = bundle["capabilities"]["service_id"]
+    caps = bundle["capabilities"]["capabilities"]
+    default_states = initial_capability_states(caps)
+    capability_states = snapshot.get("capability_states") or default_states
+    facts = snapshot.get("facts") or {}
+    messages = snapshot.get("messages") or []
+    completed = bool(snapshot.get("completed", False))
+
+    session = store.create_restored(
+        framework_id=framework_id,
+        service_id=service_id,
+        evaluation_path=bundle["path"],
+        capability_states=capability_states,
+        facts=facts,
+        messages=messages,
+        completed=completed,
+    )
+    _apply_progression_rules(session)
+    session.updated_at = datetime.now(timezone.utc).isoformat()
+
+    last_assistant = next(
+        (message["content"] for message in reversed(messages) if message.get("role") == "assistant"),
+        "",
+    )
+
+    return {
+        "session_id": session.session_id,
+        "framework_id": session.framework_id,
+        "service_id": session.service_id,
+        "reply": last_assistant,
+        "completed": session.completed,
+        "progress": _progress(session),
+        "capability_states": session.capability_states,
+    }
+
+
 async def start_session(framework_id: str) -> dict[str, Any]:
     _require_openai()
     try:

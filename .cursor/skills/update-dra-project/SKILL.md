@@ -66,7 +66,7 @@ Browser → ui/ (static React, Vite)
 | Evaluation discovery | `backend/app/evaluation_loader.py` scans `evaluation-services/*/capabilities.json` — no manual registry for new packs |
 | LLM routing | `_uses_llm(framework_id)` true when pack exists on disk OR legacy allowlist |
 | Service URLs | Normalized via `shared/python/service_url.py` — host-only OK, apps add `https://` |
-| Sessions (chat) | In-memory today; Postgres used for **profiles** and **assessment drafts** |
+| Sessions (chat) | In-memory today; Postgres used for **profiles** and **assessment drafts** (questionnaire + chat save/resume) |
 
 ---
 
@@ -91,7 +91,7 @@ Established in PRs #4–#22; breaking these caused regressions:
 
 - Returning users land on **`/dashboard`** (not splash)
 - Assessments and profiles persisted in **Postgres** via API (`assessmentsApi`, `profileApi`) — not localStorage for drafts
-- **Continue assessment** resumes questionnaire drafts; **Start new assessment** begins flow
+- **Continue assessment** resumes questionnaire drafts or saved **chat** drafts (via **Save progress** in chat); **Start new assessment** begins flow
 
 ### Chat / assessment start (PRs #19, #22)
 
@@ -100,6 +100,7 @@ Established in PRs #4–#22; breaking these caused regressions:
 - **Start over** must clear session **and** URL params (`?services=`) so auto-start does not re-fire
 - Chat is **service-driven** (`service_id` / `framework_id` = evaluation pack id), not legacy framework picker
 - Multi-service: walk selected `service_id`s sequentially
+- **Save progress** in chat persists messages + LLM capability state to Postgres (`mode: chat`, `chatState` on `/assessments`); dashboard **Continue** restores via `POST /sessions/restore`
 
 ### Sign out / change role (PR #18)
 
