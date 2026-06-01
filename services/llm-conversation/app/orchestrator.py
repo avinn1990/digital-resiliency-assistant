@@ -13,6 +13,7 @@ _REPO = next(
 )
 sys.path.insert(0, str(_REPO / "shared" / "python"))
 from env_constants import OPENAI_API_KEY as ENV_OPENAI_API_KEY  # noqa: E402
+from display_labels import humanize_capability_label, simplify_rubric_label  # noqa: E402
 from openai_env import is_openai_configured  # noqa: E402
 
 
@@ -83,20 +84,31 @@ def _infer_active_capability_id(session: LlmSession) -> str | None:
     return None
 
 
-def _infer_evaluation_focus(
+def _find_next_question(
     bundle: dict[str, Any],
     capability_id: str,
     capability_state: dict[str, Any] | None,
-) -> str | None:
+) -> dict[str, Any] | None:
     covered = set((capability_state or {}).get("reference_questions_covered") or [])
     for group in bundle["reference_questions"]["capability_questions"]:
         if group.get("capability_id") != capability_id:
             continue
         for question in group.get("questions", []):
             if question.get("id") not in covered:
-                focus = question.get("evaluation_focus")
-                if isinstance(focus, str) and focus.strip():
-                    return focus.strip()
+                return question
+    return None
+
+
+def _infer_evaluation_focus(
+    bundle: dict[str, Any],
+    capability_id: str,
+    capability_state: dict[str, Any] | None,
+) -> str | None:
+    question = _find_next_question(bundle, capability_id, capability_state)
+    if question:
+        focus = question.get("evaluation_focus")
+        if isinstance(focus, str) and focus.strip():
+            return focus.strip()
     capability = _capability_lookup(bundle).get(capability_id, {})
     focuses = capability.get("evaluation_focus") or []
     if focuses and isinstance(focuses[0], str):
@@ -110,33 +122,45 @@ def _build_assessment_focus(
     *,
     active_capability_id: str | None = None,
     active_evaluation_focus: str | None = None,
+    active_capability_label: str | None = None,
+    active_rubric_label: str | None = None,
 ) -> dict[str, str] | None:
     capability_id = active_capability_id or _infer_active_capability_id(session)
     if not capability_id:
         return None
 
     capability = _capability_lookup(bundle).get(capability_id, {})
-    capability_name = (
-        capability.get("name")
-        or session.capability_states.get(capability_id, {}).get("name")
-        or capability_id
-    )
+    capability_state = session.capability_states.get(capability_id)
+    next_question = _find_next_question(bundle, capability_id, capability_state)
     evaluation_focus = (
         active_evaluation_focus.strip()
         if isinstance(active_evaluation_focus, str) and active_evaluation_focus.strip()
-        else _infer_evaluation_focus(
-            bundle,
-            capability_id,
-            session.capability_states.get(capability_id),
-        )
+        else _infer_evaluation_focus(bundle, capability_id, capability_state)
+    )
+
+    capability_name = humanize_capability_label(
+        str(
+            capability.get("name")
+            or (capability_state or {}).get("name")
+            or capability_id
+        ),
+        short_name=capability.get("short_name"),
+    )
+    if isinstance(active_capability_label, str) and active_capability_label.strip():
+        capability_name = humanize_capability_label(active_capability_label.strip())
+
+    rubric_label = simplify_rubric_label(
+        evaluation_focus,
+        next_question,
+        llm_label=active_rubric_label,
     )
 
     focus: dict[str, str] = {
         "capability_id": capability_id,
-        "capability_name": str(capability_name),
+        "capability_name": capability_name,
     }
-    if evaluation_focus:
-        focus["evaluation_focus"] = evaluation_focus
+    if rubric_label:
+        focus["evaluation_focus"] = rubric_label
     return focus
 
 
@@ -147,6 +171,8 @@ def _session_response(
     reply: str,
     active_capability_id: str | None = None,
     active_evaluation_focus: str | None = None,
+    active_capability_label: str | None = None,
+    active_rubric_label: str | None = None,
     facts_preview: dict[str, Any] | None = None,
 ) -> dict[str, Any]:
     payload: dict[str, Any] = {
@@ -162,6 +188,8 @@ def _session_response(
             session,
             active_capability_id=active_capability_id,
             active_evaluation_focus=active_evaluation_focus,
+            active_capability_label=active_capability_label,
+            active_rubric_label=active_rubric_label,
         ),
     }
     if facts_preview is not None:
@@ -268,6 +296,8 @@ async def start_session(framework_id: str) -> dict[str, Any]:
         reply=reply,
         active_capability_id=result.get("active_capability_id"),
         active_evaluation_focus=result.get("active_evaluation_focus"),
+        active_capability_label=result.get("active_capability_label"),
+        active_rubric_label=result.get("active_rubric_label"),
     )
 
 
@@ -299,6 +329,8 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
         reply=reply,
         active_capability_id=result.get("active_capability_id"),
         active_evaluation_focus=result.get("active_evaluation_focus"),
+        active_capability_label=result.get("active_capability_label"),
+        active_rubric_label=result.get("active_rubric_label"),
         facts_preview=session.facts,
     )
 
