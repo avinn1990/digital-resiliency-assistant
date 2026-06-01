@@ -52,8 +52,11 @@
 /* Hero */
 .landing-hero {
   position: relative;
+  /* Keep the hero above the next section so the seal isn't covered. */
+  z-index: 2;
   padding: 2rem clamp(1.25rem, 4vw, 3.5rem) 0;
-  overflow: hidden;
+  /* The seal intentionally straddles the wave into the next section. */
+  overflow: visible;
 }
 
 .landing-hero__header {
@@ -254,6 +257,8 @@
 .landing-hero__footer {
   position: relative;
   margin-top: -1px;
+  /* Reserve space for the seal that extends below the wave boundary. */
+  padding-bottom: clamp(58px, 8vw, 74px);
 }
 
 .landing-wave {
@@ -273,7 +278,7 @@
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 50%);
-  z-index: 2;
+  z-index: 3;
   width: clamp(100px, 14vw, 130px);
   height: clamp(100px, 14vw, 130px);
   border-radius: 50%;
@@ -295,7 +300,11 @@
 
 /* Intro */
 .landing-intro {
-  padding: clamp(4.5rem, 10vw, 6.5rem) clamp(1.25rem, 4vw, 3.5rem) 4rem;
+  position: relative;
+  z-index: 1;
+  /* Base padding + clearance below the centered seal. */
+  padding: calc(clamp(2.75rem, 6vw, 4rem) + clamp(58px, 8vw, 74px))
+    clamp(1.25rem, 4vw, 3.5rem) 4rem;
 }
 
 .landing-intro__grid {
@@ -758,13 +767,6 @@
   }
 
   .landing-seal {
-    width: 108px;
-    height: 108px;
-    font-size: 0.62rem;
-    letter-spacing: 0.08em;
-  }
-
-  .landing-intro {
-    padding-top: calc(3rem + 54px);
+    font-size: 0.55rem;
   }
 }
