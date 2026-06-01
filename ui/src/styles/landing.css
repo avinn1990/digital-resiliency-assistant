@@ -77,17 +77,8 @@
   height: 48px;
   border-radius: 50%;
   border: 1px solid rgba(196, 165, 116, 0.45);
-  background: rgba(10, 46, 53, 0.25);
+  background: radial-gradient(circle at 30% 25%, #2d5559 0%, var(--landing-teal-deep) 70%);
   flex-shrink: 0;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-}
-
-.landing-brand__mark img {
-  width: 100%;
-  height: 100%;
-  display: block;
 }
 
 .landing-brand__name {
@@ -304,7 +295,8 @@
 
 /* Intro */
 .landing-intro {
-  padding: clamp(4.5rem, 10vw, 6.5rem) clamp(1.25rem, 4vw, 3.5rem) 4rem;
+  /* Extra top space so the seal doesn't collide with the headline. */
+  padding: calc(clamp(4.5rem, 10vw, 6.5rem) + 64px) clamp(1.25rem, 4vw, 3.5rem) 4rem;
 }
 
 .landing-intro__grid {
