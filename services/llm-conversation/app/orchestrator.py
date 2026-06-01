@@ -66,6 +66,111 @@ def _progress(session: LlmSession) -> dict[str, int]:
     return {"current": done, "total": total}
 
 
+def _capability_lookup(bundle: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    return {
+        cap["id"]: cap
+        for cap in bundle["capabilities"]["capabilities"]
+    }
+
+
+def _infer_active_capability_id(session: LlmSession) -> str | None:
+    for capability_id, state in session.capability_states.items():
+        if state.get("status") == "exploring":
+            return capability_id
+    for capability_id, state in session.capability_states.items():
+        if state.get("status") not in ("sufficient", "insufficient"):
+            return capability_id
+    return None
+
+
+def _infer_evaluation_focus(
+    bundle: dict[str, Any],
+    capability_id: str,
+    capability_state: dict[str, Any] | None,
+) -> str | None:
+    covered = set((capability_state or {}).get("reference_questions_covered") or [])
+    for group in bundle["reference_questions"]["capability_questions"]:
+        if group.get("capability_id") != capability_id:
+            continue
+        for question in group.get("questions", []):
+            if question.get("id") not in covered:
+                focus = question.get("evaluation_focus")
+                if isinstance(focus, str) and focus.strip():
+                    return focus.strip()
+    capability = _capability_lookup(bundle).get(capability_id, {})
+    focuses = capability.get("evaluation_focus") or []
+    if focuses and isinstance(focuses[0], str):
+        return focuses[0].strip()
+    return None
+
+
+def _build_assessment_focus(
+    bundle: dict[str, Any],
+    session: LlmSession,
+    *,
+    active_capability_id: str | None = None,
+    active_evaluation_focus: str | None = None,
+) -> dict[str, str] | None:
+    capability_id = active_capability_id or _infer_active_capability_id(session)
+    if not capability_id:
+        return None
+
+    capability = _capability_lookup(bundle).get(capability_id, {})
+    capability_name = (
+        capability.get("name")
+        or session.capability_states.get(capability_id, {}).get("name")
+        or capability_id
+    )
+    evaluation_focus = (
+        active_evaluation_focus.strip()
+        if isinstance(active_evaluation_focus, str) and active_evaluation_focus.strip()
+        else _infer_evaluation_focus(
+            bundle,
+            capability_id,
+            session.capability_states.get(capability_id),
+        )
+    )
+
+    focus: dict[str, str] = {
+        "capability_id": capability_id,
+        "capability_name": str(capability_name),
+    }
+    if evaluation_focus:
+        focus["evaluation_focus"] = evaluation_focus
+    return focus
+
+
+def _session_response(
+    bundle: dict[str, Any],
+    session: LlmSession,
+    *,
+    reply: str,
+    active_capability_id: str | None = None,
+    active_evaluation_focus: str | None = None,
+    facts_preview: dict[str, Any] | None = None,
+) -> dict[str, Any]:
+    payload: dict[str, Any] = {
+        "session_id": session.session_id,
+        "framework_id": session.framework_id,
+        "service_id": session.service_id,
+        "reply": reply,
+        "completed": session.completed,
+        "progress": _progress(session),
+        "capability_states": session.capability_states,
+        "assessment_focus": _build_assessment_focus(
+            bundle,
+            session,
+            active_capability_id=active_capability_id,
+            active_evaluation_focus=active_evaluation_focus,
+        ),
+    }
+    if facts_preview is not None:
+        payload["facts_preview"] = facts_preview
+    if active_capability_id:
+        payload["active_capability_id"] = active_capability_id
+    return payload
+
+
 async def restore_session(framework_id: str, snapshot: dict[str, Any]) -> dict[str, Any]:
     try:
         bundle = load_evaluation_bundle(service_id=framework_id)
@@ -105,15 +210,11 @@ async def restore_session(framework_id: str, snapshot: dict[str, Any]) -> dict[s
         "",
     )
 
-    return {
-        "session_id": session.session_id,
-        "framework_id": session.framework_id,
-        "service_id": session.service_id,
-        "reply": last_assistant,
-        "completed": session.completed,
-        "progress": _progress(session),
-        "capability_states": session.capability_states,
-    }
+    return _session_response(
+        bundle,
+        session,
+        reply=last_assistant,
+    )
 
 
 async def start_session(framework_id: str) -> dict[str, Any]:
@@ -161,15 +262,13 @@ async def start_session(framework_id: str) -> dict[str, Any]:
     session.messages.append({"role": "assistant", "content": reply})
     session.updated_at = datetime.now(timezone.utc).isoformat()
 
-    return {
-        "session_id": session.session_id,
-        "framework_id": session.framework_id,
-        "service_id": session.service_id,
-        "reply": reply,
-        "completed": session.completed,
-        "progress": _progress(session),
-        "capability_states": session.capability_states,
-    }
+    return _session_response(
+        bundle,
+        session,
+        reply=reply,
+        active_capability_id=result.get("active_capability_id"),
+        active_evaluation_focus=result.get("active_evaluation_focus"),
+    )
 
 
 async def handle_message(session: LlmSession, user_message: str) -> dict[str, Any]:
@@ -194,15 +293,14 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
     session.messages.append({"role": "assistant", "content": reply})
     session.updated_at = datetime.now(timezone.utc).isoformat()
 
-    return {
-        "session_id": session.session_id,
-        "reply": reply,
-        "completed": session.completed,
-        "progress": _progress(session),
-        "facts_preview": session.facts,
-        "capability_states": session.capability_states,
-        "active_capability_id": result.get("active_capability_id"),
-    }
+    return _session_response(
+        bundle,
+        session,
+        reply=reply,
+        active_capability_id=result.get("active_capability_id"),
+        active_evaluation_focus=result.get("active_evaluation_focus"),
+        facts_preview=session.facts,
+    )
 
 
 async def run_llm_assessment(session: LlmSession) -> dict[str, Any]:

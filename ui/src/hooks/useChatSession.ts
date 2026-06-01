@@ -18,6 +18,7 @@ import {
   type BackendHealthStatus,
 } from "../services/health";
 import type {
+  AssessmentFocus,
   AssessmentResult,
   ChatMessage,
   SessionProgress,
@@ -36,6 +37,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [progress, setProgress] = useState<SessionProgress>({ current: 0, total: 0 });
+  const [assessmentFocus, setAssessmentFocus] = useState<AssessmentFocus | null>(null);
   const [completed, setCompleted] = useState(false);
   const [assessment, setAssessment] = useState<AssessmentResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -133,6 +135,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
       setMessages(firstMessages);
       setProgress(result.progress);
       setCompleted(Boolean(result.completed));
+      setAssessmentFocus(result.assessment_focus ?? null);
       captureCurrentServiceSnapshot(
         firstMessages,
         result.progress,
@@ -187,6 +190,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
         setSessionId(result.session_id);
         setProgress(result.progress);
         setCompleted(result.completed);
+        setAssessmentFocus(result.assessment_focus ?? null);
         captureCurrentServiceSnapshot(
           snapshot.messages,
           result.progress,
@@ -222,6 +226,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
         setMessages(withReply);
         setProgress(result.progress);
         setCompleted(result.completed);
+        setAssessmentFocus(result.assessment_focus ?? null);
         captureCurrentServiceSnapshot(
           withReply,
           result.progress,
@@ -259,6 +264,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
           setMessages(afterNext);
           setProgress(nextSession.progress);
           setCompleted(Boolean(nextSession.completed));
+          setAssessmentFocus(nextSession.assessment_focus ?? null);
           captureCurrentServiceSnapshot(
             afterNext,
             nextSession.progress,
@@ -304,6 +310,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     setSessionId(null);
     setMessages([]);
     setProgress({ current: 0, total: 0 });
+    setAssessmentFocus(null);
     setCompleted(false);
     setAssessment(null);
     setError(null);
@@ -358,6 +365,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     sessionId,
     messages,
     progress,
+    assessmentFocus,
     completed,
     assessment,
     loading,

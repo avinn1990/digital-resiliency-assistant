@@ -258,6 +258,7 @@ export function AppShell() {
         sessionId={chat.sessionId}
         currentStep={currentStep}
         progress={chat.progress}
+        assessmentFocus={chat.assessmentFocus}
         completed={chat.completed}
         connectionStatus={chat.connectionStatus}
         onNewChat={() => {

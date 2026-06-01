@@ -19,6 +19,12 @@ export type SessionProgress = {
   total: number;
 };
 
+export type AssessmentFocus = {
+  capability_id: string;
+  capability_name: string;
+  evaluation_focus?: string;
+};
+
 export type AssessmentResult = {
   session_id: string;
   framework_id: string;

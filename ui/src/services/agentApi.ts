@@ -1,5 +1,6 @@
 import { getApiBase } from "../lib/apiBase";
 import type {
+  AssessmentFocus,
   AssessmentResult,
   FrameworkSummary,
   SessionProgress,
@@ -60,6 +61,7 @@ export function startSession(frameworkId: string) {
     progress: SessionProgress;
     completed?: boolean;
     capability_states?: Record<string, unknown>;
+    assessment_focus?: AssessmentFocus | null;
   }>("/sessions", {
     method: "POST",
     body: JSON.stringify({ framework_id: frameworkId }),
@@ -74,6 +76,7 @@ export function restoreSession(frameworkId: string, snapshot: Record<string, unk
     progress: SessionProgress;
     completed: boolean;
     capability_states?: Record<string, unknown>;
+    assessment_focus?: AssessmentFocus | null;
   }>("/sessions/restore", {
     method: "POST",
     body: JSON.stringify({ framework_id: frameworkId, snapshot }),
@@ -87,6 +90,7 @@ export function sendMessage(sessionId: string, message: string) {
     progress: SessionProgress;
     capability_states?: Record<string, unknown>;
     facts_preview?: Record<string, unknown>;
+    assessment_focus?: AssessmentFocus | null;
   }>(`/sessions/${sessionId}/messages`, {
     method: "POST",
     body: JSON.stringify({ message }),
