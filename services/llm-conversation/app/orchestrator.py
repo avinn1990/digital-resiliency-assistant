@@ -279,9 +279,10 @@ async def start_session(framework_id: str) -> dict[str, Any]:
     )
     result = await complete_json(prompt)
 
+    service_name = bundle["capabilities"]["service_name"]
     reply = result.get("reply") or (
-        "Hello. I'll assess your Information Security Strategy and Planning "
-        "capabilities. To start: how is security strategy set today at your organization?"
+        f"Hello. I'll assess your {service_name} capabilities. "
+        "To start: could you briefly describe how this works today in your organization?"
     )
     _merge_capability_states(session, result.get("capability_updates", []))
     _merge_facts(session, result.get("extracted_facts", {}))
@@ -337,7 +338,7 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
 
 async def run_llm_assessment(session: LlmSession) -> dict[str, Any]:
     _require_openai()
-    bundle = load_evaluation_bundle()
+    bundle = load_evaluation_bundle(service_id=session.service_id)
     prompt = build_assessment_prompt(
         bundle=bundle,
         capability_states=session.capability_states,
