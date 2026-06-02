@@ -1,0 +1,167 @@
+{
+  "service_id": "enterprise-security-governance",
+  "service_name": "Enterprise Security Governance",
+  "version": "1.0",
+  "description": "Evaluates how enterprise security governance is established, operated, measured, and enforced across the organization (decision rights, oversight, policy/standards lifecycle, risk acceptance and exceptions, reporting, assurance, and accountability).",
+  "capabilities": [
+    {
+      "id": "esg-00",
+      "name": "Service exists and is in good condition",
+      "description": "The enterprise security governance function is established, funded, and operating effectively with clear scope and outcomes.",
+      "evaluation_focus": [
+        "Documented governance charter and scope",
+        "Operating model, stakeholders, and delivery cadence",
+        "Continuous improvement and stakeholder feedback"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "esg-01",
+      "name": "Governance Metrics",
+      "description": "Governance defines measurable outcomes and uses KPIs/KRIs and reporting to drive decisions, prioritize investments, and communicate risk to leadership.",
+      "evaluation_focus": [
+        "Defined KPIs/KRIs tied to governance outcomes",
+        "Leadership reporting cadence and audience (exec/board)",
+        "Evidence that metrics inform decisions and prioritization"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "esg-02",
+      "name": "Governance Responsibility Model",
+      "description": "Roles, committees, and decision rights are defined and operating for security governance, including escalation paths and accountability mechanisms.",
+      "evaluation_focus": [
+        "Defined governance bodies, responsibilities, and decision scope",
+        "Documented RACI for key security decisions",
+        "Clear escalation paths for high-risk decisions and exceptions"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "esg-03",
+      "name": "Governance leader",
+      "description": "A governance leader (or accountable owner) exists with authority, sponsorship, and responsibility for security governance outcomes across the enterprise.",
+      "evaluation_focus": [
+        "Named leader with clear mandate and delegated authority",
+        "Engagement model with executives and delivery stakeholders",
+        "Accountability for governance decisions and outcomes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "esg-04",
+      "name": "User Segmentation Strategy",
+      "description": "A user segmentation strategy exists to differentiate identities by risk, privilege, and exposure, with governance for segmentation criteria and lifecycle management.",
+      "evaluation_focus": [
+        "Defined segmentation criteria (roles, privilege tiers, risk levels)",
+        "Governed lifecycle for user categories and access models",
+        "Alignment to policy requirements and identity governance processes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "esg-05",
+      "name": "Workload Segmentation Strategy (Micro-Segmentation)",
+      "description": "A micro-segmentation strategy exists for workloads and applications, including policies, enforcement mechanisms, exceptions, and measurement.",
+      "evaluation_focus": [
+        "Defined micro-segmentation principles and target scope",
+        "Enforcement design (policy-as-code, agents, service mesh, etc.)",
+        "Exception governance and measurement of effectiveness"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "esg-06",
+      "name": "Network Segmentation Strategy (Macro-segmentation)",
+      "description": "A macro-segmentation strategy exists for networks and environments (on-prem and cloud), including zoning, controls, exceptions, and monitoring.",
+      "evaluation_focus": [
+        "Defined segmentation zones and allowable traffic patterns",
+        "Control enforcement (firewalls, NAC, cloud segmentation, etc.)",
+        "Exception governance and monitoring of segmentation health"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "esg-07",
+      "name": "External Expert Reference",
+      "description": "Governance incorporates external expert input or benchmarks (advisory, threat intelligence, peer benchmarks, audit/assurance) to improve decisions and validate direction.",
+      "evaluation_focus": [
+        "Use of independent expertise or benchmarks to inform governance",
+        "Evidence of periodic external review or validation",
+        "Clear mechanism to incorporate findings into decisions and improvements"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience": [
+    "CISO",
+    "Deputy CISO / Security Director",
+    "Security Governance, Risk & Compliance (GRC) Lead",
+    "Enterprise Risk Manager",
+    "Security Architecture Lead",
+    "IT Director / Head of IT",
+    "Internal Audit Lead",
+    "Compliance Officer"
+  ]
+}

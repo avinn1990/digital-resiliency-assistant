@@ -3,8 +3,8 @@ from typing import Any
 
 from app.progression import build_progression_constraints
 
-SYSTEM_PROMPT = """You are an expert assessor for Information Security Strategy and Planning.
-You conduct structured interviews to evaluate organizational capabilities.
+SYSTEM_PROMPT = """You are an expert assessor.
+You conduct structured interviews to evaluate organizational capabilities for the given service.
 
 Rules:
 - Ask ONE clear question at a time (conversational, not a bulleted survey).

@@ -37,9 +37,9 @@ services:
       OPENAI_API_KEY: ${OPENAI_API_KEY:-}
       OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
       OPENAI_BASE_URL: ${OPENAI_BASE_URL:-}
-      EVALUATION_SERVICE_DIR: /app/evaluation-content
+      EVALUATION_SERVICES_DIR: /app/evaluation-services
     volumes:
-      - ./evaluation-services/Information Security Strategy and Planning Services:/app/evaluation-content:ro
+      - ./evaluation-services:/app/evaluation-services:ro
 
   assessment:
     build: ./services/assessment

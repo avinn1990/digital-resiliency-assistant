@@ -1,0 +1,166 @@
+{
+  "service_id": "enterprise-security-governance",
+  "service_name": "Enterprise Security Governance",
+  "capability_questions": [
+    {
+      "capability_id": "esg-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-esg-00-1",
+          "prompt": "Is there a defined enterprise security governance function (or equivalent) with a documented charter and scope?",
+          "intent": "Confirm that the enterprise security governance function exists with defined scope",
+          "field_key": "esg_00_governance_charter_scope",
+          "evaluation_focus": "Documented governance charter and scope"
+        },
+        {
+          "id": "rq-esg-00-2",
+          "prompt": "How is security governance operated day-to-day (cadence, stakeholders involved, and the main outputs it produces)?",
+          "intent": "Assess the operating model and delivery cadence for security governance",
+          "field_key": "esg_00_operating_model_cadence",
+          "evaluation_focus": "Operating model, stakeholders, and delivery cadence"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-01",
+      "capability_name": "Governance Metrics",
+      "questions": [
+        {
+          "id": "rq-esg-01-1",
+          "prompt": "What KPIs/KRIs or outcome measures do you use to evaluate security governance, and how are they defined?",
+          "intent": "Identify the governance metrics used and how they are defined",
+          "field_key": "esg_01_governance_metrics_defined",
+          "evaluation_focus": "Defined KPIs/KRIs tied to governance outcomes"
+        },
+        {
+          "id": "rq-esg-01-2",
+          "prompt": "How often are these metrics reported to leadership (and/or the board), and can you share a recent example of what was reported?",
+          "intent": "Assess cadence and audience for governance metrics reporting",
+          "field_key": "esg_01_metrics_reporting_cadence_audience",
+          "evaluation_focus": "Leadership reporting cadence and audience (exec/board)"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-02",
+      "capability_name": "Governance Responsibility Model",
+      "questions": [
+        {
+          "id": "rq-esg-02-1",
+          "prompt": "How are security governance responsibilities and decision rights defined across the organization (e.g., committees, roles, RACI)?",
+          "intent": "Evaluate whether a governance responsibility model is defined and documented",
+          "field_key": "esg_02_governance_responsibility_model",
+          "evaluation_focus": "Documented RACI for key security decisions"
+        },
+        {
+          "id": "rq-esg-02-2",
+          "prompt": "When governance decisions require escalation (e.g., high-risk exceptions), what is the escalation path and how is it used in practice?",
+          "intent": "Assess escalation paths and how they work in practice",
+          "field_key": "esg_02_governance_escalation_paths",
+          "evaluation_focus": "Clear escalation paths for high-risk decisions and exceptions"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-03",
+      "capability_name": "Governance leader",
+      "questions": [
+        {
+          "id": "rq-esg-03-1",
+          "prompt": "Who is accountable for enterprise security governance, and what authority do they have to make or enforce decisions?",
+          "intent": "Confirm an accountable governance leader exists with delegated authority",
+          "field_key": "esg_03_governance_leader_authority",
+          "evaluation_focus": "Named leader with clear mandate and delegated authority"
+        },
+        {
+          "id": "rq-esg-03-2",
+          "prompt": "How does the governance leader engage executives and delivery teams, and how are governance decisions communicated and tracked?",
+          "intent": "Assess engagement model and accountability for governance outcomes",
+          "field_key": "esg_03_governance_leader_engagement_tracking",
+          "evaluation_focus": "Accountability for governance decisions and outcomes"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-04",
+      "capability_name": "User Segmentation Strategy",
+      "questions": [
+        {
+          "id": "rq-esg-04-1",
+          "prompt": "Do you have a user segmentation strategy (e.g., privilege tiers, role categories, high-risk users), and what are the segmentation criteria?",
+          "intent": "Confirm that user segmentation strategy and criteria exist",
+          "field_key": "esg_04_user_segmentation_criteria",
+          "evaluation_focus": "Defined segmentation criteria (roles, privilege tiers, risk levels)"
+        },
+        {
+          "id": "rq-esg-04-2",
+          "prompt": "How do you govern and maintain these user segments over time (joiner/mover/leaver, access reviews, and updates to segmentation rules)?",
+          "intent": "Assess governance and lifecycle management for user segments",
+          "field_key": "esg_04_user_segmentation_lifecycle_governance",
+          "evaluation_focus": "Governed lifecycle for user categories and access models"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-05",
+      "capability_name": "Workload Segmentation Strategy (Micro-Segmentation)",
+      "questions": [
+        {
+          "id": "rq-esg-05-1",
+          "prompt": "Do you have a micro-segmentation strategy for workloads/applications? What does it cover and what are the guiding principles?",
+          "intent": "Confirm existence and scope of micro-segmentation strategy",
+          "field_key": "esg_05_microsegmentation_strategy_scope_principles",
+          "evaluation_focus": "Defined micro-segmentation principles and target scope"
+        },
+        {
+          "id": "rq-esg-05-2",
+          "prompt": "How is micro-segmentation enforced (e.g., service mesh, host agents, network policies), and how do you govern exceptions and measure effectiveness?",
+          "intent": "Assess enforcement, exception governance, and measurement for micro-segmentation",
+          "field_key": "esg_05_microsegmentation_enforcement_exceptions_measurement",
+          "evaluation_focus": "Exception governance and measurement of effectiveness"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-06",
+      "capability_name": "Network Segmentation Strategy (Macro-segmentation)",
+      "questions": [
+        {
+          "id": "rq-esg-06-1",
+          "prompt": "Do you have a network segmentation strategy (macro-segmentation) across environments (on-prem and cloud)? How are zones defined?",
+          "intent": "Confirm existence of macro network segmentation strategy and zoning approach",
+          "field_key": "esg_06_network_segmentation_zones",
+          "evaluation_focus": "Defined segmentation zones and allowable traffic patterns"
+        },
+        {
+          "id": "rq-esg-06-2",
+          "prompt": "How is segmentation enforced and monitored (e.g., firewalls, NAC, cloud controls), and how do you handle and track exceptions?",
+          "intent": "Assess enforcement, monitoring, and exception governance for macro segmentation",
+          "field_key": "esg_06_network_segmentation_enforcement_monitoring_exceptions",
+          "evaluation_focus": "Exception governance and monitoring of segmentation health"
+        }
+      ]
+    },
+    {
+      "capability_id": "esg-07",
+      "capability_name": "External Expert Reference",
+      "questions": [
+        {
+          "id": "rq-esg-07-1",
+          "prompt": "Do you reference external expertise or benchmarks (advisory, independent reviews, peer benchmarks, audits) to inform security governance decisions?",
+          "intent": "Assess whether governance uses external expert reference or benchmarking",
+          "field_key": "esg_07_external_expert_reference_sources",
+          "evaluation_focus": "Use of independent expertise or benchmarks to inform governance"
+        },
+        {
+          "id": "rq-esg-07-2",
+          "prompt": "How often is external input collected, and how do you incorporate findings into governance decisions and improvements?",
+          "intent": "Evaluate periodicity and incorporation of external expert input",
+          "field_key": "esg_07_external_input_incorporation",
+          "evaluation_focus": "Clear mechanism to incorporate findings into decisions and improvements"
+        }
+      ]
+    }
+  ]
+}

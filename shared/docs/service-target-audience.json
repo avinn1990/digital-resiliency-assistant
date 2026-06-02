@@ -2,6 +2,19 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Maps service_id to intended target audience/stakeholders.",
   "services": {
+    "enterprise-security-governance": {
+      "service_name": "Enterprise Security Governance",
+      "target_audience": [
+        "CISO",
+        "Deputy CISO / Security Director",
+        "Security Governance, Risk & Compliance (GRC) Lead",
+        "Enterprise Risk Manager",
+        "Security Architecture Lead",
+        "IT Director / Head of IT",
+        "Internal Audit Lead",
+        "Compliance Officer"
+      ]
+    },
     "information-security-strategy-planning": {
       "service_name": "Information Security Strategy and Planning Services",
       "target_audience": [

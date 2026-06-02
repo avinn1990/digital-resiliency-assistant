@@ -7,7 +7,9 @@ from functools import lru_cache
 
 from app.config import settings
 
-_QUESTION_ID_RE = re.compile(r"^rq-(issp-\d{2})-\d+$")
+# Any evaluation pack can define its own capability id prefix; validate only that
+# question ids encode their capability id as rq-<capability-id>-<n>.
+_QUESTION_ID_RE = re.compile(r"^rq-([a-z0-9]+-\d{2})-\d+$")
 
 
 def _flatten_capability_questions(questions_doc: dict[str, Any]) -> list[dict[str, Any]]:
