@@ -53,7 +53,16 @@ export function listFrameworks() {
   return requestWithRetry<FrameworkSummary[]>("/frameworks");
 }
 
+/** LLM sessions accept one service id; guard against comma-joined URL mistakes. */
+export function normalizeFrameworkId(frameworkId: string): string {
+  const trimmed = frameworkId.trim();
+  if (!trimmed.includes(",")) return trimmed;
+  const [first] = trimmed.split(",").map((part) => part.trim()).filter(Boolean);
+  return first ?? trimmed;
+}
+
 export function startSession(frameworkId: string) {
+  const serviceId = normalizeFrameworkId(frameworkId);
   return requestWithRetry<{
     session_id: string;
     framework_id: string;
@@ -64,11 +73,12 @@ export function startSession(frameworkId: string) {
     assessment_focus?: AssessmentFocus | null;
   }>("/sessions", {
     method: "POST",
-    body: JSON.stringify({ framework_id: frameworkId }),
+    body: JSON.stringify({ framework_id: serviceId }),
   });
 }
 
 export function restoreSession(frameworkId: string, snapshot: Record<string, unknown>) {
+  const serviceId = normalizeFrameworkId(frameworkId);
   return requestWithRetry<{
     session_id: string;
     framework_id: string;
@@ -79,7 +89,7 @@ export function restoreSession(frameworkId: string, snapshot: Record<string, unk
     assessment_focus?: AssessmentFocus | null;
   }>("/sessions/restore", {
     method: "POST",
-    body: JSON.stringify({ framework_id: frameworkId, snapshot }),
+    body: JSON.stringify({ framework_id: serviceId, snapshot }),
   });
 }
 
