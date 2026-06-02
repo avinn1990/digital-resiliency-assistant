@@ -5,6 +5,7 @@ import type {
   UserProfile,
 } from "../assessmentFlow/types";
 import { createAssessmentId } from "../assessmentFlow/id";
+import { buildChatPath } from "./chatNavigation";
 import type { ChatMessage, SessionProgress } from "../services/types";
 
 export type ChatSessionSnapshot = {
@@ -89,9 +90,12 @@ export function isChatAssessmentDraft(draft: AssessmentDraft): boolean {
 }
 
 export function chatDraftResumePath(draft: AssessmentDraft): string {
-  const services = draft.selectedServiceIds.join(",");
-  const draftId = encodeURIComponent(draft.assessmentId);
-  return `/chat?services=${encodeURIComponent(services)}&draft=${draftId}`;
+  const active =
+    draft.currentServiceId ||
+    draft.chatState?.activeServiceId ||
+    draft.selectedServiceIds[0] ||
+    "";
+  return buildChatPath(draft.selectedServiceIds, draft.assessmentId, active);
 }
 
 export function snapshotFromChatState(chatState: ChatAssessmentState): ChatSessionSnapshot {

@@ -109,7 +109,11 @@ def load_evaluation_bundle(
     if service_dir is not None:
         base = service_dir
     elif service_id:
-        base = _service_dir_by_id().get(service_id) or settings.evaluation_dir()
+        base = _service_dir_by_id().get(service_id)
+        if base is None:
+            raise FileNotFoundError(
+                f"Evaluation service directory not found for service_id={service_id!r}"
+            )
     else:
         base = settings.evaluation_dir()
     if not base.is_dir():

@@ -384,7 +384,7 @@ export function AssessmentFlowApp() {
       profile,
       selectedServiceIds,
     }));
-    navigate(buildChatPath(selectedServiceIds), {
+    navigate(buildChatPath(selectedServiceIds, undefined, selectedServiceIds[0]), {
       replace: true,
       state: chatLocationState(true),
     });
@@ -428,7 +428,7 @@ export function AssessmentFlowApp() {
   function handleStartNewAssessment() {
     const ids = resolveChatServiceIds();
     if (ids.length > 0) {
-      navigate(buildChatPath(ids), {
+      navigate(buildChatPath(ids, undefined, ids[0]), {
         replace: true,
         state: chatLocationState(true),
       });
@@ -445,7 +445,7 @@ export function AssessmentFlowApp() {
     if (!state.authUser) return;
     saveSelectedServiceIds(state.authUser.email, selectedServiceIds);
     setState((s) => ({ ...s, selectedServiceIds }));
-    navigate(buildChatPath(selectedServiceIds), {
+    navigate(buildChatPath(selectedServiceIds, undefined, selectedServiceIds[0]), {
       replace: true,
       state: chatLocationState(true),
     });

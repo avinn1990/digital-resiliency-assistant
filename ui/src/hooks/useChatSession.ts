@@ -33,7 +33,15 @@ function createMessage(role: ChatMessage["role"], content: string): ChatMessage 
   };
 }
 
-export function useChatSession(options?: { serviceIds?: string[] }) {
+export type UseChatSessionOptions = {
+  serviceIds?: string[];
+  /** Active service for the current LLM session (must be a single service_id). */
+  activeServiceId?: string;
+  /** Called when the queue advances so the URL can track the active service. */
+  onActiveServiceChange?: (serviceId: string) => void;
+};
+
+export function useChatSession(options?: UseChatSessionOptions) {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [progress, setProgress] = useState<SessionProgress>({ current: 0, total: 0 });
@@ -44,12 +52,14 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   const [assessing, setAssessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [backendHealth, setBackendHealth] = useState<BackendHealthStatus>("checking");
-  const [serviceQueue, setServiceQueue] = useState<string[]>(
-    options?.serviceIds?.length ? options.serviceIds : []
-  );
-  const [activeServiceId, setActiveServiceId] = useState<string>(
-    options?.serviceIds?.[0] ?? ""
-  );
+  const initialQueue = options?.serviceIds?.length ? options.serviceIds : [];
+  const initialActive =
+    options?.activeServiceId?.trim() ||
+    initialQueue[0] ||
+    "";
+
+  const [serviceQueue, setServiceQueue] = useState<string[]>(initialQueue);
+  const [activeServiceId, setActiveServiceId] = useState<string>(initialActive);
   const [completedServiceIds, setCompletedServiceIds] = useState<string[]>([]);
   const [serviceSnapshots, setServiceSnapshots] = useState<
     Record<string, ChatServiceSnapshot>
@@ -69,13 +79,18 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
 
   useEffect(() => {
     if (!options?.serviceIds?.length) return;
-    setServiceQueue(options.serviceIds);
-    setActiveServiceId(options.serviceIds[0] ?? "");
+    const queue = options.serviceIds;
+    const nextActive =
+      options.activeServiceId?.trim() && queue.includes(options.activeServiceId.trim())
+        ? options.activeServiceId.trim()
+        : queue[0] ?? "";
+    setServiceQueue(queue);
+    setActiveServiceId(nextActive);
     setCompletedServiceIds([]);
     setServiceSnapshots({});
     capabilityStatesRef.current = {};
     factsRef.current = {};
-  }, [options?.serviceIds?.join(",")]);
+  }, [options?.serviceIds?.join(","), options?.activeServiceId]);
 
   useEffect(() => {
     if (backendHealth !== "offline" && backendHealth !== "warming") return undefined;
@@ -115,7 +130,8 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   );
 
   const beginSession = useCallback(async () => {
-    const serviceId = activeServiceId || serviceQueue[0];
+    const raw = activeServiceId || serviceQueue[0];
+    const serviceId = raw.includes(",") ? raw.split(",")[0]?.trim() ?? raw : raw;
     if (!serviceId) {
       setError("No assessment services were selected.");
       return false;
@@ -245,6 +261,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
           );
           setServiceQueue((q) => q.slice(1));
           setActiveServiceId(next);
+          options?.onActiveServiceChange?.(next);
           capabilityStatesRef.current = {};
           factsRef.current = {};
           const transitionMessages = [
@@ -285,6 +302,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
       messages,
       activeServiceId,
       captureCurrentServiceSnapshot,
+      options?.onActiveServiceChange,
     ]
   );
 

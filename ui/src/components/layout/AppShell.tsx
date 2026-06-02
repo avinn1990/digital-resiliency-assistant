@@ -14,6 +14,7 @@ import { useChatSession } from "../../hooks/useChatSession";
 import { buildChatDraft } from "../../lib/chatDraft";
 import {
   buildChatPath,
+  parseChatSearchParams,
   type ChatLocationState,
 } from "../../lib/chatNavigation";
 import { getCurrentStep, toFriendlyError } from "../../lib/userMessages";
@@ -38,19 +39,25 @@ export function AppShell() {
   const startHandledRef = useRef(false);
   const resumeHandledRef = useRef(false);
 
-  const serviceIds = useMemo(() => {
-    const raw = new URLSearchParams(location.search).get("services") ?? "";
-    return raw
-      .split(",")
-      .map((s) => decodeURIComponent(s).trim())
-      .filter(Boolean);
-  }, [location.search]);
+  const { serviceIds, activeServiceId: urlActiveServiceId } = useMemo(
+    () => parseChatSearchParams(location.search),
+    [location.search]
+  );
 
   const draftId = useMemo(() => {
     return new URLSearchParams(location.search).get("draft")?.trim() ?? "";
   }, [location.search]);
 
-  const chat = useChatSession({ serviceIds });
+  const chat = useChatSession({
+    serviceIds,
+    activeServiceId: urlActiveServiceId,
+    onActiveServiceChange: (nextActive) => {
+      navigate(buildChatPath(serviceIds, draftId, nextActive), {
+        replace: true,
+        state: location.state,
+      });
+    },
+  });
   const [services, setServices] = useState<EvaluationServiceSummary[]>([]);
   const [servicesLoading, setServicesLoading] = useState(true);
   const [savedDraft, setSavedDraft] = useState<AssessmentDraft | null>(null);
@@ -118,7 +125,10 @@ export function AppShell() {
     resumeHandledRef.current = true;
     void chat.restoreFromChatState(savedDraft.chatState).then((restored) => {
       if (restored) {
-        navigate(buildChatPath(serviceIds, draftId), { replace: true, state: {} });
+        navigate(
+          buildChatPath(serviceIds, draftId, chat.activeServiceId),
+          { replace: true, state: {} }
+        );
       } else {
         resumeHandledRef.current = false;
       }
@@ -144,7 +154,10 @@ export function AppShell() {
     startHandledRef.current = true;
     void chat.beginSession().then((started) => {
       if (started) {
-        navigate(buildChatPath(serviceIds), { replace: true, state: {} });
+        navigate(
+          buildChatPath(serviceIds, undefined, chat.activeServiceId),
+          { replace: true, state: {} }
+        );
       } else {
         startHandledRef.current = false;
       }
@@ -241,7 +254,10 @@ export function AppShell() {
 
       setSavedDraft(saved);
       if (!draftId) {
-        navigate(buildChatPath(serviceIds, saved.assessmentId), { replace: true, state: {} });
+        navigate(
+          buildChatPath(serviceIds, saved.assessmentId, chat.activeServiceId),
+          { replace: true, state: {} }
+        );
       }
       setSaveMessage("Progress saved. You can continue later from your dashboard.");
     } catch (err) {
@@ -265,7 +281,10 @@ export function AppShell() {
           chat.resetSession();
           setSavedDraft(null);
           setSaveMessage(null);
-          navigate(buildChatPath(serviceIds), { replace: true, state: {} });
+          navigate(
+          buildChatPath(serviceIds, undefined, chat.activeServiceId),
+          { replace: true, state: {} }
+        );
         }}
         onRetryHealth={chat.refreshHealth}
         signedIn={signedIn}
