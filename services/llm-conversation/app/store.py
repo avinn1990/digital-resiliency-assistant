@@ -41,6 +41,29 @@ class SessionStore:
         self._sessions[session.session_id] = session
         return session
 
+    def create_restored(
+        self,
+        framework_id: str,
+        service_id: str,
+        evaluation_path: str,
+        capability_states: dict[str, Any],
+        facts: dict[str, Any],
+        messages: list[dict[str, str]],
+        completed: bool,
+    ) -> LlmSession:
+        session = LlmSession(
+            session_id=str(uuid4()),
+            framework_id=framework_id,
+            service_id=service_id,
+            capability_states=capability_states,
+            facts=facts,
+            messages=list(messages),
+            completed=completed,
+            evaluation_path=evaluation_path,
+        )
+        self._sessions[session.session_id] = session
+        return session
+
     def get(self, session_id: str) -> LlmSession | None:
         return self._sessions.get(session_id)
 

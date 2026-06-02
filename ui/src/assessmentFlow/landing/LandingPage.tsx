@@ -47,7 +47,9 @@ export function LandingPage({ onSignedIn }: Props) {
       <header className="landing-hero landing-section--teal">
         <div className="landing-hero__header">
           <div className="landing-brand">
-            <div className="landing-brand__mark" aria-hidden="true" />
+            <div className="landing-brand__mark" aria-hidden="true">
+              <img src="/site-icon.svg" alt="" />
+            </div>
             <div className="landing-brand__name">
               Digital Resiliency
               <span>Assessment</span>
@@ -77,7 +79,6 @@ export function LandingPage({ onSignedIn }: Props) {
 
         <div className="landing-hero__footer">
           <LandingWave fill="var(--landing-cream)" />
-          <div className="landing-seal">Assess with intention</div>
         </div>
       </header>
 
@@ -86,6 +87,31 @@ export function LandingPage({ onSignedIn }: Props) {
           <div>
             <h2 id="landing-intro-heading">{LANDING.intro.headline}</h2>
             <p className="landing-intro__body">{LANDING.intro.body}</p>
+            <aside className="landing-book-reference" aria-labelledby="landing-book-heading">
+              <img
+                className="landing-book-reference__cover"
+                src={LANDING.intro.book.coverSrc}
+                alt={LANDING.intro.book.coverAlt}
+                loading="lazy"
+                width={403}
+                height={500}
+              />
+              <div className="landing-book-reference__copy">
+                <p className="landing-book-reference__eyebrow">Based on</p>
+                <h3 id="landing-book-heading">{LANDING.intro.book.title}</h3>
+                <p className="landing-book-reference__subtitle">{LANDING.intro.book.subtitle}</p>
+                <p className="landing-book-reference__author">by {LANDING.intro.book.author}</p>
+                <p className="landing-book-reference__desc">{LANDING.intro.book.description}</p>
+                <a
+                  className="landing-book-reference__link"
+                  href={LANDING.intro.book.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View on Amazon
+                </a>
+              </div>
+            </aside>
             <blockquote className="landing-quote">
               <IconBotanical className="landing-quote__icon" />
               <p>{LANDING.intro.quote}</p>
@@ -199,7 +225,9 @@ export function LandingPage({ onSignedIn }: Props) {
         <div className="landing-footer__grid">
           <div className="landing-footer__brand">
             <div className="landing-brand">
-              <div className="landing-brand__mark" aria-hidden="true" />
+              <div className="landing-brand__mark" aria-hidden="true">
+                <img src="/site-icon.svg" alt="" />
+              </div>
               <div className="landing-brand__name">{LANDING.brand}</div>
             </div>
             <p>{LANDING.footer.mission}</p>

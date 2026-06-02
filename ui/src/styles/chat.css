@@ -430,6 +430,14 @@
   margin-top: 0.5rem;
   display: flex;
   justify-content: flex-end;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.chat-save-status {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+  color: var(--success);
 }
 
 /* Assessment side panel */

@@ -20,10 +20,12 @@ class AssessmentDraftBody(BaseModel):
     createdAt: str
     updatedAt: str
     ownerEmail: EmailStr | None = None
+    mode: Literal["questionnaire", "chat"] = "questionnaire"
     profile: UserProfileBody
     selectedServiceIds: list[str]
     currentServiceId: str | None = None
     responsesByService: dict[str, dict[str, Any]] = Field(default_factory=dict)
+    chatState: dict[str, Any] | None = None
 
 
 class AssessmentSummaryResponse(BaseModel):
@@ -33,6 +35,7 @@ class AssessmentSummaryResponse(BaseModel):
     username: str
     role: str
     ownerEmail: EmailStr | None = None
+    mode: Literal["questionnaire", "chat"] = "questionnaire"
     status: Literal["pending", "completed"]
     servicesDone: int
     servicesTotal: int

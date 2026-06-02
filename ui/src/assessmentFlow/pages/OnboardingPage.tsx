@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { AuthUser } from "../../auth/types";
-import { servicesForRole } from "../roles";
+import { servicesForRole, serviceDescriptionForDisplay } from "../roles";
 import type { EvaluationServiceSummary } from "../types";
 
 type Props = {
@@ -188,13 +188,10 @@ export function OnboardingPage({
                             />
                             <span>{service.service_name ?? service.service_id}</span>
                           </label>
-                          {service.version ? (
-                            <span className="af-pill">v{service.version}</span>
-                          ) : null}
                         </div>
-                        {service.description && (
+                        {serviceDescriptionForDisplay(service.description) && (
                           <div className="af-onboarding-service-desc">
-                            {service.description}
+                            {serviceDescriptionForDisplay(service.description)}
                           </div>
                         )}
                       </div>
@@ -205,8 +202,7 @@ export function OnboardingPage({
             ) : (
               <>
                 <p className="context-help">
-                  These services are mapped to <strong>{role}</strong>. They are selected
-                  by default — uncheck any that do not apply.
+                  Review the services below. Uncheck any that don&apos;t apply.
                 </p>
                 <div className="af-onboarding-service-list">
                   {matchedServices.map((service) => (
@@ -225,19 +221,12 @@ export function OnboardingPage({
                           />
                           <span>{service.service_name ?? service.service_id}</span>
                         </label>
-                        {service.version ? (
-                          <span className="af-pill">v{service.version}</span>
-                        ) : null}
                       </div>
-                      {service.description && (
+                      {serviceDescriptionForDisplay(service.description) && (
                         <div className="af-onboarding-service-desc">
-                          {service.description}
+                          {serviceDescriptionForDisplay(service.description)}
                         </div>
                       )}
-                      <div className="af-onboarding-service-meta">
-                        <span className="af-mono">{service.service_id}</span>
-                        <span className="af-pill ok">Mapped to your role</span>
-                      </div>
                     </div>
                   ))}
                 </div>

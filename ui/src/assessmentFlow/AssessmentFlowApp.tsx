@@ -25,6 +25,7 @@ import {
 import type { AuthUser } from "../auth/types";
 import { toFriendlyError } from "../lib/userMessages";
 import { buildChatPath, chatLocationState } from "../lib/chatNavigation";
+import { chatDraftResumePath } from "../lib/chatDraft";
 import {
   createAssessment,
   deleteAssessment,
@@ -39,6 +40,7 @@ import { DashboardPage } from "./pages/DashboardPage";
 import { OnboardingPage } from "./pages/OnboardingPage";
 import type { AssessmentDraft, EvaluationServiceSummary, UserProfile } from "./types";
 import { collectRoles, servicesForRole } from "./roles";
+import { isChatAssessmentDraft } from "./draftUtils";
 import { QuestionnairePage } from "./pages/QuestionnairePage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { SplashAuthPage } from "./pages/SplashAuthPage";
@@ -473,11 +475,26 @@ export function AssessmentFlowApp() {
     });
   }
 
-  function resumeDraft(assessmentId: string) {
-    setState((s) => ({ ...s, activeAssessmentId: assessmentId, activeDraft: null }));
-    navigate(`/assessment/${encodeURIComponent(assessmentId)}/questions`, {
-      replace: true,
-    });
+  async function resumeDraft(assessmentId: string) {
+    const authToken = authTokenRef.current;
+    if (!authToken) return;
+
+    try {
+      const draft = await getAssessment(assessmentId, authToken);
+      if (isChatAssessmentDraft(draft)) {
+        navigate(chatDraftResumePath(draft), { replace: true });
+        return;
+      }
+      setState((s) => ({ ...s, activeAssessmentId: assessmentId, activeDraft: null }));
+      navigate(`/assessment/${encodeURIComponent(assessmentId)}/questions`, {
+        replace: true,
+      });
+    } catch (err) {
+      setState((s) => ({
+        ...s,
+        assessmentsError: toFriendlyError(err),
+      }));
+    }
   }
 
   function viewSummary(assessmentId: string) {

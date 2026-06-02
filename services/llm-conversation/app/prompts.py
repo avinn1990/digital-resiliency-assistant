@@ -40,6 +40,9 @@ def build_turn_prompt(
             "Dynamic follow-ups are limited to 5 per capability (append to dynamic_questions_asked).",
             "When progression_constraints shows a capability at the follow-up limit, mark it sufficient or insufficient and move to the next capability.",
             "In capability_updates, send only new ids for reference_questions_covered and dynamic_questions_asked; the server merges them with prior values.",
+            "Set active_evaluation_focus to the specific rubric focus (evaluation_focus string) you are assessing this turn.",
+            "Set active_capability_label to a short, natural phrase for the capability (2-4 words, lowercase, e.g. service existence, security program).",
+            "Set active_rubric_label to one simple rubric word/phrase: Documentation, Enterprise adoption, Automation, Integration, or Monitoring.",
         ],
         "progression_constraints": build_progression_constraints(capability_states),
         "current_capability_states": capability_states,
@@ -48,6 +51,9 @@ def build_turn_prompt(
         "response_schema": {
             "reply": "string — next message to show the user (one question or brief acknowledgment + question)",
             "active_capability_id": "string | null",
+            "active_evaluation_focus": "string | null — rubric focus being assessed (from capability evaluation_focus or reference question)",
+            "active_capability_label": "string | null — short human label for the capability (e.g. service existence)",
+            "active_rubric_label": "string | null — simple rubric label: Documentation | Enterprise adoption | Automation | Integration | Monitoring",
             "capability_updates": [
                 {
                     "capability_id": "string",

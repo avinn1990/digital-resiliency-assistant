@@ -7,6 +7,7 @@
     {
       "id": "issp-00",
       "name": "Service exists and is in good condition",
+      "short_name": "service existence",
       "description": "The information security strategy and planning function (or equivalent service) is established, funded, and operating effectively.",
       "evaluation_focus": [
         "Documented service or function charter",
@@ -19,6 +20,7 @@
     {
       "id": "issp-11",
       "name": "Information Security Program",
+      "short_name": "security program",
       "description": "A formal information security program exists with defined scope, objectives, and organizational coverage.",
       "evaluation_focus": [
         "Documented program definition or charter",
@@ -31,6 +33,7 @@
     {
       "id": "issp-12",
       "name": "Security Vision and Mission",
+      "short_name": "vision and mission",
       "description": "Documented security vision and mission statements guide program direction and stakeholder expectations.",
       "evaluation_focus": [
         "Published security vision",
@@ -43,6 +46,7 @@
     {
       "id": "issp-13",
       "name": "Security Sponsor",
+      "short_name": "executive sponsor",
       "description": "An executive security sponsor provides authority, advocacy, and accountability for the information security program.",
       "evaluation_focus": [
         "Named executive sponsor for the program",
@@ -55,6 +59,7 @@
     {
       "id": "issp-14",
       "name": "Strategy and Planning Team",
+      "short_name": "planning team",
       "description": "A dedicated strategy and planning team (or clearly assigned roles) exists to develop and maintain security strategy and plans.",
       "evaluation_focus": [
         "Team or role assignment for strategy and planning",
@@ -67,6 +72,7 @@
     {
       "id": "issp-01",
       "name": "Security strategy alignment with business objectives",
+      "short_name": "strategy alignment",
       "description": "Information security strategy is explicitly linked to business goals, risk appetite, and enterprise planning cycles.",
       "evaluation_focus": [
         "Documented security strategy or charter",
@@ -79,6 +85,7 @@
     {
       "id": "issp-04",
       "name": "Information security program roadmap",
+      "short_name": "program roadmap",
       "description": "A security adoption roadmap for the information security program spans near-, mid-, and long-term horizons (including 3- and 5-year views where applicable).",
       "evaluation_focus": [
         "Roadmap for the information security program",
@@ -91,6 +98,7 @@
     {
       "id": "issp-02",
       "name": "Governance and accountability model",
+      "short_name": "governance model",
       "description": "Roles, committees, and decision rights for security strategy are defined and operating.",
       "evaluation_focus": [
         "Security governance forum or equivalent",
@@ -103,6 +111,7 @@
     {
       "id": "issp-03",
       "name": "Enterprise risk management integration",
+      "short_name": "risk management",
       "description": "Cyber and information security risks are integrated into enterprise risk registers and treatment planning.",
       "evaluation_focus": [
         "Risk taxonomy alignment",
@@ -115,6 +124,7 @@
     {
       "id": "issp-05",
       "name": "Policy and standards framework",
+      "short_name": "policies and standards",
       "description": "Policies and standards translate strategy into enforceable requirements across the organization.",
       "evaluation_focus": [
         "Policy hierarchy and ownership",
@@ -127,6 +137,7 @@
     {
       "id": "issp-06",
       "name": "Budget and resource planning",
+      "short_name": "budget and resources",
       "description": "Security funding, staffing, and capability investments are planned and tracked against strategy.",
       "evaluation_focus": [
         "Budget linkage to roadmap",
@@ -139,6 +150,7 @@
     {
       "id": "issp-07",
       "name": "KPIs and KRIs",
+      "short_name": "metrics",
       "description": "Key performance and risk indicators measure security program health and inform leadership decisions.",
       "evaluation_focus": [
         "Defined KPIs and KRIs",
@@ -151,6 +163,7 @@
     {
       "id": "issp-08",
       "name": "Regulatory and compliance alignment",
+      "short_name": "compliance alignment",
       "description": "Strategy and planning account for applicable regulations, contracts, and assurance obligations.",
       "evaluation_focus": [
         "Compliance obligations inventory",
@@ -163,6 +176,7 @@
     {
       "id": "issp-09",
       "name": "Third-party and supply chain security strategy",
+      "short_name": "third-party risk",
       "description": "Third-party risk is addressed in strategy with consistent requirements and oversight.",
       "evaluation_focus": [
         "Tiering or criticality model",
@@ -175,6 +189,7 @@
     {
       "id": "issp-10",
       "name": "Workforce and security culture planning",
+      "short_name": "security culture",
       "description": "Awareness, training, and culture initiatives are planned to support strategic outcomes.",
       "evaluation_focus": [
         "Role-based training plan",

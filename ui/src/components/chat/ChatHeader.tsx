@@ -1,4 +1,5 @@
 import type { AppStep } from "../../lib/userMessages";
+import type { AssessmentFocus } from "../../services/types";
 import type { BackendHealthStatus } from "../../services/health";
 import { ConnectionStatus } from "../common/ConnectionStatus";
 import { ProgressBar } from "../common/ProgressBar";
@@ -10,6 +11,7 @@ type Props = {
   sessionId: string | null;
   currentStep: AppStep;
   progress: { current: number; total: number };
+  assessmentFocus?: AssessmentFocus | null;
   completed: boolean;
   connectionStatus: BackendHealthStatus;
   onNewChat: () => void;
@@ -26,6 +28,7 @@ export function ChatHeader({
   sessionId,
   currentStep,
   progress,
+  assessmentFocus,
   completed,
   connectionStatus,
   onNewChat,
@@ -93,6 +96,7 @@ export function ChatHeader({
           current={progress.current}
           total={progress.total}
           completed={completed}
+          assessmentFocus={assessmentFocus}
         />
       )}
     </header>

@@ -193,9 +193,23 @@ button {
 .progress-bar-meta {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
   font-size: 0.8rem;
   color: var(--text-muted);
   margin-bottom: 0.35rem;
+}
+
+.progress-focus-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.progress-focus-lines strong {
+  color: var(--text-muted-on-surface);
+  font-weight: 600;
 }
 
 .progress-ready {

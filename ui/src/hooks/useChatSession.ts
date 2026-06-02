@@ -1,12 +1,24 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import type { ChatAssessmentState, ChatServiceSnapshot } from "../assessmentFlow/types";
+import {
+  buildServiceSnapshot,
+  type ChatSessionSnapshot,
+  snapshotFromChatState,
+} from "../lib/chatDraft";
 import { toFriendlyError } from "../lib/userMessages";
-import { runAssessment, sendMessage, startSession } from "../services/agentApi";
+import {
+  restoreSession,
+  runAssessment,
+  sendMessage,
+  startSession,
+} from "../services/agentApi";
 import {
   canReachBackend,
   fetchBackendHealth,
   type BackendHealthStatus,
 } from "../services/health";
 import type {
+  AssessmentFocus,
   AssessmentResult,
   ChatMessage,
   SessionProgress,
@@ -25,6 +37,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [progress, setProgress] = useState<SessionProgress>({ current: 0, total: 0 });
+  const [assessmentFocus, setAssessmentFocus] = useState<AssessmentFocus | null>(null);
   const [completed, setCompleted] = useState(false);
   const [assessment, setAssessment] = useState<AssessmentResult | null>(null);
   const [loading, setLoading] = useState(false);
@@ -37,6 +50,12 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
   const [activeServiceId, setActiveServiceId] = useState<string>(
     options?.serviceIds?.[0] ?? ""
   );
+  const [completedServiceIds, setCompletedServiceIds] = useState<string[]>([]);
+  const [serviceSnapshots, setServiceSnapshots] = useState<
+    Record<string, ChatServiceSnapshot>
+  >({});
+  const capabilityStatesRef = useRef<Record<string, unknown>>({});
+  const factsRef = useRef<Record<string, unknown>>({});
 
   const refreshHealth = useCallback(async () => {
     const health = await fetchBackendHealth();
@@ -52,6 +71,10 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     if (!options?.serviceIds?.length) return;
     setServiceQueue(options.serviceIds);
     setActiveServiceId(options.serviceIds[0] ?? "");
+    setCompletedServiceIds([]);
+    setServiceSnapshots({});
+    capabilityStatesRef.current = {};
+    factsRef.current = {};
   }, [options?.serviceIds?.join(",")]);
 
   useEffect(() => {
@@ -61,6 +84,35 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     }, 10_000);
     return () => window.clearInterval(intervalId);
   }, [backendHealth, refreshHealth]);
+
+  const captureCurrentServiceSnapshot = useCallback(
+    (
+      nextMessages: ChatMessage[],
+      nextProgress: SessionProgress,
+      nextCompleted: boolean,
+      capabilityStates?: Record<string, unknown>,
+      facts?: Record<string, unknown>
+    ) => {
+      if (!activeServiceId) return;
+      if (capabilityStates) {
+        capabilityStatesRef.current = capabilityStates;
+      }
+      if (facts) {
+        factsRef.current = facts;
+      }
+      setServiceSnapshots((prev) => ({
+        ...prev,
+        [activeServiceId]: buildServiceSnapshot({
+          messages: nextMessages,
+          progress: nextProgress,
+          completed: nextCompleted,
+          capabilityStates: capabilityStates ?? capabilityStatesRef.current,
+          facts: facts ?? factsRef.current,
+        }),
+      }));
+    },
+    [activeServiceId]
+  );
 
   const beginSession = useCallback(async () => {
     const serviceId = activeServiceId || serviceQueue[0];
@@ -74,12 +126,22 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     setAssessment(null);
     setMessages([]);
     setSessionId(null);
+    capabilityStatesRef.current = {};
+    factsRef.current = {};
     try {
       const result = await startSession(serviceId);
       setSessionId(result.session_id);
-      setMessages([createMessage("assistant", result.reply)]);
+      const firstMessages = [createMessage("assistant", result.reply)];
+      setMessages(firstMessages);
       setProgress(result.progress);
-      setCompleted(false);
+      setCompleted(Boolean(result.completed));
+      setAssessmentFocus(result.assessment_focus ?? null);
+      captureCurrentServiceSnapshot(
+        firstMessages,
+        result.progress,
+        Boolean(result.completed),
+        result.capability_states
+      );
       setBackendHealth("ready");
       return true;
     } catch (err) {
@@ -88,43 +150,127 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     } finally {
       setLoading(false);
     }
-  }, [activeServiceId, serviceQueue]);
+  }, [activeServiceId, serviceQueue, captureCurrentServiceSnapshot]);
+
+  const restoreFromChatState = useCallback(
+    async (chatState: ChatAssessmentState) => {
+      const snapshot = snapshotFromChatState(chatState);
+      const serviceId = snapshot.activeServiceId;
+      if (!serviceId) {
+        setError("Saved assessment is missing the active service.");
+        return false;
+      }
+
+      setLoading(true);
+      setError(null);
+      setAssessment(null);
+      setMessages(snapshot.messages);
+      setProgress(snapshot.progress);
+      setCompleted(snapshot.completed);
+      setActiveServiceId(serviceId);
+      setServiceQueue([serviceId, ...snapshot.remainingServiceIds]);
+      setCompletedServiceIds(snapshot.completedServiceIds);
+      setServiceSnapshots(snapshot.serviceSnapshots);
+
+      const savedServiceSnapshot = snapshot.serviceSnapshots[serviceId];
+      capabilityStatesRef.current = savedServiceSnapshot?.capabilityStates ?? {};
+      factsRef.current = savedServiceSnapshot?.facts ?? {};
+
+      try {
+        const restorePayload = savedServiceSnapshot
+          ? {
+              capability_states: savedServiceSnapshot.capabilityStates,
+              facts: savedServiceSnapshot.facts,
+              messages: savedServiceSnapshot.messages,
+              completed: savedServiceSnapshot.completed,
+            }
+          : { messages: [], completed: false };
+
+        const result = await restoreSession(serviceId, restorePayload);
+        setSessionId(result.session_id);
+        setProgress(result.progress);
+        setCompleted(result.completed);
+        setAssessmentFocus(result.assessment_focus ?? null);
+        captureCurrentServiceSnapshot(
+          snapshot.messages,
+          result.progress,
+          result.completed,
+          result.capability_states
+        );
+        setBackendHealth("ready");
+        return true;
+      } catch (err) {
+        setError(toFriendlyError(err));
+        return false;
+      } finally {
+        setLoading(false);
+      }
+    },
+    [captureCurrentServiceSnapshot]
+  );
 
   const submitUserMessage = useCallback(
     async (text: string) => {
       if (!sessionId || !text.trim() || loading) return;
       const trimmed = text.trim();
-      setMessages((prev) => [...prev, createMessage("user", trimmed)]);
+      const nextMessages = [...messages, createMessage("user", trimmed)];
+      setMessages(nextMessages);
       setLoading(true);
       setError(null);
       try {
         const result = await sendMessage(sessionId, trimmed);
-        setMessages((prev) => [
-          ...prev,
+        const withReply = [
+          ...nextMessages,
           createMessage("assistant", result.reply),
-        ]);
+        ];
+        setMessages(withReply);
         setProgress(result.progress);
         setCompleted(result.completed);
+        setAssessmentFocus(result.assessment_focus ?? null);
+        captureCurrentServiceSnapshot(
+          withReply,
+          result.progress,
+          result.completed,
+          result.capability_states,
+          result.facts_preview
+        );
         setBackendHealth("ready");
         if (result.completed && serviceQueue.length > 1) {
+          const finishedServiceId = activeServiceId;
           const next = serviceQueue[1];
-          setMessages((prev) => [
-            ...prev,
+          setCompletedServiceIds((prev) =>
+            finishedServiceId && !prev.includes(finishedServiceId)
+              ? [...prev, finishedServiceId]
+              : prev
+          );
+          setServiceQueue((q) => q.slice(1));
+          setActiveServiceId(next);
+          capabilityStatesRef.current = {};
+          factsRef.current = {};
+          const transitionMessages = [
+            ...withReply,
             createMessage(
               "assistant",
               "Great — moving to the next service assessment."
             ),
-          ]);
-          setServiceQueue((q) => q.slice(1));
-          setActiveServiceId(next);
+          ];
+          setMessages(transitionMessages);
           const nextSession = await startSession(next);
           setSessionId(nextSession.session_id);
-          setMessages((prev) => [
-            ...prev,
+          const afterNext = [
+            ...transitionMessages,
             createMessage("assistant", nextSession.reply),
-          ]);
+          ];
+          setMessages(afterNext);
           setProgress(nextSession.progress);
-          setCompleted(false);
+          setCompleted(Boolean(nextSession.completed));
+          setAssessmentFocus(nextSession.assessment_focus ?? null);
+          captureCurrentServiceSnapshot(
+            afterNext,
+            nextSession.progress,
+            Boolean(nextSession.completed),
+            nextSession.capability_states
+          );
         }
       } catch (err) {
         setError(toFriendlyError(err));
@@ -132,7 +278,14 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
         setLoading(false);
       }
     },
-    [sessionId, loading, serviceQueue]
+    [
+      sessionId,
+      loading,
+      serviceQueue,
+      messages,
+      activeServiceId,
+      captureCurrentServiceSnapshot,
+    ]
   );
 
   const executeAssessment = useCallback(async () => {
@@ -157,14 +310,52 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     setSessionId(null);
     setMessages([]);
     setProgress({ current: 0, total: 0 });
+    setAssessmentFocus(null);
     setCompleted(false);
     setAssessment(null);
     setError(null);
+    setCompletedServiceIds([]);
+    setServiceSnapshots({});
+    capabilityStatesRef.current = {};
+    factsRef.current = {};
     const ids = options?.serviceIds ?? [];
     setServiceQueue(ids);
     setActiveServiceId(ids[0] ?? "");
     void refreshHealth();
   }, [options?.serviceIds?.join(","), refreshHealth]);
+
+  const getSnapshot = useCallback((): ChatSessionSnapshot => {
+    return {
+      messages,
+      progress,
+      completed,
+      activeServiceId,
+      remainingServiceIds: serviceQueue.slice(1),
+      completedServiceIds,
+      serviceSnapshots: {
+        ...serviceSnapshots,
+        ...(activeServiceId
+          ? {
+              [activeServiceId]: buildServiceSnapshot({
+                messages,
+                progress,
+                completed,
+                capabilityStates: capabilityStatesRef.current,
+                facts: factsRef.current,
+              }),
+            }
+          : {}),
+      },
+    };
+  }, [
+    messages,
+    progress,
+    completed,
+    activeServiceId,
+    serviceQueue,
+    completedServiceIds,
+    serviceSnapshots,
+  ]);
 
   const connectionStatus: BackendHealthStatus = sessionId ? "ready" : backendHealth;
 
@@ -174,6 +365,7 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     sessionId,
     messages,
     progress,
+    assessmentFocus,
     completed,
     assessment,
     loading,
@@ -182,10 +374,12 @@ export function useChatSession(options?: { serviceIds?: string[] }) {
     backendHealth,
     connectionStatus,
     beginSession,
+    restoreFromChatState,
     submitUserMessage,
     executeAssessment,
     clearAssessment,
     resetSession,
     refreshHealth,
+    getSnapshot,
   };
 }

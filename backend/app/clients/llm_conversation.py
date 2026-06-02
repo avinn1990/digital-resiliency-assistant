@@ -13,6 +13,14 @@ class LlmConversationClient(ServiceClient):
         response.raise_for_status()
         return response.json()
 
+    async def restore_session(self, framework_id: str, snapshot: dict) -> dict:
+        response = await self.post(
+            "/sessions/restore",
+            json={"framework_id": framework_id, "snapshot": snapshot},
+        )
+        response.raise_for_status()
+        return response.json()
+
     async def send_message(self, session_id: str, message: str) -> dict:
         response = await self.post(
             f"/sessions/{session_id}/messages",

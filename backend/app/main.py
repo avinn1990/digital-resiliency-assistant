@@ -80,6 +80,11 @@ class StartSessionRequest(BaseModel):
     framework_id: str
 
 
+class RestoreSessionRequest(BaseModel):
+    framework_id: str
+    snapshot: dict = Field(default_factory=dict)
+
+
 class SendMessageRequest(BaseModel):
     message: str = Field(..., min_length=1)
 
@@ -189,6 +194,20 @@ async def start_session(body: StartSessionRequest) -> dict:
     try:
         if _uses_llm(body.framework_id):
             result = await llm_conversation.start_session(body.framework_id)
+            register_llm_session(result["session_id"])
+            return result
+        return await conversation.start_session(body.framework_id)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise_gateway_error(exc)
+
+
+@app.post("/sessions/restore")
+async def restore_session(body: RestoreSessionRequest) -> dict:
+    try:
+        if _uses_llm(body.framework_id):
+            result = await llm_conversation.restore_session(body.framework_id, body.snapshot)
             register_llm_session(result["session_id"])
             return result
         return await conversation.start_session(body.framework_id)
