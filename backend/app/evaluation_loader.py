@@ -1,8 +1,16 @@
 import json
 import os
+import sys
 from functools import lru_cache
 from pathlib import Path
 from typing import Any
+
+_REPO_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[2],
+)
+sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
+from role_registry import enrich_service_audience, list_roles  # noqa: E402
 
 
 def _repo_root() -> Path:
@@ -77,17 +85,22 @@ def list_evaluation_services() -> list[dict[str, Any]]:
             capabilities_doc = _read_json(cap_path)
         except Exception:
             continue
+        audience = enrich_service_audience(service_id, capabilities_doc)
         items.append(
             {
                 "service_id": service_id,
                 "service_name": capabilities_doc.get("service_name"),
                 "version": capabilities_doc.get("version"),
                 "description": capabilities_doc.get("description"),
-                "target_audience": capabilities_doc.get("target_audience", []),
+                **audience,
                 "path": str(service_dir),
             }
         )
     return items
+
+
+def list_canonical_roles() -> list[dict[str, str]]:
+    return list_roles(used_only=True)
 
 
 def load_evaluation_service_bundle(service_id: str) -> dict[str, Any] | None:
@@ -103,12 +116,13 @@ def load_evaluation_service_bundle(service_id: str) -> dict[str, Any] | None:
     capabilities_doc = _read_json(cap_path)
     questions_doc = _read_json(q_path)
 
+    audience = enrich_service_audience(service_id, capabilities_doc)
     return {
         "service_id": capabilities_doc.get("service_id") or service_id,
         "service_name": capabilities_doc.get("service_name"),
         "version": capabilities_doc.get("version"),
         "description": capabilities_doc.get("description"),
-        "target_audience": capabilities_doc.get("target_audience", []),
+        **audience,
         "capabilities": capabilities_doc.get("capabilities", []),
         "reference_questions_by_capability": questions_doc.get("capability_questions", []),
         "reference_questions": _flatten_capability_questions(questions_doc),

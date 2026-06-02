@@ -253,16 +253,16 @@
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
   },
-  "target_audience": [
-    "CISO / Head of Security",
-    "Security program / strategy lead",
-    "GRC leader",
-    "Security PMO / portfolio manager",
-    "Enterprise Risk Management (ERM) owner",
-    "Compliance / Audit lead",
-    "Third-party risk / Vendor risk (TPRM) lead",
-    "Security metrics owner",
-    "Security awareness / culture lead",
-    "Finance partner for security budgeting"
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "security-program-strategy-lead",
+    "grc-lead",
+    "security-pmo-portfolio-manager",
+    "enterprise-risk-manager",
+    "compliance-audit-lead",
+    "tprm-lead",
+    "security-metrics-owner",
+    "security-awareness-culture-lead",
+    "finance-partner-security-budgeting"
   ]
 }

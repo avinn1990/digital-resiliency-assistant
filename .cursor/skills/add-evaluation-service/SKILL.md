@@ -109,18 +109,20 @@ Document: purpose, `service_id`, validate command, pointer to `shared/docs/evalu
 
 ---
 
-## Step 3 — Register target audience
+## Step 3 — Register target audience (canonical roles)
 
-Add an entry to `shared/docs/service-target-audience.json`:
+Pick `role_id` values from [`shared/docs/canonical-roles.json`](shared/docs/canonical-roles.json). Do **not** invent free-text role labels — add a new canonical role there only when a genuinely new stakeholder type is needed.
+
+Add an entry to [`shared/docs/service-target-audience.json`](shared/docs/service-target-audience.json):
 
 ```json
 "<service_id>": {
   "service_name": "<Service Display Name>",
-  "target_audience": ["...", "..."]
+  "role_ids": ["ciso-head-of-security", "..."]
 }
 ```
 
-Keep `target_audience` in sync with `capabilities.json` `target_audience` (UI reads from capabilities via API; this file is the shared registry).
+Set the same `target_audience_role_ids` array in the pack's `capabilities.json`. Run `python3 shared/scripts/validate_role_mappings.py` to verify registry, mapping, and pack stay in sync.
 
 ---
 

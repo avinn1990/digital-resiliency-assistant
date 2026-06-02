@@ -1,6 +1,15 @@
+import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 from sqlalchemy.orm import Session
+
+_REPO_ROOT = next(
+    (p for p in Path(__file__).resolve().parents if (p / "render.yaml").is_file()),
+    Path(__file__).resolve().parents[3],
+)
+sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
+from role_registry import resolve_role_id  # noqa: E402
 
 from app.assessments.schemas import (
     AssessmentDraftBody,
@@ -88,19 +97,25 @@ def delete_user_profile(db: Session, email: str) -> bool:
     return True
 
 
+def _normalize_profile_role(role: str) -> str:
+    trimmed = role.strip()
+    return resolve_role_id(trimmed) or trimmed
+
+
 def save_user_profile(db: Session, email: str, profile: UserOnboardingProfile) -> UserProfileRecord:
     normalized = _normalize_email(email)
+    role = _normalize_profile_role(profile.role)
     existing = db.get(UserProfileRecord, normalized)
     if existing:
         existing.company = profile.company.strip()
-        existing.role = profile.role.strip()
+        existing.role = role
         existing.updated_at = utcnow()
         row = existing
     else:
         row = UserProfileRecord(
             email=normalized,
             company=profile.company.strip(),
-            role=profile.role.strip(),
+            role=role,
             updated_at=utcnow(),
         )
         db.add(row)

@@ -1,5 +1,5 @@
 import { getApiBase } from "../lib/apiBase";
-import type { EvaluationServiceBundle, EvaluationServiceSummary } from "./types";
+import type { CanonicalRole, EvaluationServiceBundle, EvaluationServiceSummary } from "./types";
 
 async function request<T>(
   path: string,
@@ -29,6 +29,10 @@ async function request<T>(
 
 export function listEvaluationServices(authToken?: string) {
   return request<EvaluationServiceSummary[]>("/evaluation-services", undefined, authToken);
+}
+
+export function listCanonicalRoles(authToken?: string) {
+  return request<CanonicalRole[]>("/roles", undefined, authToken);
 }
 
 export function getEvaluationServiceContent(serviceId: string, authToken?: string) {

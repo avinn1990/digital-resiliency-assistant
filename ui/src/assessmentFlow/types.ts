@@ -4,6 +4,12 @@ export type EvaluationServiceSummary = {
   version?: string;
   description?: string;
   target_audience: string[];
+  target_audience_role_ids?: string[];
+};
+
+export type CanonicalRole = {
+  role_id: string;
+  display_name: string;
 };
 
 export type EvaluationQuestion = {
