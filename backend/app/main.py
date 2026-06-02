@@ -24,7 +24,11 @@ from app.config import (
     is_openai_configured,
     settings,
 )
-from app.evaluation_loader import list_evaluation_services, load_evaluation_service_bundle
+from app.evaluation_loader import (
+    list_canonical_roles,
+    list_evaluation_services,
+    load_evaluation_service_bundle,
+)
 from app.http_errors import raise_gateway_error
 from app.session_registry import is_llm_session, register_llm_session
 
@@ -162,6 +166,11 @@ async def register_framework(body: RegisterFrameworkRequest) -> dict:
         return await framework.register_framework(body.framework)
     except Exception as exc:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
+
+
+@app.get("/roles")
+async def list_roles(_user: AuthUser | None = Depends(get_current_user)) -> list[dict]:
+    return list_canonical_roles()
 
 
 @app.get("/evaluation-services")

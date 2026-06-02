@@ -154,14 +154,13 @@
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
   },
-  "target_audience": [
-    "CISO",
-    "Deputy CISO / Security Director",
-    "Security Governance, Risk & Compliance (GRC) Lead",
-    "Enterprise Risk Manager",
-    "Security Architecture Lead",
-    "IT Director / Head of IT",
-    "Internal Audit Lead",
-    "Compliance Officer"
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "enterprise-risk-manager",
+    "security-architecture-lead",
+    "it-director-head-of-it",
+    "compliance-audit-lead"
   ]
 }

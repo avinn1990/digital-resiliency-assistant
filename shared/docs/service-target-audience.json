@@ -1,33 +1,32 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Maps service_id to intended target audience/stakeholders.",
+  "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json.",
   "services": {
     "enterprise-security-governance": {
       "service_name": "Enterprise Security Governance",
-      "target_audience": [
-        "CISO",
-        "Deputy CISO / Security Director",
-        "Security Governance, Risk & Compliance (GRC) Lead",
-        "Enterprise Risk Manager",
-        "Security Architecture Lead",
-        "IT Director / Head of IT",
-        "Internal Audit Lead",
-        "Compliance Officer"
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "enterprise-risk-manager",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "compliance-audit-lead"
       ]
     },
     "information-security-strategy-planning": {
       "service_name": "Information Security Strategy and Planning Services",
-      "target_audience": [
-        "CISO / Head of Security",
-        "Security program / strategy lead",
-        "GRC leader",
-        "Security PMO / portfolio manager",
-        "Enterprise Risk Management (ERM) owner",
-        "Compliance / Audit lead",
-        "Third-party risk / Vendor risk (TPRM) lead",
-        "Security metrics owner",
-        "Security awareness / culture lead",
-        "Finance partner for security budgeting"
+      "role_ids": [
+        "ciso-head-of-security",
+        "security-program-strategy-lead",
+        "grc-lead",
+        "security-pmo-portfolio-manager",
+        "enterprise-risk-manager",
+        "compliance-audit-lead",
+        "tprm-lead",
+        "security-metrics-owner",
+        "security-awareness-culture-lead",
+        "finance-partner-security-budgeting"
       ]
     }
   }

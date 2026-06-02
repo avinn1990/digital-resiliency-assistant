@@ -1,7 +1,9 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import type { CanonicalRole } from "../types";
+import { resolveRoleId } from "../roles";
 
 type Props = {
-  roles: string[];
+  roles: CanonicalRole[];
   servicesLoading: boolean;
   servicesError: string | null;
   initialProfile?: {
@@ -29,6 +31,12 @@ export function UserProfilePage({
   const [fullName, setFullName] = useState(initialProfile?.fullName ?? "");
   const [company, setCompany] = useState(initialProfile?.company ?? "");
   const [role, setRole] = useState(initialProfile?.role ?? "");
+
+  useEffect(() => {
+    if (!initialProfile?.role || roles.length === 0) return;
+    const resolved = resolveRoleId(initialProfile.role, roles);
+    if (resolved) setRole(resolved);
+  }, [initialProfile?.role, roles]);
 
   const canContinue = useMemo(() => {
     return (
@@ -110,9 +118,9 @@ export function UserProfilePage({
               <option value="" disabled>
                 {servicesLoading ? "Loading roles…" : "Select your role"}
               </option>
-              {roles.map((r) => (
-                <option key={r} value={r}>
-                  {r}
+              {roles.map((item) => (
+                <option key={item.role_id} value={item.role_id}>
+                  {item.display_name}
                 </option>
               ))}
               <option value="Other">Other</option>
@@ -134,8 +142,8 @@ export function UserProfilePage({
               Continue
             </button>
             <p className="context-help">
-              Roles are deduplicated from the target audience across all available
-              services.
+              Roles are normalized across services — one role can map to multiple
+              assessment offerings.
             </p>
           </div>
 

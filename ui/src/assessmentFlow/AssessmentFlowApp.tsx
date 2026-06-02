@@ -34,12 +34,12 @@ import {
   updateAssessment,
   type UserDraftSummary,
 } from "./assessmentsApi";
-import { listEvaluationServices } from "./api";
+import { listCanonicalRoles, listEvaluationServices } from "./api";
 import { createAssessmentId } from "./id";
 import { DashboardPage } from "./pages/DashboardPage";
 import { OnboardingPage } from "./pages/OnboardingPage";
-import type { AssessmentDraft, EvaluationServiceSummary, UserProfile } from "./types";
-import { collectRoles, servicesForRole } from "./roles";
+import type { AssessmentDraft, CanonicalRole, EvaluationServiceSummary, UserProfile } from "./types";
+import { roleDisplayName, servicesForRole } from "./roles";
 import { isChatAssessmentDraft } from "./draftUtils";
 import { QuestionnairePage } from "./pages/QuestionnairePage";
 import { ServicesPage } from "./pages/ServicesPage";
@@ -52,6 +52,7 @@ type AppState = {
   authUser: AuthUser | null;
   authReady: boolean;
   services: EvaluationServiceSummary[];
+  canonicalRoles: CanonicalRole[];
   servicesError: string | null;
   loadingServices: boolean;
   profile: UserProfile | null;
@@ -72,6 +73,7 @@ const DEFAULT_STATE: AppState = {
   authUser: null,
   authReady: false,
   services: [],
+  canonicalRoles: [],
   servicesError: null,
   loadingServices: false,
   profile: null,
@@ -246,6 +248,7 @@ export function AssessmentFlowApp() {
       setState((s) => ({
         ...s,
         services: [],
+        canonicalRoles: [],
         servicesError: null,
         loadingServices: false,
       }));
@@ -254,16 +257,20 @@ export function AssessmentFlowApp() {
 
     let cancelled = false;
     setState((s) => ({ ...s, loadingServices: true, servicesError: null }));
-    listEvaluationServices(state.authToken)
-      .then((services) => {
+    Promise.all([
+      listEvaluationServices(state.authToken),
+      listCanonicalRoles(state.authToken),
+    ])
+      .then(([services, canonicalRoles]) => {
         if (cancelled) return;
-        setState((s) => ({ ...s, services, loadingServices: false }));
+        setState((s) => ({ ...s, services, canonicalRoles, loadingServices: false }));
       })
       .catch((err) => {
         if (cancelled) return;
         setState((s) => ({
           ...s,
           services: [],
+          canonicalRoles: [],
           servicesError: toFriendlyError(err),
           loadingServices: false,
         }));
@@ -323,7 +330,12 @@ export function AssessmentFlowApp() {
     navigate,
   ]);
 
-  const allRoles = useMemo(() => collectRoles(state.services), [state.services]);
+  const allRoles = state.canonicalRoles;
+
+  const profileRoleLabel = useMemo(() => {
+    if (!state.onboardingProfile?.role) return "";
+    return roleDisplayName(state.onboardingProfile.role, state.canonicalRoles);
+  }, [state.onboardingProfile?.role, state.canonicalRoles]);
 
   const profileDefaults = useMemo(() => {
     if (!state.authUser) return undefined;
@@ -608,7 +620,7 @@ export function AssessmentFlowApp() {
               servicesError={state.servicesError}
               servicesCount={state.services.length}
               company={state.onboardingProfile?.company}
-              role={state.onboardingProfile?.role}
+              role={profileRoleLabel || state.onboardingProfile?.role}
               onStartNew={handleStartNewAssessment}
               onResume={resumeDraft}
               onViewSummary={viewSummary}
@@ -654,6 +666,7 @@ export function AssessmentFlowApp() {
           ) : state.profile ? (
             <ServicesPage
               profile={state.profile}
+              roles={allRoles}
               services={state.services}
               servicesLoading={state.loadingServices}
               servicesError={state.servicesError}
@@ -664,6 +677,7 @@ export function AssessmentFlowApp() {
           ) : state.onboardingProfile && state.authUser ? (
             <ServicesPage
               profile={buildUserProfile(state.authUser, state.onboardingProfile)}
+              roles={allRoles}
               services={state.services}
               servicesLoading={state.loadingServices}
               servicesError={state.servicesError}
@@ -688,6 +702,7 @@ export function AssessmentFlowApp() {
           ) : state.activeDraft ? (
             <ServicesPage
               profile={state.activeDraft.profile}
+              roles={allRoles}
               services={state.services}
               servicesLoading={state.loadingServices}
               servicesError={state.servicesError}
@@ -745,6 +760,7 @@ export function AssessmentFlowApp() {
           ) : state.activeDraft ? (
             <SummaryPage
               draft={state.activeDraft}
+              roles={allRoles}
               services={state.services}
               onDiscard={() => {
                 void discardDraft(state.activeDraft!.assessmentId);
