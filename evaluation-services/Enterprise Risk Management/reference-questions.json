@@ -1,0 +1,249 @@
+{
+  "service_id": "enterprise-risk-management",
+  "service_name": "Enterprise Risk Management",
+  "capability_questions": [
+    {
+      "capability_id": "erm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-erm-00-1",
+          "prompt": "Is there a documented enterprise risk management function or service with a clear charter and scope?",
+          "intent": "Evaluate whether an ERM function exists with documented charter and scope",
+          "field_key": "erm_00_erm_function_charter_scope",
+          "evaluation_focus": "Documented ERM charter and scope"
+        },
+        {
+          "id": "rq-erm-00-2",
+          "prompt": "How is the ERM operating model defined—including stakeholders, cadence of activities, and how risk owners engage with the program?",
+          "intent": "Evaluate ERM operating model and stakeholder engagement",
+          "field_key": "erm_00_operating_model_stakeholders_cadence",
+          "evaluation_focus": "Operating model, stakeholders, and delivery cadence"
+        },
+        {
+          "id": "rq-erm-00-3",
+          "prompt": "How does the organization gather feedback and improve the ERM service over time?",
+          "intent": "Evaluate continuous improvement for the ERM function",
+          "field_key": "erm_00_continuous_improvement_feedback",
+          "evaluation_focus": "Continuous improvement and stakeholder feedback"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-01",
+      "capability_name": "Enterprise Risk Management Program",
+      "questions": [
+        {
+          "id": "rq-erm-01-1",
+          "prompt": "Is there a formal enterprise risk management program charter or equivalent document that defines objectives and scope?",
+          "intent": "Evaluate whether a formal ERM program is documented",
+          "field_key": "erm_01_formal_erm_program_charter",
+          "evaluation_focus": "Documented ERM program definition or charter"
+        },
+        {
+          "id": "rq-erm-01-2",
+          "prompt": "Does the ERM program cover all major business units and functions, or only selected areas?",
+          "intent": "Evaluate enterprise-wide scope of the ERM program",
+          "field_key": "erm_01_program_scope_business_units",
+          "evaluation_focus": "Program scope across business units and functions"
+        },
+        {
+          "id": "rq-erm-01-3",
+          "prompt": "Who leads the ERM program, and to whom do they report for risk outcomes and escalations?",
+          "intent": "Evaluate ERM program leadership and reporting line",
+          "field_key": "erm_01_program_leadership_reporting",
+          "evaluation_focus": "Program leadership, sponsorship, and reporting line"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-02",
+      "capability_name": "Risk Appetite and Tolerance",
+      "questions": [
+        {
+          "id": "rq-erm-02-1",
+          "prompt": "Are risk appetite and tolerance statements documented and kept current?",
+          "intent": "Evaluate documentation of risk appetite and tolerance",
+          "field_key": "erm_02_risk_appetite_tolerance_documented",
+          "evaluation_focus": "Documented risk appetite and tolerance statements"
+        },
+        {
+          "id": "rq-erm-02-2",
+          "prompt": "Who approves risk appetite and tolerance, and how are they communicated to risk owners and executives?",
+          "intent": "Evaluate approval and communication of risk appetite",
+          "field_key": "erm_02_appetite_approval_communication",
+          "evaluation_focus": "Board or executive approval and communication"
+        },
+        {
+          "id": "rq-erm-02-3",
+          "prompt": "Can you give an example where risk appetite or tolerance influenced a prioritization decision or escalation?",
+          "intent": "Evaluate operational use of risk appetite in decisions",
+          "field_key": "erm_02_appetite_informs_decisions",
+          "evaluation_focus": "Evidence that appetite informs prioritization and escalations"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-03",
+      "capability_name": "Risk Taxonomy and Risk Register",
+      "questions": [
+        {
+          "id": "rq-erm-03-1",
+          "prompt": "Is there a standard risk taxonomy or category model used consistently across the enterprise?",
+          "intent": "Evaluate existence of a standard risk taxonomy",
+          "field_key": "erm_03_standard_risk_taxonomy",
+          "evaluation_focus": "Defined risk categories and taxonomy"
+        },
+        {
+          "id": "rq-erm-03-2",
+          "prompt": "Is there a central or federated risk register with named owners, ratings, and status for material risks?",
+          "intent": "Evaluate risk register maintenance and ownership",
+          "field_key": "erm_03_risk_register_owners_ratings",
+          "evaluation_focus": "Central or federated risk register with ownership"
+        },
+        {
+          "id": "rq-erm-03-3",
+          "prompt": "How often is the risk register reviewed and updated, and what quality controls exist?",
+          "intent": "Evaluate risk register refresh cadence and data quality",
+          "field_key": "erm_03_register_refresh_quality_controls",
+          "evaluation_focus": "Refresh cadence and quality controls for register data"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-04",
+      "capability_name": "Risk Assessment Methodology",
+      "questions": [
+        {
+          "id": "rq-erm-04-1",
+          "prompt": "Is there a documented risk assessment methodology with defined scoring scales (e.g., likelihood and impact)?",
+          "intent": "Evaluate documented risk assessment methodology",
+          "field_key": "erm_04_assessment_methodology_scoring",
+          "evaluation_focus": "Documented assessment methodology and scoring scales"
+        },
+        {
+          "id": "rq-erm-04-2",
+          "prompt": "Is the assessment methodology applied consistently across business units and major risk domains?",
+          "intent": "Evaluate consistent application of risk assessment methods",
+          "field_key": "erm_04_methodology_applied_enterprise_wide",
+          "evaluation_focus": "Application across key risk domains and business units"
+        },
+        {
+          "id": "rq-erm-04-3",
+          "prompt": "How are risk assessments calibrated, peer-reviewed, or validated to ensure consistency?",
+          "intent": "Evaluate calibration and validation of risk assessments",
+          "field_key": "erm_04_assessment_calibration_validation",
+          "evaluation_focus": "Calibration, peer review, or validation of assessments"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-05",
+      "capability_name": "Risk Treatment and Mitigation Planning",
+      "questions": [
+        {
+          "id": "rq-erm-05-1",
+          "prompt": "For material risks, are treatment decisions documented (accept, mitigate, transfer, avoid)?",
+          "intent": "Evaluate documented risk treatment decisions",
+          "field_key": "erm_05_treatment_decisions_documented",
+          "evaluation_focus": "Documented treatment decisions per material risk"
+        },
+        {
+          "id": "rq-erm-05-2",
+          "prompt": "Do mitigation plans include owners, milestones, and target dates that are tracked to completion?",
+          "intent": "Evaluate mitigation planning with accountable owners",
+          "field_key": "erm_05_mitigation_plans_owners_milestones",
+          "evaluation_focus": "Mitigation plans with owners and milestones"
+        },
+        {
+          "id": "rq-erm-05-3",
+          "prompt": "How does the organization measure whether risk treatments reduced residual risk?",
+          "intent": "Evaluate tracking of treatment effectiveness",
+          "field_key": "erm_05_treatment_effectiveness_tracking",
+          "evaluation_focus": "Tracking of treatment effectiveness and closure"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-06",
+      "capability_name": "Risk Governance and Accountability",
+      "questions": [
+        {
+          "id": "rq-erm-06-1",
+          "prompt": "What risk governance forums or committees exist, and what decisions do they own?",
+          "intent": "Evaluate risk governance bodies and decision scope",
+          "field_key": "erm_06_risk_governance_forums_committees",
+          "evaluation_focus": "Defined risk committees or governance forums"
+        },
+        {
+          "id": "rq-erm-06-2",
+          "prompt": "Is there a documented RACI or equivalent for enterprise risk decisions and escalations?",
+          "intent": "Evaluate RACI for risk decisions",
+          "field_key": "erm_06_raci_risk_decisions_escalations",
+          "evaluation_focus": "Documented RACI for risk decisions and escalations"
+        },
+        {
+          "id": "rq-erm-06-3",
+          "prompt": "How are risk acceptances and exceptions approved and recorded?",
+          "intent": "Evaluate accountability for risk acceptance and exceptions",
+          "field_key": "erm_06_risk_acceptance_exception_approval",
+          "evaluation_focus": "Accountability for risk acceptance and exceptions"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-07",
+      "capability_name": "Risk Reporting and Executive Communication",
+      "questions": [
+        {
+          "id": "rq-erm-07-1",
+          "prompt": "What is included in the standard enterprise risk reporting pack (e.g., heat maps, top risks, KRIs)?",
+          "intent": "Evaluate content of enterprise risk reporting",
+          "field_key": "erm_07_risk_reporting_pack_content",
+          "evaluation_focus": "Defined risk reporting pack and audience"
+        },
+        {
+          "id": "rq-erm-07-2",
+          "prompt": "How often is risk information reported to executive leadership and the board?",
+          "intent": "Evaluate executive and board risk reporting cadence",
+          "field_key": "erm_07_executive_board_reporting_cadence",
+          "evaluation_focus": "Executive and board reporting cadence"
+        },
+        {
+          "id": "rq-erm-07-3",
+          "prompt": "Can you describe a recent example where risk reporting changed a prioritization, funding decision, or escalation?",
+          "intent": "Evaluate whether risk reporting drives action",
+          "field_key": "erm_07_reporting_influences_decisions",
+          "evaluation_focus": "Evidence that reporting influences decisions and funding"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-08",
+      "capability_name": "Integration with Security, Compliance, and Third-Party Risk",
+      "questions": [
+        {
+          "id": "rq-erm-08-1",
+          "prompt": "How are information security risks integrated into the enterprise risk register and reporting?",
+          "intent": "Evaluate integration of security risk into ERM",
+          "field_key": "erm_08_security_risk_integration",
+          "evaluation_focus": "Linkage between ERM and security risk processes"
+        },
+        {
+          "id": "rq-erm-08-2",
+          "prompt": "How do compliance assessments, audit findings, and regulatory changes feed into enterprise risk views?",
+          "intent": "Evaluate integration of compliance and audit into ERM",
+          "field_key": "erm_08_compliance_audit_integration",
+          "evaluation_focus": "Incorporation of compliance and audit findings into risk view"
+        },
+        {
+          "id": "rq-erm-08-3",
+          "prompt": "How is third-party or vendor risk represented in enterprise risk reporting and treatment planning?",
+          "intent": "Evaluate third-party risk integration with ERM",
+          "field_key": "erm_08_third_party_risk_integration",
+          "evaluation_focus": "Third-party and vendor risk feeding enterprise risk reporting"
+        }
+      ]
+    }
+  ]
+}
