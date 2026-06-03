@@ -74,11 +74,12 @@ services:
           name: dra-framework
           envVarKey: RENDER_EXTERNAL_URL
 
+  # LLM chat: starter avoids free-tier spin-down (502/timeouts on POST /sessions).
   - type: web
     name: dra-llm-conversation
     runtime: python
     rootDir: services/llm-conversation
-    plan: free
+    plan: starter
     region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
