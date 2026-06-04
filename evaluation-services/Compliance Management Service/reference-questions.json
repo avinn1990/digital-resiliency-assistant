@@ -28,7 +28,7 @@
       "questions": [
         {
           "id": "rq-cm-01-1",
-          "prompt": "Does the enterprise use a compliance management software to monitor the compliance enterprise wide?",
+          "prompt": "Does the enterprise use a compliance management software to monitor compliance enterprise-wide?",
           "intent": "Evaluate use of compliance management software for enterprise-wide monitoring",
           "field_key": "cm_01_compliance_management_software_enterprise_wide",
           "evaluation_focus": "Compliance management software for enterprise-wide monitoring"
@@ -56,7 +56,7 @@
         },
         {
           "id": "rq-cm-01-5",
-          "prompt": "Does the compliance management software integrate with a decision point or other technologies in the network to aid in attribute based decision making?",
+          "prompt": "Does the compliance management software integrate with a decision point or other technologies in the network to aid in attribute-based decision making?",
           "intent": "Evaluate integration with decision points and network technologies for attribute-based decisions",
           "field_key": "cm_01_software_integrates_decision_point_abac",
           "evaluation_focus": "Integration with decision points and network technologies"
@@ -110,7 +110,7 @@
         },
         {
           "id": "rq-cm-03-2",
-          "prompt": "Is compliance management process implemented enterprise wide? or within a specific scope?",
+          "prompt": "Is compliance management process implemented enterprise-wide, or is it implemented within a specific scope?",
           "intent": "Evaluate enterprise-wide vs scoped implementation of compliance management process",
           "field_key": "cm_03_process_implemented_enterprise_or_scope",
           "evaluation_focus": "Process implemented enterprise-wide or scoped"
@@ -137,7 +137,7 @@
       "questions": [
         {
           "id": "rq-cm-04-1",
-          "prompt": "Has the enterprise officially documented all the relevant standards and regulations that requires alignment?",
+          "prompt": "Has the enterprise officially documented all the relevant standards and regulations that require alignment?",
           "intent": "Evaluate official documentation of relevant standards and regulations",
           "field_key": "cm_04_standards_regulations_documented",
           "evaluation_focus": "Official documentation of relevant standards and regulations"
@@ -190,7 +190,7 @@
       "questions": [
         {
           "id": "rq-cm-07-1",
-          "prompt": "Does the enterprise hire/already hired policy and compliance specialists as part of the compliance teams?",
+          "prompt": "Does the enterprise employ policy and compliance specialists as part of the compliance teams?",
           "intent": "Evaluate policy and compliance specialists on compliance teams",
           "field_key": "cm_07_policy_compliance_specialists_on_teams",
           "evaluation_focus": "Policy and compliance specialists on compliance teams"
@@ -230,7 +230,7 @@
       "questions": [
         {
           "id": "rq-cm-09-1",
-          "prompt": "Is there a formal documented process on hardening applications inline with compliance?",
+          "prompt": "Is there a formal documented process on hardening applications in line with compliance?",
           "intent": "Evaluate formal documented application hardening process aligned with compliance",
           "field_key": "cm_09_application_hardening_process_documented",
           "evaluation_focus": "Application hardening process and coverage"
@@ -279,7 +279,7 @@
         },
         {
           "id": "rq-cm-09-8",
-          "prompt": "Is the device hardening inline with compliance metrics and compliance management process?",
+          "prompt": "Is the device hardening in line with compliance metrics and compliance management process?",
           "intent": "Evaluate device hardening alignment with compliance metrics and process",
           "field_key": "cm_09_device_hardening_inline_compliance",
           "evaluation_focus": "Endpoint and device hardening aligned to compliance"
@@ -341,14 +341,14 @@
         },
         {
           "id": "rq-cm-10-2",
-          "prompt": "Is transport of compliance changes made securely to the SOC ?",
+          "prompt": "Is transport of compliance changes made securely to the SOC?",
           "intent": "Evaluate secure transport of compliance changes to the SOC",
           "field_key": "cm_10_secure_transport_compliance_changes_to_soc",
           "evaluation_focus": "Secure transport of compliance changes to the SOC"
         },
         {
           "id": "rq-cm-10-3",
-          "prompt": "Are dynamic changes to the compliance captured and transferred to the SOC ?",
+          "prompt": "Are dynamic changes to compliance changes captured and transferred to the SOC?",
           "intent": "Evaluate capture and transfer of dynamic compliance changes to the SOC",
           "field_key": "cm_10_dynamic_compliance_changes_transferred_to_soc",
           "evaluation_focus": "Dynamic compliance changes captured and transferred to the SOC"

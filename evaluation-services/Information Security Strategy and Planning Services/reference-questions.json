@@ -22,7 +22,7 @@
         },
         {
           "id": "rq-issp-00-3",
-          "prompt": "Is the service adopted enterprise wide?",
+          "prompt": "Is the service adopted enterprise-wide?",
           "intent": "Evaluate enterprise-wide adoption of the service",
           "field_key": "issp_00_service_enterprise_wide_adoption",
           "evaluation_focus": "Operating model and delivery cadence"

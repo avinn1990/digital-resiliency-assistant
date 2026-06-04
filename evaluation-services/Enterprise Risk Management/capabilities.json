@@ -59,7 +59,7 @@
       "description": "A formalized and documented enterprise risk management program and strategy exists and is reviewed frequently.",
       "evaluation_focus": [
         "Formal documented ERM program and strategy",
-        "Risk management strategy review cadence"
+        "risk management strategy review cadence"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
