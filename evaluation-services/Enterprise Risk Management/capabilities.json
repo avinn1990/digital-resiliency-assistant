@@ -228,12 +228,6 @@
   },
   "target_audience_role_ids": [
     "enterprise-risk-manager",
-    "grc-lead",
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "compliance-audit-lead",
-    "tprm-lead",
-    "finance-partner-security-budgeting",
-    "security-program-strategy-lead"
+    "tprm-lead"
   ]
 }

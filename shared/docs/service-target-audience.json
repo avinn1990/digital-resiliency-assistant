@@ -1,42 +1,27 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json.",
+  "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json. Each role_id must appear in at most one service (no overlap).",
   "services": {
     "compliance-management-service": {
       "service_name": "Compliance Management Service",
       "role_ids": [
-        "compliance-audit-lead",
-        "grc-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "enterprise-risk-manager",
-        "it-director-head-of-it",
-        "security-architecture-lead"
+        "compliance-audit-lead"
       ]
     },
     "enterprise-risk-management": {
       "service_name": "Enterprise Risk Management",
       "role_ids": [
         "enterprise-risk-manager",
-        "grc-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "compliance-audit-lead",
-        "tprm-lead",
-        "finance-partner-security-budgeting",
-        "security-program-strategy-lead"
+        "tprm-lead"
       ]
     },
     "enterprise-security-governance": {
       "service_name": "Enterprise Security Governance",
       "role_ids": [
-        "ciso-head-of-security",
         "deputy-ciso-security-director",
         "grc-lead",
-        "enterprise-risk-manager",
         "security-architecture-lead",
-        "it-director-head-of-it",
-        "compliance-audit-lead"
+        "it-director-head-of-it"
       ]
     },
     "information-security-strategy-planning": {
@@ -44,11 +29,7 @@
       "role_ids": [
         "ciso-head-of-security",
         "security-program-strategy-lead",
-        "grc-lead",
         "security-pmo-portfolio-manager",
-        "enterprise-risk-manager",
-        "compliance-audit-lead",
-        "tprm-lead",
         "security-metrics-owner",
         "security-awareness-culture-lead",
         "finance-partner-security-budgeting"

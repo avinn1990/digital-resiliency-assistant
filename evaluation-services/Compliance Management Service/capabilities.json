@@ -189,12 +189,6 @@
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
   },
   "target_audience_role_ids": [
-    "compliance-audit-lead",
-    "grc-lead",
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "enterprise-risk-manager",
-    "it-director-head-of-it",
-    "security-architecture-lead"
+    "compliance-audit-lead"
   ]
 }
