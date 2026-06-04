@@ -8,6 +8,7 @@ export type UserDraftSummary = {
   username: string;
   role: string;
   ownerEmail?: string;
+  mode?: "questionnaire" | "chat";
   status: "pending" | "completed";
   servicesDone: number;
   servicesTotal: number;

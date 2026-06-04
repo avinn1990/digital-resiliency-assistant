@@ -17,7 +17,7 @@ from env_constants import (  # noqa: E402
     OPENAI_MODEL,
 )
 from openai_env import is_openai_configured  # noqa: E402
-from app.orchestrator import handle_message, run_llm_assessment, start_session
+from app.orchestrator import handle_message, restore_session, run_llm_assessment, start_session
 from app.store import store
 
 app = FastAPI(
@@ -32,6 +32,11 @@ class StartSessionBody(BaseModel):
 
 class MessageBody(BaseModel):
     message: str = Field(..., min_length=1)
+
+
+class RestoreSessionBody(BaseModel):
+    framework_id: str = Field(default=settings.default_service_id)
+    snapshot: dict = Field(default_factory=dict)
 
 
 @app.get("/health")
@@ -76,6 +81,19 @@ async def create_session(body: StartSessionBody) -> dict:
         raise HTTPException(
             status_code=502,
             detail=f"Failed to start assessment session: {exc}",
+        ) from exc
+
+
+@app.post("/sessions/restore")
+async def restore_saved_session(body: RestoreSessionBody) -> dict:
+    try:
+        return await restore_session(body.framework_id, body.snapshot)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise HTTPException(
+            status_code=502,
+            detail=f"Failed to restore assessment session: {exc}",
         ) from exc
 
 

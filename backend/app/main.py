@@ -24,7 +24,11 @@ from app.config import (
     is_openai_configured,
     settings,
 )
-from app.evaluation_loader import list_evaluation_services, load_evaluation_service_bundle
+from app.evaluation_loader import (
+    list_canonical_roles,
+    list_evaluation_services,
+    load_evaluation_service_bundle,
+)
 from app.http_errors import raise_gateway_error
 from app.session_registry import is_llm_session, register_llm_session
 
@@ -78,6 +82,11 @@ def _uses_llm(framework_id: str) -> bool:
 
 class StartSessionRequest(BaseModel):
     framework_id: str
+
+
+class RestoreSessionRequest(BaseModel):
+    framework_id: str
+    snapshot: dict = Field(default_factory=dict)
 
 
 class SendMessageRequest(BaseModel):
@@ -159,6 +168,11 @@ async def register_framework(body: RegisterFrameworkRequest) -> dict:
         raise HTTPException(status_code=502, detail=str(exc)) from exc
 
 
+@app.get("/roles")
+async def list_roles(_user: AuthUser | None = Depends(get_current_user)) -> list[dict]:
+    return list_canonical_roles()
+
+
 @app.get("/evaluation-services")
 async def list_eval_services(_user: AuthUser | None = Depends(get_current_user)) -> list[dict]:
     return list_evaluation_services()
@@ -189,6 +203,20 @@ async def start_session(body: StartSessionRequest) -> dict:
     try:
         if _uses_llm(body.framework_id):
             result = await llm_conversation.start_session(body.framework_id)
+            register_llm_session(result["session_id"])
+            return result
+        return await conversation.start_session(body.framework_id)
+    except HTTPException:
+        raise
+    except Exception as exc:
+        raise_gateway_error(exc)
+
+
+@app.post("/sessions/restore")
+async def restore_session(body: RestoreSessionRequest) -> dict:
+    try:
+        if _uses_llm(body.framework_id):
+            result = await llm_conversation.restore_session(body.framework_id, body.snapshot)
             register_llm_session(result["session_id"])
             return result
         return await conversation.start_session(body.framework_id)

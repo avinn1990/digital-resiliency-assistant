@@ -4,6 +4,12 @@ export type EvaluationServiceSummary = {
   version?: string;
   description?: string;
   target_audience: string[];
+  target_audience_role_ids?: string[];
+};
+
+export type CanonicalRole = {
+  role_id: string;
+  display_name: string;
 };
 
 export type EvaluationQuestion = {
@@ -45,12 +51,38 @@ export type UserProfile = {
   role: string;
 };
 
+export type AssessmentMode = "questionnaire" | "chat";
+
+export type ChatServiceSnapshot = {
+  messages: Array<{ role: "user" | "assistant"; content: string }>;
+  progress: { current: number; total: number };
+  completed: boolean;
+  capabilityStates?: Record<string, unknown>;
+  facts?: Record<string, unknown>;
+};
+
+export type ChatAssessmentState = {
+  messages: Array<{
+    id: string;
+    role: "user" | "assistant";
+    content: string;
+    timestamp: string;
+  }>;
+  progress: { current: number; total: number };
+  completed: boolean;
+  activeServiceId: string;
+  remainingServiceIds: string[];
+  completedServiceIds: string[];
+  serviceSnapshots: Record<string, ChatServiceSnapshot>;
+};
+
 export type AssessmentDraft = {
   assessmentId: string;
   createdAt: string;
   updatedAt: string;
   authToken?: string;
   ownerEmail?: string;
+  mode?: AssessmentMode;
   profile: UserProfile;
   selectedServiceIds: string[];
   currentServiceId?: string;
@@ -61,5 +93,6 @@ export type AssessmentDraft = {
       responses: Record<string, string>;
     }
   >;
+  chatState?: ChatAssessmentState;
 };
 

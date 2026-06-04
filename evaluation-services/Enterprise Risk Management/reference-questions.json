@@ -1,0 +1,384 @@
+{
+  "service_id": "enterprise-risk-management",
+  "service_name": "Enterprise Risk Management",
+  "capability_questions": [
+    {
+      "capability_id": "erm-00",
+      "capability_name": "Service Exists and in good condition",
+      "questions": [
+        {
+          "id": "rq-erm-00-1",
+          "prompt": "Does the enterprise have a Risk Management service ?",
+          "intent": "Evaluate whether an enterprise risk management service exists",
+          "field_key": "erm_00_risk_management_service_exists",
+          "evaluation_focus": "Existence of an enterprise risk management service"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-01",
+      "capability_name": "Enterprise Risk Management Platform",
+      "questions": [
+        {
+          "id": "rq-erm-01-1",
+          "prompt": "Does the enterprise use a risk management platform to monitor and visualize risk ?",
+          "intent": "Evaluate use of a risk management platform to monitor and visualize risk",
+          "field_key": "erm_01_risk_management_platform_monitor_visualize",
+          "evaluation_focus": "Platform used to monitor and visualize risk"
+        },
+        {
+          "id": "rq-erm-01-2",
+          "prompt": "Does the scope of the risk management platform cover the entire enterprise and its managed entities or does it cover a smaller scope?",
+          "intent": "Evaluate whether the risk management platform scope is enterprise-wide or limited",
+          "field_key": "erm_01_platform_scope_enterprise_vs_partial",
+          "evaluation_focus": "Enterprise-wide vs limited platform scope"
+        },
+        {
+          "id": "rq-erm-01-3",
+          "prompt": "Does the platform have capability to automate the risk calculation and management ?",
+          "intent": "Evaluate platform automation for risk calculation and management",
+          "field_key": "erm_01_platform_automate_risk_calculation_management",
+          "evaluation_focus": "Automation of risk calculation and management"
+        },
+        {
+          "id": "rq-erm-01-4",
+          "prompt": "Can the platform integrate with other managment platforms to share risk information ?",
+          "intent": "Evaluate platform integration with other management platforms to share risk information",
+          "field_key": "erm_01_platform_integrate_share_risk_information",
+          "evaluation_focus": "Integration with other management platforms"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-02",
+      "capability_name": "Enterprise Risk Management Process",
+      "questions": [
+        {
+          "id": "rq-erm-02-1",
+          "prompt": "Is there a formal Risk management process documented ?",
+          "intent": "Evaluate whether a formal risk management process is documented",
+          "field_key": "erm_02_formal_risk_management_process_documented",
+          "evaluation_focus": "Documented formal risk management process"
+        },
+        {
+          "id": "rq-erm-02-2",
+          "prompt": "Is the Risk management process implemented enterprise wide for all relevant risks?",
+          "intent": "Evaluate enterprise-wide implementation of the risk management process",
+          "field_key": "erm_02_process_implemented_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide process implementation"
+        },
+        {
+          "id": "rq-erm-02-3",
+          "prompt": "Does the Risk Management platform , or the risk management team automate risk management process ?",
+          "intent": "Evaluate automation of the risk management process by platform or team",
+          "field_key": "erm_02_platform_or_team_automate_process",
+          "evaluation_focus": "Process automation via platform or team"
+        },
+        {
+          "id": "rq-erm-02-4",
+          "prompt": "How many times are the risk management process reviewed ?",
+          "intent": "Evaluate how frequently the risk management process is reviewed",
+          "field_key": "erm_02_process_review_frequency",
+          "evaluation_focus": "Process review frequency"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-03",
+      "capability_name": "Risk Register and Risk Exception Process",
+      "questions": [
+        {
+          "id": "rq-erm-03-1",
+          "prompt": "Are there scnearios when the proper risk cannot be mitigated and the risk needs to be accepted ? If yes how are risk exceptions handled ?",
+          "intent": "Evaluate risk exception handling when mitigation is not possible",
+          "field_key": "erm_03_risk_acceptance_exception_handling",
+          "evaluation_focus": "Risk acceptance and exception handling"
+        },
+        {
+          "id": "rq-erm-03-2",
+          "prompt": "is there a documented enterprise wide policy on how risk exceptions are recorded ?",
+          "intent": "Evaluate documented enterprise-wide policy for recording risk exceptions",
+          "field_key": "erm_03_documented_exception_recording_policy",
+          "evaluation_focus": "Documented enterprise-wide exception recording policy"
+        },
+        {
+          "id": "rq-erm-03-3",
+          "prompt": "Does the risk management platform automated risk exception ?",
+          "intent": "Evaluate whether the risk management platform automates risk exceptions",
+          "field_key": "erm_03_platform_automated_risk_exception",
+          "evaluation_focus": "Platform automation for risk exceptions"
+        },
+        {
+          "id": "rq-erm-03-4",
+          "prompt": "Is the risk register reviewed frequentlty once exceptions are generated ?",
+          "intent": "Evaluate whether the risk register is reviewed frequently after exceptions are generated",
+          "field_key": "erm_03_register_reviewed_after_exceptions",
+          "evaluation_focus": "Risk register review after exceptions"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-04",
+      "capability_name": "Enterprise Risk Management Program",
+      "questions": [
+        {
+          "id": "rq-erm-04-1",
+          "prompt": "Does the enterprise have a formalized and documented enterprise risk management program and strategy ?",
+          "intent": "Evaluate formal documented enterprise risk management program and strategy",
+          "field_key": "erm_04_formal_documented_erm_program_strategy",
+          "evaluation_focus": "Formal documented ERM program and strategy"
+        },
+        {
+          "id": "rq-erm-04-2",
+          "prompt": "Is the Risk management strategy reviewed frequently ?",
+          "intent": "Evaluate how frequently the risk management strategy is reviewed",
+          "field_key": "erm_04_strategy_reviewed_frequently",
+          "evaluation_focus": "Risk management strategy review cadence"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-05",
+      "capability_name": "Enterprise Risk Management Teams",
+      "questions": [
+        {
+          "id": "rq-erm-05-1",
+          "prompt": "Does the enterprise have an Enterprise risk management team that manages and governs the enterprise risk management process and program ?",
+          "intent": "Evaluate whether a dedicated enterprise risk management team governs process and program",
+          "field_key": "erm_05_enterprise_risk_management_team_exists",
+          "evaluation_focus": "Dedicated ERM team governing process and program"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-06",
+      "capability_name": "Cyber Security Risk Manager",
+      "questions": [
+        {
+          "id": "rq-erm-06-1",
+          "prompt": "Does the enterprise have a Cybersecurity Risk Manager to lead the Risk management initiative?",
+          "intent": "Evaluate whether a Cybersecurity Risk Manager leads the risk management initiative",
+          "field_key": "erm_06_cybersecurity_risk_manager_leads_initiative",
+          "evaluation_focus": "Cybersecurity Risk Manager role leading the initiative"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-07",
+      "capability_name": "Enterprise Wide Risk Scale Definition",
+      "questions": [
+        {
+          "id": "rq-erm-07-1",
+          "prompt": "As part of risk management strategy , is the risk management team capable of evaluating and designing enterprise scale risk scale( 0 to 10, 0 to 100 etc. HML, VH, H, M L VL etc ) to be consumed to create risk based policies ?",
+          "intent": "Evaluate ability to design enterprise risk scales for risk-based policies",
+          "field_key": "erm_07_enterprise_risk_scale_definition_for_policies",
+          "evaluation_focus": "Enterprise risk scale design for policy use"
+        },
+        {
+          "id": "rq-erm-07-2",
+          "prompt": "Are the risk scales reviewed frequently with addition of people process and technology and overall maturation of enterprise ?",
+          "intent": "Evaluate frequent review of risk scales as the enterprise matures",
+          "field_key": "erm_07_risk_scales_reviewed_with_maturation",
+          "evaluation_focus": "Risk scale review as the enterprise matures"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-08",
+      "capability_name": "Overall Context based Risk score calculation for flows",
+      "questions": [
+        {
+          "id": "rq-erm-08-1",
+          "prompt": "As part of risk quantification, does the enterprise derive a risk for each flow (subject and object combination ?)",
+          "intent": "Evaluate per-flow risk quantification for subject and object combinations",
+          "field_key": "erm_08_flow_risk_per_subject_object_combination",
+          "evaluation_focus": "Per-flow risk quantification"
+        },
+        {
+          "id": "rq-erm-08-2",
+          "prompt": "Is the quantified risk same across all locations of the enterprise ?",
+          "intent": "Evaluate whether quantified flow risk is consistent across enterprise locations",
+          "field_key": "erm_08_flow_risk_same_across_locations",
+          "evaluation_focus": "Flow risk consistency across locations"
+        },
+        {
+          "id": "rq-erm-08-3",
+          "prompt": "Does the risk change dynamically when the risk of the flow changes ?",
+          "intent": "Evaluate whether flow risk changes dynamically when flow risk changes",
+          "field_key": "erm_08_flow_risk_changes_dynamically",
+          "evaluation_focus": "Dynamic flow risk updates"
+        },
+        {
+          "id": "rq-erm-08-4",
+          "prompt": "Can this risk be utilized across various platforms as well as calculating flow risk score?",
+          "intent": "Evaluate reuse of flow risk across platforms and flow risk score calculation",
+          "field_key": "erm_08_flow_risk_utilized_across_platforms",
+          "evaluation_focus": "Flow risk reuse across platforms"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-09",
+      "capability_name": "Subject Profile Risk calculation, assessment and monitoring",
+      "questions": [
+        {
+          "id": "rq-erm-09-1",
+          "prompt": "As part of risk quantification, does the enterprise derive a risk for each subject that attempts access to enterprise assets ?",
+          "intent": "Evaluate per-subject risk quantification for access to enterprise assets",
+          "field_key": "erm_09_subject_risk_per_access_attempt",
+          "evaluation_focus": "Per-subject risk quantification"
+        },
+        {
+          "id": "rq-erm-09-2",
+          "prompt": "Is the quantified risk same across all locations of the enterprise ?",
+          "intent": "Evaluate whether quantified subject risk is consistent across enterprise locations",
+          "field_key": "erm_09_subject_risk_same_across_locations",
+          "evaluation_focus": "Subject risk consistency across locations"
+        },
+        {
+          "id": "rq-erm-09-3",
+          "prompt": "Does the risk change dynamically when the risk of the subject changes ?",
+          "intent": "Evaluate whether subject risk changes dynamically when subject risk changes",
+          "field_key": "erm_09_subject_risk_changes_dynamically",
+          "evaluation_focus": "Dynamic subject risk updates"
+        },
+        {
+          "id": "rq-erm-09-4",
+          "prompt": "Can this risk be utilized across various platforms as well as calculating flow risk score?",
+          "intent": "Evaluate reuse of subject risk across platforms and flow risk score calculation",
+          "field_key": "erm_09_subject_risk_utilized_across_platforms",
+          "evaluation_focus": "Subject risk reuse across platforms"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-10",
+      "capability_name": "Device Risk calculation assessment and monitoring",
+      "questions": [
+        {
+          "id": "rq-erm-10-1",
+          "prompt": "As part of risk quantification, does the enterprise derive a risk for each device that attempts access to enterprise assets ?",
+          "intent": "Evaluate per-device risk quantification for access to enterprise assets",
+          "field_key": "erm_10_device_risk_per_access_attempt",
+          "evaluation_focus": "Per-device risk quantification"
+        },
+        {
+          "id": "rq-erm-10-2",
+          "prompt": "Is the quantified risk same across all locations of the enterprise ?",
+          "intent": "Evaluate whether quantified device risk is consistent across enterprise locations",
+          "field_key": "erm_10_device_risk_same_across_locations",
+          "evaluation_focus": "Device risk consistency across locations"
+        },
+        {
+          "id": "rq-erm-10-3",
+          "prompt": "Does the risk change dynamically when the risk of the device changes ?",
+          "intent": "Evaluate whether device risk changes dynamically when device risk changes",
+          "field_key": "erm_10_device_risk_changes_dynamically",
+          "evaluation_focus": "Dynamic device risk updates"
+        },
+        {
+          "id": "rq-erm-10-4",
+          "prompt": "Can this risk be utilized across various platforms as well as calculating flow risk score?",
+          "intent": "Evaluate reuse of device risk across platforms and flow risk score calculation",
+          "field_key": "erm_10_device_risk_utilized_across_platforms",
+          "evaluation_focus": "Device risk reuse across platforms"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-11",
+      "capability_name": "Object Profile Risk calculation assessment and monitoring",
+      "questions": [
+        {
+          "id": "rq-erm-11-1",
+          "prompt": "As part of risk quantification, does the enterprise derive a risk for each object that attempts access to enterprise assets ?",
+          "intent": "Evaluate per-object risk quantification for access to enterprise assets",
+          "field_key": "erm_11_object_risk_per_access_attempt",
+          "evaluation_focus": "Per-object risk quantification"
+        },
+        {
+          "id": "rq-erm-11-2",
+          "prompt": "Is the quantified risk same across all locations of the enterprise ?",
+          "intent": "Evaluate whether quantified object risk is consistent across enterprise locations",
+          "field_key": "erm_11_object_risk_same_across_locations",
+          "evaluation_focus": "Object risk consistency across locations"
+        },
+        {
+          "id": "rq-erm-11-3",
+          "prompt": "Does the risk change dynamically when the risk of the object changes ?",
+          "intent": "Evaluate whether object risk changes dynamically when object risk changes",
+          "field_key": "erm_11_object_risk_changes_dynamically",
+          "evaluation_focus": "Dynamic object risk updates"
+        },
+        {
+          "id": "rq-erm-11-4",
+          "prompt": "Can this risk be utilized across various platforms as well as calculating flow risk score?",
+          "intent": "Evaluate reuse of object risk across platforms and flow risk score calculation",
+          "field_key": "erm_11_object_risk_utilized_across_platforms",
+          "evaluation_focus": "Object risk reuse across platforms"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-12",
+      "capability_name": "Supply chain risk calculation assessment and monitoring",
+      "questions": [
+        {
+          "id": "rq-erm-12-1",
+          "prompt": "As part of risk quantification, does the enterprise derive a risk for hardware and software of third party entities ?",
+          "intent": "Evaluate risk quantification for third-party hardware and software",
+          "field_key": "erm_12_supply_chain_risk_third_party_hw_sw",
+          "evaluation_focus": "Third-party hardware and software risk quantification"
+        },
+        {
+          "id": "rq-erm-12-2",
+          "prompt": "Is the quantified risk same across all locations of the enterprise ?",
+          "intent": "Evaluate whether quantified supply chain risk is consistent across enterprise locations",
+          "field_key": "erm_12_supply_chain_risk_same_across_locations",
+          "evaluation_focus": "Supply chain risk consistency across locations"
+        },
+        {
+          "id": "rq-erm-12-3",
+          "prompt": "Does the risk change dynamically when the risk of the third party changes ?",
+          "intent": "Evaluate whether supply chain risk changes dynamically when third-party risk changes",
+          "field_key": "erm_12_supply_chain_risk_changes_dynamically",
+          "evaluation_focus": "Dynamic third-party risk updates"
+        },
+        {
+          "id": "rq-erm-12-4",
+          "prompt": "Can this risk be utilized across various platforms as well as calculating flow risk score?",
+          "intent": "Evaluate reuse of supply chain risk across platforms and flow risk score calculation",
+          "field_key": "erm_12_supply_chain_risk_utilized_across_platforms",
+          "evaluation_focus": "Supply chain risk reuse across platforms"
+        }
+      ]
+    },
+    {
+      "capability_id": "erm-13",
+      "capability_name": "Changes in Risk profile logging and correlation",
+      "questions": [
+        {
+          "id": "rq-erm-13-1",
+          "prompt": "Is there a formal documented process for transporting risk profile changes to the SOC ?",
+          "intent": "Evaluate formal documented process for transporting risk profile changes to the SOC",
+          "field_key": "erm_13_documented_process_risk_changes_to_soc",
+          "evaluation_focus": "Documented process for risk profile changes to the SOC"
+        },
+        {
+          "id": "rq-erm-13-2",
+          "prompt": "Is transport of risk changes made securely to the SOC ?",
+          "intent": "Evaluate secure transport of risk changes to the SOC",
+          "field_key": "erm_13_secure_transport_risk_changes_to_soc",
+          "evaluation_focus": "Secure transport of risk changes to the SOC"
+        },
+        {
+          "id": "rq-erm-13-3",
+          "prompt": "Are dynamic changes to the risk captured and transferred to the SOC ?",
+          "intent": "Evaluate capture and transfer of dynamic risk changes to the SOC",
+          "field_key": "erm_13_dynamic_risk_changes_transferred_to_soc",
+          "evaluation_focus": "Dynamic risk changes captured and transferred to the SOC"
+        }
+      ]
+    }
+  ]
+}

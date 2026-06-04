@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Canonical onboarding roles. Services map to role_id values, not free-text labels.",
+  "roles": [
+    {
+      "role_id": "ciso-head-of-security",
+      "display_name": "CISO / Head of Security",
+      "aliases": ["CISO", "Head of Security"]
+    },
+    {
+      "role_id": "deputy-ciso-security-director",
+      "display_name": "Deputy CISO / Security Director",
+      "aliases": []
+    },
+    {
+      "role_id": "grc-lead",
+      "display_name": "GRC leader",
+      "aliases": [
+        "Security Governance, Risk & Compliance (GRC) Lead",
+        "GRC Leader"
+      ]
+    },
+    {
+      "role_id": "security-program-strategy-lead",
+      "display_name": "Security program / strategy lead",
+      "aliases": ["Security Program / Strategy Lead"]
+    },
+    {
+      "role_id": "security-pmo-portfolio-manager",
+      "display_name": "Security PMO / portfolio manager",
+      "aliases": []
+    },
+    {
+      "role_id": "enterprise-risk-manager",
+      "display_name": "Enterprise Risk Manager",
+      "aliases": ["Enterprise Risk Management (ERM) owner", "ERM owner"]
+    },
+    {
+      "role_id": "compliance-audit-lead",
+      "display_name": "Compliance / Audit lead",
+      "aliases": ["Compliance Officer", "Internal Audit Lead"]
+    },
+    {
+      "role_id": "tprm-lead",
+      "display_name": "Third-party risk / Vendor risk (TPRM) lead",
+      "aliases": ["TPRM lead", "Vendor risk lead"]
+    },
+    {
+      "role_id": "security-metrics-owner",
+      "display_name": "Security metrics owner",
+      "aliases": []
+    },
+    {
+      "role_id": "security-awareness-culture-lead",
+      "display_name": "Security awareness / culture lead",
+      "aliases": []
+    },
+    {
+      "role_id": "finance-partner-security-budgeting",
+      "display_name": "Finance partner for security budgeting",
+      "aliases": []
+    },
+    {
+      "role_id": "security-architecture-lead",
+      "display_name": "Security Architecture Lead",
+      "aliases": []
+    },
+    {
+      "role_id": "it-director-head-of-it",
+      "display_name": "IT Director / Head of IT",
+      "aliases": []
+    }
+  ]
+}

@@ -44,6 +44,9 @@ function DraftCard({
             {draft.status === "completed" ? "Completed" : "In progress"}
           </span>
           <span className="af-pill">
+            {draft.mode === "chat" ? "Chat" : "Questionnaire"}
+          </span>
+          <span className="af-pill">
             {draft.servicesDone}/{draft.servicesTotal} services
           </span>
         </div>

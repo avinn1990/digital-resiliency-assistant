@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 import type { AuthUser } from "../../auth/types";
-import { servicesForRole } from "../roles";
-import type { EvaluationServiceSummary } from "../types";
+import { roleDisplayName, servicesForRole, serviceDescriptionForDisplay } from "../roles";
+import type { CanonicalRole, EvaluationServiceSummary } from "../types";
 
 type Props = {
   authUser: AuthUser;
-  roles: string[];
+  roles: CanonicalRole[];
   services: EvaluationServiceSummary[];
   servicesLoading: boolean;
   servicesError: string | null;
@@ -27,24 +27,29 @@ export function OnboardingPage({
   onComplete,
 }: Props) {
   const [company, setCompany] = useState("");
-  const [role, setRole] = useState("");
+  const [roleId, setRoleId] = useState("");
   const [selectedById, setSelectedById] = useState<Record<string, boolean>>({});
 
   const matchedServices = useMemo(
-    () => servicesForRole(role, services),
-    [role, services]
+    () => servicesForRole(roleId, services),
+    [roleId, services]
+  );
+
+  const selectedRoleLabel = useMemo(
+    () => roleDisplayName(roleId, roles),
+    [roleId, roles]
   );
 
   const noRoleMapping =
-    Boolean(role.trim()) && !servicesLoading && matchedServices.length === 0;
+    Boolean(roleId.trim()) && !servicesLoading && matchedServices.length === 0;
 
   const visibleServices = useMemo(() => {
-    if (!role.trim()) return [];
+    if (!roleId.trim()) return [];
     return noRoleMapping ? services : matchedServices;
-  }, [role, services, noRoleMapping, matchedServices]);
+  }, [roleId, services, noRoleMapping, matchedServices]);
 
   useEffect(() => {
-    if (!role || servicesLoading) return;
+    if (!roleId || servicesLoading) return;
     setSelectedById((prev) => {
       const next = { ...prev };
       visibleServices.forEach((service) => {
@@ -60,7 +65,7 @@ export function OnboardingPage({
       }
       return next;
     });
-  }, [visibleServices, role, servicesLoading, noRoleMapping]);
+  }, [visibleServices, roleId, servicesLoading, noRoleMapping]);
 
   const selectedServiceIds = useMemo(() => {
     return Object.entries(selectedById)
@@ -71,11 +76,11 @@ export function OnboardingPage({
   const canContinue = useMemo(() => {
     return (
       company.trim().length >= 2 &&
-      role.trim().length >= 2 &&
+      roleId.trim().length >= 2 &&
       !servicesLoading &&
       selectedServiceIds.length > 0
     );
-  }, [company, role, servicesLoading, selectedServiceIds.length]);
+  }, [company, roleId, servicesLoading, selectedServiceIds.length]);
 
   return (
     <div className="af-page">
@@ -121,8 +126,8 @@ export function OnboardingPage({
             </label>
             <select
               id="onboarding-role"
-              value={role}
-              onChange={(e) => setRole(e.target.value)}
+              value={roleId}
+              onChange={(e) => setRoleId(e.target.value)}
               className="af-input"
               disabled={servicesLoading || roles.length === 0}
             >
@@ -130,8 +135,8 @@ export function OnboardingPage({
                 {servicesLoading ? "Loading roles…" : "Select your role"}
               </option>
               {roles.map((item) => (
-                <option key={item} value={item}>
-                  {item}
+                <option key={item.role_id} value={item.role_id}>
+                  {item.display_name}
                 </option>
               ))}
             </select>
@@ -142,7 +147,7 @@ export function OnboardingPage({
               onClick={() =>
                 onComplete({
                   company: company.trim(),
-                  role: role.trim(),
+                  role: roleId.trim(),
                   selectedServiceIds,
                 })
               }
@@ -154,7 +159,7 @@ export function OnboardingPage({
 
           <div className="af-card af-card-page">
             <h2 className="af-h2">Services for your role</h2>
-            {!role ? (
+            {!roleId ? (
               <p className="context-help">
                 Select a role to see the assessment services associated with it.
               </p>
@@ -163,7 +168,7 @@ export function OnboardingPage({
             ) : noRoleMapping ? (
               <>
                 <p className="context-help">
-                  No services are attached to <strong>{role}</strong>. Select from
+                  No services are attached to <strong>{selectedRoleLabel}</strong>. Select from
                   the available services below.
                 </p>
                 {services.length === 0 ? (
@@ -188,13 +193,10 @@ export function OnboardingPage({
                             />
                             <span>{service.service_name ?? service.service_id}</span>
                           </label>
-                          {service.version ? (
-                            <span className="af-pill">v{service.version}</span>
-                          ) : null}
                         </div>
-                        {service.description && (
+                        {serviceDescriptionForDisplay(service.description) && (
                           <div className="af-onboarding-service-desc">
-                            {service.description}
+                            {serviceDescriptionForDisplay(service.description)}
                           </div>
                         )}
                       </div>
@@ -205,8 +207,8 @@ export function OnboardingPage({
             ) : (
               <>
                 <p className="context-help">
-                  These services are mapped to <strong>{role}</strong>. They are selected
-                  by default — uncheck any that do not apply.
+                  These services are mapped to <strong>{selectedRoleLabel}</strong>. They are
+                  selected by default — uncheck any that do not apply.
                 </p>
                 <div className="af-onboarding-service-list">
                   {matchedServices.map((service) => (
@@ -225,19 +227,12 @@ export function OnboardingPage({
                           />
                           <span>{service.service_name ?? service.service_id}</span>
                         </label>
-                        {service.version ? (
-                          <span className="af-pill">v{service.version}</span>
-                        ) : null}
                       </div>
-                      {service.description && (
+                      {serviceDescriptionForDisplay(service.description) && (
                         <div className="af-onboarding-service-desc">
-                          {service.description}
+                          {serviceDescriptionForDisplay(service.description)}
                         </div>
                       )}
-                      <div className="af-onboarding-service-meta">
-                        <span className="af-mono">{service.service_id}</span>
-                        <span className="af-pill ok">Mapped to your role</span>
-                      </div>
                     </div>
                   ))}
                 </div>

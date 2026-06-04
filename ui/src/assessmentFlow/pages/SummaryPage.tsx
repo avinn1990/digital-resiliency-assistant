@@ -1,8 +1,10 @@
 import { useMemo } from "react";
-import type { AssessmentDraft, EvaluationServiceSummary } from "../types";
+import { roleDisplayName } from "../roles";
+import type { AssessmentDraft, CanonicalRole, EvaluationServiceSummary } from "../types";
 
 type Props = {
   draft: AssessmentDraft;
+  roles: CanonicalRole[];
   services: EvaluationServiceSummary[];
   onDiscard: () => void;
 };
@@ -26,7 +28,7 @@ function countAnswered(responses: Record<string, string>) {
     .length;
 }
 
-export function SummaryPage({ draft, services, onDiscard }: Props) {
+export function SummaryPage({ draft, roles, services, onDiscard }: Props) {
   const byService = useMemo(() => {
     return draft.selectedServiceIds.map((id) => {
       const meta = services.find((s) => s.service_id === id);
@@ -66,7 +68,7 @@ export function SummaryPage({ draft, services, onDiscard }: Props) {
               <div className="af-k">Company</div>
               <div className="af-v">{draft.profile.company}</div>
               <div className="af-k">Role</div>
-              <div className="af-v">{draft.profile.role}</div>
+              <div className="af-v">{roleDisplayName(draft.profile.role, roles)}</div>
               <div className="af-k">Username</div>
               <div className="af-v">{draft.profile.username}</div>
               <div className="af-k">Full name</div>

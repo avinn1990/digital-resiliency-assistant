@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useState } from "react";
-import type { EvaluationServiceSummary, UserProfile } from "../types";
-import { servicesForRole } from "../roles";
+import type { CanonicalRole, EvaluationServiceSummary, UserProfile } from "../types";
+import { roleDisplayName, servicesForRole } from "../roles";
 
 type Props = {
   profile: UserProfile;
+  roles: CanonicalRole[];
   services: EvaluationServiceSummary[];
   servicesLoading: boolean;
   servicesError: string | null;
@@ -15,6 +16,7 @@ type Props = {
 
 export function ServicesPage({
   profile,
+  roles,
   services,
   servicesLoading,
   servicesError,
@@ -23,6 +25,11 @@ export function ServicesPage({
   allowBackToDashboard,
   confirmLabel = "Confirm & start questions",
 }: Props) {
+  const profileRoleLabel = useMemo(
+    () => roleDisplayName(profile.role, roles),
+    [profile.role, roles]
+  );
+
   const matchedServices = useMemo(
     () => servicesForRole(profile.role, services),
     [profile.role, services]
@@ -63,12 +70,12 @@ export function ServicesPage({
             <p className="context-help">
               {noRoleMapping ? (
                 <>
-                  No services are attached to <strong>{profile.role}</strong>. Select
+                  No services are attached to <strong>{profileRoleLabel}</strong>. Select
                   from the available services below.
                 </>
               ) : (
                 <>
-                  Based on <strong>{profile.role}</strong>, these are the services mapped
+                  Based on <strong>{profileRoleLabel}</strong>, these are the services mapped
                   to your role. You can deselect anything you don’t own.
                 </>
               )}

@@ -10,6 +10,10 @@ type Props = {
   onSend: (text: string) => void;
   onRunAssessment: () => void;
   assessmentLoading: boolean;
+  canSave?: boolean;
+  saving?: boolean;
+  saveMessage?: string | null;
+  onSave?: () => void;
 };
 
 export function ChatWorkspace({
@@ -19,6 +23,10 @@ export function ChatWorkspace({
   onSend,
   onRunAssessment,
   assessmentLoading,
+  canSave = false,
+  saving = false,
+  saveMessage = null,
+  onSave,
 }: Props) {
   return (
     <section
@@ -48,6 +56,16 @@ export function ChatWorkspace({
           }
         />
         <div className="chat-toolbar">
+          {onSave && (
+            <button
+              type="button"
+              className="btn-secondary"
+              onClick={onSave}
+              disabled={!canSave || saving || loading || assessmentLoading}
+            >
+              {saving ? "Saving…" : "Save progress"}
+            </button>
+          )}
           <button
             type="button"
             className="btn-primary"
@@ -57,6 +75,11 @@ export function ChatWorkspace({
             {assessmentLoading ? "Building your report…" : "Get my assessment"}
           </button>
         </div>
+        {saveMessage && (
+          <p className="chat-save-status" role="status">
+            {saveMessage}
+          </p>
+        )}
       </div>
     </section>
   );
