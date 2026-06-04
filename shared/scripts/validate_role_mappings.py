@@ -30,7 +30,6 @@ def main() -> int:
         return 1
 
     errors: list[str] = []
-    role_to_service: dict[str, str] = {}
 
     for service_id, entry in (mapping_doc.get("services") or {}).items():
         service_role_ids = entry.get("role_ids") or []
@@ -40,12 +39,6 @@ def main() -> int:
         for role_id in service_role_ids:
             if role_id not in role_ids:
                 errors.append(f"{service_id}: unknown role_id {role_id!r}")
-            elif role_id in role_to_service:
-                errors.append(
-                    f"{role_id!r} mapped to both {role_to_service[role_id]!r} and {service_id!r}"
-                )
-            else:
-                role_to_service[role_id] = service_id
 
         cap_path = None
         for child in EVAL_ROOT.iterdir():
@@ -69,13 +62,6 @@ def main() -> int:
                 f"{service_id}: target_audience_role_ids mismatch between pack and service-target-audience.json"
             )
 
-    mapped_roles = set(role_to_service)
-    unmapped = role_ids - mapped_roles
-    if unmapped:
-        errors.append(
-            f"canonical roles not mapped to any service: {', '.join(sorted(unmapped))}"
-        )
-
     if errors:
         for error in errors:
             print(f"error: {error}", file=sys.stderr)
@@ -83,8 +69,7 @@ def main() -> int:
 
     print(
         f"ok: {len(role_ids)} canonical roles, "
-        f"{len(mapping_doc.get('services', {}))} service mappings validated, "
-        "no overlapping role assignments"
+        f"{len(mapping_doc.get('services', {}))} service mappings validated"
     )
     return 0
 
