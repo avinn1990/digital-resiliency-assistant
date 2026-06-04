@@ -1,0 +1,179 @@
+{
+  "service_id": "enterprise-risk-management",
+  "service_name": "Enterprise Risk Management",
+  "version": "1.0",
+  "description": "Evaluates how the organization identifies, assesses, treats, governs, and reports enterprise risks—including risk appetite, registers, assessment methods, treatment plans, governance forums, and integration with security, compliance, and third-party risk.",
+  "capabilities": [
+    {
+      "id": "erm-00",
+      "name": "Service exists and is in good condition",
+      "description": "The enterprise risk management function is established, funded, and operating effectively with clear scope, stakeholders, and measurable outcomes.",
+      "evaluation_focus": [
+        "Documented ERM charter and scope",
+        "Operating model, stakeholders, and delivery cadence",
+        "Continuous improvement and stakeholder feedback"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "erm-01",
+      "name": "Enterprise Risk Management Program",
+      "description": "A formal enterprise risk management program exists with defined objectives, scope across the organization, and alignment to regulatory and business expectations.",
+      "evaluation_focus": [
+        "Documented ERM program definition or charter",
+        "Program scope across business units and functions",
+        "Program leadership, sponsorship, and reporting line"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "erm-02",
+      "name": "Risk Appetite and Tolerance",
+      "description": "The organization defines, approves, and uses risk appetite and tolerance statements to guide decisions, investments, and escalations.",
+      "evaluation_focus": [
+        "Documented risk appetite and tolerance statements",
+        "Board or executive approval and communication",
+        "Evidence that appetite informs prioritization and escalations"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "erm-03",
+      "name": "Risk Taxonomy and Risk Register",
+      "description": "A consistent risk taxonomy and maintained risk register capture enterprise risks with owners, ratings, and status tracking.",
+      "evaluation_focus": [
+        "Defined risk categories and taxonomy",
+        "Central or federated risk register with ownership",
+        "Refresh cadence and quality controls for register data"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "erm-04",
+      "name": "Risk Assessment Methodology",
+      "description": "Standardized methods (qualitative, quantitative, or hybrid) are used to assess inherent and residual risk with consistent scoring criteria.",
+      "evaluation_focus": [
+        "Documented assessment methodology and scoring scales",
+        "Application across key risk domains and business units",
+        "Calibration, peer review, or validation of assessments"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "erm-05",
+      "name": "Risk Treatment and Mitigation Planning",
+      "description": "Identified risks have treatment decisions (accept, mitigate, transfer, avoid) with action plans, owners, and target dates.",
+      "evaluation_focus": [
+        "Documented treatment decisions per material risk",
+        "Mitigation plans with owners and milestones",
+        "Tracking of treatment effectiveness and closure"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "erm-06",
+      "name": "Risk Governance and Accountability",
+      "description": "Governance bodies, roles, and escalation paths provide oversight for enterprise risk decisions and exceptions.",
+      "evaluation_focus": [
+        "Defined risk committees or governance forums",
+        "Documented RACI for risk decisions and escalations",
+        "Accountability for risk acceptance and exceptions"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "erm-07",
+      "name": "Risk Reporting and Executive Communication",
+      "description": "Risk information is reported to leadership and the board on a defined cadence using KPIs, KRIs, and heat maps that drive action.",
+      "evaluation_focus": [
+        "Defined risk reporting pack and audience",
+        "Executive and board reporting cadence",
+        "Evidence that reporting influences decisions and funding"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "erm-08",
+      "name": "Integration with Security, Compliance, and Third-Party Risk",
+      "description": "ERM integrates inputs from information security, compliance, and third-party risk programs into a unified enterprise view.",
+      "evaluation_focus": [
+        "Linkage between ERM and security risk processes",
+        "Incorporation of compliance and audit findings into risk view",
+        "Third-party and vendor risk feeding enterprise risk reporting"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "enterprise-risk-manager",
+    "grc-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "compliance-audit-lead",
+    "tprm-lead",
+    "finance-partner-security-budgeting",
+    "security-program-strategy-lead"
+  ]
+}
