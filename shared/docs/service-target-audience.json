@@ -2,6 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json.",
   "services": {
+    "policy-management": {
+      "service_name": "Policy Management Service",
+      "role_ids": [
+        "grc-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "compliance-audit-lead",
+        "it-director-head-of-it",
+        "enterprise-risk-manager"
+      ]
+    },
     "update-patch-management": {
       "service_name": "Update and Patch Management Service",
       "role_ids": [

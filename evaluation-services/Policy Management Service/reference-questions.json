@@ -1,0 +1,432 @@
+{
+  "service_id": "policy-management",
+  "service_name": "Policy Management Service",
+  "capability_questions": [
+    {
+      "capability_id": "plm-00",
+      "capability_name": "Service Exists and in good condition",
+      "questions": [
+        {
+          "id": "rq-plm-00-1",
+          "prompt": "Does the enterprise have a policy management service?",
+          "intent": "Evaluate does the enterprise have a policy management service?",
+          "field_key": "plm_00_policy_management_service",
+          "evaluation_focus": "Policy management service exists"
+        },
+        {
+          "id": "rq-plm-00-2",
+          "prompt": "Is the policy management service reviewed frequently to measure its efficacy?",
+          "intent": "Evaluate is the policy management service reviewed frequently to measure its efficacy?",
+          "field_key": "plm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-01",
+      "capability_name": "Reference Policy Framework (Subject/Object Access Matrix)",
+      "questions": [
+        {
+          "id": "rq-plm-01-1",
+          "prompt": "Does the enterprise have a reference policy framework that is the reference for all policies in the enterprise? For example, does the enterprise have clear visibility on who can access what?",
+          "intent": "Evaluate does the enterprise have a reference policy framework that is the reference for all policies in the enterprise? For example, does the enterprise have clear visibility on who can access what?",
+          "field_key": "plm_01_reference_policy_framework",
+          "evaluation_focus": "Reference policy framework"
+        },
+        {
+          "id": "rq-plm-01-2",
+          "prompt": "Is the policy framework applicable enterprise-wide?",
+          "intent": "Evaluate is the policy framework applicable enterprise-wide?",
+          "field_key": "plm_01_framework_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide applicability"
+        },
+        {
+          "id": "rq-plm-01-3",
+          "prompt": "Is the policy framework reviewed frequently?",
+          "intent": "Evaluate is the policy framework reviewed frequently?",
+          "field_key": "plm_01_framework_reviewed",
+          "evaluation_focus": "Frequent framework review"
+        },
+        {
+          "id": "rq-plm-01-4",
+          "prompt": "Is the policy framework reused when creating granular functional policies (like data access, authentication, etc.)?",
+          "intent": "Evaluate is the policy framework reused when creating granular functional policies (like data access, authentication, etc.)?",
+          "field_key": "plm_01_framework_reused_granular_policies",
+          "evaluation_focus": "Reuse for granular functional policies"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-02",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-plm-02-1",
+          "prompt": "Does the enterprise have formalized documented KPIs and KRIs for the policy management service?",
+          "intent": "Evaluate does the enterprise have formalized documented KPIs and KRIs for the policy management service?",
+          "field_key": "plm_02_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-plm-02-2",
+          "prompt": "Are the KPIs/KRIs for policy management effective enterprise-wide?",
+          "intent": "Evaluate are the KPIs/KRIs for policy management effective enterprise-wide?",
+          "field_key": "plm_02_kpis_effective_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide effectiveness"
+        },
+        {
+          "id": "rq-plm-02-3",
+          "prompt": "Are the KPIs/KRIs for policy management reviewed frequently?",
+          "intent": "Evaluate are the KPIs/KRIs for policy management reviewed frequently?",
+          "field_key": "plm_02_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-03",
+      "capability_name": "Rule Management System",
+      "questions": [
+        {
+          "id": "rq-plm-03-1",
+          "prompt": "Does the enterprise have an enterprise-wide centralized rule management system? Or does the enterprise depend on technology-specific management platforms to edit rules? Alternatively, does the enterprise have a centralized policy that is utilized by multiple enforcement points?",
+          "intent": "Evaluate does the enterprise have an enterprise-wide centralized rule management system? Or does the enterprise depend on technology-specific management platforms to edit rules? Alternatively, does the enterprise have a centralized policy that is utilized by multiple enforcement points?",
+          "field_key": "plm_03_centralized_rule_management",
+          "evaluation_focus": "Centralized vs technology-specific rule management"
+        },
+        {
+          "id": "rq-plm-03-2",
+          "prompt": "Does the rule platform support automation and optimization of rules? Alternatively, can the deployed software-defined policy be automated to provide dynamic changes in policy?",
+          "intent": "Evaluate does the rule platform support automation and optimization of rules? Alternatively, can the deployed software-defined policy be automated to provide dynamic changes in policy?",
+          "field_key": "plm_03_rule_automation_optimization",
+          "evaluation_focus": "Rule automation and optimization"
+        },
+        {
+          "id": "rq-plm-03-3",
+          "prompt": "Does the rule management system integrate with a central decision-maker in the network to make automated contextual rule changes? Alternatively, does the enterprise have the capability to deploy policies automatically via software based on a centralized decision-maker or other information sources like threat intelligence?",
+          "intent": "Evaluate does the rule management system integrate with a central decision-maker in the network to make automated contextual rule changes? Alternatively, does the enterprise have the capability to deploy policies automatically via software based on a centralized decision-maker or other information sources like threat intelligence?",
+          "field_key": "plm_03_integrates_decision_maker",
+          "evaluation_focus": "Integration with centralized decision-making"
+        },
+        {
+          "id": "rq-plm-03-4",
+          "prompt": "Is the rule management system and its configuration reviewed frequently?",
+          "intent": "Evaluate is the rule management system and its configuration reviewed frequently?",
+          "field_key": "plm_03_rule_system_reviewed_frequently",
+          "evaluation_focus": "Frequent system configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-04",
+      "capability_name": "Rule provisioning process (creation / modification) as part of optimization",
+      "questions": [
+        {
+          "id": "rq-plm-04-1",
+          "prompt": "Does the enterprise have a documented and formalized process for rule creation?",
+          "intent": "Evaluate does the enterprise have a documented and formalized process for rule creation?",
+          "field_key": "plm_04_rule_creation_process",
+          "evaluation_focus": "Documented rule creation process"
+        },
+        {
+          "id": "rq-plm-04-2",
+          "prompt": "Is the rule creation process applicable enterprise-wide for all technologies?",
+          "intent": "Evaluate is the rule creation process applicable enterprise-wide for all technologies?",
+          "field_key": "plm_04_rule_creation_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide applicability"
+        },
+        {
+          "id": "rq-plm-04-3",
+          "prompt": "Is the rule creation and optimization automated with the rule management system or the management system for the specific technology?",
+          "intent": "Evaluate is the rule creation and optimization automated with the rule management system or the management system for the specific technology?",
+          "field_key": "plm_04_rule_creation_automated",
+          "evaluation_focus": "Automated creation and optimization"
+        },
+        {
+          "id": "rq-plm-04-4",
+          "prompt": "Is the rule creation and optimization process reviewed frequently?",
+          "intent": "Evaluate is the rule creation and optimization process reviewed frequently?",
+          "field_key": "plm_04_rule_creation_reviewed",
+          "evaluation_focus": "Frequent process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-05",
+      "capability_name": "Rule De-provisioning process (deletion) as part of optimization",
+      "questions": [
+        {
+          "id": "rq-plm-05-1",
+          "prompt": "Does the enterprise have a documented and formalized process for rule deletion?",
+          "intent": "Evaluate does the enterprise have a documented and formalized process for rule deletion?",
+          "field_key": "plm_05_rule_deletion_process",
+          "evaluation_focus": "Documented rule deletion process"
+        },
+        {
+          "id": "rq-plm-05-2",
+          "prompt": "Is the rule deletion process applicable enterprise-wide for all technologies?",
+          "intent": "Evaluate is the rule deletion process applicable enterprise-wide for all technologies?",
+          "field_key": "plm_05_rule_deletion_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide applicability"
+        },
+        {
+          "id": "rq-plm-05-3",
+          "prompt": "Is the rule deletion and optimization automated with the rule management system or the management system for the specific technology?",
+          "intent": "Evaluate is the rule deletion and optimization automated with the rule management system or the management system for the specific technology?",
+          "field_key": "plm_05_rule_deletion_automated",
+          "evaluation_focus": "Automated deletion and optimization"
+        },
+        {
+          "id": "rq-plm-05-4",
+          "prompt": "Is the rule deletion and optimization process reviewed frequently?",
+          "intent": "Evaluate is the rule deletion and optimization process reviewed frequently?",
+          "field_key": "plm_05_rule_deletion_reviewed",
+          "evaluation_focus": "Frequent process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-06",
+      "capability_name": "Policy management responsibility and efficacy",
+      "questions": [
+        {
+          "id": "rq-plm-06-1",
+          "prompt": "Does the enterprise have a central rule management and policy architecture team, or are the teams specific to the product that deploys the rules (siloed policy vs. common policy)?",
+          "intent": "Evaluate does the enterprise have a central rule management and policy architecture team, or are the teams specific to the product that deploys the rules (siloed policy vs. common policy)?",
+          "field_key": "plm_06_central_vs_siloed_teams",
+          "evaluation_focus": "Central vs siloed policy teams"
+        },
+        {
+          "id": "rq-plm-06-2",
+          "prompt": "Is the policy management team composition formalized and documented as part of the department hierarchy and maintaining separation of duties?",
+          "intent": "Evaluate is the policy management team composition formalized and documented as part of the department hierarchy and maintaining separation of duties?",
+          "field_key": "plm_06_team_composition_separation_of_duties",
+          "evaluation_focus": "Formalized team composition and separation of duties"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-07",
+      "capability_name": "Software defined Policy",
+      "questions": [
+        {
+          "id": "rq-plm-07-1",
+          "prompt": "Does the enterprise have the capability to maintain and configure software-defined policy at all locations?",
+          "intent": "Evaluate does the enterprise have the capability to maintain and configure software-defined policy at all locations?",
+          "field_key": "plm_07_software_defined_policy_all_locations",
+          "evaluation_focus": "Software-defined policy at all locations"
+        },
+        {
+          "id": "rq-plm-07-2",
+          "prompt": "Is the centralized policy deployed programmatically to all enforcement points? Or is the software-defined policy implemented for a smaller scope?",
+          "intent": "Evaluate is the centralized policy deployed programmatically to all enforcement points? Or is the software-defined policy implemented for a smaller scope?",
+          "field_key": "plm_07_programmatic_deployment_scope",
+          "evaluation_focus": "Programmatic deployment scope"
+        },
+        {
+          "id": "rq-plm-07-3",
+          "prompt": "Are software-defined policy deployments automated?",
+          "intent": "Evaluate are software-defined policy deployments automated?",
+          "field_key": "plm_07_sdp_deployments_automated",
+          "evaluation_focus": "Automated policy deployment"
+        },
+        {
+          "id": "rq-plm-07-4",
+          "prompt": "Are the automated policies validated frequently to measure the efficacy of the automation?",
+          "intent": "Evaluate are the automated policies validated frequently to measure the efficacy of the automation?",
+          "field_key": "plm_07_automation_validated_frequently",
+          "evaluation_focus": "Frequent automation validation"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-08",
+      "capability_name": "Context Based Policies",
+      "questions": [
+        {
+          "id": "rq-plm-08-1",
+          "prompt": "Do the network devices in the enterprise deploy context-based policy vs. IP-based policies?",
+          "intent": "Evaluate do the network devices in the enterprise deploy context-based policy vs. IP-based policies?",
+          "field_key": "plm_08_context_based_network_policies",
+          "evaluation_focus": "Context-based vs IP-based network policies"
+        },
+        {
+          "id": "rq-plm-08-2",
+          "prompt": "Are context-based policies deployed enterprise-wide?",
+          "intent": "Evaluate are context-based policies deployed enterprise-wide?",
+          "field_key": "plm_08_context_policies_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide deployment"
+        },
+        {
+          "id": "rq-plm-08-3",
+          "prompt": "Are the context-based policies reviewed frequently?",
+          "intent": "Evaluate are the context-based policies reviewed frequently?",
+          "field_key": "plm_08_context_policies_reviewed",
+          "evaluation_focus": "Frequent policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-09",
+      "capability_name": "Authentication Policies",
+      "questions": [
+        {
+          "id": "rq-plm-09-1",
+          "prompt": "Do the edge/access devices in the enterprise deploy context-based policy vs. just user ID-based policies?",
+          "intent": "Evaluate do the edge/access devices in the enterprise deploy context-based policy vs. just user ID-based policies?",
+          "field_key": "plm_09_context_based_authentication",
+          "evaluation_focus": "Context-based vs user ID-only authentication"
+        },
+        {
+          "id": "rq-plm-09-2",
+          "prompt": "Are uniform authentication policies deployed enterprise-wide?",
+          "intent": "Evaluate are uniform authentication policies deployed enterprise-wide?",
+          "field_key": "plm_09_authentication_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide authentication policies"
+        },
+        {
+          "id": "rq-plm-09-3",
+          "prompt": "Are the authentication policies reviewed frequently?",
+          "intent": "Evaluate are the authentication policies reviewed frequently?",
+          "field_key": "plm_09_authentication_policies_reviewed",
+          "evaluation_focus": "Frequent authentication policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-10",
+      "capability_name": "Authorization Policies (includes guest authorization policies)",
+      "questions": [
+        {
+          "id": "rq-plm-10-1",
+          "prompt": "Does the enterprise design authorization policies based on context, attributes, environment, and other triggers?",
+          "intent": "Evaluate does the enterprise design authorization policies based on context, attributes, environment, and other triggers?",
+          "field_key": "plm_10_context_based_authorization",
+          "evaluation_focus": "Context-based authorization design"
+        },
+        {
+          "id": "rq-plm-10-2",
+          "prompt": "Are uniform authorization policies deployed enterprise-wide (does the subject get the same access when accessing the same enterprise resource from any location)?",
+          "intent": "Evaluate are uniform authorization policies deployed enterprise-wide (does the subject get the same access when accessing the same enterprise resource from any location)?",
+          "field_key": "plm_10_authorization_enterprise_wide",
+          "evaluation_focus": "Uniform enterprise-wide authorization"
+        },
+        {
+          "id": "rq-plm-10-3",
+          "prompt": "Are the authorization policies reviewed frequently?",
+          "intent": "Evaluate are the authorization policies reviewed frequently?",
+          "field_key": "plm_10_authorization_policies_reviewed",
+          "evaluation_focus": "Frequent authorization policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-11",
+      "capability_name": "Network access and control policies (includes Guest NAC policies)",
+      "questions": [
+        {
+          "id": "rq-plm-11-1",
+          "prompt": "Do the network security devices in the enterprise deploy the same context-based policy vs. just user IP-based policies? For example, a WAF, a load balancer, and a firewall must deploy the same subject-to-object access; however, it will be implemented based on technology. The logical access control must be the same.",
+          "intent": "Evaluate do the network security devices in the enterprise deploy the same context-based policy vs. just user IP-based policies? For example, a WAF, a load balancer, and a firewall must deploy the same subject-to-object access; however, it will be implemented based on technology. The logical access control must be the same.",
+          "field_key": "plm_11_consistent_network_access_control",
+          "evaluation_focus": "Consistent context-based network access control"
+        },
+        {
+          "id": "rq-plm-11-2",
+          "prompt": "Are network security policies deployed enterprise-wide?",
+          "intent": "Evaluate are network security policies deployed enterprise-wide?",
+          "field_key": "plm_11_network_policies_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network security policies"
+        },
+        {
+          "id": "rq-plm-11-3",
+          "prompt": "Are the network security policies reviewed frequently?",
+          "intent": "Evaluate are the network security policies reviewed frequently?",
+          "field_key": "plm_11_network_policies_reviewed",
+          "evaluation_focus": "Frequent network policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-12",
+      "capability_name": "Application Access Policies",
+      "questions": [
+        {
+          "id": "rq-plm-12-1",
+          "prompt": "Do the applications in the enterprise deploy context-based policy vs. just user ID-based policies in addition to the network access control?",
+          "intent": "Evaluate do the applications in the enterprise deploy context-based policy vs. just user ID-based policies in addition to the network access control?",
+          "field_key": "plm_12_context_based_application_access",
+          "evaluation_focus": "Context-based application access"
+        },
+        {
+          "id": "rq-plm-12-2",
+          "prompt": "Are uniform application access policies deployed enterprise-wide?",
+          "intent": "Evaluate are uniform application access policies deployed enterprise-wide?",
+          "field_key": "plm_12_application_access_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application access policies"
+        },
+        {
+          "id": "rq-plm-12-3",
+          "prompt": "Are the application access policies reviewed frequently?",
+          "intent": "Evaluate are the application access policies reviewed frequently?",
+          "field_key": "plm_12_application_access_reviewed",
+          "evaluation_focus": "Frequent application access policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-13",
+      "capability_name": "Data access policies",
+      "questions": [
+        {
+          "id": "rq-plm-13-1",
+          "prompt": "Is data access in the enterprise controlled based on classification, context, environment, and other criteria?",
+          "intent": "Evaluate is data access in the enterprise controlled based on classification, context, environment, and other criteria?",
+          "field_key": "plm_13_classification_based_data_access",
+          "evaluation_focus": "Classification and context-based data access"
+        },
+        {
+          "id": "rq-plm-13-2",
+          "prompt": "Are uniform data access policies deployed enterprise-wide?",
+          "intent": "Evaluate are uniform data access policies deployed enterprise-wide?",
+          "field_key": "plm_13_data_access_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide data access policies"
+        },
+        {
+          "id": "rq-plm-13-3",
+          "prompt": "Are the data access policies reviewed frequently?",
+          "intent": "Evaluate are the data access policies reviewed frequently?",
+          "field_key": "plm_13_data_access_policies_reviewed",
+          "evaluation_focus": "Frequent data access policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "plm-14",
+      "capability_name": "Policy change monitoring",
+      "questions": [
+        {
+          "id": "rq-plm-14-1",
+          "prompt": "Is there a formal documented process for logging rule and policy updates to the SOC?",
+          "intent": "Evaluate is there a formal documented process for logging rule and policy updates to the SOC?",
+          "field_key": "plm_14_logging_policy_updates_to_soc",
+          "evaluation_focus": "Documented logging to SOC"
+        },
+        {
+          "id": "rq-plm-14-2",
+          "prompt": "Is logging of rule changes and lifecycle made securely to the SOC?",
+          "intent": "Evaluate is logging of rule changes and lifecycle made securely to the SOC?",
+          "field_key": "plm_14_secure_rule_logging_to_soc",
+          "evaluation_focus": "Secure logging to SOC"
+        },
+        {
+          "id": "rq-plm-14-3",
+          "prompt": "Are dynamic changes to the rules captured and transferred to the SOC?",
+          "intent": "Evaluate are dynamic changes to the rules captured and transferred to the SOC?",
+          "field_key": "plm_14_dynamic_rule_changes_to_soc",
+          "evaluation_focus": "Dynamic rule changes to SOC"
+        }
+      ]
+    }
+  ]
+}
