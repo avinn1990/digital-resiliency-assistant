@@ -133,7 +133,7 @@
     },
     {
       "capability_id": "cm-04",
-      "capability_name": "Compliance Alignment to Stnadards and regulations",
+      "capability_name": "Compliance Alignment to Standards and regulations",
       "questions": [
         {
           "id": "rq-cm-04-1",
@@ -258,8 +258,8 @@
         },
         {
           "id": "rq-cm-09-5",
-          "prompt": "Is the device hardening process reviewed frequently?",
-          "intent": "Evaluate frequent review of application/device hardening process",
+          "prompt": "Is the application hardening process reviewed frequently?",
+          "intent": "Evaluate frequent review of application hardening process",
           "field_key": "cm_09_application_hardening_reviewed_frequently",
           "evaluation_focus": "Frequent review of hardening processes"
         },
@@ -314,14 +314,14 @@
         },
         {
           "id": "rq-cm-09-13",
-          "prompt": "Is the hardening and subsequent patching automated for applications?",
+          "prompt": "Is the hardening and subsequent patching automated for network assets?",
           "intent": "Evaluate automated hardening and patching for network assets",
           "field_key": "cm_09_network_hardening_patching_automated",
           "evaluation_focus": "Network asset hardening process and automation"
         },
         {
           "id": "rq-cm-09-14",
-          "prompt": "Is the network hardening process reviwered frequently?",
+          "prompt": "Is the network hardening process reviewed frequently?",
           "intent": "Evaluate frequent review of network hardening process",
           "field_key": "cm_09_network_hardening_reviewed_frequently",
           "evaluation_focus": "Frequent review of hardening processes"
@@ -348,7 +348,7 @@
         },
         {
           "id": "rq-cm-10-3",
-          "prompt": "Are dynamic changes to the oompliance captured and transferred to the SOC ?",
+          "prompt": "Are dynamic changes to the compliance captured and transferred to the SOC ?",
           "intent": "Evaluate capture and transfer of dynamic compliance changes to the SOC",
           "field_key": "cm_10_dynamic_compliance_changes_transferred_to_soc",
           "evaluation_focus": "Dynamic compliance changes captured and transferred to the SOC"
