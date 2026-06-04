@@ -2,6 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json.",
   "services": {
+    "vulnerability-management-pentesting": {
+      "service_name": "Vulnerability Management and Pentesting Service",
+      "role_ids": [
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "it-director-head-of-it",
+        "tprm-lead",
+        "compliance-audit-lead",
+        "grc-lead"
+      ]
+    },
     "compliance-management-service": {
       "service_name": "Compliance Management Service",
       "role_ids": [
