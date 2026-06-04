@@ -20,6 +20,11 @@ Expected output:
 ok: N capabilities, M questions, 1:1 capability mapping enforced
 ```
 
+## Content
+
+- **14 capabilities** (`erm-00` through `erm-13`)
+- **42 reference questions** (approved stakeholder spec, version 1.1)
+
 ## Scoring rubric
 
 Shared scoring rules are described in `shared/docs/evaluation-rubric.md`.

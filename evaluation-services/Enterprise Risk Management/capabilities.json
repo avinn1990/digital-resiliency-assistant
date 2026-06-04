@@ -1,116 +1,176 @@
 {
   "service_id": "enterprise-risk-management",
   "service_name": "Enterprise Risk Management",
-  "version": "1.0",
-  "description": "Evaluates how the organization identifies, assesses, treats, governs, and reports enterprise risks—including risk appetite, registers, assessment methods, treatment plans, governance forums, and integration with security, compliance, and third-party risk.",
+  "version": "1.1",
+  "description": "Evaluates enterprise risk management service maturity, platform and process coverage, program and teams, cybersecurity risk leadership, enterprise risk scales, quantified risk for flows, subjects, devices, objects, and supply chain, risk register and exceptions, and SOC correlation of risk profile changes.",
   "capabilities": [
     {
       "id": "erm-00",
-      "name": "Service exists and is in good condition",
-      "description": "The enterprise risk management function is established, funded, and operating effectively with clear scope, stakeholders, and measurable outcomes.",
+      "name": "Service Exists and in good condition",
+      "description": "The enterprise has a risk management service that exists and is in good condition.",
       "evaluation_focus": [
-        "Documented ERM charter and scope",
-        "Operating model, stakeholders, and delivery cadence",
-        "Continuous improvement and stakeholder feedback"
+        "Existence of an enterprise risk management service"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "erm-01",
-      "name": "Enterprise Risk Management Program",
-      "description": "A formal enterprise risk management program exists with defined objectives, scope across the organization, and alignment to regulatory and business expectations.",
+      "name": "Enterprise Risk Management Platform",
+      "description": "The enterprise uses a risk management platform to monitor, visualize, automate, and integrate risk information across scope.",
       "evaluation_focus": [
-        "Documented ERM program definition or charter",
-        "Program scope across business units and functions",
-        "Program leadership, sponsorship, and reporting line"
+        "Platform used to monitor and visualize risk",
+        "Enterprise-wide vs limited platform scope",
+        "Automation of risk calculation and management",
+        "Integration with other management platforms"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "erm-02",
+      "name": "Enterprise Risk Management Process",
+      "description": "A formal risk management process is documented, implemented enterprise-wide, automated where appropriate, and reviewed on a defined cadence.",
+      "evaluation_focus": [
+        "Documented formal risk management process",
+        "Enterprise-wide process implementation",
+        "Process automation via platform or team",
+        "Process review frequency"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "erm-02",
-      "name": "Risk Appetite and Tolerance",
-      "description": "The organization defines, approves, and uses risk appetite and tolerance statements to guide decisions, investments, and escalations.",
-      "evaluation_focus": [
-        "Documented risk appetite and tolerance statements",
-        "Board or executive approval and communication",
-        "Evidence that appetite informs prioritization and escalations"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
       "id": "erm-03",
-      "name": "Risk Taxonomy and Risk Register",
-      "description": "A consistent risk taxonomy and maintained risk register capture enterprise risks with owners, ratings, and status tracking.",
+      "name": "Risk Register and Risk Exception Process",
+      "description": "Risk exceptions when mitigation is not possible are handled with documented policy, platform support, and register review.",
       "evaluation_focus": [
-        "Defined risk categories and taxonomy",
-        "Central or federated risk register with ownership",
-        "Refresh cadence and quality controls for register data"
+        "Risk acceptance and exception handling",
+        "Documented enterprise-wide exception recording policy",
+        "Platform automation for risk exceptions",
+        "Risk register review after exceptions"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "erm-04",
-      "name": "Risk Assessment Methodology",
-      "description": "Standardized methods (qualitative, quantitative, or hybrid) are used to assess inherent and residual risk with consistent scoring criteria.",
+      "name": "Enterprise Risk Management Program",
+      "description": "A formalized and documented enterprise risk management program and strategy exists and is reviewed frequently.",
       "evaluation_focus": [
-        "Documented assessment methodology and scoring scales",
-        "Application across key risk domains and business units",
-        "Calibration, peer review, or validation of assessments"
+        "Formal documented ERM program and strategy",
+        "Risk management strategy review cadence"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Strategy"
     },
     {
       "id": "erm-05",
-      "name": "Risk Treatment and Mitigation Planning",
-      "description": "Identified risks have treatment decisions (accept, mitigate, transfer, avoid) with action plans, owners, and target dates.",
+      "name": "Enterprise Risk Management Teams",
+      "description": "An enterprise risk management team manages and governs the ERM process and program.",
       "evaluation_focus": [
-        "Documented treatment decisions per material risk",
-        "Mitigation plans with owners and milestones",
-        "Tracking of treatment effectiveness and closure"
+        "Dedicated ERM team governing process and program"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "People"
     },
     {
       "id": "erm-06",
-      "name": "Risk Governance and Accountability",
-      "description": "Governance bodies, roles, and escalation paths provide oversight for enterprise risk decisions and exceptions.",
+      "name": "Cyber Security Risk Manager",
+      "description": "A Cybersecurity Risk Manager leads the risk management initiative.",
       "evaluation_focus": [
-        "Defined risk committees or governance forums",
-        "Documented RACI for risk decisions and escalations",
-        "Accountability for risk acceptance and exceptions"
+        "Cybersecurity Risk Manager role leading the initiative"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
     },
     {
       "id": "erm-07",
-      "name": "Risk Reporting and Executive Communication",
-      "description": "Risk information is reported to leadership and the board on a defined cadence using KPIs, KRIs, and heat maps that drive action.",
+      "name": "Enterprise Wide Risk Scale Definition",
+      "description": "The risk management team defines and reviews enterprise-wide risk scales used for risk-based policies.",
       "evaluation_focus": [
-        "Defined risk reporting pack and audience",
-        "Executive and board reporting cadence",
-        "Evidence that reporting influences decisions and funding"
+        "Enterprise risk scale design for policy use",
+        "Risk scale review as the enterprise matures"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "erm-08",
-      "name": "Integration with Security, Compliance, and Third-Party Risk",
-      "description": "ERM integrates inputs from information security, compliance, and third-party risk programs into a unified enterprise view.",
+      "name": "Overall Context based Risk score calculation for flows",
+      "description": "The enterprise quantifies risk per flow (subject and object combination), consistently across locations, dynamically, and for reuse across platforms.",
       "evaluation_focus": [
-        "Linkage between ERM and security risk processes",
-        "Incorporation of compliance and audit findings into risk view",
-        "Third-party and vendor risk feeding enterprise risk reporting"
+        "Per-flow risk quantification",
+        "Flow risk consistency across locations",
+        "Dynamic flow risk updates",
+        "Flow risk reuse across platforms"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Technology"
+    },
+    {
+      "id": "erm-09",
+      "name": "Subject Profile Risk calculation, assessment and monitoring",
+      "description": "The enterprise quantifies, assesses, and monitors risk for each subject accessing enterprise assets.",
+      "evaluation_focus": [
+        "Per-subject risk quantification",
+        "Subject risk consistency across locations",
+        "Dynamic subject risk updates",
+        "Subject risk reuse across platforms"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "erm-10",
+      "name": "Device Risk calculation assessment and monitoring",
+      "description": "The enterprise quantifies, assesses, and monitors risk for each device accessing enterprise assets.",
+      "evaluation_focus": [
+        "Per-device risk quantification",
+        "Device risk consistency across locations",
+        "Dynamic device risk updates",
+        "Device risk reuse across platforms"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "erm-11",
+      "name": "Object Profile Risk calculation assessment and monitoring",
+      "description": "The enterprise quantifies, assesses, and monitors risk for each object involved in access to enterprise assets.",
+      "evaluation_focus": [
+        "Per-object risk quantification",
+        "Object risk consistency across locations",
+        "Dynamic object risk updates",
+        "Object risk reuse across platforms"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "erm-12",
+      "name": "Supply chain risk calculation assessment and monitoring",
+      "description": "The enterprise quantifies, assesses, and monitors risk for third-party hardware and software in the supply chain.",
+      "evaluation_focus": [
+        "Third-party hardware and software risk quantification",
+        "Supply chain risk consistency across locations",
+        "Dynamic third-party risk updates",
+        "Supply chain risk reuse across platforms"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "erm-13",
+      "name": "Changes in Risk profile logging and correlation",
+      "description": "Risk profile changes are formally documented, securely transported, and dynamically captured for SOC correlation.",
+      "evaluation_focus": [
+        "Documented process for risk profile changes to the SOC",
+        "Secure transport of risk changes to the SOC",
+        "Dynamic risk changes captured and transferred to the SOC"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
     }
   ],
   "evaluation": {
