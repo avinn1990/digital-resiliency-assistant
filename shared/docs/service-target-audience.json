@@ -2,6 +2,18 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json.",
   "services": {
+    "compliance-management-service": {
+      "service_name": "Compliance Management Service",
+      "role_ids": [
+        "compliance-audit-lead",
+        "grc-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "enterprise-risk-manager",
+        "it-director-head-of-it",
+        "security-architecture-lead"
+      ]
+    },
     "enterprise-risk-management": {
       "service_name": "Enterprise Risk Management",
       "role_ids": [
