@@ -10,65 +10,56 @@
     {
       "role_id": "deputy-ciso-security-director",
       "display_name": "Deputy CISO / Security Director",
-      "aliases": []
+      "aliases": ["Deputy CISO"]
     },
     {
       "role_id": "grc-lead",
-      "display_name": "GRC leader",
-      "aliases": [
-        "Security Governance, Risk & Compliance (GRC) Lead",
-        "GRC Leader"
-      ]
+      "display_name": "GRC lead (governance, risk & compliance)",
+      "aliases": ["GRC Leader", "Security GRC lead"]
     },
     {
       "role_id": "security-program-strategy-lead",
-      "display_name": "Security program / strategy lead",
-      "aliases": ["Security Program / Strategy Lead"]
-    },
-    {
-      "role_id": "security-pmo-portfolio-manager",
-      "display_name": "Security PMO / portfolio manager",
-      "aliases": []
+      "display_name": "Security program, PMO & metrics lead",
+      "aliases": [
+        "Security Program / Strategy Lead",
+        "Security PMO / portfolio manager",
+        "Security metrics owner"
+      ]
     },
     {
       "role_id": "enterprise-risk-manager",
-      "display_name": "Enterprise Risk Manager",
-      "aliases": ["Enterprise Risk Management (ERM) owner", "ERM owner"]
+      "display_name": "Enterprise risk manager",
+      "aliases": ["ERM owner", "Enterprise Risk Management owner"]
     },
     {
       "role_id": "compliance-audit-lead",
-      "display_name": "Compliance / Audit lead",
-      "aliases": ["Compliance Officer", "Internal Audit Lead"]
+      "display_name": "Compliance & audit lead",
+      "aliases": ["Compliance Officer", "Internal audit lead"]
     },
     {
       "role_id": "tprm-lead",
-      "display_name": "Third-party risk / Vendor risk (TPRM) lead",
+      "display_name": "Third-party & vendor risk lead",
       "aliases": ["TPRM lead", "Vendor risk lead"]
     },
     {
-      "role_id": "security-metrics-owner",
-      "display_name": "Security metrics owner",
-      "aliases": []
-    },
-    {
       "role_id": "security-awareness-culture-lead",
-      "display_name": "Security awareness / culture lead",
-      "aliases": []
+      "display_name": "Security awareness & culture lead",
+      "aliases": ["Security culture lead"]
     },
     {
       "role_id": "finance-partner-security-budgeting",
-      "display_name": "Finance partner for security budgeting",
-      "aliases": []
+      "display_name": "Finance partner (security budgeting)",
+      "aliases": ["Security finance partner"]
     },
     {
       "role_id": "security-architecture-lead",
-      "display_name": "Security Architecture Lead",
-      "aliases": []
+      "display_name": "Security architecture lead",
+      "aliases": ["Security architect"]
     },
     {
       "role_id": "it-director-head-of-it",
-      "display_name": "IT Director / Head of IT",
-      "aliases": []
+      "display_name": "IT director / Head of IT",
+      "aliases": ["Head of IT", "IT Director"]
     }
   ]
 }

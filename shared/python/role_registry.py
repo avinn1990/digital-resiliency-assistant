@@ -30,6 +30,13 @@ def _normalize(value: str) -> str:
     return value.strip().lower()
 
 
+# Retired role_ids still resolve for stored profiles; not shown in role pickers.
+DEPRECATED_ROLE_IDS: dict[str, str] = {
+    "security-pmo-portfolio-manager": "security-program-strategy-lead",
+    "security-metrics-owner": "security-program-strategy-lead",
+}
+
+
 @lru_cache(maxsize=1)
 def _roles_by_id() -> dict[str, dict[str, Any]]:
     path = _repo_root() / "shared" / "docs" / "canonical-roles.json"
@@ -91,15 +98,32 @@ def list_roles(*, used_only: bool = False) -> list[dict[str, str]]:
     return sorted(items, key=lambda item: item["display_name"].lower())
 
 
+def normalize_role_id(role_id: str | None) -> str | None:
+    """Map deprecated role_ids to their replacement; pass through current ids."""
+    if not role_id or not str(role_id).strip():
+        return None
+    rid = str(role_id).strip()
+    return DEPRECATED_ROLE_IDS.get(rid, rid)
+
+
 def resolve_role_id(value: str | None) -> str | None:
     """Resolve role_id, display_name, or alias to a canonical role_id."""
     if not value or not str(value).strip():
         return None
-    return _alias_to_role_id().get(_normalize(str(value)))
+    normalized = _normalize(str(value))
+    resolved = _alias_to_role_id().get(normalized)
+    if resolved:
+        return resolved
+    # Allow hyphenated legacy role_id strings saved on user profiles.
+    legacy = normalize_role_id(str(value).strip())
+    if legacy and legacy in _roles_by_id():
+        return legacy
+    return None
 
 
 def display_name(role_id: str) -> str | None:
-    role = _roles_by_id().get(role_id)
+    canonical = normalize_role_id(role_id) or role_id
+    role = _roles_by_id().get(canonical)
     if not role:
         return None
     return str(role["display_name"])
@@ -119,9 +143,10 @@ def display_names_for_role_ids(role_ids: list[str]) -> list[str]:
 
 
 def services_for_role_id(role_id: str) -> list[str]:
+    canonical = normalize_role_id(role_id) or role_id
     matches: list[str] = []
     for service_id, role_ids in sorted(_service_role_ids().items()):
-        if role_id in role_ids:
+        if canonical in role_ids:
             matches.append(service_id)
     return matches
 

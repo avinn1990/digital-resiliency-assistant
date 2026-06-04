@@ -3,6 +3,7 @@ import unittest
 from role_registry import (
     display_name,
     list_roles,
+    normalize_role_id,
     resolve_role_id,
     role_ids_for_service,
     services_for_role_id,
@@ -37,6 +38,21 @@ class RoleRegistryTests(unittest.TestCase):
         esg_role_ids = role_ids_for_service("enterprise-security-governance")
         self.assertIn("ciso-head-of-security", iss_role_ids)
         self.assertIn("ciso-head-of-security", esg_role_ids)
+        self.assertNotIn("security-pmo-portfolio-manager", iss_role_ids)
+
+    def test_deprecated_role_ids_normalize(self) -> None:
+        self.assertEqual(
+            normalize_role_id("security-pmo-portfolio-manager"),
+            "security-program-strategy-lead",
+        )
+        self.assertEqual(
+            resolve_role_id("Security PMO / portfolio manager"),
+            "security-program-strategy-lead",
+        )
+        self.assertEqual(
+            services_for_role_id("security-metrics-owner"),
+            services_for_role_id("security-program-strategy-lead"),
+        )
 
 
 if __name__ == "__main__":

@@ -25,11 +25,23 @@ def main() -> int:
     role_ids = {role["role_id"] for role in roles_doc.get("roles", [])}
     display_names = {role["display_name"] for role in roles_doc.get("roles", [])}
 
-    if len(display_names) != len(roles_doc.get("roles", [])):
+    roles_list = roles_doc.get("roles", [])
+    if len(display_names) != len(roles_list):
         print("error: duplicate display_name in canonical-roles.json", file=sys.stderr)
         return 1
 
     errors: list[str] = []
+    seen_display_normalized: dict[str, str] = {}
+    for role in roles_list:
+        role_id = role["role_id"]
+        norm = str(role["display_name"]).strip().lower()
+        if norm in seen_display_normalized:
+            errors.append(
+                f"similar display_name for {role_id!r} and {seen_display_normalized[norm]!r}: "
+                f"{role['display_name']!r}"
+            )
+        else:
+            seen_display_normalized[norm] = role_id
 
     for service_id, entry in (mapping_doc.get("services") or {}).items():
         service_role_ids = entry.get("role_ids") or []
