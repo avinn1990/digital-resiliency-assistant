@@ -14,7 +14,7 @@ A modular assistant that gathers information from users through conversation, th
 | `services/llm-conversation/` | LLM-driven dynamic Q&A for evaluation services |
 | `evaluation-services/` | Capability definitions and reference questions per offering |
 | `shared/` | Cross-cutting types, JSON schemas, and shared Python helpers |
-| `render.yaml` | **Primary** deployment — Render Blueprint (5 services) |
+| `render.yaml` | **Primary** deployment — Render Blueprint; **dev** branch = `*-dev` staging stack, **main** = production (`digitally-resilient.com`) |
 
 Each new capability you request should live in its own folder under `services/<name>/`.
 
