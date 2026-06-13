@@ -1,0 +1,228 @@
+{
+  "service_id": "incident-management",
+  "service_name": "Incident Management",
+  "version": "1.0",
+  "description": "Evaluates incident management maturity\u2014service governance, KPIs/KRIs, incident and triaging processes, tabletop exercises, predictive analysis, containment, threat hunting, response planning and team, breach notification, digital forensics, ticketing, and points of contact.",
+  "capabilities": [
+    {
+      "id": "im-00",
+      "name": "Service exists and is in good condition",
+      "description": "An incident management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Enterprise incident management service exists",
+        "Frequent incident management service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "im-01",
+      "name": "KPIs/KRIs",
+      "description": "Incident management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for incident management service",
+        "Frequent KPI/KRI review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "im-02",
+      "name": "Incident management process",
+      "description": "A formalized enterprise-wide incident management process uses SOAR and is reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented enterprise-wide incident management process",
+        "SOAR utilized as part of incident management",
+        "Frequent incident management process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "im-03",
+      "name": "Event Triaging process",
+      "description": "A formalized enterprise-wide triaging process uses SOAR and is reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented enterprise-wide triaging process",
+        "SOAR utilized as part of triaging",
+        "Frequent triaging process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "im-04",
+      "name": "Incident management table top exercises",
+      "description": "The enterprise conducts tabletop exercises for high-impact threat scenarios and implements recommendations.",
+      "evaluation_focus": [
+        "Tabletop exercises for high-impact threat scenarios",
+        "Review and implement tabletop exercise recommendations"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "im-05",
+      "name": "Predictive analysis",
+      "description": "The incident management system uses predictive analysis automatically based on traffic patterns and baselines.",
+      "evaluation_focus": [
+        "Predictive analysis for threat scenarios",
+        "Automatic prediction based on traffic patterns and baselines"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "im-06",
+      "name": "Effective Containment",
+      "description": "Segmentation and incident processes contain day-zero attacks with automatic containment where possible.",
+      "evaluation_focus": [
+        "Segmentation and processes to contain day-zero attacks",
+        "Automatic threat and attack containment"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "im-07",
+      "name": "Threat hunting",
+      "description": "A formalized threat hunting process is automated, staffed with skilled personnel, and supported by the incident management system.",
+      "evaluation_focus": [
+        "Formalized documented threat hunting process",
+        "Automated threat hunting with skilled personnel",
+        "Incident management system threat hunting automation"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "im-08",
+      "name": "Incident response plan",
+      "description": "A formalized documented incident response plan is reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Formalized documented incident response plan",
+        "Frequent incident response plan review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "im-09",
+      "name": "Incident response team",
+      "description": "A clear documented hierarchy and cross-functional representation support incident response.",
+      "evaluation_focus": [
+        "Documented incident management hierarchy and first responder steps",
+        "Cross-functional incident response team representation"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "im-10",
+      "name": "Security Breach Notification",
+      "description": "A formalized breach notification process is reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Formalized documented breach notification process",
+        "Frequent breach notification process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "im-11",
+      "name": "Digital forensics",
+      "description": "Digital forensics capability includes formalized artifact capture, automatic key artifact collection, and frequent review.",
+      "evaluation_focus": [
+        "Digital forensics capability",
+        "Formalized documented forensic artifact capture process",
+        "Automatic key artifact capture before forensics",
+        "Frequent digital forensics process and technology review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "im-12",
+      "name": "Ticketing system (incident logging and response)",
+      "description": "A ticketing system registers incidents and may use advanced AI for automated orchestration.",
+      "evaluation_focus": [
+        "Ticketing system for incident registration",
+        "Advanced AI for automated incident handling orchestration"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "im-13",
+      "name": "Points of Contact Maintenance",
+      "description": "All necessary points of contact are listed in the incident management plan.",
+      "evaluation_focus": [
+        "Points of contact listed in incident management plan"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "grc-lead",
+    "compliance-audit-lead",
+    "enterprise-risk-manager",
+    "security-program-strategy-lead"
+  ]
+}
