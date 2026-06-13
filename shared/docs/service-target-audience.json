@@ -123,6 +123,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "content-management": {
+      "service_name": "Content Management Service",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "privileged-access-management": {
       "service_name": "Privileged Access Management Service",
       "role_ids": [
