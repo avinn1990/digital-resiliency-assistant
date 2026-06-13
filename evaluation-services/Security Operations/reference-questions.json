@@ -1,0 +1,363 @@
+{
+  "service_id": "security-operations",
+  "service_name": "Security Operations",
+  "capability_questions": [
+    {
+      "capability_id": "soc-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-soc-00-1",
+          "prompt": "Does the enterprise have a SOC service?",
+          "intent": "Evaluate: Does the enterprise have a SOC service.",
+          "field_key": "soc_00_soc_service_exists",
+          "evaluation_focus": "Enterprise SOC service exists"
+        },
+        {
+          "id": "rq-soc-00-2",
+          "prompt": "Is the SOC service reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the SOC service reviewed frequently for efficacy.",
+          "field_key": "soc_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent SOC service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-soc-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the SOC service?",
+          "intent": "Evaluate: Does the enterprise formalize and document all KPIs and KRIs for the SOC service.",
+          "field_key": "soc_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for SOC service"
+        },
+        {
+          "id": "rq-soc-01-2",
+          "prompt": "Are the KPIs and KRIs for the SOC reviewed frequently?",
+          "intent": "Evaluate: Are the KPIs and KRIs for the SOC reviewed frequently.",
+          "field_key": "soc_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-02",
+      "capability_name": "SOC System",
+      "questions": [
+        {
+          "id": "rq-soc-02-1",
+          "prompt": "Does the enterprise have a unified SOC system that processes all raw logs and provides SOC capabilities?",
+          "intent": "Evaluate: Does the enterprise have a unified SOC system that processes all raw logs and provides SOC capabilities.",
+          "field_key": "soc_02_unified_soc_system",
+          "evaluation_focus": "Unified SOC system processing raw logs"
+        },
+        {
+          "id": "rq-soc-02-2",
+          "prompt": "Does the SOC apply to the entire enterprise or are there multiple SOC systems?",
+          "intent": "Evaluate: Does the SOC apply to the entire enterprise or are there multiple SOC systems.",
+          "field_key": "soc_02_soc_enterprise_scope",
+          "evaluation_focus": "Enterprise-wide or multiple SOC deployment scope"
+        },
+        {
+          "id": "rq-soc-02-3",
+          "prompt": "Does the enterprise deploy SOAR initiatives as part of SOC?",
+          "intent": "Evaluate: Does the enterprise deploy SOAR initiatives as part of SOC.",
+          "field_key": "soc_02_soar_initiatives",
+          "evaluation_focus": "SOAR initiatives as part of SOC"
+        },
+        {
+          "id": "rq-soc-02-4",
+          "prompt": "Does the enterprise review SOC configs and log processing as part of SOC review?",
+          "intent": "Evaluate: Does the enterprise review SOC configs and log processing as part of SOC review.",
+          "field_key": "soc_02_soc_config_review",
+          "evaluation_focus": "SOC config and log processing review"
+        },
+        {
+          "id": "rq-soc-02-5",
+          "prompt": "Does the SOC system integrate with other systems like vulnerability management, patch management, or even the enforcement point?",
+          "intent": "Evaluate: Does the SOC system integrate with other systems like vulnerability management, patch management, or even the enforcement point.",
+          "field_key": "soc_02_soc_integrations",
+          "evaluation_focus": "Integration with vulnerability, patch management, and enforcement points"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-03",
+      "capability_name": "SOC team",
+      "questions": [
+        {
+          "id": "rq-soc-03-1",
+          "prompt": "Does the enterprise have a clear hierarchy of T1, T2, and T3 analysts to analyse and correlate incidents and make sure that anomalies are captured?",
+          "intent": "Evaluate: Does the enterprise have a clear hierarchy of T1, T2, and T3 analysts to analyse and correlate incidents and make sure that anomalies are captured.",
+          "field_key": "soc_03_analyst_hierarchy",
+          "evaluation_focus": "T1, T2, and T3 analyst hierarchy for incident analysis"
+        },
+        {
+          "id": "rq-soc-03-2",
+          "prompt": "Are the recruited entities FTEs of the enterprise or contractors?",
+          "intent": "Evaluate: Are the recruited entities FTEs of the enterprise or contractors.",
+          "field_key": "soc_03_fte_vs_contractors",
+          "evaluation_focus": "FTE versus contractor staffing model"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-04",
+      "capability_name": "Escalation process",
+      "questions": [
+        {
+          "id": "rq-soc-04-1",
+          "prompt": "Does the enterprise have a formalised and documented process to follow in order to escalate incidents?",
+          "intent": "Evaluate: Does the enterprise have a formalised and documented process to follow in order to escalate incidents.",
+          "field_key": "soc_04_escalation_process",
+          "evaluation_focus": "Formalized documented incident escalation process"
+        },
+        {
+          "id": "rq-soc-04-2",
+          "prompt": "Is the incident escalation process automatically performed by the SOC system?",
+          "intent": "Evaluate: Is the incident escalation process automatically performed by the SOC system.",
+          "field_key": "soc_04_escalation_automated",
+          "evaluation_focus": "Automated incident escalation by SOC system"
+        },
+        {
+          "id": "rq-soc-04-3",
+          "prompt": "Is the incident escalation process reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the incident escalation process reviewed frequently for efficacy.",
+          "field_key": "soc_04_escalation_reviewed",
+          "evaluation_focus": "Frequent incident escalation process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-05",
+      "capability_name": "Behavioural Analysis",
+      "questions": [
+        {
+          "id": "rq-soc-05-1",
+          "prompt": "Does the SOC system have capability to perform behavioural analysis?",
+          "intent": "Evaluate: Does the SOC system have capability to perform behavioural analysis.",
+          "field_key": "soc_05_behavioural_analysis_capability",
+          "evaluation_focus": "Behavioural analysis capability"
+        },
+        {
+          "id": "rq-soc-05-2",
+          "prompt": "Does the SOC system perform behavioural analysis automatically?",
+          "intent": "Evaluate: Does the SOC system perform behavioural analysis automatically.",
+          "field_key": "soc_05_behavioural_analysis_automatic",
+          "evaluation_focus": "Automatic behavioural analysis"
+        },
+        {
+          "id": "rq-soc-05-3",
+          "prompt": "Are the results of the behavioural analysis reviewed frequently for accuracy?",
+          "intent": "Evaluate: Are the results of the behavioural analysis reviewed frequently for accuracy.",
+          "field_key": "soc_05_behavioural_analysis_reviewed",
+          "evaluation_focus": "Frequent behavioural analysis results review"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-06",
+      "capability_name": "Correlation",
+      "questions": [
+        {
+          "id": "rq-soc-06-1",
+          "prompt": "Does the SOC system process and correlate identity logs?",
+          "intent": "Evaluate: Does the SOC system process and correlate identity logs.",
+          "field_key": "soc_06_correlate_identity_logs",
+          "evaluation_focus": "Identity log correlation"
+        },
+        {
+          "id": "rq-soc-06-2",
+          "prompt": "Does the SOC system process and correlate device logs?",
+          "intent": "Evaluate: Does the SOC system process and correlate device logs.",
+          "field_key": "soc_06_correlate_device_logs",
+          "evaluation_focus": "Device log correlation"
+        },
+        {
+          "id": "rq-soc-06-3",
+          "prompt": "Does the SOC system process and correlate network logs?",
+          "intent": "Evaluate: Does the SOC system process and correlate network logs.",
+          "field_key": "soc_06_correlate_network_logs",
+          "evaluation_focus": "Network log correlation"
+        },
+        {
+          "id": "rq-soc-06-4",
+          "prompt": "Does the SOC system process and correlate threat information?",
+          "intent": "Evaluate: Does the SOC system process and correlate threat information.",
+          "field_key": "soc_06_correlate_threat_information",
+          "evaluation_focus": "Threat information correlation"
+        },
+        {
+          "id": "rq-soc-06-5",
+          "prompt": "Does the enterprise engage in threat hunting activities to improve SOC capability?",
+          "intent": "Evaluate: Does the enterprise engage in threat hunting activities to improve SOC capability.",
+          "field_key": "soc_06_threat_hunting",
+          "evaluation_focus": "Threat hunting activities"
+        },
+        {
+          "id": "rq-soc-06-6",
+          "prompt": "Does the SOC system process and correlate application logs?",
+          "intent": "Evaluate: Does the SOC system process and correlate application logs.",
+          "field_key": "soc_06_correlate_application_logs",
+          "evaluation_focus": "Application log correlation"
+        },
+        {
+          "id": "rq-soc-06-7",
+          "prompt": "Does the SOC system process and correlate data logs?",
+          "intent": "Evaluate: Does the SOC system process and correlate data logs.",
+          "field_key": "soc_06_correlate_data_logs",
+          "evaluation_focus": "Data log correlation"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-07",
+      "capability_name": "Device compliance Visibility",
+      "questions": [
+        {
+          "id": "rq-soc-07-1",
+          "prompt": "Are compliance visibility logs sent to the SOC system for correlation?",
+          "intent": "Evaluate: Are compliance visibility logs sent to the SOC system for correlation.",
+          "field_key": "soc_07_compliance_logs_to_soc",
+          "evaluation_focus": "Compliance visibility logs sent to SOC"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-08",
+      "capability_name": "Software based scanning",
+      "questions": [
+        {
+          "id": "rq-soc-08-1",
+          "prompt": "Does the SOC system have capability to perform software based scanning?",
+          "intent": "Evaluate: Does the SOC system have capability to perform software based scanning.",
+          "field_key": "soc_08_software_scanning_capability",
+          "evaluation_focus": "Software-based scanning capability"
+        },
+        {
+          "id": "rq-soc-08-2",
+          "prompt": "Does the SOC system perform software based scanning automatically?",
+          "intent": "Evaluate: Does the SOC system perform software based scanning automatically.",
+          "field_key": "soc_08_software_scanning_automatic",
+          "evaluation_focus": "Automatic software-based scanning"
+        },
+        {
+          "id": "rq-soc-08-3",
+          "prompt": "Are the results of the software scanning reviewed frequently for accuracy?",
+          "intent": "Evaluate: Are the results of the software scanning reviewed frequently for accuracy.",
+          "field_key": "soc_08_software_scanning_reviewed",
+          "evaluation_focus": "Frequent software scanning results review"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-09",
+      "capability_name": "Real time monitoring",
+      "questions": [
+        {
+          "id": "rq-soc-09-1",
+          "prompt": "Does the SOC have capability to monitor the logs real time?",
+          "intent": "Evaluate: Does the SOC have capability to monitor the logs real time.",
+          "field_key": "soc_09_real_time_monitoring",
+          "evaluation_focus": "Real-time log monitoring capability"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-10",
+      "capability_name": "Rapid Threat containment",
+      "questions": [
+        {
+          "id": "rq-soc-10-1",
+          "prompt": "Does the SOC have capability to block access based on compromise threats?",
+          "intent": "Evaluate: Does the SOC have capability to block access based on compromise threats.",
+          "field_key": "soc_10_block_compromise_threats",
+          "evaluation_focus": "Block access based on compromise threats"
+        },
+        {
+          "id": "rq-soc-10-2",
+          "prompt": "Can the blocking and unblocking of compromised or remediated resources be performed automatically?",
+          "intent": "Evaluate: Can the blocking and unblocking of compromised or remediated resources be performed automatically.",
+          "field_key": "soc_10_automatic_block_unblock",
+          "evaluation_focus": "Automatic blocking and unblocking of compromised or remediated resources"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-11",
+      "capability_name": "Monitoring KPI/KRI of various management services",
+      "questions": [
+        {
+          "id": "rq-soc-11-1",
+          "prompt": "Does the SOC support other systems by monitoring artifacts necessary for the respective services' KPI/KRI?",
+          "intent": "Evaluate: Does the SOC support other systems by monitoring artifacts necessary for the respective services' KPI/KRI.",
+          "field_key": "soc_11_monitor_service_kpis_kris",
+          "evaluation_focus": "SOC monitors KPI/KRI artifacts for other management services"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-12",
+      "capability_name": "Threat intelligence Management",
+      "questions": [
+        {
+          "id": "rq-soc-12-1",
+          "prompt": "Does the enterprise have a threat intelligence platform and a management service for threat intelligence?",
+          "intent": "Evaluate: Does the enterprise have a threat intelligence platform and a management service for threat intelligence.",
+          "field_key": "soc_12_threat_intel_platform",
+          "evaluation_focus": "Threat intelligence platform and management service"
+        },
+        {
+          "id": "rq-soc-12-2",
+          "prompt": "Does the enterprise ingest threat intelligence information and subsequent remediation recommendations automatically?",
+          "intent": "Evaluate: Does the enterprise ingest threat intelligence information and subsequent remediation recommendations automatically.",
+          "field_key": "soc_12_threat_intel_ingestion_automatic",
+          "evaluation_focus": "Automatic threat intelligence ingestion and remediation recommendations"
+        },
+        {
+          "id": "rq-soc-12-3",
+          "prompt": "Does the enterprise review the threat intelligence information for accuracy and relevance?",
+          "intent": "Evaluate: Does the enterprise review the threat intelligence information for accuracy and relevance.",
+          "field_key": "soc_12_threat_intel_reviewed",
+          "evaluation_focus": "Frequent threat intelligence accuracy and relevance review"
+        },
+        {
+          "id": "rq-soc-12-4",
+          "prompt": "Does the threat intelligence integrate with SOC and other segments for providing contextual information?",
+          "intent": "Evaluate: Does the threat intelligence integrate with SOC and other segments for providing contextual information.",
+          "field_key": "soc_12_threat_intel_integrations",
+          "evaluation_focus": "Threat intelligence integration with SOC and other segments"
+        }
+      ]
+    },
+    {
+      "capability_id": "soc-13",
+      "capability_name": "Application trend analysis with ADM",
+      "questions": [
+        {
+          "id": "rq-soc-13-1",
+          "prompt": "Does the SOC have capability to identify enterprise trends and showcase them on the dashboard?",
+          "intent": "Evaluate: Does the SOC have capability to identify enterprise trends and showcase them on the dashboard.",
+          "field_key": "soc_13_trend_analysis_dashboard",
+          "evaluation_focus": "Identify enterprise trends on SOC dashboard"
+        },
+        {
+          "id": "rq-soc-13-2",
+          "prompt": "Does the SOC system have capability to identify the trends automatically?",
+          "intent": "Evaluate: Does the SOC system have capability to identify the trends automatically.",
+          "field_key": "soc_13_trend_identification_automatic",
+          "evaluation_focus": "Automatic trend identification"
+        },
+        {
+          "id": "rq-soc-13-3",
+          "prompt": "Does the enterprise review identified trends for accuracy?",
+          "intent": "Evaluate: Does the enterprise review identified trends for accuracy.",
+          "field_key": "soc_13_trends_reviewed",
+          "evaluation_focus": "Frequent trend accuracy review"
+        }
+      ]
+    }
+  ]
+}

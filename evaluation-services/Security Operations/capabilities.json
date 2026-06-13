@@ -1,0 +1,235 @@
+{
+  "service_id": "security-operations",
+  "service_name": "Security Operations",
+  "version": "1.0",
+  "description": "Evaluates security operations (SOC) maturity\u2014service governance, KPIs/KRIs, SOC systems and team, escalation, behavioural analysis, correlation, compliance visibility, scanning, real-time monitoring, threat containment, threat intelligence, and trend analysis.",
+  "capabilities": [
+    {
+      "id": "soc-00",
+      "name": "Service exists and is in good condition",
+      "description": "A SOC service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Enterprise SOC service exists",
+        "Frequent SOC service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "soc-01",
+      "name": "KPIs/KRIs",
+      "description": "SOC KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for SOC service",
+        "Frequent KPI/KRI review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "soc-02",
+      "name": "SOC System",
+      "description": "A unified SOC system processes logs enterprise-wide, deploys SOAR, is reviewed, and integrates with other security systems.",
+      "evaluation_focus": [
+        "Unified SOC system processing raw logs",
+        "Enterprise-wide or multiple SOC deployment scope",
+        "SOAR initiatives as part of SOC",
+        "SOC config and log processing review",
+        "Integration with vulnerability, patch management, and enforcement points"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-03",
+      "name": "SOC team",
+      "description": "A clear T1, T2, and T3 analyst hierarchy captures anomalies with defined FTE or contractor staffing.",
+      "evaluation_focus": [
+        "T1, T2, and T3 analyst hierarchy for incident analysis",
+        "FTE versus contractor staffing model"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "soc-04",
+      "name": "Escalation process",
+      "description": "A formalized incident escalation process is automated where possible and reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented incident escalation process",
+        "Automated incident escalation by SOC system",
+        "Frequent incident escalation process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "soc-05",
+      "name": "Behavioural Analysis",
+      "description": "The SOC system performs behavioural analysis automatically with frequent accuracy review.",
+      "evaluation_focus": [
+        "Behavioural analysis capability",
+        "Automatic behavioural analysis",
+        "Frequent behavioural analysis results review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-06",
+      "name": "Correlation",
+      "description": "The SOC correlates identity, device, network, threat, application, and data logs with threat hunting activities.",
+      "evaluation_focus": [
+        "Identity log correlation",
+        "Device log correlation",
+        "Network log correlation",
+        "Threat information correlation",
+        "Threat hunting activities",
+        "Application log correlation",
+        "Data log correlation"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-07",
+      "name": "Device compliance Visibility",
+      "description": "Compliance visibility logs are sent to the SOC for correlation.",
+      "evaluation_focus": [
+        "Compliance visibility logs sent to SOC"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-08",
+      "name": "Software based scanning",
+      "description": "The SOC performs software-based scanning automatically with frequent accuracy review.",
+      "evaluation_focus": [
+        "Software-based scanning capability",
+        "Automatic software-based scanning",
+        "Frequent software scanning results review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-09",
+      "name": "Real time monitoring",
+      "description": "The SOC monitors logs in real time.",
+      "evaluation_focus": [
+        "Real-time log monitoring capability"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-10",
+      "name": "Rapid Threat containment",
+      "description": "The SOC blocks access based on compromise threats with automatic blocking and unblocking.",
+      "evaluation_focus": [
+        "Block access based on compromise threats",
+        "Automatic blocking and unblocking of compromised or remediated resources"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-11",
+      "name": "Monitoring KPI/KRI of various management services",
+      "description": "The SOC monitors artifacts necessary for other services' KPIs and KRIs.",
+      "evaluation_focus": [
+        "SOC monitors KPI/KRI artifacts for other management services"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "soc-12",
+      "name": "Threat intelligence Management",
+      "description": "A threat intelligence platform ingests information automatically, is reviewed, and integrates with SOC and other segments.",
+      "evaluation_focus": [
+        "Threat intelligence platform and management service",
+        "Automatic threat intelligence ingestion and remediation recommendations",
+        "Frequent threat intelligence accuracy and relevance review",
+        "Threat intelligence integration with SOC and other segments"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "soc-13",
+      "name": "Application trend analysis with ADM",
+      "description": "The SOC identifies enterprise trends automatically on dashboards with frequent accuracy review.",
+      "evaluation_focus": [
+        "Identify enterprise trends on SOC dashboard",
+        "Automatic trend identification",
+        "Frequent trend accuracy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}
