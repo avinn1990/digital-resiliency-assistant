@@ -9,48 +9,55 @@
         {
           "id": "rq-auth-00-1",
           "prompt": "Does the enterprise have an authentication service?",
-          "intent": "Evaluate does the enterprise have an authentication service?",
+          "intent": "Evaluate whether an enterprise authentication service exists",
           "field_key": "auth_00_authentication_service_exists",
           "evaluation_focus": "Enterprise authentication service exists"
         },
         {
           "id": "rq-auth-00-2",
-          "prompt": "Is the authentication service reviewed frequently to measure its efficacy?",
-          "intent": "Evaluate is the authentication service reviewed frequently to measure its efficacy?",
-          "field_key": "auth_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "prompt": "Is the authentication service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "auth_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
     {
       "capability_id": "auth-01",
-      "capability_name": "Authentication System",
+      "capability_name": "Authentication system",
       "questions": [
         {
           "id": "rq-auth-01-1",
           "prompt": "Does the enterprise have a formal system that authenticates subjects to network and applications?",
-          "intent": "Evaluate does the enterprise have a formal system that authenticates subjects to network and applications?",
+          "intent": "Evaluate whether a formal authentication system exists for network and applications",
           "field_key": "auth_01_formal_authentication_system",
           "evaluation_focus": "Formal authentication system for network and applications"
         },
         {
           "id": "rq-auth-01-2",
-          "prompt": "Is the same authentication system used to provide authentication services across the enterprise—for example accessing via VPN, LAN, or cloud—or do separate locations have their own authentication systems?",
-          "intent": "Evaluate is the same authentication system used to provide authentication services across the enterprise—for example accessing via VPN, LAN, or cloud—or do separate locations have their own authentication systems?",
+          "prompt": "Is the same authentication system used consistently across the enterprise (VPN, LAN, cloud, and SaaS)—or do separate locations or systems maintain siloed authentication?",
+          "intent": "Evaluate whether authentication is consistent enterprise-wide",
           "field_key": "auth_01_enterprise_wide_authentication",
           "evaluation_focus": "Enterprise-wide authentication consistency"
         },
         {
           "id": "rq-auth-01-3",
-          "prompt": "Does the authentication service configuration get reviewed frequently?",
-          "intent": "Evaluate does the authentication service configuration get reviewed frequently?",
-          "field_key": "auth_01_config_reviewed_frequently",
-          "evaluation_focus": "Authentication service configuration review"
+          "prompt": "Does the authentication system support cloud identity providers and federated authentication (for example SAML, OIDC) for enterprise applications?",
+          "intent": "Evaluate whether cloud IdP and federation are supported",
+          "field_key": "auth_01_cloud_idp_federation",
+          "evaluation_focus": "Cloud identity provider and federation support"
         },
         {
           "id": "rq-auth-01-4",
-          "prompt": "Does the authentication system integrate with other access control mechanisms like decision makers and enforcement points to provide contextual and identity-centric access?",
-          "intent": "Evaluate does the authentication system integrate with other access control mechanisms like decision makers and enforcement points to provide contextual and identity-centric access?",
+          "prompt": "Is authentication system configuration reviewed at least quarterly?",
+          "intent": "Evaluate whether authentication configuration is reviewed on a regular cadence",
+          "field_key": "auth_01_config_reviewed_regularly",
+          "evaluation_focus": "Authentication service configuration review"
+        },
+        {
+          "id": "rq-auth-01-5",
+          "prompt": "Does the authentication system integrate with access control policy decision points (PDPs) and policy enforcement points (PEPs) for contextual, identity-centric access?",
+          "intent": "Evaluate whether authentication integrates with access control mechanisms",
           "field_key": "auth_01_integrates_access_control",
           "evaluation_focus": "Integration with access control decision and enforcement points"
         }
@@ -58,21 +65,21 @@
     },
     {
       "capability_id": "auth-02",
-      "capability_name": "IAM Engineer (Authentication service owner)",
+      "capability_name": "Authentication service owner",
       "questions": [
         {
           "id": "rq-auth-02-1",
-          "prompt": "Does the enterprise have an IAM engineer to configure the authentication policies on the authentication system?",
-          "intent": "Evaluate does the enterprise have an IAM engineer to configure the authentication policies on the authentication system?",
-          "field_key": "auth_02_iam_engineer_exists",
-          "evaluation_focus": "IAM engineer for authentication policy configuration"
+          "prompt": "Does the enterprise have an IAM engineer or dedicated authentication owner to configure authentication policies?",
+          "intent": "Evaluate whether a dedicated authentication owner exists",
+          "field_key": "auth_02_authentication_owner_exists",
+          "evaluation_focus": "IAM engineer or authentication owner for policy configuration"
         },
         {
           "id": "rq-auth-02-2",
-          "prompt": "If the authentication service is siloed across locations, does the IAM engineer centrally manage the entire IAM infrastructure, or do separate locations have different IAM engineers?",
-          "intent": "Evaluate if the authentication service is siloed across locations, does the IAM engineer centrally manage the entire IAM infrastructure, or do separate locations have different IAM engineers?",
-          "field_key": "auth_02_iam_engineer_central_management",
-          "evaluation_focus": "Central vs location-specific IAM engineering"
+          "prompt": "If authentication is siloed across locations, is there central ownership of authentication policy—or do separate locations have independent authentication administrators?",
+          "intent": "Evaluate whether authentication engineering is centrally managed",
+          "field_key": "auth_02_central_authentication_management",
+          "evaluation_focus": "Central vs location-specific authentication engineering"
         }
       ]
     },
@@ -82,125 +89,153 @@
       "questions": [
         {
           "id": "rq-auth-03-1",
-          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the authentication service?",
-          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for the authentication service?",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for the authentication service?",
+          "intent": "Evaluate whether authentication KPIs and KRIs are documented",
           "field_key": "auth_03_kpis_kris_documented",
           "evaluation_focus": "Documented KPIs and KRIs"
         },
         {
           "id": "rq-auth-03-2",
-          "prompt": "Are the KPIs and KRIs for authentication reviewed frequently?",
-          "intent": "Evaluate are the KPIs and KRIs for authentication reviewed frequently?",
-          "field_key": "auth_03_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "prompt": "Are authentication KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "auth_03_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-auth-03-3",
+          "prompt": "Do KPIs or KRIs track MFA coverage, phishing-resistant authentication adoption (for example passkeys/FIDO2), or passwordless rollout progress?",
+          "intent": "Evaluate whether modern authentication adoption metrics are tracked",
+          "field_key": "auth_03_modern_auth_coverage_metrics",
+          "evaluation_focus": "MFA and phishing-resistant authentication coverage metrics"
+        },
+        {
+          "id": "rq-auth-03-4",
+          "prompt": "Do KPIs or KRIs track failed authentication rates, credential stuffing indicators, or suspicious login patterns?",
+          "intent": "Evaluate whether credential attack and failed auth metrics are tracked",
+          "field_key": "auth_03_credential_attack_metrics",
+          "evaluation_focus": "Failed authentication and credential attack metrics"
         }
       ]
     },
     {
       "capability_id": "auth-04",
-      "capability_name": "Subject and Object Authentication with robust multi factor authentication",
+      "capability_name": "Modern and phishing-resistant authentication",
       "questions": [
         {
           "id": "rq-auth-04-1",
-          "prompt": "Does the enterprise formally utilize MFA for authentication?",
-          "intent": "Evaluate does the enterprise formally utilize MFA for authentication?",
-          "field_key": "auth_04_mfa_formally_utilized",
-          "evaluation_focus": "Formal MFA utilization"
-        },
-        {
-          "id": "rq-auth-04-2",
-          "prompt": "Is MFA used as a second factor authentication for all access to the enterprise, including LAN, VPN, cloud, application access, and PAM?",
-          "intent": "Evaluate is MFA used as a second factor authentication for all access to the enterprise, including LAN, VPN, cloud, application access, and PAM?",
+          "prompt": "Does the enterprise formally require MFA as a second factor for all access, including LAN, VPN, cloud, application access, and privileged access?",
+          "intent": "Evaluate whether MFA is required enterprise-wide for all access types",
           "field_key": "auth_04_mfa_all_access",
           "evaluation_focus": "Enterprise-wide MFA for all access"
         },
         {
+          "id": "rq-auth-04-2",
+          "prompt": "Are passwordless authentication methodologies (for example FIDO2 passkeys, certificates, or biometrics) documented and deployed enterprise-wide or in defined scopes?",
+          "intent": "Evaluate whether passwordless authentication is documented and deployed",
+          "field_key": "auth_04_passwordless_documented_deployed",
+          "evaluation_focus": "Documented passwordless authentication methodologies"
+        },
+        {
           "id": "rq-auth-04-3",
-          "prompt": "Are MFA configurations reviewed frequently for improvements?",
-          "intent": "Evaluate are MFA configurations reviewed frequently for improvements?",
-          "field_key": "auth_04_mfa_config_reviewed",
-          "evaluation_focus": "Frequent MFA configuration review"
+          "prompt": "Is phishing-resistant MFA (for example FIDO2 security keys or passkeys) documented and deployed enterprise-wide or for high-risk users and applications?",
+          "intent": "Evaluate whether phishing-resistant MFA is documented and deployed",
+          "field_key": "auth_04_phishing_resistant_mfa_deployed",
+          "evaluation_focus": "Documented phishing-resistant MFA"
+        },
+        {
+          "id": "rq-auth-04-4",
+          "prompt": "Are MFA, passwordless, and phishing-resistant authentication configurations reviewed at least quarterly for improvement?",
+          "intent": "Evaluate whether modern authentication methods are reviewed on a regular cadence",
+          "field_key": "auth_04_modern_auth_reviewed_regularly",
+          "evaluation_focus": "Regular MFA and passwordless configuration review"
         }
       ]
     },
     {
       "capability_id": "auth-05",
-      "capability_name": "Subject and Object Authentication with passwordless authentication (certificates, biometric (FIDO compliant))",
+      "capability_name": "Risk-based and adaptive authentication",
       "questions": [
         {
           "id": "rq-auth-05-1",
-          "prompt": "Does the enterprise formalize and document passwordless methodologies for authentication?",
-          "intent": "Evaluate does the enterprise formalize and document passwordless methodologies for authentication?",
-          "field_key": "auth_05_passwordless_documented",
-          "evaluation_focus": "Documented passwordless authentication methodologies"
+          "prompt": "Does the organization have a documented risk-based authentication policy that adjusts authentication requirements based on context?",
+          "intent": "Evaluate whether a risk-based authentication policy exists",
+          "field_key": "auth_05_risk_based_auth_policy",
+          "evaluation_focus": "Risk-based authentication policy exists"
         },
         {
           "id": "rq-auth-05-2",
-          "prompt": "Does the enterprise deploy passwordless authentication across the enterprise, or is it deployed in specific scopes within the enterprise?",
-          "intent": "Evaluate does the enterprise deploy passwordless authentication across the enterprise, or is it deployed in specific scopes within the enterprise?",
-          "field_key": "auth_05_passwordless_deployment_scope",
-          "evaluation_focus": "Enterprise-wide vs scoped passwordless deployment"
+          "prompt": "Can the authentication system require step-up authentication (stronger factors or re-authentication) for high-risk sessions or sensitive resources?",
+          "intent": "Evaluate whether adaptive step-up authentication is supported",
+          "field_key": "auth_05_adaptive_step_up_auth",
+          "evaluation_focus": "Adaptive step-up authentication for high-risk sessions"
         },
         {
           "id": "rq-auth-05-3",
-          "prompt": "Are passwordless methods reviewed to enhance possible passwordless deployments?",
-          "intent": "Evaluate are passwordless methods reviewed to enhance possible passwordless deployments?",
-          "field_key": "auth_05_passwordless_reviewed",
-          "evaluation_focus": "Passwordless method review and enhancement"
+          "prompt": "Are device trust, geolocation, and behavioral anomaly signals integrated into authentication decisions?",
+          "intent": "Evaluate whether device and behavioral signals inform authentication",
+          "field_key": "auth_05_device_behavioral_signals",
+          "evaluation_focus": "Integration of device and behavioral signals into auth decisions"
         }
       ]
     },
     {
       "capability_id": "auth-06",
-      "capability_name": "Phishing Resistant MFA",
+      "capability_name": "Non-human and API authentication",
       "questions": [
         {
           "id": "rq-auth-06-1",
-          "prompt": "Does the enterprise formalize and document phishing-resistant MFA for authentication?",
-          "intent": "Evaluate does the enterprise formalize and document phishing-resistant MFA for authentication?",
-          "field_key": "auth_06_phishing_resistant_mfa_documented",
-          "evaluation_focus": "Documented phishing-resistant MFA"
+          "prompt": "Are service accounts and workloads authenticated using governed methods—not shared human passwords?",
+          "intent": "Evaluate whether service account and workload authentication is governed",
+          "field_key": "auth_06_service_account_auth_governed",
+          "evaluation_focus": "Governed service account and workload authentication"
         },
         {
           "id": "rq-auth-06-2",
-          "prompt": "Does the enterprise deploy phishing-resistant MFA across the enterprise, or is it deployed in specific scopes within the enterprise?",
-          "intent": "Evaluate does the enterprise deploy phishing-resistant MFA across the enterprise, or is it deployed in specific scopes within the enterprise?",
-          "field_key": "auth_06_phishing_resistant_mfa_deployment_scope",
-          "evaluation_focus": "Enterprise-wide vs scoped phishing-resistant MFA deployment"
+          "prompt": "Do API and machine-to-machine clients authenticate using standards such as OAuth 2.0 client credentials, mutual TLS, or certificate-based authentication?",
+          "intent": "Evaluate whether API authentication uses modern standards",
+          "field_key": "auth_06_api_client_credential_standards",
+          "evaluation_focus": "OAuth and API client credential authentication standards"
         },
         {
           "id": "rq-auth-06-3",
-          "prompt": "Are phishing-resistant MFA deployments and designs reviewed to enhance possible improvements to authentication?",
-          "intent": "Evaluate are phishing-resistant MFA deployments and designs reviewed to enhance possible improvements to authentication?",
-          "field_key": "auth_06_phishing_resistant_mfa_reviewed",
-          "evaluation_focus": "Phishing-resistant MFA design review and enhancement"
+          "prompt": "Are shared credentials for non-human identities prohibited and detected through policy or monitoring?",
+          "intent": "Evaluate whether shared non-human credentials are prohibited",
+          "field_key": "auth_06_no_shared_non_human_credentials",
+          "evaluation_focus": "Prohibition of shared credentials for non-human identities"
         }
       ]
     },
     {
       "capability_id": "auth-07",
-      "capability_name": "Authentication logging",
+      "capability_name": "Authentication logging and anomaly detection",
       "questions": [
         {
           "id": "rq-auth-07-1",
-          "prompt": "Is there a formal documented process for logging authentication events, such as user lifecycle and failed authentications, to the SOC?",
-          "intent": "Evaluate is there a formal documented process for logging authentication events, such as user lifecycle and failed authentications, to the SOC?",
+          "prompt": "Is there a formal documented process for logging authentication events—including user lifecycle changes and failed authentications—to the SOC?",
+          "intent": "Evaluate whether authentication logging to the SOC is formally documented",
           "field_key": "auth_07_logging_process_to_soc",
           "evaluation_focus": "Documented authentication logging to SOC"
         },
         {
           "id": "rq-auth-07-2",
-          "prompt": "Is logging of authentication events made securely to the SOC?",
-          "intent": "Evaluate is logging of authentication events made securely to the SOC?",
+          "prompt": "Are authentication events transmitted securely to the SOC?",
+          "intent": "Evaluate whether authentication events are logged securely to the SOC",
           "field_key": "auth_07_secure_logging_to_soc",
           "evaluation_focus": "Secure authentication event logging to SOC"
         },
         {
           "id": "rq-auth-07-3",
-          "prompt": "Are dynamic changes to authentication captured and transferred to the SOC?",
-          "intent": "Evaluate are dynamic changes to authentication captured and transferred to the SOC?",
+          "prompt": "Are dynamic changes to authentication configuration captured and transferred to the SOC in near-real time?",
+          "intent": "Evaluate whether dynamic authentication changes are sent to the SOC",
           "field_key": "auth_07_dynamic_changes_to_soc",
           "evaluation_focus": "Dynamic authentication changes to SOC"
+        },
+        {
+          "id": "rq-auth-07-4",
+          "prompt": "Are anomalous authentication patterns (for example impossible travel, credential stuffing bursts, or token replay) detected and alerted in near-real time?",
+          "intent": "Evaluate whether anomalous authentication patterns trigger detection and alerting",
+          "field_key": "auth_07_anomalous_auth_detection",
+          "evaluation_focus": "Anomalous authentication pattern detection"
         }
       ]
     }
