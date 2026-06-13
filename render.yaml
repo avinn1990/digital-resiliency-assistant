@@ -1,15 +1,14 @@
-# Render Blueprint — dev / staging (branch: dev).
-# Production blueprint lives on main (no -dev suffixes, custom domains, standard plans).
-# Deploy: connect this repo on Render → Blueprint → track branch dev.
+# Render Blueprint — single source of truth for production configuration.
+# Deploy: Render Dashboard → New → Blueprint → connect this repository.
 # Do not duplicate these settings manually in the Render UI; change this file and sync the blueprint.
 #
 # Wiring:
 # - Service URLs use fromService + RENDER_EXTERNAL_URL (public https://….onrender.com).
-# - UI uses default *.onrender.com hostnames (no custom domains on dev).
+# - UI custom domain and backend CORS are declared below (digitally-resilient.com).
 # - Secrets marked sync: false must be set once in the dashboard (Render cannot store them in git).
 
 envVarGroups:
-  - name: dra-auth-dev
+  - name: dra-auth
     envVars:
       - key: GOOGLE_CLIENT_ID
         value: 842344870402-fu23ib77n6ph4kv5c9c5lqaqunghejpa.apps.googleusercontent.com
@@ -19,11 +18,13 @@ envVarGroups:
         value: Zp_NRvUl_lBSU96f9GOXM7XpELqhLjWIEwZe7_cxw3K0R37erXcMgN2CN2B_qwbb
       - key: JWT_EXPIRE_MINUTES
         value: "1440"
-  - name: dra-cors-dev
+  - name: dra-cors
     envVars:
+      # Browser origins allowed to call dra-backend (must match dra-ui domains + any extra UI hosts).
       - key: CORS_ORIGINS
-        value: https://dra-ui-dev.onrender.com
-  - name: dra-openai-dev
+        value: https://digitally-resilient.com,https://www.digitally-resilient.com
+  # Set OPENAI_API_KEY once in the Render dashboard when syncing this group (cannot live in git).
+  - name: dra-openai
     envVars:
       - key: OPENAI_API_KEY
         sync: false
@@ -31,17 +32,18 @@ envVarGroups:
         value: gpt-4o-mini
 
 databases:
-  - name: dra-postgres-dev
+  - name: dra-postgres
     plan: basic-256mb
     region: oregon
 
 services:
   # --- Framework service (deploy first; others depend on its URL) ---
+  # IMPORTANT: dra-framework must stay on plan: standard (persistent disk + production SLA).
   - type: web
-    name: dra-framework-dev
+    name: dra-framework
     runtime: python
     rootDir: services/framework
-    plan: starter
+    plan: standard
     region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
@@ -50,12 +52,12 @@ services:
       - key: PYTHON_VERSION
         value: 3.11.11
     disk:
-      name: dra-framework-dev-data
+      name: dra-framework-data
       mountPath: data
       sizeGB: 1
 
   - type: web
-    name: dra-conversation-dev
+    name: dra-conversation
     runtime: python
     rootDir: services/conversation
     plan: free
@@ -69,20 +71,21 @@ services:
       - key: FRAMEWORK_SERVICE_URL
         fromService:
           type: web
-          name: dra-framework-dev
+          name: dra-framework
           envVarKey: RENDER_EXTERNAL_URL
 
+  # LLM chat: starter avoids free-tier spin-down (502/timeouts on POST /sessions).
   - type: web
-    name: dra-llm-conversation-dev
+    name: dra-llm-conversation
     runtime: python
     rootDir: services/llm-conversation
-    plan: free
+    plan: starter
     region: oregon
     buildCommand: pip install -r requirements.txt
     startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
-      - fromGroup: dra-openai-dev
+      - fromGroup: dra-openai
       - key: PYTHON_VERSION
         value: 3.11.11
       - key: EVALUATION_SERVICES_DIR
@@ -91,7 +94,7 @@ services:
         value: /opt/render/project/src
 
   - type: web
-    name: dra-assessment-dev
+    name: dra-assessment
     runtime: python
     rootDir: services/assessment
     plan: free
@@ -105,21 +108,22 @@ services:
       - key: FRAMEWORK_SERVICE_URL
         fromService:
           type: web
-          name: dra-framework-dev
+          name: dra-framework
           envVarKey: RENDER_EXTERNAL_URL
 
+  # --- API gateway (browser + UI call this service) ---
   - type: web
-    name: dra-backend-dev
+    name: dra-backend
     runtime: python
-    plan: starter
+    plan: standard
     region: oregon
     buildCommand: pip install -r backend/requirements.txt
     startCommand: cd backend && uvicorn app.main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     envVars:
-      - fromGroup: dra-auth-dev
-      - fromGroup: dra-cors-dev
-      - fromGroup: dra-openai-dev
+      - fromGroup: dra-auth
+      - fromGroup: dra-cors
+      - fromGroup: dra-openai
       - key: PYTHON_VERSION
         value: 3.11.11
       - key: REPO_ROOT
@@ -129,42 +133,46 @@ services:
       - key: CONVERSATION_SERVICE_URL
         fromService:
           type: web
-          name: dra-conversation-dev
+          name: dra-conversation
           envVarKey: RENDER_EXTERNAL_URL
       - key: ASSESSMENT_SERVICE_URL
         fromService:
           type: web
-          name: dra-assessment-dev
+          name: dra-assessment
           envVarKey: RENDER_EXTERNAL_URL
       - key: FRAMEWORK_SERVICE_URL
         fromService:
           type: web
-          name: dra-framework-dev
+          name: dra-framework
           envVarKey: RENDER_EXTERNAL_URL
       - key: LLM_CONVERSATION_SERVICE_URL
         fromService:
           type: web
-          name: dra-llm-conversation-dev
+          name: dra-llm-conversation
           envVarKey: RENDER_EXTERNAL_URL
       - key: AUTH_REQUIRED
         value: "true"
       - key: DATABASE_URL
         fromDatabase:
-          name: dra-postgres-dev
+          name: dra-postgres
           property: connectionString
 
+  # --- Static UI (VITE_API_URL wired to dra-backend at build time) ---
   - type: web
-    name: dra-ui-dev
+    name: dra-ui
     runtime: static
     rootDir: ui
     buildCommand: |
       if [ -z "$VITE_API_URL" ]; then
-        echo "FATAL: VITE_API_URL is empty — check render.yaml dra-ui-dev envVars (fromService dra-backend-dev)."
+        echo "FATAL: VITE_API_URL is empty — check render.yaml dra-ui envVars (fromService dra-backend)."
         exit 1
       fi
-      echo "Building dra-ui-dev with VITE_API_URL=${VITE_API_URL}"
+      echo "Building dra-ui with VITE_API_URL=${VITE_API_URL}"
       npm ci && npm run build
     staticPublishPath: dist
+    domains:
+      - digitally-resilient.com
+      - www.digitally-resilient.com
     headers:
       - path: /*
         name: Cross-Origin-Opener-Policy
@@ -174,9 +182,9 @@ services:
         source: /*
         destination: /index.html
     envVars:
-      - fromGroup: dra-auth-dev
+      - fromGroup: dra-auth
       - key: VITE_API_URL
         fromService:
           type: web
-          name: dra-backend-dev
+          name: dra-backend
           envVarKey: RENDER_EXTERNAL_URL
