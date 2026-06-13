@@ -296,6 +296,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "incident-management": {
+      "service_name": "Incident Management",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "grc-lead",
+        "compliance-audit-lead",
+        "enterprise-risk-manager",
+        "security-program-strategy-lead"
+      ]
+    },
     "log-management": {
       "service_name": "Log Management",
       "role_ids": [

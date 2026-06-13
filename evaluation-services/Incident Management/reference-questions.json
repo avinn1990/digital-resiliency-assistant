@@ -1,0 +1,314 @@
+{
+  "service_id": "incident-management",
+  "service_name": "Incident Management",
+  "capability_questions": [
+    {
+      "capability_id": "im-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-im-00-1",
+          "prompt": "Does the enterprise have an Incident Management service?",
+          "intent": "Evaluate: Does the enterprise have an Incident Management service.",
+          "field_key": "im_00_incident_management_service_exists",
+          "evaluation_focus": "Enterprise incident management service exists"
+        },
+        {
+          "id": "rq-im-00-2",
+          "prompt": "Is the Incident Management service reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the Incident Management service reviewed frequently for efficacy.",
+          "field_key": "im_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent incident management service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-im-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Incident Management service?",
+          "intent": "Evaluate: Does the enterprise formalize and document all KPIs and KRIs for the Incident Management service.",
+          "field_key": "im_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for incident management service"
+        },
+        {
+          "id": "rq-im-01-2",
+          "prompt": "Are the KPIs and KRIs for the Incident Management service reviewed frequently?",
+          "intent": "Evaluate: Are the KPIs and KRIs for the Incident Management service reviewed frequently.",
+          "field_key": "im_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-02",
+      "capability_name": "Incident management process",
+      "questions": [
+        {
+          "id": "rq-im-02-1",
+          "prompt": "Does the enterprise have a formalized, documented process for incident management applicable enterprise wide?",
+          "intent": "Evaluate: Does the enterprise have a formalized, documented process for incident management applicable enterprise wide.",
+          "field_key": "im_02_formalized_process",
+          "evaluation_focus": "Formalized documented enterprise-wide incident management process"
+        },
+        {
+          "id": "rq-im-02-2",
+          "prompt": "Is security orchestration and automation responses utilized as part of incident management?",
+          "intent": "Evaluate: Is security orchestration and automation responses utilized as part of incident management.",
+          "field_key": "im_02_soar_utilized",
+          "evaluation_focus": "SOAR utilized as part of incident management"
+        },
+        {
+          "id": "rq-im-02-3",
+          "prompt": "Is the incident management process reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the incident management process reviewed frequently for efficacy.",
+          "field_key": "im_02_process_reviewed_frequently",
+          "evaluation_focus": "Frequent incident management process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-03",
+      "capability_name": "Event Triaging process",
+      "questions": [
+        {
+          "id": "rq-im-03-1",
+          "prompt": "Does the enterprise have a formalized, documented process for triaging incidents applicable enterprise wide?",
+          "intent": "Evaluate: Does the enterprise have a formalized, documented process for triaging incidents applicable enterprise wide.",
+          "field_key": "im_03_triaging_process",
+          "evaluation_focus": "Formalized documented enterprise-wide triaging process"
+        },
+        {
+          "id": "rq-im-03-2",
+          "prompt": "Is security orchestration and automation responses utilized as part of triaging?",
+          "intent": "Evaluate: Is security orchestration and automation responses utilized as part of triaging.",
+          "field_key": "im_03_triaging_soar_utilized",
+          "evaluation_focus": "SOAR utilized as part of triaging"
+        },
+        {
+          "id": "rq-im-03-3",
+          "prompt": "Is the triaging process reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the triaging process reviewed frequently for efficacy.",
+          "field_key": "im_03_triaging_reviewed_frequently",
+          "evaluation_focus": "Frequent triaging process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-04",
+      "capability_name": "Incident management table top exercises",
+      "questions": [
+        {
+          "id": "rq-im-04-1",
+          "prompt": "Does the enterprise engage in table top exercises for threat scenarios that may have broader reputational and monetary impact (ransomware etc.)?",
+          "intent": "Evaluate: Does the enterprise engage in table top exercises for threat scenarios that may have broader reputational and monetary impact (ransomware etc.).",
+          "field_key": "im_04_tabletop_exercises",
+          "evaluation_focus": "Tabletop exercises for high-impact threat scenarios"
+        },
+        {
+          "id": "rq-im-04-2",
+          "prompt": "Does the enterprise review findings and implement the recommendations from the tabletop exercises?",
+          "intent": "Evaluate: Does the enterprise review findings and implement the recommendations from the tabletop exercises.",
+          "field_key": "im_04_tabletop_recommendations_implemented",
+          "evaluation_focus": "Review and implement tabletop exercise recommendations"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-05",
+      "capability_name": "Predictive analysis",
+      "questions": [
+        {
+          "id": "rq-im-05-1",
+          "prompt": "Does the incident management system utilize predictive analysis to predict possible threat scenarios?",
+          "intent": "Evaluate: Does the incident management system utilize predictive analysis to predict possible threat scenarios.",
+          "field_key": "im_05_predictive_analysis",
+          "evaluation_focus": "Predictive analysis for threat scenarios"
+        },
+        {
+          "id": "rq-im-05-2",
+          "prompt": "Does the prediction of threat scenarios happen automatically based on traffic patterns and other baselines?",
+          "intent": "Evaluate: Does the prediction of threat scenarios happen automatically based on traffic patterns and other baselines.",
+          "field_key": "im_05_prediction_automatic",
+          "evaluation_focus": "Automatic prediction based on traffic patterns and baselines"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-06",
+      "capability_name": "Effective Containment",
+      "questions": [
+        {
+          "id": "rq-im-06-1",
+          "prompt": "Does the enterprise have the appropriate segmentation and other incident management process to contain day zero attacks?",
+          "intent": "Evaluate: Does the enterprise have the appropriate segmentation and other incident management process to contain day zero attacks.",
+          "field_key": "im_06_contain_day_zero_attacks",
+          "evaluation_focus": "Segmentation and processes to contain day-zero attacks"
+        },
+        {
+          "id": "rq-im-06-2",
+          "prompt": "Does the containment of threats and attacks happen automatically (either by effective segmentation design or rapid threat containment)?",
+          "intent": "Evaluate: Does the containment of threats and attacks happen automatically (either by effective segmentation design or rapid threat containment).",
+          "field_key": "im_06_containment_automatic",
+          "evaluation_focus": "Automatic threat and attack containment"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-07",
+      "capability_name": "Threat hunting",
+      "questions": [
+        {
+          "id": "rq-im-07-1",
+          "prompt": "Does the enterprise have a formalized documented process for implementing and utilizing threat hunting?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented process for implementing and utilizing threat hunting.",
+          "field_key": "im_07_threat_hunting_process",
+          "evaluation_focus": "Formalized documented threat hunting process"
+        },
+        {
+          "id": "rq-im-07-2",
+          "prompt": "Is the threat hunting process automated and performed by personnel with the right skillset?",
+          "intent": "Evaluate: Is the threat hunting process automated and performed by personnel with the right skillset.",
+          "field_key": "im_07_threat_hunting_automated_skilled",
+          "evaluation_focus": "Automated threat hunting with skilled personnel"
+        },
+        {
+          "id": "rq-im-07-3",
+          "prompt": "Does the incident management system have capability to automate threat hunting to some level?",
+          "intent": "Evaluate: Does the incident management system have capability to automate threat hunting to some level.",
+          "field_key": "im_07_system_threat_hunting_automation",
+          "evaluation_focus": "Incident management system threat hunting automation"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-08",
+      "capability_name": "Incident response plan",
+      "questions": [
+        {
+          "id": "rq-im-08-1",
+          "prompt": "Does the enterprise have a formalized and documented incident response plan?",
+          "intent": "Evaluate: Does the enterprise have a formalized and documented incident response plan.",
+          "field_key": "im_08_incident_response_plan",
+          "evaluation_focus": "Formalized documented incident response plan"
+        },
+        {
+          "id": "rq-im-08-2",
+          "prompt": "Is the incident response plan reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the incident response plan reviewed frequently for efficacy.",
+          "field_key": "im_08_response_plan_reviewed",
+          "evaluation_focus": "Frequent incident response plan review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-09",
+      "capability_name": "Incident response team",
+      "questions": [
+        {
+          "id": "rq-im-09-1",
+          "prompt": "Does the enterprise have a clear and documented hierarchy for incident management as part of the incident response plan? Are the first responders and their first steps documented clearly?",
+          "intent": "Evaluate: Does the enterprise have a clear and documented hierarchy for incident management as part of the incident response plan? Are the first responders and their first steps documented clearly.",
+          "field_key": "im_09_response_hierarchy_documented",
+          "evaluation_focus": "Documented incident management hierarchy and first responder steps"
+        },
+        {
+          "id": "rq-im-09-2",
+          "prompt": "Does the incident management team have representation from the necessary enterprise business units like security architects, legal, HR, infrastructure, endpoints, SOC, etc.?",
+          "intent": "Evaluate: Does the incident management team have representation from the necessary enterprise business units like security architects, legal, HR, infrastructure, endpoints, SOC, etc..",
+          "field_key": "im_09_cross_functional_representation",
+          "evaluation_focus": "Cross-functional incident response team representation"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-10",
+      "capability_name": "Security Breach Notification",
+      "questions": [
+        {
+          "id": "rq-im-10-1",
+          "prompt": "Does the enterprise have a formalized and documented breach notification process?",
+          "intent": "Evaluate: Does the enterprise have a formalized and documented breach notification process.",
+          "field_key": "im_10_breach_notification_process",
+          "evaluation_focus": "Formalized documented breach notification process"
+        },
+        {
+          "id": "rq-im-10-2",
+          "prompt": "Is the breach notification process reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the breach notification process reviewed frequently for efficacy.",
+          "field_key": "im_10_breach_notification_reviewed",
+          "evaluation_focus": "Frequent breach notification process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-11",
+      "capability_name": "Digital forensics",
+      "questions": [
+        {
+          "id": "rq-im-11-1",
+          "prompt": "Does the enterprise incident management have capability to perform digital forensics?",
+          "intent": "Evaluate: Does the enterprise incident management have capability to perform digital forensics.",
+          "field_key": "im_11_digital_forensics_capability",
+          "evaluation_focus": "Digital forensics capability"
+        },
+        {
+          "id": "rq-im-11-2",
+          "prompt": "Does the enterprise incident management have a formalized documented process for capturing digital forensic artifacts?",
+          "intent": "Evaluate: Does the enterprise incident management have a formalized documented process for capturing digital forensic artifacts.",
+          "field_key": "im_11_forensic_artifact_process",
+          "evaluation_focus": "Formalized documented forensic artifact capture process"
+        },
+        {
+          "id": "rq-im-11-3",
+          "prompt": "Does the incident management platform automatically capture key artifacts before digital forensics begins?",
+          "intent": "Evaluate: Does the incident management platform automatically capture key artifacts before digital forensics begins.",
+          "field_key": "im_11_automatic_artifact_capture",
+          "evaluation_focus": "Automatic key artifact capture before forensics"
+        },
+        {
+          "id": "rq-im-11-4",
+          "prompt": "Is the digital forensics process and technology reviewed for efficacy?",
+          "intent": "Evaluate: Is the digital forensics process and technology reviewed for efficacy.",
+          "field_key": "im_11_forensics_reviewed",
+          "evaluation_focus": "Frequent digital forensics process and technology review"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-12",
+      "capability_name": "Ticketing system (incident logging and response)",
+      "questions": [
+        {
+          "id": "rq-im-12-1",
+          "prompt": "Does the enterprise have a ticketing system to register incidents?",
+          "intent": "Evaluate: Does the enterprise have a ticketing system to register incidents.",
+          "field_key": "im_12_ticketing_system",
+          "evaluation_focus": "Ticketing system for incident registration"
+        },
+        {
+          "id": "rq-im-12-2",
+          "prompt": "Does the enterprise deploy advanced AI technologies to automate and orchestrate certain incident handling processes?",
+          "intent": "Evaluate: Does the enterprise deploy advanced AI technologies to automate and orchestrate certain incident handling processes.",
+          "field_key": "im_12_ai_incident_orchestration",
+          "evaluation_focus": "Advanced AI for automated incident handling orchestration"
+        }
+      ]
+    },
+    {
+      "capability_id": "im-13",
+      "capability_name": "Points of Contact Maintenance",
+      "questions": [
+        {
+          "id": "rq-im-13-1",
+          "prompt": "Does the enterprise have all the necessary points of contacts listed as part of the incident management plan on who needs to be included when there is an incident?",
+          "intent": "Evaluate: Does the enterprise have all the necessary points of contacts listed as part of the incident management plan on who needs to be included when there is an incident.",
+          "field_key": "im_13_points_of_contact_listed",
+          "evaluation_focus": "Points of contact listed in incident management plan"
+        }
+      ]
+    }
+  ]
+}
