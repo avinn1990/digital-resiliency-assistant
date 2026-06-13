@@ -38,6 +38,18 @@
         "grc-lead"
       ]
     },
+    "change-management": {
+      "service_name": "Change Management Service",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "compliance-management-service": {
       "service_name": "Compliance Management Service",
       "role_ids": [
