@@ -38,6 +38,18 @@
         "grc-lead"
       ]
     },
+    "access-management": {
+      "service_name": "Access Management Service",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "authentication-service": {
       "service_name": "Authentication Service",
       "role_ids": [
