@@ -1,0 +1,208 @@
+{
+  "service_id": "log-management",
+  "service_name": "Log Management",
+  "version": "1.0",
+  "description": "Evaluates log management maturity—service governance, KPIs/KRIs, logging systems, identity and technology log collection, anomaly detection, scope, records, protection, and analyst hierarchy.",
+  "capabilities": [
+    {
+      "id": "lm-00",
+      "name": "Service exists and is in good condition",
+      "description": "A log management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Enterprise log management service exists",
+        "Frequent log management service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "lm-01",
+      "name": "KPIs/KRIs",
+      "description": "Log management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for log management",
+        "Frequent KPI/KRI review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "lm-02",
+      "name": "Log management system",
+      "description": "A logging system manages and correlates logs enterprise-wide with automation, configuration review, and integrations.",
+      "evaluation_focus": [
+        "Logging system to manage and correlate all logs",
+        "Raw log consumption from all enterprise segments",
+        "Automation to process large volumes of logs",
+        "Frequent logging system configuration review",
+        "Integration with compliance, vulnerability, and asset management"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-03",
+      "name": "Identity logs",
+      "description": "All identity technology sends identity and access logs automatically to centralized logging.",
+      "evaluation_focus": [
+        "Automatic centralized identity and access logging"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-04",
+      "name": "Anomaly detection",
+      "description": "The logging solution monitors and identifies anomalies with configurable automated responses.",
+      "evaluation_focus": [
+        "Anomaly monitoring and identification capability",
+        "Configurable automated anomaly responses"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-05",
+      "name": "Endpoint device logging",
+      "description": "All endpoint device technology sends device and access logs automatically to centralized logging.",
+      "evaluation_focus": [
+        "Automatic centralized endpoint device and access logging"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-06",
+      "name": "Network logging",
+      "description": "All network technology sends network and access logs automatically to centralized logging.",
+      "evaluation_focus": [
+        "Automatic centralized network and access logging"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-07",
+      "name": "Application Security logging",
+      "description": "All application technology sends application and access logs automatically to centralized logging.",
+      "evaluation_focus": [
+        "Automatic centralized application and access logging"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-08",
+      "name": "Data access monitoring",
+      "description": "All data asset technology sends data and access logs automatically to centralized logging.",
+      "evaluation_focus": [
+        "Automatic centralized data and access logging"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-09",
+      "name": "Logging Scope",
+      "description": "A clear logging scope is defined and reevaluated frequently to maintain efficacy and storage stability.",
+      "evaluation_focus": [
+        "Clear defined logging scope for devices and technology",
+        "Frequent scope reevaluation for efficacy and storage stability"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "lm-10",
+      "name": "Log Records",
+      "description": "The logging solution produces audit logs for all technology that sends logs to it.",
+      "evaluation_focus": [
+        "Audit logs for all log-producing technology"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-11",
+      "name": "Log Protection",
+      "description": "The log management system stores logs securely and prevents unauthorized changes.",
+      "evaluation_focus": [
+        "Secure log storage and prevention of unauthorized log changes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "lm-12",
+      "name": "Log management team",
+      "description": "A clear hierarchy of T1, T2, and T3 analysts processes logs.",
+      "evaluation_focus": [
+        "T1, T2, and T3 analyst hierarchy for log processing"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}

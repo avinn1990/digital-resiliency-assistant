@@ -296,6 +296,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "log-management": {
+      "service_name": "Log Management",
+      "role_ids": [
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "network-management": {
       "service_name": "Network Management Service",
       "role_ids": [
