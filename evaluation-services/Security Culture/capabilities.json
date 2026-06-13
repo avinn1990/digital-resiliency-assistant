@@ -1,0 +1,81 @@
+{
+  "service_id": "security-culture",
+  "service_name": "Security Culture",
+  "version": "1.0",
+  "description": "Evaluates enterprise security culture maturity—top-down propagation of security awareness, compliance incentives, and workforce understanding of security measures.",
+  "capabilities": [
+    {
+      "id": "sc-00",
+      "name": "Top Down Security culture",
+      "description": "Security culture is propagated enterprise-wide with leadership support, compliance is rewarded, and the workforce understands why security measures are in place.",
+      "evaluation_focus": [
+        "Enterprise-wide propagation of security culture",
+        "Rewarding security compliance",
+        "Workforce understanding of why security measures are in place"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "security-awareness-culture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "security-program-strategy-lead",
+    "compliance-audit-lead"
+  ]
+}
