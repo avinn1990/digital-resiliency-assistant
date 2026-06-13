@@ -259,6 +259,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "container-management": {
+      "service_name": "Container Management",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "network-management": {
       "service_name": "Network Management Service",
       "role_ids": [
