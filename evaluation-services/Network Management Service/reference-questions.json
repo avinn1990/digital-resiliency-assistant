@@ -1,0 +1,227 @@
+{
+  "service_id": "network-management",
+  "service_name": "Network Management Service",
+  "capability_questions": [
+    {
+      "capability_id": "nm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-nm-00-1",
+          "prompt": "Does the enterprise have a network management service?",
+          "intent": "Evaluate whether the enterprise has a network management service.",
+          "field_key": "nm_00_network_management_service_exists",
+          "evaluation_focus": "Enterprise network management service exists"
+        },
+        {
+          "id": "rq-nm-00-2",
+          "prompt": "Is the network management service reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the network management service is reviewed frequently for efficacy.",
+          "field_key": "nm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-nm-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Network Management?",
+          "intent": "Evaluate whether KPIs and KRIs for network management are formalized and documented.",
+          "field_key": "nm_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for network management"
+        },
+        {
+          "id": "rq-nm-01-2",
+          "prompt": "Are the KPIs and KRIs for the Network Management reviewed frequently?",
+          "intent": "Evaluate whether network management KPIs and KRIs are reviewed frequently.",
+          "field_key": "nm_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-02",
+      "capability_name": "Network management process",
+      "questions": [
+        {
+          "id": "rq-nm-02-1",
+          "prompt": "Does the enterprise adopt an enterprise-wide formalized and documented process for network management?",
+          "intent": "Evaluate whether the enterprise has an enterprise-wide formalized documented network management process.",
+          "field_key": "nm_02_formalized_process",
+          "evaluation_focus": "Enterprise-wide formalized documented network management process"
+        },
+        {
+          "id": "rq-nm-02-2",
+          "prompt": "Is the network management process automated?",
+          "intent": "Evaluate whether the network management process is automated.",
+          "field_key": "nm_02_process_automated",
+          "evaluation_focus": "Network management process automation"
+        },
+        {
+          "id": "rq-nm-02-3",
+          "prompt": "Is the network management process reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the network management process is reviewed frequently for efficacy.",
+          "field_key": "nm_02_process_reviewed_frequently",
+          "evaluation_focus": "Frequent network management process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-03",
+      "capability_name": "NMS Platform",
+      "questions": [
+        {
+          "id": "rq-nm-03-1",
+          "prompt": "Does the enterprise have an NMS platform?",
+          "intent": "Evaluate whether the enterprise has an NMS platform.",
+          "field_key": "nm_03_nms_platform_exists",
+          "evaluation_focus": "NMS platform exists"
+        },
+        {
+          "id": "rq-nm-03-2",
+          "prompt": "Does the NMS platform manage network devices enterprise-wide?",
+          "intent": "Evaluate whether the NMS platform manages network devices enterprise-wide.",
+          "field_key": "nm_03_nms_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network device management"
+        },
+        {
+          "id": "rq-nm-03-3",
+          "prompt": "Does the enterprise adopt automation features from the NMS platform like automated upgrades and remediation?",
+          "intent": "Evaluate whether the enterprise adopts NMS automation features such as automated upgrades and remediation.",
+          "field_key": "nm_03_nms_automation_features",
+          "evaluation_focus": "NMS automation features such as upgrades and remediation"
+        },
+        {
+          "id": "rq-nm-03-4",
+          "prompt": "Is the NMS platform configuration reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the NMS platform configuration is reviewed frequently for efficacy.",
+          "field_key": "nm_03_nms_config_reviewed_frequently",
+          "evaluation_focus": "Frequent NMS platform configuration review"
+        },
+        {
+          "id": "rq-nm-03-5",
+          "prompt": "Does the NMS platform integrate with other systems like configuration management, asset management, and policy management to provide contextual information and visibility into flows?",
+          "intent": "Evaluate whether the NMS integrates with configuration, asset, and policy management systems.",
+          "field_key": "nm_03_nms_integrations",
+          "evaluation_focus": "Integration with configuration, asset, and policy management systems"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-04",
+      "capability_name": "Network Assurance — Scale and performance",
+      "questions": [
+        {
+          "id": "rq-nm-04-1",
+          "prompt": "Does the network have capability to expand based on workload increase?",
+          "intent": "Evaluate whether the network can expand based on workload increase.",
+          "field_key": "nm_04_network_expands_with_workload",
+          "evaluation_focus": "Network expansion based on workload increase"
+        },
+        {
+          "id": "rq-nm-04-2",
+          "prompt": "Can the entire network reach to increase in workload or is the capability restricted to a specific segment?",
+          "intent": "Evaluate whether scaling capability applies enterprise-wide or is restricted to a specific segment.",
+          "field_key": "nm_04_enterprise_wide_scaling",
+          "evaluation_focus": "Enterprise-wide scaling capability"
+        },
+        {
+          "id": "rq-nm-04-3",
+          "prompt": "Can the network expand capacity automatically or programmatically?",
+          "intent": "Evaluate whether the network can expand capacity automatically or programmatically.",
+          "field_key": "nm_04_automatic_programmatic_scaling",
+          "evaluation_focus": "Automatic or programmatic capacity expansion"
+        },
+        {
+          "id": "rq-nm-04-4",
+          "prompt": "Are the scaling configuration in the enterprise reviewed frequently for efficacy?",
+          "intent": "Evaluate whether scaling configuration is reviewed frequently for efficacy.",
+          "field_key": "nm_04_scaling_config_reviewed_frequently",
+          "evaluation_focus": "Frequent scaling configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-05",
+      "capability_name": "Visibility of data",
+      "questions": [
+        {
+          "id": "rq-nm-05-1",
+          "prompt": "Does the NMS have full visibility of the network across all parts of the enterprise?",
+          "intent": "Evaluate whether the NMS has full visibility of the network across all parts of the enterprise.",
+          "field_key": "nm_05_full_enterprise_network_visibility",
+          "evaluation_focus": "Full enterprise-wide network visibility in NMS"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-06",
+      "capability_name": "Network device user management",
+      "questions": [
+        {
+          "id": "rq-nm-06-1",
+          "prompt": "Does the NMS have capability to create and manage users who can access the NMS and view the dashboard?",
+          "intent": "Evaluate whether the NMS can create and manage users for dashboard access.",
+          "field_key": "nm_06_nms_user_management",
+          "evaluation_focus": "NMS user creation and management for dashboard access"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-07",
+      "capability_name": "Network monitoring",
+      "questions": [
+        {
+          "id": "rq-nm-07-1",
+          "prompt": "Does the NMS system deploy mechanisms like SNMP, Syslog, etc. to monitor health of the network devices?",
+          "intent": "Evaluate whether the NMS deploys SNMP, Syslog, and similar mechanisms to monitor network device health.",
+          "field_key": "nm_07_snmp_syslog_monitoring",
+          "evaluation_focus": "SNMP, Syslog, and similar monitoring mechanisms"
+        },
+        {
+          "id": "rq-nm-07-2",
+          "prompt": "Are all the network devices enterprise-wide monitored by the NMS system?",
+          "intent": "Evaluate whether all network devices enterprise-wide are monitored by the NMS.",
+          "field_key": "nm_07_all_devices_monitored",
+          "evaluation_focus": "Enterprise-wide network device monitoring"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-08",
+      "capability_name": "Fault visibility",
+      "questions": [
+        {
+          "id": "rq-nm-08-1",
+          "prompt": "Does the NMS system have full visibility and correlation on faults occurring across the network?",
+          "intent": "Evaluate whether the NMS has full visibility and correlation of faults across the network.",
+          "field_key": "nm_08_fault_visibility_correlation",
+          "evaluation_focus": "Full fault visibility and correlation across the network"
+        }
+      ]
+    },
+    {
+      "capability_id": "nm-09",
+      "capability_name": "Capacity planning",
+      "questions": [
+        {
+          "id": "rq-nm-09-1",
+          "prompt": "Does the enterprise have a formalized documented process to plan and monitor the availability, quality, and adequate capacity of resources in order to deliver the required system performance as determined by the business?",
+          "intent": "Evaluate whether the enterprise has a formalized documented capacity planning process.",
+          "field_key": "nm_09_formalized_capacity_planning_process",
+          "evaluation_focus": "Formalized documented capacity planning process"
+        },
+        {
+          "id": "rq-nm-09-2",
+          "prompt": "Is the capacity management process reviewed for efficacy?",
+          "intent": "Evaluate whether the capacity management process is reviewed for efficacy.",
+          "field_key": "nm_09_capacity_process_reviewed",
+          "evaluation_focus": "Frequent capacity management process review"
+        }
+      ]
+    }
+  ]
+}

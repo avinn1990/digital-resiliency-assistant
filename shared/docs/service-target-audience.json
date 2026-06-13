@@ -235,6 +235,18 @@
         "finance-partner-security-budgeting"
       ]
     },
+    "network-management": {
+      "service_name": "Network Management Service",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "security-architecture-management": {
       "service_name": "Security Architecture Management",
       "role_ids": [
