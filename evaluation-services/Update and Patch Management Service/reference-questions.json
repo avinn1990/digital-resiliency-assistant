@@ -9,352 +9,282 @@
         {
           "id": "rq-upm-00-1",
           "prompt": "Does the enterprise have an upgrade and patch management service for applications, devices, and systems?",
-          "intent": "Evaluate does the enterprise have an upgrade and patch management service for applications, devices, and systems?",
+          "intent": "Evaluate whether an enterprise upgrade and patch management service exists",
           "field_key": "upm_00_upgrade_patch_service_exists",
           "evaluation_focus": "Service for applications, devices, and systems"
         },
         {
           "id": "rq-upm-00-2",
           "prompt": "Does the upgrade and patch management service extend to the entire enterprise or a specific scope?",
-          "intent": "Evaluate does the upgrade and patch management service extend to the entire enterprise or a specific scope?",
+          "intent": "Evaluate whether the service scope is enterprise-wide or limited",
           "field_key": "upm_00_service_scope",
           "evaluation_focus": "Enterprise-wide or scoped service"
         },
         {
           "id": "rq-upm-00-3",
-          "prompt": "Is the upgrade and patch management service reviewed frequently to assess efficacy?",
-          "intent": "Evaluate is the upgrade and patch management service reviewed frequently to assess efficacy?",
-          "field_key": "upm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "prompt": "Is the upgrade and patch management service reviewed at least quarterly to assess efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "upm_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
     {
       "capability_id": "upm-01",
-      "capability_name": "Upgrade and patch management process",
+      "capability_name": "Unified patch management process (enterprise and supply chain)",
       "questions": [
         {
           "id": "rq-upm-01-1",
-          "prompt": "Does the enterprise have an asset-neutral upgrade and patch management process?",
-          "intent": "Evaluate does the enterprise have an asset-neutral upgrade and patch management process?",
+          "prompt": "Does the enterprise have an asset-neutral upgrade and patch management process for enterprise-owned assets?",
+          "intent": "Evaluate whether an asset-neutral enterprise patch process exists",
           "field_key": "upm_01_asset_neutral_process",
-          "evaluation_focus": "Asset-neutral process"
+          "evaluation_focus": "Asset-neutral enterprise patch process"
         },
         {
           "id": "rq-upm-01-2",
-          "prompt": "Does the process apply enterprise-wide or for a specific set of assets?",
-          "intent": "Evaluate does the process apply enterprise-wide or for a specific set of assets?",
+          "prompt": "Does the patch management process apply enterprise-wide or for a specific set of assets?",
+          "intent": "Evaluate whether the process scope is enterprise-wide or limited",
           "field_key": "upm_01_process_scope",
           "evaluation_focus": "Enterprise-wide or scoped adoption"
         },
         {
           "id": "rq-upm-01-3",
-          "prompt": "Is the upgrade and patch management process automated in the network?",
-          "intent": "Evaluate is the upgrade and patch management process automated in the network?",
+          "prompt": "Does the enterprise have a formalized third-party and supply chain upgrade and patch management process?",
+          "intent": "Evaluate whether third-party and supply chain patching is formalized",
+          "field_key": "upm_01_third_party_process",
+          "evaluation_focus": "Third-party and supply chain patch process"
+        },
+        {
+          "id": "rq-upm-01-4",
+          "prompt": "Does the third-party patch process apply to all vendors and supply chain partners or a defined subset?",
+          "intent": "Evaluate the scope of third-party patch coverage",
+          "field_key": "upm_01_third_party_scope",
+          "evaluation_focus": "Scope of third parties and vendors"
+        },
+        {
+          "id": "rq-upm-01-5",
+          "prompt": "Is the upgrade and patch management process automated across enterprise and third-party assets?",
+          "intent": "Evaluate whether patch processes are automated",
           "field_key": "upm_01_process_automated",
           "evaluation_focus": "Process automation"
         },
         {
-          "id": "rq-upm-01-4",
-          "prompt": "Is the upgrade and patch management process reviewed frequently?",
-          "intent": "Evaluate is the upgrade and patch management process reviewed frequently?",
-          "field_key": "upm_01_process_reviewed_frequently",
-          "evaluation_focus": "Frequent process review"
+          "id": "rq-upm-01-6",
+          "prompt": "Is the unified patch management process reviewed at least quarterly?",
+          "intent": "Evaluate whether the patch process is reviewed on a regular cadence",
+          "field_key": "upm_01_process_reviewed_regularly",
+          "evaluation_focus": "Regular process review"
         }
       ]
     },
     {
       "capability_id": "upm-02",
-      "capability_name": "Upgrade and patch management business process for third party and supply chain",
+      "capability_name": "KPIs/KRIs",
       "questions": [
         {
           "id": "rq-upm-02-1",
-          "prompt": "Does the enterprise have a third-party upgrade and patch management process?",
-          "intent": "Evaluate does the enterprise have a third-party upgrade and patch management process?",
-          "field_key": "upm_02_third_party_process",
-          "evaluation_focus": "Third-party patch process"
+          "prompt": "Has the enterprise formalized and documented KPIs and KRIs for the upgrade and patch management service?",
+          "intent": "Evaluate whether patch management KPIs and KRIs are documented",
+          "field_key": "upm_02_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
         },
         {
           "id": "rq-upm-02-2",
-          "prompt": "Does the process apply to all third parties or specific third parties?",
-          "intent": "Evaluate does the process apply to all third parties or specific third parties?",
-          "field_key": "upm_02_third_party_scope",
-          "evaluation_focus": "Scope of third parties"
+          "prompt": "Are upgrade KPIs and KRIs specific to target systems or common across the entire enterprise scope?",
+          "intent": "Evaluate whether KPIs are system-specific or enterprise-wide",
+          "field_key": "upm_02_kpis_scope",
+          "evaluation_focus": "System-specific vs enterprise-wide KPIs"
         },
         {
           "id": "rq-upm-02-3",
-          "prompt": "Is the upgrade and patch management process automated for third parties?",
-          "intent": "Evaluate is the upgrade and patch management process automated for third parties?",
-          "field_key": "upm_02_third_party_automated",
-          "evaluation_focus": "Third-party automation"
+          "prompt": "Are upgrade and patch KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "upm_02_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
         },
         {
           "id": "rq-upm-02-4",
-          "prompt": "Is the upgrade and patch management process for third parties reviewed frequently?",
-          "intent": "Evaluate is the upgrade and patch management process for third parties reviewed frequently?",
-          "field_key": "upm_02_third_party_reviewed_frequently",
-          "evaluation_focus": "Frequent third-party process review"
+          "prompt": "Do KPIs or KRIs track mean time to remediate (MTTR), patch compliance rate, or patch velocity across asset classes?",
+          "intent": "Evaluate whether modern patch velocity and remediation metrics are tracked",
+          "field_key": "upm_02_mttr_patch_velocity_metrics",
+          "evaluation_focus": "Mean time to remediate and patch velocity metrics"
+        },
+        {
+          "id": "rq-upm-02-5",
+          "prompt": "Does the organization measure adherence to critical vulnerability remediation SLAs?",
+          "intent": "Evaluate whether critical vulnerability SLA adherence is measured",
+          "field_key": "upm_02_critical_vuln_sla_adherence",
+          "evaluation_focus": "Critical vulnerability SLA adherence"
         }
       ]
     },
     {
       "capability_id": "upm-03",
-      "capability_name": "KPIs/KRIs",
+      "capability_name": "Upgrade and patch management system",
       "questions": [
         {
           "id": "rq-upm-03-1",
-          "prompt": "Has the enterprise formalized and documented all KPIs and KRIs for the upgrade and patch management service?",
-          "intent": "Evaluate has the enterprise formalized and documented all KPIs and KRIs for the upgrade and patch management service?",
-          "field_key": "upm_03_kpis_kris_documented",
-          "evaluation_focus": "Documented KPIs and KRIs"
+          "prompt": "Does the enterprise have centralized orchestration for network device upgrades and patches (such as via an SDN controller or network management platform)?",
+          "intent": "Evaluate whether network upgrade orchestration exists",
+          "field_key": "upm_03_network_orchestration",
+          "evaluation_focus": "Network upgrade orchestration"
         },
         {
           "id": "rq-upm-03-2",
-          "prompt": "Are the upgrade KPIs and KRIs specific to the target systems or common across the entire enterprise scope?",
-          "intent": "Evaluate are the upgrade KPIs and KRIs specific to the target systems or common across the entire enterprise scope?",
-          "field_key": "upm_03_kpis_scope",
-          "evaluation_focus": "System-specific vs enterprise-wide KPIs"
+          "prompt": "Does the enterprise have centralized orchestration for endpoint device upgrades and patches?",
+          "intent": "Evaluate whether endpoint upgrade orchestration exists",
+          "field_key": "upm_03_endpoint_orchestration",
+          "evaluation_focus": "Endpoint upgrade orchestration"
         },
         {
           "id": "rq-upm-03-3",
-          "prompt": "Are the upgrade KPIs and KRIs reviewed frequently?",
-          "intent": "Evaluate are the upgrade KPIs and KRIs reviewed frequently?",
-          "field_key": "upm_03_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "prompt": "Does the enterprise have centralized orchestration for application and system upgrades and patches?",
+          "intent": "Evaluate whether application upgrade orchestration exists",
+          "field_key": "upm_03_application_orchestration",
+          "evaluation_focus": "Application upgrade orchestration"
+        },
+        {
+          "id": "rq-upm-03-4",
+          "prompt": "Does the upgrade system automate patching across network, endpoint, and application assets?",
+          "intent": "Evaluate whether patch automation is implemented across asset classes",
+          "field_key": "upm_03_patch_automation",
+          "evaluation_focus": "Automation and configuration review"
+        },
+        {
+          "id": "rq-upm-03-5",
+          "prompt": "Are upgrade-specific configurations on patch management systems reviewed at least quarterly?",
+          "intent": "Evaluate whether patch system configurations are reviewed on a regular cadence",
+          "field_key": "upm_03_config_reviewed_regularly",
+          "evaluation_focus": "Automation and configuration review"
+        },
+        {
+          "id": "rq-upm-03-6",
+          "prompt": "Can upgrade and patch management systems integrate with compliance and vulnerability management for end-to-end remediation?",
+          "intent": "Evaluate whether patch systems integrate with compliance and vulnerability management",
+          "field_key": "upm_03_integrates_remediation",
+          "evaluation_focus": "Integration with compliance and vulnerability management"
         }
       ]
     },
     {
       "capability_id": "upm-04",
-      "capability_name": "Upgrade and patch management system",
+      "capability_name": "Unified patch management policy",
       "questions": [
         {
           "id": "rq-upm-04-1",
-          "prompt": "Does the enterprise have a centralized management server or controller that initiates and orchestrates upgrades and patches to network devices (such as an SDN controller)?",
-          "intent": "Evaluate does the enterprise have a centralized management server or controller that initiates and orchestrates upgrades and patches to network devices (such as an SDN controller)?",
-          "field_key": "upm_04_network_controller_orchestration",
-          "evaluation_focus": "Network upgrade orchestration"
+          "prompt": "Does the enterprise have upgrade and patch management policies for devices, network equipment, and applications?",
+          "intent": "Evaluate whether patch policies exist across asset classes",
+          "field_key": "upm_04_policies_exist",
+          "evaluation_focus": "Endpoint/device patch policy"
         },
         {
           "id": "rq-upm-04-2",
-          "prompt": "Does the upgrade system solution cover all network devices in the enterprise?",
-          "intent": "Evaluate does the upgrade system solution cover all network devices in the enterprise?",
-          "field_key": "upm_04_network_coverage",
-          "evaluation_focus": "Network upgrade orchestration"
+          "prompt": "Do endpoint and device patch policies apply enterprise-wide?",
+          "intent": "Evaluate whether device patch policies are enterprise-wide",
+          "field_key": "upm_04_device_policy_enterprise_wide",
+          "evaluation_focus": "Endpoint/device patch policy"
         },
         {
           "id": "rq-upm-04-3",
-          "prompt": "Does the upgrade system have the capability to automate upgrades and patches to network devices?",
-          "intent": "Evaluate does the upgrade system have the capability to automate upgrades and patches to network devices?",
-          "field_key": "upm_04_network_automation",
-          "evaluation_focus": "Automation and configuration review"
+          "prompt": "Do network device patch policies apply enterprise-wide?",
+          "intent": "Evaluate whether network patch policies are enterprise-wide",
+          "field_key": "upm_04_network_policy_enterprise_wide",
+          "evaluation_focus": "Network device patch policy"
         },
         {
           "id": "rq-upm-04-4",
-          "prompt": "Are upgrade-specific configurations on the upgrade systems reviewed frequently?",
-          "intent": "Evaluate are upgrade-specific configurations on the upgrade systems reviewed frequently?",
-          "field_key": "upm_04_network_config_reviewed",
-          "evaluation_focus": "Automation and configuration review"
+          "prompt": "Do application and system patch policies apply enterprise-wide?",
+          "intent": "Evaluate whether application patch policies are enterprise-wide",
+          "field_key": "upm_04_application_policy_enterprise_wide",
+          "evaluation_focus": "Application and system patch policy"
         },
         {
           "id": "rq-upm-04-5",
-          "prompt": "Can the upgrade and patch management systems be integrated with other solutions such as compliance management and vulnerability management systems to provide an end-to-end remediation system?",
-          "intent": "Evaluate can the upgrade and patch management systems be integrated with other solutions such as compliance management and vulnerability management systems to provide an end-to-end remediation system?",
-          "field_key": "upm_04_network_integrates_remediation",
-          "evaluation_focus": "Integration with compliance and vulnerability management"
-        },
-        {
-          "id": "rq-upm-04-6",
-          "prompt": "Does the enterprise have a centralized asset (infrastructure) server or controller that initiates and orchestrates upgrades and patches to endpoint devices (such as an endpoint central server)?",
-          "intent": "Evaluate does the enterprise have a centralized asset (infrastructure) server or controller that initiates and orchestrates upgrades and patches to endpoint devices (such as an endpoint central server)?",
-          "field_key": "upm_04_endpoint_controller_orchestration",
-          "evaluation_focus": "Endpoint upgrade orchestration"
-        },
-        {
-          "id": "rq-upm-04-7",
-          "prompt": "Does the upgrade system solution cover all endpoint devices in the enterprise?",
-          "intent": "Evaluate does the upgrade system solution cover all endpoint devices in the enterprise?",
-          "field_key": "upm_04_endpoint_coverage",
-          "evaluation_focus": "Endpoint upgrade orchestration"
-        },
-        {
-          "id": "rq-upm-04-8",
-          "prompt": "Does the upgrade system have the capability to automate upgrades and patches to endpoint devices?",
-          "intent": "Evaluate does the upgrade system have the capability to automate upgrades and patches to endpoint devices?",
-          "field_key": "upm_04_endpoint_automation",
-          "evaluation_focus": "Automation and configuration review"
-        },
-        {
-          "id": "rq-upm-04-9",
-          "prompt": "Are upgrade-specific configurations on the upgrade systems for endpoints reviewed frequently?",
-          "intent": "Evaluate are upgrade-specific configurations on the upgrade systems for endpoints reviewed frequently?",
-          "field_key": "upm_04_endpoint_config_reviewed",
-          "evaluation_focus": "Automation and configuration review"
-        },
-        {
-          "id": "rq-upm-04-10",
-          "prompt": "Can endpoint upgrade and patch management systems integrate with compliance and vulnerability management for end-to-end remediation?",
-          "intent": "Evaluate can endpoint upgrade and patch management systems integrate with compliance and vulnerability management for end-to-end remediation?",
-          "field_key": "upm_04_endpoint_integrates_remediation",
-          "evaluation_focus": "Integration with compliance and vulnerability management"
-        },
-        {
-          "id": "rq-upm-04-11",
-          "prompt": "Does the enterprise have a centralized application server or controller that initiates and orchestrates upgrades and patches to applications, or are upgrades initiated from the respective application system controller?",
-          "intent": "Evaluate does the enterprise have a centralized application server or controller that initiates and orchestrates upgrades and patches to applications, or are upgrades initiated from the respective application system controller?",
-          "field_key": "upm_04_application_controller_orchestration",
-          "evaluation_focus": "Application upgrade orchestration"
-        },
-        {
-          "id": "rq-upm-04-12",
-          "prompt": "Does the upgrade system solution or application controller cover all relevant application systems in the enterprise?",
-          "intent": "Evaluate does the upgrade system solution or application controller cover all relevant application systems in the enterprise?",
-          "field_key": "upm_04_application_coverage",
-          "evaluation_focus": "Application upgrade orchestration"
-        },
-        {
-          "id": "rq-upm-04-13",
-          "prompt": "Does the upgrade system have the capability to automate upgrades and patches to applications?",
-          "intent": "Evaluate does the upgrade system have the capability to automate upgrades and patches to applications?",
-          "field_key": "upm_04_application_automation",
-          "evaluation_focus": "Automation and configuration review"
-        },
-        {
-          "id": "rq-upm-04-14",
-          "prompt": "Are upgrade-specific configurations on application upgrade systems reviewed frequently?",
-          "intent": "Evaluate are upgrade-specific configurations on application upgrade systems reviewed frequently?",
-          "field_key": "upm_04_application_config_reviewed",
-          "evaluation_focus": "Automation and configuration review"
-        },
-        {
-          "id": "rq-upm-04-15",
-          "prompt": "Can application upgrade and patch management systems integrate with compliance and vulnerability management for end-to-end remediation?",
-          "intent": "Evaluate can application upgrade and patch management systems integrate with compliance and vulnerability management for end-to-end remediation?",
-          "field_key": "upm_04_application_integrates_remediation",
-          "evaluation_focus": "Integration with compliance and vulnerability management"
+          "prompt": "Are patch management policies reviewed at least quarterly?",
+          "intent": "Evaluate whether patch policies are reviewed on a regular cadence",
+          "field_key": "upm_04_policies_reviewed_regularly",
+          "evaluation_focus": "Regular policy review"
         }
       ]
     },
     {
       "capability_id": "upm-05",
-      "capability_name": "Upgrade and patch management policy",
+      "capability_name": "Patch management teams",
       "questions": [
         {
           "id": "rq-upm-05-1",
-          "prompt": "Does the enterprise have upgrade and patch management policies for devices?",
-          "intent": "Evaluate does the enterprise have upgrade and patch management policies for devices?",
-          "field_key": "upm_05_device_policy_exists",
-          "evaluation_focus": "Endpoint/device patch policy"
-        },
-        {
-          "id": "rq-upm-05-2",
-          "prompt": "Does the endpoint upgrade and patch management policy apply enterprise-wide?",
-          "intent": "Evaluate does the endpoint upgrade and patch management policy apply enterprise-wide?",
-          "field_key": "upm_05_device_policy_enterprise_wide",
-          "evaluation_focus": "Endpoint/device patch policy"
-        },
-        {
-          "id": "rq-upm-05-3",
-          "prompt": "Is the endpoint upgrade and patch management policy reviewed frequently?",
-          "intent": "Evaluate is the endpoint upgrade and patch management policy reviewed frequently?",
-          "field_key": "upm_05_device_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        },
-        {
-          "id": "rq-upm-05-4",
-          "prompt": "Does the enterprise have upgrade and patch management policies for network devices?",
-          "intent": "Evaluate does the enterprise have upgrade and patch management policies for network devices?",
-          "field_key": "upm_05_network_policy_exists",
-          "evaluation_focus": "Network device patch policy"
-        },
-        {
-          "id": "rq-upm-05-5",
-          "prompt": "Does the network device upgrade and patch management policy apply enterprise-wide?",
-          "intent": "Evaluate does the network device upgrade and patch management policy apply enterprise-wide?",
-          "field_key": "upm_05_network_policy_enterprise_wide",
-          "evaluation_focus": "Network device patch policy"
-        },
-        {
-          "id": "rq-upm-05-6",
-          "prompt": "Is the network device upgrade and patch management policy reviewed frequently?",
-          "intent": "Evaluate is the network device upgrade and patch management policy reviewed frequently?",
-          "field_key": "upm_05_network_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        },
-        {
-          "id": "rq-upm-05-7",
-          "prompt": "Does the enterprise have upgrade and patch management policies for applications and systems?",
-          "intent": "Evaluate does the enterprise have upgrade and patch management policies for applications and systems?",
-          "field_key": "upm_05_application_policy_exists",
-          "evaluation_focus": "Application and system patch policy"
-        },
-        {
-          "id": "rq-upm-05-8",
-          "prompt": "Does the applications and systems upgrade and patch management policy apply enterprise-wide?",
-          "intent": "Evaluate does the applications and systems upgrade and patch management policy apply enterprise-wide?",
-          "field_key": "upm_05_application_policy_enterprise_wide",
-          "evaluation_focus": "Application and system patch policy"
-        },
-        {
-          "id": "rq-upm-05-9",
-          "prompt": "Is the application and systems upgrade and patch management policy reviewed frequently?",
-          "intent": "Evaluate is the application and systems upgrade and patch management policy reviewed frequently?",
-          "field_key": "upm_05_application_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        }
-      ]
-    },
-    {
-      "capability_id": "upm-06",
-      "capability_name": "Upgrade and patch management hierarchy model",
-      "questions": [
-        {
-          "id": "rq-upm-06-1",
-          "prompt": "Does the enterprise have a dedicated team that handles device upgrades? Does the team handle all device assets?",
-          "intent": "Evaluate does the enterprise have a dedicated team that handles device upgrades? Does the team handle all device assets?",
-          "field_key": "upm_06_device_upgrade_team",
+          "prompt": "Does the enterprise have a dedicated team that handles device upgrades across all device assets?",
+          "intent": "Evaluate whether a dedicated device upgrade team covers all assets",
+          "field_key": "upm_05_device_upgrade_team",
           "evaluation_focus": "Device upgrade team coverage"
         },
         {
-          "id": "rq-upm-06-2",
-          "prompt": "Does the enterprise have a dedicated team that handles network upgrades? Does the team handle all network assets?",
-          "intent": "Evaluate does the enterprise have a dedicated team that handles network upgrades? Does the team handle all network assets?",
-          "field_key": "upm_06_network_upgrade_team",
+          "id": "rq-upm-05-2",
+          "prompt": "Does the enterprise have a dedicated team that handles network upgrades across all network assets?",
+          "intent": "Evaluate whether a dedicated network upgrade team covers all assets",
+          "field_key": "upm_05_network_upgrade_team",
           "evaluation_focus": "Network upgrade team coverage"
         },
         {
-          "id": "rq-upm-06-3",
-          "prompt": "Does the enterprise have a dedicated team that handles application upgrades? Does the team handle all application assets?",
-          "intent": "Evaluate does the enterprise have a dedicated team that handles application upgrades? Does the team handle all application assets?",
-          "field_key": "upm_06_application_upgrade_team",
+          "id": "rq-upm-05-3",
+          "prompt": "Does the enterprise have a dedicated team that handles application upgrades across all application assets?",
+          "intent": "Evaluate whether a dedicated application upgrade team covers all assets",
+          "field_key": "upm_05_application_upgrade_team",
           "evaluation_focus": "Application upgrade team coverage"
         }
       ]
     },
     {
-      "capability_id": "upm-07",
+      "capability_id": "upm-06",
       "capability_name": "Upgrade and patch management service logging",
       "questions": [
         {
-          "id": "rq-upm-07-1",
+          "id": "rq-upm-06-1",
           "prompt": "Is there a formal documented process for logging upgrade and patch information to the SOC?",
-          "intent": "Evaluate is there a formal documented process for logging upgrade and patch information to the SOC?",
-          "field_key": "upm_07_logging_process_to_soc",
+          "intent": "Evaluate whether patch logging to the SOC is formally documented",
+          "field_key": "upm_06_logging_process_to_soc",
           "evaluation_focus": "Documented logging to SOC"
         },
         {
-          "id": "rq-upm-07-2",
+          "id": "rq-upm-06-2",
           "prompt": "Is logging of upgrades and patches made securely to the SOC?",
-          "intent": "Evaluate is logging of upgrades and patches made securely to the SOC?",
-          "field_key": "upm_07_secure_logging_to_soc",
+          "intent": "Evaluate whether patch logs are transferred securely to the SOC",
+          "field_key": "upm_06_secure_logging_to_soc",
           "evaluation_focus": "Secure logging to SOC"
         },
         {
-          "id": "rq-upm-07-3",
+          "id": "rq-upm-06-3",
           "prompt": "Are dynamic changes to the upgrade and patching process captured and transferred to the SOC?",
-          "intent": "Evaluate are dynamic changes to the upgrade and patching process captured and transferred to the SOC?",
-          "field_key": "upm_07_dynamic_changes_to_soc",
+          "intent": "Evaluate whether dynamic patch process changes are logged to the SOC",
+          "field_key": "upm_06_dynamic_changes_to_soc",
           "evaluation_focus": "Dynamic upgrade changes to SOC"
+        }
+      ]
+    },
+    {
+      "capability_id": "upm-07",
+      "capability_name": "AI-assisted patch prioritization",
+      "questions": [
+        {
+          "id": "rq-upm-07-1",
+          "prompt": "Does the organization use AI or machine learning to assist vulnerability triage for patch prioritization?",
+          "intent": "Evaluate whether AI assists vulnerability triage for patching",
+          "field_key": "upm_07_ai_vulnerability_triage",
+          "evaluation_focus": "AI-assisted vulnerability triage for patching"
+        },
+        {
+          "id": "rq-upm-07-2",
+          "prompt": "Is patch prioritization automated based on risk scoring, exploitability, or threat intelligence context?",
+          "intent": "Evaluate whether risk-based patch prioritization is automated",
+          "field_key": "upm_07_risk_based_prioritization",
+          "evaluation_focus": "Risk-based patch prioritization automation"
+        },
+        {
+          "id": "rq-upm-07-3",
+          "prompt": "Does remediation sequencing account for asset criticality, exposure, and active threat campaigns?",
+          "intent": "Evaluate whether remediation sequencing uses threat context",
+          "field_key": "upm_07_remediation_sequencing",
+          "evaluation_focus": "Remediation sequencing informed by threat context"
         }
       ]
     }

@@ -1,63 +1,58 @@
 {
   "service_id": "update-patch-management",
   "service_name": "Update and Patch Management Service",
-  "version": "1.0",
-  "description": "Evaluates upgrade and patch management service maturity\u2014processes for enterprise and third-party assets, KPIs/KRIs, orchestration for network/endpoint/application systems, policies, dedicated teams, and SOC logging.",
+  "version": "1.1",
+  "description": "Evaluates upgrade and patch management service maturity—unified enterprise and supply-chain processes, KPIs/KRIs, orchestration for network/endpoint/application systems, policies, dedicated teams, SOC logging, and AI-assisted patch prioritization.",
   "capabilities": [
     {
       "id": "upm-00",
       "name": "Service exists and is in good condition",
-      "description": "An upgrade and patch management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "An upgrade and patch management service exists, is scoped appropriately, and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Service for applications, devices, and systems",
         "Enterprise-wide or scoped service",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "upm-01",
-      "name": "Upgrade and patch management process",
-      "description": "An asset-neutral upgrade and patch management process is adopted, automated, and reviewed.",
+      "name": "Unified patch management process (enterprise and supply chain)",
+      "short_name": "patch process",
+      "description": "An asset-neutral upgrade and patch management process covers enterprise assets and third-party supply chain components, is automated, and is reviewed at least quarterly.",
       "evaluation_focus": [
-        "Asset-neutral process",
+        "Asset-neutral enterprise patch process",
         "Enterprise-wide or scoped adoption",
+        "Third-party and supply chain patch process",
+        "Scope of third parties and vendors",
         "Process automation",
-        "Frequent process review"
+        "Regular process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "upm-02",
-      "name": "Upgrade and patch management business process for third party and supply chain",
-      "description": "Third-party and supply chain patch management is formalized, scoped, automated, and reviewed.",
-      "evaluation_focus": [
-        "Third-party patch process",
-        "Scope of third parties",
-        "Third-party automation",
-        "Frequent third-party process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "upm-03",
       "name": "KPIs/KRIs",
-      "description": "Upgrade and patch KPIs/KRIs are documented, scoped, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Upgrade and patch KPIs and KRIs—including mean time to remediate (MTTR), patch compliance rate, and critical vulnerability SLA adherence—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
         "System-specific vs enterprise-wide KPIs",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Mean time to remediate and patch velocity metrics",
+        "Critical vulnerability SLA adherence"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
-      "id": "upm-04",
+      "id": "upm-03",
       "name": "Upgrade and patch management system",
-      "description": "Centralized upgrade orchestration for network, endpoint, and application assets with automation, review, and integration.",
+      "short_name": "patch orchestration",
+      "description": "Centralized upgrade orchestration for network, endpoint, and application assets with automation, quarterly configuration review, and integration with compliance and vulnerability management.",
       "evaluation_focus": [
         "Network upgrade orchestration",
         "Endpoint upgrade orchestration",
@@ -69,21 +64,23 @@
       "pillar": "Technology"
     },
     {
-      "id": "upm-05",
-      "name": "Upgrade and patch management policy",
-      "description": "Formal policies for device, network, and application patching apply enterprise-wide and are reviewed frequently.",
+      "id": "upm-04",
+      "name": "Unified patch management policy",
+      "short_name": "patch policy",
+      "description": "Formal policies for device, network, and application patching apply enterprise-wide and are reviewed at least quarterly.",
       "evaluation_focus": [
         "Endpoint/device patch policy",
         "Network device patch policy",
         "Application and system patch policy",
-        "Frequent policy review"
+        "Regular policy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
-      "id": "upm-06",
-      "name": "Upgrade and patch management hierarchy model",
+      "id": "upm-05",
+      "name": "Patch management teams",
+      "short_name": "patch teams",
       "description": "Dedicated teams handle device, network, and application upgrades across all relevant assets.",
       "evaluation_focus": [
         "Device upgrade team coverage",
@@ -94,13 +91,27 @@
       "pillar": "People"
     },
     {
-      "id": "upm-07",
+      "id": "upm-06",
       "name": "Upgrade and patch management service logging",
+      "short_name": "patch logging",
       "description": "Upgrade and patch activity is formally logged and securely transferred to the SOC, including dynamic changes.",
       "evaluation_focus": [
         "Documented logging to SOC",
         "Secure logging to SOC",
         "Dynamic upgrade changes to SOC"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "upm-07",
+      "name": "AI-assisted patch prioritization",
+      "short_name": "AI patch velocity",
+      "description": "AI or machine learning assists vulnerability triage, patch prioritization, and remediation sequencing to accelerate patch velocity.",
+      "evaluation_focus": [
+        "AI-assisted vulnerability triage for patching",
+        "Risk-based patch prioritization automation",
+        "Remediation sequencing informed by threat context"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"

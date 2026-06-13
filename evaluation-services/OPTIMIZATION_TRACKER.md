@@ -8,10 +8,10 @@
 | — | Application Development and Testing | application-development-testing | 11 | 36 | done (1.1) |
 | — | Enterprise Risk Management | enterprise-risk-management | 14 | 42 | done (1.1) |
 | 1 | Vulnerability Management and Pentesting Service | vulnerability-management-pentesting | 11 | 47 | in_progress |
-| 1 | Update and Patch Management Service | update-patch-management | 8 | 44 | pending |
-| 1 | Security Operations | security-operations | 14 | 39 | pending |
-| 1 | Incident Management | incident-management | 14 | 32 | pending |
-| 1 | Log Management | log-management | 13 | 21 | pending |
+| 1 | Update and Patch Management Service | update-patch-management | 8 | 34 | done (1.1) |
+| 1 | Security Operations | security-operations | 11 | 42 | done (1.1) |
+| 1 | Incident Management | incident-management | 13 | 36 | done (1.1) |
+| 1 | Log Management | log-management | 10 | 26 | done (1.1) |
 | 1 | Enterprise Security Governance | enterprise-security-governance | 6 | 25 | done (1.1) |
 | 1 | Compliance Management Service | compliance-management-service | 10 | 35 | done (1.1) |
 | 1 | Policy Management Service | policy-management | 10 | 38 | done (1.1) |
