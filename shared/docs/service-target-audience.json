@@ -379,6 +379,17 @@
         "compliance-audit-lead"
       ]
     },
+    "security-training": {
+      "service_name": "Security Training",
+      "role_ids": [
+        "security-awareness-culture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "security-program-strategy-lead",
+        "compliance-audit-lead"
+      ]
+    },
     "security-operations": {
       "service_name": "Security Operations",
       "role_ids": [
