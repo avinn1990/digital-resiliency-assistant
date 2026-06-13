@@ -271,6 +271,19 @@
         "security-program-strategy-lead"
       ]
     },
+    "data-management": {
+      "service_name": "Data Management",
+      "role_ids": [
+        "grc-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "compliance-audit-lead",
+        "enterprise-risk-manager",
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "network-management": {
       "service_name": "Network Management Service",
       "role_ids": [

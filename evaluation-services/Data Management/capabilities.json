@@ -1,0 +1,483 @@
+{
+  "service_id": "data-management",
+  "service_name": "Data Management",
+  "version": "1.0",
+  "description": "Evaluates data management maturity\u2014service governance, KPIs/KRIs, platform and process, governance programs, provisioning and retention policies, architecture, DLP, encryption, classification, labelling, flows, backup, resiliency, ownership, transfer, location, and SOC visibility.",
+  "capabilities": [
+    {
+      "id": "dtm-00",
+      "name": "Service exists and is in good condition",
+      "description": "A data management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Enterprise data management service exists",
+        "Frequent data management service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-01",
+      "name": "KPIs/KRIs",
+      "description": "Data management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for data management",
+        "Frequent KPI/KRI review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-02",
+      "name": "Data Management platform",
+      "description": "A data management platform manages the enterprise data asset lifecycle enterprise-wide with automation, configuration review, and integrations.",
+      "evaluation_focus": [
+        "Data management platform for data asset lifecycle",
+        "Enterprise-wide platform coverage including subsidiaries",
+        "Automation for data lifecycle processes",
+        "Frequent platform configuration review",
+        "Integration with vulnerability, asset, and compliance systems"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-03",
+      "name": "Data management process",
+      "description": "A formalized documented data management process applies across data segments with platform automation and frequent review.",
+      "evaluation_focus": [
+        "Formalized documented data management process",
+        "Process scope across all or specific data segments",
+        "Utilization of platform automation capabilities",
+        "Frequent data management process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-04",
+      "name": "Information and Data governance program",
+      "description": "An enterprise-wide information security and data governance program is reviewed frequently.",
+      "evaluation_focus": [
+        "Enterprise-wide information security and data governance program",
+        "Frequent governance program review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-05",
+      "name": "Data Provisioning policies",
+      "description": "Formalized documented policies and processes govern data provisioning and are reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented data provisioning policy and process",
+        "Frequent data provisioning policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-06",
+      "name": "Data De-Provisioning policies",
+      "description": "Formalized documented policies and processes govern data deprovisioning and are reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented data deprovisioning policy and process",
+        "Frequent data deprovisioning policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-07",
+      "name": "Data Modification policies",
+      "description": "Formalized documented policies and processes govern data modification and are reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented data modification policy and process",
+        "Frequent data modification policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-08",
+      "name": "Data retention policies",
+      "description": "Formalized retention policies cover network devices, applications, and devices with frequent review.",
+      "evaluation_focus": [
+        "Data retention policy for network devices",
+        "Frequent network device retention policy review",
+        "Data retention policy for applications",
+        "Frequent application retention policy review",
+        "Data retention policy for devices",
+        "Frequent device retention policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-09",
+      "name": "Data and Privacy officer",
+      "description": "A data and privacy officer architects and maintains the enterprise data governance model.",
+      "evaluation_focus": [
+        "Data and privacy officer for enterprise data governance"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "dtm-10",
+      "name": "Secure Data Architecture",
+      "description": "A formalized enterprise-wide data architecture is reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Formalized documented enterprise-wide data architecture",
+        "Frequent data architecture review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-11",
+      "name": "Data communications",
+      "description": "The data platform enforces secure communication between all data assets.",
+      "evaluation_focus": [
+        "Secure communication between all data assets"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-12",
+      "name": "Data modelling",
+      "description": "A formalized enterprise-wide data model is reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Formalized documented enterprise-wide data modelling",
+        "Frequent data model review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-13",
+      "name": "Data Loss prevention techniques",
+      "description": "DLP mechanisms prevent data exfiltration enterprise-wide with frequent review and policy integration.",
+      "evaluation_focus": [
+        "DLP mechanisms to prevent data exfiltration",
+        "Enterprise-wide DLP at network and endpoint",
+        "Frequent DLP design and configuration review",
+        "DLP integration with policy and contextual decision systems"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-14",
+      "name": "Managed Asset Encryption Policy - Applications",
+      "description": "A formalized policy governs encryption of data at rest on all applications and is reviewed frequently.",
+      "evaluation_focus": [
+        "Application data-at-rest encryption policy",
+        "Frequent application encryption policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-15",
+      "name": "Managed Asset Encryption Policy - Endpoints",
+      "description": "A formalized policy governs encryption of data at rest on all endpoint devices and is reviewed frequently.",
+      "evaluation_focus": [
+        "Endpoint data-at-rest encryption policy",
+        "Frequent endpoint encryption policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-16",
+      "name": "Managed Asset Encryption Policy - Network",
+      "description": "A formalized policy governs encryption of data at rest and in motion on network devices and is reviewed frequently.",
+      "evaluation_focus": [
+        "Network device data-at-rest and in-motion encryption policy",
+        "Frequent network encryption policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-17",
+      "name": "Data quality",
+      "description": "The data management platform measures and reports data quality and integrity with automation and cross-system incorporation.",
+      "evaluation_focus": [
+        "Measure and report data quality and integrity changes",
+        "All data assets monitored for quality and integrity",
+        "Automated data quality checks and validation",
+        "Data quality information incorporated into other systems"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-18",
+      "name": "Data Classification",
+      "description": "All data assets are classified automatically where possible, integrated with other systems, and reviewed frequently.",
+      "evaluation_focus": [
+        "Platform capability to classify data assets",
+        "All data assets classified",
+        "Automated data asset classification",
+        "Classification incorporated into other systems",
+        "Frequent classification review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-19",
+      "name": "Supply chain data assessment",
+      "description": "Security assessments for supply chain organizations are defined, reviewed frequently, and automated where possible.",
+      "evaluation_focus": [
+        "Periodic supply chain security assessment process",
+        "Frequent supply chain process review",
+        "Automated supply chain risk assessment"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-20",
+      "name": "Data Labelling",
+      "description": "All data assets are labelled automatically where possible, integrated with other systems, and reviewed frequently.",
+      "evaluation_focus": [
+        "Platform capability to label data assets",
+        "All data assets labelled",
+        "Automated data asset labelling",
+        "Labelling incorporated into other systems",
+        "Frequent labelling review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-21",
+      "name": "Data Flow Documentation",
+      "description": "Data flows are mapped for all assets, captured automatically where possible, and reviewed frequently.",
+      "evaluation_focus": [
+        "Map data flow communications for all data assets",
+        "Automatic data flow capture capability",
+        "Frequent mapped data flow review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-22",
+      "name": "Master data record",
+      "description": "A master data record for all assets is maintained with automation and audit capabilities.",
+      "evaluation_focus": [
+        "Master data record for all enterprise assets",
+        "Automated master data record changes",
+        "Audit and identify master data record changes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-23",
+      "name": "Data warehousing",
+      "description": "The enterprise has data warehousing capabilities.",
+      "evaluation_focus": [
+        "Data warehousing capabilities"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-24",
+      "name": "Data modification",
+      "description": "A formalized process manages data modification across all locations and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Formalized data modification process across all locations",
+        "Data modification process efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-25",
+      "name": "Data provisioning",
+      "description": "A formalized process manages data provisioning across all locations and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Formalized data provisioning process across all locations",
+        "Data provisioning process efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-26",
+      "name": "Data De-Provisioning",
+      "description": "A formalized process manages data deprovisioning across all locations and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Formalized data deprovisioning process across all locations",
+        "Data deprovisioning process efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-27",
+      "name": "Resiliency design",
+      "description": "Multiple paths access data assets with automatic rerouting and resiliency measures.",
+      "evaluation_focus": [
+        "Multiple paths to access data assets during failure",
+        "Automatic alternate location or network rerouting",
+        "Automatic or manual data resiliency measures"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-28",
+      "name": "RPO/RTO metrics are defined",
+      "description": "RPO and RTO metrics are defined per availability policy, apply enterprise-wide, and are reviewed frequently.",
+      "evaluation_focus": [
+        "RPO/RTO metrics defined per availability policy",
+        "Enterprise-wide RPO/RTO applicability",
+        "Frequent RPO/RTO metric review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-29",
+      "name": "Backup",
+      "description": "Documented backup policies cover remote storage, automation, backup types, restore measurement, review, and asset management integration.",
+      "evaluation_focus": [
+        "Documented formalized backup policy and process",
+        "Remote or local backup storage",
+        "Automatic interval-based backups",
+        "Full and incremental or differential backups",
+        "Restore time measurement against RTO and RPO",
+        "Frequent backup policy and process review",
+        "Automated backup as part of asset management"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-30",
+      "name": "Data retention",
+      "description": "A formalized process governs data retention on network, applications, and devices.",
+      "evaluation_focus": [
+        "Formalized multi-platform data retention process"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "dtm-31",
+      "name": "Data Ownership and stewardship",
+      "description": "Formalized hierarchy governs data ownership, custodianship, and permissions with frequent review.",
+      "evaluation_focus": [
+        "Formalized data ownership and custodianship hierarchy",
+        "Clear ownership trail for all data assets",
+        "Frequent ownership and permissions review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "dtm-32",
+      "name": "Secure Data Transfer",
+      "description": "Secure transfer methods protect data movement and sensitive or personal data within regulatory scope.",
+      "evaluation_focus": [
+        "Secure transfer methods for data movement and migration",
+        "Protection of personal and sensitive data within regulatory scope"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "dtm-33",
+      "name": "Data Location",
+      "description": "Rules govern data storage locations including cloud constraints and are reviewed frequently.",
+      "evaluation_focus": [
+        "Regulatory data location storage rules",
+        "Frequent data location restriction review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "dtm-34",
+      "name": "Visibility of data",
+      "description": "Data asset lifecycle logs and activity are logged securely to the SOC including dynamic state changes.",
+      "evaluation_focus": [
+        "Formal process for logging data asset lifecycle to SOC",
+        "Secure logging of data asset management logs to SOC",
+        "Dynamic data asset state changes captured and transferred to SOC"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "grc-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "compliance-audit-lead",
+    "enterprise-risk-manager",
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "security-program-strategy-lead"
+  ]
+}

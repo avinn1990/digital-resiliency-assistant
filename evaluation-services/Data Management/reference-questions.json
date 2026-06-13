@@ -1,0 +1,895 @@
+{
+  "service_id": "data-management",
+  "service_name": "Data Management",
+  "capability_questions": [
+    {
+      "capability_id": "dtm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-dtm-00-1",
+          "prompt": "Does the enterprise have a data management service?",
+          "intent": "Evaluate: Does the enterprise have a data management service.",
+          "field_key": "dtm_00_data_management_service_exists",
+          "evaluation_focus": "Enterprise data management service exists"
+        },
+        {
+          "id": "rq-dtm-00-2",
+          "prompt": "Is the data management service reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the data management service reviewed frequently for efficacy.",
+          "field_key": "dtm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent data management service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-dtm-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Data Management?",
+          "intent": "Evaluate: Does the enterprise formalize and document all KPIs and KRIs for the Data Management.",
+          "field_key": "dtm_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for data management"
+        },
+        {
+          "id": "rq-dtm-01-2",
+          "prompt": "Are the KPIs and KRIs for the Data Management reviewed frequently?",
+          "intent": "Evaluate: Are the KPIs and KRIs for the Data Management reviewed frequently.",
+          "field_key": "dtm_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-02",
+      "capability_name": "Data Management platform",
+      "questions": [
+        {
+          "id": "rq-dtm-02-1",
+          "prompt": "Does the enterprise have a data management platform to effectively manage the enterprise data asset lifecycle?",
+          "intent": "Evaluate: Does the enterprise have a data management platform to effectively manage the enterprise data asset lifecycle.",
+          "field_key": "dtm_02_platform_manages_lifecycle",
+          "evaluation_focus": "Data management platform for data asset lifecycle"
+        },
+        {
+          "id": "rq-dtm-02-2",
+          "prompt": "Does the data management platform cover the data from the entire enterprise and its subsidiaries?",
+          "intent": "Evaluate: Does the data management platform cover the data from the entire enterprise and its subsidiaries.",
+          "field_key": "dtm_02_platform_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide platform coverage including subsidiaries"
+        },
+        {
+          "id": "rq-dtm-02-3",
+          "prompt": "Does the data management platform have capabilities to provide automation to certain processes in the data lifecycle?",
+          "intent": "Evaluate: Does the data management platform have capabilities to provide automation to certain processes in the data lifecycle.",
+          "field_key": "dtm_02_platform_automation",
+          "evaluation_focus": "Automation for data lifecycle processes"
+        },
+        {
+          "id": "rq-dtm-02-4",
+          "prompt": "Is the data management platform configuration reviewed for efficacy?",
+          "intent": "Evaluate: Is the data management platform configuration reviewed for efficacy.",
+          "field_key": "dtm_02_platform_config_reviewed",
+          "evaluation_focus": "Frequent platform configuration review"
+        },
+        {
+          "id": "rq-dtm-02-5",
+          "prompt": "Does the data management platform integrate with other systems like vulnerability management, asset management, and compliance management to provide contextual information that is data rich?",
+          "intent": "Evaluate: Does the data management platform integrate with other systems like vulnerability management, asset management, and compliance management to provide contextual information that is data rich.",
+          "field_key": "dtm_02_platform_integrations",
+          "evaluation_focus": "Integration with vulnerability, asset, and compliance systems"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-03",
+      "capability_name": "Data management process",
+      "questions": [
+        {
+          "id": "rq-dtm-03-1",
+          "prompt": "Does the enterprise have a formalized documented process for data management?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented process for data management.",
+          "field_key": "dtm_03_formalized_process",
+          "evaluation_focus": "Formalized documented data management process"
+        },
+        {
+          "id": "rq-dtm-03-2",
+          "prompt": "Does the data management process apply to all data segments of the enterprise or only specific data assets?",
+          "intent": "Evaluate: Does the data management process apply to all data segments of the enterprise or only specific data assets.",
+          "field_key": "dtm_03_process_scope",
+          "evaluation_focus": "Process scope across all or specific data segments"
+        },
+        {
+          "id": "rq-dtm-03-3",
+          "prompt": "Does the enterprise utilize the automation capabilities provided by the data management platform?",
+          "intent": "Evaluate: Does the enterprise utilize the automation capabilities provided by the data management platform.",
+          "field_key": "dtm_03_utilize_platform_automation",
+          "evaluation_focus": "Utilization of platform automation capabilities"
+        },
+        {
+          "id": "rq-dtm-03-4",
+          "prompt": "Is the data management process reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the data management process reviewed frequently for efficacy.",
+          "field_key": "dtm_03_process_reviewed_frequently",
+          "evaluation_focus": "Frequent data management process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-04",
+      "capability_name": "Information and Data governance program",
+      "questions": [
+        {
+          "id": "rq-dtm-04-1",
+          "prompt": "Does the enterprise have an information security and data governance program that is applicable enterprise wide?",
+          "intent": "Evaluate: Does the enterprise have an information security and data governance program that is applicable enterprise wide.",
+          "field_key": "dtm_04_governance_program_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide information security and data governance program"
+        },
+        {
+          "id": "rq-dtm-04-2",
+          "prompt": "Is the information security and data governance program reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the information security and data governance program reviewed frequently to measure efficacy.",
+          "field_key": "dtm_04_governance_program_reviewed",
+          "evaluation_focus": "Frequent governance program review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-05",
+      "capability_name": "Data Provisioning policies",
+      "questions": [
+        {
+          "id": "rq-dtm-05-1",
+          "prompt": "Does the enterprise have a formalized documented policy and process for data provisioning?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy and process for data provisioning.",
+          "field_key": "dtm_05_provisioning_policy",
+          "evaluation_focus": "Formalized documented data provisioning policy and process"
+        },
+        {
+          "id": "rq-dtm-05-2",
+          "prompt": "Is the policy and process for data provisioning reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the policy and process for data provisioning reviewed frequently to measure efficacy.",
+          "field_key": "dtm_05_provisioning_policy_reviewed",
+          "evaluation_focus": "Frequent data provisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-06",
+      "capability_name": "Data De-Provisioning policies",
+      "questions": [
+        {
+          "id": "rq-dtm-06-1",
+          "prompt": "Does the enterprise have a formalized documented policy and process for data deprovisioning?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy and process for data deprovisioning.",
+          "field_key": "dtm_06_deprovisioning_policy",
+          "evaluation_focus": "Formalized documented data deprovisioning policy and process"
+        },
+        {
+          "id": "rq-dtm-06-2",
+          "prompt": "Is the policy and process for data deprovisioning reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the policy and process for data deprovisioning reviewed frequently to measure efficacy.",
+          "field_key": "dtm_06_deprovisioning_policy_reviewed",
+          "evaluation_focus": "Frequent data deprovisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-07",
+      "capability_name": "Data Modification policies",
+      "questions": [
+        {
+          "id": "rq-dtm-07-1",
+          "prompt": "Does the enterprise have a formalized documented policy and process for data modification?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy and process for data modification.",
+          "field_key": "dtm_07_modification_policy",
+          "evaluation_focus": "Formalized documented data modification policy and process"
+        },
+        {
+          "id": "rq-dtm-07-2",
+          "prompt": "Is the policy and process for data modification reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the policy and process for data modification reviewed frequently to measure efficacy.",
+          "field_key": "dtm_07_modification_policy_reviewed",
+          "evaluation_focus": "Frequent data modification policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-08",
+      "capability_name": "Data retention policies",
+      "questions": [
+        {
+          "id": "rq-dtm-08-1",
+          "prompt": "Does the enterprise have a formalized documented policy and process for data retention on network devices?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy and process for data retention on network devices.",
+          "field_key": "dtm_08_retention_network_devices_policy",
+          "evaluation_focus": "Data retention policy for network devices"
+        },
+        {
+          "id": "rq-dtm-08-2",
+          "prompt": "Is the policy and process for data retention on network devices reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the policy and process for data retention on network devices reviewed frequently to measure efficacy.",
+          "field_key": "dtm_08_retention_network_devices_reviewed",
+          "evaluation_focus": "Frequent network device retention policy review"
+        },
+        {
+          "id": "rq-dtm-08-3",
+          "prompt": "Does the enterprise have a formalized documented policy and process for data retention on applications?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy and process for data retention on applications.",
+          "field_key": "dtm_08_retention_applications_policy",
+          "evaluation_focus": "Data retention policy for applications"
+        },
+        {
+          "id": "rq-dtm-08-4",
+          "prompt": "Is the policy and process for data retention on applications reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the policy and process for data retention on applications reviewed frequently to measure efficacy.",
+          "field_key": "dtm_08_retention_applications_reviewed",
+          "evaluation_focus": "Frequent application retention policy review"
+        },
+        {
+          "id": "rq-dtm-08-5",
+          "prompt": "Does the enterprise have a formalized documented policy and process for data retention for devices?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy and process for data retention for devices.",
+          "field_key": "dtm_08_retention_devices_policy",
+          "evaluation_focus": "Data retention policy for devices"
+        },
+        {
+          "id": "rq-dtm-08-6",
+          "prompt": "Is the policy and process for data retention for devices reviewed frequently to measure efficacy?",
+          "intent": "Evaluate: Is the policy and process for data retention for devices reviewed frequently to measure efficacy.",
+          "field_key": "dtm_08_retention_devices_reviewed",
+          "evaluation_focus": "Frequent device retention policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-09",
+      "capability_name": "Data and Privacy officer",
+      "questions": [
+        {
+          "id": "rq-dtm-09-1",
+          "prompt": "Does the enterprise hire a data and privacy officer to architect and maintain the enterprise data governance model?",
+          "intent": "Evaluate: Does the enterprise hire a data and privacy officer to architect and maintain the enterprise data governance model.",
+          "field_key": "dtm_09_data_privacy_officer",
+          "evaluation_focus": "Data and privacy officer for enterprise data governance"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-10",
+      "capability_name": "Secure Data Architecture",
+      "questions": [
+        {
+          "id": "rq-dtm-10-1",
+          "prompt": "Does the enterprise have a formalized and documented data architecture that is applicable enterprise wide?",
+          "intent": "Evaluate: Does the enterprise have a formalized and documented data architecture that is applicable enterprise wide.",
+          "field_key": "dtm_10_data_architecture",
+          "evaluation_focus": "Formalized documented enterprise-wide data architecture"
+        },
+        {
+          "id": "rq-dtm-10-2",
+          "prompt": "Is the data architecture reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the data architecture reviewed frequently for efficacy.",
+          "field_key": "dtm_10_data_architecture_reviewed",
+          "evaluation_focus": "Frequent data architecture review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-11",
+      "capability_name": "Data communications",
+      "questions": [
+        {
+          "id": "rq-dtm-11-1",
+          "prompt": "Does the data platform enforce secure communication between all data assets?",
+          "intent": "Evaluate: Does the data platform enforce secure communication between all data assets.",
+          "field_key": "dtm_11_secure_data_communications",
+          "evaluation_focus": "Secure communication between all data assets"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-12",
+      "capability_name": "Data modelling",
+      "questions": [
+        {
+          "id": "rq-dtm-12-1",
+          "prompt": "Does the enterprise have a formalized and documented data modelling that is applicable enterprise wide?",
+          "intent": "Evaluate: Does the enterprise have a formalized and documented data modelling that is applicable enterprise wide.",
+          "field_key": "dtm_12_data_modelling",
+          "evaluation_focus": "Formalized documented enterprise-wide data modelling"
+        },
+        {
+          "id": "rq-dtm-12-2",
+          "prompt": "Is the data model reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the data model reviewed frequently for efficacy.",
+          "field_key": "dtm_12_data_model_reviewed",
+          "evaluation_focus": "Frequent data model review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-13",
+      "capability_name": "Data Loss prevention techniques",
+      "questions": [
+        {
+          "id": "rq-dtm-13-1",
+          "prompt": "Does the enterprise deploy data loss prevention mechanisms to prevent data exfiltration?",
+          "intent": "Evaluate: Does the enterprise deploy data loss prevention mechanisms to prevent data exfiltration.",
+          "field_key": "dtm_13_dlp_deployed",
+          "evaluation_focus": "DLP mechanisms to prevent data exfiltration"
+        },
+        {
+          "id": "rq-dtm-13-2",
+          "prompt": "Are DLP deployed enterprise wide at both network and endpoint level?",
+          "intent": "Evaluate: Are DLP deployed enterprise wide at both network and endpoint level.",
+          "field_key": "dtm_13_dlp_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide DLP at network and endpoint"
+        },
+        {
+          "id": "rq-dtm-13-3",
+          "prompt": "Are DLP design and configuration reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are DLP design and configuration reviewed frequently for efficacy.",
+          "field_key": "dtm_13_dlp_reviewed_frequently",
+          "evaluation_focus": "Frequent DLP design and configuration review"
+        },
+        {
+          "id": "rq-dtm-13-4",
+          "prompt": "Do DLP solutions integrate with multiple decision points or systems like policy management systems to take contextual decisions regarding data and also to provide information regarding subjects and objects keeping data in mind?",
+          "intent": "Evaluate: Do DLP solutions integrate with multiple decision points or systems like policy management systems to take contextual decisions regarding data and also to provide information regarding subjects and objects keeping data in mind.",
+          "field_key": "dtm_13_dlp_integrations",
+          "evaluation_focus": "DLP integration with policy and contextual decision systems"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-14",
+      "capability_name": "Managed Asset Encryption Policy - Applications",
+      "questions": [
+        {
+          "id": "rq-dtm-14-1",
+          "prompt": "Does the enterprise have a formalized documented policy for encryption of data at rest on all applications?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy for encryption of data at rest on all applications.",
+          "field_key": "dtm_14_application_encryption_policy",
+          "evaluation_focus": "Application data-at-rest encryption policy"
+        },
+        {
+          "id": "rq-dtm-14-2",
+          "prompt": "Is the application encryption policy reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the application encryption policy reviewed frequently for efficacy.",
+          "field_key": "dtm_14_application_encryption_policy_reviewed",
+          "evaluation_focus": "Frequent application encryption policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-15",
+      "capability_name": "Managed Asset Encryption Policy - Endpoints",
+      "questions": [
+        {
+          "id": "rq-dtm-15-1",
+          "prompt": "Does the enterprise have a formalized documented policy for encryption of data at rest on all endpoint devices?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy for encryption of data at rest on all endpoint devices.",
+          "field_key": "dtm_15_endpoint_encryption_policy",
+          "evaluation_focus": "Endpoint data-at-rest encryption policy"
+        },
+        {
+          "id": "rq-dtm-15-2",
+          "prompt": "Is the endpoint device encryption policy reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the endpoint device encryption policy reviewed frequently for efficacy.",
+          "field_key": "dtm_15_endpoint_encryption_policy_reviewed",
+          "evaluation_focus": "Frequent endpoint encryption policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-16",
+      "capability_name": "Managed Asset Encryption Policy - Network",
+      "questions": [
+        {
+          "id": "rq-dtm-16-1",
+          "prompt": "Does the enterprise have a formalized documented policy for encryption of data at rest and in motion on all network devices?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented policy for encryption of data at rest and in motion on all network devices.",
+          "field_key": "dtm_16_network_encryption_policy",
+          "evaluation_focus": "Network device data-at-rest and in-motion encryption policy"
+        },
+        {
+          "id": "rq-dtm-16-2",
+          "prompt": "Is the network devices data at rest and in motion encryption policy reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the network devices data at rest and in motion encryption policy reviewed frequently for efficacy.",
+          "field_key": "dtm_16_network_encryption_policy_reviewed",
+          "evaluation_focus": "Frequent network encryption policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-17",
+      "capability_name": "Data quality",
+      "questions": [
+        {
+          "id": "rq-dtm-17-1",
+          "prompt": "Does the data management platform have capability to measure and report changes in data quality and integrity?",
+          "intent": "Evaluate: Does the data management platform have capability to measure and report changes in data quality and integrity.",
+          "field_key": "dtm_17_measure_data_quality",
+          "evaluation_focus": "Measure and report data quality and integrity changes"
+        },
+        {
+          "id": "rq-dtm-17-2",
+          "prompt": "Are all data assets monitored for quality and integrity?",
+          "intent": "Evaluate: Are all data assets monitored for quality and integrity.",
+          "field_key": "dtm_17_all_assets_monitored",
+          "evaluation_focus": "All data assets monitored for quality and integrity"
+        },
+        {
+          "id": "rq-dtm-17-3",
+          "prompt": "Are data asset quality checks and validation automated as part of the data management system?",
+          "intent": "Evaluate: Are data asset quality checks and validation automated as part of the data management system.",
+          "field_key": "dtm_17_quality_checks_automated",
+          "evaluation_focus": "Automated data quality checks and validation"
+        },
+        {
+          "id": "rq-dtm-17-4",
+          "prompt": "Does the data quality information get incorporated into multiple systems like data management and asset management?",
+          "intent": "Evaluate: Does the data quality information get incorporated into multiple systems like data management and asset management.",
+          "field_key": "dtm_17_quality_incorporated",
+          "evaluation_focus": "Data quality information incorporated into other systems"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-18",
+      "capability_name": "Data Classification",
+      "questions": [
+        {
+          "id": "rq-dtm-18-1",
+          "prompt": "Does the data management platform have capability to classify data assets?",
+          "intent": "Evaluate: Does the data management platform have capability to classify data assets.",
+          "field_key": "dtm_18_classify_data_assets",
+          "evaluation_focus": "Platform capability to classify data assets"
+        },
+        {
+          "id": "rq-dtm-18-2",
+          "prompt": "Are all data assets classified?",
+          "intent": "Evaluate: Are all data assets classified.",
+          "field_key": "dtm_18_all_assets_classified",
+          "evaluation_focus": "All data assets classified"
+        },
+        {
+          "id": "rq-dtm-18-3",
+          "prompt": "Are data assets classification automated?",
+          "intent": "Evaluate: Are data assets classification automated.",
+          "field_key": "dtm_18_classification_automated",
+          "evaluation_focus": "Automated data asset classification"
+        },
+        {
+          "id": "rq-dtm-18-4",
+          "prompt": "Does the data asset classification get incorporated into multiple systems like data management and asset management?",
+          "intent": "Evaluate: Does the data asset classification get incorporated into multiple systems like data management and asset management.",
+          "field_key": "dtm_18_classification_incorporated",
+          "evaluation_focus": "Classification incorporated into other systems"
+        },
+        {
+          "id": "rq-dtm-18-5",
+          "prompt": "Are data asset classification reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are data asset classification reviewed frequently for efficacy.",
+          "field_key": "dtm_18_classification_reviewed",
+          "evaluation_focus": "Frequent classification review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-19",
+      "capability_name": "Supply chain data assessment",
+      "questions": [
+        {
+          "id": "rq-dtm-19-1",
+          "prompt": "Does the enterprise define and implement a process for conducting security assessments periodically for all organizations within the supply chain?",
+          "intent": "Evaluate: Does the enterprise define and implement a process for conducting security assessments periodically for all organizations within the supply chain.",
+          "field_key": "dtm_19_supply_chain_assessment_process",
+          "evaluation_focus": "Periodic supply chain security assessment process"
+        },
+        {
+          "id": "rq-dtm-19-2",
+          "prompt": "Is the data supply chain process reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the data supply chain process reviewed frequently for efficacy.",
+          "field_key": "dtm_19_supply_chain_process_reviewed",
+          "evaluation_focus": "Frequent supply chain process review"
+        },
+        {
+          "id": "rq-dtm-19-3",
+          "prompt": "Is risk assessment performed for the data supply chain automated?",
+          "intent": "Evaluate: Is risk assessment performed for the data supply chain automated.",
+          "field_key": "dtm_19_supply_chain_risk_automated",
+          "evaluation_focus": "Automated supply chain risk assessment"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-20",
+      "capability_name": "Data Labelling",
+      "questions": [
+        {
+          "id": "rq-dtm-20-1",
+          "prompt": "Does the data management platform have capability to label data assets?",
+          "intent": "Evaluate: Does the data management platform have capability to label data assets.",
+          "field_key": "dtm_20_label_data_assets",
+          "evaluation_focus": "Platform capability to label data assets"
+        },
+        {
+          "id": "rq-dtm-20-2",
+          "prompt": "Are all data assets labelled?",
+          "intent": "Evaluate: Are all data assets labelled.",
+          "field_key": "dtm_20_all_assets_labelled",
+          "evaluation_focus": "All data assets labelled"
+        },
+        {
+          "id": "rq-dtm-20-3",
+          "prompt": "Are data assets labelling automated?",
+          "intent": "Evaluate: Are data assets labelling automated.",
+          "field_key": "dtm_20_labelling_automated",
+          "evaluation_focus": "Automated data asset labelling"
+        },
+        {
+          "id": "rq-dtm-20-4",
+          "prompt": "Does the data asset labelling get incorporated into multiple systems like data management and asset management?",
+          "intent": "Evaluate: Does the data asset labelling get incorporated into multiple systems like data management and asset management.",
+          "field_key": "dtm_20_labelling_incorporated",
+          "evaluation_focus": "Labelling incorporated into other systems"
+        },
+        {
+          "id": "rq-dtm-20-5",
+          "prompt": "Are data asset labelling reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are data asset labelling reviewed frequently for efficacy.",
+          "field_key": "dtm_20_labelling_reviewed",
+          "evaluation_focus": "Frequent labelling review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-21",
+      "capability_name": "Data Flow Documentation",
+      "questions": [
+        {
+          "id": "rq-dtm-21-1",
+          "prompt": "Does the enterprise have capability to map out data flow communications for all data assets?",
+          "intent": "Evaluate: Does the enterprise have capability to map out data flow communications for all data assets.",
+          "field_key": "dtm_21_map_data_flows",
+          "evaluation_focus": "Map data flow communications for all data assets"
+        },
+        {
+          "id": "rq-dtm-21-2",
+          "prompt": "Does the enterprise have capability to capture data flows automatically?",
+          "intent": "Evaluate: Does the enterprise have capability to capture data flows automatically.",
+          "field_key": "dtm_21_capture_flows_automatically",
+          "evaluation_focus": "Automatic data flow capture capability"
+        },
+        {
+          "id": "rq-dtm-21-3",
+          "prompt": "Are the mapped data flows reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the mapped data flows reviewed frequently for efficacy.",
+          "field_key": "dtm_21_data_flows_reviewed",
+          "evaluation_focus": "Frequent mapped data flow review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-22",
+      "capability_name": "Master data record",
+      "questions": [
+        {
+          "id": "rq-dtm-22-1",
+          "prompt": "Does the enterprise maintain a master data record for all assets in the enterprise?",
+          "intent": "Evaluate: Does the enterprise maintain a master data record for all assets in the enterprise.",
+          "field_key": "dtm_22_master_data_record",
+          "evaluation_focus": "Master data record for all enterprise assets"
+        },
+        {
+          "id": "rq-dtm-22-2",
+          "prompt": "Are changes to the master data record and subsequent records and manipulation of the master data record automated by the data management platform?",
+          "intent": "Evaluate: Are changes to the master data record and subsequent records and manipulation of the master data record automated by the data management platform.",
+          "field_key": "dtm_22_master_record_automated",
+          "evaluation_focus": "Automated master data record changes"
+        },
+        {
+          "id": "rq-dtm-22-3",
+          "prompt": "Does the data management platform have capabilities to audit and identify changes to the master data record?",
+          "intent": "Evaluate: Does the data management platform have capabilities to audit and identify changes to the master data record.",
+          "field_key": "dtm_22_master_record_audit",
+          "evaluation_focus": "Audit and identify master data record changes"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-23",
+      "capability_name": "Data warehousing",
+      "questions": [
+        {
+          "id": "rq-dtm-23-1",
+          "prompt": "Does the enterprise have data warehousing capabilities?",
+          "intent": "Evaluate: Does the enterprise have data warehousing capabilities.",
+          "field_key": "dtm_23_data_warehousing",
+          "evaluation_focus": "Data warehousing capabilities"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-24",
+      "capability_name": "Data modification",
+      "questions": [
+        {
+          "id": "rq-dtm-24-1",
+          "prompt": "Does the enterprise have a formalized documented process for managing data modification across all locations?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented process for managing data modification across all locations.",
+          "field_key": "dtm_24_modification_process",
+          "evaluation_focus": "Formalized data modification process across all locations"
+        },
+        {
+          "id": "rq-dtm-24-2",
+          "prompt": "Does the enterprise review the data modification process for efficacy?",
+          "intent": "Evaluate: Does the enterprise review the data modification process for efficacy.",
+          "field_key": "dtm_24_modification_process_reviewed",
+          "evaluation_focus": "Data modification process efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-25",
+      "capability_name": "Data provisioning",
+      "questions": [
+        {
+          "id": "rq-dtm-25-1",
+          "prompt": "Does the enterprise have a formalized documented process for managing data provisioning across all locations?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented process for managing data provisioning across all locations.",
+          "field_key": "dtm_25_provisioning_process",
+          "evaluation_focus": "Formalized data provisioning process across all locations"
+        },
+        {
+          "id": "rq-dtm-25-2",
+          "prompt": "Does the enterprise review the data provisioning process for efficacy?",
+          "intent": "Evaluate: Does the enterprise review the data provisioning process for efficacy.",
+          "field_key": "dtm_25_provisioning_process_reviewed",
+          "evaluation_focus": "Data provisioning process efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-26",
+      "capability_name": "Data De-Provisioning",
+      "questions": [
+        {
+          "id": "rq-dtm-26-1",
+          "prompt": "Does the enterprise have a formalized documented process for managing data deprovisioning across all locations?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented process for managing data deprovisioning across all locations.",
+          "field_key": "dtm_26_deprovisioning_process",
+          "evaluation_focus": "Formalized data deprovisioning process across all locations"
+        },
+        {
+          "id": "rq-dtm-26-2",
+          "prompt": "Does the enterprise review the data deprovisioning process for efficacy?",
+          "intent": "Evaluate: Does the enterprise review the data deprovisioning process for efficacy.",
+          "field_key": "dtm_26_deprovisioning_process_reviewed",
+          "evaluation_focus": "Data deprovisioning process efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-27",
+      "capability_name": "Resiliency design",
+      "questions": [
+        {
+          "id": "rq-dtm-27-1",
+          "prompt": "Are there multiple paths to access data assets in case of a network or data controller failure?",
+          "intent": "Evaluate: Are there multiple paths to access data assets in case of a network or data controller failure.",
+          "field_key": "dtm_27_multiple_access_paths",
+          "evaluation_focus": "Multiple paths to access data assets during failure"
+        },
+        {
+          "id": "rq-dtm-27-2",
+          "prompt": "Are alternative locations or networks selected and rerouted automatically?",
+          "intent": "Evaluate: Are alternative locations or networks selected and rerouted automatically.",
+          "field_key": "dtm_27_automatic_rerouting",
+          "evaluation_focus": "Automatic alternate location or network rerouting"
+        },
+        {
+          "id": "rq-dtm-27-3",
+          "prompt": "Are data resiliency measures started automatically, or do they need to be manually triggered?",
+          "intent": "Evaluate: Are data resiliency measures started automatically, or do they need to be manually triggered.",
+          "field_key": "dtm_27_resiliency_automation",
+          "evaluation_focus": "Automatic or manual data resiliency measures"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-28",
+      "capability_name": "RPO/RTO metrics are defined",
+      "questions": [
+        {
+          "id": "rq-dtm-28-1",
+          "prompt": "Does the enterprise have RPO/RTO metrics defined as per availability policy?",
+          "intent": "Evaluate: Does the enterprise have RPO/RTO metrics defined as per availability policy.",
+          "field_key": "dtm_28_rpo_rto_defined",
+          "evaluation_focus": "RPO/RTO metrics defined per availability policy"
+        },
+        {
+          "id": "rq-dtm-28-2",
+          "prompt": "Are the RPO and RTO metrics applicable enterprise wide?",
+          "intent": "Evaluate: Are the RPO and RTO metrics applicable enterprise wide.",
+          "field_key": "dtm_28_rpo_rto_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide RPO/RTO applicability"
+        },
+        {
+          "id": "rq-dtm-28-3",
+          "prompt": "Are the RPO and RTO metrics reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the RPO and RTO metrics reviewed frequently for efficacy.",
+          "field_key": "dtm_28_rpo_rto_reviewed",
+          "evaluation_focus": "Frequent RPO/RTO metric review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-29",
+      "capability_name": "Backup",
+      "questions": [
+        {
+          "id": "rq-dtm-29-1",
+          "prompt": "Does the enterprise have a documented and formalized backup policy and process in place?",
+          "intent": "Evaluate: Does the enterprise have a documented and formalized backup policy and process in place.",
+          "field_key": "dtm_29_backup_policy_process",
+          "evaluation_focus": "Documented formalized backup policy and process"
+        },
+        {
+          "id": "rq-dtm-29-2",
+          "prompt": "Are backups stored at remote locations or locally on the devices?",
+          "intent": "Evaluate: Are backups stored at remote locations or locally on the devices.",
+          "field_key": "dtm_29_backup_storage_location",
+          "evaluation_focus": "Remote or local backup storage"
+        },
+        {
+          "id": "rq-dtm-29-3",
+          "prompt": "Are backups taken automatically at specific intervals of time?",
+          "intent": "Evaluate: Are backups taken automatically at specific intervals of time.",
+          "field_key": "dtm_29_backups_automatic",
+          "evaluation_focus": "Automatic interval-based backups"
+        },
+        {
+          "id": "rq-dtm-29-4",
+          "prompt": "Are full and incremental or differential backups taken?",
+          "intent": "Evaluate: Are full and incremental or differential backups taken.",
+          "field_key": "dtm_29_full_and_incremental_backups",
+          "evaluation_focus": "Full and incremental or differential backups"
+        },
+        {
+          "id": "rq-dtm-29-5",
+          "prompt": "Does the enterprise measure how much time it takes to restore each specific technology product back to its original config based on RTO and RPO?",
+          "intent": "Evaluate: Does the enterprise measure how much time it takes to restore each specific technology product back to its original config based on RTO and RPO.",
+          "field_key": "dtm_29_restore_time_measured",
+          "evaluation_focus": "Restore time measurement against RTO and RPO"
+        },
+        {
+          "id": "rq-dtm-29-6",
+          "prompt": "Does the enterprise review backup policies and processes for efficacy?",
+          "intent": "Evaluate: Does the enterprise review backup policies and processes for efficacy.",
+          "field_key": "dtm_29_backup_reviewed",
+          "evaluation_focus": "Frequent backup policy and process review"
+        },
+        {
+          "id": "rq-dtm-29-7",
+          "prompt": "Are backup processes automated as part of broader asset management system?",
+          "intent": "Evaluate: Are backup processes automated as part of broader asset management system.",
+          "field_key": "dtm_29_backup_automated_asset_mgmt",
+          "evaluation_focus": "Automated backup as part of asset management"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-30",
+      "capability_name": "Data retention",
+      "questions": [
+        {
+          "id": "rq-dtm-30-1",
+          "prompt": "Does the enterprise have a formalized documented process on data retention on multiple platforms including network, applications, and devices?",
+          "intent": "Evaluate: Does the enterprise have a formalized documented process on data retention on multiple platforms including network, applications, and devices.",
+          "field_key": "dtm_30_retention_process_multi_platform",
+          "evaluation_focus": "Formalized multi-platform data retention process"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-31",
+      "capability_name": "Data Ownership and stewardship",
+      "questions": [
+        {
+          "id": "rq-dtm-31-1",
+          "prompt": "Does the enterprise have formalized and documented hierarchy for data ownership and custodianship especially for data that is owned by customers?",
+          "intent": "Evaluate: Does the enterprise have formalized and documented hierarchy for data ownership and custodianship especially for data that is owned by customers.",
+          "field_key": "dtm_31_ownership_hierarchy",
+          "evaluation_focus": "Formalized data ownership and custodianship hierarchy"
+        },
+        {
+          "id": "rq-dtm-31-2",
+          "prompt": "Does the enterprise have a clear ownership trail of all data assets?",
+          "intent": "Evaluate: Does the enterprise have a clear ownership trail of all data assets.",
+          "field_key": "dtm_31_ownership_trail",
+          "evaluation_focus": "Clear ownership trail for all data assets"
+        },
+        {
+          "id": "rq-dtm-31-3",
+          "prompt": "Are data ownership and permissions reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are data ownership and permissions reviewed frequently for efficacy.",
+          "field_key": "dtm_31_ownership_reviewed",
+          "evaluation_focus": "Frequent ownership and permissions review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-32",
+      "capability_name": "Secure Data Transfer",
+      "questions": [
+        {
+          "id": "rq-dtm-32-1",
+          "prompt": "Does the enterprise deploy secure transfer methods for data movement and migration?",
+          "intent": "Evaluate: Does the enterprise deploy secure transfer methods for data movement and migration.",
+          "field_key": "dtm_32_secure_transfer_methods",
+          "evaluation_focus": "Secure transfer methods for data movement and migration"
+        },
+        {
+          "id": "rq-dtm-32-2",
+          "prompt": "Does the enterprise make sure that transfer of personal or sensitive data is protected from unauthorized access and only processed within scope as permitted by the respective laws and regulations?",
+          "intent": "Evaluate: Does the enterprise make sure that transfer of personal or sensitive data is protected from unauthorized access and only processed within scope as permitted by the respective laws and regulations.",
+          "field_key": "dtm_32_sensitive_data_transfer_protected",
+          "evaluation_focus": "Protection of personal and sensitive data within regulatory scope"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-33",
+      "capability_name": "Data Location",
+      "questions": [
+        {
+          "id": "rq-dtm-33-1",
+          "prompt": "Does the enterprise have rules or laws abiding to specific regulation relating to what locations data can be stored? This is especially relevant for cloud environments where the cloud provider does not have a point of presence in the desired locations.",
+          "intent": "Evaluate: Does the enterprise have rules or laws abiding to specific regulation relating to what locations data can be stored? This is especially relevant for cloud environments where the cloud provider does not have a point of presence in the desired locations..",
+          "field_key": "dtm_33_data_location_rules",
+          "evaluation_focus": "Regulatory data location storage rules"
+        },
+        {
+          "id": "rq-dtm-33-2",
+          "prompt": "Are location restrictions for data reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are location restrictions for data reviewed frequently for efficacy.",
+          "field_key": "dtm_33_location_restrictions_reviewed",
+          "evaluation_focus": "Frequent data location restriction review"
+        }
+      ]
+    },
+    {
+      "capability_id": "dtm-34",
+      "capability_name": "Visibility of data",
+      "questions": [
+        {
+          "id": "rq-dtm-34-1",
+          "prompt": "Is there a formal documented process for logging data asset based lifecycle logs and activity to SOC?",
+          "intent": "Evaluate: Is there a formal documented process for logging data asset based lifecycle logs and activity to SOC.",
+          "field_key": "dtm_34_lifecycle_logging_to_soc",
+          "evaluation_focus": "Formal process for logging data asset lifecycle to SOC"
+        },
+        {
+          "id": "rq-dtm-34-2",
+          "prompt": "Is logging of data asset management logs made securely to the SOC?",
+          "intent": "Evaluate: Is logging of data asset management logs made securely to the SOC.",
+          "field_key": "dtm_34_secure_logging_to_soc",
+          "evaluation_focus": "Secure logging of data asset management logs to SOC"
+        },
+        {
+          "id": "rq-dtm-34-3",
+          "prompt": "Are dynamic changes to the data asset state and asset activity captured and transferred to the SOC?",
+          "intent": "Evaluate: Are dynamic changes to the data asset state and asset activity captured and transferred to the SOC.",
+          "field_key": "dtm_34_dynamic_state_to_soc",
+          "evaluation_focus": "Dynamic data asset state changes captured and transferred to SOC"
+        }
+      ]
+    }
+  ]
+}
