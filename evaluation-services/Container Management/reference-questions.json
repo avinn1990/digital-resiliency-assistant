@@ -1,0 +1,182 @@
+{
+  "service_id": "container-management",
+  "service_name": "Container Management",
+  "capability_questions": [
+    {
+      "capability_id": "ctm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-ctm-00-1",
+          "prompt": "Does the enterprise have a container management service?",
+          "intent": "Evaluate whether the enterprise has a container management service.",
+          "field_key": "ctm_00_container_management_service_exists",
+          "evaluation_focus": "Enterprise container management service exists"
+        },
+        {
+          "id": "rq-ctm-00-2",
+          "prompt": "Is the container management service reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the container management service is reviewed frequently for efficacy.",
+          "field_key": "ctm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent container management service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ctm-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-ctm-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Container Management?",
+          "intent": "Evaluate whether KPIs and KRIs for container management are formalized and documented.",
+          "field_key": "ctm_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for container management"
+        },
+        {
+          "id": "rq-ctm-01-2",
+          "prompt": "Are the KPIs and KRIs for the Container Management reviewed frequently?",
+          "intent": "Evaluate whether container management KPIs and KRIs are reviewed frequently.",
+          "field_key": "ctm_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ctm-02",
+      "capability_name": "Container testing, development and deployment policies",
+      "questions": [
+        {
+          "id": "rq-ctm-02-1",
+          "prompt": "Does the enterprise have enterprise-wide container management and lifecycle policies?",
+          "intent": "Evaluate whether enterprise-wide container management and lifecycle policies exist.",
+          "field_key": "ctm_02_enterprise_wide_policies",
+          "evaluation_focus": "Enterprise-wide container management and lifecycle policies"
+        },
+        {
+          "id": "rq-ctm-02-2",
+          "prompt": "Does the container management policy apply enterprise wide?",
+          "intent": "Evaluate whether container management policy applies enterprise-wide.",
+          "field_key": "ctm_02_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide policy application"
+        },
+        {
+          "id": "rq-ctm-02-3",
+          "prompt": "Are the container management policies reviewed frequently for efficacy?",
+          "intent": "Evaluate whether container management policies are reviewed frequently for efficacy.",
+          "field_key": "ctm_02_policies_reviewed_frequently",
+          "evaluation_focus": "Frequent container management policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ctm-03",
+      "capability_name": "Container management software",
+      "questions": [
+        {
+          "id": "rq-ctm-03-1",
+          "prompt": "Does the enterprise deploy a container management software that manages the container infrastructure?",
+          "intent": "Evaluate whether container management software manages container infrastructure.",
+          "field_key": "ctm_03_container_management_software",
+          "evaluation_focus": "Container management software for container infrastructure"
+        },
+        {
+          "id": "rq-ctm-03-2",
+          "prompt": "Does the container management software belong to a specific enterprise or is there an orchestrator deployed to manage containers of various types?",
+          "intent": "Evaluate whether a single-vendor or multi-type orchestrator manages containers.",
+          "field_key": "ctm_03_orchestrator_deployment",
+          "evaluation_focus": "Enterprise-specific or multi-type orchestrator deployment"
+        },
+        {
+          "id": "rq-ctm-03-3",
+          "prompt": "Does the container management and orchestration solution have capabilities to automate container lifecycle?",
+          "intent": "Evaluate whether container lifecycle is automated by management and orchestration.",
+          "field_key": "ctm_03_automated_container_lifecycle",
+          "evaluation_focus": "Automated container lifecycle management"
+        },
+        {
+          "id": "rq-ctm-03-4",
+          "prompt": "Does the container management and orchestration configuration get reviewed frequently for efficacy?",
+          "intent": "Evaluate whether container management and orchestration configuration is reviewed frequently.",
+          "field_key": "ctm_03_config_reviewed_frequently",
+          "evaluation_focus": "Frequent container management and orchestration configuration review"
+        },
+        {
+          "id": "rq-ctm-03-5",
+          "prompt": "Does the container management platform integrate with broader asset management, vulnerability management, and compliance management systems to provide efficient handling of container assets?",
+          "intent": "Evaluate whether the container platform integrates with asset, vulnerability, and compliance systems.",
+          "field_key": "ctm_03_platform_integrations",
+          "evaluation_focus": "Integration with asset, vulnerability, and compliance management systems"
+        }
+      ]
+    },
+    {
+      "capability_id": "ctm-04",
+      "capability_name": "Container Resource management",
+      "questions": [
+        {
+          "id": "rq-ctm-04-1",
+          "prompt": "Does the container management system have capability to perform efficient resource management based on container management policies in the enterprise?",
+          "intent": "Evaluate whether the container management system performs efficient resource management based on policies.",
+          "field_key": "ctm_04_efficient_resource_management",
+          "evaluation_focus": "Efficient resource management based on container policies"
+        },
+        {
+          "id": "rq-ctm-04-2",
+          "prompt": "Do resource management best practices get deployed only for critical container applications or for all containers?",
+          "intent": "Evaluate whether resource management applies to all containers or only critical applications.",
+          "field_key": "ctm_04_resource_management_scope",
+          "evaluation_focus": "Resource management scope for all or critical containers"
+        },
+        {
+          "id": "rq-ctm-04-3",
+          "prompt": "Are resource management practices for containers deployed automatically?",
+          "intent": "Evaluate whether container resource management practices are deployed automatically.",
+          "field_key": "ctm_04_resource_management_automated",
+          "evaluation_focus": "Automated resource management practices"
+        }
+      ]
+    },
+    {
+      "capability_id": "ctm-05",
+      "capability_name": "Container Security",
+      "questions": [
+        {
+          "id": "rq-ctm-05-1",
+          "prompt": "Does the container management solution have capability to deploy function specific security for specific container systems?",
+          "intent": "Evaluate whether function-specific security is deployed for container systems.",
+          "field_key": "ctm_05_function_specific_security",
+          "evaluation_focus": "Function-specific security for container systems"
+        },
+        {
+          "id": "rq-ctm-05-2",
+          "prompt": "Is container security deployed for the entire container ecosystem or only for specific container vendors?",
+          "intent": "Evaluate whether container security covers the entire ecosystem or specific vendors only.",
+          "field_key": "ctm_05_container_security_scope",
+          "evaluation_focus": "Container security scope across ecosystem or specific vendors"
+        },
+        {
+          "id": "rq-ctm-05-3",
+          "prompt": "Is the container security deployment automated in response to compromises, performance, policy, environment, etc.?",
+          "intent": "Evaluate whether container security deployment is automated in response to events.",
+          "field_key": "ctm_05_security_deployment_automated",
+          "evaluation_focus": "Automated container security deployment"
+        },
+        {
+          "id": "rq-ctm-05-4",
+          "prompt": "Are container security practices reviewed frequently to measure efficacy?",
+          "intent": "Evaluate whether container security practices are reviewed frequently.",
+          "field_key": "ctm_05_security_practices_reviewed",
+          "evaluation_focus": "Frequent container security practice review"
+        },
+        {
+          "id": "rq-ctm-05-5",
+          "prompt": "Are container security features deployed natively or integrated with external security providers?",
+          "intent": "Evaluate whether container security is native or integrated with external providers.",
+          "field_key": "ctm_05_native_or_external_security",
+          "evaluation_focus": "Native or externally integrated container security features"
+        }
+      ]
+    }
+  ]
+}
