@@ -1,0 +1,147 @@
+{
+  "service_id": "content-management",
+  "service_name": "Content Management Service",
+  "version": "1.0",
+  "description": "Evaluates content management service maturity—mobile content tracking, policies, downloadable content monitoring, distribution, virtual workspaces, mobile firmware management, and golden images.",
+  "capabilities": [
+    {
+      "id": "cnt-00",
+      "name": "Service exists and is in good condition",
+      "description": "Mobile content is tracked as part of the content management service and reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Mobile content tracking",
+        "Frequent service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cnt-01",
+      "name": "KPIs/KRIs",
+      "description": "Enterprise-wide content management policy is formalized, documented, and reviewed for efficacy.",
+      "evaluation_focus": [
+        "Formalized enterprise-wide content management policy",
+        "Content management policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cnt-02",
+      "name": "Downloadable content",
+      "description": "A system or MDM monitors and manages downloadable content on mobiles at enterprise level.",
+      "evaluation_focus": [
+        "Enterprise downloadable content monitoring and management"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cnt-03",
+      "name": "Distribution",
+      "description": "A system or MDM distributes select content on mobiles at enterprise level.",
+      "evaluation_focus": [
+        "Enterprise content distribution on mobiles"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cnt-04",
+      "name": "Content Management",
+      "description": "Software or MDM manages virtual spaces on corporate-owned personal mobiles with automated provisioning.",
+      "evaluation_focus": [
+        "Virtual workspace management on corporate-owned personal mobiles",
+        "Automated virtual space provisioning"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cnt-05",
+      "name": "Mobile Application Management",
+      "description": "Software or MDM upgrades mobile device firmware remotely with automated upgrade triggers.",
+      "evaluation_focus": [
+        "Remote mobile firmware upgrades",
+        "Automated mobile upgrade triggers"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cnt-06",
+      "name": "Golden Images",
+      "description": "Golden images for assets especially endpoints are maintained, deployed enterprise-wide, applied during provisioning, and reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized golden image maintenance process",
+        "Enterprise-wide golden image deployment",
+        "Automated golden image provisioning",
+        "Frequent golden image security review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}
