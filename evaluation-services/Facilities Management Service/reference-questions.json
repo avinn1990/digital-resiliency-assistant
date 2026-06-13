@@ -1,0 +1,164 @@
+{
+  "service_id": "facilities-management",
+  "service_name": "Facilities Management Service",
+  "capability_questions": [
+    {
+      "capability_id": "fac-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-fac-00-1",
+          "prompt": "Does the enterprise have a facilities management service?",
+          "intent": "Evaluate does the enterprise have a facilities management service?",
+          "field_key": "fac_00_facilities_management_service_exists",
+          "evaluation_focus": "Enterprise facilities management service exists"
+        },
+        {
+          "id": "rq-fac-00-2",
+          "prompt": "Is the facilities management service reviewed frequently for efficacy?",
+          "intent": "Evaluate is the facilities management service reviewed frequently for efficacy?",
+          "field_key": "fac_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-fac-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for facilities management?",
+          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for facilities management?",
+          "field_key": "fac_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-fac-01-2",
+          "prompt": "Are the KPIs and KRIs for facilities management reviewed frequently?",
+          "intent": "Evaluate are the KPIs and KRIs for facilities management reviewed frequently?",
+          "field_key": "fac_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-02",
+      "capability_name": "Controlled Access Points and Secure Area Authorization",
+      "questions": [
+        {
+          "id": "rq-fac-02-1",
+          "prompt": "Does the enterprise have the capability to control physical access to all data centers?",
+          "intent": "Evaluate does the enterprise have the capability to control physical access to all data centers?",
+          "field_key": "fac_02_dc_physical_access_control",
+          "evaluation_focus": "Physical access control to data centers"
+        },
+        {
+          "id": "rq-fac-02-2",
+          "prompt": "Does the enterprise separate functional zones physically?",
+          "intent": "Evaluate does the enterprise separate functional zones physically?",
+          "field_key": "fac_02_functional_zones_separated",
+          "evaluation_focus": "Physical separation of functional zones"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-03",
+      "capability_name": "Equipment Identification",
+      "questions": [
+        {
+          "id": "rq-fac-03-1",
+          "prompt": "Does the enterprise employ accurate equipment identification to validate physical asset placements?",
+          "intent": "Evaluate does the enterprise employ accurate equipment identification to validate physical asset placements?",
+          "field_key": "fac_03_equipment_identification",
+          "evaluation_focus": "Accurate equipment identification for asset placement"
+        },
+        {
+          "id": "rq-fac-03-2",
+          "prompt": "Is equipment identification physically reviewed frequently for accuracy?",
+          "intent": "Evaluate is equipment identification physically reviewed frequently for accuracy?",
+          "field_key": "fac_03_equipment_identification_reviewed",
+          "evaluation_focus": "Frequent physical equipment identification review"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-04",
+      "capability_name": "Surveillance System",
+      "questions": [
+        {
+          "id": "rq-fac-04-1",
+          "prompt": "Does the enterprise have surveillance at all data centers to identify and call out unauthorized or anomalous access?",
+          "intent": "Evaluate does the enterprise have surveillance at all data centers to identify and call out unauthorized or anomalous access?",
+          "field_key": "fac_04_dc_surveillance",
+          "evaluation_focus": "Data center surveillance for unauthorized access"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-05",
+      "capability_name": "Unauthorized Access Response Training",
+      "questions": [
+        {
+          "id": "rq-fac-05-1",
+          "prompt": "Does the enterprise have formal training on unauthorized access to data centers for all data center personnel?",
+          "intent": "Evaluate does the enterprise have formal training on unauthorized access to data centers for all data center personnel?",
+          "field_key": "fac_05_unauthorized_access_training",
+          "evaluation_focus": "Formal unauthorized access training for DC personnel"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-06",
+      "capability_name": "Cabling Security",
+      "questions": [
+        {
+          "id": "rq-fac-06-1",
+          "prompt": "Does the enterprise ensure risk-based protection of power and telecommunication cables from the threat of interception, interference, or damage at all facilities, offices, and rooms?",
+          "intent": "Evaluate does the enterprise ensure risk-based protection of power and telecommunication cables from the threat of interception, interference, or damage at all facilities, offices, and rooms?",
+          "field_key": "fac_06_cabling_security",
+          "evaluation_focus": "Risk-based cabling protection at all facilities"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-07",
+      "capability_name": "Environmental Systems",
+      "questions": [
+        {
+          "id": "rq-fac-07-1",
+          "prompt": "Does the enterprise implement and maintain data center environmental control systems that monitor, maintain, and test for continual effectiveness the temperature and humidity conditions within accepted industry standards?",
+          "intent": "Evaluate does the enterprise implement and maintain data center environmental control systems that monitor, maintain, and test for continual effectiveness the temperature and humidity conditions within accepted industry standards?",
+          "field_key": "fac_07_environmental_systems",
+          "evaluation_focus": "Environmental monitoring and testing within industry standards"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-08",
+      "capability_name": "Secure Utilities",
+      "questions": [
+        {
+          "id": "rq-fac-08-1",
+          "prompt": "Does the enterprise secure, monitor, maintain, and test utility services for continual effectiveness at planned intervals?",
+          "intent": "Evaluate does the enterprise secure, monitor, maintain, and test utility services for continual effectiveness at planned intervals?",
+          "field_key": "fac_08_secure_utilities",
+          "evaluation_focus": "Secured and tested utility services"
+        }
+      ]
+    },
+    {
+      "capability_id": "fac-09",
+      "capability_name": "Equipment Location",
+      "questions": [
+        {
+          "id": "rq-fac-09-1",
+          "prompt": "Does the enterprise keep business-critical equipment away from locations subject to high probability for environmental risk events?",
+          "intent": "Evaluate does the enterprise keep business-critical equipment away from locations subject to high probability for environmental risk events?",
+          "field_key": "fac_09_equipment_location",
+          "evaluation_focus": "Business-critical equipment away from high environmental risk locations"
+        }
+      ]
+    }
+  ]
+}
