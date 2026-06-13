@@ -4,27 +4,181 @@
   "capability_questions": [
     {
       "capability_id": "st-00",
-      "capability_name": "Proactive Security Trainings",
+      "capability_name": "Service exists and is in good condition",
       "questions": [
         {
           "id": "rq-st-00-1",
-          "prompt": "Does the enterprise create or hire security training content creators to create trainings for security education proactively?",
-          "intent": "Evaluate: Does the enterprise create or hire security training content creators to create trainings for security education proactively.",
-          "field_key": "st_00_proactive_security_training_content",
-          "evaluation_focus": "Proactive development of security education trainings"
+          "prompt": "Does the enterprise have a formal security training program or service?",
+          "intent": "Evaluate whether an enterprise security training program exists.",
+          "field_key": "st_00_security_training_program_exists",
+          "evaluation_focus": "Enterprise security training program or service exists"
+        },
+        {
+          "id": "rq-st-00-2",
+          "prompt": "Is the security training program reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the security training program is reviewed quarterly.",
+          "field_key": "st_00_program_reviewed_quarterly",
+          "evaluation_focus": "Regular security training program efficacy review"
         }
       ]
     },
     {
       "capability_id": "st-01",
-      "capability_name": "Customized security training for various user segments",
+      "capability_name": "KPIs/KRIs",
       "questions": [
         {
           "id": "rq-st-01-1",
-          "prompt": "Does the enterprise tailor the security trainings for specific functional units?",
-          "intent": "Evaluate: Does the enterprise tailor the security trainings for specific functional units.",
-          "field_key": "st_01_customized_training_by_functional_unit",
+          "prompt": "Does the enterprise document KPIs and KRIs for security training—including completion rates, overdue training, and phishing simulation metrics?",
+          "intent": "Evaluate whether security training KPIs and KRIs are documented.",
+          "field_key": "st_01_training_kpis_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for security training"
+        },
+        {
+          "id": "rq-st-01-2",
+          "prompt": "Are security training KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether training KPIs are reviewed quarterly.",
+          "field_key": "st_01_training_kpis_reviewed_quarterly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-02",
+      "capability_name": "Training curriculum and content development",
+      "questions": [
+        {
+          "id": "rq-st-02-1",
+          "prompt": "Does the enterprise proactively develop or source security training content aligned to current risk priorities?",
+          "intent": "Evaluate whether security training content is proactively developed or sourced.",
+          "field_key": "st_02_proactive_content_development",
+          "evaluation_focus": "Proactive development or sourcing of security education content"
+        },
+        {
+          "id": "rq-st-02-2",
+          "prompt": "Is the security training curriculum reviewed and refreshed at least quarterly?",
+          "intent": "Evaluate whether the training curriculum is reviewed quarterly.",
+          "field_key": "st_02_curriculum_reviewed_quarterly",
+          "evaluation_focus": "Regular curriculum review and refresh"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-03",
+      "capability_name": "Role-based and segmented training",
+      "questions": [
+        {
+          "id": "rq-st-03-1",
+          "prompt": "Does the enterprise tailor security trainings for specific functional units and risk profiles?",
+          "intent": "Evaluate whether training is segmented by role and risk profile.",
+          "field_key": "st_03_segmented_training_by_role",
           "evaluation_focus": "Tailored security trainings for specific functional units"
+        },
+        {
+          "id": "rq-st-03-2",
+          "prompt": "Are different user segments—such as executives, finance, and engineering—assigned distinct security training paths?",
+          "intent": "Evaluate whether distinct training paths exist for user segments.",
+          "field_key": "st_03_distinct_training_paths",
+          "evaluation_focus": "Segmented security training for various user groups and risk profiles"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-04",
+      "capability_name": "Onboarding and mandatory awareness",
+      "questions": [
+        {
+          "id": "rq-st-04-1",
+          "prompt": "Do new hires and contractors complete mandatory security awareness training before accessing enterprise resources?",
+          "intent": "Evaluate whether onboarding security training is mandatory before access.",
+          "field_key": "st_04_onboarding_training_before_access",
+          "evaluation_focus": "Mandatory security awareness for new hires and contractors"
+        },
+        {
+          "id": "rq-st-04-2",
+          "prompt": "Is onboarding training compliance reviewed at least quarterly?",
+          "intent": "Evaluate whether onboarding training compliance is reviewed quarterly.",
+          "field_key": "st_04_onboarding_compliance_reviewed_quarterly",
+          "evaluation_focus": "Regular compliance review of onboarding training"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-05",
+      "capability_name": "Phishing simulation and social engineering drills",
+      "questions": [
+        {
+          "id": "rq-st-05-1",
+          "prompt": "Does the enterprise run phishing simulation campaigns on a defined cadence?",
+          "intent": "Evaluate whether phishing simulations run on a regular cadence.",
+          "field_key": "st_05_phishing_simulation_cadence",
+          "evaluation_focus": "Regular phishing simulation campaigns"
+        },
+        {
+          "id": "rq-st-05-2",
+          "prompt": "Are repeat phishing simulation failures remediated with additional training or coaching?",
+          "intent": "Evaluate whether repeat simulation failures trigger remediation.",
+          "field_key": "st_05_repeat_failure_remediation",
+          "evaluation_focus": "Remediation for repeat simulation failures"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-06",
+      "capability_name": "Technical security training",
+      "questions": [
+        {
+          "id": "rq-st-06-1",
+          "prompt": "Do developers receive secure-coding and SDLC security training appropriate to their role?",
+          "intent": "Evaluate whether developers receive secure-coding training.",
+          "field_key": "st_06_developer_secure_coding_training",
+          "evaluation_focus": "Secure coding and SDLC training for developers"
+        },
+        {
+          "id": "rq-st-06-2",
+          "prompt": "Do IT administrators and operations staff receive specialized operational security training reviewed at least quarterly?",
+          "intent": "Evaluate whether technical staff receive operational security training.",
+          "field_key": "st_06_admin_operational_security_training",
+          "evaluation_focus": "Administrative and operational security training for IT roles"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-07",
+      "capability_name": "AI-era and emerging threat awareness",
+      "questions": [
+        {
+          "id": "rq-st-07-1",
+          "prompt": "Does security training cover AI-augmented attacks, deepfakes, and modern social engineering tactics?",
+          "intent": "Evaluate whether training addresses AI-era attack techniques.",
+          "field_key": "st_07_ai_augmented_attack_awareness",
+          "evaluation_focus": "AI-augmented attack and social engineering awareness"
+        },
+        {
+          "id": "rq-st-07-2",
+          "prompt": "Does training address shadow AI risks and approved versus unapproved AI tool usage?",
+          "intent": "Evaluate whether shadow AI and approved-tool training is provided.",
+          "field_key": "st_07_shadow_ai_training",
+          "evaluation_focus": "Shadow AI and approved-tool usage training"
+        }
+      ]
+    },
+    {
+      "capability_id": "st-08",
+      "capability_name": "Training delivery platform and automation",
+      "questions": [
+        {
+          "id": "rq-st-08-1",
+          "prompt": "Does the enterprise use a training delivery platform to assign, track, and report on security training enterprise-wide?",
+          "intent": "Evaluate whether an enterprise training delivery platform is used.",
+          "field_key": "st_08_training_delivery_platform",
+          "evaluation_focus": "Enterprise-wide training delivery platform"
+        },
+        {
+          "id": "rq-st-08-2",
+          "prompt": "Are training assignments, reminders, and completion tracking automated, with platform configuration reviewed at least quarterly?",
+          "intent": "Evaluate whether training delivery is automated with quarterly platform review.",
+          "field_key": "st_08_automated_assignment_and_review",
+          "evaluation_focus": "Automated assignment, tracking, and reminders"
         }
       ]
     }

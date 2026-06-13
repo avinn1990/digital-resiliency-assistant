@@ -33,6 +33,6 @@
 | 4 | Security Architecture Management | security-architecture-management | 11 | 30 | pending |
 | 4 | Automation, Orchestration and Integration | automation-orchestration-integration | 2 | 5 | pending |
 | 4 | Content Management Service | content-management | 7 | 14 | pending |
-| 5 | Business Continuity Management | business-continuity-management | 10 | 19 | pending |
-| 5 | Security Training | security-training | 2 | 2 | pending |
-| 5 | Security Culture | security-culture | 1 | 1 | pending |
+| 5 | Business Continuity Management | business-continuity-management | 10 | 23 | done (1.1) |
+| 5 | Security Training | security-training | 9 | 18 | done (1.1) |
+| 5 | Security Culture | security-culture | 8 | 16 | done (1.1) |

@@ -1,16 +1,17 @@
 {
   "service_id": "business-continuity-management",
   "service_name": "Business Continuity Management",
-  "version": "1.0",
-  "description": "Evaluates business continuity management maturity—service governance, KPIs/KRIs, BCP processes and strategy, continuity planning, exercises, stakeholder communication, disaster response planning, response plan exercises, and equipment redundancy.",
+  "version": "1.1",
+  "description": "Evaluates business continuity management maturity—service governance, KPIs/KRIs, BCP processes and strategy, continuity planning, exercises, stakeholder communication, disaster response planning and exercises, cyber resilience and ransomware recovery, and equipment redundancy.",
   "capabilities": [
     {
       "id": "bcm-00",
-      "name": "Service exists and in good condition",
-      "description": "A business continuity management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A business continuity management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise business continuity management service exists",
-        "Frequent business continuity management service efficacy review"
+        "Regular business continuity management service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +19,13 @@
     {
       "id": "bcm-01",
       "name": "KPIs/KRIs",
-      "description": "Business continuity KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Business continuity KPIs and KRIs—including RTO/RPO attainment, exercise completion, and recovery test success—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for the BCP service",
-        "Frequent KPI/KRI review for the BCP service"
+        "Regular KPI/KRI review for the BCP service",
+        "RTO and RPO attainment metrics",
+        "Exercise completion and recovery test success rates"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,10 +33,11 @@
     {
       "id": "bcm-02",
       "name": "BCP processes",
-      "description": "Business continuity management and operational resilience policies and procedures are formalized, documented, and updated at least annually.",
+      "short_name": "BCP processes",
+      "description": "Business continuity management and operational resilience policies and procedures are formalized, documented, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized documented business continuity and operational resilience policies and procedures",
-        "Annual or more frequent review and update of policies and procedures"
+        "Regular review and update of policies and procedures"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -40,10 +45,12 @@
     {
       "id": "bcm-03",
       "name": "BCP strategy",
-      "description": "The enterprise has strategies to reduce the impact of, withstand, and recover from business disruptions within risk appetite, with frequent efficacy review.",
+      "short_name": "BCP strategy",
+      "description": "The enterprise has strategies to reduce the impact of, withstand, and recover from business disruptions—including cyber and ransomware events—within risk appetite, with quarterly efficacy review.",
       "evaluation_focus": [
         "Strategies to reduce impact, withstand, and recover from business disruptions within risk appetite",
-        "Frequent BCP strategy efficacy review"
+        "Regular BCP strategy efficacy review",
+        "Cyber and ransomware disruption scenarios in strategy"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -51,10 +58,11 @@
     {
       "id": "bcm-04",
       "name": "Business Continuity Planning",
-      "description": "A formalized business continuity plan is documented based on operational resilience strategies and capabilities and reviewed on a defined cadence.",
+      "short_name": "continuity plan",
+      "description": "A formalized business continuity plan is documented based on operational resilience strategies and capabilities and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized documented business continuity plan based on operational resilience strategies and capabilities",
-        "Defined review cadence for the business continuity plan"
+        "Regular review cadence for the business continuity plan"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -62,10 +70,11 @@
     {
       "id": "bcm-05",
       "name": "Business Continuity Exercises",
-      "description": "Business continuity and operational resilience plans are exercised, reviewed, and automated where appropriate.",
+      "short_name": "continuity exercises",
+      "description": "Business continuity and operational resilience plans are exercised at least annually or upon significant changes, reviewed quarterly, and automated where appropriate.",
       "evaluation_focus": [
         "Annual or change-triggered exercise and testing of business continuity and operational resilience plans",
-        "Frequent review of business continuity and operational resilience plans for efficacy",
+        "Regular review of business continuity and operational resilience plans for efficacy",
         "Automation of business continuity and operational resilience plans and processes"
       ],
       "resiliency_weight": 1,
@@ -74,31 +83,37 @@
     {
       "id": "bcm-06",
       "name": "Communication",
-      "description": "Stakeholder and participant communication plans support business continuity and resilience procedures and are reviewed frequently.",
+      "short_name": "stakeholder communication",
+      "description": "Stakeholder and participant communication plans support business continuity and resilience procedures and are reviewed at least quarterly.",
       "evaluation_focus": [
         "Communication with stakeholders and participants during business continuity and resilience procedures",
-        "Frequent communication plan efficacy review"
+        "Regular communication plan efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
     },
     {
       "id": "bcm-07",
-      "name": "Disaster Response Plan",
-      "description": "A formalized disaster response plan supports recovery from natural and man-made disasters and is updated at least annually or upon significant changes.",
+      "name": "Disaster response plan and exercises",
+      "short_name": "disaster response",
+      "description": "A formalized disaster response plan supports recovery from natural and man-made disasters, is updated at least quarterly or upon significant changes, and is exercised annually including coordination with local emergency authorities where possible.",
       "evaluation_focus": [
         "Formalized documented disaster response plan for natural and man-made disasters",
-        "Annual or change-triggered update of the disaster response plan"
+        "Regular or change-triggered update of the disaster response plan",
+        "Annual or change-triggered disaster response plan exercise including local emergency authorities where possible"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "bcm-08",
-      "name": "Response Plan Exercise",
-      "description": "The disaster response plan is exercised annually or upon significant changes, including coordination with local emergency authorities where possible.",
+      "name": "Cyber resilience and ransomware recovery",
+      "short_name": "cyber resilience",
+      "description": "Cyber resilience and ransomware recovery playbooks define backup validation, isolation, restoration, and communication steps and are exercised and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Annual or change-triggered disaster response plan exercise including local emergency authorities where possible"
+        "Documented cyber resilience and ransomware recovery playbooks",
+        "Backup validation and immutable recovery testing",
+        "Quarterly review and exercise of cyber recovery procedures"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -106,6 +121,7 @@
     {
       "id": "bcm-09",
       "name": "Equipment Redundancy",
+      "short_name": "equipment redundancy",
       "description": "Business-critical equipment is supplemented with redundant equipment independently located at a reasonable minimum distance per applicable industry standards.",
       "evaluation_focus": [
         "Redundant business-critical equipment independently located at reasonable minimum distance per industry standards"

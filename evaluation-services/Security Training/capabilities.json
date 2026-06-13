@@ -1,30 +1,124 @@
 {
   "service_id": "security-training",
   "service_name": "Security Training",
-  "version": "1.0",
-  "description": "Evaluates security training maturity—proactive development of security education content and customized training tailored to specific functional units and user segments.",
+  "version": "1.1",
+  "description": "Evaluates security training maturity—program governance, KPIs/KRIs, curriculum development, role-based and segmented training, onboarding awareness, phishing simulation, technical training, AI-era threat awareness, and training delivery automation.",
   "capabilities": [
     {
       "id": "st-00",
-      "name": "Proactive Security Trainings",
-      "description": "The enterprise proactively creates or hires security training content creators to develop security education materials.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A security training program or service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
-        "Create or hire security training content creators",
-        "Proactive development of security education trainings"
+        "Enterprise security training program or service exists",
+        "Regular security training program efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "st-01",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Security training KPIs and KRIs—including completion rates, phishing simulation click rates, and overdue training counts—are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for security training",
+        "Regular KPI/KRI review",
+        "Training completion and overdue metrics",
+        "Phishing simulation click and report rates"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "st-02",
+      "name": "Training curriculum and content development",
+      "short_name": "curriculum development",
+      "description": "The enterprise proactively develops or sources security training content aligned to risk priorities and reviews the curriculum at least quarterly.",
+      "evaluation_focus": [
+        "Proactive development or sourcing of security education content",
+        "Dedicated content creators or vendor partnerships",
+        "Regular curriculum review and refresh"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
     },
     {
-      "id": "st-01",
-      "name": "Customized security training for various user segments",
-      "description": "Security trainings are tailored to specific functional units and user segments across the enterprise.",
+      "id": "st-03",
+      "name": "Role-based and segmented training",
+      "short_name": "segmented training",
+      "description": "Security trainings are tailored to specific functional units, risk profiles, and user segments across the enterprise.",
       "evaluation_focus": [
         "Tailored security trainings for specific functional units",
-        "Segmented security training for various user groups"
+        "Segmented security training for various user groups and risk profiles"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
+    },
+    {
+      "id": "st-04",
+      "name": "Onboarding and mandatory awareness",
+      "short_name": "onboarding training",
+      "description": "New hires and contractors complete mandatory security awareness training before accessing enterprise resources, with quarterly compliance review.",
+      "evaluation_focus": [
+        "Mandatory security awareness for new hires and contractors",
+        "Training completion before resource access",
+        "Regular compliance review of onboarding training"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "st-05",
+      "name": "Phishing simulation and social engineering drills",
+      "short_name": "phishing simulation",
+      "description": "Phishing simulations and social engineering drills run on a defined cadence with remediation for repeat failures and quarterly program review.",
+      "evaluation_focus": [
+        "Regular phishing simulation campaigns",
+        "Social engineering drill scenarios beyond email",
+        "Remediation for repeat simulation failures"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "st-06",
+      "name": "Technical security training",
+      "short_name": "technical training",
+      "description": "Developers, administrators, and other technical roles receive specialized secure-coding, configuration, and operational security training reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Secure coding and SDLC training for developers",
+        "Administrative and operational security training for IT roles",
+        "Regular technical training curriculum review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "st-07",
+      "name": "AI-era and emerging threat awareness",
+      "short_name": "AI threat awareness",
+      "description": "Training covers AI-augmented threats, shadow AI risks, deepfakes, and social engineering tactics and is refreshed at least quarterly.",
+      "evaluation_focus": [
+        "AI-augmented attack and social engineering awareness",
+        "Shadow AI and approved-tool usage training",
+        "Regular refresh of emerging-threat training content"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "st-08",
+      "name": "Training delivery platform and automation",
+      "short_name": "training platform",
+      "description": "A training delivery platform automates assignment, tracking, reminders, and reporting enterprise-wide with quarterly configuration review.",
+      "evaluation_focus": [
+        "Enterprise-wide training delivery platform",
+        "Automated assignment, tracking, and reminders",
+        "Regular platform configuration and integration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
     }
   ],
   "evaluation": {
