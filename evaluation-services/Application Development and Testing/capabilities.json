@@ -1,16 +1,17 @@
 {
   "service_id": "application-development-testing",
   "service_name": "Application Development and Testing",
-  "version": "1.0",
-  "description": "Evaluates application development and testing maturity—service governance, KPIs/KRIs, secure development strategy, ownership and separation of duties, DevSecOps CI/CD, application testing, proactive issue identification, static and dynamic testing, developer access management, business analysts, DevSecOps architecture, and expert code review.",
+  "version": "1.1",
+  "description": "Evaluates application development and testing maturity—service governance, KPIs/KRIs, secure development strategy, ownership and separation of duties, DevSecOps CI/CD, application security testing (SAST/DAST), developer production isolation, supply chain security, AI-assisted development governance, DevSecOps architecture, and expert code review.",
   "capabilities": [
     {
       "id": "adt-00",
       "name": "Service exists and is in good condition",
-      "description": "An application development management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "An application development management service exists, is scoped appropriately, and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise application development management service exists",
-        "Frequent application development management service efficacy review"
+        "Regular application development management service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,34 +19,42 @@
     {
       "id": "adt-01",
       "name": "KPIs/KRIs",
-      "description": "Application development KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Application development KPIs and KRIs—including defect escape rate, pipeline security gate pass rate, and vulnerability remediation SLAs—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for application development",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Defect escape and security gate metrics",
+        "Vulnerability remediation velocity in SDLC"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "adt-02",
-      "name": "Secure Application development",
-      "description": "A documented application development strategy incorporates security early, includes automation of code and secure provisioning, and is reviewed frequently.",
+      "name": "Secure application development strategy",
+      "short_name": "secure dev strategy",
+      "description": "A documented application development strategy incorporates security early, addresses AI-era threat models, includes automation and secure provisioning, and is reviewed regularly.",
       "evaluation_focus": [
         "Application development strategy exists",
         "Security incorporated at early development stages",
         "Automation of code and secure provisioning",
-        "Frequent review of application development policies and strategies"
+        "AI-era threat model reflected in development strategy",
+        "Regular review of application development policies and strategies"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "adt-03",
-      "name": "Application development owners",
-      "description": "Clear business owners exist for applications with separation of duties, and developers and testers have access only to staging environments—not production.",
+      "name": "Application ownership and governance",
+      "short_name": "ownership and governance",
+      "description": "Clear business owners, separation of duties, business analysts, and staging-only developer access govern application development across the portfolio.",
       "evaluation_focus": [
         "Clear business owners and separation of duties policies",
-        "Developers and testers limited to staging environments"
+        "Developers and testers limited to staging environments",
+        "Separation of duties for business owners and developers",
+        "Formal business analysts for requirements review and translation"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
@@ -53,12 +62,13 @@
     {
       "id": "adt-04",
       "name": "DevSecOps CI/CD software",
-      "description": "DevSecOps software automates development milestones, supports CI/CD for all applications, is reviewed frequently, and integrates with workload management, monitoring, compliance, and vulnerability systems.",
+      "short_name": "DevSecOps CI/CD",
+      "description": "DevSecOps software automates development milestones, supports CI/CD for all applications, is reviewed regularly, and integrates with workload management, monitoring, compliance, and vulnerability systems.",
       "evaluation_focus": [
         "DevSecOps software adoption",
         "Automation support for application development milestones",
         "CI/CD pipeline utilized for all applications",
-        "Frequent DevSecOps software configuration review",
+        "Regular DevSecOps software configuration review",
         "Integration with workload management, monitoring, compliance, and vulnerability systems"
       ],
       "resiliency_weight": 1,
@@ -66,56 +76,25 @@
     },
     {
       "id": "adt-05",
-      "name": "Application testing software",
-      "description": "Application testing software supports static and dynamic testing in CI/CD for all applications, performs comprehensive code analysis and manual testing, is reviewed frequently, and integrates with other platforms for contextual analysis.",
+      "name": "Application security testing",
+      "short_name": "security testing",
+      "description": "Application security testing covers static, dynamic, and proactive analysis in CI/CD for all applications, with automation, contextual integrations, and AI-assisted pre-release checks.",
       "evaluation_focus": [
-        "Application testing software adoption",
-        "Static and dynamic testing features",
-        "Testing in CI/CD pipeline for all applications",
-        "Comprehensive code analysis and manual testing capability",
-        "Frequent testing software configuration review",
-        "Integration with other platforms for contextual analysis"
+        "Application security testing software adoption",
+        "Static and dynamic testing in CI/CD for all applications",
+        "Automated static and dynamic testing",
+        "Proactive issue identification based on playbooks",
+        "Integration with other platforms for contextual analysis",
+        "AI-assisted pre-release security analysis"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "adt-06",
-      "name": "Proactive issue identification",
-      "description": "Application testing software proactively identifies issues in builds based on playbooks with automated fault discovery.",
-      "evaluation_focus": [
-        "Proactive issue identification based on playbooks",
-        "Automated discovery of issues and faults"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "adt-07",
-      "name": "Static Testing",
-      "description": "Static testing is performed for all new applications as part of CI/CD and can be automated.",
-      "evaluation_focus": [
-        "Static testing for all new applications in CI/CD",
-        "Automated static testing"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "adt-08",
-      "name": "Dynamic Testing",
-      "description": "Dynamic testing is performed for all new applications as part of CI/CD and can be automated.",
-      "evaluation_focus": [
-        "Dynamic testing for all new applications in CI/CD",
-        "Automated dynamic testing"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "adt-09",
-      "name": "Application development and testing user management. Removal of developer access from production network",
-      "description": "CI/CD pipelines manage user access to developer and production environments, developer accounts are removed from all applications after production deployment automatically, and code scanning detects dev account anomalies.",
+      "name": "Developer access and production isolation",
+      "short_name": "production isolation",
+      "description": "CI/CD pipelines manage developer and production environment access, automatically remove developer accounts after production deployment, and detect dev account anomalies in production code.",
       "evaluation_focus": [
         "CI/CD pipelines manage user access to developer and production environments",
         "Developer accounts removed from all applications after production deployment",
@@ -126,36 +105,54 @@
       "pillar": "People"
     },
     {
-      "id": "adt-10",
-      "name": "Application development owners and business analysts",
-      "description": "Clear separation of duties exists for all application business owners and developers, and business analysts review and translate requirements accurately.",
+      "id": "adt-07",
+      "name": "DevSecOps architect",
+      "short_name": "DevSecOps architect",
+      "description": "A formal DevSecOps architect supports secure design and standards for enterprise-wide applications.",
       "evaluation_focus": [
-        "Separation of duties for all application business owners and developers",
-        "Formal business analysts for requirements review and translation"
+        "Formal DevSecOps architect for enterprise-wide applications"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
     },
     {
-      "id": "adt-11",
-      "name": "Application Architect",
-      "description": "A formal DevSecOps Architect supports enterprise-wide applications.",
-      "evaluation_focus": [
-        "Formal DevSecOps Architect for enterprise-wide applications"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "People"
-    },
-    {
-      "id": "adt-12",
-      "name": "Expert Analysis",
-      "description": "External experts formally review code for all or critical applications.",
+      "id": "adt-08",
+      "name": "Expert and third-party code review",
+      "short_name": "expert code review",
+      "description": "External experts formally review code for all or critical applications, with emphasis on high-risk changes and AI-generated code paths.",
       "evaluation_focus": [
         "Formal external expert code review",
-        "External code review scope for all or critical applications"
+        "External code review scope for all or critical applications",
+        "Review coverage for AI-generated or AI-assisted code"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
+    },
+    {
+      "id": "adt-09",
+      "name": "Software supply chain security",
+      "short_name": "supply chain security",
+      "description": "CI/CD pipelines generate SBOMs, scan dependencies for known vulnerabilities, and enforce policies on open-source and third-party components before release.",
+      "evaluation_focus": [
+        "Software bill of materials (SBOM) generation in CI/CD",
+        "Dependency and open-source vulnerability scanning in pipeline",
+        "Third-party component policy enforcement before release"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "adt-10",
+      "name": "AI-assisted development governance",
+      "short_name": "AI dev governance",
+      "description": "Policies govern approved AI coding tools, review requirements for AI-generated code, and guardrails for AI use in development and testing workflows.",
+      "evaluation_focus": [
+        "Approved versus shadow AI coding tool policy",
+        "Review and testing requirements for AI-generated code",
+        "Guardrails for AI use in development and testing workflows"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     }
   ],
   "evaluation": {
