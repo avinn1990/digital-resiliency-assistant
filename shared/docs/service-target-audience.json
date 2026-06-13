@@ -247,6 +247,17 @@
         "security-program-strategy-lead"
       ]
     },
+    "automation-orchestration-integration": {
+      "service_name": "Automation, Orchestration and Integration",
+      "role_ids": [
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-program-strategy-lead",
+        "grc-lead"
+      ]
+    },
     "code-management": {
       "service_name": "Code Management",
       "role_ids": [
