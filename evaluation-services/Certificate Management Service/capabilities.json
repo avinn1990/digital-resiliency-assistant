@@ -1,23 +1,40 @@
 {
   "service_id": "certificate-management",
   "service_name": "Certificate Management Service",
-  "version": "1.0",
-  "description": "Evaluates certificate management service maturity—centralized certificate stores, creation, distribution, and revocation processes, automation, integration, and certificate store custodianship.",
+  "version": "1.1",
+  "description": "Evaluates certificate management service maturity—centralized PKI platforms, KPIs/KRIs, certificate lifecycle operations, machine identity and short-lived certificates, ACME automation, and certificate store custodianship.",
   "capabilities": [
     {
       "id": "cert-00",
       "name": "Service exists and is in good condition",
-      "description": "A certificate management service exists and is reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "A certificate management service exists and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise certificate management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cert-01",
-      "name": "Presence of Centralized Certificate Store",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Certificate management KPIs and KRIs—including expiry monitoring, auto-renewal rate, and short-lived certificate adoption—are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs",
+        "Regular KPI/KRI review",
+        "Certificate expiry and renewal compliance metrics",
+        "Short-lived and automated certificate adoption metrics",
+        "Unknown or shadow certificate discovery metrics"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cert-02",
+      "name": "Centralized certificate platform",
+      "short_name": "certificate platform",
       "description": "A formal certificate management solution issues and revokes certificates with lifecycle automation, configuration review, and system integration.",
       "evaluation_focus": [
         "Formal certificate management solution",
@@ -30,47 +47,39 @@
       "pillar": "Technology"
     },
     {
-      "id": "cert-02",
-      "name": "Certificate Creation process",
-      "description": "Certificate creation is formalized, scoped appropriately, automated with protocols like SCEP, and reviewed frequently.",
+      "id": "cert-03",
+      "name": "Certificate lifecycle operations",
+      "short_name": "lifecycle operations",
+      "description": "Certificate creation, distribution, and revocation are formalized, scoped appropriately, automated with protocols like ACME and SCEP, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized certificate creation process",
-        "Enterprise-wide vs segment creation scope",
-        "Automated certificate creation",
-        "Frequent creation process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "cert-03",
-      "name": "Secure Certificate Distribution process",
-      "description": "Certificate distribution is formalized, scoped appropriately, automated with protocols like SCEP, and reviewed frequently.",
-      "evaluation_focus": [
         "Formalized certificate distribution process",
-        "Enterprise-wide vs segment distribution scope",
-        "Automated certificate distribution",
-        "Frequent distribution process review"
+        "Formalized certificate revocation process",
+        "Enterprise-wide vs segment lifecycle scope",
+        "Automated certificate creation, distribution, and revocation",
+        "Regular certificate lifecycle process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cert-04",
-      "name": "Certificate Revocation process",
-      "description": "Certificate revocation is formalized, scoped appropriately, automated with protocols like SCEP, and reviewed frequently.",
+      "name": "Machine identity and short-lived certificates",
+      "short_name": "machine certificates",
+      "description": "Workload, service, and API certificates are issued as short-lived, automated credentials with machine identity attribution—not long-lived shared certificates.",
       "evaluation_focus": [
-        "Formalized certificate revocation process",
-        "Enterprise-wide vs segment revocation scope",
-        "Automated certificate revocation",
-        "Frequent revocation process review"
+        "Formalized machine identity certificate issuance",
+        "Short-lived certificate policy for workloads and APIs",
+        "Automated workload certificate rotation",
+        "Certificate transparency or discovery scanning for shadow certs"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Technology"
     },
     {
       "id": "cert-05",
       "name": "Certificate store custodian",
+      "short_name": "certificate custodian",
       "description": "A dedicated official custodian manages the certificate store rather than unofficial IAM or Active Directory team ownership.",
       "evaluation_focus": [
         "Dedicated certificate store custodian"

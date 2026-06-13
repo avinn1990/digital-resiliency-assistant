@@ -9,159 +9,166 @@
         {
           "id": "rq-cert-00-1",
           "prompt": "Does the enterprise have a certificate management service?",
-          "intent": "Evaluate does the enterprise have a certificate management service?",
+          "intent": "Evaluate whether an enterprise certificate management service exists",
           "field_key": "cert_00_certificate_management_service_exists",
           "evaluation_focus": "Enterprise certificate management service exists"
         },
         {
           "id": "rq-cert-00-2",
-          "prompt": "Is the certificate management service reviewed frequently to measure its efficacy?",
-          "intent": "Evaluate is the certificate management service reviewed frequently to measure its efficacy?",
-          "field_key": "cert_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "prompt": "Is the certificate management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence",
+          "field_key": "cert_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
     {
       "capability_id": "cert-01",
-      "capability_name": "Presence of Centralized Certificate Store",
+      "capability_name": "KPIs/KRIs",
       "questions": [
         {
           "id": "rq-cert-01-1",
-          "prompt": "Does the enterprise have a formal certificate management solution?",
-          "intent": "Evaluate does the enterprise have a formal certificate management solution?",
-          "field_key": "cert_01_formal_certificate_solution",
-          "evaluation_focus": "Formal certificate management solution"
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for certificate management?",
+          "intent": "Evaluate documented certificate management KPIs",
+          "field_key": "cert_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
         },
         {
           "id": "rq-cert-01-2",
-          "prompt": "Does the certificate management system issue and revoke certificates for the entire enterprise or for a specific segment only?",
-          "intent": "Evaluate does the certificate management system issue and revoke certificates for the entire enterprise or for a specific segment only?",
-          "field_key": "cert_01_certificate_scope",
-          "evaluation_focus": "Enterprise-wide vs segment certificate scope"
+          "prompt": "Are certificate management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate regular certificate KPI review",
+          "field_key": "cert_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
         },
         {
           "id": "rq-cert-01-3",
-          "prompt": "Is the certificate management system capable of automating the certificate lifecycle of creation, distribution, and deprovisioning of certificates?",
-          "intent": "Evaluate is the certificate management system capable of automating the certificate lifecycle of creation, distribution, and deprovisioning of certificates?",
-          "field_key": "cert_01_lifecycle_automation",
-          "evaluation_focus": "Automated certificate lifecycle management"
+          "prompt": "Do KPIs track certificate expiry and auto-renewal compliance?",
+          "intent": "Evaluate certificate expiry compliance metrics",
+          "field_key": "cert_01_expiry_renewal_metrics",
+          "evaluation_focus": "Certificate expiry and renewal compliance metrics"
         },
         {
           "id": "rq-cert-01-4",
-          "prompt": "Is the certificate management system configuration reviewed frequently?",
-          "intent": "Evaluate is the certificate management system configuration reviewed frequently?",
-          "field_key": "cert_01_system_config_reviewed",
-          "evaluation_focus": "Certificate system configuration review"
+          "prompt": "Do KPIs measure short-lived and ACME-automated certificate adoption?",
+          "intent": "Evaluate short-lived certificate adoption metrics",
+          "field_key": "cert_01_short_lived_cert_metrics",
+          "evaluation_focus": "Short-lived and automated certificate adoption metrics"
         },
         {
           "id": "rq-cert-01-5",
-          "prompt": "Does the certificate management system integrate with other systems without manual intervention to generate, distribute, and revoke certificates?",
-          "intent": "Evaluate does the certificate management system integrate with other systems without manual intervention to generate, distribute, and revoke certificates?",
-          "field_key": "cert_01_integrated_lifecycle",
-          "evaluation_focus": "Integration for certificate generation, distribution, and revocation"
+          "prompt": "Do KPIs or discovery scans identify unknown or shadow certificates in the environment?",
+          "intent": "Evaluate shadow certificate discovery metrics",
+          "field_key": "cert_01_shadow_cert_metrics",
+          "evaluation_focus": "Unknown or shadow certificate discovery metrics"
         }
       ]
     },
     {
       "capability_id": "cert-02",
-      "capability_name": "Certificate Creation process",
+      "capability_name": "Centralized certificate platform",
       "questions": [
         {
           "id": "rq-cert-02-1",
-          "prompt": "Does the enterprise have a formalized and documented process for certificate creation?",
-          "intent": "Evaluate does the enterprise have a formalized and documented process for certificate creation?",
-          "field_key": "cert_02_creation_process_documented",
-          "evaluation_focus": "Formalized certificate creation process"
+          "prompt": "Does the enterprise have a formal certificate management solution (internal PKI or managed CA)?",
+          "intent": "Evaluate formal certificate management solution",
+          "field_key": "cert_02_formal_certificate_solution",
+          "evaluation_focus": "Formal certificate management solution"
         },
         {
           "id": "rq-cert-02-2",
-          "prompt": "Does the certificate creation process apply for the entire enterprise or is it deployed for a smaller segment?",
-          "intent": "Evaluate does the certificate creation process apply for the entire enterprise or is it deployed for a smaller segment?",
-          "field_key": "cert_02_creation_process_scope",
-          "evaluation_focus": "Enterprise-wide vs segment creation scope"
+          "prompt": "Does the certificate management system issue and revoke certificates for the entire enterprise or for a specific segment only?",
+          "intent": "Evaluate certificate platform scope",
+          "field_key": "cert_02_certificate_scope",
+          "evaluation_focus": "Enterprise-wide vs segment certificate scope"
         },
         {
           "id": "rq-cert-02-3",
-          "prompt": "Is the certificate creation process automated with protocols like SCEP?",
-          "intent": "Evaluate is the certificate creation process automated with protocols like SCEP?",
-          "field_key": "cert_02_creation_automated_scep",
-          "evaluation_focus": "Automated certificate creation"
+          "prompt": "Is the certificate management system capable of automating the certificate lifecycle (creation, distribution, and revocation)?",
+          "intent": "Evaluate automated certificate lifecycle in platform",
+          "field_key": "cert_02_lifecycle_automation",
+          "evaluation_focus": "Automated certificate lifecycle management"
         },
         {
           "id": "rq-cert-02-4",
-          "prompt": "Is the certificate creation process reviewed frequently for efficacy?",
-          "intent": "Evaluate is the certificate creation process reviewed frequently for efficacy?",
-          "field_key": "cert_02_creation_process_reviewed",
-          "evaluation_focus": "Frequent creation process review"
+          "prompt": "Is certificate platform configuration reviewed at least quarterly?",
+          "intent": "Evaluate regular certificate platform configuration review",
+          "field_key": "cert_02_system_config_reviewed",
+          "evaluation_focus": "Certificate system configuration review"
+        },
+        {
+          "id": "rq-cert-02-5",
+          "prompt": "Does the certificate platform integrate with other systems without manual intervention to generate, distribute, and revoke certificates?",
+          "intent": "Evaluate certificate platform integration",
+          "field_key": "cert_02_integrated_lifecycle",
+          "evaluation_focus": "Integration for certificate generation, distribution, and revocation"
         }
       ]
     },
     {
       "capability_id": "cert-03",
-      "capability_name": "Secure Certificate Distribution process",
+      "capability_name": "Certificate lifecycle operations",
       "questions": [
         {
           "id": "rq-cert-03-1",
-          "prompt": "Does the enterprise have a formalized and documented process for certificate distribution?",
-          "intent": "Evaluate does the enterprise have a formalized and documented process for certificate distribution?",
-          "field_key": "cert_03_distribution_process_documented",
-          "evaluation_focus": "Formalized certificate distribution process"
+          "prompt": "Does the enterprise have formalized documented processes for certificate creation, distribution, and revocation?",
+          "intent": "Evaluate formalized certificate lifecycle processes",
+          "field_key": "cert_03_lifecycle_processes_documented",
+          "evaluation_focus": "Formalized certificate creation process"
         },
         {
           "id": "rq-cert-03-2",
-          "prompt": "Does the certificate distribution process apply for the entire enterprise or is it deployed for a smaller segment?",
-          "intent": "Evaluate does the certificate distribution process apply for the entire enterprise or is it deployed for a smaller segment?",
-          "field_key": "cert_03_distribution_process_scope",
-          "evaluation_focus": "Enterprise-wide vs segment distribution scope"
+          "prompt": "Do certificate lifecycle processes apply enterprise-wide or for a smaller segment only?",
+          "intent": "Evaluate certificate lifecycle scope",
+          "field_key": "cert_03_lifecycle_process_scope",
+          "evaluation_focus": "Enterprise-wide vs segment lifecycle scope"
         },
         {
           "id": "rq-cert-03-3",
-          "prompt": "Is the certificate distribution process automated with protocols like SCEP?",
-          "intent": "Evaluate is the certificate distribution process automated with protocols like SCEP?",
-          "field_key": "cert_03_distribution_automated_scep",
-          "evaluation_focus": "Automated certificate distribution"
+          "prompt": "Are certificate creation, distribution, and revocation automated with protocols like ACME, SCEP, or equivalent APIs?",
+          "intent": "Evaluate automated certificate lifecycle operations",
+          "field_key": "cert_03_lifecycle_automated",
+          "evaluation_focus": "Automated certificate creation, distribution, and revocation"
         },
         {
           "id": "rq-cert-03-4",
-          "prompt": "Is the certificate distribution process reviewed frequently for efficacy?",
-          "intent": "Evaluate is the certificate distribution process reviewed frequently for efficacy?",
-          "field_key": "cert_03_distribution_process_reviewed",
-          "evaluation_focus": "Frequent distribution process review"
+          "prompt": "Are certificate lifecycle processes reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate regular certificate lifecycle process review",
+          "field_key": "cert_03_lifecycle_processes_reviewed",
+          "evaluation_focus": "Regular certificate lifecycle process review"
         }
       ]
     },
     {
       "capability_id": "cert-04",
-      "capability_name": "Certificate Revocation process",
+      "capability_name": "Machine identity and short-lived certificates",
       "questions": [
         {
           "id": "rq-cert-04-1",
-          "prompt": "Does the enterprise have a formalized and documented process for certificate revoking?",
-          "intent": "Evaluate does the enterprise have a formalized and documented process for certificate revoking?",
-          "field_key": "cert_04_revocation_process_documented",
-          "evaluation_focus": "Formalized certificate revocation process"
+          "prompt": "Does the enterprise have a formalized process for issuing certificates to workloads, services, and APIs with machine identity attribution?",
+          "intent": "Evaluate machine identity certificate issuance",
+          "field_key": "cert_04_machine_cert_issuance",
+          "evaluation_focus": "Formalized machine identity certificate issuance"
         },
         {
           "id": "rq-cert-04-2",
-          "prompt": "Does the certificate revoking process apply for the entire enterprise or is it deployed for a smaller segment?",
-          "intent": "Evaluate does the certificate revoking process apply for the entire enterprise or is it deployed for a smaller segment?",
-          "field_key": "cert_04_revocation_process_scope",
-          "evaluation_focus": "Enterprise-wide vs segment revocation scope"
+          "prompt": "Does policy require short-lived certificates for workloads and APIs (for example 90 days or less)?",
+          "intent": "Evaluate short-lived certificate policy",
+          "field_key": "cert_04_short_lived_cert_policy",
+          "evaluation_focus": "Short-lived certificate policy for workloads and APIs"
         },
         {
           "id": "rq-cert-04-3",
-          "prompt": "Is the certificate revoking process automated with protocols like SCEP?",
-          "intent": "Evaluate is the certificate revoking process automated with protocols like SCEP?",
-          "field_key": "cert_04_revocation_automated_scep",
-          "evaluation_focus": "Automated certificate revocation"
+          "prompt": "Are workload certificates rotated automatically before expiry?",
+          "intent": "Evaluate automated workload certificate rotation",
+          "field_key": "cert_04_workload_cert_rotation",
+          "evaluation_focus": "Automated workload certificate rotation"
         },
         {
           "id": "rq-cert-04-4",
-          "prompt": "Is the certificate revoking process reviewed frequently for efficacy?",
-          "intent": "Evaluate is the certificate revoking process reviewed frequently for efficacy?",
-          "field_key": "cert_04_revocation_process_reviewed",
-          "evaluation_focus": "Frequent revocation process review"
+          "prompt": "Does the enterprise scan for shadow or unknown certificates (for example certificate transparency logs or network discovery)?",
+          "intent": "Evaluate shadow certificate discovery",
+          "field_key": "cert_04_shadow_cert_discovery",
+          "evaluation_focus": "Certificate transparency or discovery scanning for shadow certs"
         }
       ]
     },
@@ -171,8 +178,8 @@
       "questions": [
         {
           "id": "rq-cert-05-1",
-          "prompt": "Does the enterprise have a separate official custodian for certificate management, or is it managed unofficially by the IAM engineer or team, or the team that manages the Active Directory infrastructure?",
-          "intent": "Evaluate does the enterprise have a separate official custodian for certificate management, or is it managed unofficially by the IAM engineer or team, or the team that manages the Active Directory infrastructure?",
+          "prompt": "Does the enterprise have a dedicated official custodian for certificate management—or is it managed unofficially by the IAM engineer or Active Directory team?",
+          "intent": "Evaluate dedicated certificate store custodian",
           "field_key": "cert_05_dedicated_custodian",
           "evaluation_focus": "Dedicated certificate store custodian"
         }

@@ -1,16 +1,17 @@
 {
   "service_id": "privileged-access-management",
   "service_name": "Privileged Access Management Service",
-  "version": "1.0",
-  "description": "Evaluates privileged access management service maturity—PAM systems, KPIs/KRIs, application and device privileged access, service custodianship, and SOC logging of privileged account activity.",
+  "version": "1.1",
+  "description": "Evaluates privileged access management service maturity—PAM systems, JIT and ephemeral privileged access, KPIs/KRIs, unified application and device privileged access, service custodianship, and SOC logging with session recording.",
   "capabilities": [
     {
       "id": "pam-00",
       "name": "Service exists and is in good condition",
-      "description": "A privileged access management service exists and is reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "A privileged access management service exists and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise PAM service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,13 +19,15 @@
     {
       "id": "pam-01",
       "name": "PAM system",
-      "description": "A PAM system manages privileged accounts enterprise-wide with lifecycle automation, configuration review, and integration with applications, endpoints, and network devices.",
+      "short_name": "PAM system",
+      "description": "A PAM system manages privileged accounts enterprise-wide with lifecycle automation, JIT access support, configuration review, and integration with applications, endpoints, and network devices.",
       "evaluation_focus": [
         "PAM system deployed for privileged accounts",
         "Enterprise-wide privileged account coverage",
         "Automated PAM user lifecycle and access",
         "PAM solution configuration review",
-        "Integration with applications, endpoints, and network devices"
+        "Integration with applications, endpoints, and network devices",
+        "Just-in-time privileged access capability in PAM platform"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -32,43 +35,51 @@
     {
       "id": "pam-02",
       "name": "KPIs/KRIs",
-      "description": "PAM KPIs and KRIs are documented and reviewed for efficacy.",
+      "short_name": "KPIs and KRIs",
+      "description": "PAM KPIs and KRIs—including standing privilege ratio, JIT adoption, and session recording coverage—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Standing versus just-in-time privileged access metrics",
+        "Privileged session recording coverage",
+        "Orphaned privileged account metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "pam-03",
-      "name": "Privileged Account Access",
-      "description": "Privileged access to application resources is formalized, unified across assets, automated via self-service portals, and reviewed frequently.",
+      "name": "Privileged access provisioning",
+      "short_name": "privileged provisioning",
+      "description": "Privileged access to application and endpoint resources is formalized, unified across assets, automated via self-service portals, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized application privileged access process",
-        "Unified access across application assets",
+        "Formalized endpoint privileged access process",
+        "Unified privileged access across application and endpoint assets",
         "Automated self-requesting access portals",
-        "Frequent access provisioning review"
+        "Regular privileged access provisioning review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "pam-04",
-      "name": "Device Privilege access",
-      "description": "Privileged escalation to endpoint resources is formalized, unified across assets, automated via self-service portals, and reviewed frequently.",
+      "name": "Just-in-time and ephemeral privileged access",
+      "short_name": "JIT PAM",
+      "description": "Standing privileged access is minimized; time-bound, approval-gated, and ephemeral elevation is used for administrative tasks with automatic session expiry.",
       "evaluation_focus": [
-        "Formalized endpoint privileged access process",
-        "Unified access across endpoint assets",
-        "Automated self-requesting access portals",
-        "Frequent endpoint access provisioning review"
+        "Policy to minimize standing privileged access",
+        "Time-bound and approval-gated privileged elevation",
+        "Automatic revocation of ephemeral privileged sessions",
+        "Break-glass privileged access with enhanced logging"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Technology"
     },
     {
       "id": "pam-05",
       "name": "Privilege account service custodian",
+      "short_name": "PAM custodian",
       "description": "A dedicated PAM service manager owns privileged accounts rather than the IAM engineer or custodian.",
       "evaluation_focus": [
         "Dedicated PAM service manager",
@@ -79,12 +90,15 @@
     },
     {
       "id": "pam-06",
-      "name": "PAM logging",
-      "description": "Privileged account activity and lifecycle changes are logged securely to the SOC, including dynamic changes.",
+      "name": "PAM logging and session recording",
+      "short_name": "PAM logging",
+      "description": "Privileged account activity, session recordings, and lifecycle changes are logged securely to the SOC, including dynamic changes and anomalous privileged activity.",
       "evaluation_focus": [
         "Documented PAM activity logging to SOC",
         "Secure privileged account logging to SOC",
-        "Dynamic privileged account changes to SOC"
+        "Privileged session recording and replay",
+        "Dynamic privileged account changes to SOC",
+        "Anomalous privileged activity detection"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"

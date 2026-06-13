@@ -1,42 +1,86 @@
 {
   "service_id": "session-management",
   "service_name": "Session Management Service",
-  "version": "1.0",
-  "description": "Evaluates session management maturity—network and application session-based access, session renewal automation, and enterprise SSO, SSE, and Kerberos integration with identity and enforcement technology.",
+  "version": "1.1",
+  "description": "Evaluates session management maturity—service governance, KPIs/KRIs, network and application session enforcement, enterprise SSO and OIDC federation, continuous session validation, and SOC session logging.",
   "capabilities": [
     {
       "id": "ses-00",
-      "name": "Session Based access for network",
-      "description": "Session-based network access is enforced centrally with session renewal automation and frequent re-authentication.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A session management service exists and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
-        "Session-based network access enforcement",
-        "Centralized vs local session enforcement",
-        "Session renewal automation with re-authentication"
+        "Enterprise session management service exists",
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Process/Service"
     },
     {
       "id": "ses-01",
-      "name": "Session based access for applications",
-      "description": "Session-based application access is enforced per user via centralized servers with session renewal automation and frequent re-authentication.",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Session management KPIs and KRIs—including concurrent session limits, idle timeout compliance, and SSO coverage—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Session-based access per application per user",
-        "Centralized application session enforcement",
-        "Application session renewal automation",
-        "Application session renewal with re-authentication"
+        "Documented KPIs and KRIs",
+        "Regular KPI/KRI review",
+        "SSO and federation coverage metrics",
+        "Session timeout and idle disconnect compliance"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "ses-02",
+      "name": "Network and application session enforcement",
+      "short_name": "session enforcement",
+      "description": "Session-based access for network and applications is enforced centrally with renewal automation, re-authentication, and regular configuration review.",
+      "evaluation_focus": [
+        "Session-based network access enforcement",
+        "Session-based application access per user",
+        "Centralized session enforcement",
+        "Session renewal automation with re-authentication",
+        "Regular session policy configuration review"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
-      "id": "ses-02",
-      "name": "Single Sign on / Kerberos",
-      "description": "SSO, SSE, and Kerberos are formally adopted enterprise-wide or for scoped applications and integrated with identity and enforcement technology.",
+      "id": "ses-03",
+      "name": "Enterprise SSO and federation",
+      "short_name": "SSO federation",
+      "description": "SSO, OIDC/SAML federation, SSE, and Kerberos are formally adopted enterprise-wide or for scoped applications and integrated with identity and enforcement technology.",
       "evaluation_focus": [
-        "Formal adoption of SSO, SSE, or Kerberos",
+        "Formal adoption of SSO, OIDC, SAML, SSE, or Kerberos",
         "Enterprise-wide vs scoped SSO deployment",
         "Integration with identity and enforcement technology"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "ses-04",
+      "name": "Continuous session validation and risk-based renewal",
+      "short_name": "continuous validation",
+      "description": "Active sessions are validated continuously or on risk signals with step-up re-authentication, token binding, and revocation on posture or context change.",
+      "evaluation_focus": [
+        "Continuous or periodic active session validation",
+        "Risk-based step-up re-authentication during sessions",
+        "Session revocation on device posture or context change",
+        "Token binding or session fixation protections"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "ses-05",
+      "name": "Session lifecycle logging",
+      "short_name": "session logging",
+      "description": "Session creation, renewal, termination, and anomalous session events are logged securely to the SOC.",
+      "evaluation_focus": [
+        "Documented session lifecycle logging to SOC",
+        "Secure session event logging to SOC",
+        "Anomalous session pattern detection"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"

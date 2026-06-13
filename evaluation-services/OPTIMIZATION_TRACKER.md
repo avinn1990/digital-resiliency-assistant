@@ -15,12 +15,12 @@
 | 1 | Enterprise Security Governance | enterprise-security-governance | 6 | 25 | done (1.1) |
 | 1 | Compliance Management Service | compliance-management-service | 10 | 35 | done (1.1) |
 | 1 | Policy Management Service | policy-management | 10 | 38 | done (1.1) |
-| 2 | Identity Management Service | identity-management | 12 | 39 | pending |
-| 2 | Credential Management Service | credential-management | 7 | 24 | pending |
-| 2 | Privileged Access Management Service | privileged-access-management | 7 | 22 | pending |
-| 2 | Session Management Service | session-management | 3 | 10 | pending |
-| 2 | Certificate Management Service | certificate-management | 6 | 20 | pending |
-| 2 | Cryptographic Key Management | cryptographic-key-management | 17 | 44 | pending |
+| 2 | Identity Management Service | identity-management | 10 | 42 | done (1.1) |
+| 2 | Credential Management Service | credential-management | 7 | 26 | done (1.1) |
+| 2 | Privileged Access Management Service | privileged-access-management | 7 | 29 | done (1.1) |
+| 2 | Session Management Service | session-management | 6 | 21 | done (1.1) |
+| 2 | Certificate Management Service | certificate-management | 6 | 21 | done (1.1) |
+| 2 | Cryptographic Key Management | cryptographic-key-management | 10 | 40 | done (1.1) |
 | 3 | Network Management Service | network-management | 8 | 25 | done (1.1) |
 | 3 | Configuration Management Service | configuration-management | 9 | 48 | done (1.1) |
 | 3 | Container Management | container-management | 6 | 21 | done (1.1) |

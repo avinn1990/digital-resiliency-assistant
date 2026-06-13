@@ -1,88 +1,99 @@
 {
   "service_id": "credential-management",
   "service_name": "Credential Management Service",
-  "version": "1.0",
-  "description": "Evaluates credential management service maturity—lifecycle policies, identity store security, provisioning, deprovisioning, storage processes, and credential custodianship with separation of duties.",
+  "version": "1.1",
+  "description": "Evaluates credential management service maturity—lifecycle policies, secure credential vaults, provisioning and deprovisioning, passkey and secrets governance, non-human credential lifecycle, KPIs/KRIs, and credential custodianship with separation of duties.",
   "capabilities": [
     {
       "id": "cred-00",
       "name": "Service exists and is in good condition",
-      "description": "A credential management service exists and is reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "A credential management service exists and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise credential management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cred-01",
-      "name": "Credential Lifecycle Policy",
-      "description": "Password, certificate age, and credential storage policies are documented, scoped appropriately, and reviewed frequently.",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Credential management KPIs and KRIs—including rotation compliance, secrets sprawl, and passkey adoption—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Documented password policy for applications, networks, and endpoints",
-        "Formalized certificate age policy",
-        "Documented credential storage policy",
-        "Enterprise-wide vs vertical password policy scope",
-        "Frequent password policy review"
+        "Documented KPIs and KRIs",
+        "Regular KPI/KRI review",
+        "Credential rotation and expiry compliance metrics",
+        "Secrets and API key sprawl metrics",
+        "Passkey and passwordless credential adoption metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "cred-02",
-      "name": "Secure Credential Management and storage system (identity store)",
-      "description": "The identity store securely manages credentials with automatic provisioning and deprovisioning and regular efficacy review.",
+      "name": "Credential lifecycle policy",
+      "short_name": "lifecycle policy",
+      "description": "Password, passkey, certificate age, and credential storage policies are documented, scoped appropriately, and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Identity store manages and stores credentials securely",
+        "Documented password and passkey policy for applications, networks, and endpoints",
+        "Formalized certificate age policy",
+        "Documented credential storage policy",
+        "Enterprise-wide vs vertical password policy scope",
+        "Regular password and credential policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cred-03",
+      "name": "Secure credential vault and identity store",
+      "short_name": "credential vault",
+      "description": "The identity store or enterprise secrets vault securely manages credentials with automatic provisioning and deprovisioning and regular configuration review.",
+      "evaluation_focus": [
+        "Identity store or vault manages and stores credentials securely",
         "Automatic credential provisioning and deprovisioning",
-        "Identity store configuration review"
+        "Credential vault configuration review",
+        "Integration with identity management and authentication systems"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
-      "id": "cred-03",
-      "name": "Credential Provisioning Process",
-      "description": "Credential provisioning is formalized, scoped appropriately, reviewed frequently, and automated based on conditions like new user provisioning.",
+      "id": "cred-04",
+      "name": "Credential lifecycle operations",
+      "short_name": "lifecycle operations",
+      "description": "Credential provisioning, deprovisioning, and secure storage are formalized, scoped appropriately, automated, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized credential provisioning process",
-        "Enterprise-wide vs vertical provisioning scope",
-        "Frequent provisioning process review",
-        "Automated credential creation"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "cred-04",
-      "name": "Credential Deprovisioning Process",
-      "description": "Credential deprovisioning is formalized, scoped appropriately, reviewed frequently, and automated based on conditions like age or compromise.",
-      "evaluation_focus": [
         "Formalized credential deprovisioning process",
-        "Enterprise-wide vs vertical deprovisioning scope",
-        "Frequent deprovisioning process review",
-        "Automated credential deletion"
+        "Formalized credential storage process",
+        "Enterprise-wide vs vertical lifecycle scope",
+        "Automated credential creation, rotation, and revocation",
+        "Regular credential lifecycle process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cred-05",
-      "name": "Credential Storage Process",
-      "description": "Credential storage is formalized, scoped appropriately, reviewed frequently, and automated based on conditions like age or compromise.",
+      "name": "Non-human and API credential governance",
+      "short_name": "API credentials",
+      "description": "Service account passwords, API keys, OAuth client secrets, and workload credentials are governed with rotation, vault storage, and prohibition of shared human passwords.",
       "evaluation_focus": [
-        "Formalized credential storage process",
-        "Enterprise-wide vs vertical storage scope",
-        "Frequent storage process review",
-        "Automated credential creation and revocation"
+        "Governed service account and API credential lifecycle",
+        "Secrets vault storage for non-human credentials",
+        "Prohibition of shared credentials for workloads and automation",
+        "Automated rotation of API keys and client secrets"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Technology"
     },
     {
       "id": "cred-06",
       "name": "Credential custodian",
+      "short_name": "credential custodian",
       "description": "A dedicated credential custodian manages credentials with separation of duties between user creation, authentication, and credential creation.",
       "evaluation_focus": [
         "Dedicated credential management custodian",
