@@ -1,16 +1,17 @@
 {
   "service_id": "content-management",
   "service_name": "Content Management Service",
-  "version": "1.0",
-  "description": "Evaluates content management service maturity—mobile content tracking, policies, downloadable content monitoring, distribution, virtual workspaces, mobile firmware management, and golden images.",
+  "version": "1.1",
+  "description": "Evaluates content management service maturity—service governance, KPIs/KRIs, content management policy, mobile content monitoring and distribution, virtual workspaces, mobile firmware management, and golden images.",
   "capabilities": [
     {
       "id": "cnt-00",
       "name": "Service exists and is in good condition",
-      "description": "Mobile content is tracked as part of the content management service and reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "A content management service exists, tracks mobile content, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Mobile content tracking",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,29 +19,36 @@
     {
       "id": "cnt-01",
       "name": "KPIs/KRIs",
-      "description": "Enterprise-wide content management policy is formalized, documented, and reviewed for efficacy.",
+      "short_name": "KPIs and KRIs",
+      "description": "Content management KPIs and KRIs—including MDM coverage, policy compliance, and distribution success—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Formalized enterprise-wide content management policy",
-        "Content management policy review"
+        "Documented KPIs and KRIs for content management",
+        "Regular KPI/KRI review",
+        "MDM coverage and policy compliance metrics",
+        "Content distribution success and failure metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "cnt-02",
-      "name": "Downloadable content",
-      "description": "A system or MDM monitors and manages downloadable content on mobiles at enterprise level.",
+      "name": "Content management policy",
+      "short_name": "content policy",
+      "description": "An enterprise-wide content management policy is formalized, documented, and reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
-        "Enterprise downloadable content monitoring and management"
+        "Formalized enterprise-wide content management policy",
+        "Regular content management policy review"
       ],
       "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Strategy"
     },
     {
       "id": "cnt-03",
-      "name": "Distribution",
-      "description": "A system or MDM distributes select content on mobiles at enterprise level.",
+      "name": "Mobile content monitoring and distribution",
+      "short_name": "mobile content delivery",
+      "description": "MDM or equivalent systems monitor, manage, and distribute enterprise content on mobile devices at enterprise scale.",
       "evaluation_focus": [
+        "Enterprise downloadable content monitoring and management",
         "Enterprise content distribution on mobiles"
       ],
       "resiliency_weight": 1,
@@ -48,8 +56,9 @@
     },
     {
       "id": "cnt-04",
-      "name": "Content Management",
-      "description": "Software or MDM manages virtual spaces on corporate-owned personal mobiles with automated provisioning.",
+      "name": "Virtual workspace management",
+      "short_name": "virtual workspaces",
+      "description": "Software or MDM manages virtual workspaces on corporate-owned personal mobiles with automated provisioning.",
       "evaluation_focus": [
         "Virtual workspace management on corporate-owned personal mobiles",
         "Automated virtual space provisioning"
@@ -59,7 +68,8 @@
     },
     {
       "id": "cnt-05",
-      "name": "Mobile Application Management",
+      "name": "Mobile firmware management",
+      "short_name": "mobile firmware",
       "description": "Software or MDM upgrades mobile device firmware remotely with automated upgrade triggers.",
       "evaluation_focus": [
         "Remote mobile firmware upgrades",
@@ -70,13 +80,14 @@
     },
     {
       "id": "cnt-06",
-      "name": "Golden Images",
-      "description": "Golden images for assets especially endpoints are maintained, deployed enterprise-wide, applied during provisioning, and reviewed frequently.",
+      "name": "Golden images",
+      "short_name": "golden images",
+      "description": "Golden images for assets especially endpoints are maintained, deployed enterprise-wide, applied during provisioning, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized golden image maintenance process",
         "Enterprise-wide golden image deployment",
         "Automated golden image provisioning",
-        "Frequent golden image security review"
+        "Regular golden image security review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"

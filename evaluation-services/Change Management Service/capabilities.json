@@ -1,76 +1,72 @@
 {
   "service_id": "change-management",
   "service_name": "Change Management Service",
-  "version": "1.0",
-  "description": "Evaluates change management service maturity—change request systems, business processes, KPIs/KRIs, policies by change type, CAB governance, impact analysis, baselines, deviation detection, exception handling, and service restoration.",
+  "version": "1.1",
+  "description": "Evaluates change management service maturity—service governance, change management system and process, KPIs/KRIs, policies by change type, CAB governance, impact analysis, baselines and deviation detection, exception handling, and service restoration.",
   "capabilities": [
     {
       "id": "cm-00",
       "name": "Service exists and is in good condition",
-      "description": "A change management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "A change management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise change management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cm-01",
-      "name": "Change management system",
-      "description": "Change management software generates change requests, covers the enterprise, supports automated approvals, and integrates with staging and risk management.",
+      "name": "Change management system and process",
+      "short_name": "system and process",
+      "description": "Change management software and a formalized enterprise-wide process generate and govern change requests with automated approvals, staging and risk integrations, and quarterly review.",
       "evaluation_focus": [
         "Change request generation software",
-        "Enterprise-wide system coverage",
+        "Enterprise-wide system and process coverage",
+        "Formalized and documented change management process",
         "Automated approval of change requests",
         "System configuration review",
-        "Integration with staging and risk management"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "cm-02",
-      "name": "Change management business process",
-      "description": "A formalized change management process applies enterprise-wide, is automated, and reviewed frequently.",
-      "evaluation_focus": [
-        "Formalized and documented process",
-        "Enterprise-wide process adoption",
-        "Process automation",
-        "Frequent process review"
+        "Integration with staging and risk management",
+        "Regular process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "cm-03",
+      "id": "cm-02",
       "name": "KPIs/KRIs",
-      "description": "Change management KPIs and KRIs are documented and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Change management KPIs and KRIs—including change failure rate, unauthorized change detection, and restoration time—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Change failure and unauthorized change metrics",
+        "Service restoration time after failed changes"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
-      "id": "cm-04",
-      "name": "Change Management policy",
-      "description": "Formal change management policies for subject, network, endpoint, application, and data/database changes apply enterprise-wide and are reviewed frequently.",
+      "id": "cm-03",
+      "name": "Change management policies by type",
+      "short_name": "change policies",
+      "description": "Formal change management policies for subject, network, endpoint, application, and data or database changes apply enterprise-wide and are reviewed at least quarterly.",
       "evaluation_focus": [
         "Subject change policy",
         "Network change policy",
         "Endpoint change policy",
         "Application change policy",
         "Data/database change policy",
-        "Frequent policy review"
+        "Regular policy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
-      "id": "cm-05",
-      "name": "Change approval Board (CAB)",
+      "id": "cm-04",
+      "name": "Change advisory board (CAB)",
+      "short_name": "CAB governance",
       "description": "A change advisory board approves and denies change requests with enterprise-wide representation.",
       "evaluation_focus": [
         "CAB exists for change approval",
@@ -80,8 +76,9 @@
       "pillar": "People"
     },
     {
-      "id": "cm-06",
-      "name": "Impact analysis and Quality Testing",
+      "id": "cm-05",
+      "name": "Impact analysis and quality testing",
+      "short_name": "impact analysis",
       "description": "Impact analysis is mandated for major changes, supported by documented procedures, and automatable in CI/CD.",
       "evaluation_focus": [
         "Impact analysis mandated for major changes",
@@ -92,21 +89,13 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "cm-07",
-      "name": "Establish change baseline",
-      "description": "Change management baselines exist for all change request types and are monitored and reviewed frequently.",
+      "id": "cm-06",
+      "name": "Change baselines and deviation detection",
+      "short_name": "baselines and deviation",
+      "description": "Change management baselines exist for all change request types, are monitored and reviewed at least quarterly, and deviations are identified automatically across the enterprise by the SOC or visibility solution.",
       "evaluation_focus": [
         "Baselines for all change request types",
-        "Baseline monitoring and review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "cm-08",
-      "name": "Baseline deviation",
-      "description": "The SOC or visibility solution identifies deviations from change baselines automatically across the enterprise.",
-      "evaluation_focus": [
+        "Baseline monitoring and review",
         "SOC identifies baseline deviations",
         "Enterprise-wide deviation detection",
         "Automatic deviation identification"
@@ -115,8 +104,9 @@
       "pillar": "Technology"
     },
     {
-      "id": "cm-09",
-      "name": "Exception Management",
+      "id": "cm-07",
+      "name": "Exception management",
+      "short_name": "exception management",
       "description": "An exception management process handles changes that cannot undergo standard impact analysis, deployed enterprise-wide including cloud, with post-exception review.",
       "evaluation_focus": [
         "Exception process for changes without impact analysis",
@@ -127,14 +117,15 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "cm-10",
-      "name": "Restoration of business critical Services",
-      "description": "The enterprise can restore services after failed changes via documented processes, automation, and controller integration.",
+      "id": "cm-08",
+      "name": "Restoration of business critical services",
+      "short_name": "service restoration",
+      "description": "The enterprise can restore services after failed changes via documented processes, automation, controller integration, and quarterly review.",
       "evaluation_focus": [
         "Service restoration capability",
         "Documented restoration process",
         "Automated traffic switch and restoration",
-        "Frequent restoration process review",
+        "Regular restoration process review",
         "Controller integration for restoration"
       ],
       "resiliency_weight": 1,

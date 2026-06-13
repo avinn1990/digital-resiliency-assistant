@@ -9,383 +9,301 @@
         {
           "id": "rq-cm-00-1",
           "prompt": "Does the enterprise have a change management service?",
-          "intent": "Evaluate does the enterprise have a change management service?",
+          "intent": "Evaluate whether a change management service exists",
           "field_key": "cm_00_change_management_service_exists",
           "evaluation_focus": "Enterprise change management service exists"
         },
         {
           "id": "rq-cm-00-2",
-          "prompt": "Is the change management service reviewed frequently to measure its efficacy?",
-          "intent": "Evaluate is the change management service reviewed frequently to measure its efficacy?",
-          "field_key": "cm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "prompt": "Is the change management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "cm_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
     {
       "capability_id": "cm-01",
-      "capability_name": "Change management system",
+      "capability_name": "Change management system and process",
       "questions": [
         {
           "id": "rq-cm-01-1",
-          "prompt": "Does the enterprise have change management software to generate change requests?",
-          "intent": "Evaluate does the enterprise have change management software to generate change requests?",
+          "prompt": "Does the enterprise have change management software to generate and track change requests?",
+          "intent": "Evaluate whether change management software generates change requests",
           "field_key": "cm_01_change_request_software",
           "evaluation_focus": "Change request generation software"
         },
         {
           "id": "rq-cm-01-2",
-          "prompt": "Does the change management system cover the entire enterprise and its subsidiaries?",
-          "intent": "Evaluate does the change management system cover the entire enterprise and its subsidiaries?",
-          "field_key": "cm_01_system_enterprise_coverage",
-          "evaluation_focus": "Enterprise-wide system coverage"
+          "prompt": "Does the change management system and process cover the entire enterprise and its subsidiaries?",
+          "intent": "Evaluate whether change management covers the enterprise broadly",
+          "field_key": "cm_01_enterprise_coverage",
+          "evaluation_focus": "Enterprise-wide system and process coverage"
         },
         {
           "id": "rq-cm-01-3",
-          "prompt": "Does the change management system support automation of approval of certain change requests?",
-          "intent": "Evaluate does the change management system support automation of approval of certain change requests?",
+          "prompt": "Does the enterprise have a formalized and documented change management process?",
+          "intent": "Evaluate whether a formalized documented change process exists",
+          "field_key": "cm_01_formalized_process",
+          "evaluation_focus": "Formalized and documented change management process"
+        },
+        {
+          "id": "rq-cm-01-4",
+          "prompt": "Does the change management system support automation of approval for certain change requests?",
+          "intent": "Evaluate whether change approvals can be automated",
           "field_key": "cm_01_automated_approval",
           "evaluation_focus": "Automated approval of change requests"
         },
         {
-          "id": "rq-cm-01-4",
-          "prompt": "Is the change management system configuration reviewed frequently?",
-          "intent": "Evaluate is the change management system configuration reviewed frequently?",
+          "id": "rq-cm-01-5",
+          "prompt": "Is the change management system configuration reviewed at least quarterly?",
+          "intent": "Evaluate whether system configuration is reviewed on a regular cadence",
           "field_key": "cm_01_system_config_reviewed",
           "evaluation_focus": "System configuration review"
         },
         {
-          "id": "rq-cm-01-5",
-          "prompt": "Does the change management system integrate with segments like staging and risk management to support an efficient change management process?",
-          "intent": "Evaluate does the change management system integrate with segments like staging and risk management to support an efficient change management process?",
+          "id": "rq-cm-01-6",
+          "prompt": "Does the change management system integrate with staging and risk management to support an efficient change process?",
+          "intent": "Evaluate whether the system integrates with staging and risk management",
           "field_key": "cm_01_integrates_staging_risk",
           "evaluation_focus": "Integration with staging and risk management"
+        },
+        {
+          "id": "rq-cm-01-7",
+          "prompt": "Is the change management process reviewed at least quarterly?",
+          "intent": "Evaluate whether the change process is reviewed on a regular cadence",
+          "field_key": "cm_01_process_reviewed_regularly",
+          "evaluation_focus": "Regular process review"
         }
       ]
     },
     {
       "capability_id": "cm-02",
-      "capability_name": "Change management business process",
+      "capability_name": "KPIs/KRIs",
       "questions": [
         {
           "id": "rq-cm-02-1",
-          "prompt": "Does the enterprise have a formalized and documented change management process?",
-          "intent": "Evaluate does the enterprise have a formalized and documented change management process?",
-          "field_key": "cm_02_formalized_process",
-          "evaluation_focus": "Formalized and documented process"
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for the change management process?",
+          "intent": "Evaluate whether change management KPIs and KRIs are documented",
+          "field_key": "cm_02_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
         },
         {
           "id": "rq-cm-02-2",
-          "prompt": "Does the change management process apply to the entire enterprise?",
-          "intent": "Evaluate does the change management process apply to the entire enterprise?",
-          "field_key": "cm_02_process_enterprise_wide",
-          "evaluation_focus": "Enterprise-wide process adoption"
+          "prompt": "Are change management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "cm_02_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
         },
         {
           "id": "rq-cm-02-3",
-          "prompt": "Is the change management process automated?",
-          "intent": "Evaluate is the change management process automated?",
-          "field_key": "cm_02_process_automated",
-          "evaluation_focus": "Process automation"
+          "prompt": "Do KPIs or KRIs track change failure rate or unauthorized changes detected outside the change process?",
+          "intent": "Evaluate whether change failure and unauthorized change metrics are tracked",
+          "field_key": "cm_02_change_failure_unauthorized_metrics",
+          "evaluation_focus": "Change failure and unauthorized change metrics"
         },
         {
           "id": "rq-cm-02-4",
-          "prompt": "Is the change management process reviewed frequently?",
-          "intent": "Evaluate is the change management process reviewed frequently?",
-          "field_key": "cm_02_process_reviewed_frequently",
-          "evaluation_focus": "Frequent process review"
+          "prompt": "Does the organization measure time to restore services after a failed change?",
+          "intent": "Evaluate whether service restoration time after failed changes is measured",
+          "field_key": "cm_02_restoration_time_metrics",
+          "evaluation_focus": "Service restoration time after failed changes"
         }
       ]
     },
     {
       "capability_id": "cm-03",
-      "capability_name": "KPIs/KRIs",
+      "capability_name": "Change management policies by type",
       "questions": [
         {
           "id": "rq-cm-03-1",
-          "prompt": "Does the enterprise have a formalized and documented KPI/KRI for the change management process?",
-          "intent": "Evaluate does the enterprise have a formalized and documented KPI/KRI for the change management process?",
-          "field_key": "cm_03_kpis_kris_documented",
-          "evaluation_focus": "Documented KPIs and KRIs"
+          "prompt": "Does the enterprise have formalized and documented change management policies for subject changes?",
+          "intent": "Evaluate whether subject change policies exist",
+          "field_key": "cm_03_subject_policy_exists",
+          "evaluation_focus": "Subject change policy"
         },
         {
           "id": "rq-cm-03-2",
-          "prompt": "Are the KPIs and KRIs for change management reviewed frequently?",
-          "intent": "Evaluate are the KPIs and KRIs for change management reviewed frequently?",
-          "field_key": "cm_03_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "prompt": "Does the enterprise have formalized and documented change management policies for network changes?",
+          "intent": "Evaluate whether network change policies exist",
+          "field_key": "cm_03_network_policy_exists",
+          "evaluation_focus": "Network change policy"
+        },
+        {
+          "id": "rq-cm-03-3",
+          "prompt": "Does the enterprise have formalized and documented change management policies for endpoint changes?",
+          "intent": "Evaluate whether endpoint change policies exist",
+          "field_key": "cm_03_endpoint_policy_exists",
+          "evaluation_focus": "Endpoint change policy"
+        },
+        {
+          "id": "rq-cm-03-4",
+          "prompt": "Does the enterprise have formalized and documented change management policies for application changes?",
+          "intent": "Evaluate whether application change policies exist",
+          "field_key": "cm_03_application_policy_exists",
+          "evaluation_focus": "Application change policy"
+        },
+        {
+          "id": "rq-cm-03-5",
+          "prompt": "Does the enterprise have formalized and documented change management policies for data or database changes?",
+          "intent": "Evaluate whether data or database change policies exist",
+          "field_key": "cm_03_data_database_policy_exists",
+          "evaluation_focus": "Data/database change policy"
+        },
+        {
+          "id": "rq-cm-03-6",
+          "prompt": "Are all change management policies applicable across the entire enterprise and reviewed at least quarterly?",
+          "intent": "Evaluate whether policies are enterprise-wide and reviewed regularly",
+          "field_key": "cm_03_policies_enterprise_reviewed",
+          "evaluation_focus": "Regular policy review"
         }
       ]
     },
     {
       "capability_id": "cm-04",
-      "capability_name": "Change Management policy",
+      "capability_name": "Change advisory board (CAB)",
       "questions": [
         {
           "id": "rq-cm-04-1",
-          "prompt": "Does the enterprise have a formalized and documented change management policy for subject changes?",
-          "intent": "Evaluate does the enterprise have a formalized and documented change management policy for subject changes?",
-          "field_key": "cm_04_subject_policy_exists",
-          "evaluation_focus": "Subject change policy"
-        },
-        {
-          "id": "rq-cm-04-2",
-          "prompt": "Are all change management policies for subjects applicable across the entire enterprise?",
-          "intent": "Evaluate are all change management policies for subjects applicable across the entire enterprise?",
-          "field_key": "cm_04_subject_policy_enterprise_wide",
-          "evaluation_focus": "Subject change policy"
-        },
-        {
-          "id": "rq-cm-04-3",
-          "prompt": "Are all policies for change management applicable to subjects reviewed frequently?",
-          "intent": "Evaluate are all policies for change management applicable to subjects reviewed frequently?",
-          "field_key": "cm_04_subject_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        },
-        {
-          "id": "rq-cm-04-4",
-          "prompt": "Does the enterprise have a formalized and documented change management policy for network changes?",
-          "intent": "Evaluate does the enterprise have a formalized and documented change management policy for network changes?",
-          "field_key": "cm_04_network_policy_exists",
-          "evaluation_focus": "Network change policy"
-        },
-        {
-          "id": "rq-cm-04-5",
-          "prompt": "Are all change management policies for network applicable across the entire enterprise?",
-          "intent": "Evaluate are all change management policies for network applicable across the entire enterprise?",
-          "field_key": "cm_04_network_policy_enterprise_wide",
-          "evaluation_focus": "Network change policy"
-        },
-        {
-          "id": "rq-cm-04-6",
-          "prompt": "Are all policies for change management applicable to network reviewed frequently?",
-          "intent": "Evaluate are all policies for change management applicable to network reviewed frequently?",
-          "field_key": "cm_04_network_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        },
-        {
-          "id": "rq-cm-04-7",
-          "prompt": "Does the enterprise have a formalized and documented change management policy for endpoint changes?",
-          "intent": "Evaluate does the enterprise have a formalized and documented change management policy for endpoint changes?",
-          "field_key": "cm_04_endpoint_policy_exists",
-          "evaluation_focus": "Endpoint change policy"
-        },
-        {
-          "id": "rq-cm-04-8",
-          "prompt": "Are all change management policies for endpoints applicable across the entire enterprise?",
-          "intent": "Evaluate are all change management policies for endpoints applicable across the entire enterprise?",
-          "field_key": "cm_04_endpoint_policy_enterprise_wide",
-          "evaluation_focus": "Endpoint change policy"
-        },
-        {
-          "id": "rq-cm-04-9",
-          "prompt": "Are all policies for change management applicable to endpoints reviewed frequently?",
-          "intent": "Evaluate are all policies for change management applicable to endpoints reviewed frequently?",
-          "field_key": "cm_04_endpoint_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        },
-        {
-          "id": "rq-cm-04-10",
-          "prompt": "Does the enterprise have a formalized and documented change management policy for application changes?",
-          "intent": "Evaluate does the enterprise have a formalized and documented change management policy for application changes?",
-          "field_key": "cm_04_application_policy_exists",
-          "evaluation_focus": "Application change policy"
-        },
-        {
-          "id": "rq-cm-04-11",
-          "prompt": "Are all change management policies for applications applicable across the entire enterprise?",
-          "intent": "Evaluate are all change management policies for applications applicable across the entire enterprise?",
-          "field_key": "cm_04_application_policy_enterprise_wide",
-          "evaluation_focus": "Application change policy"
-        },
-        {
-          "id": "rq-cm-04-12",
-          "prompt": "Are all policies for change management applicable to applications reviewed frequently?",
-          "intent": "Evaluate are all policies for change management applicable to applications reviewed frequently?",
-          "field_key": "cm_04_application_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        },
-        {
-          "id": "rq-cm-04-13",
-          "prompt": "Does the enterprise have a formalized and documented change management policy for data/database changes?",
-          "intent": "Evaluate does the enterprise have a formalized and documented change management policy for data/database changes?",
-          "field_key": "cm_04_data_database_policy_exists",
-          "evaluation_focus": "Data/database change policy"
-        },
-        {
-          "id": "rq-cm-04-14",
-          "prompt": "Are all change management policies for data/database applicable across the entire enterprise?",
-          "intent": "Evaluate are all change management policies for data/database applicable across the entire enterprise?",
-          "field_key": "cm_04_data_database_policy_enterprise_wide",
-          "evaluation_focus": "Data/database change policy"
-        },
-        {
-          "id": "rq-cm-04-15",
-          "prompt": "Are all policies for change management applicable to data/database reviewed frequently?",
-          "intent": "Evaluate are all policies for change management applicable to data/database reviewed frequently?",
-          "field_key": "cm_04_data_database_policy_reviewed",
-          "evaluation_focus": "Frequent policy review"
-        }
-      ]
-    },
-    {
-      "capability_id": "cm-05",
-      "capability_name": "Change approval Board (CAB)",
-      "questions": [
-        {
-          "id": "rq-cm-05-1",
-          "prompt": "Does the enterprise have a change management board that approves and denies change requests?",
-          "intent": "Evaluate does the enterprise have a change management board that approves and denies change requests?",
-          "field_key": "cm_05_cab_exists",
+          "prompt": "Does the enterprise have a change advisory board that approves and denies change requests?",
+          "intent": "Evaluate whether a CAB exists for change approval",
+          "field_key": "cm_04_cab_exists",
           "evaluation_focus": "CAB exists for change approval"
         },
         {
-          "id": "rq-cm-05-2",
-          "prompt": "Are the members of the CAB from across the enterprise, or is it specific to the function that implements the CAB?",
-          "intent": "Evaluate are the members of the CAB from across the enterprise, or is it specific to the function that implements the CAB?",
-          "field_key": "cm_05_cab_membership_scope",
+          "id": "rq-cm-04-2",
+          "prompt": "Are CAB members drawn from across the enterprise rather than limited to a single function?",
+          "intent": "Evaluate whether CAB membership is enterprise-wide",
+          "field_key": "cm_04_cab_membership_scope",
           "evaluation_focus": "Enterprise-wide CAB membership"
         }
       ]
     },
     {
-      "capability_id": "cm-06",
-      "capability_name": "Impact analysis and Quality Testing",
+      "capability_id": "cm-05",
+      "capability_name": "Impact analysis and quality testing",
       "questions": [
         {
-          "id": "rq-cm-06-1",
+          "id": "rq-cm-05-1",
           "prompt": "Does the CAB mandate impact analysis for all major change requests?",
-          "intent": "Evaluate does the CAB mandate impact analysis for all major change requests?",
-          "field_key": "cm_06_impact_analysis_mandated",
+          "intent": "Evaluate whether impact analysis is mandated for major changes",
+          "field_key": "cm_05_impact_analysis_mandated",
           "evaluation_focus": "Impact analysis mandated for major changes"
         },
         {
-          "id": "rq-cm-06-2",
-          "prompt": "Is there a formalized documented procedure a requestor must complete to provide the necessary details for impact analysis?",
-          "intent": "Evaluate is there a formalized documented procedure a requestor must complete to provide the necessary details for impact analysis?",
-          "field_key": "cm_06_impact_analysis_procedure",
+          "id": "rq-cm-05-2",
+          "prompt": "Is there a formalized documented procedure requestors must complete to provide details for impact analysis?",
+          "intent": "Evaluate whether an impact analysis procedure is documented",
+          "field_key": "cm_05_impact_analysis_procedure",
           "evaluation_focus": "Documented impact analysis procedure"
         },
         {
-          "id": "rq-cm-06-3",
-          "prompt": "Can the impact analysis be automated as part of a CI/CD pipeline?",
-          "intent": "Evaluate can the impact analysis be automated as part of a CI/CD pipeline?",
-          "field_key": "cm_06_impact_analysis_cicd_automation",
+          "id": "rq-cm-05-3",
+          "prompt": "Can impact analysis be automated as part of a CI/CD pipeline?",
+          "intent": "Evaluate whether impact analysis can be automated in CI/CD",
+          "field_key": "cm_05_impact_analysis_cicd_automation",
           "evaluation_focus": "Automated impact analysis in CI/CD"
         }
       ]
     },
     {
-      "capability_id": "cm-07",
-      "capability_name": "Establish change baseline",
+      "capability_id": "cm-06",
+      "capability_name": "Change baselines and deviation detection",
       "questions": [
         {
-          "id": "rq-cm-07-1",
-          "prompt": "Does the enterprise have a change management baseline for all change request types?",
-          "intent": "Evaluate does the enterprise have a change management baseline for all change request types?",
-          "field_key": "cm_07_baselines_all_change_types",
+          "id": "rq-cm-06-1",
+          "prompt": "Does the enterprise have change management baselines for all change request types?",
+          "intent": "Evaluate whether baselines exist for all change types",
+          "field_key": "cm_06_baselines_all_change_types",
           "evaluation_focus": "Baselines for all change request types"
         },
         {
-          "id": "rq-cm-07-2",
-          "prompt": "Are the change management baselines monitored and reviewed frequently?",
-          "intent": "Evaluate are the change management baselines monitored and reviewed frequently?",
-          "field_key": "cm_07_baselines_monitored_reviewed",
+          "id": "rq-cm-06-2",
+          "prompt": "Are change management baselines monitored and reviewed at least quarterly?",
+          "intent": "Evaluate whether baselines are monitored and reviewed regularly",
+          "field_key": "cm_06_baselines_monitored_reviewed",
           "evaluation_focus": "Baseline monitoring and review"
-        }
-      ]
-    },
-    {
-      "capability_id": "cm-08",
-      "capability_name": "Baseline deviation",
-      "questions": [
+        },
         {
-          "id": "rq-cm-08-1",
-          "prompt": "Does the visibility solution (SOC) in the enterprise have the capability to identify deviations from established change baselines?",
-          "intent": "Evaluate does the visibility solution (SOC) in the enterprise have the capability to identify deviations from established change baselines?",
-          "field_key": "cm_08_soc_identifies_deviations",
+          "id": "rq-cm-06-3",
+          "prompt": "Does the SOC or visibility solution identify deviations from established change baselines?",
+          "intent": "Evaluate whether the SOC identifies baseline deviations",
+          "field_key": "cm_06_soc_identifies_deviations",
           "evaluation_focus": "SOC identifies baseline deviations"
         },
         {
-          "id": "rq-cm-08-2",
-          "prompt": "Can a change management baseline deviation be identified across the entire enterprise, or is it deployed in a specific scope in the network?",
-          "intent": "Evaluate can a change management baseline deviation be identified across the entire enterprise, or is it deployed in a specific scope in the network?",
-          "field_key": "cm_08_deviation_detection_scope",
-          "evaluation_focus": "Enterprise-wide deviation detection"
-        },
-        {
-          "id": "rq-cm-08-3",
-          "prompt": "Are change management baseline deviations identified automatically?",
-          "intent": "Evaluate are change management baseline deviations identified automatically?",
-          "field_key": "cm_08_deviations_identified_automatically",
+          "id": "rq-cm-06-4",
+          "prompt": "Can change baseline deviations be identified automatically across the entire enterprise?",
+          "intent": "Evaluate whether deviation detection is enterprise-wide and automatic",
+          "field_key": "cm_06_deviations_detected_automatically",
           "evaluation_focus": "Automatic deviation identification"
         }
       ]
     },
     {
-      "capability_id": "cm-09",
-      "capability_name": "Exception Management",
+      "capability_id": "cm-07",
+      "capability_name": "Exception management",
       "questions": [
         {
-          "id": "rq-cm-09-1",
-          "prompt": "Does the enterprise have an exception management process for changes that cannot be reviewed with expected impact analysis?",
-          "intent": "Evaluate does the enterprise have an exception management process for changes that cannot be reviewed with expected impact analysis?",
-          "field_key": "cm_09_exception_process_exists",
+          "id": "rq-cm-07-1",
+          "prompt": "Does the enterprise have an exception management process for changes that cannot undergo standard impact analysis?",
+          "intent": "Evaluate whether an exception process exists for changes without impact analysis",
+          "field_key": "cm_07_exception_process_exists",
           "evaluation_focus": "Exception process for changes without impact analysis"
         },
         {
-          "id": "rq-cm-09-2",
+          "id": "rq-cm-07-2",
           "prompt": "Is the exception management process deployed across the entire enterprise and cloud?",
-          "intent": "Evaluate is the exception management process deployed across the entire enterprise and cloud?",
-          "field_key": "cm_09_exception_enterprise_cloud",
+          "intent": "Evaluate whether exception management covers enterprise and cloud",
+          "field_key": "cm_07_exception_enterprise_cloud",
           "evaluation_focus": "Enterprise and cloud exception deployment"
         },
         {
-          "id": "rq-cm-09-3",
-          "prompt": "Are change management exceptions reviewed after they have been deemed exceptions?",
-          "intent": "Evaluate are change management exceptions reviewed after they have been deemed exceptions?",
-          "field_key": "cm_09_exceptions_reviewed_after",
+          "id": "rq-cm-07-3",
+          "prompt": "Are change management exceptions reviewed after they have been granted?",
+          "intent": "Evaluate whether exceptions receive post-exception review",
+          "field_key": "cm_07_exceptions_reviewed_after",
           "evaluation_focus": "Post-exception review"
         }
       ]
     },
     {
-      "capability_id": "cm-10",
-      "capability_name": "Restoration of business critical Services",
+      "capability_id": "cm-08",
+      "capability_name": "Restoration of business critical services",
       "questions": [
         {
-          "id": "rq-cm-10-1",
-          "prompt": "Does the enterprise have the capability to restore services in case the change fails?",
-          "intent": "Evaluate does the enterprise have the capability to restore services in case the change fails?",
-          "field_key": "cm_10_restoration_capability",
+          "id": "rq-cm-08-1",
+          "prompt": "Does the enterprise have the capability to restore services when a change fails?",
+          "intent": "Evaluate whether service restoration capability exists after failed changes",
+          "field_key": "cm_08_restoration_capability",
           "evaluation_focus": "Service restoration capability"
         },
         {
-          "id": "rq-cm-10-2",
-          "prompt": "Is there a documented formalized process for restoration of services in case a change fails? Is this extracted from the vendor or technology partner?",
-          "intent": "Evaluate is there a documented formalized process for restoration of services in case a change fails? Is this extracted from the vendor or technology partner?",
-          "field_key": "cm_10_restoration_process_documented",
+          "id": "rq-cm-08-2",
+          "prompt": "Is there a documented formalized process for service restoration when a change fails?",
+          "intent": "Evaluate whether a documented restoration process exists",
+          "field_key": "cm_08_restoration_process_documented",
           "evaluation_focus": "Documented restoration process"
         },
         {
-          "id": "rq-cm-10-3",
-          "prompt": "Are there automated processes in place to switch traffic and restore services in case of change failure?",
-          "intent": "Evaluate are there automated processes in place to switch traffic and restore services in case of change failure?",
-          "field_key": "cm_10_automated_traffic_restoration",
+          "id": "rq-cm-08-3",
+          "prompt": "Are automated processes in place to switch traffic and restore services when a change fails?",
+          "intent": "Evaluate whether traffic switch and restoration are automated",
+          "field_key": "cm_08_automated_traffic_restoration",
           "evaluation_focus": "Automated traffic switch and restoration"
         },
         {
-          "id": "rq-cm-10-4",
-          "prompt": "Is the restoration process reviewed frequently?",
-          "intent": "Evaluate is the restoration process reviewed frequently?",
-          "field_key": "cm_10_restoration_reviewed_frequently",
-          "evaluation_focus": "Frequent restoration process review"
+          "id": "rq-cm-08-4",
+          "prompt": "Is the restoration process reviewed at least quarterly?",
+          "intent": "Evaluate whether the restoration process is reviewed on a regular cadence",
+          "field_key": "cm_08_restoration_reviewed_regularly",
+          "evaluation_focus": "Regular restoration process review"
         },
         {
-          "id": "rq-cm-10-5",
-          "prompt": "Can restoration services integrate with management controllers to make necessary policy and network changes to facilitate the restoration?",
-          "intent": "Evaluate can restoration services integrate with management controllers to make necessary policy and network changes to facilitate the restoration?",
-          "field_key": "cm_10_restoration_controller_integration",
+          "id": "rq-cm-08-5",
+          "prompt": "Can restoration integrate with management controllers to apply policy and network changes needed for recovery?",
+          "intent": "Evaluate whether restoration integrates with management controllers",
+          "field_key": "cm_08_restoration_controller_integration",
           "evaluation_focus": "Controller integration for restoration"
         }
       ]

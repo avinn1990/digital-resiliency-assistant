@@ -1,16 +1,17 @@
 {
   "service_id": "security-architecture-management",
   "service_name": "Security Architecture Management",
-  "version": "1.0",
-  "description": "Evaluates security architecture management maturity—service governance, KPIs/KRIs, network and application segmentation, encryption, network resiliency, design reviews, secure API communications, network security controls, cloud migration, and architecture management office (AMO) operations.",
+  "version": "1.1",
+  "description": "Evaluates security architecture management maturity—service governance, KPIs/KRIs, network and application segmentation, encryption, network resiliency, design reviews, secure API communications, network security controls, cloud migration, and architecture management office operations.",
   "capabilities": [
     {
       "id": "sam-00",
-      "name": "Architecture management service",
-      "description": "A security architecture management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A security architecture management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise architecture management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,23 +19,27 @@
     {
       "id": "sam-01",
       "name": "KPIs/KRIs",
-      "description": "Architecture management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Architecture management KPIs and KRIs—including segmentation coverage, design review completion, and encryption compliance—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for architecture management",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Segmentation coverage and design review metrics",
+        "Encryption and API security compliance metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "sam-02",
-      "name": "Network Segmentation based on least function principle",
-      "description": "Network segmentation follows a documented strategy or industry standards, is deployed enterprise-wide, supports automation, is reviewed frequently, and physically separates staging, development, and deployment segments.",
+      "name": "Network and application segmentation",
+      "short_name": "segmentation",
+      "description": "Network and application segmentation follow documented strategies or industry standards, are deployed enterprise-wide with automation support, physically separate staging and production, and are reviewed at least quarterly.",
       "evaluation_focus": [
         "Segmentation strategy or industry standards",
-        "Enterprise-wide network segmentation deployment",
+        "Enterprise-wide network and application segmentation deployment",
         "Automated or manual segmentation by functional requirement",
-        "Frequent segmentation review for security enhancement",
+        "Regular segmentation review for security enhancement",
         "Physical separation of staging, development, and deployment segments"
       ],
       "resiliency_weight": 1,
@@ -42,20 +47,8 @@
     },
     {
       "id": "sam-03",
-      "name": "Applications isolation",
-      "description": "Application segmentation follows a documented strategy or industry standards, is deployed enterprise-wide, supports automation, and is reviewed frequently.",
-      "evaluation_focus": [
-        "Application segmentation strategy or industry standards",
-        "Enterprise-wide application segmentation deployment",
-        "Automated or manual application segmentation by functional requirement",
-        "Frequent application segmentation review for security enhancement"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "sam-04",
-      "name": "Network Encryption",
+      "name": "Network encryption and cryptographic agility",
+      "short_name": "network encryption",
       "description": "The enterprise encrypts data in motion between segments enterprise-wide and maintains cryptographic agility.",
       "evaluation_focus": [
         "Data in motion encryption enterprise-wide",
@@ -65,8 +58,9 @@
       "pillar": "Technology"
     },
     {
-      "id": "sam-05",
-      "name": "Network Assurance — Resiliency",
+      "id": "sam-04",
+      "name": "Network resiliency and assurance",
+      "short_name": "network resiliency",
       "description": "Network architecture provides active/active resiliency across availability zones, alternate paths for workloads, and single point of failure analysis.",
       "evaluation_focus": [
         "Active/active network across availability zones",
@@ -78,19 +72,23 @@
       "pillar": "Technology"
     },
     {
-      "id": "sam-06",
-      "name": "Design Reviews",
-      "description": "A formalized, documented process governs security architecture design reviews.",
+      "id": "sam-05",
+      "name": "Security design reviews",
+      "short_name": "design reviews",
+      "description": "A formalized documented process governs security architecture design reviews, including AI-era threat models and zero-trust principles, with quarterly review of the process.",
       "evaluation_focus": [
-        "Formalized documented design review process"
+        "Formalized documented design review process",
+        "AI-era and zero-trust considerations in design reviews",
+        "Regular design review process efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "sam-07",
+      "id": "sam-06",
       "name": "Secure internal API communications",
-      "description": "Technology and deployment practices support secure API communications across functional segments, with monitoring and review.",
+      "short_name": "secure API communications",
+      "description": "Technology and deployment practices support secure API communications across functional segments, with monitoring and quarterly review.",
       "evaluation_focus": [
         "Technology supporting secure API communications",
         "Secure communications across functional segments and applications",
@@ -100,36 +98,40 @@
       "pillar": "Technology"
     },
     {
-      "id": "sam-08",
-      "name": "Network Security",
-      "description": "Function-based network security controls are deployed across enterprise functional segments and reviewed frequently.",
+      "id": "sam-07",
+      "name": "Network security controls",
+      "short_name": "network security controls",
+      "description": "Function-based network security controls are deployed across enterprise functional segments and reviewed at least quarterly.",
       "evaluation_focus": [
         "Function-based network security controls across segments",
-        "Frequent network security control efficacy review"
+        "Regular network security control efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
-      "id": "sam-09",
-      "name": "Cloud Adoption and Migration",
-      "description": "The enterprise can securely migrate workloads from on-premises to cloud segments across all locations, with automation and frequent process review.",
+      "id": "sam-08",
+      "name": "Cloud adoption and migration",
+      "short_name": "cloud migration",
+      "description": "The enterprise can securely migrate workloads from on-premises to cloud segments across all locations, with automation and quarterly process review.",
       "evaluation_focus": [
         "Secure on-premises to cloud workload migration",
         "Cloud migration across all enterprise locations",
         "Automated cloud migration from on-premises segments",
-        "Frequent cloud migration process review"
+        "Regular cloud migration process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "sam-10",
-      "name": "AMO team",
-      "description": "A dedicated architecture management office team tracks architectural changes, measures threat risk, and reviews relevant architectural upgrades.",
+      "id": "sam-09",
+      "name": "Architecture management office (AMO)",
+      "short_name": "AMO team",
+      "description": "A dedicated architecture management office team tracks architectural changes, measures threat risk including AI-era threats, and reviews relevant architectural upgrades.",
       "evaluation_focus": [
         "Dedicated AMO team for architectural change management",
-        "Threat risk measurement and architectural upgrade review"
+        "Threat risk measurement and architectural upgrade review",
+        "AI-era threat awareness in architecture governance"
       ],
       "resiliency_weight": 1,
       "pillar": "People"

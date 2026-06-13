@@ -1,39 +1,44 @@
 {
   "service_id": "code-management",
   "service_name": "Code Management",
-  "version": "1.0",
-  "description": "Evaluates code management maturity—code management software, deployment methodology, repositories, secure storage, multi-environment access control, code updates, creation provisioning, and deletion deprovisioning.",
+  "version": "1.1",
+  "description": "Evaluates code management maturity—service governance, code management platform and lifecycle, enterprise repositories and secure storage, repository access control, and testing environment lifecycle.",
   "capabilities": [
     {
       "id": "cdm-00",
-      "name": "Code management software",
-      "description": "Code management software supports publishing, versioning, and deleting code for all or specific applications with automated change management.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A code management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
-        "Code management software for publishing, versioning, and deleting code",
-        "Enterprise-wide or scoped application coverage",
-        "Automated code management when users make changes"
+        "Enterprise code management service exists",
+        "Regular code management service efficacy review"
       ],
       "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Process/Service"
     },
     {
       "id": "cdm-01",
-      "name": "Code Deployment methodology",
-      "description": "A formalized documented process governs code and its lifecycle, is automated by supporting software, and is reviewed frequently.",
+      "name": "Code management platform and lifecycle",
+      "short_name": "platform and lifecycle",
+      "description": "Code management software and a formalized lifecycle process govern publishing, versioning, updating, and deleting code via automated CI/CD and are reviewed at least quarterly.",
       "evaluation_focus": [
+        "Code management software for publishing, versioning, updating, and deleting code",
+        "Enterprise-wide or critical-application scope",
         "Formalized documented code lifecycle management process",
-        "Automated code management process",
-        "Frequent code management process review"
+        "Automated code management with CI/CD pipelines",
+        "Regular code lifecycle process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cdm-02",
-      "name": "Code Repositories",
-      "description": "All enterprise application code is stored securely in enterprise repositories that are scanned frequently and integrated with vulnerability management.",
+      "name": "Enterprise code repositories and secure storage",
+      "short_name": "repositories and storage",
+      "description": "All enterprise application code is stored securely in enterprise repositories, scanned frequently, and integrated with vulnerability management.",
       "evaluation_focus": [
         "All enterprise application code in secure repositories",
+        "Secure storage for all code in repositories",
         "Frequent repository scanning integrated with vulnerability management"
       ],
       "resiliency_weight": 1,
@@ -41,59 +46,27 @@
     },
     {
       "id": "cdm-03",
-      "name": "Secure Code Storage",
-      "description": "All code is stored securely in repositories.",
-      "evaluation_focus": [
-        "All code stored securely in repositories"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "cdm-04",
-      "name": "Code access in multiple environments",
-      "description": "Access to all code repositories is limited by function, controlled by CI/CD across repositories and staging locations, and reviewed frequently to prevent privilege creep.",
+      "name": "Repository access control",
+      "short_name": "repository access control",
+      "description": "Access to code repositories is limited by function, controlled by CI/CD across repositories and staging locations, and reviewed at least quarterly to prevent privilege creep.",
       "evaluation_focus": [
         "Function-based access limits for all code repositories",
         "CI/CD controls access to repositories and staging locations",
-        "Frequent repository access review to prevent privilege creep"
+        "Regular repository access review to prevent privilege creep"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
     },
     {
-      "id": "cdm-05",
-      "name": "Code updates",
-      "description": "A code management process handles publishing, versioning, updating, and deleting code for all or critical applications via automated CI/CD and is reviewed frequently.",
-      "evaluation_focus": [
-        "Code management process for publishing, versioning, updating, and deleting",
-        "Process scope for all or critical applications",
-        "Automated code management with CI/CD pipelines",
-        "Frequent code update process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "cdm-06",
-      "name": "Creation of code",
-      "description": "A process provisions code testing environments for creation and testing across all applications, automated via CI/CD.",
+      "id": "cdm-04",
+      "name": "Testing environment lifecycle",
+      "short_name": "testing env lifecycle",
+      "description": "Processes provision and deprovision code testing environments for creation, testing, deletion, and production movement across all applications, automated via CI/CD.",
       "evaluation_focus": [
         "Process to provision code testing environments",
-        "Code creation and testing environment for all applications",
-        "Automated provisioning via CI/CD"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "cdm-07",
-      "name": "Deletion of code",
-      "description": "A process deprovisions code testing environments after deletion and production movement for all applications, automated via CI/CD.",
-      "evaluation_focus": [
-        "Process to deprovision code testing environments after deletion",
-        "Code deletion and deprovisioning for all applications",
-        "Automated deprovisioning via CI/CD"
+        "Process to deprovision code testing environments after deletion or production movement",
+        "Testing environment lifecycle for all applications",
+        "Automated provisioning and deprovisioning via CI/CD"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"

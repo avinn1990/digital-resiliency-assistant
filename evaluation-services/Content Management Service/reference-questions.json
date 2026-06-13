@@ -8,17 +8,17 @@
       "questions": [
         {
           "id": "rq-cnt-00-1",
-          "prompt": "Does the enterprise track all content on mobiles as part of the content management service?",
-          "intent": "Evaluate does the enterprise track all content on mobiles as part of the content management service?",
+          "prompt": "Does the enterprise track mobile content as part of the content management service?",
+          "intent": "Evaluate whether mobile content is tracked by the content management service",
           "field_key": "cnt_00_mobile_content_tracked",
           "evaluation_focus": "Mobile content tracking"
         },
         {
           "id": "rq-cnt-00-2",
-          "prompt": "Is the content management service reviewed frequently for efficacy?",
-          "intent": "Evaluate is the content management service reviewed frequently for efficacy?",
-          "field_key": "cnt_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "prompt": "Is the content management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "cnt_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
@@ -28,41 +28,69 @@
       "questions": [
         {
           "id": "rq-cnt-01-1",
-          "prompt": "Does the enterprise have a formalized, documented enterprise-wide policy for content management?",
-          "intent": "Evaluate does the enterprise have a formalized, documented enterprise-wide policy for content management?",
-          "field_key": "cnt_01_content_management_policy",
-          "evaluation_focus": "Formalized enterprise-wide content management policy"
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for content management?",
+          "intent": "Evaluate whether content management KPIs and KRIs are documented",
+          "field_key": "cnt_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for content management"
         },
         {
           "id": "rq-cnt-01-2",
-          "prompt": "Does the enterprise review the content management policy for efficacy?",
-          "intent": "Evaluate does the enterprise review the content management policy for efficacy?",
-          "field_key": "cnt_01_policy_reviewed",
-          "evaluation_focus": "Content management policy review"
+          "prompt": "Are content management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "cnt_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-cnt-01-3",
+          "prompt": "Do KPIs or KRIs track MDM coverage and content policy compliance across mobile devices?",
+          "intent": "Evaluate whether MDM coverage and policy compliance metrics are tracked",
+          "field_key": "cnt_01_mdm_coverage_compliance_metrics",
+          "evaluation_focus": "MDM coverage and policy compliance metrics"
+        },
+        {
+          "id": "rq-cnt-01-4",
+          "prompt": "Does the organization measure content distribution success and failure rates for enterprise-managed mobile content?",
+          "intent": "Evaluate whether content distribution metrics are tracked",
+          "field_key": "cnt_01_distribution_success_metrics",
+          "evaluation_focus": "Content distribution success and failure metrics"
         }
       ]
     },
     {
       "capability_id": "cnt-02",
-      "capability_name": "Downloadable content",
+      "capability_name": "Content management policy",
       "questions": [
         {
           "id": "rq-cnt-02-1",
-          "prompt": "Does the enterprise have a system or MDM capable of monitoring and managing downloadable content on mobiles at enterprise level?",
-          "intent": "Evaluate does the enterprise have a system or MDM capable of monitoring and managing downloadable content on mobiles at enterprise level?",
-          "field_key": "cnt_02_downloadable_content_managed",
-          "evaluation_focus": "Enterprise downloadable content monitoring and management"
+          "prompt": "Does the enterprise have a formalized, documented enterprise-wide policy for content management?",
+          "intent": "Evaluate whether an enterprise-wide content management policy exists",
+          "field_key": "cnt_02_content_management_policy",
+          "evaluation_focus": "Formalized enterprise-wide content management policy"
+        },
+        {
+          "id": "rq-cnt-02-2",
+          "prompt": "Is the content management policy reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the policy is reviewed on a regular cadence",
+          "field_key": "cnt_02_policy_reviewed_regularly",
+          "evaluation_focus": "Regular content management policy review"
         }
       ]
     },
     {
       "capability_id": "cnt-03",
-      "capability_name": "Distribution",
+      "capability_name": "Mobile content monitoring and distribution",
       "questions": [
         {
           "id": "rq-cnt-03-1",
-          "prompt": "Does the enterprise have a system or MDM capable of distributing select content on mobiles at enterprise level?",
-          "intent": "Evaluate does the enterprise have a system or MDM capable of distributing select content on mobiles at enterprise level?",
+          "prompt": "Does the enterprise have MDM or equivalent capability to monitor and manage downloadable content on mobiles at enterprise level?",
+          "intent": "Evaluate whether downloadable content is monitored and managed enterprise-wide",
+          "field_key": "cnt_03_downloadable_content_managed",
+          "evaluation_focus": "Enterprise downloadable content monitoring and management"
+        },
+        {
+          "id": "rq-cnt-03-2",
+          "prompt": "Does the enterprise have MDM or equivalent capability to distribute approved content to mobiles at enterprise level?",
+          "intent": "Evaluate whether content distribution is supported enterprise-wide",
           "field_key": "cnt_03_content_distribution",
           "evaluation_focus": "Enterprise content distribution on mobiles"
         }
@@ -70,19 +98,19 @@
     },
     {
       "capability_id": "cnt-04",
-      "capability_name": "Content Management",
+      "capability_name": "Virtual workspace management",
       "questions": [
         {
           "id": "rq-cnt-04-1",
-          "prompt": "Does the enterprise have software or MDM that is capable of managing virtual spaces or workspaces on corporate-owned personal mobiles?",
-          "intent": "Evaluate does the enterprise have software or MDM that is capable of managing virtual spaces or workspaces on corporate-owned personal mobiles?",
+          "prompt": "Does the enterprise have software or MDM capable of managing virtual workspaces on corporate-owned personal mobiles?",
+          "intent": "Evaluate whether virtual workspace management is supported on mobile devices",
           "field_key": "cnt_04_virtual_workspace_management",
           "evaluation_focus": "Virtual workspace management on corporate-owned personal mobiles"
         },
         {
           "id": "rq-cnt-04-2",
-          "prompt": "Is the process of provisioning virtual spaces on mobile phones automated?",
-          "intent": "Evaluate is the process of provisioning virtual spaces on mobile phones automated?",
+          "prompt": "Is provisioning of virtual workspaces on mobile phones automated?",
+          "intent": "Evaluate whether virtual space provisioning is automated",
           "field_key": "cnt_04_virtual_space_provisioning_automated",
           "evaluation_focus": "Automated virtual space provisioning"
         }
@@ -90,19 +118,19 @@
     },
     {
       "capability_id": "cnt-05",
-      "capability_name": "Mobile Application Management",
+      "capability_name": "Mobile firmware management",
       "questions": [
         {
           "id": "rq-cnt-05-1",
-          "prompt": "Does the enterprise have software or MDM capable of upgrading the firmware of a mobile device remotely?",
-          "intent": "Evaluate does the enterprise have software or MDM capable of upgrading the firmware of a mobile device remotely?",
+          "prompt": "Does the enterprise have software or MDM capable of upgrading mobile device firmware remotely?",
+          "intent": "Evaluate whether remote mobile firmware upgrades are supported",
           "field_key": "cnt_05_remote_firmware_upgrade",
           "evaluation_focus": "Remote mobile firmware upgrades"
         },
         {
           "id": "rq-cnt-05-2",
-          "prompt": "Can the enterprise automatically trigger a mobile upgrade?",
-          "intent": "Evaluate can the enterprise automatically trigger a mobile upgrade?",
+          "prompt": "Can the enterprise automatically trigger mobile firmware upgrades?",
+          "intent": "Evaluate whether mobile upgrade triggers are automated",
           "field_key": "cnt_05_automated_mobile_upgrade",
           "evaluation_focus": "Automated mobile upgrade triggers"
         }
@@ -110,35 +138,35 @@
     },
     {
       "capability_id": "cnt-06",
-      "capability_name": "Golden Images",
+      "capability_name": "Golden images",
       "questions": [
         {
           "id": "rq-cnt-06-1",
-          "prompt": "Does the enterprise have a formalized documented process of maintaining golden images for assets, especially endpoints?",
-          "intent": "Evaluate does the enterprise have a formalized documented process of maintaining golden images for assets, especially endpoints?",
+          "prompt": "Does the enterprise have a formalized documented process for maintaining golden images for assets, especially endpoints?",
+          "intent": "Evaluate whether a golden image maintenance process exists",
           "field_key": "cnt_06_golden_image_process",
           "evaluation_focus": "Formalized golden image maintenance process"
         },
         {
           "id": "rq-cnt-06-2",
           "prompt": "Does the enterprise deploy golden-image-based assets enterprise-wide?",
-          "intent": "Evaluate does the enterprise deploy golden-image-based assets enterprise-wide?",
+          "intent": "Evaluate whether golden images are deployed enterprise-wide",
           "field_key": "cnt_06_golden_image_enterprise_wide",
           "evaluation_focus": "Enterprise-wide golden image deployment"
         },
         {
           "id": "rq-cnt-06-3",
           "prompt": "Are assets deployed with golden images automatically during provisioning?",
-          "intent": "Evaluate are assets deployed with golden images automatically during provisioning?",
+          "intent": "Evaluate whether golden image provisioning is automated",
           "field_key": "cnt_06_golden_image_automated_provisioning",
           "evaluation_focus": "Automated golden image provisioning"
         },
         {
           "id": "rq-cnt-06-4",
-          "prompt": "Are golden images frequently reviewed to enhance the security posture of the image itself?",
-          "intent": "Evaluate are golden images frequently reviewed to enhance the security posture of the image itself?",
-          "field_key": "cnt_06_golden_image_reviewed",
-          "evaluation_focus": "Frequent golden image security review"
+          "prompt": "Are golden images reviewed at least quarterly to enhance the security posture of the image itself?",
+          "intent": "Evaluate whether golden images are reviewed on a regular cadence",
+          "field_key": "cnt_06_golden_image_reviewed_regularly",
+          "evaluation_focus": "Regular golden image security review"
         }
       ]
     }

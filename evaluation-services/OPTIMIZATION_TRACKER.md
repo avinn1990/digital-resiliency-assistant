@@ -28,11 +28,11 @@
 | 3 | Enterprise Asset Management | enterprise-asset-management | 14 | 78 | done (1.1) |
 | 3 | Data Management | data-management | 18 | 88 | done (1.1) |
 | 3 | Facilities Management Service | facilities-management | 10 | 14 | done (1.1) |
-| 4 | Code Management | code-management | 8 | 22 | pending |
-| 4 | Change Management Service | change-management | 11 | 46 | pending |
-| 4 | Security Architecture Management | security-architecture-management | 11 | 30 | pending |
-| 4 | Automation, Orchestration and Integration | automation-orchestration-integration | 2 | 5 | pending |
-| 4 | Content Management Service | content-management | 7 | 14 | pending |
+| 4 | Code Management | code-management | 5 | 17 | done (1.1) |
+| 4 | Change Management Service | change-management | 9 | 36 | done (1.1) |
+| 4 | Security Architecture Management | security-architecture-management | 10 | 32 | done (1.1) |
+| 4 | Automation, Orchestration and Integration | automation-orchestration-integration | 6 | 20 | done (1.1) |
+| 4 | Content Management Service | content-management | 7 | 18 | done (1.1) |
 | 5 | Business Continuity Management | business-continuity-management | 10 | 23 | done (1.1) |
 | 5 | Security Training | security-training | 9 | 18 | done (1.1) |
 | 5 | Security Culture | security-culture | 8 | 16 | done (1.1) |
