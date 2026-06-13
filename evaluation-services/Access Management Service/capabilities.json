@@ -1,16 +1,17 @@
 {
   "service_id": "access-management",
   "service_name": "Access Management Service",
-  "version": "1.0",
-  "description": "Evaluates access management service maturity—access control systems, network and application access processes, identity and posture-based rules, remote access, isolation, access matrices, guest and OOB access, data access, custodianship, and SOC logging.",
+  "version": "1.1",
+  "description": "Evaluates access management service maturity—access control systems, unified network and application provisioning, context-aware policies (identity, posture, attributes), remote and zero-trust access, separation of duties, access matrices and certification, guest and out-of-band access, data access, non-human identity, AI-era access governance, custodianship, and SOC logging.",
   "capabilities": [
     {
       "id": "acm-00",
       "name": "Service exists and is in good condition",
-      "description": "An access management service exists and is reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "An access management service exists and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise access management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +19,14 @@
     {
       "id": "acm-01",
       "name": "KPIs/KRIs",
-      "description": "Access management KPIs and KRIs are documented and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Access management KPIs and KRIs—including entitlement hygiene, certification completion, and deprovisioning velocity—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Orphaned and stale entitlement metrics",
+        "Access certification completion rate",
+        "Mean time to revoke access after role change or termination"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,94 +34,68 @@
     {
       "id": "acm-02",
       "name": "Access Management System",
-      "description": "Centralized access control technology manages enforcement points with dynamic policy deployment and PDP configuration review.",
+      "short_name": "access management system",
+      "description": "Centralized access control technology manages enforcement points with dynamic policy deployment, policy-as-code, and policy decision point (PDP) configuration review.",
       "evaluation_focus": [
         "Access control for all enforcement points",
         "Centralized vs siloed policy decision points",
         "Dynamic access control deployment",
         "PDP configuration review aligned to policies",
-        "Abstracted policy push to enforcement points"
+        "Abstracted policy push to enforcement points",
+        "Policy-as-code and version-controlled access policies"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "acm-03",
-      "name": "Network Access Process",
-      "description": "Network and endpoint need-to-know access is provisioned via formalized processes with automation, consistent location scope, and frequent review.",
+      "name": "Unified access provisioning (network and application)",
+      "short_name": "access provisioning",
+      "description": "Network, endpoint, and application need-to-know access is provisioned via formalized processes with automation, consistent scope across locations and systems, and regular review.",
       "evaluation_focus": [
-        "Formalized network need-to-know access process",
-        "Consistent network access across locations",
-        "Automated network access self-service portals",
-        "Network access provisioning review",
-        "Formalized endpoint device access process",
-        "Consistent endpoint access across locations",
-        "Endpoint access provisioning review"
+        "Formalized network and endpoint need-to-know access process",
+        "Formalized application need-to-know access process",
+        "Consistent access provisioning across locations and systems",
+        "Automated self-service access portals",
+        "Access provisioning process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "acm-04",
-      "name": "Application Access Process",
-      "description": "Application need-to-know access is provisioned via formalized processes with consistent scope and frequent review.",
-      "evaluation_focus": [
-        "Formalized application need-to-know access process",
-        "Consistent application access across locations and systems",
-        "Application access provisioning review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "acm-05",
-      "name": "Identity based rules",
-      "description": "Identity-based access control is adopted and deployed at all enforcement points.",
+      "name": "Context-aware access policies",
+      "short_name": "context-aware access",
+      "description": "Access decisions at all policy enforcement points (PEPs) incorporate identity, device posture, and enterprise asset attributes as zero-trust context signals.",
       "evaluation_focus": [
         "Identity-based access control adoption",
-        "Identity-based rules at all enforcement points"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "acm-06",
-      "name": "Access rules considering device posture",
-      "description": "Device posture is considered for network access from all locations.",
-      "evaluation_focus": [
-        "Device posture in network access",
-        "Subject posture considered from all locations"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "acm-07",
-      "name": "Asset Attributes",
-      "description": "Enterprise asset attributes are considered for application access for all subjects.",
-      "evaluation_focus": [
+        "Identity-based rules at all enforcement points",
+        "Device posture in network and remote access",
+        "Subject posture considered from all locations",
         "Asset attributes in application access",
         "Asset attributes considered for all subjects"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Technology"
     },
     {
-      "id": "acm-08",
-      "name": "Remote access across untrusted networks based on identity and device posture",
-      "description": "Remote access is formalized with consistent policies across gateways and advanced SSE or internet access without VPN.",
+      "id": "acm-05",
+      "name": "Remote access and zero-trust network access",
+      "short_name": "remote access",
+      "description": "Remote access is formalized with consistent policies across gateways, zero-trust network access (ZTNA) or secure service edge (SSE), and identity plus device posture checks.",
       "evaluation_focus": [
         "Formalized remote user access process",
         "Consistent remote access policy across gateways and LAN",
-        "Cloud SSE for internal asset access",
-        "Internet access without VPN"
+        "Cloud SSE or ZTNA for internal asset access",
+        "Zero-trust remote access with identity and posture checks"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "acm-09",
+      "id": "acm-06",
       "name": "Access Isolation (Separation of duties) and its automation",
+      "short_name": "separation of duties",
       "description": "Production, development, and deployment access is separated with automated CI/CD removal of development access from production.",
       "evaluation_focus": [
         "User separation across production, development, and deployment",
@@ -127,20 +106,23 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "acm-10",
-      "name": "Access Matrix",
-      "description": "A granular subject-to-object access matrix applies enterprise-wide and is reviewed frequently.",
+      "id": "acm-07",
+      "name": "Access Matrix and entitlement certification",
+      "short_name": "access matrix",
+      "description": "A granular subject-to-object access matrix applies enterprise-wide, is reviewed regularly, and is supported by periodic access recertification campaigns.",
       "evaluation_focus": [
         "Granular subject-to-object access matrix",
         "Enterprise-wide access matrix scope",
-        "Frequent access matrix review"
+        "Regular access matrix review",
+        "Periodic access recertification campaigns"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
-      "id": "acm-11",
+      "id": "acm-08",
       "name": "Guest Access",
+      "short_name": "guest access",
       "description": "Guest user onboarding is formalized with automated provisioning and deprovisioning.",
       "evaluation_focus": [
         "Formalized guest user onboarding process",
@@ -150,34 +132,37 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "acm-12",
-      "name": "OOB device access",
-      "description": "Out-of-band access is formalized with secure protocols, consistent access control, and frequent review.",
+      "id": "acm-09",
+      "name": "Out-of-band (OOB) device access",
+      "short_name": "OOB access",
+      "description": "Out-of-band (OOB) management network access is formalized with secure protocols, consistent access control across source locations, and regular review.",
       "evaluation_focus": [
         "Formalized OOB access process",
         "Secure OOB access protocols",
         "Consistent OOB access control across source locations",
-        "Frequent OOB access control review"
+        "Regular OOB access control review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "acm-13",
+      "id": "acm-10",
       "name": "Data access",
-      "description": "Data access is formalized with location-independent access and frequent review.",
+      "short_name": "data access",
+      "description": "Data access is formalized with location-independent access and regular review.",
       "evaluation_focus": [
         "Formalized data access process",
         "Location-independent data access",
-        "Frequent data access process review"
+        "Regular data access process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "acm-14",
+      "id": "acm-11",
       "name": "Access Management Service custodian",
-      "description": "A separate access management service manager maintains separation of duties from authentication, credential management, and Active Directory.",
+      "short_name": "service custodian",
+      "description": "A dedicated access management service manager maintains separation of duties from authentication, credential management, and directory or identity provider administration.",
       "evaluation_focus": [
         "Dedicated access management service manager"
       ],
@@ -185,16 +170,43 @@
       "pillar": "People"
     },
     {
-      "id": "acm-15",
+      "id": "acm-12",
       "name": "Access, authorization and accounting and logging",
-      "description": "Access logs, activity, and lifecycle changes are logged securely to the SOC, including dynamic changes.",
+      "short_name": "access logging",
+      "description": "Access logs, activity, and lifecycle changes are logged securely to the SOC, including dynamic changes and anomalous access policy modifications.",
       "evaluation_focus": [
         "Documented access logging to SOC",
         "Secure access activity logging to SOC",
-        "Dynamic access changes to SOC"
+        "Dynamic access changes to SOC",
+        "Anomalous access policy change detection"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
+    },
+    {
+      "id": "acm-13",
+      "name": "Non-human and workload identity access",
+      "short_name": "non-human identity",
+      "description": "Service principals, workloads, API keys, OAuth client credentials, and automation or AI agent accounts are governed with lifecycle-bound access policies.",
+      "evaluation_focus": [
+        "Workload and service principal access lifecycle",
+        "API key and OAuth client credential governance",
+        "Automation and AI agent account access boundaries"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "acm-14",
+      "name": "AI-era access governance",
+      "short_name": "AI-era governance",
+      "description": "Policies govern approved versus shadow AI tool access to enterprise data and delegated agent actions on behalf of users.",
+      "evaluation_focus": [
+        "Approved versus shadow AI tool access to enterprise data",
+        "Policy for delegated agent actions on behalf of users"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     }
   ],
   "evaluation": {

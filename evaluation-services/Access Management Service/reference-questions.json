@@ -9,16 +9,16 @@
         {
           "id": "rq-acm-00-1",
           "prompt": "Does the enterprise have an access management service?",
-          "intent": "Evaluate does the enterprise have an access management service?",
+          "intent": "Evaluate whether an enterprise access management service exists",
           "field_key": "acm_00_access_management_service_exists",
           "evaluation_focus": "Enterprise access management service exists"
         },
         {
           "id": "rq-acm-00-2",
-          "prompt": "Is the access management service reviewed frequently to measure its efficacy?",
-          "intent": "Evaluate is the access management service reviewed frequently to measure its efficacy?",
-          "field_key": "acm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "prompt": "Is the access management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "acm_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
@@ -28,17 +28,31 @@
       "questions": [
         {
           "id": "rq-acm-01-1",
-          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the access management service?",
-          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for the access management service?",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for the access management service?",
+          "intent": "Evaluate whether access management KPIs and KRIs are documented",
           "field_key": "acm_01_kpis_kris_documented",
           "evaluation_focus": "Documented KPIs and KRIs"
         },
         {
           "id": "rq-acm-01-2",
-          "prompt": "Are the KPIs and KRIs for access management reviewed frequently?",
-          "intent": "Evaluate are the KPIs and KRIs for access management reviewed frequently?",
-          "field_key": "acm_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "prompt": "Are access management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "acm_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-acm-01-3",
+          "prompt": "Do KPIs or KRIs track orphaned or stale entitlements, access certification completion rate, or mean time to revoke access after a role change or termination signal?",
+          "intent": "Evaluate whether modern entitlement hygiene and deprovisioning metrics are tracked",
+          "field_key": "acm_01_entitlement_hygiene_metrics",
+          "evaluation_focus": "Orphaned and stale entitlement metrics"
+        },
+        {
+          "id": "rq-acm-01-4",
+          "prompt": "How does the organization measure access certification campaign completion and policy drift across enforcement points?",
+          "intent": "Evaluate whether certification completion and policy drift are measured",
+          "field_key": "acm_01_certification_and_drift_metrics",
+          "evaluation_focus": "Access certification completion rate"
         }
       ]
     },
@@ -48,389 +62,390 @@
       "questions": [
         {
           "id": "rq-acm-02-1",
-          "prompt": "Does the enterprise have technology or capabilities to manage access control for all enforcement points?",
-          "intent": "Evaluate does the enterprise have technology or capabilities to manage access control for all enforcement points?",
+          "prompt": "Does the enterprise have technology to manage access control for all policy enforcement points (PEPs)?",
+          "intent": "Evaluate whether access control covers all enforcement points",
           "field_key": "acm_02_enforcement_point_access_control",
           "evaluation_focus": "Access control for all enforcement points"
         },
         {
           "id": "rq-acm-02-2",
-          "prompt": "Does the enterprise have a centralized decision point that makes access control decisions, or are decision makers siloed and specific to location?",
-          "intent": "Evaluate does the enterprise have a centralized decision point that makes access control decisions, or are decision makers siloed and specific to location?",
+          "prompt": "Does the enterprise use a centralized policy decision point (PDP) for access control decisions, or are decision makers siloed by location or system?",
+          "intent": "Evaluate whether policy decisions are centralized or siloed",
           "field_key": "acm_02_centralized_policy_decision_point",
           "evaluation_focus": "Centralized vs siloed policy decision points"
         },
         {
           "id": "rq-acm-02-3",
-          "prompt": "Can access control be dynamically changed and subsequently deployed to enforcement points?",
-          "intent": "Evaluate can access control be dynamically changed and subsequently deployed to enforcement points?",
+          "prompt": "Can access control policies be changed dynamically and deployed to enforcement points?",
+          "intent": "Evaluate whether dynamic access control deployment is supported",
           "field_key": "acm_02_dynamic_access_control_deployment",
           "evaluation_focus": "Dynamic access control deployment"
         },
         {
           "id": "rq-acm-02-4",
-          "prompt": "Are access management system (PDP) configurations reviewed frequently to be considered in line with the respective policies (authentication, authorization, network access rules, application access rules, etc.)?",
-          "intent": "Evaluate are access management system (PDP) configurations reviewed frequently to be considered in line with the respective policies (authentication, authorization, network access rules, application access rules, etc.)?",
+          "prompt": "Are access management system (PDP) configurations reviewed at least quarterly to align with authentication, authorization, network, and application access policies?",
+          "intent": "Evaluate whether PDP configurations are reviewed against governing policies",
           "field_key": "acm_02_pdp_config_reviewed",
           "evaluation_focus": "PDP configuration review aligned to policies"
         },
         {
           "id": "rq-acm-02-5",
-          "prompt": "Does the access management system have the capability to push abstracted policies to enforcement points that deploy the actual policy to their respective technology?",
-          "intent": "Evaluate does the access management system have the capability to push abstracted policies to enforcement points that deploy the actual policy to their respective technology?",
+          "prompt": "Can the access management system push abstracted policies to enforcement points that translate them for each underlying technology?",
+          "intent": "Evaluate whether abstracted policy push to PEPs is supported",
           "field_key": "acm_02_abstracted_policy_push",
           "evaluation_focus": "Abstracted policy push to enforcement points"
+        },
+        {
+          "id": "rq-acm-02-6",
+          "prompt": "Are access policies managed as version-controlled policy-as-code (for example via GitOps or infrastructure-as-code pipelines)?",
+          "intent": "Evaluate whether policy-as-code practices are used for access policies",
+          "field_key": "acm_02_policy_as_code",
+          "evaluation_focus": "Policy-as-code and version-controlled access policies"
         }
       ]
     },
     {
       "capability_id": "acm-03",
-      "capability_name": "Network Access Process",
+      "capability_name": "Unified access provisioning (network and application)",
       "questions": [
         {
           "id": "rq-acm-03-1",
-          "prompt": "Does the enterprise consume existing policies to have a documented formalized process of provisioning need-to-know access for subjects?",
-          "intent": "Evaluate does the enterprise consume existing policies to have a documented formalized process of provisioning need-to-know access for subjects?",
-          "field_key": "acm_03_network_need_to_know_process",
-          "evaluation_focus": "Formalized network need-to-know access process"
+          "prompt": "Does the enterprise have documented, formalized need-to-know processes for provisioning network, endpoint, and application access?",
+          "intent": "Evaluate whether unified need-to-know provisioning processes exist for network and application resources",
+          "field_key": "acm_03_unified_need_to_know_process",
+          "evaluation_focus": "Formalized network and endpoint need-to-know access process"
         },
         {
           "id": "rq-acm-03-2",
-          "prompt": "Is the network access request process the same when requesting access across all locations?",
-          "intent": "Evaluate is the network access request process the same when requesting access across all locations?",
-          "field_key": "acm_03_network_access_consistent_locations",
-          "evaluation_focus": "Consistent network access across locations"
+          "prompt": "Is the access request and approval process consistent when requesting network or application access across all locations and systems?",
+          "intent": "Evaluate whether provisioning is consistent across locations and systems",
+          "field_key": "acm_03_consistent_provisioning_scope",
+          "evaluation_focus": "Consistent access provisioning across locations and systems"
         },
         {
           "id": "rq-acm-03-3",
-          "prompt": "Is there an automated process with self-requesting portals to provision network access?",
-          "intent": "Evaluate is there an automated process with self-requesting portals to provision network access?",
-          "field_key": "acm_03_network_access_automated_portals",
-          "evaluation_focus": "Automated network access self-service portals"
+          "prompt": "Are automated self-service portals available for network and application access requests?",
+          "intent": "Evaluate whether self-service access provisioning is automated",
+          "field_key": "acm_03_automated_self_service_portals",
+          "evaluation_focus": "Automated self-service access portals"
         },
         {
           "id": "rq-acm-03-4",
-          "prompt": "Is the network access provisioning process reviewed frequently for efficacy?",
-          "intent": "Evaluate is the network access provisioning process reviewed frequently for efficacy?",
-          "field_key": "acm_03_network_access_reviewed",
-          "evaluation_focus": "Network access provisioning review"
+          "prompt": "Are network and application access provisioning processes reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether provisioning processes are reviewed on a regular cadence",
+          "field_key": "acm_03_provisioning_reviewed_regularly",
+          "evaluation_focus": "Access provisioning process review"
         },
         {
           "id": "rq-acm-03-5",
-          "prompt": "Does the enterprise consume existing endpoint and device policies to have a documented formalized process of provisioning need-to-know access for endpoint devices to specific enterprise assets?",
-          "intent": "Evaluate does the enterprise consume existing endpoint and device policies to have a documented formalized process of provisioning need-to-know access for endpoint devices to specific enterprise assets?",
-          "field_key": "acm_03_endpoint_need_to_know_process",
-          "evaluation_focus": "Formalized endpoint device access process"
-        },
-        {
-          "id": "rq-acm-03-6",
-          "prompt": "Is the endpoint access request process the same when requesting access across all locations?",
-          "intent": "Evaluate is the endpoint access request process the same when requesting access across all locations?",
-          "field_key": "acm_03_endpoint_access_consistent_locations",
-          "evaluation_focus": "Consistent endpoint access across locations"
-        },
-        {
-          "id": "rq-acm-03-7",
-          "prompt": "Is the endpoint access provisioning process reviewed frequently for efficacy?",
-          "intent": "Evaluate is the endpoint access provisioning process reviewed frequently for efficacy?",
-          "field_key": "acm_03_endpoint_access_reviewed",
-          "evaluation_focus": "Endpoint access provisioning review"
+          "prompt": "Does the application access provisioning process cover SaaS and cloud-hosted applications with the same rigor as on-premises systems?",
+          "intent": "Evaluate whether SaaS and cloud application access is included in formalized provisioning",
+          "field_key": "acm_03_application_cloud_saas_coverage",
+          "evaluation_focus": "Formalized application need-to-know access process"
         }
       ]
     },
     {
       "capability_id": "acm-04",
-      "capability_name": "Application Access Process",
+      "capability_name": "Context-aware access policies",
       "questions": [
         {
           "id": "rq-acm-04-1",
-          "prompt": "Does the enterprise consume existing application policies to have a documented formalized process of provisioning need-to-know access to enterprise assets?",
-          "intent": "Evaluate does the enterprise consume existing application policies to have a documented formalized process of provisioning need-to-know access to enterprise assets?",
-          "field_key": "acm_04_application_need_to_know_process",
-          "evaluation_focus": "Formalized application need-to-know access process"
+          "prompt": "Does the enterprise adopt identity-based access control, and do all enforcement points deploy identity-based rules?",
+          "intent": "Evaluate whether identity-based access control is adopted enterprise-wide at all PEPs",
+          "field_key": "acm_04_identity_based_rules_enforcement",
+          "evaluation_focus": "Identity-based rules at all enforcement points"
         },
         {
           "id": "rq-acm-04-2",
-          "prompt": "Is the process the same when requesting application access across all locations and application systems?",
-          "intent": "Evaluate is the process the same when requesting application access across all locations and application systems?",
-          "field_key": "acm_04_application_access_consistent_scope",
-          "evaluation_focus": "Consistent application access across locations and systems"
+          "prompt": "Is device posture (health, compliance, or trust level) evaluated as part of network and remote access decisions?",
+          "intent": "Evaluate whether device posture is incorporated into access decisions",
+          "field_key": "acm_04_device_posture_access_decisions",
+          "evaluation_focus": "Device posture in network and remote access"
         },
         {
           "id": "rq-acm-04-3",
-          "prompt": "Is the application access provisioning process reviewed frequently for efficacy?",
-          "intent": "Evaluate is the application access provisioning process reviewed frequently for efficacy?",
-          "field_key": "acm_04_application_access_reviewed",
-          "evaluation_focus": "Application access provisioning review"
-        }
-      ]
-    },
-    {
-      "capability_id": "acm-05",
-      "capability_name": "Identity based rules",
-      "questions": [
-        {
-          "id": "rq-acm-05-1",
-          "prompt": "Does the enterprise adopt identity-based access control?",
-          "intent": "Evaluate does the enterprise adopt identity-based access control?",
-          "field_key": "acm_05_identity_based_access_control",
-          "evaluation_focus": "Identity-based access control adoption"
-        },
-        {
-          "id": "rq-acm-05-2",
-          "prompt": "Do all enforcement points support and deploy identity-based rules?",
-          "intent": "Evaluate do all enforcement points support and deploy identity-based rules?",
-          "field_key": "acm_05_identity_rules_all_enforcement_points",
-          "evaluation_focus": "Identity-based rules at all enforcement points"
-        }
-      ]
-    },
-    {
-      "capability_id": "acm-06",
-      "capability_name": "Access rules considering device posture",
-      "questions": [
-        {
-          "id": "rq-acm-06-1",
-          "prompt": "Does the enterprise consider device posture as part of network access based on the existing network access process?",
-          "intent": "Evaluate does the enterprise consider device posture as part of network access based on the existing network access process?",
-          "field_key": "acm_06_device_posture_network_access",
-          "evaluation_focus": "Device posture in network access"
-        },
-        {
-          "id": "rq-acm-06-2",
-          "prompt": "Does subject posture get considered when accessing the network from all locations?",
-          "intent": "Evaluate does subject posture get considered when accessing the network from all locations?",
-          "field_key": "acm_06_posture_all_locations",
+          "prompt": "Is subject posture considered consistently when accessing the network from all locations?",
+          "intent": "Evaluate whether posture checks apply from all access locations",
+          "field_key": "acm_04_posture_all_locations",
           "evaluation_focus": "Subject posture considered from all locations"
-        }
-      ]
-    },
-    {
-      "capability_id": "acm-07",
-      "capability_name": "Asset Attributes",
-      "questions": [
-        {
-          "id": "rq-acm-07-1",
-          "prompt": "Does the enterprise consider enterprise asset attributes as part of application access based on the existing application access process?",
-          "intent": "Evaluate does the enterprise consider enterprise asset attributes as part of application access based on the existing application access process?",
-          "field_key": "acm_07_asset_attributes_application_access",
-          "evaluation_focus": "Asset attributes in application access"
         },
         {
-          "id": "rq-acm-07-2",
-          "prompt": "Are enterprise asset attributes considered when accessing applications for all subjects?",
-          "intent": "Evaluate are enterprise asset attributes considered when accessing applications for all subjects?",
-          "field_key": "acm_07_asset_attributes_all_subjects",
+          "id": "rq-acm-04-4",
+          "prompt": "Are enterprise asset attributes (classification, sensitivity, ownership) used in application access decisions for all subjects?",
+          "intent": "Evaluate whether asset attributes inform application access for all subjects",
+          "field_key": "acm_04_asset_attributes_application_access",
           "evaluation_focus": "Asset attributes considered for all subjects"
         }
       ]
     },
     {
-      "capability_id": "acm-08",
-      "capability_name": "Remote access across untrusted networks based on identity and device posture",
+      "capability_id": "acm-05",
+      "capability_name": "Remote access and zero-trust network access",
       "questions": [
         {
-          "id": "rq-acm-08-1",
-          "prompt": "Is there a documented and formalized access process for remote users in the enterprise?",
-          "intent": "Evaluate is there a documented and formalized access process for remote users in the enterprise?",
-          "field_key": "acm_08_remote_access_process",
+          "id": "rq-acm-05-1",
+          "prompt": "Is there a documented, formalized access process for remote users?",
+          "intent": "Evaluate whether a formal remote access process exists",
+          "field_key": "acm_05_remote_access_process",
           "evaluation_focus": "Formalized remote user access process"
         },
         {
-          "id": "rq-acm-08-2",
-          "prompt": "Do all remote users across all gateways (cloud, data center, on-premises) have the same access policy? Is the access policy the same if the same user accesses the network from a trusted LAN segment?",
-          "intent": "Evaluate do all remote users across all gateways (cloud, data center, on-premises) have the same access policy? Is the access policy the same if the same user accesses the network from a trusted LAN segment?",
-          "field_key": "acm_08_consistent_remote_access_policy",
+          "id": "rq-acm-05-2",
+          "prompt": "Do remote users receive the same access policy across all gateways (cloud, data center, on-premises) and when accessing from a trusted LAN segment?",
+          "intent": "Evaluate whether remote access policy is consistent across gateways and LAN",
+          "field_key": "acm_05_consistent_remote_access_policy",
           "evaluation_focus": "Consistent remote access policy across gateways and LAN"
         },
         {
-          "id": "rq-acm-08-3",
-          "prompt": "Does the enterprise allow for advanced technology like cloud SSE to allow access to internal trusted enterprise assets?",
-          "intent": "Evaluate does the enterprise allow for advanced technology like cloud SSE to allow access to internal trusted enterprise assets?",
-          "field_key": "acm_08_cloud_sse_access",
-          "evaluation_focus": "Cloud SSE for internal asset access"
+          "id": "rq-acm-05-3",
+          "prompt": "Does the enterprise use cloud secure service edge (SSE) or zero-trust network access (ZTNA) to provide access to internal trusted assets?",
+          "intent": "Evaluate whether SSE or ZTNA is used for internal asset access",
+          "field_key": "acm_05_cloud_sse_ztna_access",
+          "evaluation_focus": "Cloud SSE or ZTNA for internal asset access"
         },
         {
-          "id": "rq-acm-08-4",
-          "prompt": "Does the enterprise allow access for enterprise assets from anywhere over the internet without VPN?",
-          "intent": "Evaluate does the enterprise allow access for enterprise assets from anywhere over the internet without VPN?",
-          "field_key": "acm_08_internet_access_without_vpn",
-          "evaluation_focus": "Internet access without VPN"
+          "id": "rq-acm-05-4",
+          "prompt": "Does remote access use zero-trust network access (ZTNA/SSE) with identity and device posture checks, rather than legacy perimeter VPN as the primary control?",
+          "intent": "Evaluate whether zero-trust remote access replaces legacy VPN as the primary control",
+          "field_key": "acm_05_ztna_over_legacy_vpn",
+          "evaluation_focus": "Zero-trust remote access with identity and posture checks"
         }
       ]
     },
     {
-      "capability_id": "acm-09",
+      "capability_id": "acm-06",
       "capability_name": "Access Isolation (Separation of duties) and its automation",
       "questions": [
         {
-          "id": "rq-acm-09-1",
-          "prompt": "Is there a clear process of user separation between production, development, and deployment?",
-          "intent": "Evaluate is there a clear process of user separation between production, development, and deployment?",
-          "field_key": "acm_09_prod_dev_deploy_separation",
+          "id": "rq-acm-06-1",
+          "prompt": "Is there a clear process separating user access between production, development, and deployment environments?",
+          "intent": "Evaluate whether production, development, and deployment access is separated",
+          "field_key": "acm_06_prod_dev_deploy_separation",
           "evaluation_focus": "User separation across production, development, and deployment"
         },
         {
-          "id": "rq-acm-09-2",
-          "prompt": "Are service accounts and normal accounts given separate permissions?",
-          "intent": "Evaluate are service accounts and normal accounts given separate permissions?",
-          "field_key": "acm_09_service_account_separation",
+          "id": "rq-acm-06-2",
+          "prompt": "Are service accounts and normal user accounts given separate permissions?",
+          "intent": "Evaluate whether service and normal accounts have separate permissions",
+          "field_key": "acm_06_service_account_separation",
           "evaluation_focus": "Separate permissions for service and normal accounts"
         },
         {
-          "id": "rq-acm-09-3",
-          "prompt": "Does the CI/CD pipeline remove development users from access to production automatically when code gets pushed to production?",
-          "intent": "Evaluate does the CI/CD pipeline remove development users from access to production automatically when code gets pushed to production?",
-          "field_key": "acm_09_cicd_removes_dev_access",
+          "id": "rq-acm-06-3",
+          "prompt": "Does the CI/CD pipeline automatically remove development users from production access when code is promoted to production?",
+          "intent": "Evaluate whether CI/CD automates removal of dev access from production",
+          "field_key": "acm_06_cicd_removes_dev_access",
           "evaluation_focus": "Automated CI/CD removal of dev access from production"
         }
       ]
     },
     {
-      "capability_id": "acm-10",
-      "capability_name": "Access Matrix",
+      "capability_id": "acm-07",
+      "capability_name": "Access Matrix and entitlement certification",
       "questions": [
         {
-          "id": "rq-acm-10-1",
-          "prompt": "Does the enterprise have a granular access control matrix for subject to object?",
-          "intent": "Evaluate does the enterprise have a granular access control matrix for subject to object?",
-          "field_key": "acm_10_subject_object_access_matrix",
+          "id": "rq-acm-07-1",
+          "prompt": "Does the enterprise maintain a granular subject-to-object access control matrix?",
+          "intent": "Evaluate whether a granular access matrix exists",
+          "field_key": "acm_07_subject_object_access_matrix",
           "evaluation_focus": "Granular subject-to-object access matrix"
         },
         {
-          "id": "rq-acm-10-2",
-          "prompt": "Does the access matrix apply to all locations and functions and not just specific segments?",
-          "intent": "Evaluate does the access matrix apply to all locations and functions and not just specific segments?",
-          "field_key": "acm_10_access_matrix_enterprise_wide",
+          "id": "rq-acm-07-2",
+          "prompt": "Does the access matrix apply enterprise-wide across all locations and functions, not just specific segments?",
+          "intent": "Evaluate whether the access matrix scope is enterprise-wide",
+          "field_key": "acm_07_access_matrix_enterprise_wide",
           "evaluation_focus": "Enterprise-wide access matrix scope"
         },
         {
-          "id": "rq-acm-10-3",
-          "prompt": "Are the access control matrices reviewed frequently for efficacy?",
-          "intent": "Evaluate are the access control matrices reviewed frequently for efficacy?",
-          "field_key": "acm_10_access_matrix_reviewed",
-          "evaluation_focus": "Frequent access matrix review"
+          "id": "rq-acm-07-3",
+          "prompt": "Are access control matrices reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether access matrices are reviewed on a regular cadence",
+          "field_key": "acm_07_access_matrix_reviewed_regularly",
+          "evaluation_focus": "Regular access matrix review"
+        },
+        {
+          "id": "rq-acm-07-4",
+          "prompt": "Does the organization run periodic access recertification campaigns where data or resource owners approve or revoke entitlements?",
+          "intent": "Evaluate whether periodic access recertification campaigns are conducted",
+          "field_key": "acm_07_access_recertification_campaigns",
+          "evaluation_focus": "Periodic access recertification campaigns"
         }
       ]
     },
     {
-      "capability_id": "acm-11",
+      "capability_id": "acm-08",
       "capability_name": "Guest Access",
       "questions": [
         {
-          "id": "rq-acm-11-1",
+          "id": "rq-acm-08-1",
           "prompt": "Does the enterprise have a formalized, documented external or guest user onboarding process?",
-          "intent": "Evaluate does the enterprise have a formalized, documented external or guest user onboarding process?",
-          "field_key": "acm_11_guest_onboarding_process",
+          "intent": "Evaluate whether a formal guest onboarding process exists",
+          "field_key": "acm_08_guest_onboarding_process",
           "evaluation_focus": "Formalized guest user onboarding process"
         },
         {
-          "id": "rq-acm-11-2",
-          "prompt": "Does guest user access timeframe and access control provisioning and deprovisioning happen automatically?",
-          "intent": "Evaluate does guest user access timeframe and access control provisioning and deprovisioning happen automatically?",
-          "field_key": "acm_11_guest_access_automated_lifecycle",
+          "id": "rq-acm-08-2",
+          "prompt": "Are guest user access timeframes and access control provisioning and deprovisioning automated?",
+          "intent": "Evaluate whether guest access lifecycle is automated",
+          "field_key": "acm_08_guest_access_automated_lifecycle",
           "evaluation_focus": "Automated guest access lifecycle"
         }
       ]
     },
     {
-      "capability_id": "acm-12",
-      "capability_name": "OOB device access",
+      "capability_id": "acm-09",
+      "capability_name": "Out-of-band (OOB) device access",
       "questions": [
         {
-          "id": "rq-acm-12-1",
-          "prompt": "Is there a documented and formalized process to provide subject access to the OOB network?",
-          "intent": "Evaluate is there a documented and formalized process to provide subject access to the OOB network?",
-          "field_key": "acm_12_oob_access_process",
+          "id": "rq-acm-09-1",
+          "prompt": "Is there a documented, formalized process to grant subjects access to the out-of-band (OOB) management network?",
+          "intent": "Evaluate whether a formal OOB access process exists",
+          "field_key": "acm_09_oob_access_process",
           "evaluation_focus": "Formalized OOB access process"
         },
         {
-          "id": "rq-acm-12-2",
-          "prompt": "Are secure protocols used to access OOB?",
-          "intent": "Evaluate are secure protocols used to access OOB?",
-          "field_key": "acm_12_oob_secure_protocols",
+          "id": "rq-acm-09-2",
+          "prompt": "Are secure protocols and jump hosts or privileged access controls used for OOB access?",
+          "intent": "Evaluate whether secure protocols and privileged access controls protect OOB access",
+          "field_key": "acm_09_oob_secure_protocols",
           "evaluation_focus": "Secure OOB access protocols"
         },
         {
-          "id": "rq-acm-12-3",
-          "prompt": "Does the subject get the same access control to OOB irrespective of the source location (LAN, VPN, cloud)?",
-          "intent": "Evaluate does the subject get the same access control to OOB irrespective of the source location (LAN, VPN, cloud)?",
-          "field_key": "acm_12_oob_consistent_access_control",
+          "id": "rq-acm-09-3",
+          "prompt": "Do subjects receive the same OOB access control regardless of source location (LAN, VPN, cloud)?",
+          "intent": "Evaluate whether OOB access control is consistent across source locations",
+          "field_key": "acm_09_oob_consistent_access_control",
           "evaluation_focus": "Consistent OOB access control across source locations"
         },
         {
-          "id": "rq-acm-12-4",
-          "prompt": "Are OOB access controls reviewed frequently for efficacy?",
-          "intent": "Evaluate are OOB access controls reviewed frequently for efficacy?",
-          "field_key": "acm_12_oob_access_reviewed",
-          "evaluation_focus": "Frequent OOB access control review"
+          "id": "rq-acm-09-4",
+          "prompt": "Are OOB access controls reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether OOB access controls are reviewed on a regular cadence",
+          "field_key": "acm_09_oob_access_reviewed_regularly",
+          "evaluation_focus": "Regular OOB access control review"
         }
       ]
     },
     {
-      "capability_id": "acm-13",
+      "capability_id": "acm-10",
       "capability_name": "Data access",
       "questions": [
         {
-          "id": "rq-acm-13-1",
-          "prompt": "Is there a documented and formalized process to provide subject access to data?",
-          "intent": "Evaluate is there a documented and formalized process to provide subject access to data?",
-          "field_key": "acm_13_data_access_process",
+          "id": "rq-acm-10-1",
+          "prompt": "Is there a documented, formalized process to grant subjects access to data?",
+          "intent": "Evaluate whether a formal data access process exists",
+          "field_key": "acm_10_data_access_process",
           "evaluation_focus": "Formalized data access process"
         },
         {
-          "id": "rq-acm-13-2",
-          "prompt": "Is access provided to data the same for the subject irrespective of location?",
-          "intent": "Evaluate is access provided to data the same for the subject irrespective of location?",
-          "field_key": "acm_13_data_access_location_independent",
+          "id": "rq-acm-10-2",
+          "prompt": "Is data access consistent for a subject regardless of location?",
+          "intent": "Evaluate whether data access is location-independent",
+          "field_key": "acm_10_data_access_location_independent",
           "evaluation_focus": "Location-independent data access"
         },
         {
-          "id": "rq-acm-13-3",
-          "prompt": "Is the data access process and policy reviewed frequently for efficacy?",
-          "intent": "Evaluate is the data access process and policy reviewed frequently for efficacy?",
-          "field_key": "acm_13_data_access_reviewed",
-          "evaluation_focus": "Frequent data access process review"
+          "id": "rq-acm-10-3",
+          "prompt": "Is the data access process and policy reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether data access processes are reviewed on a regular cadence",
+          "field_key": "acm_10_data_access_reviewed_regularly",
+          "evaluation_focus": "Regular data access process review"
         }
       ]
     },
     {
-      "capability_id": "acm-14",
+      "capability_id": "acm-11",
       "capability_name": "Access Management Service custodian",
       "questions": [
         {
-          "id": "rq-acm-14-1",
-          "prompt": "Does the enterprise have a separate service manager for access management, distinct from authentication, credential management, and Active Directory management, to maintain separation of duties?",
-          "intent": "Evaluate does the enterprise have a separate service manager for access management, distinct from authentication, credential management, and Active Directory management, to maintain separation of duties?",
-          "field_key": "acm_14_dedicated_access_management_custodian",
+          "id": "rq-acm-11-1",
+          "prompt": "Does the enterprise have a dedicated access management service manager, separate from authentication, credential management, and directory or identity provider administration, to maintain separation of duties?",
+          "intent": "Evaluate whether a dedicated access management custodian exists with separation of duties",
+          "field_key": "acm_11_dedicated_access_management_custodian",
           "evaluation_focus": "Dedicated access management service manager"
         }
       ]
     },
     {
-      "capability_id": "acm-15",
+      "capability_id": "acm-12",
       "capability_name": "Access, authorization and accounting and logging",
       "questions": [
         {
-          "id": "rq-acm-15-1",
-          "prompt": "Is there a formal documented process for logging access logs, activity, and lifecycle changes to the SOC?",
-          "intent": "Evaluate is there a formal documented process for logging access logs, activity, and lifecycle changes to the SOC?",
-          "field_key": "acm_15_logging_process_to_soc",
+          "id": "rq-acm-12-1",
+          "prompt": "Is there a formal documented process for logging access activity and lifecycle changes to the SOC?",
+          "intent": "Evaluate whether access logging to the SOC is formally documented",
+          "field_key": "acm_12_logging_process_to_soc",
           "evaluation_focus": "Documented access logging to SOC"
         },
         {
-          "id": "rq-acm-15-2",
-          "prompt": "Is logging of access logs and activity made securely to the SOC? (This is different from authentication logs or credential creation logs.)",
-          "intent": "Evaluate is logging of access logs and activity made securely to the SOC? (This is different from authentication logs or credential creation logs.)",
-          "field_key": "acm_15_secure_logging_to_soc",
+          "id": "rq-acm-12-2",
+          "prompt": "Are access logs and authorization activity transmitted securely to the SOC? (This is distinct from authentication or credential creation logs.)",
+          "intent": "Evaluate whether access activity is logged securely to the SOC",
+          "field_key": "acm_12_secure_logging_to_soc",
           "evaluation_focus": "Secure access activity logging to SOC"
         },
         {
-          "id": "rq-acm-15-3",
-          "prompt": "Are dynamic changes to access logs and activity captured and transferred to the SOC?",
-          "intent": "Evaluate are dynamic changes to access logs and activity captured and transferred to the SOC?",
-          "field_key": "acm_15_dynamic_changes_to_soc",
+          "id": "rq-acm-12-3",
+          "prompt": "Are dynamic access policy changes captured and transferred to the SOC in near-real time?",
+          "intent": "Evaluate whether dynamic access changes are captured and sent to the SOC",
+          "field_key": "acm_12_dynamic_changes_to_soc",
           "evaluation_focus": "Dynamic access changes to SOC"
+        },
+        {
+          "id": "rq-acm-12-4",
+          "prompt": "Are anomalous access policy changes or bulk entitlement grants detected and alerted in near-real time (including AI-assisted analytics)?",
+          "intent": "Evaluate whether anomalous access changes trigger near-real-time detection and alerting",
+          "field_key": "acm_12_anomalous_access_detection",
+          "evaluation_focus": "Anomalous access policy change detection"
+        }
+      ]
+    },
+    {
+      "capability_id": "acm-13",
+      "capability_name": "Non-human and workload identity access",
+      "questions": [
+        {
+          "id": "rq-acm-13-1",
+          "prompt": "Are workload and service principal access permissions tied to a documented lifecycle (creation, rotation, and deprovisioning)?",
+          "intent": "Evaluate whether non-human workload identities have lifecycle-bound access",
+          "field_key": "acm_13_workload_identity_lifecycle",
+          "evaluation_focus": "Workload and service principal access lifecycle"
+        },
+        {
+          "id": "rq-acm-13-2",
+          "prompt": "How does the organization govern API keys, OAuth client credentials, and other non-interactive access tokens?",
+          "intent": "Evaluate whether API keys and OAuth credentials are governed",
+          "field_key": "acm_13_api_key_oauth_governance",
+          "evaluation_focus": "API key and OAuth client credential governance"
+        },
+        {
+          "id": "rq-acm-13-3",
+          "prompt": "Are automation accounts and AI agent identities subject to explicit access boundaries and approval before accessing enterprise resources?",
+          "intent": "Evaluate whether automation and AI agent accounts have defined access boundaries",
+          "field_key": "acm_13_automation_ai_agent_boundaries",
+          "evaluation_focus": "Automation and AI agent account access boundaries"
+        }
+      ]
+    },
+    {
+      "capability_id": "acm-14",
+      "capability_name": "AI-era access governance",
+      "questions": [
+        {
+          "id": "rq-acm-14-1",
+          "prompt": "Does the organization distinguish approved AI tools from shadow AI tools that may access enterprise data, and are access controls enforced accordingly?",
+          "intent": "Evaluate whether approved versus shadow AI tool access is governed",
+          "field_key": "acm_14_approved_vs_shadow_ai_access",
+          "evaluation_focus": "Approved versus shadow AI tool access to enterprise data"
+        },
+        {
+          "id": "rq-acm-14-2",
+          "prompt": "Is there a policy governing delegated agent actions on behalf of users, including what resources agents may access and under what approval conditions?",
+          "intent": "Evaluate whether delegated agent access actions are governed by policy",
+          "field_key": "acm_14_delegated_agent_access_policy",
+          "evaluation_focus": "Policy for delegated agent actions on behalf of users"
         }
       ]
     }
