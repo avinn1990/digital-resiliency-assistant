@@ -1,0 +1,351 @@
+{
+  "service_id": "identity-management",
+  "service_name": "Identity Management Service",
+  "capability_questions": [
+    {
+      "capability_id": "idm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-idm-00-1",
+          "prompt": "Does the enterprise have an identity management service?",
+          "intent": "Evaluate does the enterprise have an identity management service?",
+          "field_key": "idm_00_identity_management_service_exists",
+          "evaluation_focus": "Enterprise identity management service exists"
+        },
+        {
+          "id": "rq-idm-00-2",
+          "prompt": "Is the identity management service reviewed frequently to measure its efficacy?",
+          "intent": "Evaluate is the identity management service reviewed frequently to measure its efficacy?",
+          "field_key": "idm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-idm-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the identity management service?",
+          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for the identity management service?",
+          "field_key": "idm_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-idm-01-2",
+          "prompt": "Are the KPIs and KRIs for identity management reviewed frequently?",
+          "intent": "Evaluate are the KPIs and KRIs for identity management reviewed frequently?",
+          "field_key": "idm_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-02",
+      "capability_name": "Identity Store",
+      "questions": [
+        {
+          "id": "rq-idm-02-1",
+          "prompt": "Does the enterprise have a centralized management server for managing identities?",
+          "intent": "Evaluate does the enterprise have a centralized management server for managing identities?",
+          "field_key": "idm_02_centralized_identity_server",
+          "evaluation_focus": "Centralized identity management server"
+        },
+        {
+          "id": "rq-idm-02-2",
+          "prompt": "Does the enterprise identity store manage users for the entire scope of the enterprise and subsidiaries, or does it provision users only for enterprise employees (FTE)?",
+          "intent": "Evaluate does the enterprise identity store manage users for the entire scope of the enterprise and subsidiaries, or does it provision users only for enterprise employees (FTE)?",
+          "field_key": "idm_02_identity_store_user_scope",
+          "evaluation_focus": "Enterprise-wide vs FTE-only user scope"
+        },
+        {
+          "id": "rq-idm-02-3",
+          "prompt": "Does the enterprise identity store manage third-party and vendor users as well?",
+          "intent": "Evaluate does the enterprise identity store manage third-party and vendor users as well?",
+          "field_key": "idm_02_third_party_user_management",
+          "evaluation_focus": "Third-party and vendor user management"
+        },
+        {
+          "id": "rq-idm-02-4",
+          "prompt": "Does the enterprise identity store support automation when creating subject profiles?",
+          "intent": "Evaluate does the enterprise identity store support automation when creating subject profiles?",
+          "field_key": "idm_02_automated_subject_profile_creation",
+          "evaluation_focus": "Automated subject profile creation"
+        },
+        {
+          "id": "rq-idm-02-5",
+          "prompt": "Does the enterprise identity store configuration get reviewed frequently for efficacy?",
+          "intent": "Evaluate does the enterprise identity store configuration get reviewed frequently for efficacy?",
+          "field_key": "idm_02_identity_store_config_reviewed",
+          "evaluation_focus": "Identity store configuration review"
+        },
+        {
+          "id": "rq-idm-02-6",
+          "prompt": "Do all enterprise enforcement points in the network integrate with the centralized identity store to get user information?",
+          "intent": "Evaluate do all enterprise enforcement points in the network integrate with the centralized identity store to get user information?",
+          "field_key": "idm_02_enforcement_points_integrated",
+          "evaluation_focus": "Enforcement point integration with identity store"
+        },
+        {
+          "id": "rq-idm-02-7",
+          "prompt": "Are user information extractions automated with technology like SCIM?",
+          "intent": "Evaluate are user information extractions automated with technology like SCIM?",
+          "field_key": "idm_02_scim_automation",
+          "evaluation_focus": "SCIM automation for user information"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-03",
+      "capability_name": "Identity store custodians",
+      "questions": [
+        {
+          "id": "rq-idm-03-1",
+          "prompt": "Does the enterprise have separate roles identified for management of the identity store and the identities themselves?",
+          "intent": "Evaluate does the enterprise have separate roles identified for management of the identity store and the identities themselves?",
+          "field_key": "idm_03_separate_custodian_roles",
+          "evaluation_focus": "Separate roles for identity store and identity management"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-04",
+      "capability_name": "Subject Profiles",
+      "questions": [
+        {
+          "id": "rq-idm-04-1",
+          "prompt": "Does the enterprise have a formalized and documented process on generating subject profiles by considering multiple attributes like environment, context, and requested scope?",
+          "intent": "Evaluate does the enterprise have a formalized and documented process on generating subject profiles by considering multiple attributes like environment, context, and requested scope?",
+          "field_key": "idm_04_subject_profile_process",
+          "evaluation_focus": "Formalized subject profile creation process"
+        },
+        {
+          "id": "rq-idm-04-2",
+          "prompt": "Is the subject creation process relevant across the entire enterprise and its subsidiaries and third parties, or is it for FTE only?",
+          "intent": "Evaluate is the subject creation process relevant across the entire enterprise and its subsidiaries and third parties, or is it for FTE only?",
+          "field_key": "idm_04_subject_profile_scope",
+          "evaluation_focus": "Enterprise-wide vs FTE-only subject scope"
+        },
+        {
+          "id": "rq-idm-04-3",
+          "prompt": "Is the subject profile creation process automated, especially for non-user profiles like IoT devices?",
+          "intent": "Evaluate is the subject profile creation process automated, especially for non-user profiles like IoT devices?",
+          "field_key": "idm_04_subject_profile_automated",
+          "evaluation_focus": "Automated subject profile creation"
+        },
+        {
+          "id": "rq-idm-04-4",
+          "prompt": "Is the subject profile creation process reviewed?",
+          "intent": "Evaluate is the subject profile creation process reviewed?",
+          "field_key": "idm_04_subject_profile_reviewed",
+          "evaluation_focus": "Subject profile creation review"
+        },
+        {
+          "id": "rq-idm-04-5",
+          "prompt": "Once created, do enterprise enforcement points incorporate the subject profile into policy creation?",
+          "intent": "Evaluate once created, do enterprise enforcement points incorporate the subject profile into policy creation?",
+          "field_key": "idm_04_subject_profile_in_policy",
+          "evaluation_focus": "Enforcement points use subject profiles in policy"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-05",
+      "capability_name": "Object Profiles",
+      "questions": [
+        {
+          "id": "rq-idm-05-1",
+          "prompt": "Does the enterprise have a formalized and documented process on generating object profiles by considering multiple attributes like environment, context, and requested scope?",
+          "intent": "Evaluate does the enterprise have a formalized and documented process on generating object profiles by considering multiple attributes like environment, context, and requested scope?",
+          "field_key": "idm_05_object_profile_process",
+          "evaluation_focus": "Formalized object profile creation process"
+        },
+        {
+          "id": "rq-idm-05-2",
+          "prompt": "Is the object creation process relevant across the entire enterprise and its subsidiaries and third-party servers, or is it for enterprise assets only?",
+          "intent": "Evaluate is the object creation process relevant across the entire enterprise and its subsidiaries and third-party servers, or is it for enterprise assets only?",
+          "field_key": "idm_05_object_profile_scope",
+          "evaluation_focus": "Enterprise-wide vs enterprise-assets-only object scope"
+        },
+        {
+          "id": "rq-idm-05-3",
+          "prompt": "Is the object profile creation process automated?",
+          "intent": "Evaluate is the object profile creation process automated?",
+          "field_key": "idm_05_object_profile_automated",
+          "evaluation_focus": "Automated object profile creation"
+        },
+        {
+          "id": "rq-idm-05-4",
+          "prompt": "Is the object profile creation process reviewed?",
+          "intent": "Evaluate is the object profile creation process reviewed?",
+          "field_key": "idm_05_object_profile_reviewed",
+          "evaluation_focus": "Object profile creation review"
+        },
+        {
+          "id": "rq-idm-05-5",
+          "prompt": "Once created, do enterprise enforcement points incorporate the object profile into policy creation?",
+          "intent": "Evaluate once created, do enterprise enforcement points incorporate the object profile into policy creation?",
+          "field_key": "idm_05_object_profile_in_policy",
+          "evaluation_focus": "Enforcement points use object profiles in policy"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-06",
+      "capability_name": "Identity Provisioning",
+      "questions": [
+        {
+          "id": "rq-idm-06-1",
+          "prompt": "After subject and object profile creation, does the enterprise have a formalized documented process of provisioning the identity based on the profile?",
+          "intent": "Evaluate after subject and object profile creation, does the enterprise have a formalized documented process of provisioning the identity based on the profile?",
+          "field_key": "idm_06_provisioning_process_documented",
+          "evaluation_focus": "Formalized identity provisioning process"
+        },
+        {
+          "id": "rq-idm-06-2",
+          "prompt": "Does the enterprise automate identity provisioning based on profile?",
+          "intent": "Evaluate does the enterprise automate identity provisioning based on profile?",
+          "field_key": "idm_06_provisioning_automated",
+          "evaluation_focus": "Automated identity provisioning from profile"
+        },
+        {
+          "id": "rq-idm-06-3",
+          "prompt": "Is the provisioning process reviewed for efficacy?",
+          "intent": "Evaluate is the provisioning process reviewed for efficacy?",
+          "field_key": "idm_06_provisioning_reviewed",
+          "evaluation_focus": "Provisioning process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-07",
+      "capability_name": "Identity Deprovisioning",
+      "questions": [
+        {
+          "id": "rq-idm-07-1",
+          "prompt": "Based on triggers like compromised users, passwords, or expiry of identity, does the enterprise have a formalized documented process for deprovisioning users?",
+          "intent": "Evaluate based on triggers like compromised users, passwords, or expiry of identity, does the enterprise have a formalized documented process for deprovisioning users?",
+          "field_key": "idm_07_deprovisioning_process_documented",
+          "evaluation_focus": "Formalized identity deprovisioning process"
+        },
+        {
+          "id": "rq-idm-07-2",
+          "prompt": "Does the enterprise automate identity deprovisioning based on triggers?",
+          "intent": "Evaluate does the enterprise automate identity deprovisioning based on triggers?",
+          "field_key": "idm_07_deprovisioning_automated",
+          "evaluation_focus": "Automated identity deprovisioning from triggers"
+        },
+        {
+          "id": "rq-idm-07-3",
+          "prompt": "Is the deprovisioning process reviewed for efficacy?",
+          "intent": "Evaluate is the deprovisioning process reviewed for efficacy?",
+          "field_key": "idm_07_deprovisioning_reviewed",
+          "evaluation_focus": "Deprovisioning process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-08",
+      "capability_name": "Third Party Vendor Identity provisioning",
+      "questions": [
+        {
+          "id": "rq-idm-08-1",
+          "prompt": "Does the enterprise have a documented formalized process for provisioning third-party users?",
+          "intent": "Evaluate does the enterprise have a documented formalized process for provisioning third-party users?",
+          "field_key": "idm_08_third_party_provisioning_documented",
+          "evaluation_focus": "Formalized third-party provisioning process"
+        },
+        {
+          "id": "rq-idm-08-2",
+          "prompt": "Does the enterprise automate third-party identity provisioning based on profile?",
+          "intent": "Evaluate does the enterprise automate third-party identity provisioning based on profile?",
+          "field_key": "idm_08_third_party_provisioning_automated",
+          "evaluation_focus": "Automated third-party identity provisioning"
+        },
+        {
+          "id": "rq-idm-08-3",
+          "prompt": "Is the third-party provisioning process reviewed for efficacy?",
+          "intent": "Evaluate is the third-party provisioning process reviewed for efficacy?",
+          "field_key": "idm_08_third_party_provisioning_reviewed",
+          "evaluation_focus": "Third-party provisioning process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-09",
+      "capability_name": "Third Party Vendor Identity de-provisioning",
+      "questions": [
+        {
+          "id": "rq-idm-09-1",
+          "prompt": "Does the enterprise have a documented formalized process for deprovisioning third-party users?",
+          "intent": "Evaluate does the enterprise have a documented formalized process for deprovisioning third-party users?",
+          "field_key": "idm_09_third_party_deprovisioning_documented",
+          "evaluation_focus": "Formalized third-party deprovisioning process"
+        },
+        {
+          "id": "rq-idm-09-2",
+          "prompt": "Does the enterprise automate third-party identity deprovisioning based on triggers?",
+          "intent": "Evaluate does the enterprise automate third-party identity deprovisioning based on triggers?",
+          "field_key": "idm_09_third_party_deprovisioning_automated",
+          "evaluation_focus": "Automated third-party identity deprovisioning"
+        },
+        {
+          "id": "rq-idm-09-3",
+          "prompt": "Is the third-party deprovisioning process reviewed for efficacy?",
+          "intent": "Evaluate is the third-party deprovisioning process reviewed for efficacy?",
+          "field_key": "idm_09_third_party_deprovisioning_reviewed",
+          "evaluation_focus": "Third-party deprovisioning process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-10",
+      "capability_name": "Emergency Break Glass",
+      "questions": [
+        {
+          "id": "rq-idm-10-1",
+          "prompt": "Does the enterprise have an emergency break glass process in case the identity store is not reachable?",
+          "intent": "Evaluate does the enterprise have an emergency break glass process in case the identity store is not reachable?",
+          "field_key": "idm_10_break_glass_process_exists",
+          "evaluation_focus": "Emergency break glass process exists"
+        },
+        {
+          "id": "rq-idm-10-2",
+          "prompt": "Is the break glass process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the break glass process reviewed frequently for efficacy?",
+          "field_key": "idm_10_break_glass_reviewed",
+          "evaluation_focus": "Frequent break glass process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "idm-11",
+      "capability_name": "Identity life cycle logging",
+      "questions": [
+        {
+          "id": "rq-idm-11-1",
+          "prompt": "Is there a formal documented process for logging identity management and lifecycle changes to the SOC?",
+          "intent": "Evaluate is there a formal documented process for logging identity management and lifecycle changes to the SOC?",
+          "field_key": "idm_11_logging_process_to_soc",
+          "evaluation_focus": "Documented identity lifecycle logging to SOC"
+        },
+        {
+          "id": "rq-idm-11-2",
+          "prompt": "Is logging of identity changes and lifecycle made securely to the SOC? (This is different from authentication logs or credential creation logs.)",
+          "intent": "Evaluate is logging of identity changes and lifecycle made securely to the SOC? (This is different from authentication logs or credential creation logs.)",
+          "field_key": "idm_11_secure_logging_to_soc",
+          "evaluation_focus": "Secure identity lifecycle logging to SOC"
+        },
+        {
+          "id": "rq-idm-11-3",
+          "prompt": "Are dynamic changes to the identity profile captured and transferred to the SOC?",
+          "intent": "Evaluate are dynamic changes to the identity profile captured and transferred to the SOC?",
+          "field_key": "idm_11_dynamic_changes_to_soc",
+          "evaluation_focus": "Dynamic identity profile changes to SOC"
+        }
+      ]
+    }
+  ]
+}

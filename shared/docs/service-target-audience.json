@@ -74,6 +74,19 @@
         "security-program-strategy-lead"
       ]
     },
+    "identity-management": {
+      "service_name": "Identity Management Service",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead",
+        "tprm-lead"
+      ]
+    },
     "change-management": {
       "service_name": "Change Management Service",
       "role_ids": [
