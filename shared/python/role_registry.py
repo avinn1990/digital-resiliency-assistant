@@ -151,6 +151,34 @@ def services_for_role_id(role_id: str) -> list[str]:
     return matches
 
 
+@lru_cache(maxsize=1)
+def _service_domain_groups() -> tuple[list[str], dict[str, str]]:
+    path = _repo_root() / "shared" / "docs" / "service-domain-groups.json"
+    if not path.is_file():
+        return [], {}
+    doc = _read_json(path)
+    order = [str(item) for item in doc.get("domain_order") or []]
+    groups = {str(k): str(v) for k, v in (doc.get("services") or {}).items()}
+    return order, groups
+
+
+def domain_group_for_service(service_id: str) -> str | None:
+    _, groups = _service_domain_groups()
+    return groups.get(service_id)
+
+
+def domain_group_order() -> list[str]:
+    order, _ = _service_domain_groups()
+    return order
+
+
+def enrich_service_domain(service_id: str) -> dict[str, Any]:
+    group = domain_group_for_service(service_id)
+    if not group:
+        return {}
+    return {"domain_group": group}
+
+
 def enrich_service_audience(service_id: str, capabilities_doc: dict[str, Any]) -> dict[str, Any]:
     """Attach resolved role_ids and display names to a service summary."""
     pack_role_ids = capabilities_doc.get("target_audience_role_ids")

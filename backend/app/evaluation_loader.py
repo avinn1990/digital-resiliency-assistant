@@ -10,7 +10,7 @@ _REPO_ROOT = next(
     Path(__file__).resolve().parents[2],
 )
 sys.path.insert(0, str(_REPO_ROOT / "shared" / "python"))
-from role_registry import enrich_service_audience, list_roles  # noqa: E402
+from role_registry import enrich_service_audience, enrich_service_domain, list_roles  # noqa: E402
 
 
 def _repo_root() -> Path:
@@ -93,6 +93,7 @@ def list_evaluation_services() -> list[dict[str, Any]]:
                 "version": capabilities_doc.get("version"),
                 "description": capabilities_doc.get("description"),
                 **audience,
+                **enrich_service_domain(service_id),
                 "path": str(service_dir),
             }
         )
@@ -123,6 +124,7 @@ def load_evaluation_service_bundle(service_id: str) -> dict[str, Any] | None:
         "version": capabilities_doc.get("version"),
         "description": capabilities_doc.get("description"),
         **audience,
+        **enrich_service_domain(service_id),
         "capabilities": capabilities_doc.get("capabilities", []),
         "reference_questions_by_capability": questions_doc.get("capability_questions", []),
         "reference_questions": _flatten_capability_questions(questions_doc),

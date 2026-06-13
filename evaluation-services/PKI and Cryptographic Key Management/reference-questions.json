@@ -1,0 +1,348 @@
+{
+  "service_id": "pki-cryptographic-key-management",
+  "service_name": "PKI and Cryptographic Key Management",
+  "capability_questions": [
+    {
+      "capability_id": "pki-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-pki-00-1",
+          "prompt": "Does the enterprise have a certificate management service?",
+          "intent": "Evaluate whether an enterprise certificate management service exists",
+          "field_key": "pki_00_certificate_management_service_exists",
+          "evaluation_focus": "Enterprise certificate management service exists"
+        },
+        {
+          "id": "rq-pki-00-2",
+          "prompt": "Is the certificate management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence",
+          "field_key": "pki_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
+        },
+        {
+          "id": "rq-pki-00-3",
+          "prompt": "Does the enterprise have a cryptographic key management service?",
+          "intent": "Evaluate whether an enterprise key management service exists",
+          "field_key": "pki_00_key_management_service_exists",
+          "evaluation_focus": "Enterprise cryptographic key management service exists"
+        },
+        {
+          "id": "rq-pki-00-4",
+          "prompt": "Is the cryptographic key management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the key management service is reviewed on a regular cadence",
+          "field_key": "pki_00_service_reviewed_regularly_4",
+          "evaluation_focus": "Regular cryptographic key management service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-pki-01-1",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for certificate management?",
+          "intent": "Evaluate documented certificate management KPIs",
+          "field_key": "pki_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-pki-01-2",
+          "prompt": "Are certificate management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate regular certificate KPI review",
+          "field_key": "pki_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-pki-01-3",
+          "prompt": "Do KPIs track certificate expiry and auto-renewal compliance?",
+          "intent": "Evaluate certificate expiry compliance metrics",
+          "field_key": "pki_01_expiry_renewal_metrics",
+          "evaluation_focus": "Certificate expiry and renewal compliance metrics"
+        },
+        {
+          "id": "rq-pki-01-4",
+          "prompt": "Do KPIs measure short-lived and ACME-automated certificate adoption?",
+          "intent": "Evaluate short-lived certificate adoption metrics",
+          "field_key": "pki_01_short_lived_cert_metrics",
+          "evaluation_focus": "Short-lived and automated certificate adoption metrics"
+        },
+        {
+          "id": "rq-pki-01-5",
+          "prompt": "Do KPIs or discovery scans identify unknown or shadow certificates in the environment?",
+          "intent": "Evaluate shadow certificate discovery metrics",
+          "field_key": "pki_01_shadow_cert_metrics",
+          "evaluation_focus": "Unknown or shadow certificate discovery metrics"
+        },
+        {
+          "id": "rq-pki-01-6",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for cryptographic key management?",
+          "intent": "Evaluate documented key management KPIs",
+          "field_key": "pki_01_kpis_kris_documented_6",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-pki-01-7",
+          "prompt": "Are cryptographic key management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate regular key management KPI review",
+          "field_key": "pki_01_kpis_reviewed_regularly_7",
+          "evaluation_focus": "Regular KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-02",
+      "capability_name": "Encryption and key management policy",
+      "questions": [
+        {
+          "id": "rq-pki-02-1",
+          "prompt": "Does the organization have enterprise-wide cryptographic procedures and policies?",
+          "intent": "Evaluate enterprise cryptographic policies",
+          "field_key": "pki_02_enterprise_crypto_policies",
+          "evaluation_focus": "Enterprise-wide cryptographic procedures and policies"
+        },
+        {
+          "id": "rq-pki-02-2",
+          "prompt": "Does the organization have enterprise-wide key provisioning policies?",
+          "intent": "Evaluate key provisioning policies",
+          "field_key": "pki_02_provisioning_policies",
+          "evaluation_focus": "Enterprise-wide key provisioning policies"
+        },
+        {
+          "id": "rq-pki-02-3",
+          "prompt": "Does the organization have enterprise-wide key deprovisioning policies?",
+          "intent": "Evaluate key deprovisioning policies",
+          "field_key": "pki_02_deprovisioning_policies",
+          "evaluation_focus": "Enterprise-wide key deprovisioning policies"
+        },
+        {
+          "id": "rq-pki-02-4",
+          "prompt": "Are cryptographic and key management policies reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate regular cryptographic policy review",
+          "field_key": "pki_02_policies_reviewed_regularly",
+          "evaluation_focus": "Regular policy and procedure review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-03",
+      "capability_name": "Centralized PKI, KMS, and HSM platform",
+      "questions": [
+        {
+          "id": "rq-pki-03-1",
+          "prompt": "Does the enterprise have a formal certificate management solution (internal PKI or managed CA)?",
+          "intent": "Evaluate formal certificate management solution",
+          "field_key": "pki_03_formal_certificate_solution",
+          "evaluation_focus": "Formal certificate management solution"
+        },
+        {
+          "id": "rq-pki-03-2",
+          "prompt": "Does the certificate management system issue and revoke certificates for the entire enterprise or for a specific segment only?",
+          "intent": "Evaluate certificate platform scope",
+          "field_key": "pki_03_certificate_scope",
+          "evaluation_focus": "Enterprise-wide vs segment certificate scope"
+        },
+        {
+          "id": "rq-pki-03-3",
+          "prompt": "Is the certificate management system capable of automating the certificate lifecycle (creation, distribution, and revocation)?",
+          "intent": "Evaluate automated certificate lifecycle in platform",
+          "field_key": "pki_03_lifecycle_automation",
+          "evaluation_focus": "Automated certificate lifecycle management"
+        },
+        {
+          "id": "rq-pki-03-4",
+          "prompt": "Is certificate platform configuration reviewed at least quarterly?",
+          "intent": "Evaluate regular certificate platform configuration review",
+          "field_key": "pki_03_system_config_reviewed",
+          "evaluation_focus": "Certificate system configuration review"
+        },
+        {
+          "id": "rq-pki-03-5",
+          "prompt": "Does the certificate platform integrate with other systems without manual intervention to generate, distribute, and revoke certificates?",
+          "intent": "Evaluate certificate platform integration",
+          "field_key": "pki_03_integrated_lifecycle",
+          "evaluation_focus": "Integration for certificate generation, distribution, and revocation"
+        },
+        {
+          "id": "rq-pki-03-6",
+          "prompt": "Does the enterprise have a key management solution or cloud KMS to manage cryptographic keys?",
+          "intent": "Evaluate key management solution or cloud KMS",
+          "field_key": "pki_03_key_management_solution",
+          "evaluation_focus": "Key management solution or cloud KMS for cryptographic keys"
+        },
+        {
+          "id": "rq-pki-03-7",
+          "prompt": "Are high-value keys protected by HSM or hardware-backed key storage?",
+          "intent": "Evaluate HSM-backed key protection",
+          "field_key": "pki_03_hsm_backed_keys",
+          "evaluation_focus": "HSM or hardware-backed key protection for high-value keys"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-04",
+      "capability_name": "Certificate lifecycle operations",
+      "questions": [
+        {
+          "id": "rq-pki-04-1",
+          "prompt": "Does the enterprise have formalized documented processes for certificate creation, distribution, and revocation?",
+          "intent": "Evaluate formalized certificate lifecycle processes",
+          "field_key": "pki_04_lifecycle_processes_documented",
+          "evaluation_focus": "Formalized certificate creation process"
+        },
+        {
+          "id": "rq-pki-04-2",
+          "prompt": "Do certificate lifecycle processes apply enterprise-wide or for a smaller segment only?",
+          "intent": "Evaluate certificate lifecycle scope",
+          "field_key": "pki_04_lifecycle_process_scope",
+          "evaluation_focus": "Enterprise-wide vs segment lifecycle scope"
+        },
+        {
+          "id": "rq-pki-04-3",
+          "prompt": "Are certificate creation, distribution, and revocation automated with protocols like ACME, SCEP, or equivalent APIs?",
+          "intent": "Evaluate automated certificate lifecycle operations",
+          "field_key": "pki_04_lifecycle_automated",
+          "evaluation_focus": "Automated certificate creation, distribution, and revocation"
+        },
+        {
+          "id": "rq-pki-04-4",
+          "prompt": "Are certificate lifecycle processes reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate regular certificate lifecycle process review",
+          "field_key": "pki_04_lifecycle_processes_reviewed",
+          "evaluation_focus": "Regular certificate lifecycle process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-05",
+      "capability_name": "Key lifecycle management",
+      "questions": [
+        {
+          "id": "rq-pki-05-1",
+          "prompt": "Does the organization have formalized documented processes for key provisioning and deprovisioning?",
+          "intent": "Evaluate formalized key provisioning and deprovisioning processes",
+          "field_key": "pki_05_provisioning_deprovisioning_process",
+          "evaluation_focus": "Formalized documented key provisioning process"
+        },
+        {
+          "id": "rq-pki-05-2",
+          "prompt": "Does the enterprise use automation to provision keys?",
+          "intent": "Evaluate automated key provisioning",
+          "field_key": "pki_05_provisioning_automated",
+          "evaluation_focus": "Automated key provisioning"
+        },
+        {
+          "id": "rq-pki-05-3",
+          "prompt": "Does the enterprise use automation to deprovision keys when no longer needed?",
+          "intent": "Evaluate automated key deprovisioning",
+          "field_key": "pki_05_deprovisioning_automated",
+          "evaluation_focus": "Automated key deprovisioning"
+        },
+        {
+          "id": "rq-pki-05-4",
+          "prompt": "Are key provisioning and deprovisioning processes reviewed at least quarterly?",
+          "intent": "Evaluate regular provisioning and deprovisioning review",
+          "field_key": "pki_05_provisioning_deprovisioning_reviewed",
+          "evaluation_focus": "Regular key provisioning and deprovisioning process review"
+        },
+        {
+          "id": "rq-pki-05-5",
+          "prompt": "Does the organization have a formalized documented process for key rotation?",
+          "intent": "Evaluate formalized key rotation process",
+          "field_key": "pki_05_rotation_process",
+          "evaluation_focus": "Formalized documented key rotation process"
+        },
+        {
+          "id": "rq-pki-05-6",
+          "prompt": "Does the key management system rotate keys automatically on a defined schedule?",
+          "intent": "Evaluate automatic key rotation",
+          "field_key": "pki_05_rotation_automated",
+          "evaluation_focus": "Automatic key rotation"
+        },
+        {
+          "id": "rq-pki-05-7",
+          "prompt": "Are key rotation processes reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate regular key rotation process review",
+          "field_key": "pki_05_rotation_process_reviewed",
+          "evaluation_focus": "Regular key rotation process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-06",
+      "capability_name": "Machine identity and short-lived credentials",
+      "questions": [
+        {
+          "id": "rq-pki-06-1",
+          "prompt": "Does the enterprise have a formalized process for issuing certificates to workloads, services, and APIs with machine identity attribution?",
+          "intent": "Evaluate machine identity certificate issuance",
+          "field_key": "pki_06_machine_cert_issuance",
+          "evaluation_focus": "Formalized machine identity certificate issuance"
+        },
+        {
+          "id": "rq-pki-06-2",
+          "prompt": "Does policy require short-lived certificates for workloads and APIs (for example 90 days or less)?",
+          "intent": "Evaluate short-lived certificate policy",
+          "field_key": "pki_06_short_lived_cert_policy",
+          "evaluation_focus": "Short-lived certificate policy for workloads and APIs"
+        },
+        {
+          "id": "rq-pki-06-3",
+          "prompt": "Are workload certificates rotated automatically before expiry?",
+          "intent": "Evaluate automated workload certificate rotation",
+          "field_key": "pki_06_workload_cert_rotation",
+          "evaluation_focus": "Automated workload certificate rotation"
+        },
+        {
+          "id": "rq-pki-06-4",
+          "prompt": "Does the enterprise scan for shadow or unknown certificates (for example certificate transparency logs or network discovery)?",
+          "intent": "Evaluate shadow certificate discovery",
+          "field_key": "pki_06_shadow_cert_discovery",
+          "evaluation_focus": "Certificate transparency or discovery scanning for shadow certs"
+        },
+        {
+          "id": "rq-pki-06-5",
+          "prompt": "Is cloud KMS usage governed across cloud providers (for example AWS KMS, Azure Key Vault, Google Cloud KMS)?",
+          "intent": "Evaluate governed cloud KMS usage",
+          "field_key": "pki_06_cloud_kms_governance",
+          "evaluation_focus": "Governed cloud KMS usage across cloud providers"
+        },
+        {
+          "id": "rq-pki-06-6",
+          "prompt": "Does the enterprise have BYOK (bring your own key) or HYOK (hold your own key) policies for cloud encryption?",
+          "intent": "Evaluate BYOK and HYOK policies",
+          "field_key": "pki_06_byok_hyok_policies",
+          "evaluation_focus": "BYOK and HYOK policies for cloud encryption"
+        },
+        {
+          "id": "rq-pki-06-7",
+          "prompt": "Are workload and service keys managed with machine identity attribution in cloud KMS?",
+          "intent": "Evaluate workload key lifecycle in cloud KMS",
+          "field_key": "pki_06_workload_key_lifecycle",
+          "evaluation_focus": "Workload and service key lifecycle in cloud KMS"
+        }
+      ]
+    },
+    {
+      "capability_id": "pki-07",
+      "capability_name": "Custodianship and CEK roles",
+      "questions": [
+        {
+          "id": "rq-pki-07-1",
+          "prompt": "Does the enterprise have a dedicated official custodian for certificate management—or is it managed unofficially by the IAM engineer or Active Directory team?",
+          "intent": "Evaluate dedicated certificate store custodian",
+          "field_key": "pki_07_dedicated_custodian",
+          "evaluation_focus": "Dedicated certificate store custodian"
+        },
+        {
+          "id": "rq-pki-07-2",
+          "prompt": "Does the enterprise define clear roles and responsibilities for CEK (cryptographic escrow key) management?",
+          "intent": "Evaluate CEK management roles",
+          "field_key": "pki_07_cek_roles_responsibilities",
+          "evaluation_focus": "Clear CEK management roles and responsibilities"
+        }
+      ]
+    }
+  ]
+}

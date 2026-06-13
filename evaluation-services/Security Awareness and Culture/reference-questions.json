@@ -1,0 +1,311 @@
+{
+  "service_id": "security-awareness-culture",
+  "service_name": "Security Awareness and Culture",
+  "capability_questions": [
+    {
+      "capability_id": "sac-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-sac-00-1",
+          "prompt": "Does the enterprise have a formal security culture program?",
+          "intent": "Evaluate whether a formal security culture program exists.",
+          "field_key": "sac_00_security_culture_program_exists",
+          "evaluation_focus": "Enterprise security culture program exists"
+        },
+        {
+          "id": "rq-sac-00-2",
+          "prompt": "Is the security culture program reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the security culture program is reviewed quarterly.",
+          "field_key": "sac_00_program_reviewed_quarterly",
+          "evaluation_focus": "Regular security culture program efficacy review"
+        },
+        {
+          "id": "rq-sac-00-3",
+          "prompt": "Does the enterprise have a formal security training program or service?",
+          "intent": "Evaluate whether an enterprise security training program exists.",
+          "field_key": "sac_00_security_training_program_exists",
+          "evaluation_focus": "Enterprise security training program or service exists"
+        },
+        {
+          "id": "rq-sac-00-4",
+          "prompt": "Is the security training program reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the security training program is reviewed quarterly.",
+          "field_key": "sac_00_program_reviewed_quarterly_4",
+          "evaluation_focus": "Regular security training program efficacy review"
+        },
+        {
+          "id": "rq-sac-00-5",
+          "prompt": "Does the enterprise have a formal security awareness and culture program that covers both training delivery and culture outcomes?",
+          "intent": "Evaluate whether a combined awareness and culture program exists.",
+          "field_key": "sac_00_combined_awareness_culture_program",
+          "evaluation_focus": "Enterprise security awareness and culture program exists"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-sac-01-1",
+          "prompt": "Does the enterprise document KPIs and KRIs for security culture—including phishing report rates, policy acknowledgment, and human-risk scores?",
+          "intent": "Evaluate whether security culture KPIs and KRIs are documented.",
+          "field_key": "sac_01_culture_kpis_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for security culture"
+        },
+        {
+          "id": "rq-sac-01-2",
+          "prompt": "Are security culture KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether culture KPIs are reviewed quarterly.",
+          "field_key": "sac_01_culture_kpis_reviewed_quarterly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-sac-01-3",
+          "prompt": "Does the enterprise document KPIs and KRIs for security training—including completion rates, overdue training, and phishing simulation metrics?",
+          "intent": "Evaluate whether security training KPIs and KRIs are documented.",
+          "field_key": "sac_01_training_kpis_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for security training"
+        },
+        {
+          "id": "rq-sac-01-4",
+          "prompt": "Are security training KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether training KPIs are reviewed quarterly.",
+          "field_key": "sac_01_training_kpis_reviewed_quarterly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-02",
+      "capability_name": "Leadership tone and accountability",
+      "questions": [
+        {
+          "id": "rq-sac-02-1",
+          "prompt": "Do executive and management leaders visibly model security behavior and communicate expectations?",
+          "intent": "Evaluate whether leaders model and communicate security expectations.",
+          "field_key": "sac_02_executive_security_leadership",
+          "evaluation_focus": "Executive tone and visible security leadership"
+        },
+        {
+          "id": "rq-sac-02-2",
+          "prompt": "Are managers held accountable for security culture outcomes in their teams?",
+          "intent": "Evaluate whether management accountability exists for culture outcomes.",
+          "field_key": "sac_02_management_accountability",
+          "evaluation_focus": "Management accountability for security culture outcomes"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-03",
+      "capability_name": "Leadership, incentives, and champions",
+      "questions": [
+        {
+          "id": "rq-sac-03-1",
+          "prompt": "Does the enterprise have a security champions or ambassador program that extends culture beyond the security team?",
+          "intent": "Evaluate whether a security champions program exists.",
+          "field_key": "sac_03_security_champions_program",
+          "evaluation_focus": "Formal security champions or ambassador program"
+        },
+        {
+          "id": "rq-sac-03-2",
+          "prompt": "Is the champions program reviewed at least quarterly for reach and effectiveness across business units?",
+          "intent": "Evaluate whether the champions program is reviewed quarterly.",
+          "field_key": "sac_03_champions_program_reviewed_quarterly",
+          "evaluation_focus": "Regular champions program review"
+        },
+        {
+          "id": "rq-sac-03-3",
+          "prompt": "Does the enterprise reward security compliance and positive security behaviors through incentives or recognition?",
+          "intent": "Evaluate whether security compliance is rewarded.",
+          "field_key": "sac_03_compliance_incentives",
+          "evaluation_focus": "Rewarding security compliance and positive behaviors"
+        },
+        {
+          "id": "rq-sac-03-4",
+          "prompt": "Are incentive and recognition programs reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether incentive programs are reviewed quarterly.",
+          "field_key": "sac_03_incentives_reviewed_quarterly",
+          "evaluation_focus": "Regular incentive program efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-04",
+      "capability_name": "Curriculum, role-based delivery, and platform",
+      "questions": [
+        {
+          "id": "rq-sac-04-1",
+          "prompt": "Does the enterprise proactively develop or source security training content aligned to current risk priorities?",
+          "intent": "Evaluate whether security training content is proactively developed or sourced.",
+          "field_key": "sac_04_proactive_content_development",
+          "evaluation_focus": "Proactive development or sourcing of security education content"
+        },
+        {
+          "id": "rq-sac-04-2",
+          "prompt": "Is the security training curriculum reviewed and refreshed at least quarterly?",
+          "intent": "Evaluate whether the training curriculum is reviewed quarterly.",
+          "field_key": "sac_04_curriculum_reviewed_quarterly",
+          "evaluation_focus": "Regular curriculum review and refresh"
+        },
+        {
+          "id": "rq-sac-04-3",
+          "prompt": "Does the enterprise tailor security trainings for specific functional units and risk profiles?",
+          "intent": "Evaluate whether training is segmented by role and risk profile.",
+          "field_key": "sac_04_segmented_training_by_role",
+          "evaluation_focus": "Tailored security trainings for specific functional units"
+        },
+        {
+          "id": "rq-sac-04-4",
+          "prompt": "Are different user segments—such as executives, finance, and engineering—assigned distinct security training paths?",
+          "intent": "Evaluate whether distinct training paths exist for user segments.",
+          "field_key": "sac_04_distinct_training_paths",
+          "evaluation_focus": "Segmented security training for various user groups and risk profiles"
+        },
+        {
+          "id": "rq-sac-04-5",
+          "prompt": "Does the enterprise use a training delivery platform to assign, track, and report on security training enterprise-wide?",
+          "intent": "Evaluate whether an enterprise training delivery platform is used.",
+          "field_key": "sac_04_training_delivery_platform",
+          "evaluation_focus": "Enterprise-wide training delivery platform"
+        },
+        {
+          "id": "rq-sac-04-6",
+          "prompt": "Are training assignments, reminders, and completion tracking automated, with platform configuration reviewed at least quarterly?",
+          "intent": "Evaluate whether training delivery is automated with quarterly platform review.",
+          "field_key": "sac_04_automated_assignment_and_review",
+          "evaluation_focus": "Automated assignment, tracking, and reminders"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-05",
+      "capability_name": "Onboarding and mandatory awareness",
+      "questions": [
+        {
+          "id": "rq-sac-05-1",
+          "prompt": "Do new hires and contractors complete mandatory security awareness training before accessing enterprise resources?",
+          "intent": "Evaluate whether onboarding security training is mandatory before access.",
+          "field_key": "sac_05_onboarding_training_before_access",
+          "evaluation_focus": "Mandatory security awareness for new hires and contractors"
+        },
+        {
+          "id": "rq-sac-05-2",
+          "prompt": "Is onboarding training compliance reviewed at least quarterly?",
+          "intent": "Evaluate whether onboarding training compliance is reviewed quarterly.",
+          "field_key": "sac_05_onboarding_compliance_reviewed_quarterly",
+          "evaluation_focus": "Regular compliance review of onboarding training"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-06",
+      "capability_name": "Phishing simulation and social engineering drills",
+      "questions": [
+        {
+          "id": "rq-sac-06-1",
+          "prompt": "Does the enterprise run phishing simulation campaigns on a defined cadence?",
+          "intent": "Evaluate whether phishing simulations run on a regular cadence.",
+          "field_key": "sac_06_phishing_simulation_cadence",
+          "evaluation_focus": "Regular phishing simulation campaigns"
+        },
+        {
+          "id": "rq-sac-06-2",
+          "prompt": "Are repeat phishing simulation failures remediated with additional training or coaching?",
+          "intent": "Evaluate whether repeat simulation failures trigger remediation.",
+          "field_key": "sac_06_repeat_failure_remediation",
+          "evaluation_focus": "Remediation for repeat simulation failures"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-07",
+      "capability_name": "Technical and AI-era awareness",
+      "questions": [
+        {
+          "id": "rq-sac-07-1",
+          "prompt": "Do developers receive secure-coding and SDLC security training appropriate to their role?",
+          "intent": "Evaluate whether developers receive secure-coding training.",
+          "field_key": "sac_07_developer_secure_coding_training",
+          "evaluation_focus": "Secure coding and SDLC training for developers"
+        },
+        {
+          "id": "rq-sac-07-2",
+          "prompt": "Do IT administrators and operations staff receive specialized operational security training reviewed at least quarterly?",
+          "intent": "Evaluate whether technical staff receive operational security training.",
+          "field_key": "sac_07_admin_operational_security_training",
+          "evaluation_focus": "Administrative and operational security training for IT roles"
+        },
+        {
+          "id": "rq-sac-07-3",
+          "prompt": "Does security training cover AI-augmented attacks, deepfakes, and modern social engineering tactics?",
+          "intent": "Evaluate whether training addresses AI-era attack techniques.",
+          "field_key": "sac_07_ai_augmented_attack_awareness",
+          "evaluation_focus": "AI-augmented attack and social engineering awareness"
+        },
+        {
+          "id": "rq-sac-07-4",
+          "prompt": "Does training address shadow AI risks and approved versus unapproved AI tool usage?",
+          "intent": "Evaluate whether shadow AI and approved-tool training is provided.",
+          "field_key": "sac_07_shadow_ai_training",
+          "evaluation_focus": "Shadow AI and approved-tool usage training"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-08",
+      "capability_name": "Psychological safety and reporting culture",
+      "questions": [
+        {
+          "id": "rq-sac-08-1",
+          "prompt": "Do employees feel safe reporting security concerns, near-misses, and mistakes without fear of retaliation?",
+          "intent": "Evaluate whether psychological safety exists for security reporting.",
+          "field_key": "sac_08_psychological_safety_reporting",
+          "evaluation_focus": "Psychological safety for reporting security concerns"
+        },
+        {
+          "id": "rq-sac-08-2",
+          "prompt": "Is the reporting culture assessed at least quarterly?",
+          "intent": "Evaluate whether reporting culture is assessed quarterly.",
+          "field_key": "sac_08_reporting_culture_assessed_quarterly",
+          "evaluation_focus": "Regular assessment of reporting culture"
+        }
+      ]
+    },
+    {
+      "capability_id": "sac-09",
+      "capability_name": "Culture measurement and workforce understanding",
+      "questions": [
+        {
+          "id": "rq-sac-09-1",
+          "prompt": "Does the workforce understand why security measures are in place and how they protect the organization?",
+          "intent": "Evaluate whether the workforce understands security measure rationale.",
+          "field_key": "sac_09_workforce_security_understanding",
+          "evaluation_focus": "Workforce understanding of why security measures exist"
+        },
+        {
+          "id": "rq-sac-09-2",
+          "prompt": "Do you validate workforce security understanding through surveys or assessments at least quarterly?",
+          "intent": "Evaluate whether workforce understanding is validated quarterly.",
+          "field_key": "sac_09_understanding_validated_quarterly",
+          "evaluation_focus": "Regular validation of workforce security understanding"
+        },
+        {
+          "id": "rq-sac-09-3",
+          "prompt": "Does the enterprise measure security culture through surveys, behavioral metrics, and feedback loops?",
+          "intent": "Evaluate whether security culture is measured through multiple channels.",
+          "field_key": "sac_09_culture_measurement",
+          "evaluation_focus": "Security culture surveys and behavioral metrics"
+        },
+        {
+          "id": "rq-sac-09-4",
+          "prompt": "Are culture improvement actions tracked and reviewed at least quarterly?",
+          "intent": "Evaluate whether culture improvement actions are tracked and reviewed quarterly.",
+          "field_key": "sac_09_improvement_actions_reviewed_quarterly",
+          "evaluation_focus": "Regular culture measurement review and action tracking"
+        }
+      ]
+    }
+  ]
+}

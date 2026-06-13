@@ -1,0 +1,527 @@
+{
+  "service_id": "authentication-session-credential-management",
+  "service_name": "Authentication, Session and Credential Management",
+  "capability_questions": [
+    {
+      "capability_id": "asc-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-asc-00-1",
+          "prompt": "Does the enterprise have an authentication service?",
+          "intent": "Evaluate whether an enterprise authentication service exists",
+          "field_key": "asc_00_authentication_service_exists",
+          "evaluation_focus": "Enterprise authentication service exists"
+        },
+        {
+          "id": "rq-asc-00-2",
+          "prompt": "Is the authentication service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "asc_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular service efficacy review"
+        },
+        {
+          "id": "rq-asc-00-3",
+          "prompt": "Does the enterprise have a session management service or program governing network and application sessions?",
+          "intent": "Evaluate whether an enterprise session management service exists",
+          "field_key": "asc_00_session_management_service_exists",
+          "evaluation_focus": "Enterprise session management service exists"
+        },
+        {
+          "id": "rq-asc-00-4",
+          "prompt": "Is the session management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether session management is reviewed on a regular cadence",
+          "field_key": "asc_00_service_reviewed_regularly_4",
+          "evaluation_focus": "Regular service efficacy review"
+        },
+        {
+          "id": "rq-asc-00-5",
+          "prompt": "Does the enterprise have a credential management service?",
+          "intent": "Evaluate whether an enterprise credential management service exists",
+          "field_key": "asc_00_credential_management_service_exists",
+          "evaluation_focus": "Enterprise credential management service exists"
+        },
+        {
+          "id": "rq-asc-00-6",
+          "prompt": "Is the credential management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "asc_00_service_reviewed_regularly_6",
+          "evaluation_focus": "Regular service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-asc-01-1",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for the authentication service?",
+          "intent": "Evaluate whether authentication KPIs and KRIs are documented",
+          "field_key": "asc_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-asc-01-2",
+          "prompt": "Are authentication KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "asc_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-asc-01-3",
+          "prompt": "Do KPIs or KRIs track MFA coverage, phishing-resistant authentication adoption (for example passkeys/FIDO2), or passwordless rollout progress?",
+          "intent": "Evaluate whether modern authentication adoption metrics are tracked",
+          "field_key": "asc_01_modern_auth_coverage_metrics",
+          "evaluation_focus": "MFA and phishing-resistant authentication coverage metrics"
+        },
+        {
+          "id": "rq-asc-01-4",
+          "prompt": "Do KPIs or KRIs track failed authentication rates, credential stuffing indicators, or suspicious login patterns?",
+          "intent": "Evaluate whether credential attack and failed auth metrics are tracked",
+          "field_key": "asc_01_credential_attack_metrics",
+          "evaluation_focus": "Failed authentication and credential attack metrics"
+        },
+        {
+          "id": "rq-asc-01-5",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for session management?",
+          "intent": "Evaluate documented session management KPIs",
+          "field_key": "asc_01_kpis_kris_documented_5",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-asc-01-6",
+          "prompt": "Are session management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate regular session KPI review",
+          "field_key": "asc_01_kpis_reviewed_regularly_6",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-asc-01-7",
+          "prompt": "Do KPIs measure SSO and federation coverage across applications?",
+          "intent": "Evaluate SSO coverage metrics",
+          "field_key": "asc_01_sso_coverage_metrics",
+          "evaluation_focus": "SSO and federation coverage metrics"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-02",
+      "capability_name": "Authentication system",
+      "questions": [
+        {
+          "id": "rq-asc-02-1",
+          "prompt": "Does the enterprise have a formal system that authenticates subjects to network and applications?",
+          "intent": "Evaluate whether a formal authentication system exists for network and applications",
+          "field_key": "asc_02_formal_authentication_system",
+          "evaluation_focus": "Formal authentication system for network and applications"
+        },
+        {
+          "id": "rq-asc-02-2",
+          "prompt": "Is the same authentication system used consistently across the enterprise (VPN, LAN, cloud, and SaaS)—or do separate locations or systems maintain siloed authentication?",
+          "intent": "Evaluate whether authentication is consistent enterprise-wide",
+          "field_key": "asc_02_enterprise_wide_authentication",
+          "evaluation_focus": "Enterprise-wide authentication consistency"
+        },
+        {
+          "id": "rq-asc-02-3",
+          "prompt": "Does the authentication system support cloud identity providers and federated authentication (for example SAML, OIDC) for enterprise applications?",
+          "intent": "Evaluate whether cloud IdP and federation are supported",
+          "field_key": "asc_02_cloud_idp_federation",
+          "evaluation_focus": "Cloud identity provider and federation support"
+        },
+        {
+          "id": "rq-asc-02-4",
+          "prompt": "Is authentication system configuration reviewed at least quarterly?",
+          "intent": "Evaluate whether authentication configuration is reviewed on a regular cadence",
+          "field_key": "asc_02_config_reviewed_regularly",
+          "evaluation_focus": "Authentication service configuration review"
+        },
+        {
+          "id": "rq-asc-02-5",
+          "prompt": "Does the authentication system integrate with access control policy decision points (PDPs) and policy enforcement points (PEPs) for contextual, identity-centric access?",
+          "intent": "Evaluate whether authentication integrates with access control mechanisms",
+          "field_key": "asc_02_integrates_access_control",
+          "evaluation_focus": "Integration with access control decision and enforcement points"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-03",
+      "capability_name": "Service ownership and custodianship",
+      "questions": [
+        {
+          "id": "rq-asc-03-1",
+          "prompt": "Does the enterprise have an IAM engineer or dedicated authentication owner to configure authentication policies?",
+          "intent": "Evaluate whether a dedicated authentication owner exists",
+          "field_key": "asc_03_authentication_owner_exists",
+          "evaluation_focus": "IAM engineer or authentication owner for policy configuration"
+        },
+        {
+          "id": "rq-asc-03-2",
+          "prompt": "If authentication is siloed across locations, is there central ownership of authentication policy—or do separate locations have independent authentication administrators?",
+          "intent": "Evaluate whether authentication engineering is centrally managed",
+          "field_key": "asc_03_central_authentication_management",
+          "evaluation_focus": "Central vs location-specific authentication engineering"
+        },
+        {
+          "id": "rq-asc-03-3",
+          "prompt": "Does the enterprise have a dedicated credential management custodian who manages all credentials (passwords, passkeys, certificates)—rather than the IAM engineer who manages the directory alone?",
+          "intent": "Evaluate dedicated credential custodian role",
+          "field_key": "asc_03_dedicated_custodian",
+          "evaluation_focus": "Dedicated credential management custodian"
+        },
+        {
+          "id": "rq-asc-03-4",
+          "prompt": "Is separation of duties maintained between the creator of the user, the authenticator of the user, and the creator of the credential?",
+          "intent": "Evaluate separation of duties across identity, authentication, and credential roles",
+          "field_key": "asc_03_separation_of_duties",
+          "evaluation_focus": "Separation of duties for user, authentication, and credential roles"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-04",
+      "capability_name": "Modern authentication and credential policy",
+      "questions": [
+        {
+          "id": "rq-asc-04-1",
+          "prompt": "Does the enterprise formally require MFA as a second factor for all access, including LAN, VPN, cloud, application access, and privileged access?",
+          "intent": "Evaluate whether MFA is required enterprise-wide for all access types",
+          "field_key": "asc_04_mfa_all_access",
+          "evaluation_focus": "Enterprise-wide MFA for all access"
+        },
+        {
+          "id": "rq-asc-04-2",
+          "prompt": "Are passwordless authentication methodologies (for example FIDO2 passkeys, certificates, or biometrics) documented and deployed enterprise-wide or in defined scopes?",
+          "intent": "Evaluate whether passwordless authentication is documented and deployed",
+          "field_key": "asc_04_passwordless_documented_deployed",
+          "evaluation_focus": "Documented passwordless authentication methodologies"
+        },
+        {
+          "id": "rq-asc-04-3",
+          "prompt": "Is phishing-resistant MFA (for example FIDO2 security keys or passkeys) documented and deployed enterprise-wide or for high-risk users and applications?",
+          "intent": "Evaluate whether phishing-resistant MFA is documented and deployed",
+          "field_key": "asc_04_phishing_resistant_mfa_deployed",
+          "evaluation_focus": "Documented phishing-resistant MFA"
+        },
+        {
+          "id": "rq-asc-04-4",
+          "prompt": "Are MFA, passwordless, and phishing-resistant authentication configurations reviewed at least quarterly for improvement?",
+          "intent": "Evaluate whether modern authentication methods are reviewed on a regular cadence",
+          "field_key": "asc_04_modern_auth_reviewed_regularly",
+          "evaluation_focus": "Regular MFA and passwordless configuration review"
+        },
+        {
+          "id": "rq-asc-04-5",
+          "prompt": "Does the enterprise have a formalized documented password and passkey policy for applications, networks, and endpoint devices?",
+          "intent": "Evaluate documented password and passkey policy",
+          "field_key": "asc_04_password_passkey_policy_documented",
+          "evaluation_focus": "Documented password and passkey policy for applications, networks, and endpoints"
+        },
+        {
+          "id": "rq-asc-04-6",
+          "prompt": "Does the enterprise have a formalized maximum age or validity period for certificates issued?",
+          "intent": "Evaluate certificate age policy",
+          "field_key": "asc_04_certificate_age_policy",
+          "evaluation_focus": "Formalized certificate age policy"
+        },
+        {
+          "id": "rq-asc-04-7",
+          "prompt": "Does the enterprise have a formalized documented policy on how credentials are stored (for example vault, HSM, or encrypted store)?",
+          "intent": "Evaluate credential storage policy",
+          "field_key": "asc_04_credential_storage_policy",
+          "evaluation_focus": "Documented credential storage policy"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-05",
+      "capability_name": "Risk-based authentication and session validation",
+      "questions": [
+        {
+          "id": "rq-asc-05-1",
+          "prompt": "Does the organization have a documented risk-based authentication policy that adjusts authentication requirements based on context?",
+          "intent": "Evaluate whether a risk-based authentication policy exists",
+          "field_key": "asc_05_risk_based_auth_policy",
+          "evaluation_focus": "Risk-based authentication policy exists"
+        },
+        {
+          "id": "rq-asc-05-2",
+          "prompt": "Can the authentication system require step-up authentication (stronger factors or re-authentication) for high-risk sessions or sensitive resources?",
+          "intent": "Evaluate whether adaptive step-up authentication is supported",
+          "field_key": "asc_05_adaptive_step_up_auth",
+          "evaluation_focus": "Adaptive step-up authentication for high-risk sessions"
+        },
+        {
+          "id": "rq-asc-05-3",
+          "prompt": "Are device trust, geolocation, and behavioral anomaly signals integrated into authentication decisions?",
+          "intent": "Evaluate whether device and behavioral signals inform authentication",
+          "field_key": "asc_05_device_behavioral_signals",
+          "evaluation_focus": "Integration of device and behavioral signals into auth decisions"
+        },
+        {
+          "id": "rq-asc-05-4",
+          "prompt": "Are active sessions validated continuously or on a defined interval—not only at initial login?",
+          "intent": "Evaluate continuous active session validation",
+          "field_key": "asc_05_continuous_session_validation",
+          "evaluation_focus": "Continuous or periodic active session validation"
+        },
+        {
+          "id": "rq-asc-05-5",
+          "prompt": "Does the enterprise require step-up re-authentication during sessions when risk signals change (for example new device, location, or sensitive action)?",
+          "intent": "Evaluate risk-based step-up during sessions",
+          "field_key": "asc_05_risk_based_step_up",
+          "evaluation_focus": "Risk-based step-up re-authentication during sessions"
+        },
+        {
+          "id": "rq-asc-05-6",
+          "prompt": "Are sessions revoked when device posture or security context changes (for example compliance failure or jailbreak detection)?",
+          "intent": "Evaluate session revocation on context change",
+          "field_key": "asc_05_revoke_on_posture_change",
+          "evaluation_focus": "Session revocation on device posture or context change"
+        },
+        {
+          "id": "rq-asc-05-7",
+          "prompt": "Are token binding or session fixation protections implemented for web and API sessions?",
+          "intent": "Evaluate token binding and session fixation protections",
+          "field_key": "asc_05_token_binding_protections",
+          "evaluation_focus": "Token binding or session fixation protections"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-06",
+      "capability_name": "Network and application session enforcement",
+      "questions": [
+        {
+          "id": "rq-asc-06-1",
+          "prompt": "Does the enterprise enforce session-based access to network devices?",
+          "intent": "Evaluate session-based network access enforcement",
+          "field_key": "asc_06_network_session_access_enforced",
+          "evaluation_focus": "Session-based network access enforcement"
+        },
+        {
+          "id": "rq-asc-06-2",
+          "prompt": "Does the enterprise enforce session-based access per application per user?",
+          "intent": "Evaluate per-application session enforcement",
+          "field_key": "asc_06_application_session_per_user",
+          "evaluation_focus": "Session-based application access per user"
+        },
+        {
+          "id": "rq-asc-06-3",
+          "prompt": "Is session enforcement provided by a centralized authentication or session server rather than only local per-enforcement-point configuration?",
+          "intent": "Evaluate centralized session enforcement",
+          "field_key": "asc_06_centralized_session_enforcement",
+          "evaluation_focus": "Centralized session enforcement"
+        },
+        {
+          "id": "rq-asc-06-4",
+          "prompt": "Does the enterprise use session renewal automation with re-authentication for network and application access?",
+          "intent": "Evaluate session renewal with re-authentication",
+          "field_key": "asc_06_session_renewal_reauth",
+          "evaluation_focus": "Session renewal automation with re-authentication"
+        },
+        {
+          "id": "rq-asc-06-5",
+          "prompt": "Are session timeout and renewal policies reviewed at least quarterly?",
+          "intent": "Evaluate regular session policy review",
+          "field_key": "asc_06_session_policy_reviewed",
+          "evaluation_focus": "Regular session policy configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-07",
+      "capability_name": "Enterprise SSO and federation",
+      "questions": [
+        {
+          "id": "rq-asc-07-1",
+          "prompt": "Does the enterprise formally adopt session-based technology like SSO, OIDC, SAML, SSE, or Kerberos?",
+          "intent": "Evaluate formal SSO and federation adoption",
+          "field_key": "asc_07_sso_federation_adopted",
+          "evaluation_focus": "Formal adoption of SSO, OIDC, SAML, SSE, or Kerberos"
+        },
+        {
+          "id": "rq-asc-07-2",
+          "prompt": "Are SSO and federation technologies implemented enterprise-wide or for specific applications only?",
+          "intent": "Evaluate SSO deployment scope",
+          "field_key": "asc_07_sso_deployment_scope",
+          "evaluation_focus": "Enterprise-wide vs scoped SSO deployment"
+        },
+        {
+          "id": "rq-asc-07-3",
+          "prompt": "Does the enterprise integrate SSO and federation with identity stores and access enforcement technology?",
+          "intent": "Evaluate SSO integration with identity and enforcement",
+          "field_key": "asc_07_sso_identity_enforcement_integration",
+          "evaluation_focus": "Integration with identity and enforcement technology"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-08",
+      "capability_name": "Credential vault and lifecycle operations",
+      "questions": [
+        {
+          "id": "rq-asc-08-1",
+          "prompt": "Does the enterprise identity store or secrets vault securely manage and store all necessary credentials?",
+          "intent": "Evaluate secure credential storage in vault or identity store",
+          "field_key": "asc_08_vault_secure_management",
+          "evaluation_focus": "Identity store or vault manages and stores credentials securely"
+        },
+        {
+          "id": "rq-asc-08-2",
+          "prompt": "Does the vault or identity store support automatic provisioning and deprovisioning of credentials?",
+          "intent": "Evaluate automated credential lifecycle in vault",
+          "field_key": "asc_08_vault_auto_provision_deprovision",
+          "evaluation_focus": "Automatic credential provisioning and deprovisioning"
+        },
+        {
+          "id": "rq-asc-08-3",
+          "prompt": "Is credential vault configuration reviewed at least quarterly (for example default password policy, certificate timelines, rotation settings)?",
+          "intent": "Evaluate regular vault configuration review",
+          "field_key": "asc_08_vault_config_reviewed",
+          "evaluation_focus": "Credential vault configuration review"
+        },
+        {
+          "id": "rq-asc-08-4",
+          "prompt": "Does the credential vault integrate with identity management and authentication systems?",
+          "intent": "Evaluate vault integration with IAM and authentication",
+          "field_key": "asc_08_vault_iam_auth_integration",
+          "evaluation_focus": "Integration with identity management and authentication systems"
+        },
+        {
+          "id": "rq-asc-08-5",
+          "prompt": "Does the enterprise have formalized documented processes for credential provisioning, deprovisioning, and secure storage across applications, networks, and endpoints?",
+          "intent": "Evaluate formalized credential lifecycle processes",
+          "field_key": "asc_08_lifecycle_processes_documented",
+          "evaluation_focus": "Formalized credential provisioning process"
+        },
+        {
+          "id": "rq-asc-08-6",
+          "prompt": "Do credential lifecycle processes apply enterprise-wide or to a specific vertical only?",
+          "intent": "Evaluate credential lifecycle scope",
+          "field_key": "asc_08_lifecycle_process_scope",
+          "evaluation_focus": "Enterprise-wide vs vertical lifecycle scope"
+        },
+        {
+          "id": "rq-asc-08-7",
+          "prompt": "Are credentials created, rotated, and revoked automatically based on conditions like new user provisioning, age, or compromise?",
+          "intent": "Evaluate automated credential lifecycle operations",
+          "field_key": "asc_08_automated_credential_lifecycle",
+          "evaluation_focus": "Automated credential creation, rotation, and revocation"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-09",
+      "capability_name": "Non-human and API authentication",
+      "questions": [
+        {
+          "id": "rq-asc-09-1",
+          "prompt": "Are service accounts and workloads authenticated using governed methods—not shared human passwords?",
+          "intent": "Evaluate whether service account and workload authentication is governed",
+          "field_key": "asc_09_service_account_auth_governed",
+          "evaluation_focus": "Governed service account and workload authentication"
+        },
+        {
+          "id": "rq-asc-09-2",
+          "prompt": "Do API and machine-to-machine clients authenticate using standards such as OAuth 2.0 client credentials, mutual TLS, or certificate-based authentication?",
+          "intent": "Evaluate whether API authentication uses modern standards",
+          "field_key": "asc_09_api_client_credential_standards",
+          "evaluation_focus": "OAuth and API client credential authentication standards"
+        },
+        {
+          "id": "rq-asc-09-3",
+          "prompt": "Are shared credentials for non-human identities prohibited and detected through policy or monitoring?",
+          "intent": "Evaluate whether shared non-human credentials are prohibited",
+          "field_key": "asc_09_no_shared_non_human_credentials",
+          "evaluation_focus": "Prohibition of shared credentials for non-human identities"
+        },
+        {
+          "id": "rq-asc-09-4",
+          "prompt": "Are service account passwords, API keys, and OAuth client secrets governed with documented lifecycle policies—not ad hoc creation?",
+          "intent": "Evaluate governed non-human credential lifecycle",
+          "field_key": "asc_09_api_credential_lifecycle",
+          "evaluation_focus": "Governed service account and API credential lifecycle"
+        },
+        {
+          "id": "rq-asc-09-5",
+          "prompt": "Are non-human credentials stored in an enterprise secrets vault rather than plaintext in code, config files, or shared drives?",
+          "intent": "Evaluate secrets vault storage for non-human credentials",
+          "field_key": "asc_09_secrets_vault_storage",
+          "evaluation_focus": "Secrets vault storage for non-human credentials"
+        },
+        {
+          "id": "rq-asc-09-6",
+          "prompt": "Is the use of shared human passwords for workloads, service accounts, or automation prohibited by policy?",
+          "intent": "Evaluate prohibition of shared credentials for non-human identities",
+          "field_key": "asc_09_no_shared_workload_passwords",
+          "evaluation_focus": "Prohibition of shared credentials for workloads and automation"
+        },
+        {
+          "id": "rq-asc-09-7",
+          "prompt": "Are API keys and OAuth client secrets rotated automatically on a defined schedule or after compromise?",
+          "intent": "Evaluate automated rotation of API credentials",
+          "field_key": "asc_09_api_secret_rotation",
+          "evaluation_focus": "Automated rotation of API keys and client secrets"
+        }
+      ]
+    },
+    {
+      "capability_id": "asc-10",
+      "capability_name": "Authentication and session logging",
+      "questions": [
+        {
+          "id": "rq-asc-10-1",
+          "prompt": "Is there a formal documented process for logging authentication events—including user lifecycle changes and failed authentications—to the SOC?",
+          "intent": "Evaluate whether authentication logging to the SOC is formally documented",
+          "field_key": "asc_10_logging_process_to_soc",
+          "evaluation_focus": "Documented authentication logging to SOC"
+        },
+        {
+          "id": "rq-asc-10-2",
+          "prompt": "Are authentication events transmitted securely to the SOC?",
+          "intent": "Evaluate whether authentication events are logged securely to the SOC",
+          "field_key": "asc_10_secure_logging_to_soc",
+          "evaluation_focus": "Secure authentication event logging to SOC"
+        },
+        {
+          "id": "rq-asc-10-3",
+          "prompt": "Are dynamic changes to authentication configuration captured and transferred to the SOC in near-real time?",
+          "intent": "Evaluate whether dynamic authentication changes are sent to the SOC",
+          "field_key": "asc_10_dynamic_changes_to_soc",
+          "evaluation_focus": "Dynamic authentication changes to SOC"
+        },
+        {
+          "id": "rq-asc-10-4",
+          "prompt": "Are anomalous authentication patterns (for example impossible travel, credential stuffing bursts, or token replay) detected and alerted in near-real time?",
+          "intent": "Evaluate whether anomalous authentication patterns trigger detection and alerting",
+          "field_key": "asc_10_anomalous_auth_detection",
+          "evaluation_focus": "Anomalous authentication pattern detection"
+        },
+        {
+          "id": "rq-asc-10-5",
+          "prompt": "Is there a formal documented process for logging session creation, renewal, and termination to the SOC?",
+          "intent": "Evaluate documented session logging to SOC",
+          "field_key": "asc_10_logging_process_to_soc_5",
+          "evaluation_focus": "Documented session lifecycle logging to SOC"
+        },
+        {
+          "id": "rq-asc-10-6",
+          "prompt": "Are session lifecycle events logged securely to the SOC? (This is distinct from authentication success/failure logs alone.)",
+          "intent": "Evaluate secure session event logging",
+          "field_key": "asc_10_secure_logging_to_soc_6",
+          "evaluation_focus": "Secure session event logging to SOC"
+        },
+        {
+          "id": "rq-asc-10-7",
+          "prompt": "Does the SOC detect anomalous session patterns (for example concurrent sessions from disparate locations or impossible travel)?",
+          "intent": "Evaluate anomaly detection for session events",
+          "field_key": "asc_10_anomalous_session_detection",
+          "evaluation_focus": "Anomalous session pattern detection"
+        }
+      ]
+    }
+  ]
+}

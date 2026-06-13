@@ -5,6 +5,7 @@ export type EvaluationServiceSummary = {
   description?: string;
   target_audience: string[];
   target_audience_role_ids?: string[];
+  domain_group?: string;
 };
 
 export type CanonicalRole = {

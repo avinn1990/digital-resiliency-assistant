@@ -1,0 +1,214 @@
+{
+  "service_id": "security-awareness-culture",
+  "service_name": "Security Awareness and Culture",
+  "version": "2.0",
+  "description": "Evaluates security awareness and culture maturity—program governance, KPIs/KRIs, leadership and champions, curriculum and delivery, onboarding, phishing simulation, technical and AI-era awareness, psychological safety, and culture measurement.",
+  "capabilities": [
+    {
+      "id": "sac-00",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A formal security awareness and culture program exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
+      "evaluation_focus": [
+        "Enterprise security awareness and culture program exists",
+        "Regular program efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "sac-01",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Awareness and culture KPIs and KRIs—including training completion, phishing report and click rates, policy acknowledgment, and culture survey scores—are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for security culture",
+        "Regular KPI/KRI review",
+        "Phishing report and human-risk metrics",
+        "Policy acknowledgment and culture survey scores",
+        "Training completion and overdue metrics",
+        "Phishing simulation click and report rates"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "sac-02",
+      "name": "Leadership tone and accountability",
+      "short_name": "leadership tone",
+      "description": "Executive and management leaders model security behavior, communicate expectations, and are held accountable for culture outcomes with quarterly review.",
+      "evaluation_focus": [
+        "Executive tone and visible security leadership",
+        "Management accountability for security culture outcomes",
+        "Regular leadership culture commitment review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "sac-03",
+      "name": "Leadership, incentives, and champions",
+      "short_name": "leadership and champions",
+      "description": "Executive leaders model security behavior, incentives recognize positive behaviors, and a champions program extends culture beyond the security team with quarterly review.",
+      "evaluation_focus": [
+        "Formal security champions or ambassador program",
+        "Peer advocacy across business units",
+        "Regular champions program review",
+        "Rewarding security compliance and positive behaviors",
+        "Recognition programs for security contributions"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "sac-04",
+      "name": "Curriculum, role-based delivery, and platform",
+      "short_name": "curriculum and delivery",
+      "description": "Security education content is developed proactively, tailored to roles and risk profiles, and delivered through an automated enterprise platform reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Proactive development or sourcing of security education content",
+        "Dedicated content creators or vendor partnerships",
+        "Regular curriculum review and refresh",
+        "Tailored security trainings for specific functional units",
+        "Segmented security training for various user groups and risk profiles",
+        "Enterprise-wide training delivery platform",
+        "Automated assignment, tracking, and reminders",
+        "Regular platform configuration and integration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "sac-05",
+      "name": "Onboarding and mandatory awareness",
+      "short_name": "onboarding training",
+      "description": "New hires and contractors complete mandatory security awareness training before accessing enterprise resources, with quarterly compliance review.",
+      "evaluation_focus": [
+        "Mandatory security awareness for new hires and contractors",
+        "Training completion before resource access",
+        "Regular compliance review of onboarding training"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "sac-06",
+      "name": "Phishing simulation and social engineering drills",
+      "short_name": "phishing simulation",
+      "description": "Phishing simulations and social engineering drills run on a defined cadence with remediation for repeat failures and quarterly program review.",
+      "evaluation_focus": [
+        "Regular phishing simulation campaigns",
+        "Social engineering drill scenarios beyond email",
+        "Remediation for repeat simulation failures"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "sac-07",
+      "name": "Technical and AI-era awareness",
+      "short_name": "technical awareness",
+      "description": "Technical roles receive specialized secure-coding and operational training, and all staff receive AI-era and emerging threat awareness refreshed at least quarterly.",
+      "evaluation_focus": [
+        "Secure coding and SDLC training for developers",
+        "Administrative and operational security training for IT roles",
+        "Regular technical training curriculum review",
+        "AI-augmented attack and social engineering awareness",
+        "Shadow AI and approved-tool usage training",
+        "Regular refresh of emerging-threat training content"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "sac-08",
+      "name": "Psychological safety and reporting culture",
+      "short_name": "reporting culture",
+      "description": "Employees feel safe reporting security concerns, near-misses, and mistakes without fear of retaliation, with quarterly culture assessment.",
+      "evaluation_focus": [
+        "Psychological safety for reporting security concerns",
+        "No-blame near-miss and mistake reporting",
+        "Regular assessment of reporting culture"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "sac-09",
+      "name": "Culture measurement and workforce understanding",
+      "short_name": "culture measurement",
+      "description": "Security culture is measured through surveys and behavioral metrics, the workforce understands security rationale, and improvement actions are tracked with quarterly review.",
+      "evaluation_focus": [
+        "Workforce understanding of why security measures exist",
+        "Connection between controls and business protection",
+        "Regular validation of workforce security understanding",
+        "Security culture surveys and behavioral metrics",
+        "Feedback loops driving culture improvement actions",
+        "Regular culture measurement review and action tracking"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "security-awareness-culture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "security-program-strategy-lead",
+    "compliance-audit-lead"
+  ]
+}

@@ -1,0 +1,251 @@
+{
+  "service_id": "authentication-session-credential-management",
+  "service_name": "Authentication, Session and Credential Management",
+  "version": "2.0",
+  "description": "Evaluates authentication, session, and credential management maturity—MFA, SSO, federation, risk-based auth, credential vaults, non-human identity, and SOC logging.",
+  "capabilities": [
+    {
+      "id": "asc-00",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "Authentication, session, and credential management services exist and are reviewed at least quarterly for efficacy.",
+      "evaluation_focus": [
+        "Enterprise authentication, session, and credential services exist",
+        "Regular service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "asc-01",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Authentication, session, and credential KPIs and KRIs—including MFA coverage, SSO adoption, and credential hygiene—are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs",
+        "Regular KPI/KRI review",
+        "MFA and phishing-resistant authentication coverage metrics",
+        "Failed authentication and credential attack metrics",
+        "SSO and federation coverage metrics",
+        "Session timeout and idle disconnect compliance",
+        "Credential rotation and expiry compliance metrics",
+        "Secrets and API key sprawl metrics",
+        "Passkey and passwordless credential adoption metrics"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "asc-02",
+      "name": "Authentication system",
+      "short_name": "authentication system",
+      "description": "A formal authentication system authenticates subjects to network and applications enterprise-wide, supports cloud identity providers and federation, is reviewed regularly, and integrates with access control decision and enforcement points.",
+      "evaluation_focus": [
+        "Formal authentication system for network and applications",
+        "Enterprise-wide authentication consistency",
+        "Cloud identity provider and federation support",
+        "Authentication service configuration review",
+        "Integration with access control decision and enforcement points"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-03",
+      "name": "Service ownership and custodianship",
+      "short_name": "ownership",
+      "description": "Authentication and credential owners configure policies with central management when capabilities are siloed.",
+      "evaluation_focus": [
+        "IAM engineer or authentication owner for policy configuration",
+        "Central vs location-specific authentication engineering",
+        "Dedicated credential management custodian",
+        "Separation of duties for user, authentication, and credential roles"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "asc-04",
+      "name": "Modern authentication and credential policy",
+      "short_name": "MFA and credential policy",
+      "description": "Modern MFA, passwordless, and credential lifecycle policies are documented and enforced enterprise-wide with quarterly review.",
+      "evaluation_focus": [
+        "Formal MFA utilization",
+        "Enterprise-wide MFA for all access",
+        "Documented passwordless authentication methodologies",
+        "Enterprise-wide vs scoped passwordless deployment",
+        "Documented phishing-resistant MFA",
+        "Enterprise-wide vs scoped phishing-resistant MFA deployment",
+        "Regular MFA and passwordless configuration review",
+        "Documented password and passkey policy for applications, networks, and endpoints",
+        "Formalized certificate age policy",
+        "Documented credential storage policy",
+        "Enterprise-wide vs vertical password policy scope",
+        "Regular password and credential policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-05",
+      "name": "Risk-based authentication and session validation",
+      "short_name": "adaptive auth",
+      "description": "Risk-based authentication and continuous session validation enforce re-authentication and renewal with quarterly configuration review.",
+      "evaluation_focus": [
+        "Risk-based authentication policy exists",
+        "Adaptive step-up authentication for high-risk sessions",
+        "Integration of device and behavioral signals into auth decisions",
+        "Continuous or periodic active session validation",
+        "Risk-based step-up re-authentication during sessions",
+        "Session revocation on device posture or context change",
+        "Token binding or session fixation protections"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-06",
+      "name": "Network and application session enforcement",
+      "short_name": "session enforcement",
+      "description": "Session-based access for network and applications is enforced centrally with renewal automation, re-authentication, and regular configuration review.",
+      "evaluation_focus": [
+        "Session-based network access enforcement",
+        "Session-based application access per user",
+        "Centralized session enforcement",
+        "Session renewal automation with re-authentication",
+        "Regular session policy configuration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-07",
+      "name": "Enterprise SSO and federation",
+      "short_name": "SSO federation",
+      "description": "SSO, OIDC/SAML federation, SSE, and Kerberos are formally adopted enterprise-wide or for scoped applications and integrated with identity and enforcement technology.",
+      "evaluation_focus": [
+        "Formal adoption of SSO, OIDC, SAML, SSE, or Kerberos",
+        "Enterprise-wide vs scoped SSO deployment",
+        "Integration with identity and enforcement technology"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-08",
+      "name": "Credential vault and lifecycle operations",
+      "short_name": "credential operations",
+      "description": "Secure credential vaults and lifecycle operations provision, rotate, and revoke credentials with quarterly review.",
+      "evaluation_focus": [
+        "Identity store or vault manages and stores credentials securely",
+        "Automatic credential provisioning and deprovisioning",
+        "Credential vault configuration review",
+        "Integration with identity management and authentication systems",
+        "Formalized credential provisioning process",
+        "Formalized credential deprovisioning process",
+        "Formalized credential storage process",
+        "Enterprise-wide vs vertical lifecycle scope",
+        "Automated credential creation, rotation, and revocation",
+        "Regular credential lifecycle process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-09",
+      "name": "Non-human and API authentication",
+      "short_name": "non-human auth",
+      "description": "Non-human identities and API authentication use governed credentials with quarterly review.",
+      "evaluation_focus": [
+        "Governed service account and workload authentication",
+        "OAuth and API client credential authentication standards",
+        "Prohibition of shared credentials for non-human identities",
+        "Governed service account and API credential lifecycle",
+        "Secrets vault storage for non-human credentials",
+        "Prohibition of shared credentials for workloads and automation",
+        "Automated rotation of API keys and client secrets"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "asc-10",
+      "name": "Authentication and session logging",
+      "short_name": "auth logging",
+      "description": "Authentication and session events are logged to the SOC with anomaly detection reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented authentication logging to SOC",
+        "Secure authentication event logging to SOC",
+        "Dynamic authentication changes to SOC",
+        "Anomalous authentication pattern detection",
+        "Documented session lifecycle logging to SOC",
+        "Secure session event logging to SOC",
+        "Anomalous session pattern detection"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}

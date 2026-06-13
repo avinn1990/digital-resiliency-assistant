@@ -1,0 +1,507 @@
+{
+  "service_id": "policy-compliance-management",
+  "service_name": "Policy and Compliance Management",
+  "capability_questions": [
+    {
+      "capability_id": "pcm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-pcm-00-1",
+          "prompt": "Does the enterprise have a policy management service?",
+          "intent": "Evaluate whether a policy management service exists",
+          "field_key": "pcm_00_policy_management_service_exists",
+          "evaluation_focus": "Policy management service exists"
+        },
+        {
+          "id": "rq-pcm-00-2",
+          "prompt": "Is the policy management service reviewed at least quarterly to measure its efficacy?",
+          "intent": "Evaluate whether the policy management service is reviewed quarterly for efficacy",
+          "field_key": "pcm_00_service_reviewed_quarterly",
+          "evaluation_focus": "Quarterly service efficacy review"
+        },
+        {
+          "id": "rq-pcm-00-3",
+          "prompt": "Is there a compliance management service defined in the enterprise?",
+          "intent": "Evaluate whether a compliance management service is defined in the enterprise",
+          "field_key": "pcm_00_compliance_management_service_defined",
+          "evaluation_focus": "Compliance management service defined in the enterprise"
+        },
+        {
+          "id": "rq-pcm-00-4",
+          "prompt": "Is the compliance management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the compliance management service is reviewed quarterly for efficacy",
+          "field_key": "pcm_00_service_reviewed_quarterly_4",
+          "evaluation_focus": "Quarterly service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-01",
+      "capability_name": "Reference framework and standards alignment",
+      "questions": [
+        {
+          "id": "rq-pcm-01-1",
+          "prompt": "Does the enterprise have a reference policy framework that provides visibility on who can access what across the enterprise?",
+          "intent": "Evaluate whether a reference policy framework exists",
+          "field_key": "pcm_01_reference_policy_framework",
+          "evaluation_focus": "Reference policy framework"
+        },
+        {
+          "id": "rq-pcm-01-2",
+          "prompt": "Is the policy framework applicable enterprise-wide?",
+          "intent": "Evaluate whether the policy framework is enterprise-wide",
+          "field_key": "pcm_01_framework_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide applicability"
+        },
+        {
+          "id": "rq-pcm-01-3",
+          "prompt": "Is the policy framework reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of the policy framework",
+          "field_key": "pcm_01_framework_reviewed_quarterly",
+          "evaluation_focus": "Quarterly framework review"
+        },
+        {
+          "id": "rq-pcm-01-4",
+          "prompt": "Is the policy framework reused when creating granular functional policies (data access, authentication, authorization, etc.)?",
+          "intent": "Evaluate reuse of the framework for granular functional policies",
+          "field_key": "pcm_01_framework_reused_granular_policies",
+          "evaluation_focus": "Reuse for granular functional policies"
+        },
+        {
+          "id": "rq-pcm-01-5",
+          "prompt": "Has the enterprise officially documented all relevant standards and regulations requiring alignment?",
+          "intent": "Evaluate official documentation of relevant standards and regulations",
+          "field_key": "pcm_01_standards_regulations_documented",
+          "evaluation_focus": "Official documentation of relevant standards and regulations"
+        },
+        {
+          "id": "rq-pcm-01-6",
+          "prompt": "Where DORA or financial-sector ICT rules apply, are compliance obligations mapped and tracked?",
+          "intent": "Evaluate DORA and financial-sector ICT compliance mapping",
+          "field_key": "pcm_01_dora_ict_obligations_mapped",
+          "evaluation_focus": "DORA and financial-sector ICT compliance obligations mapped where applicable"
+        },
+        {
+          "id": "rq-pcm-01-7",
+          "prompt": "Are EU AI Act and AI system compliance obligations mapped for systems deployed or procured by the enterprise?",
+          "intent": "Evaluate EU AI Act compliance obligation mapping",
+          "field_key": "pcm_01_eu_ai_act_obligations_mapped",
+          "evaluation_focus": "EU AI Act and AI system compliance obligations mapped where applicable"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-02",
+      "capability_name": "KPIs, KRIs, and compliance metrics",
+      "questions": [
+        {
+          "id": "rq-pcm-02-1",
+          "prompt": "Does the enterprise have formalized, documented KPIs and KRIs for the policy management service?",
+          "intent": "Evaluate whether policy management KPIs and KRIs are documented",
+          "field_key": "pcm_02_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-pcm-02-2",
+          "prompt": "Do KPIs or KRIs track policy drift rate or unauthorized rule exceptions across enforcement points?",
+          "intent": "Evaluate policy drift and exception metrics",
+          "field_key": "pcm_02_policy_drift_exception_metrics",
+          "evaluation_focus": "Policy drift and exception metrics"
+        },
+        {
+          "id": "rq-pcm-02-3",
+          "prompt": "Are rule deployment success rates and rollback events measured for policy changes?",
+          "intent": "Evaluate rule deployment success and rollback metrics",
+          "field_key": "pcm_02_deployment_success_rollback_metrics",
+          "evaluation_focus": "Rule deployment success and rollback metrics"
+        },
+        {
+          "id": "rq-pcm-02-4",
+          "prompt": "Are policy management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of policy management KPIs and KRIs",
+          "field_key": "pcm_02_kpis_reviewed_quarterly",
+          "evaluation_focus": "Quarterly KPI/KRI review"
+        },
+        {
+          "id": "rq-pcm-02-5",
+          "prompt": "Has the enterprise officially designed and documented compliance KPIs and KRIs?",
+          "intent": "Evaluate official design and documentation of compliance metrics",
+          "field_key": "pcm_02_compliance_metrics_designed_documented",
+          "evaluation_focus": "Officially designed and documented compliance metrics"
+        },
+        {
+          "id": "rq-pcm-02-6",
+          "prompt": "Do compliance metrics track control coverage and scan pass rates across the enterprise?",
+          "intent": "Evaluate control coverage and scan pass rate metrics",
+          "field_key": "pcm_02_control_coverage_scan_pass_rate",
+          "evaluation_focus": "Control coverage and scan pass rate metrics"
+        },
+        {
+          "id": "rq-pcm-02-7",
+          "prompt": "Is mean time to remediate compliance findings measured and reported?",
+          "intent": "Evaluate mean time to remediate compliance findings",
+          "field_key": "pcm_02_mean_time_remediate_findings",
+          "evaluation_focus": "Mean time to remediate compliance findings"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-03",
+      "capability_name": "Policy and compliance platforms",
+      "questions": [
+        {
+          "id": "rq-pcm-03-1",
+          "prompt": "Does the enterprise use a centralized rule management system (or centralized policy consumed by multiple enforcement points), rather than only technology-specific silos?",
+          "intent": "Evaluate centralized vs technology-specific rule management",
+          "field_key": "pcm_03_centralized_rule_management",
+          "evaluation_focus": "Centralized vs technology-specific rule management"
+        },
+        {
+          "id": "rq-pcm-03-2",
+          "prompt": "Does the rule platform support automation, optimization, and policy-as-code (for example GitOps or infrastructure-as-code pipelines)?",
+          "intent": "Evaluate rule automation, optimization, and policy-as-code",
+          "field_key": "pcm_03_rule_automation_policy_as_code",
+          "evaluation_focus": "Rule automation, optimization, and policy-as-code"
+        },
+        {
+          "id": "rq-pcm-03-3",
+          "prompt": "Does the rule management system integrate with a central decision-maker or threat intelligence to deploy contextual policy changes automatically?",
+          "intent": "Evaluate integration with centralized decision-making",
+          "field_key": "pcm_03_integrates_decision_maker",
+          "evaluation_focus": "Integration with centralized decision-making"
+        },
+        {
+          "id": "rq-pcm-03-4",
+          "prompt": "Is the rule management system and its configuration reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of rule management system configuration",
+          "field_key": "pcm_03_rule_system_reviewed_quarterly",
+          "evaluation_focus": "Quarterly system configuration review"
+        },
+        {
+          "id": "rq-pcm-03-5",
+          "prompt": "Does the enterprise use compliance management software to monitor compliance enterprise-wide?",
+          "intent": "Evaluate use of compliance management software for enterprise-wide monitoring",
+          "field_key": "pcm_03_compliance_software_enterprise_wide",
+          "evaluation_focus": "Compliance management software for enterprise-wide monitoring"
+        },
+        {
+          "id": "rq-pcm-03-6",
+          "prompt": "Is compliance tracked across the enterprise and subsidiaries, or is it restricted to a specific scope?",
+          "intent": "Evaluate scope of compliance tracking across enterprise and subsidiaries",
+          "field_key": "pcm_03_compliance_scope_enterprise_subsidiaries",
+          "evaluation_focus": "Scope across enterprise and subsidiaries"
+        },
+        {
+          "id": "rq-pcm-03-7",
+          "prompt": "Is automated compliance scanning deployed for all assets across all locations?",
+          "intent": "Evaluate automated compliance scanning coverage",
+          "field_key": "pcm_03_automated_scanning_all_assets",
+          "evaluation_focus": "Automated compliance scanning across all assets and locations"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-04",
+      "capability_name": "Policy and compliance processes",
+      "questions": [
+        {
+          "id": "rq-pcm-04-1",
+          "prompt": "Does the enterprise have a documented, formalized process for rule creation and modification?",
+          "intent": "Evaluate documented rule creation and modification process",
+          "field_key": "pcm_04_rule_creation_modification_process",
+          "evaluation_focus": "Documented rule creation and modification process"
+        },
+        {
+          "id": "rq-pcm-04-2",
+          "prompt": "Does the enterprise have a documented, formalized process for rule deletion and deprovisioning?",
+          "intent": "Evaluate documented rule deletion and deprovisioning process",
+          "field_key": "pcm_04_rule_deletion_deprovisioning_process",
+          "evaluation_focus": "Documented rule deletion and deprovisioning process"
+        },
+        {
+          "id": "rq-pcm-04-3",
+          "prompt": "Are rule lifecycle processes applicable enterprise-wide for all technologies?",
+          "intent": "Evaluate enterprise-wide applicability of rule lifecycle processes",
+          "field_key": "pcm_04_rule_lifecycle_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide rule lifecycle applicability"
+        },
+        {
+          "id": "rq-pcm-04-4",
+          "prompt": "Are rule creation, modification, and deletion automated and optimized through the rule management system where possible?",
+          "intent": "Evaluate automated rule lifecycle and optimization",
+          "field_key": "pcm_04_rule_lifecycle_automated",
+          "evaluation_focus": "Automated rule lifecycle and optimization"
+        },
+        {
+          "id": "rq-pcm-04-5",
+          "prompt": "Are rule lifecycle processes reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of rule lifecycle processes",
+          "field_key": "pcm_04_rule_lifecycle_reviewed_quarterly",
+          "evaluation_focus": "Quarterly rule lifecycle process review"
+        },
+        {
+          "id": "rq-pcm-04-6",
+          "prompt": "Does the enterprise have an established, documented compliance management process?",
+          "intent": "Evaluate established documented compliance management process",
+          "field_key": "pcm_04_established_documented_process",
+          "evaluation_focus": "Established documented compliance management process"
+        },
+        {
+          "id": "rq-pcm-04-7",
+          "prompt": "Is the compliance management process implemented enterprise-wide, or within a defined scope?",
+          "intent": "Evaluate enterprise-wide vs scoped implementation of compliance management process",
+          "field_key": "pcm_04_process_implemented_enterprise_or_scope",
+          "evaluation_focus": "Process implemented enterprise-wide or scoped"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-05",
+      "capability_name": "Policy and compliance teams",
+      "questions": [
+        {
+          "id": "rq-pcm-05-1",
+          "prompt": "Does the enterprise have a central policy architecture team, or are policy teams siloed by enforcement technology?",
+          "intent": "Evaluate central vs siloed policy teams",
+          "field_key": "pcm_05_central_vs_siloed_teams",
+          "evaluation_focus": "Central vs siloed policy teams"
+        },
+        {
+          "id": "rq-pcm-05-2",
+          "prompt": "Is policy management team composition formalized, documented in the department hierarchy, and designed to maintain separation of duties?",
+          "intent": "Evaluate formalized team composition and separation of duties",
+          "field_key": "pcm_05_team_composition_separation_of_duties",
+          "evaluation_focus": "Formalized team composition and separation of duties"
+        },
+        {
+          "id": "rq-pcm-05-3",
+          "prompt": "Does the enterprise have compliance management teams that manage the overall compliance management service?",
+          "intent": "Evaluate compliance management teams managing the overall service",
+          "field_key": "pcm_05_compliance_management_teams_exist",
+          "evaluation_focus": "Compliance management teams manage the overall service"
+        },
+        {
+          "id": "rq-pcm-05-4",
+          "prompt": "Does the enterprise employ policy and compliance specialists as part of the compliance teams?",
+          "intent": "Evaluate policy and compliance specialists on compliance teams",
+          "field_key": "pcm_05_policy_compliance_specialists_on_teams",
+          "evaluation_focus": "Policy and compliance specialists on compliance teams"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-06",
+      "capability_name": "Software-defined and context-based policies",
+      "questions": [
+        {
+          "id": "rq-pcm-06-1",
+          "prompt": "Does the enterprise maintain and configure software-defined policy at all locations?",
+          "intent": "Evaluate software-defined policy at all locations",
+          "field_key": "pcm_06_software_defined_policy_all_locations",
+          "evaluation_focus": "Software-defined policy at all locations"
+        },
+        {
+          "id": "rq-pcm-06-2",
+          "prompt": "Is centralized policy deployed programmatically to all enforcement points (not limited to a smaller scope)?",
+          "intent": "Evaluate programmatic deployment scope for software-defined policy",
+          "field_key": "pcm_06_programmatic_deployment_scope",
+          "evaluation_focus": "Programmatic deployment scope"
+        },
+        {
+          "id": "rq-pcm-06-3",
+          "prompt": "Are software-defined policy deployments automated?",
+          "intent": "Evaluate automated software-defined policy deployment",
+          "field_key": "pcm_06_sdp_deployments_automated",
+          "evaluation_focus": "Automated policy deployment"
+        },
+        {
+          "id": "rq-pcm-06-4",
+          "prompt": "Are automated software-defined policies validated at least quarterly to measure automation efficacy?",
+          "intent": "Evaluate quarterly validation of automated policy deployments",
+          "field_key": "pcm_06_automation_validated_quarterly",
+          "evaluation_focus": "Quarterly automation validation"
+        },
+        {
+          "id": "rq-pcm-06-5",
+          "prompt": "Do network security devices deploy consistent context-based access control (not IP-only policies) enterprise-wide—for example across firewalls, WAFs, and load balancers?",
+          "intent": "Evaluate context-based network access control vs IP-only policies",
+          "field_key": "pcm_06_context_based_network_access",
+          "evaluation_focus": "Context-based network access control vs IP-only policies"
+        },
+        {
+          "id": "rq-pcm-06-6",
+          "prompt": "Do edge and access devices deploy context-based authentication policies (beyond user ID only) enterprise-wide?",
+          "intent": "Evaluate context-based authentication policies enterprise-wide",
+          "field_key": "pcm_06_context_based_authentication_enterprise_wide",
+          "evaluation_focus": "Context-based authentication policies enterprise-wide"
+        },
+        {
+          "id": "rq-pcm-06-7",
+          "prompt": "Are authorization policies—including guest authorization—designed from context, attributes, and environment triggers and deployed uniformly enterprise-wide?",
+          "intent": "Evaluate context-based authorization and guest policies enterprise-wide",
+          "field_key": "pcm_06_context_based_authorization_guest",
+          "evaluation_focus": "Context-based authorization and guest policies enterprise-wide"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-07",
+      "capability_name": "Policy and compliance change monitoring",
+      "questions": [
+        {
+          "id": "rq-pcm-07-1",
+          "prompt": "Is there a formal documented process for logging rule and policy updates to the SOC?",
+          "intent": "Evaluate documented logging of policy updates to the SOC",
+          "field_key": "pcm_07_logging_policy_updates_to_soc",
+          "evaluation_focus": "Documented logging to SOC"
+        },
+        {
+          "id": "rq-pcm-07-2",
+          "prompt": "Is logging of rule changes and lifecycle events made securely to the SOC?",
+          "intent": "Evaluate secure logging of rule changes to the SOC",
+          "field_key": "pcm_07_secure_rule_logging_to_soc",
+          "evaluation_focus": "Secure logging to SOC"
+        },
+        {
+          "id": "rq-pcm-07-3",
+          "prompt": "Are dynamic rule and policy changes captured and transferred to the SOC in near-real time?",
+          "intent": "Evaluate capture and transfer of dynamic rule changes to the SOC",
+          "field_key": "pcm_07_dynamic_rule_changes_to_soc",
+          "evaluation_focus": "Dynamic rule changes to SOC"
+        },
+        {
+          "id": "rq-pcm-07-4",
+          "prompt": "Are anomalous bulk policy changes or unauthorized rule modifications detected and alerted in near-real time?",
+          "intent": "Evaluate anomalous policy change detection and alerting",
+          "field_key": "pcm_07_anomalous_policy_change_detection",
+          "evaluation_focus": "Anomalous policy change detection"
+        },
+        {
+          "id": "rq-pcm-07-5",
+          "prompt": "Is there a formal documented process for transporting compliance changes to the SOC?",
+          "intent": "Evaluate formal documented process for transporting compliance changes to the SOC",
+          "field_key": "pcm_07_documented_process_compliance_changes_to_soc",
+          "evaluation_focus": "Documented process for transporting compliance changes to the SOC"
+        },
+        {
+          "id": "rq-pcm-07-6",
+          "prompt": "Is transport of compliance changes made securely to the SOC?",
+          "intent": "Evaluate secure transport of compliance changes to the SOC",
+          "field_key": "pcm_07_secure_transport_compliance_changes_to_soc",
+          "evaluation_focus": "Secure transport of compliance changes to the SOC"
+        },
+        {
+          "id": "rq-pcm-07-7",
+          "prompt": "Are dynamic compliance changes captured and transferred to the SOC in near-real time?",
+          "intent": "Evaluate capture and transfer of dynamic compliance changes to the SOC",
+          "field_key": "pcm_07_dynamic_compliance_changes_to_soc",
+          "evaluation_focus": "Dynamic compliance changes captured and transferred to the SOC"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-08",
+      "capability_name": "Asset hardening and posture compliance",
+      "questions": [
+        {
+          "id": "rq-pcm-08-1",
+          "prompt": "Does the enterprise have a formal, documented endpoint compliance (posture) policy?",
+          "intent": "Evaluate formal documented endpoint compliance policy",
+          "field_key": "pcm_08_endpoint_compliance_policy_documented",
+          "evaluation_focus": "Formal documented endpoint compliance policy"
+        },
+        {
+          "id": "rq-pcm-08-2",
+          "prompt": "Does the endpoint compliance policy apply to all devices across all locations, or to a defined scope?",
+          "intent": "Evaluate scope of endpoint compliance policy across devices and locations",
+          "field_key": "pcm_08_endpoint_policy_scope_devices_locations",
+          "evaluation_focus": "Policy scope across devices and locations"
+        },
+        {
+          "id": "rq-pcm-08-3",
+          "prompt": "Is the endpoint compliance policy reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of endpoint compliance policy",
+          "field_key": "pcm_08_endpoint_policy_reviewed_quarterly",
+          "evaluation_focus": "Quarterly endpoint compliance policy review"
+        },
+        {
+          "id": "rq-pcm-08-4",
+          "prompt": "Is there a formal documented process for hardening applications in line with compliance, including development and deployment phases with automated patching where possible?",
+          "intent": "Evaluate application hardening process across SDLC with automation",
+          "field_key": "pcm_08_application_hardening_sdlc_automation",
+          "evaluation_focus": "Application hardening process and coverage across SDLC"
+        },
+        {
+          "id": "rq-pcm-08-5",
+          "prompt": "Does the enterprise harden endpoint and device assets in line with compliance metrics and the compliance management process, with automated patching where possible?",
+          "intent": "Evaluate endpoint and device hardening aligned to compliance",
+          "field_key": "pcm_08_device_hardening_compliance_aligned",
+          "evaluation_focus": "Endpoint and device hardening aligned to compliance"
+        },
+        {
+          "id": "rq-pcm-08-6",
+          "prompt": "Is there a formal documented process for network asset hardening with automated patching where possible?",
+          "intent": "Evaluate network asset hardening process and automation",
+          "field_key": "pcm_08_network_hardening_automation",
+          "evaluation_focus": "Network asset hardening process and automation"
+        },
+        {
+          "id": "rq-pcm-08-7",
+          "prompt": "Are application, device, and network hardening processes reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of hardening processes",
+          "field_key": "pcm_08_hardening_processes_reviewed_quarterly",
+          "evaluation_focus": "Quarterly review of hardening processes"
+        }
+      ]
+    },
+    {
+      "capability_id": "pcm-09",
+      "capability_name": "AI-era policy and compliance governance",
+      "questions": [
+        {
+          "id": "rq-pcm-09-1",
+          "prompt": "Does the organization distinguish approved AI tools from shadow AI tools in policy, and enforce data handling boundaries accordingly?",
+          "intent": "Evaluate approved versus shadow AI tool policy boundaries",
+          "field_key": "pcm_09_approved_vs_shadow_ai_policy",
+          "evaluation_focus": "Approved versus shadow AI tool policy boundaries"
+        },
+        {
+          "id": "rq-pcm-09-2",
+          "prompt": "Are data handling and retention policies defined for enterprise AI systems and AI-assisted workflows?",
+          "intent": "Evaluate data handling and retention policies for AI systems",
+          "field_key": "pcm_09_ai_data_handling_retention_policies",
+          "evaluation_focus": "Data handling and retention policies for AI systems"
+        },
+        {
+          "id": "rq-pcm-09-3",
+          "prompt": "Is there a policy governing delegated agent actions on behalf of users, aligned to EU AI Act risk tiers and internal risk appetite?",
+          "intent": "Evaluate delegated agent action policies aligned to EU AI Act risk tiers",
+          "field_key": "pcm_09_delegated_agent_policies_eu_ai_act",
+          "evaluation_focus": "Delegated agent action policies aligned to EU AI Act risk tiers"
+        },
+        {
+          "id": "rq-pcm-09-4",
+          "prompt": "Does the enterprise maintain an inventory of AI systems with risk classification for compliance purposes?",
+          "intent": "Evaluate AI system inventory and risk classification for compliance",
+          "field_key": "pcm_09_ai_system_inventory_risk_classification",
+          "evaluation_focus": "AI system inventory and risk classification for compliance"
+        },
+        {
+          "id": "rq-pcm-09-5",
+          "prompt": "Are EU AI Act conformity and documentation obligations tracked for in-scope AI systems?",
+          "intent": "Evaluate EU AI Act conformity obligation tracking",
+          "field_key": "pcm_09_eu_ai_act_conformity_tracked",
+          "evaluation_focus": "EU AI Act conformity and documentation obligations tracked"
+        },
+        {
+          "id": "rq-pcm-09-6",
+          "prompt": "Is compliance posture monitored for AI vendors and third-party models integrated into enterprise workflows?",
+          "intent": "Evaluate AI vendor and third-party model compliance monitoring",
+          "field_key": "pcm_09_ai_vendor_model_compliance_monitoring",
+          "evaluation_focus": "AI vendor and third-party model compliance monitoring"
+        }
+      ]
+    }
+  ]
+}

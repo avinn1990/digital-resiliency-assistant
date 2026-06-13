@@ -1,8 +1,8 @@
 {
   "service_id": "information-security-strategy-planning",
   "service_name": "Information Security Strategy and Planning Services",
-  "version": "1.4",
-  "description": "Evaluates whether the organization has a defined information security program with sponsorship, vision, team, roadmap, and measurable strategy-and-planning outcomes. Target audience: CISO/Head of Security; security program/strategy lead; GRC leader; security PMO/portfolio manager; and key contributors as needed (ERM owner, compliance/audit lead, TPRM/vendor risk lead, metrics owner, awareness lead, finance partner).",
+  "version": "1.5",
+  "description": "Evaluates whether the organization has a defined information security program with sponsorship, vision, team, roadmap, and measurable strategy-and-planning outcomes. Target audience: CISO/Head of Security; security program/strategy lead; GRC leader; security PMO/portfolio manager; and key contributors as needed (ERM owner, compliance/audit lead, TPRM/vendor risk lead, metrics owner, awareness lead, finance partner). Includes enterprise security governance depth: segmentation governance, external expert input, and AI-era governance.",
   "capabilities": [
     {
       "id": "issp-00",
@@ -103,7 +103,13 @@
       "evaluation_focus": [
         "Security governance forum or equivalent",
         "RACI for strategy decisions",
-        "Escalation paths for risk acceptance"
+        "Escalation paths for risk acceptance",
+        "Defined governance bodies, responsibilities, and decision scope",
+        "Documented RACI for key security decisions",
+        "Clear escalation paths for high-risk decisions and exceptions",
+        "Named leader with clear mandate and delegated authority",
+        "Engagement model with executives and delivery stakeholders",
+        "Accountability for governance decisions and outcomes"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -155,7 +161,11 @@
       "evaluation_focus": [
         "Defined KPIs and KRIs",
         "Reporting cadence to leadership",
-        "Use of metrics in decisions"
+        "Use of metrics in decisions",
+        "Defined KPIs/KRIs tied to governance outcomes",
+        "Leadership and board reporting cadence",
+        "Evidence that metrics inform decisions and prioritization",
+        "DORA and regulatory governance reporting metrics where applicable"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -198,6 +208,48 @@
       ],
       "resiliency_weight": 1,
       "pillar": "People"
+    },
+    {
+      "id": "issp-15",
+      "name": "Segmentation governance strategy",
+      "short_name": "segmentation governance",
+      "description": "Governance defines and reviews user, workload (micro-segmentation), and network (macro-segmentation) strategies—including criteria, enforcement principles, exceptions, and effectiveness measurement—at least quarterly.",
+      "evaluation_focus": [
+        "Defined user segmentation criteria and governed identity categories",
+        "Defined micro-segmentation principles and workload scope",
+        "Defined network segmentation zones and allowable traffic patterns",
+        "Enterprise-wide formalization and implementation of segmentation strategies",
+        "Exception governance and measurement of segmentation effectiveness",
+        "Quarterly review of segmentation governance strategies"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "issp-16",
+      "name": "External expert reference",
+      "short_name": "external expert input",
+      "description": "Governance incorporates external expert input or benchmarks—advisory, threat intelligence, peer benchmarks, audit/assurance, and AI-era threat research—to improve decisions and validate direction.",
+      "evaluation_focus": [
+        "Use of independent expertise or benchmarks to inform governance",
+        "Evidence of periodic external review or validation",
+        "Clear mechanism to incorporate findings into decisions and improvements"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "issp-17",
+      "name": "AI-era security governance",
+      "short_name": "AI-era governance",
+      "description": "Governance bodies account for AI adoption, dual-use model risk, EU AI Act obligations, and DORA ICT risk management in decision rights, oversight, and investment prioritization.",
+      "evaluation_focus": [
+        "Governance charter addresses AI system oversight and accountability",
+        "EU AI Act and sector AI compliance obligations reflected in governance scope",
+        "DORA ICT risk governance integrated into security governance cadence"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
     }
   ],
   "evaluation": {
