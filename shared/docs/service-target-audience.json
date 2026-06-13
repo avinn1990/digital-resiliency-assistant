@@ -271,6 +271,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "cryptographic-key-management": {
+      "service_name": "Cryptographic Key Management",
+      "role_ids": [
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "data-management": {
       "service_name": "Data Management",
       "role_ids": [
