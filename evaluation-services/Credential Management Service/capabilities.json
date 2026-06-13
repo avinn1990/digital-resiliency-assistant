@@ -1,0 +1,157 @@
+{
+  "service_id": "credential-management",
+  "service_name": "Credential Management Service",
+  "version": "1.0",
+  "description": "Evaluates credential management service maturity—lifecycle policies, identity store security, provisioning, deprovisioning, storage processes, and credential custodianship with separation of duties.",
+  "capabilities": [
+    {
+      "id": "cred-00",
+      "name": "Service exists and is in good condition",
+      "description": "A credential management service exists and is reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Enterprise credential management service exists",
+        "Frequent service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cred-01",
+      "name": "Credential Lifecycle Policy",
+      "description": "Password, certificate age, and credential storage policies are documented, scoped appropriately, and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented password policy for applications, networks, and endpoints",
+        "Formalized certificate age policy",
+        "Documented credential storage policy",
+        "Enterprise-wide vs vertical password policy scope",
+        "Frequent password policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cred-02",
+      "name": "Secure Credential Management and storage system (identity store)",
+      "description": "The identity store securely manages credentials with automatic provisioning and deprovisioning and regular efficacy review.",
+      "evaluation_focus": [
+        "Identity store manages and stores credentials securely",
+        "Automatic credential provisioning and deprovisioning",
+        "Identity store configuration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cred-03",
+      "name": "Credential Provisioning Process",
+      "description": "Credential provisioning is formalized, scoped appropriately, reviewed frequently, and automated based on conditions like new user provisioning.",
+      "evaluation_focus": [
+        "Formalized credential provisioning process",
+        "Enterprise-wide vs vertical provisioning scope",
+        "Frequent provisioning process review",
+        "Automated credential creation"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cred-04",
+      "name": "Credential Deprovisioning Process",
+      "description": "Credential deprovisioning is formalized, scoped appropriately, reviewed frequently, and automated based on conditions like age or compromise.",
+      "evaluation_focus": [
+        "Formalized credential deprovisioning process",
+        "Enterprise-wide vs vertical deprovisioning scope",
+        "Frequent deprovisioning process review",
+        "Automated credential deletion"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cred-05",
+      "name": "Credential Storage Process",
+      "description": "Credential storage is formalized, scoped appropriately, reviewed frequently, and automated based on conditions like age or compromise.",
+      "evaluation_focus": [
+        "Formalized credential storage process",
+        "Enterprise-wide vs vertical storage scope",
+        "Frequent storage process review",
+        "Automated credential creation and revocation"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cred-06",
+      "name": "Credential custodian",
+      "description": "A dedicated credential custodian manages credentials with separation of duties between user creation, authentication, and credential creation.",
+      "evaluation_focus": [
+        "Dedicated credential management custodian",
+        "Separation of duties for user, authentication, and credential roles"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}
