@@ -1,0 +1,1131 @@
+{
+  "service_id": "enterprise-asset-management",
+  "service_name": "Enterprise Asset Management",
+  "capability_questions": [
+    {
+      "capability_id": "eam-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-eam-00-1",
+          "prompt": "Does the enterprise track all endpoint assets as part of the enterprise asset management service?",
+          "intent": "Evaluate does the enterprise track all endpoint assets as part of the enterprise asset management service?",
+          "field_key": "eam_00_endpoint_assets_tracked",
+          "evaluation_focus": "Endpoint asset tracking"
+        },
+        {
+          "id": "rq-eam-00-2",
+          "prompt": "Is the asset management service reviewed frequently for efficacy?",
+          "intent": "Evaluate is the asset management service reviewed frequently for efficacy?",
+          "field_key": "eam_00_service_reviewed_frequently",
+          "evaluation_focus": "Service efficacy review"
+        },
+        {
+          "id": "rq-eam-00-3",
+          "prompt": "Does the enterprise track all network assets as part of the enterprise asset management service?",
+          "intent": "Evaluate does the enterprise track all network assets as part of the enterprise asset management service?",
+          "field_key": "eam_00_network_assets_tracked",
+          "evaluation_focus": "Network asset tracking"
+        },
+        {
+          "id": "rq-eam-00-4",
+          "prompt": "Does the enterprise track all application assets as part of the enterprise asset management service?",
+          "intent": "Evaluate does the enterprise track all application assets as part of the enterprise asset management service?",
+          "field_key": "eam_00_application_assets_tracked",
+          "evaluation_focus": "Application asset tracking"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-eam-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for endpoint asset management?",
+          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for endpoint asset management?",
+          "field_key": "eam_01_endpoint_kpis_documented",
+          "evaluation_focus": "Endpoint KPIs/KRIs documented"
+        },
+        {
+          "id": "rq-eam-01-2",
+          "prompt": "Are the KPIs and KRIs for endpoint asset management reviewed frequently?",
+          "intent": "Evaluate are the KPIs and KRIs for endpoint asset management reviewed frequently?",
+          "field_key": "eam_01_endpoint_kpis_reviewed",
+          "evaluation_focus": "Endpoint KPI/KRI review"
+        },
+        {
+          "id": "rq-eam-01-3",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the network asset management service?",
+          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for the network asset management service?",
+          "field_key": "eam_01_network_kpis_documented",
+          "evaluation_focus": "Network KPIs/KRIs documented"
+        },
+        {
+          "id": "rq-eam-01-4",
+          "prompt": "Are the KPIs and KRIs for the network asset management service reviewed frequently?",
+          "intent": "Evaluate are the KPIs and KRIs for the network asset management service reviewed frequently?",
+          "field_key": "eam_01_network_kpis_reviewed",
+          "evaluation_focus": "Network KPI/KRI review"
+        },
+        {
+          "id": "rq-eam-01-5",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the application workload asset management service?",
+          "intent": "Evaluate does the enterprise formalize and document all KPIs and KRIs for the application workload asset management service?",
+          "field_key": "eam_01_application_kpis_documented",
+          "evaluation_focus": "Application KPIs/KRIs documented"
+        },
+        {
+          "id": "rq-eam-01-6",
+          "prompt": "Are the KPIs and KRIs for application workload asset management reviewed frequently?",
+          "intent": "Evaluate are the KPIs and KRIs for application workload asset management reviewed frequently?",
+          "field_key": "eam_01_application_kpis_reviewed",
+          "evaluation_focus": "Application KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-02",
+      "capability_name": "Enterprise asset management system",
+      "questions": [
+        {
+          "id": "rq-eam-02-1",
+          "prompt": "Does the enterprise deploy a centralized asset management solution for devices, networks, and applications, or are each type of entity managed by their own asset management server?",
+          "intent": "Evaluate does the enterprise deploy a centralized asset management solution for devices, networks, and applications, or are each type of entity managed by their own asset management server?",
+          "field_key": "eam_02_centralized_vs_siloed",
+          "evaluation_focus": "Centralized vs siloed asset management"
+        },
+        {
+          "id": "rq-eam-02-2",
+          "prompt": "Does the enterprise asset management solution have the capability to automate asset management functions like discovery, provisioning, and deprovisioning?",
+          "intent": "Evaluate does the enterprise asset management solution have the capability to automate asset management functions like discovery, provisioning, and deprovisioning?",
+          "field_key": "eam_02_lifecycle_automation",
+          "evaluation_focus": "Automated asset lifecycle functions"
+        },
+        {
+          "id": "rq-eam-02-3",
+          "prompt": "Is the asset management system configuration reviewed frequently for efficacy?",
+          "intent": "Evaluate is the asset management system configuration reviewed frequently for efficacy?",
+          "field_key": "eam_02_config_reviewed",
+          "evaluation_focus": "Asset management configuration review"
+        },
+        {
+          "id": "rq-eam-02-4",
+          "prompt": "Does the asset management system integrate with other systems like access management, logging, and compliance management to provide context to decision making or compliance checks?",
+          "intent": "Evaluate does the asset management system integrate with other systems like access management, logging, and compliance management to provide context to decision making or compliance checks?",
+          "field_key": "eam_02_integrated_context",
+          "evaluation_focus": "Integration with access, logging, and compliance systems"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-03",
+      "capability_name": "SSRM Policy and Procedures",
+      "questions": [
+        {
+          "id": "rq-eam-03-1",
+          "prompt": "Does the enterprise have a strategy, policy, or procedure catering to shared security responsibility management for third-party asset management?",
+          "intent": "Evaluate does the enterprise have a strategy, policy, or procedure catering to shared security responsibility management for third-party asset management?",
+          "field_key": "eam_03_ssrm_policy_exists",
+          "evaluation_focus": "SSRM strategy and policy"
+        },
+        {
+          "id": "rq-eam-03-2",
+          "prompt": "Is the SSRM strategy and policy relevant to all third-party assets?",
+          "intent": "Evaluate is the SSRM strategy and policy relevant to all third-party assets?",
+          "field_key": "eam_03_ssrm_all_third_party",
+          "evaluation_focus": "Third-party asset scope"
+        },
+        {
+          "id": "rq-eam-03-3",
+          "prompt": "Are the policies and processes for SSRM reviewed frequently for efficacy?",
+          "intent": "Evaluate are the policies and processes for SSRM reviewed frequently for efficacy?",
+          "field_key": "eam_03_ssrm_reviewed",
+          "evaluation_focus": "SSRM policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-04",
+      "capability_name": "Unmanaged Asset Policies (BYOD)",
+      "questions": [
+        {
+          "id": "rq-eam-04-1",
+          "prompt": "Does the enterprise have a BYOD policy?",
+          "intent": "Evaluate does the enterprise have a BYOD policy?",
+          "field_key": "eam_04_byod_policy_exists",
+          "evaluation_focus": "BYOD policy exists"
+        },
+        {
+          "id": "rq-eam-04-2",
+          "prompt": "Are BYOD policies implemented enterprise-wide across all locations?",
+          "intent": "Evaluate are BYOD policies implemented enterprise-wide across all locations?",
+          "field_key": "eam_04_byod_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide BYOD implementation"
+        },
+        {
+          "id": "rq-eam-04-3",
+          "prompt": "Are BYOD policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are BYOD policies reviewed frequently for efficacy?",
+          "field_key": "eam_04_byod_reviewed",
+          "evaluation_focus": "BYOD policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-05",
+      "capability_name": "BYOD devices",
+      "questions": [
+        {
+          "id": "rq-eam-05-1",
+          "prompt": "Does the enterprise have a solution that supports provisioning and securing of unmanaged devices?",
+          "intent": "Evaluate does the enterprise have a solution that supports provisioning and securing of unmanaged devices?",
+          "field_key": "eam_05_byod_provisioning_solution",
+          "evaluation_focus": "Unmanaged device provisioning and security"
+        },
+        {
+          "id": "rq-eam-05-2",
+          "prompt": "Can unmanaged devices access the network at any location?",
+          "intent": "Evaluate can unmanaged devices access the network at any location?",
+          "field_key": "eam_05_byod_network_any_location",
+          "evaluation_focus": "Unmanaged device network access"
+        },
+        {
+          "id": "rq-eam-05-3",
+          "prompt": "Can end users automatically register their unmanaged devices for access with a self-register portal?",
+          "intent": "Evaluate can end users automatically register their unmanaged devices for access with a self-register portal?",
+          "field_key": "eam_05_byod_self_register_portal",
+          "evaluation_focus": "Self-register portal for unmanaged devices"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-06",
+      "capability_name": "Mobile Asset Management policies",
+      "questions": [
+        {
+          "id": "rq-eam-06-1",
+          "prompt": "Does the enterprise have a mobile device management policy?",
+          "intent": "Evaluate does the enterprise have a mobile device management policy?",
+          "field_key": "eam_06_mdm_policy_exists",
+          "evaluation_focus": "MDM policy exists"
+        },
+        {
+          "id": "rq-eam-06-2",
+          "prompt": "Are MDM policies implemented enterprise-wide across all locations?",
+          "intent": "Evaluate are MDM policies implemented enterprise-wide across all locations?",
+          "field_key": "eam_06_mdm_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide MDM implementation"
+        },
+        {
+          "id": "rq-eam-06-3",
+          "prompt": "Are MDM policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are MDM policies reviewed frequently for efficacy?",
+          "field_key": "eam_06_mdm_reviewed",
+          "evaluation_focus": "MDM policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-07",
+      "capability_name": "Mobile device provisioning",
+      "questions": [
+        {
+          "id": "rq-eam-07-1",
+          "prompt": "Does the enterprise have a solution that supports provisioning and securing of mobile devices?",
+          "intent": "Evaluate does the enterprise have a solution that supports provisioning and securing of mobile devices?",
+          "field_key": "eam_07_mobile_provisioning_solution",
+          "evaluation_focus": "Mobile device provisioning and security"
+        },
+        {
+          "id": "rq-eam-07-2",
+          "prompt": "Can mobile devices access the network at any location?",
+          "intent": "Evaluate can mobile devices access the network at any location?",
+          "field_key": "eam_07_mobile_network_any_location",
+          "evaluation_focus": "Mobile device network access"
+        },
+        {
+          "id": "rq-eam-07-3",
+          "prompt": "Can end users automatically register their mobile devices for access with a self-register portal?",
+          "intent": "Evaluate can end users automatically register their mobile devices for access with a self-register portal?",
+          "field_key": "eam_07_mobile_self_register_portal",
+          "evaluation_focus": "Self-register portal for mobile devices"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-08",
+      "capability_name": "Managed Asset Endpoint Security Policy",
+      "questions": [
+        {
+          "id": "rq-eam-08-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset endpoint security policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset endpoint security policy?",
+          "field_key": "eam_08_endpoint_security_policy_exists",
+          "evaluation_focus": "Formalized endpoint security policy"
+        },
+        {
+          "id": "rq-eam-08-2",
+          "prompt": "Is the managed endpoint asset security policy applicable to all endpoint assets in the enterprise?",
+          "intent": "Evaluate is the managed endpoint asset security policy applicable to all endpoint assets in the enterprise?",
+          "field_key": "eam_08_endpoint_security_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint security policy"
+        },
+        {
+          "id": "rq-eam-08-3",
+          "prompt": "Are the managed endpoint asset security policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed endpoint asset security policies reviewed frequently for efficacy?",
+          "field_key": "eam_08_endpoint_security_policy_reviewed",
+          "evaluation_focus": "Endpoint security policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-09",
+      "capability_name": "Managed Asset Application Security Policy",
+      "questions": [
+        {
+          "id": "rq-eam-09-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset application security policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset application security policy?",
+          "field_key": "eam_09_application_security_policy_exists",
+          "evaluation_focus": "Formalized application security policy"
+        },
+        {
+          "id": "rq-eam-09-2",
+          "prompt": "Is the managed application asset security policy applicable to all application assets in the enterprise?",
+          "intent": "Evaluate is the managed application asset security policy applicable to all application assets in the enterprise?",
+          "field_key": "eam_09_application_security_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application security policy"
+        },
+        {
+          "id": "rq-eam-09-3",
+          "prompt": "Are the managed application asset security policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed application asset security policies reviewed frequently for efficacy?",
+          "field_key": "eam_09_application_security_policy_reviewed",
+          "evaluation_focus": "Application security policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-10",
+      "capability_name": "Managed Asset Network Security Policy",
+      "questions": [
+        {
+          "id": "rq-eam-10-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset network security policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset network security policy?",
+          "field_key": "eam_10_network_security_policy_exists",
+          "evaluation_focus": "Formalized network security policy"
+        },
+        {
+          "id": "rq-eam-10-2",
+          "prompt": "Is the managed network asset security policy applicable to all network assets in the enterprise?",
+          "intent": "Evaluate is the managed network asset security policy applicable to all network assets in the enterprise?",
+          "field_key": "eam_10_network_security_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network security policy"
+        },
+        {
+          "id": "rq-eam-10-3",
+          "prompt": "Are the managed network asset security policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed network asset security policies reviewed frequently for efficacy?",
+          "field_key": "eam_10_network_security_policy_reviewed",
+          "evaluation_focus": "Network security policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-11",
+      "capability_name": "Managed asset Endpoint Provisioning policy",
+      "questions": [
+        {
+          "id": "rq-eam-11-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset endpoint provisioning policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset endpoint provisioning policy?",
+          "field_key": "eam_11_endpoint_provisioning_policy_exists",
+          "evaluation_focus": "Formalized endpoint provisioning policy"
+        },
+        {
+          "id": "rq-eam-11-2",
+          "prompt": "Is the managed endpoint asset provisioning policy applicable to all endpoint assets in the enterprise?",
+          "intent": "Evaluate is the managed endpoint asset provisioning policy applicable to all endpoint assets in the enterprise?",
+          "field_key": "eam_11_endpoint_provisioning_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint provisioning policy"
+        },
+        {
+          "id": "rq-eam-11-3",
+          "prompt": "Are the managed endpoint asset provisioning policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed endpoint asset provisioning policies reviewed frequently for efficacy?",
+          "field_key": "eam_11_endpoint_provisioning_policy_reviewed",
+          "evaluation_focus": "Endpoint provisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-12",
+      "capability_name": "Managed asset Application Provisioning policy",
+      "questions": [
+        {
+          "id": "rq-eam-12-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset application provisioning policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset application provisioning policy?",
+          "field_key": "eam_12_application_provisioning_policy_exists",
+          "evaluation_focus": "Formalized application provisioning policy"
+        },
+        {
+          "id": "rq-eam-12-2",
+          "prompt": "Is the managed application asset provisioning policy applicable to all application assets in the enterprise?",
+          "intent": "Evaluate is the managed application asset provisioning policy applicable to all application assets in the enterprise?",
+          "field_key": "eam_12_application_provisioning_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application provisioning policy"
+        },
+        {
+          "id": "rq-eam-12-3",
+          "prompt": "Are the managed application asset provisioning policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed application asset provisioning policies reviewed frequently for efficacy?",
+          "field_key": "eam_12_application_provisioning_policy_reviewed",
+          "evaluation_focus": "Application provisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-13",
+      "capability_name": "Managed asset Network Provisioning policy",
+      "questions": [
+        {
+          "id": "rq-eam-13-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset network provisioning policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset network provisioning policy?",
+          "field_key": "eam_13_network_provisioning_policy_exists",
+          "evaluation_focus": "Formalized network provisioning policy"
+        },
+        {
+          "id": "rq-eam-13-2",
+          "prompt": "Is the managed network asset provisioning policy applicable to all network assets in the enterprise?",
+          "intent": "Evaluate is the managed network asset provisioning policy applicable to all network assets in the enterprise?",
+          "field_key": "eam_13_network_provisioning_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network provisioning policy"
+        },
+        {
+          "id": "rq-eam-13-3",
+          "prompt": "Are the managed network asset provisioning policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed network asset provisioning policies reviewed frequently for efficacy?",
+          "field_key": "eam_13_network_provisioning_policy_reviewed",
+          "evaluation_focus": "Network provisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-14",
+      "capability_name": "Managed Asset Endpoint Deprovisioning Policies",
+      "questions": [
+        {
+          "id": "rq-eam-14-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset endpoint deprovisioning policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset endpoint deprovisioning policy?",
+          "field_key": "eam_14_endpoint_deprovisioning_policy_exists",
+          "evaluation_focus": "Formalized endpoint deprovisioning policy"
+        },
+        {
+          "id": "rq-eam-14-2",
+          "prompt": "Is the managed endpoint asset deprovisioning policy applicable to all endpoint assets in the enterprise?",
+          "intent": "Evaluate is the managed endpoint asset deprovisioning policy applicable to all endpoint assets in the enterprise?",
+          "field_key": "eam_14_endpoint_deprovisioning_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint deprovisioning policy"
+        },
+        {
+          "id": "rq-eam-14-3",
+          "prompt": "Are the managed endpoint asset deprovisioning policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed endpoint asset deprovisioning policies reviewed frequently for efficacy?",
+          "field_key": "eam_14_endpoint_deprovisioning_policy_reviewed",
+          "evaluation_focus": "Endpoint deprovisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-15",
+      "capability_name": "Managed Asset Application Deprovisioning Policies",
+      "questions": [
+        {
+          "id": "rq-eam-15-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset application deprovisioning policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset application deprovisioning policy?",
+          "field_key": "eam_15_application_deprovisioning_policy_exists",
+          "evaluation_focus": "Formalized application deprovisioning policy"
+        },
+        {
+          "id": "rq-eam-15-2",
+          "prompt": "Is the managed application asset deprovisioning policy applicable to all application assets in the enterprise?",
+          "intent": "Evaluate is the managed application asset deprovisioning policy applicable to all application assets in the enterprise?",
+          "field_key": "eam_15_application_deprovisioning_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application deprovisioning policy"
+        },
+        {
+          "id": "rq-eam-15-3",
+          "prompt": "Are the managed application asset deprovisioning policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed application asset deprovisioning policies reviewed frequently for efficacy?",
+          "field_key": "eam_15_application_deprovisioning_policy_reviewed",
+          "evaluation_focus": "Application deprovisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-16",
+      "capability_name": "Managed Asset Network Deprovisioning Policies",
+      "questions": [
+        {
+          "id": "rq-eam-16-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset network deprovisioning policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset network deprovisioning policy?",
+          "field_key": "eam_16_network_deprovisioning_policy_exists",
+          "evaluation_focus": "Formalized network deprovisioning policy"
+        },
+        {
+          "id": "rq-eam-16-2",
+          "prompt": "Is the managed network asset deprovisioning policy applicable to all network assets in the enterprise?",
+          "intent": "Evaluate is the managed network asset deprovisioning policy applicable to all network assets in the enterprise?",
+          "field_key": "eam_16_network_deprovisioning_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network deprovisioning policy"
+        },
+        {
+          "id": "rq-eam-16-3",
+          "prompt": "Are the managed network asset deprovisioning policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed network asset deprovisioning policies reviewed frequently for efficacy?",
+          "field_key": "eam_16_network_deprovisioning_policy_reviewed",
+          "evaluation_focus": "Network deprovisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-17",
+      "capability_name": "Managed asset Procurement and Supply chain Policy",
+      "questions": [
+        {
+          "id": "rq-eam-17-1",
+          "prompt": "Does the enterprise have a formalized documented managed asset endpoint procurement and supply chain policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset endpoint procurement and supply chain policy?",
+          "field_key": "eam_17_endpoint_procurement_policy_exists",
+          "evaluation_focus": "Endpoint procurement policy"
+        },
+        {
+          "id": "rq-eam-17-2",
+          "prompt": "Is the managed endpoint asset procurement and supply chain policy applicable to all endpoint assets in the enterprise?",
+          "intent": "Evaluate is the managed endpoint asset procurement and supply chain policy applicable to all endpoint assets in the enterprise?",
+          "field_key": "eam_17_endpoint_procurement_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint procurement policy"
+        },
+        {
+          "id": "rq-eam-17-3",
+          "prompt": "Are the managed endpoint asset procurement and supply chain policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed endpoint asset procurement and supply chain policies reviewed frequently for efficacy?",
+          "field_key": "eam_17_endpoint_procurement_policy_reviewed",
+          "evaluation_focus": "Endpoint procurement policy review"
+        },
+        {
+          "id": "rq-eam-17-4",
+          "prompt": "Does the enterprise have a formalized documented managed asset application procurement and supply chain policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset application procurement and supply chain policy?",
+          "field_key": "eam_17_application_procurement_policy_exists",
+          "evaluation_focus": "Application procurement policy"
+        },
+        {
+          "id": "rq-eam-17-5",
+          "prompt": "Is the managed application asset procurement and supply chain policy applicable to all application assets in the enterprise?",
+          "intent": "Evaluate is the managed application asset procurement and supply chain policy applicable to all application assets in the enterprise?",
+          "field_key": "eam_17_application_procurement_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application procurement policy"
+        },
+        {
+          "id": "rq-eam-17-6",
+          "prompt": "Are the managed application asset procurement and supply chain policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed application asset procurement and supply chain policies reviewed frequently for efficacy?",
+          "field_key": "eam_17_application_procurement_policy_reviewed",
+          "evaluation_focus": "Application procurement policy review"
+        },
+        {
+          "id": "rq-eam-17-7",
+          "prompt": "Does the enterprise have a formalized documented managed asset network procurement and supply chain policy?",
+          "intent": "Evaluate does the enterprise have a formalized documented managed asset network procurement and supply chain policy?",
+          "field_key": "eam_17_network_procurement_policy_exists",
+          "evaluation_focus": "Network procurement policy"
+        },
+        {
+          "id": "rq-eam-17-8",
+          "prompt": "Is the managed network asset procurement and supply chain policy applicable to all network assets in the enterprise?",
+          "intent": "Evaluate is the managed network asset procurement and supply chain policy applicable to all network assets in the enterprise?",
+          "field_key": "eam_17_network_procurement_policy_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network procurement policy"
+        },
+        {
+          "id": "rq-eam-17-9",
+          "prompt": "Are the managed network asset procurement and supply chain policies reviewed frequently for efficacy?",
+          "intent": "Evaluate are the managed network asset procurement and supply chain policies reviewed frequently for efficacy?",
+          "field_key": "eam_17_network_procurement_policy_reviewed",
+          "evaluation_focus": "Network procurement policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-18",
+      "capability_name": "Managed asset inventory tracking",
+      "questions": [
+        {
+          "id": "rq-eam-18-1",
+          "prompt": "Does the enterprise have a formalized and documented asset management process to maintain inventory of all endpoints in the enterprise?",
+          "intent": "Evaluate does the enterprise have a formalized and documented asset management process to maintain inventory of all endpoints in the enterprise?",
+          "field_key": "eam_18_endpoint_inventory_process",
+          "evaluation_focus": "Endpoint inventory process"
+        },
+        {
+          "id": "rq-eam-18-2",
+          "prompt": "Does the endpoint asset management process cover all endpoints in the enterprise?",
+          "intent": "Evaluate does the endpoint asset management process cover all endpoints in the enterprise?",
+          "field_key": "eam_18_endpoint_inventory_scope",
+          "evaluation_focus": "Endpoint inventory scope"
+        },
+        {
+          "id": "rq-eam-18-3",
+          "prompt": "Does the enterprise automate the process of discovery and addition or removal of endpoints from the inventory?",
+          "intent": "Evaluate does the enterprise automate the process of discovery and addition or removal of endpoints from the inventory?",
+          "field_key": "eam_18_endpoint_inventory_automated",
+          "evaluation_focus": "Endpoint inventory automation"
+        },
+        {
+          "id": "rq-eam-18-4",
+          "prompt": "Is the endpoint asset inventory process reviewed for efficacy?",
+          "intent": "Evaluate is the endpoint asset inventory process reviewed for efficacy?",
+          "field_key": "eam_18_endpoint_inventory_reviewed",
+          "evaluation_focus": "Endpoint inventory review"
+        },
+        {
+          "id": "rq-eam-18-5",
+          "prompt": "Does the enterprise have a formalized and documented asset management process to maintain inventory of all applications in the enterprise?",
+          "intent": "Evaluate does the enterprise have a formalized and documented asset management process to maintain inventory of all applications in the enterprise?",
+          "field_key": "eam_18_application_inventory_process",
+          "evaluation_focus": "Application inventory process"
+        },
+        {
+          "id": "rq-eam-18-6",
+          "prompt": "Does the application asset management process cover all applications, workloads, containers, VMs, and bare metal in the enterprise?",
+          "intent": "Evaluate does the application asset management process cover all applications, workloads, containers, VMs, and bare metal in the enterprise?",
+          "field_key": "eam_18_application_inventory_scope",
+          "evaluation_focus": "Application inventory scope"
+        },
+        {
+          "id": "rq-eam-18-7",
+          "prompt": "Does the enterprise automate the process of discovery and addition or removal of applications from the inventory?",
+          "intent": "Evaluate does the enterprise automate the process of discovery and addition or removal of applications from the inventory?",
+          "field_key": "eam_18_application_inventory_automated",
+          "evaluation_focus": "Application inventory automation"
+        },
+        {
+          "id": "rq-eam-18-8",
+          "prompt": "Is the application asset inventory process reviewed for efficacy?",
+          "intent": "Evaluate is the application asset inventory process reviewed for efficacy?",
+          "field_key": "eam_18_application_inventory_reviewed",
+          "evaluation_focus": "Application inventory review"
+        },
+        {
+          "id": "rq-eam-18-9",
+          "prompt": "Does the enterprise have a formalized and documented asset management process to maintain inventory of all network devices in the enterprise?",
+          "intent": "Evaluate does the enterprise have a formalized and documented asset management process to maintain inventory of all network devices in the enterprise?",
+          "field_key": "eam_18_network_inventory_process",
+          "evaluation_focus": "Network inventory process"
+        },
+        {
+          "id": "rq-eam-18-10",
+          "prompt": "Does the network asset management process cover all network devices in the enterprise?",
+          "intent": "Evaluate does the network asset management process cover all network devices in the enterprise?",
+          "field_key": "eam_18_network_inventory_scope",
+          "evaluation_focus": "Network inventory scope"
+        },
+        {
+          "id": "rq-eam-18-11",
+          "prompt": "Does the enterprise automate the process of discovery and addition or removal of network devices from the inventory?",
+          "intent": "Evaluate does the enterprise automate the process of discovery and addition or removal of network devices from the inventory?",
+          "field_key": "eam_18_network_inventory_automated",
+          "evaluation_focus": "Network inventory automation"
+        },
+        {
+          "id": "rq-eam-18-12",
+          "prompt": "Is the network asset inventory process reviewed for efficacy?",
+          "intent": "Evaluate is the network asset inventory process reviewed for efficacy?",
+          "field_key": "eam_18_network_inventory_reviewed",
+          "evaluation_focus": "Network inventory review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-19",
+      "capability_name": "Enterprise asset management registration process",
+      "questions": [
+        {
+          "id": "rq-eam-19-1",
+          "prompt": "Does the enterprise asset management software have the capability to register an asset to the asset management system?",
+          "intent": "Evaluate does the enterprise asset management software have the capability to register an asset to the asset management system?",
+          "field_key": "eam_19_registration_capability",
+          "evaluation_focus": "Asset registration capability"
+        },
+        {
+          "id": "rq-eam-19-2",
+          "prompt": "Are all enterprise assets registered to the asset management system?",
+          "intent": "Evaluate are all enterprise assets registered to the asset management system?",
+          "field_key": "eam_19_all_assets_registered",
+          "evaluation_focus": "All assets registered"
+        },
+        {
+          "id": "rq-eam-19-3",
+          "prompt": "Is asset registration automated?",
+          "intent": "Evaluate is asset registration automated?",
+          "field_key": "eam_19_registration_automated",
+          "evaluation_focus": "Automated registration"
+        },
+        {
+          "id": "rq-eam-19-4",
+          "prompt": "Is the registration process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the registration process reviewed frequently for efficacy?",
+          "field_key": "eam_19_registration_reviewed",
+          "evaluation_focus": "Registration process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-20",
+      "capability_name": "Enterprise asset management de-registration process",
+      "questions": [
+        {
+          "id": "rq-eam-20-1",
+          "prompt": "Does the enterprise asset management software have the capability to de-register an asset from the asset management system?",
+          "intent": "Evaluate does the enterprise asset management software have the capability to de-register an asset from the asset management system?",
+          "field_key": "eam_20_deregistration_capability",
+          "evaluation_focus": "Asset de-registration capability"
+        },
+        {
+          "id": "rq-eam-20-2",
+          "prompt": "Are all enterprise assets de-registered from the asset management system when appropriate?",
+          "intent": "Evaluate are all enterprise assets de-registered from the asset management system when appropriate?",
+          "field_key": "eam_20_all_assets_deregistered",
+          "evaluation_focus": "All assets de-registered"
+        },
+        {
+          "id": "rq-eam-20-3",
+          "prompt": "Is asset de-registration automated?",
+          "intent": "Evaluate is asset de-registration automated?",
+          "field_key": "eam_20_deregistration_automated",
+          "evaluation_focus": "Automated de-registration"
+        },
+        {
+          "id": "rq-eam-20-4",
+          "prompt": "Is the de-registration process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the de-registration process reviewed frequently for efficacy?",
+          "field_key": "eam_20_deregistration_reviewed",
+          "evaluation_focus": "De-registration process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-21",
+      "capability_name": "Managed asset self service Provisioning",
+      "questions": [
+        {
+          "id": "rq-eam-21-1",
+          "prompt": "Does the enterprise have a formalized documented process for provisioning endpoint assets?",
+          "intent": "Evaluate does the enterprise have a formalized documented process for provisioning endpoint assets?",
+          "field_key": "eam_21_endpoint_provisioning_process",
+          "evaluation_focus": "Endpoint provisioning process"
+        },
+        {
+          "id": "rq-eam-21-2",
+          "prompt": "Is the endpoint provisioning process applicable for all endpoint assets across the enterprise?",
+          "intent": "Evaluate is the endpoint provisioning process applicable for all endpoint assets across the enterprise?",
+          "field_key": "eam_21_endpoint_provisioning_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint provisioning"
+        },
+        {
+          "id": "rq-eam-21-3",
+          "prompt": "Is the endpoint provisioning process automated with self-provisioning portals?",
+          "intent": "Evaluate is the endpoint provisioning process automated with self-provisioning portals?",
+          "field_key": "eam_21_endpoint_provisioning_automated_portals",
+          "evaluation_focus": "Automated endpoint provisioning portals"
+        },
+        {
+          "id": "rq-eam-21-4",
+          "prompt": "Is the endpoint provisioning process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the endpoint provisioning process reviewed frequently for efficacy?",
+          "field_key": "eam_21_endpoint_provisioning_reviewed",
+          "evaluation_focus": "Endpoint provisioning review"
+        },
+        {
+          "id": "rq-eam-21-5",
+          "prompt": "Does the enterprise have a formalized documented process for provisioning application assets?",
+          "intent": "Evaluate does the enterprise have a formalized documented process for provisioning application assets?",
+          "field_key": "eam_21_application_provisioning_process",
+          "evaluation_focus": "Application provisioning process"
+        },
+        {
+          "id": "rq-eam-21-6",
+          "prompt": "Is the application provisioning process applicable for all application assets across the enterprise?",
+          "intent": "Evaluate is the application provisioning process applicable for all application assets across the enterprise?",
+          "field_key": "eam_21_application_provisioning_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application provisioning"
+        },
+        {
+          "id": "rq-eam-21-7",
+          "prompt": "Is the application provisioning process automated with self-provisioning portals?",
+          "intent": "Evaluate is the application provisioning process automated with self-provisioning portals?",
+          "field_key": "eam_21_application_provisioning_automated_portals",
+          "evaluation_focus": "Automated application provisioning portals"
+        },
+        {
+          "id": "rq-eam-21-8",
+          "prompt": "Is the application provisioning process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the application provisioning process reviewed frequently for efficacy?",
+          "field_key": "eam_21_application_provisioning_reviewed",
+          "evaluation_focus": "Application provisioning review"
+        },
+        {
+          "id": "rq-eam-21-9",
+          "prompt": "Does the enterprise have a formalized documented process for provisioning network assets?",
+          "intent": "Evaluate does the enterprise have a formalized documented process for provisioning network assets?",
+          "field_key": "eam_21_network_provisioning_process",
+          "evaluation_focus": "Network provisioning process"
+        },
+        {
+          "id": "rq-eam-21-10",
+          "prompt": "Is the network provisioning process applicable for all network assets across the enterprise?",
+          "intent": "Evaluate is the network provisioning process applicable for all network assets across the enterprise?",
+          "field_key": "eam_21_network_provisioning_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network provisioning"
+        },
+        {
+          "id": "rq-eam-21-11",
+          "prompt": "Is the network provisioning process automated with self-provisioning portals?",
+          "intent": "Evaluate is the network provisioning process automated with self-provisioning portals?",
+          "field_key": "eam_21_network_provisioning_automated_portals",
+          "evaluation_focus": "Automated network provisioning portals"
+        },
+        {
+          "id": "rq-eam-21-12",
+          "prompt": "Is the network provisioning process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the network provisioning process reviewed frequently for efficacy?",
+          "field_key": "eam_21_network_provisioning_reviewed",
+          "evaluation_focus": "Network provisioning review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-22",
+      "capability_name": "Managed asset self service Deprovisioning",
+      "questions": [
+        {
+          "id": "rq-eam-22-1",
+          "prompt": "Does the enterprise have a formalized documented process for deprovisioning endpoint assets?",
+          "intent": "Evaluate does the enterprise have a formalized documented process for deprovisioning endpoint assets?",
+          "field_key": "eam_22_endpoint_deprovisioning_process",
+          "evaluation_focus": "Endpoint deprovisioning process"
+        },
+        {
+          "id": "rq-eam-22-2",
+          "prompt": "Is the endpoint deprovisioning process applicable for all endpoint assets across the enterprise?",
+          "intent": "Evaluate is the endpoint deprovisioning process applicable for all endpoint assets across the enterprise?",
+          "field_key": "eam_22_endpoint_deprovisioning_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint deprovisioning"
+        },
+        {
+          "id": "rq-eam-22-3",
+          "prompt": "Is the endpoint deprovisioning process automated with self-provisioning portals?",
+          "intent": "Evaluate is the endpoint deprovisioning process automated with self-provisioning portals?",
+          "field_key": "eam_22_endpoint_deprovisioning_automated_portals",
+          "evaluation_focus": "Automated endpoint deprovisioning portals"
+        },
+        {
+          "id": "rq-eam-22-4",
+          "prompt": "Is the endpoint deprovisioning process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the endpoint deprovisioning process reviewed frequently for efficacy?",
+          "field_key": "eam_22_endpoint_deprovisioning_reviewed",
+          "evaluation_focus": "Endpoint deprovisioning review"
+        },
+        {
+          "id": "rq-eam-22-5",
+          "prompt": "Does the enterprise have a formalized documented process for deprovisioning application assets?",
+          "intent": "Evaluate does the enterprise have a formalized documented process for deprovisioning application assets?",
+          "field_key": "eam_22_application_deprovisioning_process",
+          "evaluation_focus": "Application deprovisioning process"
+        },
+        {
+          "id": "rq-eam-22-6",
+          "prompt": "Is the application deprovisioning process applicable for all application assets across the enterprise?",
+          "intent": "Evaluate is the application deprovisioning process applicable for all application assets across the enterprise?",
+          "field_key": "eam_22_application_deprovisioning_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application deprovisioning"
+        },
+        {
+          "id": "rq-eam-22-7",
+          "prompt": "Is the application deprovisioning process automated with self-provisioning portals?",
+          "intent": "Evaluate is the application deprovisioning process automated with self-provisioning portals?",
+          "field_key": "eam_22_application_deprovisioning_automated_portals",
+          "evaluation_focus": "Automated application deprovisioning portals"
+        },
+        {
+          "id": "rq-eam-22-8",
+          "prompt": "Is the application deprovisioning process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the application deprovisioning process reviewed frequently for efficacy?",
+          "field_key": "eam_22_application_deprovisioning_reviewed",
+          "evaluation_focus": "Application deprovisioning review"
+        },
+        {
+          "id": "rq-eam-22-9",
+          "prompt": "Does the enterprise have a formalized documented process for deprovisioning network assets?",
+          "intent": "Evaluate does the enterprise have a formalized documented process for deprovisioning network assets?",
+          "field_key": "eam_22_network_deprovisioning_process",
+          "evaluation_focus": "Network deprovisioning process"
+        },
+        {
+          "id": "rq-eam-22-10",
+          "prompt": "Is the network deprovisioning process applicable for all network assets across the enterprise?",
+          "intent": "Evaluate is the network deprovisioning process applicable for all network assets across the enterprise?",
+          "field_key": "eam_22_network_deprovisioning_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network deprovisioning"
+        },
+        {
+          "id": "rq-eam-22-11",
+          "prompt": "Is the network deprovisioning process automated with self-provisioning portals?",
+          "intent": "Evaluate is the network deprovisioning process automated with self-provisioning portals?",
+          "field_key": "eam_22_network_deprovisioning_automated_portals",
+          "evaluation_focus": "Automated network deprovisioning portals"
+        },
+        {
+          "id": "rq-eam-22-12",
+          "prompt": "Is the network deprovisioning process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the network deprovisioning process reviewed frequently for efficacy?",
+          "field_key": "eam_22_network_deprovisioning_reviewed",
+          "evaluation_focus": "Network deprovisioning review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-23",
+      "capability_name": "Managed asset Migration",
+      "questions": [
+        {
+          "id": "rq-eam-23-1",
+          "prompt": "Does the enterprise have a formalized and documented process for migration of endpoints from one system to another without data loss and maintaining security?",
+          "intent": "Evaluate does the enterprise have a formalized and documented process for migration of endpoints from one system to another without data loss and maintaining security?",
+          "field_key": "eam_23_endpoint_migration_process",
+          "evaluation_focus": "Endpoint migration process"
+        },
+        {
+          "id": "rq-eam-23-2",
+          "prompt": "Is the endpoint migration process seamless and automated with minimal human intervention?",
+          "intent": "Evaluate is the endpoint migration process seamless and automated with minimal human intervention?",
+          "field_key": "eam_23_endpoint_migration_automated",
+          "evaluation_focus": "Endpoint migration automation"
+        },
+        {
+          "id": "rq-eam-23-3",
+          "prompt": "Is the endpoint migration process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the endpoint migration process reviewed frequently for efficacy?",
+          "field_key": "eam_23_endpoint_migration_reviewed",
+          "evaluation_focus": "Endpoint migration review"
+        },
+        {
+          "id": "rq-eam-23-4",
+          "prompt": "Does the enterprise have a formalized and documented process for migration of network devices from one system to another without data loss and maintaining security?",
+          "intent": "Evaluate does the enterprise have a formalized and documented process for migration of network devices from one system to another without data loss and maintaining security?",
+          "field_key": "eam_23_network_migration_process",
+          "evaluation_focus": "Network migration process"
+        },
+        {
+          "id": "rq-eam-23-5",
+          "prompt": "Is the network device migration process seamless and automated with minimal human intervention?",
+          "intent": "Evaluate is the network device migration process seamless and automated with minimal human intervention?",
+          "field_key": "eam_23_network_migration_automated",
+          "evaluation_focus": "Network migration automation"
+        },
+        {
+          "id": "rq-eam-23-6",
+          "prompt": "Is the network device migration process reviewed frequently for efficacy?",
+          "intent": "Evaluate is the network device migration process reviewed frequently for efficacy?",
+          "field_key": "eam_23_network_migration_reviewed",
+          "evaluation_focus": "Network migration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-24",
+      "capability_name": "Managed asset Security and Threat Protection",
+      "questions": [
+        {
+          "id": "rq-eam-24-1",
+          "prompt": "Does the asset management system have the capability of enabling endpoint-specific threat protections?",
+          "intent": "Evaluate does the asset management system have the capability of enabling endpoint-specific threat protections?",
+          "field_key": "eam_24_endpoint_threat_protection_capability",
+          "evaluation_focus": "Endpoint-specific threat protections"
+        },
+        {
+          "id": "rq-eam-24-2",
+          "prompt": "Are the endpoint-specific threat protections applicable enterprise-wide?",
+          "intent": "Evaluate are the endpoint-specific threat protections applicable enterprise-wide?",
+          "field_key": "eam_24_endpoint_threat_protection_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide endpoint threat protections"
+        },
+        {
+          "id": "rq-eam-24-3",
+          "prompt": "Are the endpoint threat protections reviewed based on current security and threat trends to enhance?",
+          "intent": "Evaluate are the endpoint threat protections reviewed based on current security and threat trends to enhance?",
+          "field_key": "eam_24_endpoint_threat_protection_reviewed",
+          "evaluation_focus": "Endpoint threat protection review"
+        },
+        {
+          "id": "rq-eam-24-4",
+          "prompt": "Does the asset management system have the capability of enabling application-specific threat protections?",
+          "intent": "Evaluate does the asset management system have the capability of enabling application-specific threat protections?",
+          "field_key": "eam_24_application_threat_protection_capability",
+          "evaluation_focus": "Application-specific threat protections"
+        },
+        {
+          "id": "rq-eam-24-5",
+          "prompt": "Are the application-specific threat protections applicable enterprise-wide?",
+          "intent": "Evaluate are the application-specific threat protections applicable enterprise-wide?",
+          "field_key": "eam_24_application_threat_protection_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application threat protections"
+        },
+        {
+          "id": "rq-eam-24-6",
+          "prompt": "Are the application threat protections reviewed based on current security and threat trends to enhance?",
+          "intent": "Evaluate are the application threat protections reviewed based on current security and threat trends to enhance?",
+          "field_key": "eam_24_application_threat_protection_reviewed",
+          "evaluation_focus": "Application threat protection review"
+        },
+        {
+          "id": "rq-eam-24-7",
+          "prompt": "Does the asset management system have the capability of enabling network-specific threat protections?",
+          "intent": "Evaluate does the asset management system have the capability of enabling network-specific threat protections?",
+          "field_key": "eam_24_network_threat_protection_capability",
+          "evaluation_focus": "Network-specific threat protections"
+        },
+        {
+          "id": "rq-eam-24-8",
+          "prompt": "Are the network-specific threat protections applicable enterprise-wide?",
+          "intent": "Evaluate are the network-specific threat protections applicable enterprise-wide?",
+          "field_key": "eam_24_network_threat_protection_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network threat protections"
+        },
+        {
+          "id": "rq-eam-24-9",
+          "prompt": "Are the network threat protections reviewed based on current security and threat trends to enhance?",
+          "intent": "Evaluate are the network threat protections reviewed based on current security and threat trends to enhance?",
+          "field_key": "eam_24_network_threat_protection_reviewed",
+          "evaluation_focus": "Network threat protection review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-25",
+      "capability_name": "Supply chain Visibility",
+      "questions": [
+        {
+          "id": "rq-eam-25-1",
+          "prompt": "Does the asset management software have visibility into the third-party software and hardware components of all endpoint assets?",
+          "intent": "Evaluate does the asset management software have visibility into the third-party software and hardware components of all endpoint assets?",
+          "field_key": "eam_25_endpoint_supply_chain_visibility",
+          "evaluation_focus": "Endpoint supply chain visibility"
+        },
+        {
+          "id": "rq-eam-25-2",
+          "prompt": "Does the asset management software have visibility into the third-party software and hardware components of all network device assets?",
+          "intent": "Evaluate does the asset management software have visibility into the third-party software and hardware components of all network device assets?",
+          "field_key": "eam_25_network_supply_chain_visibility",
+          "evaluation_focus": "Network supply chain visibility"
+        },
+        {
+          "id": "rq-eam-25-3",
+          "prompt": "Does the asset management software have visibility into the third-party software and hardware components of all application assets?",
+          "intent": "Evaluate does the asset management software have visibility into the third-party software and hardware components of all application assets?",
+          "field_key": "eam_25_application_supply_chain_visibility",
+          "evaluation_focus": "Application supply chain visibility"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-26",
+      "capability_name": "Enterprise asset access user management",
+      "questions": [
+        {
+          "id": "rq-eam-26-1",
+          "prompt": "Does the asset management solution have the capability of creating users and controlling access to management databases and assets based on identity and context?",
+          "intent": "Evaluate does the asset management solution have the capability of creating users and controlling access to management databases and assets based on identity and context?",
+          "field_key": "eam_26_identity_context_access_control",
+          "evaluation_focus": "Identity and context-based asset access control"
+        },
+        {
+          "id": "rq-eam-26-2",
+          "prompt": "Are the users allowed to access specific assets reviewed frequently?",
+          "intent": "Evaluate are the users allowed to access specific assets reviewed frequently?",
+          "field_key": "eam_26_asset_access_users_reviewed",
+          "evaluation_focus": "Asset access user review"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-27",
+      "capability_name": "Enterprise Asset Management custodians",
+      "questions": [
+        {
+          "id": "rq-eam-27-1",
+          "prompt": "Does the enterprise have separate custodians for asset management with capabilities to manage specific assets\u2014for example an endpoint management engineer for endpoints, an application engineer for applications, and network security engineers for network?",
+          "intent": "Evaluate does the enterprise have separate custodians for asset management with capabilities to manage specific assets\u2014for example an endpoint management engineer for endpoints, an application engineer for applications, and network security engineers for network?",
+          "field_key": "eam_27_separate_custodians_by_asset_type",
+          "evaluation_focus": "Separate asset management custodians by asset type"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-28",
+      "capability_name": "Shadow asset handling",
+      "questions": [
+        {
+          "id": "rq-eam-28-1",
+          "prompt": "Does the enterprise have the capability to manage and identify shadow IT across the entire enterprise?",
+          "intent": "Evaluate does the enterprise have the capability to manage and identify shadow IT across the entire enterprise?",
+          "field_key": "eam_28_shadow_it_management",
+          "evaluation_focus": "Shadow IT management across enterprise"
+        },
+        {
+          "id": "rq-eam-28-2",
+          "prompt": "Is shadow IT discovery automated in the enterprise?",
+          "intent": "Evaluate is shadow IT discovery automated in the enterprise?",
+          "field_key": "eam_28_shadow_it_discovery_automated",
+          "evaluation_focus": "Automated shadow IT discovery"
+        }
+      ]
+    },
+    {
+      "capability_id": "eam-29",
+      "capability_name": "Enterprise Asset management logging",
+      "questions": [
+        {
+          "id": "rq-eam-29-1",
+          "prompt": "Is there a formal documented process for logging asset-based lifecycle logs and activity to the SOC?",
+          "intent": "Evaluate is there a formal documented process for logging asset-based lifecycle logs and activity to the SOC?",
+          "field_key": "eam_29_logging_process_to_soc",
+          "evaluation_focus": "Documented asset lifecycle logging to SOC"
+        },
+        {
+          "id": "rq-eam-29-2",
+          "prompt": "Is logging of asset management logs made securely to the SOC?",
+          "intent": "Evaluate is logging of asset management logs made securely to the SOC?",
+          "field_key": "eam_29_secure_logging_to_soc",
+          "evaluation_focus": "Secure asset logging to SOC"
+        },
+        {
+          "id": "rq-eam-29-3",
+          "prompt": "Are dynamic changes to asset state and asset activity captured and transferred to the SOC?",
+          "intent": "Evaluate are dynamic changes to asset state and asset activity captured and transferred to the SOC?",
+          "field_key": "eam_29_dynamic_changes_to_soc",
+          "evaluation_focus": "Dynamic asset state changes to SOC"
+        }
+      ]
+    }
+  ]
+}

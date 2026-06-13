@@ -159,6 +159,19 @@
         "security-architecture-lead"
       ]
     },
+    "enterprise-asset-management": {
+      "service_name": "Enterprise Asset Management",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead",
+        "tprm-lead"
+      ]
+    },
     "enterprise-risk-management": {
       "service_name": "Enterprise Risk Management",
       "role_ids": [
