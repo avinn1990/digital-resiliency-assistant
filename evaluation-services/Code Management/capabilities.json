@@ -1,0 +1,164 @@
+{
+  "service_id": "code-management",
+  "service_name": "Code Management",
+  "version": "1.0",
+  "description": "Evaluates code management maturity—code management software, deployment methodology, repositories, secure storage, multi-environment access control, code updates, creation provisioning, and deletion deprovisioning.",
+  "capabilities": [
+    {
+      "id": "cdm-00",
+      "name": "Code management software",
+      "description": "Code management software supports publishing, versioning, and deleting code for all or specific applications with automated change management.",
+      "evaluation_focus": [
+        "Code management software for publishing, versioning, and deleting code",
+        "Enterprise-wide or scoped application coverage",
+        "Automated code management when users make changes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cdm-01",
+      "name": "Code Deployment methodology",
+      "description": "A formalized documented process governs code and its lifecycle, is automated by supporting software, and is reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented code lifecycle management process",
+        "Automated code management process",
+        "Frequent code management process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cdm-02",
+      "name": "Code Repositories",
+      "description": "All enterprise application code is stored securely in enterprise repositories that are scanned frequently and integrated with vulnerability management.",
+      "evaluation_focus": [
+        "All enterprise application code in secure repositories",
+        "Frequent repository scanning integrated with vulnerability management"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cdm-03",
+      "name": "Secure Code Storage",
+      "description": "All code is stored securely in repositories.",
+      "evaluation_focus": [
+        "All code stored securely in repositories"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cdm-04",
+      "name": "Code access in multiple environments",
+      "description": "Access to all code repositories is limited by function, controlled by CI/CD across repositories and staging locations, and reviewed frequently to prevent privilege creep.",
+      "evaluation_focus": [
+        "Function-based access limits for all code repositories",
+        "CI/CD controls access to repositories and staging locations",
+        "Frequent repository access review to prevent privilege creep"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "cdm-05",
+      "name": "Code updates",
+      "description": "A code management process handles publishing, versioning, updating, and deleting code for all or critical applications via automated CI/CD and is reviewed frequently.",
+      "evaluation_focus": [
+        "Code management process for publishing, versioning, updating, and deleting",
+        "Process scope for all or critical applications",
+        "Automated code management with CI/CD pipelines",
+        "Frequent code update process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cdm-06",
+      "name": "Creation of code",
+      "description": "A process provisions code testing environments for creation and testing across all applications, automated via CI/CD.",
+      "evaluation_focus": [
+        "Process to provision code testing environments",
+        "Code creation and testing environment for all applications",
+        "Automated provisioning via CI/CD"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cdm-07",
+      "name": "Deletion of code",
+      "description": "A process deprovisions code testing environments after deletion and production movement for all applications, automated via CI/CD.",
+      "evaluation_focus": [
+        "Process to deprovision code testing environments after deletion",
+        "Code deletion and deprovisioning for all applications",
+        "Automated deprovisioning via CI/CD"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}

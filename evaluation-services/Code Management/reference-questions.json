@@ -1,0 +1,208 @@
+{
+  "service_id": "code-management",
+  "service_name": "Code Management",
+  "capability_questions": [
+    {
+      "capability_id": "cdm-00",
+      "capability_name": "Code management software",
+      "questions": [
+        {
+          "id": "rq-cdm-00-1",
+          "prompt": "Does the enterprise have code management software capability to manage publishing, versioning and deleting code?",
+          "intent": "Evaluate whether code management software supports publishing, versioning, and deleting code.",
+          "field_key": "cdm_00_code_management_software",
+          "evaluation_focus": "Code management software for publishing, versioning, and deleting code"
+        },
+        {
+          "id": "rq-cdm-00-2",
+          "prompt": "Is the code management software used for all applications or only for specific ones?",
+          "intent": "Evaluate whether code management software is used for all applications or only specific ones.",
+          "field_key": "cdm_00_software_scope",
+          "evaluation_focus": "Enterprise-wide or scoped application coverage"
+        },
+        {
+          "id": "rq-cdm-00-3",
+          "prompt": "Does the software have capability to automatically manage code as and when users make changes?",
+          "intent": "Evaluate whether the software automatically manages code when users make changes.",
+          "field_key": "cdm_00_automatic_code_management",
+          "evaluation_focus": "Automated code management when users make changes"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-01",
+      "capability_name": "Code Deployment methodology",
+      "questions": [
+        {
+          "id": "rq-cdm-01-1",
+          "prompt": "Does the enterprise have a formalized documented process for management of code and its lifecycle?",
+          "intent": "Evaluate whether a formalized documented process governs code and its lifecycle.",
+          "field_key": "cdm_01_formalized_code_lifecycle_process",
+          "evaluation_focus": "Formalized documented code lifecycle management process"
+        },
+        {
+          "id": "rq-cdm-01-2",
+          "prompt": "Is the code management process automated by the supporting software?",
+          "intent": "Evaluate whether the code management process is automated by supporting software.",
+          "field_key": "cdm_01_process_automated",
+          "evaluation_focus": "Automated code management process"
+        },
+        {
+          "id": "rq-cdm-01-3",
+          "prompt": "Are code management processes reviewed frequently for efficacy?",
+          "intent": "Evaluate whether code management processes are reviewed frequently for efficacy.",
+          "field_key": "cdm_01_process_reviewed_frequently",
+          "evaluation_focus": "Frequent code management process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-02",
+      "capability_name": "Code Repositories",
+      "questions": [
+        {
+          "id": "rq-cdm-02-1",
+          "prompt": "Are all enterprise application code stored securely at enterprise repositories?",
+          "intent": "Evaluate whether all enterprise application code is stored securely in enterprise repositories.",
+          "field_key": "cdm_02_all_code_in_repositories",
+          "evaluation_focus": "All enterprise application code in secure repositories"
+        },
+        {
+          "id": "rq-cdm-02-2",
+          "prompt": "Are repositories scanned frequently for vulnerable code or malicious code and integrated with vulnerability management systems?",
+          "intent": "Evaluate whether repositories are scanned frequently and integrated with vulnerability management.",
+          "field_key": "cdm_02_repository_scanning_integrated",
+          "evaluation_focus": "Frequent repository scanning integrated with vulnerability management"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-03",
+      "capability_name": "Secure Code Storage",
+      "questions": [
+        {
+          "id": "rq-cdm-03-1",
+          "prompt": "Are all code stored securely in repositories?",
+          "intent": "Evaluate whether all code is stored securely in repositories.",
+          "field_key": "cdm_03_all_code_stored_securely",
+          "evaluation_focus": "All code stored securely in repositories"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-04",
+      "capability_name": "Code access in multiple environments",
+      "questions": [
+        {
+          "id": "rq-cdm-04-1",
+          "prompt": "Is access to all code repositories limited to specific users based on function?",
+          "intent": "Evaluate whether access to all code repositories is limited by function.",
+          "field_key": "cdm_04_function_based_repository_access",
+          "evaluation_focus": "Function-based access limits for all code repositories"
+        },
+        {
+          "id": "rq-cdm-04-2",
+          "prompt": "Does CI/CD control access to multiple code repositories and staging locations?",
+          "intent": "Evaluate whether CI/CD controls access to code repositories and staging locations.",
+          "field_key": "cdm_04_cicd_controls_repository_access",
+          "evaluation_focus": "CI/CD controls access to repositories and staging locations"
+        },
+        {
+          "id": "rq-cdm-04-3",
+          "prompt": "Is access to code repositories reviewed frequently to prevent privilege creep?",
+          "intent": "Evaluate whether code repository access is reviewed frequently to prevent privilege creep.",
+          "field_key": "cdm_04_access_reviewed_frequently",
+          "evaluation_focus": "Frequent repository access review to prevent privilege creep"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-05",
+      "capability_name": "Code updates",
+      "questions": [
+        {
+          "id": "rq-cdm-05-1",
+          "prompt": "Does the enterprise have a code management process to manage publishing, versioning, updating and deleting code?",
+          "intent": "Evaluate whether a code management process handles publishing, versioning, updating, and deleting code.",
+          "field_key": "cdm_05_code_update_process",
+          "evaluation_focus": "Code management process for publishing, versioning, updating, and deleting"
+        },
+        {
+          "id": "rq-cdm-05-2",
+          "prompt": "Is the code management process applicable to all applications or only critical ones?",
+          "intent": "Evaluate whether the code management process applies to all applications or only critical ones.",
+          "field_key": "cdm_05_update_process_scope",
+          "evaluation_focus": "Process scope for all or critical applications"
+        },
+        {
+          "id": "rq-cdm-05-3",
+          "prompt": "Is the code management process automated with CI/CD pipelines?",
+          "intent": "Evaluate whether the code management process is automated with CI/CD pipelines.",
+          "field_key": "cdm_05_update_process_automated_cicd",
+          "evaluation_focus": "Automated code management with CI/CD pipelines"
+        },
+        {
+          "id": "rq-cdm-05-4",
+          "prompt": "Is the code management process reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the code management process is reviewed frequently for efficacy.",
+          "field_key": "cdm_05_update_process_reviewed_frequently",
+          "evaluation_focus": "Frequent code update process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-06",
+      "capability_name": "Creation of code",
+      "questions": [
+        {
+          "id": "rq-cdm-06-1",
+          "prompt": "Does the enterprise have a process of provisioning a code testing environment for code that needs to be created and tested?",
+          "intent": "Evaluate whether a process provisions code testing environments for creation and testing.",
+          "field_key": "cdm_06_provision_testing_environment",
+          "evaluation_focus": "Process to provision code testing environments"
+        },
+        {
+          "id": "rq-cdm-06-2",
+          "prompt": "Is the code creation and provisioned testing environment performed for all applications?",
+          "intent": "Evaluate whether code creation and testing environment provisioning applies to all applications.",
+          "field_key": "cdm_06_creation_all_applications",
+          "evaluation_focus": "Code creation and testing environment for all applications"
+        },
+        {
+          "id": "rq-cdm-06-3",
+          "prompt": "Is the code creation and testing environment provisioning automated as part of CI/CD?",
+          "intent": "Evaluate whether code creation and testing environment provisioning is automated via CI/CD.",
+          "field_key": "cdm_06_creation_automated_cicd",
+          "evaluation_focus": "Automated provisioning via CI/CD"
+        }
+      ]
+    },
+    {
+      "capability_id": "cdm-07",
+      "capability_name": "Deletion of code",
+      "questions": [
+        {
+          "id": "rq-cdm-07-1",
+          "prompt": "Does the enterprise have a process of deprovisioning a code testing environment for code that needs to be deleted after testing and movement to production?",
+          "intent": "Evaluate whether a process deprovisions code testing environments after deletion and production movement.",
+          "field_key": "cdm_07_deprovision_testing_environment",
+          "evaluation_focus": "Process to deprovision code testing environments after deletion"
+        },
+        {
+          "id": "rq-cdm-07-2",
+          "prompt": "Is the code deletion and deprovisioned testing environment performed for all applications?",
+          "intent": "Evaluate whether code deletion and deprovisioning applies to all applications.",
+          "field_key": "cdm_07_deletion_all_applications",
+          "evaluation_focus": "Code deletion and deprovisioning for all applications"
+        },
+        {
+          "id": "rq-cdm-07-3",
+          "prompt": "Is the code deletion and testing environment deprovisioning automated as part of CI/CD?",
+          "intent": "Evaluate whether code deletion and testing environment deprovisioning is automated via CI/CD.",
+          "field_key": "cdm_07_deletion_automated_cicd",
+          "evaluation_focus": "Automated deprovisioning via CI/CD"
+        }
+      ]
+    }
+  ]
+}
