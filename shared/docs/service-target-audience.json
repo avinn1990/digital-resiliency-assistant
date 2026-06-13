@@ -234,6 +234,18 @@
         "security-awareness-culture-lead",
         "finance-partner-security-budgeting"
       ]
+    },
+    "security-architecture-management": {
+      "service_name": "Security Architecture Management",
+      "role_ids": [
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
     }
   }
 }

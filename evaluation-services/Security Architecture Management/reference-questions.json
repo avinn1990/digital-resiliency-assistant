@@ -1,0 +1,282 @@
+{
+  "service_id": "security-architecture-management",
+  "service_name": "Security Architecture Management",
+  "capability_questions": [
+    {
+      "capability_id": "sam-00",
+      "capability_name": "Architecture management service",
+      "questions": [
+        {
+          "id": "rq-sam-00-1",
+          "prompt": "Does the enterprise have an architecture management service?",
+          "intent": "Evaluate whether the enterprise has an architecture management service.",
+          "field_key": "sam_00_architecture_management_service_exists",
+          "evaluation_focus": "Enterprise architecture management service exists"
+        },
+        {
+          "id": "rq-sam-00-2",
+          "prompt": "Is the architecture management service reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the architecture management service is reviewed frequently for efficacy.",
+          "field_key": "sam_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-sam-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Architecture Management?",
+          "intent": "Evaluate whether KPIs and KRIs for architecture management are formalized and documented.",
+          "field_key": "sam_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for architecture management"
+        },
+        {
+          "id": "rq-sam-01-2",
+          "prompt": "Are the KPIs and KRIs for the Architecture Management reviewed frequently?",
+          "intent": "Evaluate whether architecture management KPIs and KRIs are reviewed frequently.",
+          "field_key": "sam_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-02",
+      "capability_name": "Network Segmentation based on least function principle",
+      "questions": [
+        {
+          "id": "rq-sam-02-1",
+          "prompt": "Does the enterprise deploy network segmentation based on an existing segmentation strategy or industry standards?",
+          "intent": "Evaluate whether network segmentation follows a documented strategy or industry standards.",
+          "field_key": "sam_02_segmentation_strategy_or_standards",
+          "evaluation_focus": "Segmentation strategy or industry standards"
+        },
+        {
+          "id": "rq-sam-02-2",
+          "prompt": "Is network segmentation deployed enterprise wide?",
+          "intent": "Evaluate whether network segmentation is deployed enterprise-wide.",
+          "field_key": "sam_02_segmentation_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide network segmentation deployment"
+        },
+        {
+          "id": "rq-sam-02-3",
+          "prompt": "Is network segmentation automated or performed manually based on functional requirement?",
+          "intent": "Evaluate whether network segmentation is automated or performed manually based on functional requirements.",
+          "field_key": "sam_02_segmentation_automation",
+          "evaluation_focus": "Automated or manual segmentation by functional requirement"
+        },
+        {
+          "id": "rq-sam-02-4",
+          "prompt": "Is the network segmentation reviewed frequently to enhance security?",
+          "intent": "Evaluate whether network segmentation is reviewed frequently to enhance security.",
+          "field_key": "sam_02_segmentation_reviewed_frequently",
+          "evaluation_focus": "Frequent segmentation review for security enhancement"
+        },
+        {
+          "id": "rq-sam-02-5",
+          "prompt": "Are the staging, development and deployment segments separated physically?",
+          "intent": "Evaluate whether staging, development, and deployment segments are physically separated.",
+          "field_key": "sam_02_staging_dev_deploy_physically_separated",
+          "evaluation_focus": "Physical separation of staging, development, and deployment segments"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-03",
+      "capability_name": "Applications isolation",
+      "questions": [
+        {
+          "id": "rq-sam-03-1",
+          "prompt": "Does the enterprise deploy application segmentation based on an existing segmentation strategy or industry standards?",
+          "intent": "Evaluate whether application segmentation follows a documented strategy or industry standards.",
+          "field_key": "sam_03_application_segmentation_strategy",
+          "evaluation_focus": "Application segmentation strategy or industry standards"
+        },
+        {
+          "id": "rq-sam-03-2",
+          "prompt": "Is application segmentation deployed enterprise wide?",
+          "intent": "Evaluate whether application segmentation is deployed enterprise-wide.",
+          "field_key": "sam_03_application_segmentation_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application segmentation deployment"
+        },
+        {
+          "id": "rq-sam-03-3",
+          "prompt": "Is application segmentation automated or performed manually based on functional requirement?",
+          "intent": "Evaluate whether application segmentation is automated or performed manually based on functional requirements.",
+          "field_key": "sam_03_application_segmentation_automation",
+          "evaluation_focus": "Automated or manual application segmentation by functional requirement"
+        },
+        {
+          "id": "rq-sam-03-4",
+          "prompt": "Is the application segmentation reviewed frequently to enhance security?",
+          "intent": "Evaluate whether application segmentation is reviewed frequently to enhance security.",
+          "field_key": "sam_03_application_segmentation_reviewed_frequently",
+          "evaluation_focus": "Frequent application segmentation review for security enhancement"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-04",
+      "capability_name": "Network Encryption",
+      "questions": [
+        {
+          "id": "rq-sam-04-1",
+          "prompt": "Does the enterprise have capability to encrypt data in motion between the various segments enterprise wide?",
+          "intent": "Evaluate whether the enterprise encrypts data in motion between segments enterprise-wide.",
+          "field_key": "sam_04_data_in_motion_encryption",
+          "evaluation_focus": "Data in motion encryption enterprise-wide"
+        },
+        {
+          "id": "rq-sam-04-2",
+          "prompt": "Does the cryptographic solution provide the enterprise with cryptographic agility?",
+          "intent": "Evaluate whether the cryptographic solution provides cryptographic agility.",
+          "field_key": "sam_04_cryptographic_agility",
+          "evaluation_focus": "Cryptographic agility"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-05",
+      "capability_name": "Network Assurance — Resiliency",
+      "questions": [
+        {
+          "id": "rq-sam-05-1",
+          "prompt": "Does the enterprise deploy active/active network such that failure of one availability zone does not impact the other?",
+          "intent": "Evaluate whether the enterprise deploys active/active network architecture across availability zones.",
+          "field_key": "sam_05_active_active_network",
+          "evaluation_focus": "Active/active network across availability zones"
+        },
+        {
+          "id": "rq-sam-05-2",
+          "prompt": "Does the enterprise have at least 2 availability zones?",
+          "intent": "Evaluate whether the enterprise has at least two availability zones.",
+          "field_key": "sam_05_at_least_two_availability_zones",
+          "evaluation_focus": "At least two availability zones"
+        },
+        {
+          "id": "rq-sam-05-3",
+          "prompt": "Can the network react and provide an alternate path to workload thus reducing impact to end user and application?",
+          "intent": "Evaluate whether the network can provide alternate paths to workloads during failure.",
+          "field_key": "sam_05_alternate_path_failover",
+          "evaluation_focus": "Alternate path failover for workloads"
+        },
+        {
+          "id": "rq-sam-05-4",
+          "prompt": "Are single point of failure analysis performed to make sure that there are no unforeseen failures in the network?",
+          "intent": "Evaluate whether single point of failure analysis is performed for the network.",
+          "field_key": "sam_05_spof_analysis",
+          "evaluation_focus": "Single point of failure analysis"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-06",
+      "capability_name": "Design Reviews",
+      "questions": [
+        {
+          "id": "rq-sam-06-1",
+          "prompt": "Does the enterprise have a formalized documented process for design reviews?",
+          "intent": "Evaluate whether the enterprise has a formalized documented process for design reviews.",
+          "field_key": "sam_06_formalized_design_review_process",
+          "evaluation_focus": "Formalized documented design review process"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-07",
+      "capability_name": "Secure internal API communications",
+      "questions": [
+        {
+          "id": "rq-sam-07-1",
+          "prompt": "Does the enterprise deploy technology that can support secure API communications?",
+          "intent": "Evaluate whether the enterprise deploys technology that supports secure API communications.",
+          "field_key": "sam_07_secure_api_technology",
+          "evaluation_focus": "Technology supporting secure API communications"
+        },
+        {
+          "id": "rq-sam-07-2",
+          "prompt": "Are all functional segments and applications deployed to support secure communications?",
+          "intent": "Evaluate whether functional segments and applications are deployed to support secure communications.",
+          "field_key": "sam_07_secure_communications_deployment",
+          "evaluation_focus": "Secure communications across functional segments and applications"
+        },
+        {
+          "id": "rq-sam-07-3",
+          "prompt": "Are communications between applications monitored and reviewed to make sure that communication is secure?",
+          "intent": "Evaluate whether inter-application communications are monitored and reviewed for security.",
+          "field_key": "sam_07_communications_monitored_reviewed",
+          "evaluation_focus": "Monitoring and review of inter-application communications"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-08",
+      "capability_name": "Network Security",
+      "questions": [
+        {
+          "id": "rq-sam-08-1",
+          "prompt": "Does the enterprise deploy specific function based network security controls across the enterprise functional segments?",
+          "intent": "Evaluate whether function-based network security controls are deployed across enterprise functional segments.",
+          "field_key": "sam_08_function_based_network_security_controls",
+          "evaluation_focus": "Function-based network security controls across segments"
+        },
+        {
+          "id": "rq-sam-08-2",
+          "prompt": "Are the network security controls reviewed frequently to measure efficacy and enhance security posture?",
+          "intent": "Evaluate whether network security controls are reviewed frequently for efficacy and posture improvement.",
+          "field_key": "sam_08_network_security_controls_reviewed",
+          "evaluation_focus": "Frequent network security control efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-09",
+      "capability_name": "Cloud Adoption and Migration",
+      "questions": [
+        {
+          "id": "rq-sam-09-1",
+          "prompt": "Does the enterprise have capability to securely move workload from on prem to cloud segments?",
+          "intent": "Evaluate whether the enterprise can securely migrate workloads from on-premises to cloud segments.",
+          "field_key": "sam_09_secure_on_prem_to_cloud_migration",
+          "evaluation_focus": "Secure on-premises to cloud workload migration"
+        },
+        {
+          "id": "rq-sam-09-2",
+          "prompt": "Can cloud migration take place across all locations in the enterprise?",
+          "intent": "Evaluate whether cloud migration can take place across all enterprise locations.",
+          "field_key": "sam_09_cloud_migration_all_locations",
+          "evaluation_focus": "Cloud migration across all enterprise locations"
+        },
+        {
+          "id": "rq-sam-09-3",
+          "prompt": "Does the cloud platform possess capability to automate cloud migration from on premise segments?",
+          "intent": "Evaluate whether the cloud platform can automate migration from on-premises segments.",
+          "field_key": "sam_09_automated_cloud_migration",
+          "evaluation_focus": "Automated cloud migration from on-premises segments"
+        },
+        {
+          "id": "rq-sam-09-4",
+          "prompt": "Are cloud migration processes frequently reviewed for efficacy of secure transmissions and user experience?",
+          "intent": "Evaluate whether cloud migration processes are frequently reviewed for secure transmissions and user experience.",
+          "field_key": "sam_09_cloud_migration_process_reviewed",
+          "evaluation_focus": "Frequent cloud migration process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "sam-10",
+      "capability_name": "AMO team",
+      "questions": [
+        {
+          "id": "rq-sam-10-1",
+          "prompt": "Does the enterprise have a separate team that manages and tracks architectural changes across the enterprise and measures the risk of threats and reviews relevant architectural upgrades?",
+          "intent": "Evaluate whether a dedicated AMO team manages architectural changes, measures threat risk, and reviews architectural upgrades.",
+          "field_key": "sam_10_amo_team_exists",
+          "evaluation_focus": "Dedicated AMO team for architectural change management"
+        }
+      ]
+    }
+  ]
+}
