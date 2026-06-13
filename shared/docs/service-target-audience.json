@@ -62,6 +62,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "credential-management": {
+      "service_name": "Credential Management Service",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "change-management": {
       "service_name": "Change Management Service",
       "role_ids": [
