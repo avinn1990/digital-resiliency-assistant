@@ -111,6 +111,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "privileged-access-management": {
+      "service_name": "Privileged Access Management Service",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "compliance-management-service": {
       "service_name": "Compliance Management Service",
       "role_ids": [
