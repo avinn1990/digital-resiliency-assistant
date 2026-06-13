@@ -1,0 +1,38 @@
+# Evaluation Service Optimization Tracker (v1.0 → v1.1)
+
+| Wave | Pack | service_id | Caps | Qs | Status |
+|------|------|------------|------|-----|--------|
+| — | Information Security Strategy and Planning Services | information-security-strategy-planning | 15 | 37 | done (1.4) |
+| — | Access Management Service | access-management | 15 | 51 | done (1.1) |
+| — | Authentication Service | authentication-service | 8 | 27 | done (1.1) |
+| — | Application Development and Testing | application-development-testing | 11 | 36 | done (1.1) |
+| — | Enterprise Risk Management | enterprise-risk-management | 14 | 42 | done (1.1) |
+| 1 | Vulnerability Management and Pentesting Service | vulnerability-management-pentesting | 11 | 47 | in_progress |
+| 1 | Update and Patch Management Service | update-patch-management | 8 | 44 | pending |
+| 1 | Security Operations | security-operations | 14 | 39 | pending |
+| 1 | Incident Management | incident-management | 14 | 32 | pending |
+| 1 | Log Management | log-management | 13 | 21 | pending |
+| 1 | Enterprise Security Governance | enterprise-security-governance | 6 | 25 | done (1.1) |
+| 1 | Compliance Management Service | compliance-management-service | 10 | 35 | done (1.1) |
+| 1 | Policy Management Service | policy-management | 10 | 38 | done (1.1) |
+| 2 | Identity Management Service | identity-management | 12 | 39 | pending |
+| 2 | Credential Management Service | credential-management | 7 | 24 | pending |
+| 2 | Privileged Access Management Service | privileged-access-management | 7 | 22 | pending |
+| 2 | Session Management Service | session-management | 3 | 10 | pending |
+| 2 | Certificate Management Service | certificate-management | 6 | 20 | pending |
+| 2 | Cryptographic Key Management | cryptographic-key-management | 17 | 44 | pending |
+| 3 | Network Management Service | network-management | 10 | 23 | pending |
+| 3 | Configuration Management Service | configuration-management | 12 | 58 | pending |
+| 3 | Container Management | container-management | 6 | 20 | pending |
+| 3 | Production Workload Management | production-workload-management | 10 | 30 | pending |
+| 3 | Enterprise Asset Management | enterprise-asset-management | 30 | 135 | pending |
+| 3 | Data Management | data-management | 35 | 97 | pending |
+| 3 | Facilities Management Service | facilities-management | 10 | 14 | pending |
+| 4 | Code Management | code-management | 8 | 22 | pending |
+| 4 | Change Management Service | change-management | 11 | 46 | pending |
+| 4 | Security Architecture Management | security-architecture-management | 11 | 30 | pending |
+| 4 | Automation, Orchestration and Integration | automation-orchestration-integration | 2 | 5 | pending |
+| 4 | Content Management Service | content-management | 7 | 14 | pending |
+| 5 | Business Continuity Management | business-continuity-management | 10 | 19 | pending |
+| 5 | Security Training | security-training | 2 | 2 | pending |
+| 5 | Security Culture | security-culture | 1 | 1 | pending |

@@ -1,138 +1,143 @@
 {
   "service_id": "compliance-management-service",
   "service_name": "Compliance Management Service",
-  "version": "1.0",
-  "description": "Evaluates compliance management service maturity, compliance software and scanning, process and standards alignment, metrics and teams, endpoint posture policy, asset hardening across applications, devices, and network assets, and SOC transport of compliance changes.",
+  "version": "1.1",
+  "description": "Evaluates compliance management service maturity—compliance platform and scanning, process and standards alignment (including DORA and EU AI Act), metrics and teams, endpoint posture policy, asset hardening, SOC transport of compliance changes, and AI-era compliance governance.",
   "capabilities": [
     {
       "id": "cm-00",
-      "name": "Service Exists and in good condition",
-      "description": "A compliance management service is defined in the enterprise and reviewed for efficacy.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A compliance management service is defined in the enterprise and reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Compliance management service defined in the enterprise",
-        "Service reviewed frequently for efficacy"
+        "Quarterly service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "cm-01",
-      "name": "Compliance management system/software",
-      "description": "The enterprise uses compliance management software to monitor compliance, with appropriate scope, automation, configuration review, and integration for attribute-based decision making.",
+      "name": "Compliance management platform and scanning",
+      "short_name": "platform and scanning",
+      "description": "Compliance management software monitors compliance enterprise-wide with automated scanning, configuration review, remediation integration, and attribute-based decision support.",
       "evaluation_focus": [
         "Compliance management software for enterprise-wide monitoring",
         "Scope across enterprise and subsidiaries",
-        "Automation for compliance management and scanning",
-        "Software configuration reviewed to align with business",
-        "Integration with decision points and network technologies"
+        "Automated compliance scanning across all assets and locations",
+        "Software configuration reviewed at least quarterly to align with business",
+        "Scan results integrated with remediation and decision points"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "cm-02",
-      "name": "Compliance scanning",
-      "description": "Compliance scanning covers assets across locations with automation and integration to remediation.",
-      "evaluation_focus": [
-        "Software can scan assets for compliance",
-        "Scanning deployed for all assets across all locations",
-        "Compliance scanning automated",
-        "Scan results integrated with remediation software"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "cm-03",
-      "name": "Compliance management Process",
-      "description": "An established, documented compliance management process is implemented with automation and frequent review.",
+      "name": "Compliance management process",
+      "short_name": "compliance process",
+      "description": "An established, documented compliance management process is implemented enterprise-wide or in defined scope, incorporates automation, and is reviewed at least quarterly.",
       "evaluation_focus": [
         "Established documented compliance management process",
         "Process implemented enterprise-wide or scoped",
         "Automation incorporated into the process",
-        "Process reviewed frequently"
+        "Quarterly process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "cm-04",
-      "name": "Compliance Alignment to Standards and regulations",
-      "description": "Relevant standards and regulations requiring alignment are officially documented and reviewed on a defined cadence.",
+      "id": "cm-03",
+      "name": "Standards and regulations alignment",
+      "short_name": "standards alignment",
+      "description": "Relevant standards and regulations—including DORA, EU AI Act, and sector rules—are officially documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Official documentation of relevant standards and regulations",
-        "Frequent review of compliance requirements"
+        "DORA and financial-sector ICT compliance obligations mapped where applicable",
+        "EU AI Act and AI system compliance obligations mapped where applicable",
+        "Quarterly review of compliance requirements"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cm-04",
+      "name": "Compliance metrics",
+      "short_name": "compliance metrics",
+      "description": "Compliance KPIs and KRIs—including control coverage, scan pass rate, mean time to remediate findings, and regulatory attestation status—are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Officially designed and documented compliance metrics",
+        "Control coverage and scan pass rate metrics",
+        "Mean time to remediate compliance findings",
+        "Quarterly review of compliance metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "cm-05",
-      "name": "Function specific compliance metrics",
-      "description": "Compliance metrics are officially designed, documented, and reviewed frequently.",
+      "name": "Compliance teams and specialists",
+      "short_name": "compliance teams",
+      "description": "Compliance management teams with policy and compliance specialists govern the overall compliance management service.",
       "evaluation_focus": [
-        "Officially designed and documented compliance metrics",
-        "Frequent review of compliance metrics"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "cm-06",
-      "name": "Compliance teams",
-      "description": "Compliance management teams manage the overall compliance management service.",
-      "evaluation_focus": [
-        "Compliance management teams manage the overall service"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "People"
-    },
-    {
-      "id": "cm-07",
-      "name": "Policy and compliance specialist",
-      "description": "Policy and compliance specialists are part of compliance teams.",
-      "evaluation_focus": [
+        "Compliance management teams manage the overall service",
         "Policy and compliance specialists on compliance teams"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
     },
     {
-      "id": "cm-08",
-      "name": "Endpoint compliance (posture) policy/rules",
-      "description": "Endpoint compliance policy is formalized, scoped, and reviewed frequently.",
+      "id": "cm-06",
+      "name": "Endpoint compliance (posture) policy",
+      "short_name": "endpoint posture",
+      "description": "Endpoint compliance policy is formalized, scoped enterprise-wide or to defined devices and locations, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formal documented endpoint compliance policy",
         "Policy scope across devices and locations",
-        "Endpoint compliance policy reviewed frequently"
+        "Quarterly endpoint compliance policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cm-07",
+      "name": "Asset hardening and compliance alignment",
+      "short_name": "asset hardening",
+      "description": "Formal hardening processes align applications, endpoints, and network assets with compliance—including automation, patching, and quarterly review.",
+      "evaluation_focus": [
+        "Application hardening process and coverage across SDLC",
+        "Endpoint and device hardening aligned to compliance",
+        "Network asset hardening process and automation",
+        "Quarterly review of hardening processes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cm-08",
+      "name": "SOC compliance change monitoring",
+      "short_name": "SOC monitoring",
+      "description": "Compliance changes are formally documented, securely transported, and dynamically captured for the SOC, including anomalous compliance drift detection.",
+      "evaluation_focus": [
+        "Documented process for transporting compliance changes to the SOC",
+        "Secure transport of compliance changes to the SOC",
+        "Dynamic compliance changes captured and transferred to the SOC",
+        "Anomalous compliance drift or bulk exemption detection"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "cm-09",
-      "name": "Asset Hardening and compliance alignment",
-      "description": "Formal hardening processes align applications, endpoints/devices, and network assets with compliance, including automation, patching, and frequent review.",
+      "name": "AI-era compliance governance",
+      "short_name": "AI-era compliance",
+      "description": "Compliance management addresses AI system inventory, EU AI Act conformity obligations, and monitoring of AI vendor and model compliance posture.",
       "evaluation_focus": [
-        "Application hardening process and coverage",
-        "Endpoint and device hardening aligned to compliance",
-        "Network asset hardening process and automation",
-        "Frequent review of hardening processes"
+        "AI system inventory and risk classification for compliance",
+        "EU AI Act conformity and documentation obligations tracked",
+        "AI vendor and third-party model compliance monitoring"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "cm-10",
-      "name": "Monitoring changes in compliance",
-      "description": "Compliance changes are formally documented, securely transported, and dynamically captured for the SOC.",
-      "evaluation_focus": [
-        "Documented process for transporting compliance changes to the SOC",
-        "Secure transport of compliance changes to the SOC",
-        "Dynamic compliance changes captured and transferred to the SOC"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Strategy"
     }
   ],
   "evaluation": {

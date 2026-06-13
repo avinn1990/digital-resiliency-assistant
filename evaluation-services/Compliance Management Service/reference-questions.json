@@ -4,7 +4,7 @@
   "capability_questions": [
     {
       "capability_id": "cm-00",
-      "capability_name": "Service Exists and in good condition",
+      "capability_name": "Service exists and is in good condition",
       "questions": [
         {
           "id": "rq-cm-00-1",
@@ -15,343 +15,295 @@
         },
         {
           "id": "rq-cm-00-2",
-          "prompt": "Is the service frequently reviewed for efficacy?",
-          "intent": "Evaluate whether the compliance management service is frequently reviewed for efficacy",
-          "field_key": "cm_00_service_reviewed_for_efficacy",
-          "evaluation_focus": "Service reviewed frequently for efficacy"
+          "prompt": "Is the compliance management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the compliance management service is reviewed quarterly for efficacy",
+          "field_key": "cm_00_service_reviewed_quarterly",
+          "evaluation_focus": "Quarterly service efficacy review"
         }
       ]
     },
     {
       "capability_id": "cm-01",
-      "capability_name": "Compliance management system/software",
+      "capability_name": "Compliance management platform and scanning",
       "questions": [
         {
           "id": "rq-cm-01-1",
-          "prompt": "Does the enterprise use a compliance management software to monitor compliance enterprise-wide?",
+          "prompt": "Does the enterprise use compliance management software to monitor compliance enterprise-wide?",
           "intent": "Evaluate use of compliance management software for enterprise-wide monitoring",
-          "field_key": "cm_01_compliance_management_software_enterprise_wide",
+          "field_key": "cm_01_compliance_software_enterprise_wide",
           "evaluation_focus": "Compliance management software for enterprise-wide monitoring"
         },
         {
           "id": "rq-cm-01-2",
-          "prompt": "Is compliance tracked across all the enterprise and subsidiaries or is it restricted to a specific scope within the enterprise?",
+          "prompt": "Is compliance tracked across the enterprise and subsidiaries, or is it restricted to a specific scope?",
           "intent": "Evaluate scope of compliance tracking across enterprise and subsidiaries",
-          "field_key": "cm_01_compliance_tracked_enterprise_subsidiaries_scope",
+          "field_key": "cm_01_compliance_scope_enterprise_subsidiaries",
           "evaluation_focus": "Scope across enterprise and subsidiaries"
         },
         {
           "id": "rq-cm-01-3",
-          "prompt": "Is compliance management and scanning automated by the software? Or is there an automation in place for capturing compliance information?",
-          "intent": "Evaluate automation of compliance management, scanning, and information capture",
-          "field_key": "cm_01_compliance_automation_software_or_process",
-          "evaluation_focus": "Automation for compliance management and scanning"
+          "prompt": "Is automated compliance scanning deployed for all assets across all locations?",
+          "intent": "Evaluate automated compliance scanning coverage",
+          "field_key": "cm_01_automated_scanning_all_assets",
+          "evaluation_focus": "Automated compliance scanning across all assets and locations"
         },
         {
           "id": "rq-cm-01-4",
-          "prompt": "Is the software configuration reviewed frequently to align with business?",
-          "intent": "Evaluate frequent review of software configuration to align with business",
-          "field_key": "cm_01_software_configuration_reviewed_frequently",
-          "evaluation_focus": "Software configuration reviewed to align with business"
+          "prompt": "Is the compliance management software configuration reviewed at least quarterly to align with business requirements?",
+          "intent": "Evaluate quarterly software configuration review",
+          "field_key": "cm_01_software_config_reviewed_quarterly",
+          "evaluation_focus": "Software configuration reviewed at least quarterly to align with business"
         },
         {
           "id": "rq-cm-01-5",
-          "prompt": "Does the compliance management software integrate with a decision point or other technologies in the network to aid in attribute-based decision making?",
-          "intent": "Evaluate integration with decision points and network technologies for attribute-based decisions",
-          "field_key": "cm_01_software_integrates_decision_point_abac",
-          "evaluation_focus": "Integration with decision points and network technologies"
+          "prompt": "Are scan results integrated with remediation software and decision points for attribute-based compliance enforcement?",
+          "intent": "Evaluate integration of scan results with remediation and decision points",
+          "field_key": "cm_01_scan_results_remediation_decision_points",
+          "evaluation_focus": "Scan results integrated with remediation and decision points"
         }
       ]
     },
     {
       "capability_id": "cm-02",
-      "capability_name": "Compliance scanning",
+      "capability_name": "Compliance management process",
       "questions": [
         {
           "id": "rq-cm-02-1",
-          "prompt": "Can enterprise compliance software scan assets for compliance?",
-          "intent": "Evaluate whether compliance software can scan assets for compliance",
-          "field_key": "cm_02_software_scan_assets_compliance",
-          "evaluation_focus": "Software can scan assets for compliance"
+          "prompt": "Does the enterprise have an established, documented compliance management process?",
+          "intent": "Evaluate established documented compliance management process",
+          "field_key": "cm_02_established_documented_process",
+          "evaluation_focus": "Established documented compliance management process"
         },
         {
           "id": "rq-cm-02-2",
-          "prompt": "Does the enterprise deploy compliance scanning for all assets across all locations?",
-          "intent": "Evaluate deployment of compliance scanning for all assets across all locations",
-          "field_key": "cm_02_scanning_all_assets_all_locations",
-          "evaluation_focus": "Scanning deployed for all assets across all locations"
+          "prompt": "Is the compliance management process implemented enterprise-wide, or within a defined scope?",
+          "intent": "Evaluate enterprise-wide vs scoped implementation of compliance management process",
+          "field_key": "cm_02_process_implemented_enterprise_or_scope",
+          "evaluation_focus": "Process implemented enterprise-wide or scoped"
         },
         {
           "id": "rq-cm-02-3",
-          "prompt": "Is compliance scanning automated?",
-          "intent": "Evaluate whether compliance scanning is automated",
-          "field_key": "cm_02_compliance_scanning_automated",
-          "evaluation_focus": "Compliance scanning automated"
+          "prompt": "Is automation incorporated into the compliance management process?",
+          "intent": "Evaluate automation incorporated into the compliance management process",
+          "field_key": "cm_02_automation_incorporated_process",
+          "evaluation_focus": "Automation incorporated into the process"
         },
         {
           "id": "rq-cm-02-4",
-          "prompt": "Can the scan results be integrated with remediation software to enhance automatic remediation?",
-          "intent": "Evaluate integration of scan results with remediation software",
-          "field_key": "cm_02_scan_results_integrated_remediation",
-          "evaluation_focus": "Scan results integrated with remediation software"
+          "prompt": "Is the compliance management process reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of the compliance management process",
+          "field_key": "cm_02_process_reviewed_quarterly",
+          "evaluation_focus": "Quarterly process review"
         }
       ]
     },
     {
       "capability_id": "cm-03",
-      "capability_name": "Compliance management Process",
+      "capability_name": "Standards and regulations alignment",
       "questions": [
         {
           "id": "rq-cm-03-1",
-          "prompt": "Does the enterprise have an established, documented compliance management process?",
-          "intent": "Evaluate established documented compliance management process",
-          "field_key": "cm_03_established_documented_compliance_process",
-          "evaluation_focus": "Established documented compliance management process"
+          "prompt": "Has the enterprise officially documented all relevant standards and regulations requiring alignment?",
+          "intent": "Evaluate official documentation of relevant standards and regulations",
+          "field_key": "cm_03_standards_regulations_documented",
+          "evaluation_focus": "Official documentation of relevant standards and regulations"
         },
         {
           "id": "rq-cm-03-2",
-          "prompt": "Is compliance management process implemented enterprise-wide, or is it implemented within a specific scope?",
-          "intent": "Evaluate enterprise-wide vs scoped implementation of compliance management process",
-          "field_key": "cm_03_process_implemented_enterprise_or_scope",
-          "evaluation_focus": "Process implemented enterprise-wide or scoped"
+          "prompt": "Where DORA or financial-sector ICT rules apply, are compliance obligations mapped and tracked?",
+          "intent": "Evaluate DORA and financial-sector ICT compliance mapping",
+          "field_key": "cm_03_dora_ict_obligations_mapped",
+          "evaluation_focus": "DORA and financial-sector ICT compliance obligations mapped where applicable"
         },
         {
           "id": "rq-cm-03-3",
-          "prompt": "Is there automation incorporated into the process?",
-          "intent": "Evaluate automation incorporated into the compliance management process",
-          "field_key": "cm_03_automation_incorporated_process",
-          "evaluation_focus": "Automation incorporated into the process"
+          "prompt": "Are EU AI Act and AI system compliance obligations mapped for systems deployed or procured by the enterprise?",
+          "intent": "Evaluate EU AI Act compliance obligation mapping",
+          "field_key": "cm_03_eu_ai_act_obligations_mapped",
+          "evaluation_focus": "EU AI Act and AI system compliance obligations mapped where applicable"
         },
         {
           "id": "rq-cm-03-4",
-          "prompt": "Is the compliance management process reviewed frequently?",
-          "intent": "Evaluate frequent review of the compliance management process",
-          "field_key": "cm_03_process_reviewed_frequently",
-          "evaluation_focus": "Process reviewed frequently"
+          "prompt": "Are relevant compliance requirements reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of compliance requirements",
+          "field_key": "cm_03_requirements_reviewed_quarterly",
+          "evaluation_focus": "Quarterly review of compliance requirements"
         }
       ]
     },
     {
       "capability_id": "cm-04",
-      "capability_name": "Compliance Alignment to Standards and regulations",
+      "capability_name": "Compliance metrics",
       "questions": [
         {
           "id": "rq-cm-04-1",
-          "prompt": "Has the enterprise officially documented all the relevant standards and regulations that require alignment?",
-          "intent": "Evaluate official documentation of relevant standards and regulations",
-          "field_key": "cm_04_standards_regulations_documented",
-          "evaluation_focus": "Official documentation of relevant standards and regulations"
+          "prompt": "Has the enterprise officially designed and documented compliance KPIs and KRIs?",
+          "intent": "Evaluate official design and documentation of compliance metrics",
+          "field_key": "cm_04_compliance_metrics_designed_documented",
+          "evaluation_focus": "Officially designed and documented compliance metrics"
         },
         {
           "id": "rq-cm-04-2",
-          "prompt": "How frequently are the relevant compliance requirements reviewed?",
-          "intent": "Evaluate frequency of review of relevant compliance requirements",
-          "field_key": "cm_04_compliance_requirements_review_frequency",
-          "evaluation_focus": "Frequent review of compliance requirements"
+          "prompt": "Do compliance metrics track control coverage and scan pass rates across the enterprise?",
+          "intent": "Evaluate control coverage and scan pass rate metrics",
+          "field_key": "cm_04_control_coverage_scan_pass_rate",
+          "evaluation_focus": "Control coverage and scan pass rate metrics"
+        },
+        {
+          "id": "rq-cm-04-3",
+          "prompt": "Is mean time to remediate compliance findings measured and reported?",
+          "intent": "Evaluate mean time to remediate compliance findings",
+          "field_key": "cm_04_mean_time_remediate_findings",
+          "evaluation_focus": "Mean time to remediate compliance findings"
+        },
+        {
+          "id": "rq-cm-04-4",
+          "prompt": "Are compliance metrics reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of compliance metrics",
+          "field_key": "cm_04_metrics_reviewed_quarterly",
+          "evaluation_focus": "Quarterly review of compliance metrics"
         }
       ]
     },
     {
       "capability_id": "cm-05",
-      "capability_name": "Function specific compliance metrics",
+      "capability_name": "Compliance teams and specialists",
       "questions": [
         {
           "id": "rq-cm-05-1",
-          "prompt": "Has the enterprise officially designed and documented the compliance metrics?",
-          "intent": "Evaluate official design and documentation of compliance metrics",
-          "field_key": "cm_05_compliance_metrics_designed_documented",
-          "evaluation_focus": "Officially designed and documented compliance metrics"
+          "prompt": "Does the enterprise have compliance management teams that manage the overall compliance management service?",
+          "intent": "Evaluate compliance management teams managing the overall service",
+          "field_key": "cm_05_compliance_management_teams_exist",
+          "evaluation_focus": "Compliance management teams manage the overall service"
         },
         {
           "id": "rq-cm-05-2",
-          "prompt": "How frequently are the compliance metrics reviewed?",
-          "intent": "Evaluate frequency of review of compliance metrics",
-          "field_key": "cm_05_compliance_metrics_review_frequency",
-          "evaluation_focus": "Frequent review of compliance metrics"
-        }
-      ]
-    },
-    {
-      "capability_id": "cm-06",
-      "capability_name": "Compliance teams",
-      "questions": [
-        {
-          "id": "rq-cm-06-1",
-          "prompt": "Does the enterprise have compliance management teams that manage the overall compliance management service?",
-          "intent": "Evaluate compliance management teams managing the overall service",
-          "field_key": "cm_06_compliance_management_teams_exist",
-          "evaluation_focus": "Compliance management teams manage the overall service"
-        }
-      ]
-    },
-    {
-      "capability_id": "cm-07",
-      "capability_name": "Policy and compliance specialist",
-      "questions": [
-        {
-          "id": "rq-cm-07-1",
           "prompt": "Does the enterprise employ policy and compliance specialists as part of the compliance teams?",
           "intent": "Evaluate policy and compliance specialists on compliance teams",
-          "field_key": "cm_07_policy_compliance_specialists_on_teams",
+          "field_key": "cm_05_policy_compliance_specialists_on_teams",
           "evaluation_focus": "Policy and compliance specialists on compliance teams"
         }
       ]
     },
     {
-      "capability_id": "cm-08",
-      "capability_name": "Endpoint compliance (posture) policy/rules",
+      "capability_id": "cm-06",
+      "capability_name": "Endpoint compliance (posture) policy",
       "questions": [
         {
-          "id": "rq-cm-08-1",
-          "prompt": "Does the enterprise have an endpoint compliance policy formalized and documented?",
+          "id": "rq-cm-06-1",
+          "prompt": "Does the enterprise have a formal, documented endpoint compliance (posture) policy?",
           "intent": "Evaluate formal documented endpoint compliance policy",
-          "field_key": "cm_08_endpoint_compliance_policy_documented",
+          "field_key": "cm_06_endpoint_compliance_policy_documented",
           "evaluation_focus": "Formal documented endpoint compliance policy"
         },
         {
-          "id": "rq-cm-08-2",
-          "prompt": "Does the endpoint compliance policy apply to all devices across all locations or does it apply to a specific scope?",
+          "id": "rq-cm-06-2",
+          "prompt": "Does the endpoint compliance policy apply to all devices across all locations, or to a defined scope?",
           "intent": "Evaluate scope of endpoint compliance policy across devices and locations",
-          "field_key": "cm_08_endpoint_policy_scope_devices_locations",
+          "field_key": "cm_06_endpoint_policy_scope_devices_locations",
           "evaluation_focus": "Policy scope across devices and locations"
         },
         {
+          "id": "rq-cm-06-3",
+          "prompt": "Is the endpoint compliance policy reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of endpoint compliance policy",
+          "field_key": "cm_06_endpoint_policy_reviewed_quarterly",
+          "evaluation_focus": "Quarterly endpoint compliance policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cm-07",
+      "capability_name": "Asset hardening and compliance alignment",
+      "questions": [
+        {
+          "id": "rq-cm-07-1",
+          "prompt": "Is there a formal documented process for hardening applications in line with compliance, including development and deployment phases with automated patching where possible?",
+          "intent": "Evaluate application hardening process across SDLC with automation",
+          "field_key": "cm_07_application_hardening_sdlc_automation",
+          "evaluation_focus": "Application hardening process and coverage across SDLC"
+        },
+        {
+          "id": "rq-cm-07-2",
+          "prompt": "Does the enterprise harden endpoint and device assets in line with compliance metrics and the compliance management process, with automated patching where possible?",
+          "intent": "Evaluate endpoint and device hardening aligned to compliance",
+          "field_key": "cm_07_device_hardening_compliance_aligned",
+          "evaluation_focus": "Endpoint and device hardening aligned to compliance"
+        },
+        {
+          "id": "rq-cm-07-3",
+          "prompt": "Is there a formal documented process for network asset hardening with automated patching where possible?",
+          "intent": "Evaluate network asset hardening process and automation",
+          "field_key": "cm_07_network_hardening_automation",
+          "evaluation_focus": "Network asset hardening process and automation"
+        },
+        {
+          "id": "rq-cm-07-4",
+          "prompt": "Are application, device, and network hardening processes reviewed at least quarterly?",
+          "intent": "Evaluate quarterly review of hardening processes",
+          "field_key": "cm_07_hardening_processes_reviewed_quarterly",
+          "evaluation_focus": "Quarterly review of hardening processes"
+        }
+      ]
+    },
+    {
+      "capability_id": "cm-08",
+      "capability_name": "SOC compliance change monitoring",
+      "questions": [
+        {
+          "id": "rq-cm-08-1",
+          "prompt": "Is there a formal documented process for transporting compliance changes to the SOC?",
+          "intent": "Evaluate formal documented process for transporting compliance changes to the SOC",
+          "field_key": "cm_08_documented_process_compliance_changes_to_soc",
+          "evaluation_focus": "Documented process for transporting compliance changes to the SOC"
+        },
+        {
+          "id": "rq-cm-08-2",
+          "prompt": "Is transport of compliance changes made securely to the SOC?",
+          "intent": "Evaluate secure transport of compliance changes to the SOC",
+          "field_key": "cm_08_secure_transport_compliance_changes_to_soc",
+          "evaluation_focus": "Secure transport of compliance changes to the SOC"
+        },
+        {
           "id": "rq-cm-08-3",
-          "prompt": "Is the endpoint compliance policy reviewed frequently?",
-          "intent": "Evaluate frequent review of endpoint compliance policy",
-          "field_key": "cm_08_endpoint_policy_reviewed_frequently",
-          "evaluation_focus": "Endpoint compliance policy reviewed frequently"
+          "prompt": "Are dynamic compliance changes captured and transferred to the SOC in near-real time?",
+          "intent": "Evaluate capture and transfer of dynamic compliance changes to the SOC",
+          "field_key": "cm_08_dynamic_compliance_changes_to_soc",
+          "evaluation_focus": "Dynamic compliance changes captured and transferred to the SOC"
+        },
+        {
+          "id": "rq-cm-08-4",
+          "prompt": "Are anomalous compliance drift events or bulk exemption grants detected and alerted to the SOC?",
+          "intent": "Evaluate anomalous compliance drift and bulk exemption detection",
+          "field_key": "cm_08_anomalous_compliance_drift_detection",
+          "evaluation_focus": "Anomalous compliance drift or bulk exemption detection"
         }
       ]
     },
     {
       "capability_id": "cm-09",
-      "capability_name": "Asset Hardening and compliance alignment",
+      "capability_name": "AI-era compliance governance",
       "questions": [
         {
           "id": "rq-cm-09-1",
-          "prompt": "Is there a formal documented process on hardening applications in line with compliance?",
-          "intent": "Evaluate formal documented application hardening process aligned with compliance",
-          "field_key": "cm_09_application_hardening_process_documented",
-          "evaluation_focus": "Application hardening process and coverage"
+          "prompt": "Does the enterprise maintain an inventory of AI systems with risk classification for compliance purposes?",
+          "intent": "Evaluate AI system inventory and risk classification for compliance",
+          "field_key": "cm_09_ai_system_inventory_risk_classification",
+          "evaluation_focus": "AI system inventory and risk classification for compliance"
         },
         {
           "id": "rq-cm-09-2",
-          "prompt": "Does the enterprise harden all its application assets?",
-          "intent": "Evaluate whether all application assets are hardened",
-          "field_key": "cm_09_harden_all_application_assets",
-          "evaluation_focus": "Application hardening process and coverage"
+          "prompt": "Are EU AI Act conformity and documentation obligations tracked for in-scope AI systems?",
+          "intent": "Evaluate EU AI Act conformity obligation tracking",
+          "field_key": "cm_09_eu_ai_act_conformity_tracked",
+          "evaluation_focus": "EU AI Act conformity and documentation obligations tracked"
         },
         {
           "id": "rq-cm-09-3",
-          "prompt": "Is the application asset hardening part of development and subsequently the deployment phase?",
-          "intent": "Evaluate application hardening in development and deployment phases",
-          "field_key": "cm_09_application_hardening_dev_deployment",
-          "evaluation_focus": "Application hardening process and coverage"
-        },
-        {
-          "id": "rq-cm-09-4",
-          "prompt": "Is the hardening and subsequent patching automated for applications?",
-          "intent": "Evaluate automated hardening and patching for applications",
-          "field_key": "cm_09_application_hardening_patching_automated",
-          "evaluation_focus": "Application hardening process and coverage"
-        },
-        {
-          "id": "rq-cm-09-5",
-          "prompt": "Is the application hardening process reviewed frequently?",
-          "intent": "Evaluate frequent review of application hardening process",
-          "field_key": "cm_09_application_hardening_reviewed_frequently",
-          "evaluation_focus": "Frequent review of hardening processes"
-        },
-        {
-          "id": "rq-cm-09-6",
-          "prompt": "Does the enterprise have a formal documented process for device hardening?",
-          "intent": "Evaluate formal documented device hardening process",
-          "field_key": "cm_09_device_hardening_process_documented",
-          "evaluation_focus": "Endpoint and device hardening aligned to compliance"
-        },
-        {
-          "id": "rq-cm-09-7",
-          "prompt": "Does the enterprise harden all its endpoint and device assets?",
-          "intent": "Evaluate whether all endpoint and device assets are hardened",
-          "field_key": "cm_09_harden_all_endpoint_device_assets",
-          "evaluation_focus": "Endpoint and device hardening aligned to compliance"
-        },
-        {
-          "id": "rq-cm-09-8",
-          "prompt": "Is the device hardening in line with compliance metrics and compliance management process?",
-          "intent": "Evaluate device hardening alignment with compliance metrics and process",
-          "field_key": "cm_09_device_hardening_inline_compliance",
-          "evaluation_focus": "Endpoint and device hardening aligned to compliance"
-        },
-        {
-          "id": "rq-cm-09-9",
-          "prompt": "Is the device hardening and subsequent patching automated?",
-          "intent": "Evaluate automated device hardening and patching",
-          "field_key": "cm_09_device_hardening_patching_automated",
-          "evaluation_focus": "Endpoint and device hardening aligned to compliance"
-        },
-        {
-          "id": "rq-cm-09-10",
-          "prompt": "Is device hardening process reviewed frequently?",
-          "intent": "Evaluate frequent review of device hardening process",
-          "field_key": "cm_09_device_hardening_reviewed_frequently",
-          "evaluation_focus": "Frequent review of hardening processes"
-        },
-        {
-          "id": "rq-cm-09-11",
-          "prompt": "Is there a formal documented process for network device hardening?",
-          "intent": "Evaluate formal documented network device hardening process",
-          "field_key": "cm_09_network_hardening_process_documented",
-          "evaluation_focus": "Network asset hardening process and automation"
-        },
-        {
-          "id": "rq-cm-09-12",
-          "prompt": "Does the enterprise harden all its network assets?",
-          "intent": "Evaluate whether all network assets are hardened",
-          "field_key": "cm_09_harden_all_network_assets",
-          "evaluation_focus": "Network asset hardening process and automation"
-        },
-        {
-          "id": "rq-cm-09-13",
-          "prompt": "Is the hardening and subsequent patching automated for network assets?",
-          "intent": "Evaluate automated hardening and patching for network assets",
-          "field_key": "cm_09_network_hardening_patching_automated",
-          "evaluation_focus": "Network asset hardening process and automation"
-        },
-        {
-          "id": "rq-cm-09-14",
-          "prompt": "Is the network hardening process reviewed frequently?",
-          "intent": "Evaluate frequent review of network hardening process",
-          "field_key": "cm_09_network_hardening_reviewed_frequently",
-          "evaluation_focus": "Frequent review of hardening processes"
-        }
-      ]
-    },
-    {
-      "capability_id": "cm-10",
-      "capability_name": "Monitoring changes in compliance",
-      "questions": [
-        {
-          "id": "rq-cm-10-1",
-          "prompt": "Is there a formal documented process for transporting compliance changes to the SOC?",
-          "intent": "Evaluate formal documented process for transporting compliance changes to the SOC",
-          "field_key": "cm_10_documented_process_compliance_changes_to_soc",
-          "evaluation_focus": "Documented process for transporting compliance changes to the SOC"
-        },
-        {
-          "id": "rq-cm-10-2",
-          "prompt": "Is transport of compliance changes made securely to the SOC?",
-          "intent": "Evaluate secure transport of compliance changes to the SOC",
-          "field_key": "cm_10_secure_transport_compliance_changes_to_soc",
-          "evaluation_focus": "Secure transport of compliance changes to the SOC"
-        },
-        {
-          "id": "rq-cm-10-3",
-          "prompt": "Are dynamic changes to compliance changes captured and transferred to the SOC?",
-          "intent": "Evaluate capture and transfer of dynamic compliance changes to the SOC",
-          "field_key": "cm_10_dynamic_compliance_changes_transferred_to_soc",
-          "evaluation_focus": "Dynamic compliance changes captured and transferred to the SOC"
+          "prompt": "Is compliance posture monitored for AI vendors and third-party models integrated into enterprise workflows?",
+          "intent": "Evaluate AI vendor and third-party model compliance monitoring",
+          "field_key": "cm_09_ai_vendor_model_compliance_monitoring",
+          "evaluation_focus": "AI vendor and third-party model compliance monitoring"
         }
       ]
     }

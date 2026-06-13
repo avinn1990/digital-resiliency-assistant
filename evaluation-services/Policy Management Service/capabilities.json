@@ -1,28 +1,30 @@
 {
   "service_id": "policy-management",
   "service_name": "Policy Management Service",
-  "version": "1.0",
-  "description": "Evaluates policy management maturity\u2014reference subject/object access framework, rule lifecycle, software-defined and context-based policies (network, authentication, authorization, application, data), teams, KPIs/KRIs, and SOC monitoring of policy changes.",
+  "version": "1.1",
+  "description": "Evaluates policy management maturity—reference subject/object access framework, rule lifecycle, software-defined and context-based domain policies (network, authentication, authorization, application, data), teams, KPIs/KRIs, SOC monitoring of policy changes, and AI-era policy governance.",
   "capabilities": [
     {
       "id": "plm-00",
-      "name": "Service Exists and in good condition",
-      "description": "A policy management service exists and is reviewed frequently for efficacy.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "A policy management service exists and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Policy management service exists",
-        "Frequent service efficacy review"
+        "Quarterly service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "plm-01",
-      "name": "Reference Policy Framework (Subject/Object Access Matrix)",
-      "description": "A reference policy framework provides enterprise-wide visibility of who can access what and guides granular policies.",
+      "name": "Reference policy framework (subject/object access matrix)",
+      "short_name": "reference framework",
+      "description": "A reference policy framework provides enterprise-wide visibility of who can access what, guides granular policies, and is reviewed at least quarterly.",
       "evaluation_focus": [
         "Reference policy framework",
         "Enterprise-wide applicability",
-        "Frequent framework review",
+        "Quarterly framework review",
         "Reuse for granular functional policies"
       ],
       "resiliency_weight": 1,
@@ -31,57 +33,50 @@
     {
       "id": "plm-02",
       "name": "KPIs/KRIs",
-      "description": "Policy management KPIs and KRIs are documented, effective enterprise-wide, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Policy management KPIs and KRIs—including policy drift rate, rule exception count, and deployment success rate—are documented, effective enterprise-wide, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
-        "Enterprise-wide effectiveness",
-        "Frequent KPI/KRI review"
+        "Policy drift and exception metrics",
+        "Rule deployment success and rollback metrics",
+        "Quarterly KPI/KRI review"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "plm-03",
-      "name": "Rule Management System",
-      "description": "Centralized rule management supports automation, integration with decision-makers, and frequent review.",
+      "name": "Rule management system",
+      "short_name": "rule management system",
+      "description": "Centralized rule management supports automation, policy-as-code, integration with decision-makers, and quarterly configuration review.",
       "evaluation_focus": [
         "Centralized vs technology-specific rule management",
-        "Rule automation and optimization",
+        "Rule automation, optimization, and policy-as-code",
         "Integration with centralized decision-making",
-        "Frequent system configuration review"
+        "Quarterly system configuration review"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "plm-04",
-      "name": "Rule provisioning process (creation / modification) as part of optimization",
-      "description": "Rule creation is documented, enterprise-wide, automated where possible, and reviewed frequently.",
+      "name": "Rule lifecycle management",
+      "short_name": "rule lifecycle",
+      "description": "Rule creation, modification, and deletion are documented, enterprise-wide, automated where possible, and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Documented rule creation process",
-        "Enterprise-wide applicability",
-        "Automated creation and optimization",
-        "Frequent process review"
+        "Documented rule creation and modification process",
+        "Documented rule deletion and deprovisioning process",
+        "Enterprise-wide rule lifecycle applicability",
+        "Automated rule lifecycle and optimization",
+        "Quarterly rule lifecycle process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "plm-05",
-      "name": "Rule De-provisioning process (deletion) as part of optimization",
-      "description": "Rule deletion is documented, enterprise-wide, automated where possible, and reviewed frequently.",
-      "evaluation_focus": [
-        "Documented rule deletion process",
-        "Enterprise-wide applicability",
-        "Automated deletion and optimization",
-        "Frequent process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "plm-06",
-      "name": "Policy management responsibility and efficacy",
+      "name": "Policy management teams",
+      "short_name": "policy teams",
       "description": "Policy management teams are centralized or clearly defined with documented hierarchy and separation of duties.",
       "evaluation_focus": [
         "Central vs siloed policy teams",
@@ -91,101 +86,61 @@
       "pillar": "People"
     },
     {
-      "id": "plm-07",
-      "name": "Software defined Policy",
-      "description": "Software-defined policy is maintained, deployed programmatically, automated, and validated frequently.",
+      "id": "plm-06",
+      "name": "Software-defined policy",
+      "short_name": "software-defined policy",
+      "description": "Software-defined policy is maintained, deployed programmatically to enforcement points, automated, and validated at least quarterly.",
       "evaluation_focus": [
         "Software-defined policy at all locations",
         "Programmatic deployment scope",
         "Automated policy deployment",
-        "Frequent automation validation"
+        "Quarterly automation validation"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "plm-07",
+      "name": "Context-based domain policies",
+      "short_name": "domain policies",
+      "description": "Context-based policies for network, authentication, authorization (including guest), application, and data access are deployed enterprise-wide and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Context-based network access control vs IP-only policies",
+        "Context-based authentication policies enterprise-wide",
+        "Context-based authorization and guest policies enterprise-wide",
+        "Context-based application access policies enterprise-wide",
+        "Classification and context-based data access policies enterprise-wide",
+        "Quarterly review of domain context-based policies"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "plm-08",
-      "name": "Context Based Policies",
-      "description": "Network devices deploy context-based rather than IP-only policies enterprise-wide with frequent review.",
+      "name": "Policy change monitoring",
+      "short_name": "policy monitoring",
+      "description": "Rule and policy changes are formally logged and securely transferred to the SOC, including dynamic changes and anomalous bulk policy modifications.",
       "evaluation_focus": [
-        "Context-based vs IP-based network policies",
-        "Enterprise-wide deployment",
-        "Frequent policy review"
+        "Documented logging to SOC",
+        "Secure logging to SOC",
+        "Dynamic rule changes to SOC",
+        "Anomalous policy change detection"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "plm-09",
-      "name": "Authentication Policies",
-      "description": "Edge and access devices use context-based authentication policies enterprise-wide with frequent review.",
+      "name": "AI-era policy governance",
+      "short_name": "AI-era governance",
+      "description": "Policies govern approved versus shadow AI tool usage, data handling by AI systems, and delegated agent actions under EU AI Act and internal risk appetite.",
       "evaluation_focus": [
-        "Context-based vs user ID-only authentication",
-        "Enterprise-wide authentication policies",
-        "Frequent authentication policy review"
+        "Approved versus shadow AI tool policy boundaries",
+        "Data handling and retention policies for AI systems",
+        "Delegated agent action policies aligned to EU AI Act risk tiers"
       ],
       "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "plm-10",
-      "name": "Authorization Policies (includes guest authorization policies)",
-      "description": "Authorization policies use context, attributes, and environment with uniform enterprise-wide deployment.",
-      "evaluation_focus": [
-        "Context-based authorization design",
-        "Uniform enterprise-wide authorization",
-        "Frequent authorization policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "plm-11",
-      "name": "Network access and control policies (includes Guest NAC policies)",
-      "description": "Network security devices apply consistent logical access control with enterprise-wide deployment.",
-      "evaluation_focus": [
-        "Consistent context-based network access control",
-        "Enterprise-wide network security policies",
-        "Frequent network policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "plm-12",
-      "name": "Application Access Policies",
-      "description": "Applications use context-based access policies beyond network controls, deployed enterprise-wide.",
-      "evaluation_focus": [
-        "Context-based application access",
-        "Enterprise-wide application access policies",
-        "Frequent application access policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "plm-13",
-      "name": "Data access policies",
-      "description": "Data access is controlled by classification and context with uniform enterprise-wide policies.",
-      "evaluation_focus": [
-        "Classification and context-based data access",
-        "Enterprise-wide data access policies",
-        "Frequent data access policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "plm-14",
-      "name": "Policy change monitoring",
-      "description": "Rule and policy changes are formally logged and securely transferred to the SOC, including dynamic changes.",
-      "evaluation_focus": [
-        "Documented logging to SOC",
-        "Secure logging to SOC",
-        "Dynamic rule changes to SOC"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Strategy"
     }
   ],
   "evaluation": {
