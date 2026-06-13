@@ -209,6 +209,19 @@
         "compliance-audit-lead"
       ]
     },
+    "facilities-management": {
+      "service_name": "Facilities Management Service",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "enterprise-risk-manager",
+        "security-program-strategy-lead"
+      ]
+    },
     "information-security-strategy-planning": {
       "service_name": "Information Security Strategy and Planning Services",
       "role_ids": [
