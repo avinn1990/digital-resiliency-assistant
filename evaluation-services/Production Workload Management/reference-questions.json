@@ -1,0 +1,276 @@
+{
+  "service_id": "production-workload-management",
+  "service_name": "Production Workload Management",
+  "capability_questions": [
+    {
+      "capability_id": "pwm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-pwm-00-1",
+          "prompt": "Does the enterprise have an application management/production management service?",
+          "intent": "Evaluate whether the enterprise has an application or production workload management service.",
+          "field_key": "pwm_00_workload_management_service_exists",
+          "evaluation_focus": "Enterprise application or production workload management service exists"
+        },
+        {
+          "id": "rq-pwm-00-2",
+          "prompt": "Is the workload management service reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the workload management service is reviewed frequently for efficacy.",
+          "field_key": "pwm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent workload management service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-01",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-pwm-01-1",
+          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Workload Management?",
+          "intent": "Evaluate whether KPIs and KRIs for workload management are formalized and documented.",
+          "field_key": "pwm_01_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs for workload management"
+        },
+        {
+          "id": "rq-pwm-01-2",
+          "prompt": "Are the KPIs and KRIs for the Workload Management reviewed frequently?",
+          "intent": "Evaluate whether workload management KPIs and KRIs are reviewed frequently.",
+          "field_key": "pwm_01_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-02",
+      "capability_name": "Application management process",
+      "questions": [
+        {
+          "id": "rq-pwm-02-1",
+          "prompt": "Does the enterprise have a formalized documented application management process that includes capacity planning, fault identification, segmentation and provisioning along with application security?",
+          "intent": "Evaluate whether a formalized documented application management process covers capacity planning, fault identification, segmentation, provisioning, and application security.",
+          "field_key": "pwm_02_formalized_application_management_process",
+          "evaluation_focus": "Formalized documented application management process"
+        },
+        {
+          "id": "rq-pwm-02-2",
+          "prompt": "Is the application management process deployed enterprise wide?",
+          "intent": "Evaluate whether the application management process is deployed enterprise-wide.",
+          "field_key": "pwm_02_process_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide application management process deployment"
+        },
+        {
+          "id": "rq-pwm-02-3",
+          "prompt": "Is the application management process reviewed frequently for efficacy?",
+          "intent": "Evaluate whether the application management process is reviewed frequently for efficacy.",
+          "field_key": "pwm_02_process_reviewed_frequently",
+          "evaluation_focus": "Frequent application management process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-03",
+      "capability_name": "Application classifications",
+      "questions": [
+        {
+          "id": "rq-pwm-03-1",
+          "prompt": "Does the enterprise have application classifications for all its applications, containers, systems, and VMs?",
+          "intent": "Evaluate whether application classifications exist for applications, containers, systems, and VMs.",
+          "field_key": "pwm_03_application_classifications_exist",
+          "evaluation_focus": "Application classifications for applications, containers, systems, and VMs"
+        },
+        {
+          "id": "rq-pwm-03-2",
+          "prompt": "Are application classifications automated by the workload management process?",
+          "intent": "Evaluate whether application classifications are automated by the workload management process.",
+          "field_key": "pwm_03_classifications_automated",
+          "evaluation_focus": "Automated application classification in workload management"
+        },
+        {
+          "id": "rq-pwm-03-3",
+          "prompt": "Are the application classifications reviewed frequently to measure efficacy?",
+          "intent": "Evaluate whether application classifications are reviewed frequently to measure efficacy.",
+          "field_key": "pwm_03_classifications_reviewed_frequently",
+          "evaluation_focus": "Frequent application classification review"
+        },
+        {
+          "id": "rq-pwm-03-4",
+          "prompt": "Are the application classifications integrated into other technology, for example when building object profiles?",
+          "intent": "Evaluate whether application classifications integrate with other technology such as object profiles.",
+          "field_key": "pwm_03_classifications_integrated",
+          "evaluation_focus": "Integration of classifications into other technology such as object profiles"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-04",
+      "capability_name": "Workload Capacity expansion",
+      "questions": [
+        {
+          "id": "rq-pwm-04-1",
+          "prompt": "Do enterprise applications have capability to expand based on workload increase?",
+          "intent": "Evaluate whether enterprise applications can expand based on workload increase.",
+          "field_key": "pwm_04_applications_expand_with_workload",
+          "evaluation_focus": "Application capacity expansion based on workload increase"
+        },
+        {
+          "id": "rq-pwm-04-2",
+          "prompt": "Can all applications expand based on workload demand or is it restricted to critical apps only?",
+          "intent": "Evaluate whether scaling applies to all applications or is restricted to critical apps only.",
+          "field_key": "pwm_04_scaling_scope",
+          "evaluation_focus": "Enterprise-wide or critical-application scaling scope"
+        },
+        {
+          "id": "rq-pwm-04-3",
+          "prompt": "Can the applications expand capacity automatically or programmatically?",
+          "intent": "Evaluate whether applications can expand capacity automatically or programmatically.",
+          "field_key": "pwm_04_automatic_programmatic_scaling",
+          "evaluation_focus": "Automatic or programmatic capacity expansion"
+        },
+        {
+          "id": "rq-pwm-04-4",
+          "prompt": "Are the scaling configurations in the enterprise reviewed frequently for efficacy?",
+          "intent": "Evaluate whether scaling configurations are reviewed frequently for efficacy.",
+          "field_key": "pwm_04_scaling_config_reviewed_frequently",
+          "evaluation_focus": "Frequent scaling configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-05",
+      "capability_name": "User Management on Production workload",
+      "questions": [
+        {
+          "id": "rq-pwm-05-1",
+          "prompt": "Does the enterprise have a formalized documented policy on local authentication and external authentication for applications, containers, etc.?",
+          "intent": "Evaluate whether a formalized documented policy governs local and external authentication for applications and containers.",
+          "field_key": "pwm_05_authentication_policy",
+          "evaluation_focus": "Formalized policy on local and external authentication"
+        },
+        {
+          "id": "rq-pwm-05-2",
+          "prompt": "Do all applications have external authentication enabled to an AD?",
+          "intent": "Evaluate whether all applications have external authentication enabled to AD.",
+          "field_key": "pwm_05_external_auth_to_ad",
+          "evaluation_focus": "External authentication to AD for all applications"
+        },
+        {
+          "id": "rq-pwm-05-3",
+          "prompt": "Is external authentication part of the golden image and also part of provisioning templates if any?",
+          "intent": "Evaluate whether external authentication is part of golden images and provisioning templates.",
+          "field_key": "pwm_05_external_auth_in_golden_image",
+          "evaluation_focus": "External authentication in golden images and provisioning templates"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-06",
+      "capability_name": "Application Security Baseline",
+      "questions": [
+        {
+          "id": "rq-pwm-06-1",
+          "prompt": "Does the enterprise generate application baseline templates for all applications?",
+          "intent": "Evaluate whether application baseline templates are generated for all applications.",
+          "field_key": "pwm_06_baseline_templates_for_all_apps",
+          "evaluation_focus": "Application baseline templates for all applications"
+        },
+        {
+          "id": "rq-pwm-06-2",
+          "prompt": "Are the application baseline templates generated automatically based on flow discovery?",
+          "intent": "Evaluate whether application baseline templates are generated automatically from flow discovery.",
+          "field_key": "pwm_06_baseline_automated_from_flow_discovery",
+          "evaluation_focus": "Automated baseline generation from flow discovery"
+        },
+        {
+          "id": "rq-pwm-06-3",
+          "prompt": "Are the baseline templates reviewed frequently for accuracy?",
+          "intent": "Evaluate whether baseline templates are reviewed frequently for accuracy.",
+          "field_key": "pwm_06_baseline_reviewed_frequently",
+          "evaluation_focus": "Frequent baseline template review for accuracy"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-07",
+      "capability_name": "Application and Interface Security Policy or its equivalent",
+      "questions": [
+        {
+          "id": "rq-pwm-07-1",
+          "prompt": "Does the enterprise consider API security as an important aspect of application security?",
+          "intent": "Evaluate whether the enterprise considers API security an important aspect of application security.",
+          "field_key": "pwm_07_api_security_important",
+          "evaluation_focus": "API security as an important aspect of application security"
+        },
+        {
+          "id": "rq-pwm-07-2",
+          "prompt": "Does the enterprise have formalized and documented application security policies for their applications?",
+          "intent": "Evaluate whether the enterprise has formalized documented application security policies.",
+          "field_key": "pwm_07_application_security_policies",
+          "evaluation_focus": "Formalized documented application security policies"
+        },
+        {
+          "id": "rq-pwm-07-3",
+          "prompt": "Are the application security policies reviewed frequently for efficacy?",
+          "intent": "Evaluate whether application security policies are reviewed frequently for efficacy.",
+          "field_key": "pwm_07_policies_reviewed_frequently",
+          "evaluation_focus": "Frequent application security policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-08",
+      "capability_name": "Secure information exchange and API security",
+      "questions": [
+        {
+          "id": "rq-pwm-08-1",
+          "prompt": "Does the enterprise deploy secure API for all their applications?",
+          "intent": "Evaluate whether the enterprise deploys secure APIs for all applications.",
+          "field_key": "pwm_08_secure_api_all_applications",
+          "evaluation_focus": "Secure API deployment for all applications"
+        },
+        {
+          "id": "rq-pwm-08-2",
+          "prompt": "Are there API gateways protecting any workload that exposes an API?",
+          "intent": "Evaluate whether API gateways protect workloads that expose APIs.",
+          "field_key": "pwm_08_api_gateways_protect_workloads",
+          "evaluation_focus": "API gateways protecting workloads that expose APIs"
+        }
+      ]
+    },
+    {
+      "capability_id": "pwm-09",
+      "capability_name": "Application performance monitoring",
+      "questions": [
+        {
+          "id": "rq-pwm-09-1",
+          "prompt": "Does the enterprise deploy application performance monitoring?",
+          "intent": "Evaluate whether the enterprise deploys application performance monitoring.",
+          "field_key": "pwm_09_apm_deployed",
+          "evaluation_focus": "Application performance monitoring deployment"
+        },
+        {
+          "id": "rq-pwm-09-2",
+          "prompt": "Is APM deployed for all applications or only critical ones?",
+          "intent": "Evaluate whether APM is deployed for all applications or only critical ones.",
+          "field_key": "pwm_09_apm_scope",
+          "evaluation_focus": "APM scope across all or critical applications"
+        },
+        {
+          "id": "rq-pwm-09-3",
+          "prompt": "Is APM for applications automated while provisioning or during development?",
+          "intent": "Evaluate whether APM is automated during provisioning or development.",
+          "field_key": "pwm_09_apm_automated",
+          "evaluation_focus": "Automated APM during provisioning or development"
+        },
+        {
+          "id": "rq-pwm-09-4",
+          "prompt": "Does the APM integrate with the SOC to provide contextual information on availability?",
+          "intent": "Evaluate whether APM integrates with the SOC to provide availability context.",
+          "field_key": "pwm_09_apm_soc_integration",
+          "evaluation_focus": "APM integration with SOC for availability context"
+        }
+      ]
+    }
+  ]
+}

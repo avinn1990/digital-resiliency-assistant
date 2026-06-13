@@ -234,6 +234,18 @@
         "security-awareness-culture-lead",
         "finance-partner-security-budgeting"
       ]
+    },
+    "production-workload-management": {
+      "service_name": "Production Workload Management",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
     }
   }
 }
