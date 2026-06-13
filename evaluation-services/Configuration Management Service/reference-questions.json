@@ -1,0 +1,484 @@
+{
+  "service_id": "configuration-management",
+  "service_name": "Configuration Management Service",
+  "capability_questions": [
+    {
+      "capability_id": "cfm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-cfm-00-1",
+          "prompt": "Does the enterprise have a configuration management service?",
+          "intent": "Evaluate does the enterprise have a configuration management service?",
+          "field_key": "cfm_00_configuration_management_service_exists",
+          "evaluation_focus": "Enterprise configuration management service exists"
+        },
+        {
+          "id": "rq-cfm-00-2",
+          "prompt": "Is the configuration management service reviewed frequently to measure its efficacy?",
+          "intent": "Evaluate is the configuration management service reviewed frequently to measure its efficacy?",
+          "field_key": "cfm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-01",
+      "capability_name": "Configuration management business process",
+      "questions": [
+        {
+          "id": "rq-cfm-01-1",
+          "prompt": "Does the enterprise have a formalized and documented configuration management process?",
+          "intent": "Evaluate does the enterprise have a formalized and documented configuration management process?",
+          "field_key": "cfm_01_formalized_process",
+          "evaluation_focus": "Formalized and documented process"
+        },
+        {
+          "id": "rq-cfm-01-2",
+          "prompt": "Does the configuration management process apply to the entire enterprise?",
+          "intent": "Evaluate does the configuration management process apply to the entire enterprise?",
+          "field_key": "cfm_01_process_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide process adoption"
+        },
+        {
+          "id": "rq-cfm-01-3",
+          "prompt": "Is the configuration management process automated?",
+          "intent": "Evaluate is the configuration management process automated?",
+          "field_key": "cfm_01_process_automated",
+          "evaluation_focus": "Process automation"
+        },
+        {
+          "id": "rq-cfm-01-4",
+          "prompt": "Is the configuration management process reviewed frequently?",
+          "intent": "Evaluate is the configuration management process reviewed frequently?",
+          "field_key": "cfm_01_process_reviewed_frequently",
+          "evaluation_focus": "Frequent process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-02",
+      "capability_name": "KPIs/KRIs",
+      "questions": [
+        {
+          "id": "rq-cfm-02-1",
+          "prompt": "Does the enterprise have a formalized and documented KPI/KRI for the configuration management process?",
+          "intent": "Evaluate does the enterprise have a formalized and documented KPI/KRI for the configuration management process?",
+          "field_key": "cfm_02_kpis_kris_documented",
+          "evaluation_focus": "Documented KPIs and KRIs"
+        },
+        {
+          "id": "rq-cfm-02-2",
+          "prompt": "Are the KPIs and KRIs for configuration management reviewed frequently?",
+          "intent": "Evaluate are the KPIs and KRIs for configuration management reviewed frequently?",
+          "field_key": "cfm_02_kpis_reviewed_frequently",
+          "evaluation_focus": "Frequent KPI/KRI review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-03",
+      "capability_name": "Configuration Management policy",
+      "questions": [
+        {
+          "id": "rq-cfm-03-1",
+          "prompt": "Does the enterprise have a formalized and documented configuration management policy for subject changes?",
+          "intent": "Evaluate does the enterprise have a formalized and documented configuration management policy for subject changes?",
+          "field_key": "cfm_03_subject_policy_exists",
+          "evaluation_focus": "Subject configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-2",
+          "prompt": "Are all configuration management policies for subjects applicable across the entire enterprise?",
+          "intent": "Evaluate are all configuration management policies for subjects applicable across the entire enterprise?",
+          "field_key": "cfm_03_subject_policy_enterprise_wide",
+          "evaluation_focus": "Subject configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-3",
+          "prompt": "Are all configuration management policies for subjects reviewed frequently?",
+          "intent": "Evaluate are all configuration management policies for subjects reviewed frequently?",
+          "field_key": "cfm_03_subject_policy_reviewed",
+          "evaluation_focus": "Frequent policy review"
+        },
+        {
+          "id": "rq-cfm-03-4",
+          "prompt": "Does the enterprise have a formalized and documented configuration management policy for endpoint changes?",
+          "intent": "Evaluate does the enterprise have a formalized and documented configuration management policy for endpoint changes?",
+          "field_key": "cfm_03_endpoint_policy_exists",
+          "evaluation_focus": "Endpoint configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-5",
+          "prompt": "Are all configuration management policies for endpoints applicable across the entire enterprise?",
+          "intent": "Evaluate are all configuration management policies for endpoints applicable across the entire enterprise?",
+          "field_key": "cfm_03_endpoint_policy_enterprise_wide",
+          "evaluation_focus": "Endpoint configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-6",
+          "prompt": "Are all configuration management policies for endpoints reviewed frequently?",
+          "intent": "Evaluate are all configuration management policies for endpoints reviewed frequently?",
+          "field_key": "cfm_03_endpoint_policy_reviewed",
+          "evaluation_focus": "Frequent policy review"
+        },
+        {
+          "id": "rq-cfm-03-7",
+          "prompt": "Does the enterprise have a formalized and documented configuration management policy for network changes?",
+          "intent": "Evaluate does the enterprise have a formalized and documented configuration management policy for network changes?",
+          "field_key": "cfm_03_network_policy_exists",
+          "evaluation_focus": "Network configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-8",
+          "prompt": "Are all configuration management policies for network applicable across the entire enterprise?",
+          "intent": "Evaluate are all configuration management policies for network applicable across the entire enterprise?",
+          "field_key": "cfm_03_network_policy_enterprise_wide",
+          "evaluation_focus": "Network configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-9",
+          "prompt": "Are all configuration management policies for network reviewed frequently?",
+          "intent": "Evaluate are all configuration management policies for network reviewed frequently?",
+          "field_key": "cfm_03_network_policy_reviewed",
+          "evaluation_focus": "Frequent policy review"
+        },
+        {
+          "id": "rq-cfm-03-10",
+          "prompt": "Does the enterprise have a formalized and documented configuration management policy for application changes, including user lifecycle?",
+          "intent": "Evaluate does the enterprise have a formalized and documented configuration management policy for application changes, including user lifecycle?",
+          "field_key": "cfm_03_application_policy_exists",
+          "evaluation_focus": "Application configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-11",
+          "prompt": "Are all configuration management policies for applications applicable across the entire enterprise?",
+          "intent": "Evaluate are all configuration management policies for applications applicable across the entire enterprise?",
+          "field_key": "cfm_03_application_policy_enterprise_wide",
+          "evaluation_focus": "Application configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-12",
+          "prompt": "Are all configuration management policies for applications reviewed frequently?",
+          "intent": "Evaluate are all configuration management policies for applications reviewed frequently?",
+          "field_key": "cfm_03_application_policy_reviewed",
+          "evaluation_focus": "Frequent policy review"
+        },
+        {
+          "id": "rq-cfm-03-13",
+          "prompt": "Does the enterprise have a formalized and documented configuration management policy for data/database changes?",
+          "intent": "Evaluate does the enterprise have a formalized and documented configuration management policy for data/database changes?",
+          "field_key": "cfm_03_data_database_policy_exists",
+          "evaluation_focus": "Data/database configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-14",
+          "prompt": "Are all configuration management policies for data/database applicable across the entire enterprise?",
+          "intent": "Evaluate are all configuration management policies for data/database applicable across the entire enterprise?",
+          "field_key": "cfm_03_data_database_policy_enterprise_wide",
+          "evaluation_focus": "Data/database configuration policy"
+        },
+        {
+          "id": "rq-cfm-03-15",
+          "prompt": "Are all configuration management policies for data/database reviewed frequently?",
+          "intent": "Evaluate are all configuration management policies for data/database reviewed frequently?",
+          "field_key": "cfm_03_data_database_policy_reviewed",
+          "evaluation_focus": "Frequent policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-04",
+      "capability_name": "Configuration management system (CMDB)",
+      "questions": [
+        {
+          "id": "rq-cfm-04-1",
+          "prompt": "Does the enterprise have a configuration management database that centrally manages all configuration items?",
+          "intent": "Evaluate does the enterprise have a configuration management database that centrally manages all configuration items?",
+          "field_key": "cfm_04_cmdb_central_management",
+          "evaluation_focus": "Central CMDB for configuration items"
+        },
+        {
+          "id": "rq-cfm-04-2",
+          "prompt": "Are configurations added and removed automatically from the CMDB?",
+          "intent": "Evaluate are configurations added and removed automatically from the CMDB?",
+          "field_key": "cfm_04_cmdb_automated_add_remove",
+          "evaluation_focus": "Automated CMDB add and remove"
+        },
+        {
+          "id": "rq-cfm-04-3",
+          "prompt": "Are CMDB configurations reviewed frequently to validate the integrity of configuration?",
+          "intent": "Evaluate are CMDB configurations reviewed frequently to validate the integrity of configuration?",
+          "field_key": "cfm_04_cmdb_integrity_reviewed",
+          "evaluation_focus": "CMDB integrity review"
+        },
+        {
+          "id": "rq-cfm-04-4",
+          "prompt": "Is the CMDB integrated with other solutions like change management, policy management, or visibility solutions to provide contextual information?",
+          "intent": "Evaluate is the CMDB integrated with other solutions like change management, policy management, or visibility solutions to provide contextual information?",
+          "field_key": "cfm_04_cmdb_integrated_contextual",
+          "evaluation_focus": "Integration with change, policy, and visibility solutions"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-05",
+      "capability_name": "Network Provisioning with Automation (Software defined Networking)",
+      "questions": [
+        {
+          "id": "rq-cfm-05-1",
+          "prompt": "Can the entire network be provisioned with configuration based on configuration storage?",
+          "intent": "Evaluate can the entire network be provisioned with configuration based on configuration storage?",
+          "field_key": "cfm_05_network_provisioned_from_storage",
+          "evaluation_focus": "Network provisioned from configuration storage"
+        },
+        {
+          "id": "rq-cfm-05-2",
+          "prompt": "Is there a central storage for all network configuration?",
+          "intent": "Evaluate is there a central storage for all network configuration?",
+          "field_key": "cfm_05_central_network_config_storage",
+          "evaluation_focus": "Central network configuration storage"
+        },
+        {
+          "id": "rq-cfm-05-3",
+          "prompt": "Does the centralized CMDB or SDN have the capability to automatically provision the network in response to admin requests or network downtimes?",
+          "intent": "Evaluate does the centralized CMDB or SDN have the capability to automatically provision the network in response to admin requests or network downtimes?",
+          "field_key": "cfm_05_sdn_automated_provisioning",
+          "evaluation_focus": "Automated SDN provisioning"
+        },
+        {
+          "id": "rq-cfm-05-4",
+          "prompt": "Are the SDN network configurations reviewed frequently?",
+          "intent": "Evaluate are the SDN network configurations reviewed frequently?",
+          "field_key": "cfm_05_sdn_config_reviewed",
+          "evaluation_focus": "SDN configuration review"
+        },
+        {
+          "id": "rq-cfm-05-5",
+          "prompt": "Can the SDN integrate with other security solutions to provide end-to-end resilience?",
+          "intent": "Evaluate can the SDN integrate with other security solutions to provide end-to-end resilience?",
+          "field_key": "cfm_05_sdn_security_integration",
+          "evaluation_focus": "SDN integration with security solutions"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-06",
+      "capability_name": "Network diagrams and configuration",
+      "questions": [
+        {
+          "id": "rq-cfm-06-1",
+          "prompt": "Does the enterprise store all network and application design and configuration documents?",
+          "intent": "Evaluate does the enterprise store all network and application design and configuration documents?",
+          "field_key": "cfm_06_design_documents_stored",
+          "evaluation_focus": "Network and application design documents stored"
+        },
+        {
+          "id": "rq-cfm-06-2",
+          "prompt": "Are documents for the entire deployment stored securely?",
+          "intent": "Evaluate are documents for the entire deployment stored securely?",
+          "field_key": "cfm_06_documents_stored_securely",
+          "evaluation_focus": "Secure enterprise-wide document storage"
+        },
+        {
+          "id": "rq-cfm-06-3",
+          "prompt": "Are designs and configuration reviewed frequently for efficacy?",
+          "intent": "Evaluate are designs and configuration reviewed frequently for efficacy?",
+          "field_key": "cfm_06_designs_reviewed_frequently",
+          "evaluation_focus": "Frequent design and configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-07",
+      "capability_name": "Workload Configuration Management",
+      "questions": [
+        {
+          "id": "rq-cfm-07-1",
+          "prompt": "Does the enterprise have a solution to manage all application configuration?",
+          "intent": "Evaluate does the enterprise have a solution to manage all application configuration?",
+          "field_key": "cfm_07_application_config_solution",
+          "evaluation_focus": "Application configuration management solution"
+        },
+        {
+          "id": "rq-cfm-07-2",
+          "prompt": "Does the solution manage all application configuration centrally?",
+          "intent": "Evaluate does the solution manage all application configuration centrally?",
+          "field_key": "cfm_07_application_config_central",
+          "evaluation_focus": "Central application configuration management"
+        },
+        {
+          "id": "rq-cfm-07-3",
+          "prompt": "Does the application configuration solution have the capability to automate configuration addition, modification, and deletion based on triggers like environment, threat, or context?",
+          "intent": "Evaluate does the application configuration solution have the capability to automate configuration addition, modification, and deletion based on triggers like environment, threat, or context?",
+          "field_key": "cfm_07_application_config_automation",
+          "evaluation_focus": "Trigger-based configuration automation"
+        },
+        {
+          "id": "rq-cfm-07-4",
+          "prompt": "Are application configurations reviewed frequently?",
+          "intent": "Evaluate are application configurations reviewed frequently?",
+          "field_key": "cfm_07_application_config_reviewed",
+          "evaluation_focus": "Frequent application configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-08",
+      "capability_name": "Workload configuration storage",
+      "questions": [
+        {
+          "id": "rq-cfm-08-1",
+          "prompt": "Does the enterprise store all application configuration data securely?",
+          "intent": "Evaluate does the enterprise store all application configuration data securely?",
+          "field_key": "cfm_08_application_config_stored_securely",
+          "evaluation_focus": "Secure application configuration storage"
+        },
+        {
+          "id": "rq-cfm-08-2",
+          "prompt": "Does secure storage extend to all enterprise applications or only critical ones?",
+          "intent": "Evaluate does secure storage extend to all enterprise applications or only critical ones?",
+          "field_key": "cfm_08_application_config_storage_scope",
+          "evaluation_focus": "Enterprise-wide vs critical-only storage scope"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-09",
+      "capability_name": "Device Configuration Management",
+      "questions": [
+        {
+          "id": "rq-cfm-09-1",
+          "prompt": "Does the enterprise have a solution to manage all endpoint configuration?",
+          "intent": "Evaluate does the enterprise have a solution to manage all endpoint configuration?",
+          "field_key": "cfm_09_endpoint_config_solution",
+          "evaluation_focus": "Endpoint configuration management solution"
+        },
+        {
+          "id": "rq-cfm-09-2",
+          "prompt": "Does the solution manage all endpoint configuration centrally?",
+          "intent": "Evaluate does the solution manage all endpoint configuration centrally?",
+          "field_key": "cfm_09_endpoint_config_central",
+          "evaluation_focus": "Central endpoint configuration management"
+        },
+        {
+          "id": "rq-cfm-09-3",
+          "prompt": "Does the endpoint configuration solution have the capability to automate configuration addition, modification, and deletion based on triggers like environment, threat, or context?",
+          "intent": "Evaluate does the endpoint configuration solution have the capability to automate configuration addition, modification, and deletion based on triggers like environment, threat, or context?",
+          "field_key": "cfm_09_endpoint_config_automation",
+          "evaluation_focus": "Trigger-based endpoint configuration automation"
+        },
+        {
+          "id": "rq-cfm-09-4",
+          "prompt": "Are endpoint configurations reviewed frequently?",
+          "intent": "Evaluate are endpoint configurations reviewed frequently?",
+          "field_key": "cfm_09_endpoint_config_reviewed",
+          "evaluation_focus": "Frequent endpoint configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-10",
+      "capability_name": "Configuration management responsibility",
+      "questions": [
+        {
+          "id": "rq-cfm-10-1",
+          "prompt": "Does the enterprise have a separate team that handles identity and subject configuration, including identity lifecycles on Active Directory?",
+          "intent": "Evaluate does the enterprise have a separate team that handles identity and subject configuration, including identity lifecycles on Active Directory?",
+          "field_key": "cfm_10_identity_config_team",
+          "evaluation_focus": "Identity and subject configuration team"
+        },
+        {
+          "id": "rq-cfm-10-2",
+          "prompt": "Does the identity and subject configuration team manage all identity assets centrally?",
+          "intent": "Evaluate does the identity and subject configuration team manage all identity assets centrally?",
+          "field_key": "cfm_10_identity_config_central_assets",
+          "evaluation_focus": "Identity and subject configuration team"
+        },
+        {
+          "id": "rq-cfm-10-3",
+          "prompt": "Does the enterprise have a separate team that handles endpoint asset configuration?",
+          "intent": "Evaluate does the enterprise have a separate team that handles endpoint asset configuration?",
+          "field_key": "cfm_10_endpoint_config_team",
+          "evaluation_focus": "Endpoint configuration team"
+        },
+        {
+          "id": "rq-cfm-10-4",
+          "prompt": "Does the endpoint configuration team manage all endpoint assets centrally?",
+          "intent": "Evaluate does the endpoint configuration team manage all endpoint assets centrally?",
+          "field_key": "cfm_10_endpoint_config_central_assets",
+          "evaluation_focus": "Endpoint configuration team"
+        },
+        {
+          "id": "rq-cfm-10-5",
+          "prompt": "Does the enterprise have a separate team that handles application asset configuration?",
+          "intent": "Evaluate does the enterprise have a separate team that handles application asset configuration?",
+          "field_key": "cfm_10_application_config_team",
+          "evaluation_focus": "Application configuration team"
+        },
+        {
+          "id": "rq-cfm-10-6",
+          "prompt": "Does the application configuration team manage all application assets centrally?",
+          "intent": "Evaluate does the application configuration team manage all application assets centrally?",
+          "field_key": "cfm_10_application_config_central_assets",
+          "evaluation_focus": "Application configuration team"
+        },
+        {
+          "id": "rq-cfm-10-7",
+          "prompt": "Does the enterprise have a separate team that handles data asset configuration?",
+          "intent": "Evaluate does the enterprise have a separate team that handles data asset configuration?",
+          "field_key": "cfm_10_data_config_team",
+          "evaluation_focus": "Data configuration team"
+        },
+        {
+          "id": "rq-cfm-10-8",
+          "prompt": "Does the data configuration team manage all data assets centrally?",
+          "intent": "Evaluate does the data configuration team manage all data assets centrally?",
+          "field_key": "cfm_10_data_config_central_assets",
+          "evaluation_focus": "Data configuration team"
+        },
+        {
+          "id": "rq-cfm-10-9",
+          "prompt": "Does the enterprise have a separate team that handles network asset configuration, including network security products such as firewalls and WAF?",
+          "intent": "Evaluate does the enterprise have a separate team that handles network asset configuration, including network security products such as firewalls and WAF?",
+          "field_key": "cfm_10_network_config_team",
+          "evaluation_focus": "Network configuration team"
+        },
+        {
+          "id": "rq-cfm-10-10",
+          "prompt": "Does the network configuration team manage all network assets centrally?",
+          "intent": "Evaluate does the network configuration team manage all network assets centrally?",
+          "field_key": "cfm_10_network_config_central_assets",
+          "evaluation_focus": "Network configuration team"
+        }
+      ]
+    },
+    {
+      "capability_id": "cfm-11",
+      "capability_name": "Configuration change monitoring",
+      "questions": [
+        {
+          "id": "rq-cfm-11-1",
+          "prompt": "Is there a formal documented process for logging configuration changes to the SOC?",
+          "intent": "Evaluate is there a formal documented process for logging configuration changes to the SOC?",
+          "field_key": "cfm_11_logging_process_to_soc",
+          "evaluation_focus": "Documented configuration logging to SOC"
+        },
+        {
+          "id": "rq-cfm-11-2",
+          "prompt": "Is logging of configuration changes and lifecycle made securely to the SOC?",
+          "intent": "Evaluate is logging of configuration changes and lifecycle made securely to the SOC?",
+          "field_key": "cfm_11_secure_logging_to_soc",
+          "evaluation_focus": "Secure configuration logging to SOC"
+        },
+        {
+          "id": "rq-cfm-11-3",
+          "prompt": "Are dynamic changes to configuration captured and transferred to the SOC?",
+          "intent": "Evaluate are dynamic changes to configuration captured and transferred to the SOC?",
+          "field_key": "cfm_11_dynamic_changes_to_soc",
+          "evaluation_focus": "Dynamic configuration changes to SOC"
+        }
+      ]
+    }
+  ]
+}

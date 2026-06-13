@@ -1,0 +1,222 @@
+{
+  "service_id": "configuration-management",
+  "service_name": "Configuration Management Service",
+  "version": "1.0",
+  "description": "Evaluates configuration management service maturity—business processes, KPIs/KRIs, policies by configuration type, CMDB, SDN provisioning, network diagrams, workload and device configuration, responsibility models, and SOC logging.",
+  "capabilities": [
+    {
+      "id": "cfm-00",
+      "name": "Service exists and is in good condition",
+      "description": "A configuration management service exists and is reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Enterprise configuration management service exists",
+        "Frequent service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cfm-01",
+      "name": "Configuration management business process",
+      "description": "A formalized configuration management process applies enterprise-wide, is automated, and reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized and documented process",
+        "Enterprise-wide process adoption",
+        "Process automation",
+        "Frequent process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cfm-02",
+      "name": "KPIs/KRIs",
+      "description": "Configuration management KPIs and KRIs are documented and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs",
+        "Frequent KPI/KRI review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cfm-03",
+      "name": "Configuration Management policy",
+      "description": "Formal configuration management policies for subject, endpoint, network, application, and data/database changes apply enterprise-wide and are reviewed frequently.",
+      "evaluation_focus": [
+        "Subject configuration policy",
+        "Endpoint configuration policy",
+        "Network configuration policy",
+        "Application configuration policy",
+        "Data/database configuration policy",
+        "Frequent policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "cfm-04",
+      "name": "Configuration management system (CMDB)",
+      "description": "A CMDB centrally manages configuration items with automated add/remove, integrity review, and integration with change, policy, and visibility solutions.",
+      "evaluation_focus": [
+        "Central CMDB for configuration items",
+        "Automated CMDB add and remove",
+        "CMDB integrity review",
+        "Integration with change, policy, and visibility solutions"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cfm-05",
+      "name": "Network Provisioning with Automation (Software defined Networking)",
+      "description": "SDN provisions the network from centralized configuration storage with automation, review, and security integration.",
+      "evaluation_focus": [
+        "Network provisioned from configuration storage",
+        "Central network configuration storage",
+        "Automated SDN provisioning",
+        "SDN configuration review",
+        "SDN integration with security solutions"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cfm-06",
+      "name": "Network diagrams and configuration",
+      "description": "Network and application design and configuration documents are stored securely enterprise-wide and reviewed frequently.",
+      "evaluation_focus": [
+        "Network and application design documents stored",
+        "Secure enterprise-wide document storage",
+        "Frequent design and configuration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "cfm-07",
+      "name": "Workload Configuration Management",
+      "description": "Application configuration is managed centrally with trigger-based automation and frequent review.",
+      "evaluation_focus": [
+        "Application configuration management solution",
+        "Central application configuration management",
+        "Trigger-based configuration automation",
+        "Frequent application configuration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cfm-08",
+      "name": "Workload configuration storage",
+      "description": "Application configuration data is stored securely across enterprise or critical applications.",
+      "evaluation_focus": [
+        "Secure application configuration storage",
+        "Enterprise-wide vs critical-only storage scope"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cfm-09",
+      "name": "Device Configuration Management",
+      "description": "Endpoint configuration is managed centrally with trigger-based automation and frequent review.",
+      "evaluation_focus": [
+        "Endpoint configuration management solution",
+        "Central endpoint configuration management",
+        "Trigger-based endpoint configuration automation",
+        "Frequent endpoint configuration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "cfm-10",
+      "name": "Configuration management responsibility",
+      "description": "Dedicated teams manage identity, endpoint, application, data, and network configuration assets centrally.",
+      "evaluation_focus": [
+        "Identity and subject configuration team",
+        "Endpoint configuration team",
+        "Application configuration team",
+        "Data configuration team",
+        "Network configuration team"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "cfm-11",
+      "name": "Configuration change monitoring",
+      "description": "Configuration changes and lifecycle events are logged securely to the SOC, including dynamic changes.",
+      "evaluation_focus": [
+        "Documented configuration logging to SOC",
+        "Secure configuration logging to SOC",
+        "Dynamic configuration changes to SOC"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}
