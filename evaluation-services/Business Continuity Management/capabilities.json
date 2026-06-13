@@ -1,0 +1,179 @@
+{
+  "service_id": "business-continuity-management",
+  "service_name": "Business Continuity Management",
+  "version": "1.0",
+  "description": "Evaluates business continuity management maturity—service governance, KPIs/KRIs, BCP processes and strategy, continuity planning, exercises, stakeholder communication, disaster response planning, response plan exercises, and equipment redundancy.",
+  "capabilities": [
+    {
+      "id": "bcm-00",
+      "name": "Service exists and in good condition",
+      "description": "A business continuity management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Enterprise business continuity management service exists",
+        "Frequent business continuity management service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "bcm-01",
+      "name": "KPIs/KRIs",
+      "description": "Business continuity KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs for the BCP service",
+        "Frequent KPI/KRI review for the BCP service"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "bcm-02",
+      "name": "BCP processes",
+      "description": "Business continuity management and operational resilience policies and procedures are formalized, documented, and updated at least annually.",
+      "evaluation_focus": [
+        "Formalized documented business continuity and operational resilience policies and procedures",
+        "Annual or more frequent review and update of policies and procedures"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "bcm-03",
+      "name": "BCP strategy",
+      "description": "The enterprise has strategies to reduce the impact of, withstand, and recover from business disruptions within risk appetite, with frequent efficacy review.",
+      "evaluation_focus": [
+        "Strategies to reduce impact, withstand, and recover from business disruptions within risk appetite",
+        "Frequent BCP strategy efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "bcm-04",
+      "name": "Business Continuity Planning",
+      "description": "A formalized business continuity plan is documented based on operational resilience strategies and capabilities and reviewed on a defined cadence.",
+      "evaluation_focus": [
+        "Formalized documented business continuity plan based on operational resilience strategies and capabilities",
+        "Defined review cadence for the business continuity plan"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "bcm-05",
+      "name": "Business Continuity Exercises",
+      "description": "Business continuity and operational resilience plans are exercised, reviewed, and automated where appropriate.",
+      "evaluation_focus": [
+        "Annual or change-triggered exercise and testing of business continuity and operational resilience plans",
+        "Frequent review of business continuity and operational resilience plans for efficacy",
+        "Automation of business continuity and operational resilience plans and processes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "bcm-06",
+      "name": "Communication",
+      "description": "Stakeholder and participant communication plans support business continuity and resilience procedures and are reviewed frequently.",
+      "evaluation_focus": [
+        "Communication with stakeholders and participants during business continuity and resilience procedures",
+        "Frequent communication plan efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "bcm-07",
+      "name": "Disaster Response Plan",
+      "description": "A formalized disaster response plan supports recovery from natural and man-made disasters and is updated at least annually or upon significant changes.",
+      "evaluation_focus": [
+        "Formalized documented disaster response plan for natural and man-made disasters",
+        "Annual or change-triggered update of the disaster response plan"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "bcm-08",
+      "name": "Response Plan Exercise",
+      "description": "The disaster response plan is exercised annually or upon significant changes, including coordination with local emergency authorities where possible.",
+      "evaluation_focus": [
+        "Annual or change-triggered disaster response plan exercise including local emergency authorities where possible"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "bcm-09",
+      "name": "Equipment Redundancy",
+      "description": "Business-critical equipment is supplemented with redundant equipment independently located at a reasonable minimum distance per applicable industry standards.",
+      "evaluation_focus": [
+        "Redundant business-critical equipment independently located at reasonable minimum distance per industry standards"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "enterprise-risk-manager",
+    "grc-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "compliance-audit-lead",
+    "it-director-head-of-it",
+    "security-program-strategy-lead"
+  ]
+}

@@ -50,6 +50,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "business-continuity-management": {
+      "service_name": "Business Continuity Management",
+      "role_ids": [
+        "enterprise-risk-manager",
+        "grc-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "compliance-audit-lead",
+        "it-director-head-of-it",
+        "security-program-strategy-lead"
+      ]
+    },
     "authentication-service": {
       "service_name": "Authentication Service",
       "role_ids": [
@@ -354,6 +366,17 @@
         "grc-lead",
         "compliance-audit-lead",
         "security-program-strategy-lead"
+      ]
+    },
+    "security-culture": {
+      "service_name": "Security Culture",
+      "role_ids": [
+        "security-awareness-culture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "security-program-strategy-lead",
+        "compliance-audit-lead"
       ]
     },
     "security-training": {
