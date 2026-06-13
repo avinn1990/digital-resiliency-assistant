@@ -21,13 +21,13 @@
 | 2 | Session Management Service | session-management | 3 | 10 | pending |
 | 2 | Certificate Management Service | certificate-management | 6 | 20 | pending |
 | 2 | Cryptographic Key Management | cryptographic-key-management | 17 | 44 | pending |
-| 3 | Network Management Service | network-management | 10 | 23 | pending |
-| 3 | Configuration Management Service | configuration-management | 12 | 58 | pending |
-| 3 | Container Management | container-management | 6 | 20 | pending |
-| 3 | Production Workload Management | production-workload-management | 10 | 30 | pending |
-| 3 | Enterprise Asset Management | enterprise-asset-management | 30 | 135 | pending |
-| 3 | Data Management | data-management | 35 | 97 | pending |
-| 3 | Facilities Management Service | facilities-management | 10 | 14 | pending |
+| 3 | Network Management Service | network-management | 8 | 25 | done (1.1) |
+| 3 | Configuration Management Service | configuration-management | 9 | 48 | done (1.1) |
+| 3 | Container Management | container-management | 6 | 21 | done (1.1) |
+| 3 | Production Workload Management | production-workload-management | 9 | 31 | done (1.1) |
+| 3 | Enterprise Asset Management | enterprise-asset-management | 14 | 78 | done (1.1) |
+| 3 | Data Management | data-management | 18 | 88 | done (1.1) |
+| 3 | Facilities Management Service | facilities-management | 10 | 14 | done (1.1) |
 | 4 | Code Management | code-management | 8 | 22 | pending |
 | 4 | Change Management Service | change-management | 11 | 46 | pending |
 | 4 | Security Architecture Management | security-architecture-management | 11 | 30 | pending |

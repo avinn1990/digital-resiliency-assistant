@@ -1,16 +1,16 @@
 {
   "service_id": "facilities-management",
   "service_name": "Facilities Management Service",
-  "version": "1.0",
   "description": "Evaluates facilities management service maturity—physical access control, equipment identification, surveillance, unauthorized access training, cabling security, environmental systems, secure utilities, and equipment location.",
   "capabilities": [
     {
       "id": "fac-00",
       "name": "Service exists and is in good condition",
-      "description": "A facilities management service exists and is reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "A facilities management service exists and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise facilities management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +18,12 @@
     {
       "id": "fac-01",
       "name": "KPIs/KRIs",
-      "description": "Facilities management KPIs and KRIs are documented and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Facilities management KPIs and KRIs—including physical access incidents, environmental excursions, and utility test compliance—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Physical access and environmental excursion metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,6 +31,7 @@
     {
       "id": "fac-02",
       "name": "Controlled Access Points and Secure Area Authorization",
+      "short_name": "physical access control",
       "description": "Physical access to data centers is controlled and functional zones are physically separated.",
       "evaluation_focus": [
         "Physical access control to data centers",
@@ -40,10 +43,11 @@
     {
       "id": "fac-03",
       "name": "Equipment Identification",
-      "description": "Accurate equipment identification validates physical asset placements and is reviewed frequently.",
+      "short_name": "equipment identification",
+      "description": "Accurate equipment identification validates physical asset placements and is reviewed at least quarterly.",
       "evaluation_focus": [
         "Accurate equipment identification for asset placement",
-        "Frequent physical equipment identification review"
+        "Regular physical equipment identification review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -51,6 +55,7 @@
     {
       "id": "fac-04",
       "name": "Surveillance System",
+      "short_name": "surveillance",
       "description": "Surveillance at all data centers identifies and calls out unauthorized or anomalous access.",
       "evaluation_focus": [
         "Data center surveillance for unauthorized access"
@@ -61,6 +66,7 @@
     {
       "id": "fac-05",
       "name": "Unauthorized Access Response Training",
+      "short_name": "access response training",
       "description": "Formal training on unauthorized data center access is provided for all data center personnel.",
       "evaluation_focus": [
         "Formal unauthorized access training for DC personnel"
@@ -71,6 +77,7 @@
     {
       "id": "fac-06",
       "name": "Cabling Security",
+      "short_name": "cabling security",
       "description": "Power and telecommunication cables receive risk-based protection from interception, interference, or damage at all facilities.",
       "evaluation_focus": [
         "Risk-based cabling protection at all facilities"
@@ -81,6 +88,7 @@
     {
       "id": "fac-07",
       "name": "Environmental Systems",
+      "short_name": "environmental systems",
       "description": "Data center environmental control systems monitor, maintain, and test temperature and humidity within industry standards.",
       "evaluation_focus": [
         "Environmental monitoring and testing within industry standards"
@@ -91,6 +99,7 @@
     {
       "id": "fac-08",
       "name": "Secure Utilities",
+      "short_name": "secure utilities",
       "description": "Utility services are secured, monitored, maintained, and tested at planned intervals.",
       "evaluation_focus": [
         "Secured and tested utility services"
@@ -101,6 +110,7 @@
     {
       "id": "fac-09",
       "name": "Equipment Location",
+      "short_name": "equipment location",
       "description": "Business-critical equipment is kept away from locations with high probability of environmental risk events.",
       "evaluation_focus": [
         "Business-critical equipment away from high environmental risk locations"
@@ -109,6 +119,17 @@
       "pillar": "Process/Service"
     }
   ],
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "enterprise-risk-manager",
+    "security-program-strategy-lead"
+  ],
+  "version": "1.1",
   "evaluation": {
     "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
     "normalized_scale": 5,
@@ -161,15 +182,5 @@
     ],
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
-  },
-  "target_audience_role_ids": [
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "security-architecture-lead",
-    "it-director-head-of-it",
-    "grc-lead",
-    "compliance-audit-lead",
-    "enterprise-risk-manager",
-    "security-program-strategy-lead"
-  ]
+  }
 }

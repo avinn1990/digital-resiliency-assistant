@@ -1,16 +1,16 @@
 {
   "service_id": "network-management",
   "service_name": "Network Management Service",
-  "version": "1.0",
-  "description": "Evaluates network management service maturity—service governance, KPIs/KRIs, network management processes, NMS platform capabilities, scale and performance, visibility, device user management, network monitoring, fault correlation, and capacity planning.",
+  "description": "Evaluates network management service maturity—service governance, KPIs/KRIs, network management processes, NMS platform capabilities, zero-trust segmentation alignment, capacity planning and scale, visibility and fault correlation, device user management, and network monitoring.",
   "capabilities": [
     {
       "id": "nm-00",
       "name": "Service exists and is in good condition",
-      "description": "A network management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "A network management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise network management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +18,13 @@
     {
       "id": "nm-01",
       "name": "KPIs/KRIs",
-      "description": "Network management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Network management KPIs and KRIs—including availability, fault MTTR, and capacity utilization—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for network management",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Network availability and fault recovery metrics",
+        "Capacity utilization and scaling effectiveness metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,11 +32,13 @@
     {
       "id": "nm-02",
       "name": "Network management process",
-      "description": "An enterprise-wide formalized network management process is documented, automated where appropriate, and reviewed frequently.",
+      "short_name": "network management process",
+      "description": "An enterprise-wide formalized network management process is documented, automated where appropriate, aligned to zero-trust segmentation, and reviewed at least quarterly.",
       "evaluation_focus": [
         "Enterprise-wide formalized documented network management process",
         "Network management process automation",
-        "Frequent network management process review"
+        "Zero-trust segmentation alignment in network operations",
+        "Regular network management process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -41,12 +46,13 @@
     {
       "id": "nm-03",
       "name": "NMS Platform",
-      "description": "An NMS platform manages network devices enterprise-wide, supports automation, is reviewed frequently, and integrates with configuration, asset, and policy management systems.",
+      "short_name": "NMS platform",
+      "description": "An NMS platform manages network devices enterprise-wide, supports automation, is reviewed at least quarterly, and integrates with configuration, asset, and policy management systems.",
       "evaluation_focus": [
         "NMS platform exists",
         "Enterprise-wide network device management",
         "NMS automation features such as upgrades and remediation",
-        "Frequent NMS platform configuration review",
+        "Regular NMS platform configuration review",
         "Integration with configuration, asset, and policy management systems"
       ],
       "resiliency_weight": 1,
@@ -54,23 +60,28 @@
     },
     {
       "id": "nm-04",
-      "name": "Network Assurance — Scale and performance",
-      "description": "The network can expand capacity based on workload increases enterprise-wide, supports automatic or programmatic scaling, and scaling configuration is reviewed frequently.",
+      "name": "Capacity planning and scale",
+      "short_name": "capacity and scale",
+      "description": "Capacity planning monitors availability and performance enterprise-wide; the network supports automatic or programmatic scaling with configuration reviewed at least quarterly.",
       "evaluation_focus": [
+        "Formalized documented capacity planning process",
         "Network expansion based on workload increase",
         "Enterprise-wide scaling capability",
         "Automatic or programmatic capacity expansion",
-        "Frequent scaling configuration review"
+        "Regular capacity and scaling configuration review"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "nm-05",
-      "name": "Visibility of data",
-      "description": "The NMS provides full visibility of the network across all parts of the enterprise.",
+      "name": "Network visibility and fault correlation",
+      "short_name": "visibility and faults",
+      "description": "The NMS provides full enterprise-wide network visibility with fault detection, correlation, and segmentation context.",
       "evaluation_focus": [
-        "Full enterprise-wide network visibility in NMS"
+        "Full enterprise-wide network visibility in NMS",
+        "Full fault visibility and correlation across the network",
+        "Segmentation and trust-zone visibility in NMS"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -78,7 +89,8 @@
     {
       "id": "nm-06",
       "name": "Network device user management",
-      "description": "The NMS can create and manage users who access the platform and view dashboards.",
+      "short_name": "NMS user management",
+      "description": "The NMS can create and manage users who access the platform and view dashboards with role-appropriate scope.",
       "evaluation_focus": [
         "NMS user creation and management for dashboard access"
       ],
@@ -88,6 +100,7 @@
     {
       "id": "nm-07",
       "name": "Network monitoring",
+      "short_name": "network monitoring",
       "description": "The NMS deploys monitoring mechanisms such as SNMP and Syslog and monitors all network devices enterprise-wide.",
       "evaluation_focus": [
         "SNMP, Syslog, and similar monitoring mechanisms",
@@ -95,29 +108,18 @@
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
-    },
-    {
-      "id": "nm-08",
-      "name": "Fault visibility",
-      "description": "The NMS provides full visibility and correlation of faults occurring across the network.",
-      "evaluation_focus": [
-        "Full fault visibility and correlation across the network"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "nm-09",
-      "name": "Capacity planning",
-      "description": "A formalized documented capacity planning process monitors availability, quality, and adequate resource capacity to deliver required system performance.",
-      "evaluation_focus": [
-        "Formalized documented capacity planning process",
-        "Frequent capacity management process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
     }
   ],
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ],
+  "version": "1.1",
   "evaluation": {
     "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
     "normalized_scale": 5,
@@ -170,14 +172,5 @@
     ],
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
-  },
-  "target_audience_role_ids": [
-    "it-director-head-of-it",
-    "security-architecture-lead",
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "grc-lead",
-    "compliance-audit-lead",
-    "security-program-strategy-lead"
-  ]
+  }
 }

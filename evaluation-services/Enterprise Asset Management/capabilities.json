@@ -1,18 +1,17 @@
 {
   "service_id": "enterprise-asset-management",
   "service_name": "Enterprise Asset Management",
-  "version": "1.0",
-  "description": "Evaluates enterprise asset management maturity\u2014endpoint, network, and application asset tracking, policies, inventory, provisioning, deprovisioning, migration, threat protection, supply chain visibility, shadow IT, custodianship, and SOC logging.",
+  "description": "Evaluates enterprise asset management maturity—endpoint, network, and application asset tracking, consolidated policies, inventory and lifecycle processes, threat protection, supply chain visibility, shadow IT, custodianship, and SOC logging.",
   "capabilities": [
     {
       "id": "eam-00",
       "name": "Service exists and is in good condition",
-      "description": "Evaluates service exists and is in good condition for enterprise asset management.",
+      "short_name": "service existence",
+      "description": "An enterprise asset management service exists, is scoped across endpoint, network, and application assets, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
-        "Endpoint asset tracking",
-        "Service efficacy review",
-        "Network asset tracking",
-        "Application asset tracking"
+        "Enterprise asset management service exists",
+        "Regular service efficacy review",
+        "Endpoint, network, and application asset scope"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -20,14 +19,13 @@
     {
       "id": "eam-01",
       "name": "KPIs/KRIs",
-      "description": "Evaluates kpis/kris for enterprise asset management.",
+      "short_name": "KPIs and KRIs",
+      "description": "Enterprise asset management KPIs and KRIs—including inventory accuracy, provisioning velocity, and shadow asset discovery—are documented and reviewed at least quarterly across asset types.",
       "evaluation_focus": [
-        "Endpoint KPIs/KRIs documented",
-        "Endpoint KPI/KRI review",
-        "Network KPIs/KRIs documented",
-        "Network KPI/KRI review",
-        "Application KPIs/KRIs documented",
-        "Application KPI/KRI review"
+        "Documented KPIs and KRIs across asset types",
+        "Regular KPI/KRI review",
+        "Inventory accuracy and lifecycle velocity metrics",
+        "Shadow asset discovery metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -35,7 +33,8 @@
     {
       "id": "eam-02",
       "name": "Enterprise asset management system",
-      "description": "Evaluates enterprise asset management system for enterprise asset management.",
+      "short_name": "EAM platform",
+      "description": "A centralized enterprise asset management system automates lifecycle functions, is reviewed at least quarterly, and integrates with access, logging, and compliance systems.",
       "evaluation_focus": [
         "Centralized vs siloed asset management",
         "Automated asset lifecycle functions",
@@ -47,177 +46,13 @@
     },
     {
       "id": "eam-03",
-      "name": "SSRM Policy and Procedures",
-      "description": "Evaluates ssrm policy and procedures for enterprise asset management.",
+      "name": "SSRM and procurement policy",
+      "short_name": "SSRM and procurement",
+      "description": "SSRM strategy and procurement policies govern third-party and managed assets across endpoint, application, and network domains and are reviewed at least quarterly.",
       "evaluation_focus": [
         "SSRM strategy and policy",
         "Third-party asset scope",
-        "SSRM policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-04",
-      "name": "Unmanaged Asset Policies (BYOD)",
-      "description": "Evaluates unmanaged asset policies (byod) for enterprise asset management.",
-      "evaluation_focus": [
-        "BYOD policy exists",
-        "Enterprise-wide BYOD implementation",
-        "BYOD policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-05",
-      "name": "BYOD devices",
-      "description": "Evaluates byod devices for enterprise asset management.",
-      "evaluation_focus": [
-        "Unmanaged device provisioning and security",
-        "Unmanaged device network access",
-        "Self-register portal for unmanaged devices"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "eam-06",
-      "name": "Mobile Asset Management policies",
-      "description": "Evaluates mobile asset management policies for enterprise asset management.",
-      "evaluation_focus": [
-        "MDM policy exists",
-        "Enterprise-wide MDM implementation",
-        "MDM policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-07",
-      "name": "Mobile device provisioning",
-      "description": "Evaluates mobile device provisioning for enterprise asset management.",
-      "evaluation_focus": [
-        "Mobile device provisioning and security",
-        "Mobile device network access",
-        "Self-register portal for mobile devices"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "eam-08",
-      "name": "Managed Asset Endpoint Security Policy",
-      "description": "Evaluates managed asset endpoint security policy for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized endpoint security policy",
-        "Enterprise-wide endpoint security policy",
-        "Endpoint security policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-09",
-      "name": "Managed Asset Application Security Policy",
-      "description": "Evaluates managed asset application security policy for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized application security policy",
-        "Enterprise-wide application security policy",
-        "Application security policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-10",
-      "name": "Managed Asset Network Security Policy",
-      "description": "Evaluates managed asset network security policy for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized network security policy",
-        "Enterprise-wide network security policy",
-        "Network security policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-11",
-      "name": "Managed asset Endpoint Provisioning policy",
-      "description": "Evaluates managed asset endpoint provisioning policy for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized endpoint provisioning policy",
-        "Enterprise-wide endpoint provisioning policy",
-        "Endpoint provisioning policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-12",
-      "name": "Managed asset Application Provisioning policy",
-      "description": "Evaluates managed asset application provisioning policy for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized application provisioning policy",
-        "Enterprise-wide application provisioning policy",
-        "Application provisioning policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-13",
-      "name": "Managed asset Network Provisioning policy",
-      "description": "Evaluates managed asset network provisioning policy for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized network provisioning policy",
-        "Enterprise-wide network provisioning policy",
-        "Network provisioning policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-14",
-      "name": "Managed Asset Endpoint Deprovisioning Policies",
-      "description": "Evaluates managed asset endpoint deprovisioning policies for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized endpoint deprovisioning policy",
-        "Enterprise-wide endpoint deprovisioning policy",
-        "Endpoint deprovisioning policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-15",
-      "name": "Managed Asset Application Deprovisioning Policies",
-      "description": "Evaluates managed asset application deprovisioning policies for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized application deprovisioning policy",
-        "Enterprise-wide application deprovisioning policy",
-        "Application deprovisioning policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-16",
-      "name": "Managed Asset Network Deprovisioning Policies",
-      "description": "Evaluates managed asset network deprovisioning policies for enterprise asset management.",
-      "evaluation_focus": [
-        "Formalized network deprovisioning policy",
-        "Enterprise-wide network deprovisioning policy",
-        "Network deprovisioning policy review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Strategy"
-    },
-    {
-      "id": "eam-17",
-      "name": "Managed asset Procurement and Supply chain Policy",
-      "description": "Evaluates managed asset procurement and supply chain policy for enterprise asset management.",
-      "evaluation_focus": [
+        "SSRM policy review",
         "Endpoint procurement policy",
         "Application procurement policy",
         "Network procurement policy"
@@ -226,35 +61,87 @@
       "pillar": "Strategy"
     },
     {
-      "id": "eam-18",
-      "name": "Managed asset inventory tracking",
-      "description": "Evaluates managed asset inventory tracking for enterprise asset management.",
+      "id": "eam-04",
+      "name": "Unmanaged and mobile assets",
+      "short_name": "unmanaged and mobile",
+      "description": "BYOD and mobile asset policies govern unmanaged and mobile device provisioning, security, network access, and self-registration enterprise-wide.",
+      "evaluation_focus": [
+        "BYOD policy exists",
+        "Enterprise-wide BYOD implementation",
+        "BYOD policy review",
+        "Unmanaged device provisioning and security",
+        "Unmanaged device network access",
+        "Self-register portal for unmanaged devices",
+        "MDM policy exists",
+        "Enterprise-wide MDM implementation",
+        "MDM policy review",
+        "Mobile device provisioning and security",
+        "Mobile device network access",
+        "Self-register portal for mobile devices"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "eam-05",
+      "name": "Managed asset security policies",
+      "short_name": "security policies",
+      "description": "Formalized security policies for endpoint, application, and network managed assets apply enterprise-wide and are reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Formalized endpoint security policy",
+        "Enterprise-wide endpoint security policy",
+        "Endpoint security policy review",
+        "Formalized application security policy",
+        "Enterprise-wide application security policy",
+        "Application security policy review",
+        "Formalized network security policy",
+        "Enterprise-wide network security policy",
+        "Network security policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "eam-06",
+      "name": "Managed asset provisioning and deprovisioning policies",
+      "short_name": "lifecycle policies",
+      "description": "Formalized provisioning and deprovisioning policies for endpoint, application, and network managed assets apply enterprise-wide and are reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Formalized endpoint provisioning policy",
+        "Enterprise-wide endpoint provisioning policy",
+        "Endpoint provisioning policy review",
+        "Formalized application provisioning policy",
+        "Enterprise-wide application provisioning policy",
+        "Application provisioning policy review",
+        "Formalized network provisioning policy",
+        "Enterprise-wide network provisioning policy",
+        "Network provisioning policy review",
+        "Formalized endpoint deprovisioning policy",
+        "Enterprise-wide endpoint deprovisioning policy",
+        "Endpoint deprovisioning policy review",
+        "Formalized application deprovisioning policy",
+        "Enterprise-wide application deprovisioning policy",
+        "Application deprovisioning policy review",
+        "Formalized network deprovisioning policy",
+        "Enterprise-wide network deprovisioning policy",
+        "Network deprovisioning policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "eam-07",
+      "name": "Asset inventory and registration lifecycle",
+      "short_name": "inventory and registration",
+      "description": "Inventory tracking and registration or de-registration processes cover endpoint, application, and network assets with automation and regular review.",
       "evaluation_focus": [
         "Endpoint inventory process",
         "Application inventory process",
-        "Network device inventory process"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "eam-19",
-      "name": "Enterprise asset management registration process",
-      "description": "Evaluates enterprise asset management registration process for enterprise asset management.",
-      "evaluation_focus": [
+        "Network device inventory process",
         "Asset registration capability",
         "All assets registered",
         "Automated registration",
-        "Registration process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "eam-20",
-      "name": "Enterprise asset management de-registration process",
-      "description": "Evaluates enterprise asset management de-registration process for enterprise asset management.",
-      "evaluation_focus": [
+        "Registration process review",
         "Asset de-registration capability",
         "All assets de-registered",
         "Automated de-registration",
@@ -264,34 +151,17 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "eam-21",
-      "name": "Managed asset self service Provisioning",
-      "description": "Evaluates managed asset self service provisioning for enterprise asset management.",
+      "id": "eam-08",
+      "name": "Self-service provisioning, deprovisioning, and migration",
+      "short_name": "self-service lifecycle",
+      "description": "Self-service provisioning and deprovisioning plus migration processes cover endpoint, application, and network assets with automation where appropriate.",
       "evaluation_focus": [
         "Endpoint provisioning",
         "Application provisioning",
-        "Network provisioning"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "eam-22",
-      "name": "Managed asset self service Deprovisioning",
-      "description": "Evaluates managed asset self service deprovisioning for enterprise asset management.",
-      "evaluation_focus": [
+        "Network provisioning",
         "Endpoint deprovisioning",
         "Application deprovisioning",
-        "Network deprovisioning"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "eam-23",
-      "name": "Managed asset Migration",
-      "description": "Evaluates managed asset migration for enterprise asset management.",
-      "evaluation_focus": [
+        "Network deprovisioning",
         "Endpoint migration process",
         "Endpoint migration automation",
         "Endpoint migration review",
@@ -303,22 +173,14 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "eam-24",
-      "name": "Managed asset Security and Threat Protection",
-      "description": "Evaluates managed asset security and threat protection for enterprise asset management.",
+      "id": "eam-09",
+      "name": "Threat protection and supply chain visibility",
+      "short_name": "threat and supply chain",
+      "description": "Threat protections and supply chain visibility span endpoint, application, and network assets with enterprise-wide coverage.",
       "evaluation_focus": [
         "Endpoint threat protections",
         "Application threat protections",
-        "Network threat protections"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "eam-25",
-      "name": "Supply chain Visibility",
-      "description": "Evaluates supply chain visibility for enterprise asset management.",
-      "evaluation_focus": [
+        "Network threat protections",
         "Endpoint supply chain visibility",
         "Network supply chain visibility",
         "Application supply chain visibility"
@@ -327,9 +189,10 @@
       "pillar": "Technology"
     },
     {
-      "id": "eam-26",
-      "name": "Enterprise asset access user management",
-      "description": "Evaluates enterprise asset access user management for enterprise asset management.",
+      "id": "eam-10",
+      "name": "Asset access and user management",
+      "short_name": "asset access control",
+      "description": "Identity and context-based access control governs asset platform users with regular review.",
       "evaluation_focus": [
         "Identity and context-based asset access control",
         "Asset access user review"
@@ -338,9 +201,10 @@
       "pillar": "Technology"
     },
     {
-      "id": "eam-27",
-      "name": "Enterprise Asset Management custodians",
-      "description": "Evaluates enterprise asset management custodians for enterprise asset management.",
+      "id": "eam-11",
+      "name": "Asset management custodians",
+      "short_name": "custodians",
+      "description": "Separate asset management custodians are assigned by asset type with clear separation of duties.",
       "evaluation_focus": [
         "Separate asset management custodians by asset type"
       ],
@@ -348,9 +212,10 @@
       "pillar": "People"
     },
     {
-      "id": "eam-28",
+      "id": "eam-12",
       "name": "Shadow asset handling",
-      "description": "Evaluates shadow asset handling for enterprise asset management.",
+      "short_name": "shadow IT",
+      "description": "Shadow IT is managed enterprise-wide with automated discovery where possible.",
       "evaluation_focus": [
         "Shadow IT management across enterprise",
         "Automated shadow IT discovery"
@@ -359,9 +224,10 @@
       "pillar": "Technology"
     },
     {
-      "id": "eam-29",
-      "name": "Enterprise Asset management logging",
-      "description": "Evaluates enterprise asset management logging for enterprise asset management.",
+      "id": "eam-13",
+      "name": "Enterprise asset management logging",
+      "short_name": "asset logging",
+      "description": "Asset lifecycle logs and dynamic state changes are logged securely to the SOC.",
       "evaluation_focus": [
         "Documented asset lifecycle logging to SOC",
         "Secure asset logging to SOC",
@@ -371,6 +237,17 @@
       "pillar": "Technology"
     }
   ],
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead",
+    "tprm-lead"
+  ],
+  "version": "1.1",
   "evaluation": {
     "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
     "normalized_scale": 5,
@@ -423,15 +300,5 @@
     ],
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
-  },
-  "target_audience_role_ids": [
-    "it-director-head-of-it",
-    "security-architecture-lead",
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "grc-lead",
-    "compliance-audit-lead",
-    "security-program-strategy-lead",
-    "tprm-lead"
-  ]
+  }
 }

@@ -15,10 +15,10 @@
         },
         {
           "id": "rq-pwm-00-2",
-          "prompt": "Is the workload management service reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the workload management service is reviewed frequently for efficacy.",
+          "prompt": "Is the workload management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the workload management service is reviewed at least quarterly for efficacy.",
           "field_key": "pwm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent workload management service efficacy review"
+          "evaluation_focus": "Regular workload management service efficacy review"
         }
       ]
     },
@@ -35,10 +35,10 @@
         },
         {
           "id": "rq-pwm-01-2",
-          "prompt": "Are the KPIs and KRIs for the Workload Management reviewed frequently?",
-          "intent": "Evaluate whether workload management KPIs and KRIs are reviewed frequently.",
+          "prompt": "Are the KPIs and KRIs for the Workload Management reviewed at least quarterly?",
+          "intent": "Evaluate whether workload management KPIs and KRIs are reviewed at least quarterly.",
           "field_key": "pwm_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "evaluation_focus": "Regular KPI/KRI review"
         }
       ]
     },
@@ -62,10 +62,17 @@
         },
         {
           "id": "rq-pwm-02-3",
-          "prompt": "Is the application management process reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the application management process is reviewed frequently for efficacy.",
+          "prompt": "Is the application management process reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the application management process is reviewed at least quarterly for efficacy.",
           "field_key": "pwm_02_process_reviewed_frequently",
-          "evaluation_focus": "Frequent application management process review"
+          "evaluation_focus": "Regular application management process review"
+        },
+        {
+          "id": "rq-pwm-02-4",
+          "prompt": "Does the application management process incorporate zero-trust segmentation and workload isolation for production environments?",
+          "intent": "Evaluate zero-trust segmentation in production workload management",
+          "field_key": "pwm_02_zt_segmentation",
+          "evaluation_focus": "Zero-trust segmentation in production workload management"
         }
       ]
     },
@@ -89,10 +96,10 @@
         },
         {
           "id": "rq-pwm-03-3",
-          "prompt": "Are the application classifications reviewed frequently to measure efficacy?",
-          "intent": "Evaluate whether application classifications are reviewed frequently to measure efficacy.",
+          "prompt": "Are the application classifications reviewed at least quarterly to measure efficacy?",
+          "intent": "Evaluate whether application classifications are reviewed at least quarterly to measure efficacy.",
           "field_key": "pwm_03_classifications_reviewed_frequently",
-          "evaluation_focus": "Frequent application classification review"
+          "evaluation_focus": "Regular application classification review"
         },
         {
           "id": "rq-pwm-03-4",
@@ -130,10 +137,10 @@
         },
         {
           "id": "rq-pwm-04-4",
-          "prompt": "Are the scaling configurations in the enterprise reviewed frequently for efficacy?",
-          "intent": "Evaluate whether scaling configurations are reviewed frequently for efficacy.",
+          "prompt": "Are the scaling configurations in the enterprise reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether scaling configurations are reviewed at least quarterly for efficacy.",
           "field_key": "pwm_04_scaling_config_reviewed_frequently",
-          "evaluation_focus": "Frequent scaling configuration review"
+          "evaluation_focus": "Regular scaling configuration review"
         }
       ]
     },
@@ -184,16 +191,16 @@
         },
         {
           "id": "rq-pwm-06-3",
-          "prompt": "Are the baseline templates reviewed frequently for accuracy?",
-          "intent": "Evaluate whether baseline templates are reviewed frequently for accuracy.",
+          "prompt": "Are the baseline templates reviewed at least quarterly for accuracy?",
+          "intent": "Evaluate whether baseline templates are reviewed at least quarterly for accuracy.",
           "field_key": "pwm_06_baseline_reviewed_frequently",
-          "evaluation_focus": "Frequent baseline template review for accuracy"
+          "evaluation_focus": "Regular baseline template review for accuracy"
         }
       ]
     },
     {
       "capability_id": "pwm-07",
-      "capability_name": "Application and Interface Security Policy or its equivalent",
+      "capability_name": "Application and API security",
       "questions": [
         {
           "id": "rq-pwm-07-1",
@@ -211,63 +218,57 @@
         },
         {
           "id": "rq-pwm-07-3",
-          "prompt": "Are the application security policies reviewed frequently for efficacy?",
-          "intent": "Evaluate whether application security policies are reviewed frequently for efficacy.",
+          "prompt": "Are the application security policies reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether application security policies are reviewed at least quarterly for efficacy.",
           "field_key": "pwm_07_policies_reviewed_frequently",
-          "evaluation_focus": "Frequent application security policy review"
-        }
-      ]
-    },
-    {
-      "capability_id": "pwm-08",
-      "capability_name": "Secure information exchange and API security",
-      "questions": [
+          "evaluation_focus": "Regular application security policy review"
+        },
         {
-          "id": "rq-pwm-08-1",
+          "id": "rq-pwm-07-4",
           "prompt": "Does the enterprise deploy secure API for all their applications?",
           "intent": "Evaluate whether the enterprise deploys secure APIs for all applications.",
-          "field_key": "pwm_08_secure_api_all_applications",
+          "field_key": "pwm_07_secure_api_all_applications",
           "evaluation_focus": "Secure API deployment for all applications"
         },
         {
-          "id": "rq-pwm-08-2",
+          "id": "rq-pwm-07-5",
           "prompt": "Are there API gateways protecting any workload that exposes an API?",
           "intent": "Evaluate whether API gateways protect workloads that expose APIs.",
-          "field_key": "pwm_08_api_gateways_protect_workloads",
+          "field_key": "pwm_07_api_gateways_protect_workloads",
           "evaluation_focus": "API gateways protecting workloads that expose APIs"
         }
       ]
     },
     {
-      "capability_id": "pwm-09",
+      "capability_id": "pwm-08",
       "capability_name": "Application performance monitoring",
       "questions": [
         {
-          "id": "rq-pwm-09-1",
+          "id": "rq-pwm-08-1",
           "prompt": "Does the enterprise deploy application performance monitoring?",
           "intent": "Evaluate whether the enterprise deploys application performance monitoring.",
-          "field_key": "pwm_09_apm_deployed",
+          "field_key": "pwm_08_apm_deployed",
           "evaluation_focus": "Application performance monitoring deployment"
         },
         {
-          "id": "rq-pwm-09-2",
+          "id": "rq-pwm-08-2",
           "prompt": "Is APM deployed for all applications or only critical ones?",
           "intent": "Evaluate whether APM is deployed for all applications or only critical ones.",
-          "field_key": "pwm_09_apm_scope",
+          "field_key": "pwm_08_apm_scope",
           "evaluation_focus": "APM scope across all or critical applications"
         },
         {
-          "id": "rq-pwm-09-3",
+          "id": "rq-pwm-08-3",
           "prompt": "Is APM for applications automated while provisioning or during development?",
           "intent": "Evaluate whether APM is automated during provisioning or development.",
-          "field_key": "pwm_09_apm_automated",
+          "field_key": "pwm_08_apm_automated",
           "evaluation_focus": "Automated APM during provisioning or development"
         },
         {
-          "id": "rq-pwm-09-4",
+          "id": "rq-pwm-08-4",
           "prompt": "Does the APM integrate with the SOC to provide contextual information on availability?",
           "intent": "Evaluate whether APM integrates with the SOC to provide availability context.",
-          "field_key": "pwm_09_apm_soc_integration",
+          "field_key": "pwm_08_apm_soc_integration",
           "evaluation_focus": "APM integration with SOC for availability context"
         }
       ]
