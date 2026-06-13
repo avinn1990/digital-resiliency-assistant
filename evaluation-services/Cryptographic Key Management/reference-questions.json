@@ -1,0 +1,416 @@
+{
+  "service_id": "cryptographic-key-management",
+  "service_name": "Cryptographic Key Management",
+  "capability_questions": [
+    {
+      "capability_id": "ckm-00",
+      "capability_name": "Service exists and is in good condition",
+      "questions": [
+        {
+          "id": "rq-ckm-00-1",
+          "prompt": "Does the enterprise have a cryptographic key management service?",
+          "intent": "Evaluate: Does the enterprise have a cryptographic key management service.",
+          "field_key": "ckm_00_key_management_service_exists",
+          "evaluation_focus": "Enterprise cryptographic key management service exists"
+        },
+        {
+          "id": "rq-ckm-00-2",
+          "prompt": "Is the cryptographic key management service reviewed frequently for efficacy?",
+          "intent": "Evaluate: Is the cryptographic key management service reviewed frequently for efficacy.",
+          "field_key": "ckm_00_service_reviewed_frequently",
+          "evaluation_focus": "Frequent cryptographic key management service efficacy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-01",
+      "capability_name": "Encryption and Key Management Policy and Procedures",
+      "questions": [
+        {
+          "id": "rq-ckm-01-1",
+          "prompt": "Does the organization have enterprise-wide cryptographic procedures and policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide cryptographic procedures and policies.",
+          "field_key": "ckm_01_enterprise_crypto_policies",
+          "evaluation_focus": "Enterprise-wide cryptographic procedures and policies"
+        },
+        {
+          "id": "rq-ckm-01-2",
+          "prompt": "Are the policies and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the policies and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_01_policies_reviewed_frequently",
+          "evaluation_focus": "Frequent policy and procedure review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-02",
+      "capability_name": "Key Inventory management system",
+      "questions": [
+        {
+          "id": "rq-ckm-02-1",
+          "prompt": "Does the enterprise have a key management solution to manage the cryptographic keys?",
+          "intent": "Evaluate: Does the enterprise have a key management solution to manage the cryptographic keys.",
+          "field_key": "ckm_02_key_management_solution",
+          "evaluation_focus": "Key management solution for cryptographic keys"
+        },
+        {
+          "id": "rq-ckm-02-2",
+          "prompt": "Does the key management system support automation for all keys in the enterprise?",
+          "intent": "Evaluate: Does the key management system support automation for all keys in the enterprise.",
+          "field_key": "ckm_02_automation_all_keys",
+          "evaluation_focus": "Automation support for all enterprise keys"
+        },
+        {
+          "id": "rq-ckm-02-3",
+          "prompt": "Does the key management solution configuration get reviewed frequently for efficacy?",
+          "intent": "Evaluate: Does the key management solution configuration get reviewed frequently for efficacy.",
+          "field_key": "ckm_02_config_reviewed_frequently",
+          "evaluation_focus": "Frequent key management solution configuration review"
+        },
+        {
+          "id": "rq-ckm-02-4",
+          "prompt": "Does the key management solution integrate with other systems like data management and certificate management solutions?",
+          "intent": "Evaluate: Does the key management solution integrate with other systems like data management and certificate management solutions.",
+          "field_key": "ckm_02_integrations",
+          "evaluation_focus": "Integration with data management and certificate management"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-03",
+      "capability_name": "CEK Roles and Responsibilities",
+      "questions": [
+        {
+          "id": "rq-ckm-03-1",
+          "prompt": "Does the enterprise deploy clear roles and responsibilities for CEK management?",
+          "intent": "Evaluate: Does the enterprise deploy clear roles and responsibilities for CEK management.",
+          "field_key": "ckm_03_cek_roles_responsibilities",
+          "evaluation_focus": "Clear CEK management roles and responsibilities"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-04",
+      "capability_name": "Cryptographic key provisioning Policies",
+      "questions": [
+        {
+          "id": "rq-ckm-04-1",
+          "prompt": "Does the organization have enterprise-wide key provisioning policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key provisioning policies.",
+          "field_key": "ckm_04_provisioning_policies",
+          "evaluation_focus": "Enterprise-wide key provisioning policies"
+        },
+        {
+          "id": "rq-ckm-04-2",
+          "prompt": "Are the key provisioning policies and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key provisioning policies and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_04_provisioning_policies_reviewed",
+          "evaluation_focus": "Frequent key provisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-05",
+      "capability_name": "Cryptographic key De provisioning policies",
+      "questions": [
+        {
+          "id": "rq-ckm-05-1",
+          "prompt": "Does the organization have enterprise-wide key deprovisioning policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key deprovisioning policies.",
+          "field_key": "ckm_05_deprovisioning_policies",
+          "evaluation_focus": "Enterprise-wide key deprovisioning policies"
+        },
+        {
+          "id": "rq-ckm-05-2",
+          "prompt": "Are the key deprovisioning policies and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key deprovisioning policies and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_05_deprovisioning_policies_reviewed",
+          "evaluation_focus": "Frequent key deprovisioning policy review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-06",
+      "capability_name": "Secure storage",
+      "questions": [
+        {
+          "id": "rq-ckm-06-1",
+          "prompt": "Are cryptographic keys stored securely?",
+          "intent": "Evaluate: Are cryptographic keys stored securely.",
+          "field_key": "ckm_06_keys_stored_securely",
+          "evaluation_focus": "Secure storage of cryptographic keys"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-07",
+      "capability_name": "Key Provisioning",
+      "questions": [
+        {
+          "id": "rq-ckm-07-1",
+          "prompt": "Does the organization have a formalized documented process for key provisioning?",
+          "intent": "Evaluate: Does the organization have a formalized documented process for key provisioning.",
+          "field_key": "ckm_07_provisioning_process",
+          "evaluation_focus": "Formalized documented key provisioning process"
+        },
+        {
+          "id": "rq-ckm-07-2",
+          "prompt": "Does the enterprise use automation to provision keys?",
+          "intent": "Evaluate: Does the enterprise use automation to provision keys.",
+          "field_key": "ckm_07_provisioning_automated",
+          "evaluation_focus": "Automated key provisioning"
+        },
+        {
+          "id": "rq-ckm-07-3",
+          "prompt": "Are the key provisioning processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key provisioning processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_07_provisioning_process_reviewed",
+          "evaluation_focus": "Frequent key provisioning process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-08",
+      "capability_name": "Key rotation",
+      "questions": [
+        {
+          "id": "rq-ckm-08-1",
+          "prompt": "Does the organization have a formalized documented process for key rotation?",
+          "intent": "Evaluate: Does the organization have a formalized documented process for key rotation.",
+          "field_key": "ckm_08_rotation_process",
+          "evaluation_focus": "Formalized documented key rotation process"
+        },
+        {
+          "id": "rq-ckm-08-2",
+          "prompt": "Does the key management system rotate keys automatically?",
+          "intent": "Evaluate: Does the key management system rotate keys automatically.",
+          "field_key": "ckm_08_rotation_automated",
+          "evaluation_focus": "Automatic key rotation"
+        },
+        {
+          "id": "rq-ckm-08-3",
+          "prompt": "Are the key rotation processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key rotation processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_08_rotation_process_reviewed",
+          "evaluation_focus": "Frequent key rotation process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-09",
+      "capability_name": "Key revocation",
+      "questions": [
+        {
+          "id": "rq-ckm-09-1",
+          "prompt": "Does the organization have enterprise-wide key revocation process and procedures?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key revocation process and procedures.",
+          "field_key": "ckm_09_revocation_process",
+          "evaluation_focus": "Enterprise-wide key revocation process and procedures"
+        },
+        {
+          "id": "rq-ckm-09-2",
+          "prompt": "Does the enterprise automate key revocation based on triggers like compromise or expiry?",
+          "intent": "Evaluate: Does the enterprise automate key revocation based on triggers like compromise or expiry.",
+          "field_key": "ckm_09_revocation_automated",
+          "evaluation_focus": "Automated key revocation based on triggers"
+        },
+        {
+          "id": "rq-ckm-09-3",
+          "prompt": "Are the key revocation processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key revocation processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_09_revocation_process_reviewed",
+          "evaluation_focus": "Frequent key revocation process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-10",
+      "capability_name": "Key activation",
+      "questions": [
+        {
+          "id": "rq-ckm-10-1",
+          "prompt": "Does the organization have enterprise-wide key activation process and procedures?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key activation process and procedures.",
+          "field_key": "ckm_10_activation_process",
+          "evaluation_focus": "Enterprise-wide key activation process and procedures"
+        },
+        {
+          "id": "rq-ckm-10-2",
+          "prompt": "Does the enterprise activate keys automatically if triggered from change management?",
+          "intent": "Evaluate: Does the enterprise activate keys automatically if triggered from change management.",
+          "field_key": "ckm_10_activation_automated",
+          "evaluation_focus": "Automatic key activation from change management triggers"
+        },
+        {
+          "id": "rq-ckm-10-3",
+          "prompt": "Are the key activation processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key activation processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_10_activation_process_reviewed",
+          "evaluation_focus": "Frequent key activation process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-11",
+      "capability_name": "Key suspension",
+      "questions": [
+        {
+          "id": "rq-ckm-11-1",
+          "prompt": "Does the organization have enterprise-wide key suspension process and procedures?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key suspension process and procedures.",
+          "field_key": "ckm_11_suspension_process",
+          "evaluation_focus": "Enterprise-wide key suspension process and procedures"
+        },
+        {
+          "id": "rq-ckm-11-2",
+          "prompt": "Does the organization suspend keys based on triggers like compromise?",
+          "intent": "Evaluate: Does the organization suspend keys based on triggers like compromise.",
+          "field_key": "ckm_11_suspension_on_triggers",
+          "evaluation_focus": "Key suspension based on compromise triggers"
+        },
+        {
+          "id": "rq-ckm-11-3",
+          "prompt": "Are the key suspension processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key suspension processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_11_suspension_process_reviewed",
+          "evaluation_focus": "Frequent key suspension process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-12",
+      "capability_name": "Key deactivation",
+      "questions": [
+        {
+          "id": "rq-ckm-12-1",
+          "prompt": "Does the organization have enterprise-wide key deactivation policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key deactivation policies.",
+          "field_key": "ckm_12_deactivation_policies",
+          "evaluation_focus": "Enterprise-wide key deactivation policies"
+        },
+        {
+          "id": "rq-ckm-12-2",
+          "prompt": "Does the organization deactivate keys automatically?",
+          "intent": "Evaluate: Does the organization deactivate keys automatically.",
+          "field_key": "ckm_12_deactivation_automated",
+          "evaluation_focus": "Automatic key deactivation"
+        },
+        {
+          "id": "rq-ckm-12-3",
+          "prompt": "Are the key deactivation processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key deactivation processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_12_deactivation_process_reviewed",
+          "evaluation_focus": "Frequent key deactivation process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-13",
+      "capability_name": "Key archival",
+      "questions": [
+        {
+          "id": "rq-ckm-13-1",
+          "prompt": "Does the organization have enterprise-wide key archival policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key archival policies.",
+          "field_key": "ckm_13_archival_policies",
+          "evaluation_focus": "Enterprise-wide key archival policies"
+        },
+        {
+          "id": "rq-ckm-13-2",
+          "prompt": "Does the organization archive keys automatically?",
+          "intent": "Evaluate: Does the organization archive keys automatically.",
+          "field_key": "ckm_13_archival_automated",
+          "evaluation_focus": "Automatic key archival"
+        },
+        {
+          "id": "rq-ckm-13-3",
+          "prompt": "Are the key archival processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key archival processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_13_archival_process_reviewed",
+          "evaluation_focus": "Frequent key archival process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-14",
+      "capability_name": "Key compromise",
+      "questions": [
+        {
+          "id": "rq-ckm-14-1",
+          "prompt": "Does the organization have enterprise-wide key compromise policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key compromise policies.",
+          "field_key": "ckm_14_compromise_policies",
+          "evaluation_focus": "Enterprise-wide key compromise policies"
+        },
+        {
+          "id": "rq-ckm-14-2",
+          "prompt": "Does the organization remove or deprovision keys when compromised?",
+          "intent": "Evaluate: Does the organization remove or deprovision keys when compromised.",
+          "field_key": "ckm_14_remove_compromised_keys",
+          "evaluation_focus": "Remove or deprovision keys when compromised"
+        },
+        {
+          "id": "rq-ckm-14-3",
+          "prompt": "Are the key compromise processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key compromise processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_14_compromise_process_reviewed",
+          "evaluation_focus": "Frequent key compromise process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-15",
+      "capability_name": "Key Recovery",
+      "questions": [
+        {
+          "id": "rq-ckm-15-1",
+          "prompt": "Does the organization have enterprise-wide key recovery policies?",
+          "intent": "Evaluate: Does the organization have enterprise-wide key recovery policies.",
+          "field_key": "ckm_15_recovery_policies",
+          "evaluation_focus": "Enterprise-wide key recovery policies"
+        },
+        {
+          "id": "rq-ckm-15-2",
+          "prompt": "Is there automated recovery for keys that have been corrupt or compromised?",
+          "intent": "Evaluate: Is there automated recovery for keys that have been corrupt or compromised.",
+          "field_key": "ckm_15_recovery_automated",
+          "evaluation_focus": "Automated recovery for corrupt or compromised keys"
+        },
+        {
+          "id": "rq-ckm-15-3",
+          "prompt": "Are the key recovery processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key recovery processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_15_recovery_process_reviewed",
+          "evaluation_focus": "Frequent key recovery process review"
+        }
+      ]
+    },
+    {
+      "capability_id": "ckm-16",
+      "capability_name": "Key Deprovisioning",
+      "questions": [
+        {
+          "id": "rq-ckm-16-1",
+          "prompt": "Does the organization have a formalized documented process for key deprovisioning?",
+          "intent": "Evaluate: Does the organization have a formalized documented process for key deprovisioning.",
+          "field_key": "ckm_16_deprovisioning_process",
+          "evaluation_focus": "Formalized documented key deprovisioning process"
+        },
+        {
+          "id": "rq-ckm-16-2",
+          "prompt": "Does the enterprise use automation to deprovision keys?",
+          "intent": "Evaluate: Does the enterprise use automation to deprovision keys.",
+          "field_key": "ckm_16_deprovisioning_automated",
+          "evaluation_focus": "Automated key deprovisioning"
+        },
+        {
+          "id": "rq-ckm-16-3",
+          "prompt": "Are the key deprovisioning processes and procedures reviewed frequently for efficacy?",
+          "intent": "Evaluate: Are the key deprovisioning processes and procedures reviewed frequently for efficacy.",
+          "field_key": "ckm_16_deprovisioning_process_reviewed",
+          "evaluation_focus": "Frequent key deprovisioning process review"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,267 @@
+{
+  "service_id": "cryptographic-key-management",
+  "service_name": "Cryptographic Key Management",
+  "version": "1.0",
+  "description": "Evaluates cryptographic key management maturity\u2014service governance, policies, key inventory systems, CEK roles, provisioning and deprovisioning, secure storage, and key lifecycle operations including rotation, revocation, activation, suspension, deactivation, archival, compromise, recovery, and deprovisioning.",
+  "capabilities": [
+    {
+      "id": "ckm-00",
+      "name": "Service exists and is in good condition",
+      "description": "A cryptographic key management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "evaluation_focus": [
+        "Enterprise cryptographic key management service exists",
+        "Frequent cryptographic key management service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-01",
+      "name": "Encryption and Key Management Policy and Procedures",
+      "description": "Enterprise-wide cryptographic procedures and policies are reviewed frequently for efficacy.",
+      "evaluation_focus": [
+        "Enterprise-wide cryptographic procedures and policies",
+        "Frequent policy and procedure review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "ckm-02",
+      "name": "Key Inventory management system",
+      "description": "A key management solution manages cryptographic keys with automation, configuration review, and integrations.",
+      "evaluation_focus": [
+        "Key management solution for cryptographic keys",
+        "Automation support for all enterprise keys",
+        "Frequent key management solution configuration review",
+        "Integration with data management and certificate management"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "ckm-03",
+      "name": "CEK Roles and Responsibilities",
+      "description": "Clear roles and responsibilities exist for CEK management.",
+      "evaluation_focus": [
+        "Clear CEK management roles and responsibilities"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "ckm-04",
+      "name": "Cryptographic key provisioning Policies",
+      "description": "Enterprise-wide key provisioning policies and procedures are reviewed frequently.",
+      "evaluation_focus": [
+        "Enterprise-wide key provisioning policies",
+        "Frequent key provisioning policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "ckm-05",
+      "name": "Cryptographic key De provisioning policies",
+      "description": "Enterprise-wide key deprovisioning policies and procedures are reviewed frequently.",
+      "evaluation_focus": [
+        "Enterprise-wide key deprovisioning policies",
+        "Frequent key deprovisioning policy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "ckm-06",
+      "name": "Secure storage",
+      "description": "Cryptographic keys are stored securely.",
+      "evaluation_focus": [
+        "Secure storage of cryptographic keys"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "ckm-07",
+      "name": "Key Provisioning",
+      "description": "A formalized key provisioning process uses automation and is reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented key provisioning process",
+        "Automated key provisioning",
+        "Frequent key provisioning process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-08",
+      "name": "Key rotation",
+      "description": "A formalized key rotation process supports automatic rotation and frequent review.",
+      "evaluation_focus": [
+        "Formalized documented key rotation process",
+        "Automatic key rotation",
+        "Frequent key rotation process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-09",
+      "name": "Key revocation",
+      "description": "Enterprise-wide key revocation processes support automation and frequent review.",
+      "evaluation_focus": [
+        "Enterprise-wide key revocation process and procedures",
+        "Automated key revocation based on triggers",
+        "Frequent key revocation process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-10",
+      "name": "Key activation",
+      "description": "Enterprise-wide key activation processes support automation from change management and frequent review.",
+      "evaluation_focus": [
+        "Enterprise-wide key activation process and procedures",
+        "Automatic key activation from change management triggers",
+        "Frequent key activation process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-11",
+      "name": "Key suspension",
+      "description": "Enterprise-wide key suspension processes respond to triggers like compromise and are reviewed frequently.",
+      "evaluation_focus": [
+        "Enterprise-wide key suspension process and procedures",
+        "Key suspension based on compromise triggers",
+        "Frequent key suspension process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-12",
+      "name": "Key deactivation",
+      "description": "Enterprise-wide key deactivation policies support automation and frequent review.",
+      "evaluation_focus": [
+        "Enterprise-wide key deactivation policies",
+        "Automatic key deactivation",
+        "Frequent key deactivation process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-13",
+      "name": "Key archival",
+      "description": "Enterprise-wide key archival policies support automation and frequent review.",
+      "evaluation_focus": [
+        "Enterprise-wide key archival policies",
+        "Automatic key archival",
+        "Frequent key archival process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-14",
+      "name": "Key compromise",
+      "description": "Enterprise-wide key compromise policies remove or deprovision compromised keys and are reviewed frequently.",
+      "evaluation_focus": [
+        "Enterprise-wide key compromise policies",
+        "Remove or deprovision keys when compromised",
+        "Frequent key compromise process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-15",
+      "name": "Key Recovery",
+      "description": "Enterprise-wide key recovery policies support automated recovery and frequent review.",
+      "evaluation_focus": [
+        "Enterprise-wide key recovery policies",
+        "Automated recovery for corrupt or compromised keys",
+        "Frequent key recovery process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "ckm-16",
+      "name": "Key Deprovisioning",
+      "description": "A formalized key deprovisioning process uses automation and is reviewed frequently.",
+      "evaluation_focus": [
+        "Formalized documented key deprovisioning process",
+        "Automated key deprovisioning",
+        "Frequent key deprovisioning process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}
