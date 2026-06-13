@@ -1,0 +1,53 @@
+{
+  "service_id": "automation-orchestration-integration",
+  "service_name": "Automation, Orchestration and Integration",
+  "capability_questions": [
+    {
+      "capability_id": "aoi-00",
+      "capability_name": "Vendor lock in",
+      "questions": [
+        {
+          "id": "rq-aoi-00-1",
+          "prompt": "Does the enterprise depend on a specific vendor for a majority of their endpoints, devices, or applications?",
+          "intent": "Evaluate: Does the enterprise depend on a specific vendor for a majority of their endpoints, devices, or applications.",
+          "field_key": "aoi_00_vendor_dependency_majority",
+          "evaluation_focus": "Dependency on a specific vendor for majority of endpoints, devices, or applications"
+        },
+        {
+          "id": "rq-aoi-00-2",
+          "prompt": "If there is a vendor lock in, does the enterprise evaluate the lock in and either justify it or explore options to avoid a full lock in?",
+          "intent": "Evaluate: If there is a vendor lock in, does the enterprise evaluate the lock in and either justify it or explore options to avoid a full lock in.",
+          "field_key": "aoi_00_vendor_lock_in_evaluated",
+          "evaluation_focus": "Evaluation and justification or mitigation of vendor lock-in"
+        }
+      ]
+    },
+    {
+      "capability_id": "aoi-01",
+      "capability_name": "AiSecOPs",
+      "questions": [
+        {
+          "id": "rq-aoi-01-1",
+          "prompt": "Is the enterprise capable of responding to incidents in a timely proactive manner utilizing advanced techniques like AI?",
+          "intent": "Evaluate: Is the enterprise capable of responding to incidents in a timely proactive manner utilizing advanced techniques like AI.",
+          "field_key": "aoi_01_timely_ai_incident_response",
+          "evaluation_focus": "Timely proactive incident response using advanced techniques like AI"
+        },
+        {
+          "id": "rq-aoi-01-2",
+          "prompt": "Can the AI powered responses and remediations be automated?",
+          "intent": "Evaluate: Can the AI powered responses and remediations be automated.",
+          "field_key": "aoi_01_ai_responses_automated",
+          "evaluation_focus": "Automated AI-powered responses and remediations"
+        },
+        {
+          "id": "rq-aoi-01-3",
+          "prompt": "Are the AI powered responses and remediations reviewed frequently for accuracy?",
+          "intent": "Evaluate: Are the AI powered responses and remediations reviewed frequently for accuracy.",
+          "field_key": "aoi_01_ai_responses_reviewed_for_accuracy",
+          "evaluation_focus": "Frequent review of AI-powered responses and remediations for accuracy"
+        }
+      ]
+    }
+  ]
+}
