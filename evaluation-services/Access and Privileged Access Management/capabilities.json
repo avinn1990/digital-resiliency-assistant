@@ -1,0 +1,289 @@
+{
+  "service_id": "access-privileged-access-management",
+  "service_name": "Access and Privileged Access Management",
+  "version": "2.0",
+  "description": "Evaluates access and privileged access management maturity—provisioning, zero-trust access, entitlement certification, JIT privileged access, logging, and AI-era access governance.",
+  "capabilities": [
+    {
+      "id": "apa-00",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "Access and privileged access management services exist and are reviewed at least quarterly for efficacy.",
+      "evaluation_focus": [
+        "Enterprise access management service exists",
+        "Regular service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-01",
+      "name": "KPIs/KRIs",
+      "short_name": "KPIs and KRIs",
+      "description": "Access and PAM KPIs and KRIs are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs",
+        "Regular KPI/KRI review",
+        "Orphaned and stale entitlement metrics",
+        "Access certification completion rate",
+        "Mean time to revoke access after role change or termination",
+        "Standing versus just-in-time privileged access metrics",
+        "Privileged session recording coverage",
+        "Orphaned privileged account metrics"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "apa-02",
+      "name": "Access and PAM systems",
+      "short_name": "access systems",
+      "description": "Access management and PAM systems enforce network and application access with centralized administration reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Access control for all enforcement points",
+        "Centralized vs siloed policy decision points",
+        "Dynamic access control deployment",
+        "PDP configuration review aligned to policies",
+        "Abstracted policy push to enforcement points",
+        "Policy-as-code and version-controlled access policies",
+        "PAM system deployed for privileged accounts",
+        "Enterprise-wide privileged account coverage",
+        "Automated PAM user lifecycle and access",
+        "PAM solution configuration review",
+        "Integration with applications, endpoints, and network devices",
+        "Just-in-time privileged access capability in PAM platform"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "apa-03",
+      "name": "Access provisioning and entitlement certification",
+      "short_name": "provisioning",
+      "description": "Unified access and privileged access provisioning with entitlement certification operates enterprise-wide with quarterly review.",
+      "evaluation_focus": [
+        "Formalized network and endpoint need-to-know access process",
+        "Formalized application need-to-know access process",
+        "Consistent access provisioning across locations and systems",
+        "Automated self-service access portals",
+        "Access provisioning process review",
+        "Granular subject-to-object access matrix",
+        "Enterprise-wide access matrix scope",
+        "Regular access matrix review",
+        "Periodic access recertification campaigns",
+        "Formalized application privileged access process",
+        "Formalized endpoint privileged access process",
+        "Unified privileged access across application and endpoint assets",
+        "Automated self-requesting access portals",
+        "Regular privileged access provisioning review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-04",
+      "name": "Context-aware access policies",
+      "short_name": "context-aware access",
+      "description": "Access decisions at all policy enforcement points (PEPs) incorporate identity, device posture, and enterprise asset attributes as zero-trust context signals.",
+      "evaluation_focus": [
+        "Identity-based access control adoption",
+        "Identity-based rules at all enforcement points",
+        "Device posture in network and remote access",
+        "Subject posture considered from all locations",
+        "Asset attributes in application access",
+        "Asset attributes considered for all subjects"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "apa-05",
+      "name": "Remote access and zero-trust network access",
+      "short_name": "remote access",
+      "description": "Remote access is formalized with consistent policies across gateways, zero-trust network access (ZTNA) or secure service edge (SSE), and identity plus device posture checks.",
+      "evaluation_focus": [
+        "Formalized remote user access process",
+        "Consistent remote access policy across gateways and LAN",
+        "Cloud SSE or ZTNA for internal asset access",
+        "Zero-trust remote access with identity and posture checks"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-06",
+      "name": "Access Isolation (Separation of duties) and its automation",
+      "short_name": "separation of duties",
+      "description": "Production, development, and deployment access is separated with automated CI/CD removal of development access from production.",
+      "evaluation_focus": [
+        "User separation across production, development, and deployment",
+        "Separate permissions for service and normal accounts",
+        "Automated CI/CD removal of dev access from production"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-07",
+      "name": "Guest and out-of-band access",
+      "short_name": "guest access",
+      "description": "Guest and out-of-band device access are governed with quarterly review.",
+      "evaluation_focus": [
+        "Formalized guest user onboarding process",
+        "Automated guest access lifecycle",
+        "Formalized OOB access process",
+        "Secure OOB access protocols",
+        "Consistent OOB access control across source locations",
+        "Regular OOB access control review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-08",
+      "name": "Data access",
+      "short_name": "data access",
+      "description": "Data access is formalized with location-independent access and regular review.",
+      "evaluation_focus": [
+        "Formalized data access process",
+        "Location-independent data access",
+        "Regular data access process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-09",
+      "name": "Custodianship and separation of duties",
+      "short_name": "custodianship",
+      "description": "Access and privilege account custodians operate with documented separation of duties.",
+      "evaluation_focus": [
+        "Dedicated access management service manager",
+        "Dedicated PAM service manager",
+        "Separation from IAM engineer or custodian ownership"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "apa-10",
+      "name": "Access logging and PAM session recording",
+      "short_name": "access logging",
+      "description": "Access, authorization, accounting, and PAM session recording feed the SOC with quarterly review.",
+      "evaluation_focus": [
+        "Documented access logging to SOC",
+        "Secure access activity logging to SOC",
+        "Dynamic access changes to SOC",
+        "Anomalous access policy change detection",
+        "Documented PAM activity logging to SOC",
+        "Secure privileged account logging to SOC",
+        "Privileged session recording and replay",
+        "Dynamic privileged account changes to SOC",
+        "Anomalous privileged activity detection"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "apa-11",
+      "name": "Non-human and workload identity access",
+      "short_name": "non-human identity",
+      "description": "Service principals, workloads, API keys, OAuth client credentials, and automation or AI agent accounts are governed with lifecycle-bound access policies.",
+      "evaluation_focus": [
+        "Workload and service principal access lifecycle",
+        "API key and OAuth client credential governance",
+        "Automation and AI agent account access boundaries"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "apa-12",
+      "name": "Just-in-time and ephemeral privileged access",
+      "short_name": "JIT PAM",
+      "description": "Standing privileged access is minimized; time-bound, approval-gated, and ephemeral elevation is used for administrative tasks with automatic session expiry.",
+      "evaluation_focus": [
+        "Policy to minimize standing privileged access",
+        "Time-bound and approval-gated privileged elevation",
+        "Automatic revocation of ephemeral privileged sessions",
+        "Break-glass privileged access with enhanced logging"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "apa-13",
+      "name": "AI-era access governance",
+      "short_name": "AI-era governance",
+      "description": "Policies govern approved versus shadow AI tool access to enterprise data and delegated agent actions on behalf of users.",
+      "evaluation_focus": [
+        "Approved versus shadow AI tool access to enterprise data",
+        "Policy for delegated agent actions on behalf of users"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "it-director-head-of-it",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ]
+}

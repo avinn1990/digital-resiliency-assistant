@@ -15,10 +15,10 @@
         },
         {
           "id": "rq-nm-00-2",
-          "prompt": "Is the network management service reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the network management service is reviewed frequently for efficacy.",
+          "prompt": "Is the network management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the network management service is reviewed at least quarterly for efficacy.",
           "field_key": "nm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
@@ -35,10 +35,10 @@
         },
         {
           "id": "rq-nm-01-2",
-          "prompt": "Are the KPIs and KRIs for the Network Management reviewed frequently?",
-          "intent": "Evaluate whether network management KPIs and KRIs are reviewed frequently.",
+          "prompt": "Are the KPIs and KRIs for the Network Management reviewed at least quarterly?",
+          "intent": "Evaluate whether network management KPIs and KRIs are reviewed at least quarterly.",
           "field_key": "nm_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "evaluation_focus": "Regular KPI/KRI review"
         }
       ]
     },
@@ -62,10 +62,17 @@
         },
         {
           "id": "rq-nm-02-3",
-          "prompt": "Is the network management process reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the network management process is reviewed frequently for efficacy.",
+          "prompt": "Is the network management process reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the network management process is reviewed at least quarterly for efficacy.",
           "field_key": "nm_02_process_reviewed_frequently",
-          "evaluation_focus": "Frequent network management process review"
+          "evaluation_focus": "Regular network management process review"
+        },
+        {
+          "id": "rq-nm-02-4",
+          "prompt": "Does the network management process align operations with zero-trust segmentation and micro-segmentation policies?",
+          "intent": "Evaluate whether network management aligns with zero-trust segmentation",
+          "field_key": "nm_02_ztna_segmentation_alignment",
+          "evaluation_focus": "Zero-trust segmentation alignment in network operations"
         }
       ]
     },
@@ -96,10 +103,10 @@
         },
         {
           "id": "rq-nm-03-4",
-          "prompt": "Is the NMS platform configuration reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the NMS platform configuration is reviewed frequently for efficacy.",
+          "prompt": "Is the NMS platform configuration reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the NMS platform configuration is reviewed at least quarterly for efficacy.",
           "field_key": "nm_03_nms_config_reviewed_frequently",
-          "evaluation_focus": "Frequent NMS platform configuration review"
+          "evaluation_focus": "Regular NMS platform configuration review"
         },
         {
           "id": "rq-nm-03-5",
@@ -112,7 +119,7 @@
     },
     {
       "capability_id": "nm-04",
-      "capability_name": "Network Assurance — Scale and performance",
+      "capability_name": "Capacity planning and scale",
       "questions": [
         {
           "id": "rq-nm-04-1",
@@ -137,16 +144,30 @@
         },
         {
           "id": "rq-nm-04-4",
-          "prompt": "Are the scaling configuration in the enterprise reviewed frequently for efficacy?",
-          "intent": "Evaluate whether scaling configuration is reviewed frequently for efficacy.",
+          "prompt": "Are the scaling configuration in the enterprise reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether scaling configuration is reviewed at least quarterly for efficacy.",
           "field_key": "nm_04_scaling_config_reviewed_frequently",
-          "evaluation_focus": "Frequent scaling configuration review"
+          "evaluation_focus": "Regular scaling configuration review"
+        },
+        {
+          "id": "rq-nm-04-5",
+          "prompt": "Does the enterprise have a formalized documented process to plan and monitor the availability, quality, and adequate capacity of resources in order to deliver the required system performance as determined by the business?",
+          "intent": "Evaluate whether the enterprise has a formalized documented capacity planning process.",
+          "field_key": "nm_04_formalized_capacity_planning_process",
+          "evaluation_focus": "Formalized documented capacity planning process"
+        },
+        {
+          "id": "rq-nm-04-6",
+          "prompt": "Is the capacity management process reviewed for efficacy?",
+          "intent": "Evaluate whether the capacity management process is reviewed for efficacy.",
+          "field_key": "nm_04_capacity_process_reviewed",
+          "evaluation_focus": "Regular capacity management process review"
         }
       ]
     },
     {
       "capability_id": "nm-05",
-      "capability_name": "Visibility of data",
+      "capability_name": "Network visibility and fault correlation",
       "questions": [
         {
           "id": "rq-nm-05-1",
@@ -154,6 +175,20 @@
           "intent": "Evaluate whether the NMS has full visibility of the network across all parts of the enterprise.",
           "field_key": "nm_05_full_enterprise_network_visibility",
           "evaluation_focus": "Full enterprise-wide network visibility in NMS"
+        },
+        {
+          "id": "rq-nm-05-2",
+          "prompt": "Does the NMS system have full visibility and correlation on faults occurring across the network?",
+          "intent": "Evaluate whether the NMS has full visibility and correlation of faults across the network.",
+          "field_key": "nm_05_fault_visibility_correlation",
+          "evaluation_focus": "Full fault visibility and correlation across the network"
+        },
+        {
+          "id": "rq-nm-05-3",
+          "prompt": "Does the NMS expose segmentation boundaries, trust zones, or policy enforcement context alongside topology visibility?",
+          "intent": "Evaluate whether NMS provides segmentation and trust-zone visibility",
+          "field_key": "nm_05_segmentation_visibility",
+          "evaluation_focus": "Segmentation and trust-zone visibility in NMS"
         }
       ]
     },
@@ -187,39 +222,6 @@
           "intent": "Evaluate whether all network devices enterprise-wide are monitored by the NMS.",
           "field_key": "nm_07_all_devices_monitored",
           "evaluation_focus": "Enterprise-wide network device monitoring"
-        }
-      ]
-    },
-    {
-      "capability_id": "nm-08",
-      "capability_name": "Fault visibility",
-      "questions": [
-        {
-          "id": "rq-nm-08-1",
-          "prompt": "Does the NMS system have full visibility and correlation on faults occurring across the network?",
-          "intent": "Evaluate whether the NMS has full visibility and correlation of faults across the network.",
-          "field_key": "nm_08_fault_visibility_correlation",
-          "evaluation_focus": "Full fault visibility and correlation across the network"
-        }
-      ]
-    },
-    {
-      "capability_id": "nm-09",
-      "capability_name": "Capacity planning",
-      "questions": [
-        {
-          "id": "rq-nm-09-1",
-          "prompt": "Does the enterprise have a formalized documented process to plan and monitor the availability, quality, and adequate capacity of resources in order to deliver the required system performance as determined by the business?",
-          "intent": "Evaluate whether the enterprise has a formalized documented capacity planning process.",
-          "field_key": "nm_09_formalized_capacity_planning_process",
-          "evaluation_focus": "Formalized documented capacity planning process"
-        },
-        {
-          "id": "rq-nm-09-2",
-          "prompt": "Is the capacity management process reviewed for efficacy?",
-          "intent": "Evaluate whether the capacity management process is reviewed for efficacy.",
-          "field_key": "nm_09_capacity_process_reviewed",
-          "evaluation_focus": "Frequent capacity management process review"
         }
       ]
     }

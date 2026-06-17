@@ -1,16 +1,17 @@
 {
   "service_id": "incident-management",
   "service_name": "Incident Management",
-  "version": "1.0",
-  "description": "Evaluates incident management maturity\u2014service governance, KPIs/KRIs, incident and triaging processes, tabletop exercises, predictive analysis, containment, threat hunting, response planning and team, breach notification, digital forensics, ticketing, and points of contact.",
+  "version": "1.1",
+  "description": "Evaluates incident management maturity—service governance, KPIs/KRIs, unified incident and triage processes, tabletop exercises, predictive analysis, containment, threat hunting, response planning and team, breach notification, digital forensics, ticketing, AI incident orchestration, and AI-assisted triage.",
   "capabilities": [
     {
       "id": "im-00",
       "name": "Service exists and is in good condition",
-      "description": "An incident management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "An incident management service exists, is scoped appropriately, and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise incident management service exists",
-        "Frequent incident management service efficacy review"
+        "Regular incident management service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,41 +19,35 @@
     {
       "id": "im-01",
       "name": "KPIs/KRIs",
-      "description": "Incident management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Incident management KPIs and KRIs—including mean time to respond (MTTR), mean time to contain, and AI triage accuracy—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for incident management service",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Mean time to respond and contain metrics",
+        "AI triage accuracy and escalation rates"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "im-02",
-      "name": "Incident management process",
-      "description": "A formalized enterprise-wide incident management process uses SOAR and is reviewed frequently.",
+      "name": "Incident and triage process",
+      "short_name": "incident and triage",
+      "description": "Formalized enterprise-wide incident management and triage processes use SOAR and are reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized documented enterprise-wide incident management process",
-        "SOAR utilized as part of incident management",
-        "Frequent incident management process review"
+        "Formalized documented enterprise-wide triaging process",
+        "SOAR utilized as part of incident management and triaging",
+        "Regular incident and triage process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "im-03",
-      "name": "Event Triaging process",
-      "description": "A formalized enterprise-wide triaging process uses SOAR and is reviewed frequently.",
-      "evaluation_focus": [
-        "Formalized documented enterprise-wide triaging process",
-        "SOAR utilized as part of triaging",
-        "Frequent triaging process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "im-04",
       "name": "Incident management table top exercises",
+      "short_name": "tabletop exercises",
       "description": "The enterprise conducts tabletop exercises for high-impact threat scenarios and implements recommendations.",
       "evaluation_focus": [
         "Tabletop exercises for high-impact threat scenarios",
@@ -62,8 +57,9 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "im-05",
+      "id": "im-04",
       "name": "Predictive analysis",
+      "short_name": "predictive analysis",
       "description": "The incident management system uses predictive analysis automatically based on traffic patterns and baselines.",
       "evaluation_focus": [
         "Predictive analysis for threat scenarios",
@@ -73,8 +69,9 @@
       "pillar": "Technology"
     },
     {
-      "id": "im-06",
-      "name": "Effective Containment",
+      "id": "im-05",
+      "name": "Effective containment",
+      "short_name": "containment",
       "description": "Segmentation and incident processes contain day-zero attacks with automatic containment where possible.",
       "evaluation_focus": [
         "Segmentation and processes to contain day-zero attacks",
@@ -84,8 +81,9 @@
       "pillar": "Technology"
     },
     {
-      "id": "im-07",
+      "id": "im-06",
       "name": "Threat hunting",
+      "short_name": "threat hunting",
       "description": "A formalized threat hunting process is automated, staffed with skilled personnel, and supported by the incident management system.",
       "evaluation_focus": [
         "Formalized documented threat hunting process",
@@ -96,19 +94,22 @@
       "pillar": "Process/Service"
     },
     {
-      "id": "im-08",
-      "name": "Incident response plan",
-      "description": "A formalized documented incident response plan is reviewed frequently for efficacy.",
+      "id": "im-07",
+      "name": "Incident response plan and contacts",
+      "short_name": "response plan",
+      "description": "A formalized documented incident response plan lists all necessary points of contact and is reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized documented incident response plan",
-        "Frequent incident response plan review"
+        "Points of contact listed in incident management plan",
+        "Regular incident response plan review"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
-      "id": "im-09",
+      "id": "im-08",
       "name": "Incident response team",
+      "short_name": "response team",
       "description": "A clear documented hierarchy and cross-functional representation support incident response.",
       "evaluation_focus": [
         "Documented incident management hierarchy and first responder steps",
@@ -118,49 +119,56 @@
       "pillar": "People"
     },
     {
-      "id": "im-10",
-      "name": "Security Breach Notification",
-      "description": "A formalized breach notification process is reviewed frequently for efficacy.",
+      "id": "im-09",
+      "name": "Security breach notification",
+      "short_name": "breach notification",
+      "description": "A formalized breach notification process is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Formalized documented breach notification process",
-        "Frequent breach notification process review"
+        "Regular breach notification process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "im-11",
+      "id": "im-10",
       "name": "Digital forensics",
-      "description": "Digital forensics capability includes formalized artifact capture, automatic key artifact collection, and frequent review.",
+      "short_name": "digital forensics",
+      "description": "Digital forensics capability includes formalized artifact capture, automatic key artifact collection, and quarterly review.",
       "evaluation_focus": [
         "Digital forensics capability",
         "Formalized documented forensic artifact capture process",
         "Automatic key artifact capture before forensics",
-        "Frequent digital forensics process and technology review"
+        "Regular digital forensics process and technology review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "im-11",
+      "name": "Incident ticketing and AI orchestration",
+      "short_name": "ticketing and AI orchestration",
+      "description": "A ticketing system registers incidents and uses AI to automate and orchestrate incident handling workflows with analyst oversight.",
+      "evaluation_focus": [
+        "Ticketing system for incident registration",
+        "AI for automated incident handling orchestration",
+        "Analyst oversight of AI-orchestrated incident workflows"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "im-12",
-      "name": "Ticketing system (incident logging and response)",
-      "description": "A ticketing system registers incidents and may use advanced AI for automated orchestration.",
+      "name": "AI-assisted incident triage",
+      "short_name": "AI triage",
+      "description": "AI assists initial incident classification, severity scoring, and routing to appropriate response teams.",
       "evaluation_focus": [
-        "Ticketing system for incident registration",
-        "Advanced AI for automated incident handling orchestration"
+        "AI-assisted incident classification and severity scoring",
+        "Automated routing to response teams based on triage",
+        "Human validation of AI triage decisions"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
-    },
-    {
-      "id": "im-13",
-      "name": "Points of Contact Maintenance",
-      "description": "All necessary points of contact are listed in the incident management plan.",
-      "evaluation_focus": [
-        "Points of contact listed in incident management plan"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "People"
     }
   ],
   "evaluation": {

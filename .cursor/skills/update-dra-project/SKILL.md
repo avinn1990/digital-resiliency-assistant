@@ -5,7 +5,7 @@ description: Update, fix, or extend the Digital Resiliency Assistant codebase fo
 
 # Update Digital Resiliency Assistant (DRA)
 
-Use this skill for **any change to this project** — features, fixes, refactors, deployment, UI, backend, or microservices. For adding a **new evaluation offering** (content pack), also invoke `/add-evaluation-service`.
+Use this skill for **any change to this project** — features, fixes, refactors, deployment, UI, backend, or microservices. For adding a **new evaluation offering** (content pack), also invoke `/add-evaluation-service`. For **improving existing** evaluation packs (capabilities, questions, trends, merges), invoke `/optimize-evaluation-services`.
 
 Read `CONTRIBUTING.md` and root `README.md` before large changes.
 
@@ -16,6 +16,7 @@ Read `CONTRIBUTING.md` and root `README.md` before large changes.
 | User intent | Primary area | Also check |
 |-------------|--------------|------------|
 | New assessment **offering** (EAM, IAM, etc.) | `evaluation-services/` | `/add-evaluation-service` skill |
+| **Optimize** existing evaluation packs (trends, merges, questions) | `evaluation-services/` | `/optimize-evaluation-services` skill |
 | New **microservice** (API container) | `services/<name>/`, `backend/`, `render.yaml` | Root README "Adding a new service" |
 | UI / onboarding / dashboard / chat UX | `ui/src/assessmentFlow/`, `ui/src/components/` | Auth bootstrap rules below |
 | Auth / profiles / assessments persistence | `backend/app/auth/`, `backend/app/users/`, `backend/app/assessments/` | Postgres + JWT env |
@@ -265,6 +266,7 @@ cd services/llm-conversation && PYTHONPATH=. python3 -m unittest tests.test_prog
 | Resource | When |
 |----------|------|
 | `/add-evaluation-service` | New service management offering under `evaluation-services/` |
+| `/optimize-evaluation-services` | Improve existing packs — capabilities, questions, threat/trend refresh, merges (ISSP pilot first) |
 | `CONTRIBUTING.md` | Branch policy |
 | `README.md` | Layout, local dev, Render overview |
 | `ui/README.md` | UI module structure |

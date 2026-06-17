@@ -4,48 +4,177 @@
   "capability_questions": [
     {
       "capability_id": "aoi-00",
-      "capability_name": "Vendor lock in",
+      "capability_name": "Service exists and is in good condition",
       "questions": [
         {
           "id": "rq-aoi-00-1",
-          "prompt": "Does the enterprise depend on a specific vendor for a majority of their endpoints, devices, or applications?",
-          "intent": "Evaluate: Does the enterprise depend on a specific vendor for a majority of their endpoints, devices, or applications.",
-          "field_key": "aoi_00_vendor_dependency_majority",
-          "evaluation_focus": "Dependency on a specific vendor for majority of endpoints, devices, or applications"
+          "prompt": "Does the enterprise have an automation, orchestration, and integration service for security operations?",
+          "intent": "Evaluate whether an automation and orchestration service exists",
+          "field_key": "aoi_00_automation_service_exists",
+          "evaluation_focus": "Enterprise automation and orchestration service exists"
         },
         {
           "id": "rq-aoi-00-2",
-          "prompt": "If there is a vendor lock in, does the enterprise evaluate the lock in and either justify it or explore options to avoid a full lock in?",
-          "intent": "Evaluate: If there is a vendor lock in, does the enterprise evaluate the lock in and either justify it or explore options to avoid a full lock in.",
-          "field_key": "aoi_00_vendor_lock_in_evaluated",
-          "evaluation_focus": "Evaluation and justification or mitigation of vendor lock-in"
+          "prompt": "Is the automation and orchestration service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "aoi_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular automation service efficacy review"
         }
       ]
     },
     {
       "capability_id": "aoi-01",
-      "capability_name": "AiSecOPs",
+      "capability_name": "SOAR platform and orchestration",
       "questions": [
         {
           "id": "rq-aoi-01-1",
-          "prompt": "Is the enterprise capable of responding to incidents in a timely proactive manner utilizing advanced techniques like AI?",
-          "intent": "Evaluate: Is the enterprise capable of responding to incidents in a timely proactive manner utilizing advanced techniques like AI.",
-          "field_key": "aoi_01_timely_ai_incident_response",
-          "evaluation_focus": "Timely proactive incident response using advanced techniques like AI"
+          "prompt": "Does the enterprise use a SOAR or equivalent security orchestration platform to coordinate workflows across security tools?",
+          "intent": "Evaluate whether a SOAR or orchestration platform is adopted",
+          "field_key": "aoi_01_soar_platform_adopted",
+          "evaluation_focus": "SOAR or equivalent orchestration platform adoption"
         },
         {
           "id": "rq-aoi-01-2",
-          "prompt": "Can the AI powered responses and remediations be automated?",
-          "intent": "Evaluate: Can the AI powered responses and remediations be automated.",
-          "field_key": "aoi_01_ai_responses_automated",
-          "evaluation_focus": "Automated AI-powered responses and remediations"
+          "prompt": "Is security orchestration deployed enterprise-wide rather than limited to a single team or tool silo?",
+          "intent": "Evaluate whether orchestration coverage is enterprise-wide",
+          "field_key": "aoi_01_orchestration_enterprise_wide",
+          "evaluation_focus": "Enterprise-wide orchestration coverage"
         },
         {
           "id": "rq-aoi-01-3",
-          "prompt": "Are the AI powered responses and remediations reviewed frequently for accuracy?",
-          "intent": "Evaluate: Are the AI powered responses and remediations reviewed frequently for accuracy.",
-          "field_key": "aoi_01_ai_responses_reviewed_for_accuracy",
-          "evaluation_focus": "Frequent review of AI-powered responses and remediations for accuracy"
+          "prompt": "Can the orchestration platform coordinate multi-step workflows across detection, enrichment, ticketing, and response tools?",
+          "intent": "Evaluate whether cross-tool workflow coordination is supported",
+          "field_key": "aoi_01_cross_tool_workflow_coordination",
+          "evaluation_focus": "Cross-tool workflow coordination"
+        },
+        {
+          "id": "rq-aoi-01-4",
+          "prompt": "Is the SOAR or orchestration platform configuration reviewed at least quarterly?",
+          "intent": "Evaluate whether platform configuration is reviewed on a regular cadence",
+          "field_key": "aoi_01_soar_config_reviewed_regularly",
+          "evaluation_focus": "Regular SOAR platform configuration review"
+        }
+      ]
+    },
+    {
+      "capability_id": "aoi-02",
+      "capability_name": "Security playbook development and maintenance",
+      "questions": [
+        {
+          "id": "rq-aoi-02-1",
+          "prompt": "Does the enterprise maintain documented security playbooks for common incident and remediation scenarios?",
+          "intent": "Evaluate whether documented security playbooks exist",
+          "field_key": "aoi_02_documented_security_playbooks",
+          "evaluation_focus": "Documented security playbooks for common scenarios"
+        },
+        {
+          "id": "rq-aoi-02-2",
+          "prompt": "Are security playbooks version-controlled and subject to change management when updated?",
+          "intent": "Evaluate whether playbooks use version control and change management",
+          "field_key": "aoi_02_playbook_version_control",
+          "evaluation_focus": "Playbook version control and change management"
+        },
+        {
+          "id": "rq-aoi-02-3",
+          "prompt": "Are security playbooks tested regularly through tabletop exercises or simulation runs?",
+          "intent": "Evaluate whether playbooks are tested regularly",
+          "field_key": "aoi_02_playbook_testing_exercises",
+          "evaluation_focus": "Regular playbook testing and tabletop exercises"
+        },
+        {
+          "id": "rq-aoi-02-4",
+          "prompt": "Are security playbooks reviewed at least quarterly for accuracy and coverage gaps?",
+          "intent": "Evaluate whether playbooks are reviewed on a regular cadence",
+          "field_key": "aoi_02_playbooks_reviewed_regularly",
+          "evaluation_focus": "Regular playbook accuracy and coverage review"
+        }
+      ]
+    },
+    {
+      "capability_id": "aoi-03",
+      "capability_name": "Automated remediation and response workflows",
+      "questions": [
+        {
+          "id": "rq-aoi-03-1",
+          "prompt": "Does the enterprise execute automated containment or remediation workflows from approved playbooks?",
+          "intent": "Evaluate whether automated containment and remediation workflows exist",
+          "field_key": "aoi_03_automated_remediation_workflows",
+          "evaluation_focus": "Automated containment and remediation workflows"
+        },
+        {
+          "id": "rq-aoi-03-2",
+          "prompt": "Do high-risk automated actions require human-in-the-loop approval before execution?",
+          "intent": "Evaluate whether human approval gates protect high-risk automated actions",
+          "field_key": "aoi_03_human_in_the_loop_approval",
+          "evaluation_focus": "Human-in-the-loop approval for high-risk actions"
+        },
+        {
+          "id": "rq-aoi-03-3",
+          "prompt": "Are automated workflows integrated with ticketing and incident management systems?",
+          "intent": "Evaluate whether workflows integrate with ticketing and incident management",
+          "field_key": "aoi_03_workflow_ticketing_integration",
+          "evaluation_focus": "Workflow integration with ticketing and incident management"
+        },
+        {
+          "id": "rq-aoi-03-4",
+          "prompt": "Are automated remediation workflows reviewed at least quarterly for effectiveness and false-positive rates?",
+          "intent": "Evaluate whether automated workflows are reviewed on a regular cadence",
+          "field_key": "aoi_03_workflows_reviewed_regularly",
+          "evaluation_focus": "Regular automated workflow effectiveness review"
+        }
+      ]
+    },
+    {
+      "capability_id": "aoi-04",
+      "capability_name": "Cross-platform integration and vendor lock-in risk",
+      "questions": [
+        {
+          "id": "rq-aoi-04-1",
+          "prompt": "Does security automation integrate across endpoint, cloud, identity, and network security platforms?",
+          "intent": "Evaluate whether cross-platform security tool integration exists",
+          "field_key": "aoi_04_cross_platform_integration",
+          "evaluation_focus": "Cross-platform security tool integration"
+        },
+        {
+          "id": "rq-aoi-04-2",
+          "prompt": "Does the enterprise depend on a specific vendor for a majority of endpoints, devices, or security applications?",
+          "intent": "Evaluate whether vendor dependency is assessed across the environment",
+          "field_key": "aoi_04_vendor_dependency_majority",
+          "evaluation_focus": "Vendor dependency assessment across endpoints, devices, and applications"
+        },
+        {
+          "id": "rq-aoi-04-3",
+          "prompt": "If vendor lock-in exists, does the enterprise evaluate it and either justify it or explore options to avoid full dependency?",
+          "intent": "Evaluate whether vendor lock-in is evaluated and mitigated",
+          "field_key": "aoi_04_vendor_lock_in_evaluated",
+          "evaluation_focus": "Evaluation and justification or mitigation of vendor lock-in"
+        }
+      ]
+    },
+    {
+      "capability_id": "aoi-05",
+      "capability_name": "AI-assisted security automation governance",
+      "questions": [
+        {
+          "id": "rq-aoi-05-1",
+          "prompt": "Does the organization maintain governance policies for AI use in security automation and playbook execution?",
+          "intent": "Evaluate whether AI use in security automation is governed",
+          "field_key": "aoi_05_ai_automation_governance",
+          "evaluation_focus": "Governance for AI use in security automation workflows"
+        },
+        {
+          "id": "rq-aoi-05-2",
+          "prompt": "Do analysts review and approve AI-recommended playbook actions before high-impact automated responses execute?",
+          "intent": "Evaluate whether analysts oversee AI-recommended automation actions",
+          "field_key": "aoi_05_analyst_oversight_ai_actions",
+          "evaluation_focus": "Analyst oversight of AI-recommended playbook actions"
+        },
+        {
+          "id": "rq-aoi-05-3",
+          "prompt": "Are AI-driven automated responses and remediations reviewed at least quarterly for accuracy?",
+          "intent": "Evaluate whether AI-driven automation accuracy is reviewed on a regular cadence",
+          "field_key": "aoi_05_ai_automation_reviewed_regularly",
+          "evaluation_focus": "Regular review of AI-driven automation accuracy"
         }
       ]
     }

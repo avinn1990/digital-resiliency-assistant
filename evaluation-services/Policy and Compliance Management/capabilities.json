@@ -1,0 +1,241 @@
+{
+  "service_id": "policy-compliance-management",
+  "service_name": "Policy and Compliance Management",
+  "version": "2.0",
+  "description": "Evaluates policy and compliance management maturity—reference frameworks, rule lifecycle, compliance scanning, hardening alignment, SOC monitoring, and AI-era governance.",
+  "capabilities": [
+    {
+      "id": "pcm-00",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "Policy and compliance management services exist and are reviewed at least quarterly for efficacy.",
+      "evaluation_focus": [
+        "Policy and compliance management services exist",
+        "Regular service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "pcm-01",
+      "name": "Reference framework and standards alignment",
+      "short_name": "framework and standards",
+      "description": "A reference policy framework and standards/regulations alignment provide enterprise-wide visibility and compliance scope reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Reference policy framework",
+        "Enterprise-wide applicability",
+        "Quarterly framework review",
+        "Reuse for granular functional policies",
+        "Official documentation of relevant standards and regulations",
+        "DORA and financial-sector ICT compliance obligations mapped where applicable",
+        "EU AI Act and AI system compliance obligations mapped where applicable",
+        "Quarterly review of compliance requirements"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "pcm-02",
+      "name": "KPIs, KRIs, and compliance metrics",
+      "short_name": "metrics",
+      "description": "Policy and compliance KPIs, KRIs, and metrics—including drift, exceptions, and remediation velocity—are documented and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented KPIs and KRIs",
+        "Policy drift and exception metrics",
+        "Rule deployment success and rollback metrics",
+        "Quarterly KPI/KRI review",
+        "Officially designed and documented compliance metrics",
+        "Control coverage and scan pass rate metrics",
+        "Mean time to remediate compliance findings",
+        "Quarterly review of compliance metrics"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    },
+    {
+      "id": "pcm-03",
+      "name": "Policy and compliance platforms",
+      "short_name": "platforms",
+      "description": "Rule management and compliance scanning platforms support automation, policy-as-code, and enterprise-wide scanning with quarterly configuration review.",
+      "evaluation_focus": [
+        "Centralized vs technology-specific rule management",
+        "Rule automation, optimization, and policy-as-code",
+        "Integration with centralized decision-making",
+        "Quarterly system configuration review",
+        "Compliance management software for enterprise-wide monitoring",
+        "Scope across enterprise and subsidiaries",
+        "Automated compliance scanning across all assets and locations",
+        "Software configuration reviewed at least quarterly to align with business",
+        "Scan results integrated with remediation and decision points"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "pcm-04",
+      "name": "Policy and compliance processes",
+      "short_name": "processes",
+      "description": "Rule lifecycle and compliance management processes are documented, automated where possible, and reviewed at least quarterly.",
+      "evaluation_focus": [
+        "Documented rule creation and modification process",
+        "Documented rule deletion and deprovisioning process",
+        "Enterprise-wide rule lifecycle applicability",
+        "Automated rule lifecycle and optimization",
+        "Quarterly rule lifecycle process review",
+        "Established documented compliance management process",
+        "Process implemented enterprise-wide or scoped",
+        "Automation incorporated into the process",
+        "Quarterly process review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "pcm-05",
+      "name": "Policy and compliance teams",
+      "short_name": "teams",
+      "description": "Policy and compliance teams are centralized or clearly defined with documented hierarchy and separation of duties.",
+      "evaluation_focus": [
+        "Central vs siloed policy teams",
+        "Formalized team composition and separation of duties",
+        "Compliance management teams manage the overall service",
+        "Policy and compliance specialists on compliance teams"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "People"
+    },
+    {
+      "id": "pcm-06",
+      "name": "Software-defined and context-based policies",
+      "short_name": "software-defined policy",
+      "description": "Software-defined and context-based domain policies are maintained, deployed programmatically, and validated at least quarterly.",
+      "evaluation_focus": [
+        "Software-defined policy at all locations",
+        "Programmatic deployment scope",
+        "Automated policy deployment",
+        "Quarterly automation validation",
+        "Context-based network access control vs IP-only policies",
+        "Context-based authentication policies enterprise-wide",
+        "Context-based authorization and guest policies enterprise-wide",
+        "Context-based application access policies enterprise-wide",
+        "Classification and context-based data access policies enterprise-wide",
+        "Quarterly review of domain context-based policies"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "pcm-07",
+      "name": "Policy and compliance change monitoring",
+      "short_name": "change monitoring",
+      "description": "Policy and compliance changes are monitored and logged to the SOC with quarterly review.",
+      "evaluation_focus": [
+        "Documented logging to SOC",
+        "Secure logging to SOC",
+        "Dynamic rule changes to SOC",
+        "Anomalous policy change detection",
+        "Documented process for transporting compliance changes to the SOC",
+        "Secure transport of compliance changes to the SOC",
+        "Dynamic compliance changes captured and transferred to the SOC",
+        "Anomalous compliance drift or bulk exemption detection"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "pcm-08",
+      "name": "Asset hardening and posture compliance",
+      "short_name": "hardening compliance",
+      "description": "Endpoint posture and asset hardening policies align with compliance requirements including automated patching where possible.",
+      "evaluation_focus": [
+        "Formal documented endpoint compliance policy",
+        "Policy scope across devices and locations",
+        "Quarterly endpoint compliance policy review",
+        "Application hardening process and coverage across SDLC",
+        "Endpoint and device hardening aligned to compliance",
+        "Network asset hardening process and automation",
+        "Quarterly review of hardening processes"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "pcm-09",
+      "name": "AI-era policy and compliance governance",
+      "short_name": "AI-era governance",
+      "description": "Policy and compliance governance accounts for AI adoption, dual-use model risk, and automated control validation.",
+      "evaluation_focus": [
+        "Approved versus shadow AI tool policy boundaries",
+        "Data handling and retention policies for AI systems",
+        "Delegated agent action policies aligned to EU AI Act risk tiers",
+        "AI system inventory and risk classification for compliance",
+        "EU AI Act conformity and documentation obligations tracked",
+        "AI vendor and third-party model compliance monitoring"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Strategy"
+    }
+  ],
+  "evaluation": {
+    "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
+    "normalized_scale": 5,
+    "max_score_per_capability": 9,
+    "dimensions": [
+      {
+        "id": "documented",
+        "max": 2,
+        "levels": {
+          "0": "none",
+          "1": "informal",
+          "2": "documented"
+        }
+      },
+      {
+        "id": "implemented",
+        "max": 2,
+        "levels": {
+          "0": "no adoption",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "automatable",
+        "max": 2,
+        "levels": {
+          "0": "not at all",
+          "1": "partial",
+          "2": "enterprise-wide"
+        }
+      },
+      {
+        "id": "integrated",
+        "max": 1,
+        "levels": {
+          "0": "siloed or cannot integrate",
+          "1": "well integrated"
+        }
+      },
+      {
+        "id": "monitored",
+        "max": 2,
+        "levels": {
+          "0": "cannot observe",
+          "1": "observed not measured",
+          "2": "well measured"
+        }
+      }
+    ],
+    "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
+    "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
+  },
+  "target_audience_role_ids": [
+    "grc-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "security-architecture-lead",
+    "compliance-audit-lead",
+    "it-director-head-of-it",
+    "enterprise-risk-manager"
+  ]
+}

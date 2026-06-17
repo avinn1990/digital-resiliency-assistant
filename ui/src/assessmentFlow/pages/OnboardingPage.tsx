@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { AuthUser } from "../../auth/types";
 import { roleDisplayName, servicesForRole, serviceDescriptionForDisplay } from "../roles";
+import { groupServicesByDomain } from "../serviceDomains";
 import type { CanonicalRole, EvaluationServiceSummary } from "../types";
 
 type Props = {
@@ -72,6 +73,70 @@ export function OnboardingPage({
       .filter(([, selected]) => selected)
       .map(([id]) => id);
   }, [selectedById]);
+
+  function renderServiceList(list: EvaluationServiceSummary[]) {
+    return groupServicesByDomain(list).map(({ domain, services: domainServices }) => (
+      <section key={domain} className="af-service-domain-group">
+        <h3 className="af-service-domain-title">{domain}</h3>
+        {domainServices.map((service) => (
+          <div key={service.service_id} className="af-onboarding-service">
+            <div className="af-onboarding-service-title">
+              <label className="af-inline-check">
+                <input
+                  type="checkbox"
+                  checked={selectedById[service.service_id] ?? false}
+                  onChange={(e) =>
+                    setSelectedById((prev) => ({
+                      ...prev,
+                      [service.service_id]: e.target.checked,
+                    }))
+                  }
+                />
+                <span>{service.service_name ?? service.service_id}</span>
+              </label>
+            </div>
+            {serviceDescriptionForDisplay(service.description) && (
+              <div className="af-onboarding-service-desc">
+                {serviceDescriptionForDisplay(service.description)}
+              </div>
+            )}
+          </div>
+        ))}
+      </section>
+    ));
+  }
+
+  function renderMatchedServiceList(list: EvaluationServiceSummary[]) {
+    return groupServicesByDomain(list).map(({ domain, services: domainServices }) => (
+      <section key={domain} className="af-service-domain-group">
+        <h3 className="af-service-domain-title">{domain}</h3>
+        {domainServices.map((service) => (
+          <div key={service.service_id} className="af-onboarding-service">
+            <div className="af-onboarding-service-title">
+              <label className="af-inline-check">
+                <input
+                  type="checkbox"
+                  checked={selectedById[service.service_id] ?? true}
+                  onChange={(e) =>
+                    setSelectedById((prev) => ({
+                      ...prev,
+                      [service.service_id]: e.target.checked,
+                    }))
+                  }
+                />
+                <span>{service.service_name ?? service.service_id}</span>
+              </label>
+            </div>
+            {serviceDescriptionForDisplay(service.description) && (
+              <div className="af-onboarding-service-desc">
+                {serviceDescriptionForDisplay(service.description)}
+              </div>
+            )}
+          </div>
+        ))}
+      </section>
+    ));
+  }
 
   const canContinue = useMemo(() => {
     return (
@@ -177,30 +242,7 @@ export function OnboardingPage({
                   </p>
                 ) : (
                   <div className="af-onboarding-service-list">
-                    {services.map((service) => (
-                      <div key={service.service_id} className="af-onboarding-service">
-                        <div className="af-onboarding-service-title">
-                          <label className="af-inline-check">
-                            <input
-                              type="checkbox"
-                              checked={selectedById[service.service_id] ?? false}
-                              onChange={(e) =>
-                                setSelectedById((prev) => ({
-                                  ...prev,
-                                  [service.service_id]: e.target.checked,
-                                }))
-                              }
-                            />
-                            <span>{service.service_name ?? service.service_id}</span>
-                          </label>
-                        </div>
-                        {serviceDescriptionForDisplay(service.description) && (
-                          <div className="af-onboarding-service-desc">
-                            {serviceDescriptionForDisplay(service.description)}
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                    {renderServiceList(services)}
                   </div>
                 )}
               </>
@@ -211,30 +253,7 @@ export function OnboardingPage({
                   selected by default — uncheck any that do not apply.
                 </p>
                 <div className="af-onboarding-service-list">
-                  {matchedServices.map((service) => (
-                    <div key={service.service_id} className="af-onboarding-service">
-                      <div className="af-onboarding-service-title">
-                        <label className="af-inline-check">
-                          <input
-                            type="checkbox"
-                            checked={selectedById[service.service_id] ?? true}
-                            onChange={(e) =>
-                              setSelectedById((prev) => ({
-                                ...prev,
-                                [service.service_id]: e.target.checked,
-                              }))
-                            }
-                          />
-                          <span>{service.service_name ?? service.service_id}</span>
-                        </label>
-                      </div>
-                      {serviceDescriptionForDisplay(service.description) && (
-                        <div className="af-onboarding-service-desc">
-                          {serviceDescriptionForDisplay(service.description)}
-                        </div>
-                      )}
-                    </div>
-                  ))}
+                  {renderMatchedServiceList(matchedServices)}
                 </div>
               </>
             )}

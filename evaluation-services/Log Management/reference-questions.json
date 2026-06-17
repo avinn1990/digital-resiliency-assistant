@@ -9,16 +9,16 @@
         {
           "id": "rq-lm-00-1",
           "prompt": "Does the enterprise have a log management service?",
-          "intent": "Evaluate whether the enterprise has a log management service.",
+          "intent": "Evaluate whether an enterprise log management service exists",
           "field_key": "lm_00_log_management_service_exists",
           "evaluation_focus": "Enterprise log management service exists"
         },
         {
           "id": "rq-lm-00-2",
-          "prompt": "Is the log management service reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the log management service is reviewed frequently for efficacy.",
-          "field_key": "lm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent log management service efficacy review"
+          "prompt": "Is the log management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the log management service is reviewed on a regular cadence",
+          "field_key": "lm_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular log management service efficacy review"
         }
       ]
     },
@@ -28,17 +28,31 @@
       "questions": [
         {
           "id": "rq-lm-01-1",
-          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Log Management?",
-          "intent": "Evaluate whether KPIs and KRIs for log management are formalized and documented.",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for log management?",
+          "intent": "Evaluate whether log management KPIs and KRIs are documented",
           "field_key": "lm_01_kpis_kris_documented",
           "evaluation_focus": "Documented KPIs and KRIs for log management"
         },
         {
           "id": "rq-lm-01-2",
-          "prompt": "Are the KPIs and KRIs for the Log Management reviewed frequently?",
-          "intent": "Evaluate whether log management KPIs and KRIs are reviewed frequently.",
-          "field_key": "lm_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "prompt": "Are log management KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether log management KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "lm_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-lm-01-3",
+          "prompt": "Do KPIs or KRIs track log ingestion coverage, pipeline latency, or gaps in centralized collection?",
+          "intent": "Evaluate whether log ingestion coverage and latency metrics are tracked",
+          "field_key": "lm_01_ingestion_coverage_metrics",
+          "evaluation_focus": "Log ingestion coverage and pipeline latency metrics"
+        },
+        {
+          "id": "rq-lm-01-4",
+          "prompt": "Does the organization measure storage utilization and retention policy compliance for logs?",
+          "intent": "Evaluate whether storage utilization and retention compliance are measured",
+          "field_key": "lm_01_storage_retention_metrics",
+          "evaluation_focus": "Storage utilization and retention compliance"
         }
       ]
     },
@@ -49,35 +63,35 @@
         {
           "id": "rq-lm-02-1",
           "prompt": "Does the enterprise have a logging system to manage and correlate all logs?",
-          "intent": "Evaluate whether a logging system manages and correlates all logs.",
+          "intent": "Evaluate whether a logging system manages and correlates all logs",
           "field_key": "lm_02_logging_system_manage_correlate",
           "evaluation_focus": "Logging system to manage and correlate all logs"
         },
         {
           "id": "rq-lm-02-2",
           "prompt": "Does the logging system consume raw logs from all segments of the enterprise?",
-          "intent": "Evaluate whether the logging system consumes raw logs from all enterprise segments.",
+          "intent": "Evaluate whether the logging system consumes raw logs enterprise-wide",
           "field_key": "lm_02_consume_raw_logs_enterprise_wide",
           "evaluation_focus": "Raw log consumption from all enterprise segments"
         },
         {
           "id": "rq-lm-02-3",
-          "prompt": "Does the logging system implement automation to process large numbers of logs?",
-          "intent": "Evaluate whether the logging system automates processing of large log volumes.",
+          "prompt": "Does the logging system implement automation to process large volumes of logs?",
+          "intent": "Evaluate whether log processing is automated at scale",
           "field_key": "lm_02_automation_large_log_volumes",
           "evaluation_focus": "Automation to process large volumes of logs"
         },
         {
           "id": "rq-lm-02-4",
-          "prompt": "Does the logging system configuration get reviewed frequently to maintain efficacy?",
-          "intent": "Evaluate whether logging system configuration is reviewed frequently.",
-          "field_key": "lm_02_config_reviewed_frequently",
-          "evaluation_focus": "Frequent logging system configuration review"
+          "prompt": "Is logging system configuration reviewed at least quarterly to maintain efficacy?",
+          "intent": "Evaluate whether logging system configuration is reviewed on a regular cadence",
+          "field_key": "lm_02_config_reviewed_regularly",
+          "evaluation_focus": "Regular logging system configuration review"
         },
         {
           "id": "rq-lm-02-5",
-          "prompt": "Does the logging system integrate with various other segments like compliance, vulnerability, and asset management to provide contextual information?",
-          "intent": "Evaluate whether the logging system integrates with compliance, vulnerability, and asset management.",
+          "prompt": "Does the logging system integrate with compliance, vulnerability, and asset management for contextual information?",
+          "intent": "Evaluate whether the logging system integrates with other management platforms",
           "field_key": "lm_02_integrations_contextual_info",
           "evaluation_focus": "Integration with compliance, vulnerability, and asset management"
         }
@@ -85,14 +99,42 @@
     },
     {
       "capability_id": "lm-03",
-      "capability_name": "Identity logs",
+      "capability_name": "Unified enterprise log collection",
       "questions": [
         {
           "id": "rq-lm-03-1",
-          "prompt": "Do all identity technology send identity and access logs automatically to a centralized logging entity?",
-          "intent": "Evaluate whether all identity technology sends identity and access logs automatically to centralized logging.",
+          "prompt": "Do all identity technologies send identity and access logs automatically to centralized logging?",
+          "intent": "Evaluate whether identity logs are collected centrally and automatically",
           "field_key": "lm_03_identity_logs_centralized",
           "evaluation_focus": "Automatic centralized identity and access logging"
+        },
+        {
+          "id": "rq-lm-03-2",
+          "prompt": "Do all endpoint device technologies send device and access logs automatically to centralized logging?",
+          "intent": "Evaluate whether endpoint logs are collected centrally and automatically",
+          "field_key": "lm_03_endpoint_logs_centralized",
+          "evaluation_focus": "Automatic centralized endpoint device and access logging"
+        },
+        {
+          "id": "rq-lm-03-3",
+          "prompt": "Do all network technologies send network and access logs automatically to centralized logging?",
+          "intent": "Evaluate whether network logs are collected centrally and automatically",
+          "field_key": "lm_03_network_logs_centralized",
+          "evaluation_focus": "Automatic centralized network and access logging"
+        },
+        {
+          "id": "rq-lm-03-4",
+          "prompt": "Do all application technologies send application and access logs automatically to centralized logging?",
+          "intent": "Evaluate whether application logs are collected centrally and automatically",
+          "field_key": "lm_03_application_logs_centralized",
+          "evaluation_focus": "Automatic centralized application and access logging"
+        },
+        {
+          "id": "rq-lm-03-5",
+          "prompt": "Do all data asset technologies send data and access logs automatically to centralized logging?",
+          "intent": "Evaluate whether data access logs are collected centrally and automatically",
+          "field_key": "lm_03_data_access_logs_centralized",
+          "evaluation_focus": "Automatic centralized data and access logging"
         }
       ]
     },
@@ -103,14 +145,14 @@
         {
           "id": "rq-lm-04-1",
           "prompt": "Does the enterprise logging solution have capability to monitor and identify anomalies?",
-          "intent": "Evaluate whether the logging solution monitors and identifies anomalies.",
+          "intent": "Evaluate whether the logging solution monitors and identifies anomalies",
           "field_key": "lm_04_anomaly_detection",
           "evaluation_focus": "Anomaly monitoring and identification capability"
         },
         {
           "id": "rq-lm-04-2",
-          "prompt": "Can responses be configured to be automated?",
-          "intent": "Evaluate whether anomaly responses can be configured to be automated.",
+          "prompt": "Can responses to detected anomalies be configured to run automatically?",
+          "intent": "Evaluate whether anomaly responses can be automated",
           "field_key": "lm_04_automated_anomaly_responses",
           "evaluation_focus": "Configurable automated anomaly responses"
         }
@@ -118,112 +160,87 @@
     },
     {
       "capability_id": "lm-05",
-      "capability_name": "Endpoint device logging",
+      "capability_name": "Logging scope",
       "questions": [
         {
           "id": "rq-lm-05-1",
-          "prompt": "Do all device technology send device and access logs automatically to a centralized logging entity?",
-          "intent": "Evaluate whether all endpoint device technology sends logs automatically to centralized logging.",
-          "field_key": "lm_05_endpoint_logs_centralized",
-          "evaluation_focus": "Automatic centralized endpoint device and access logging"
+          "prompt": "Does the enterprise have a clear scope defined for which devices and technology send logs to the logging server?",
+          "intent": "Evaluate whether a clear logging scope is defined",
+          "field_key": "lm_05_logging_scope_defined",
+          "evaluation_focus": "Clear defined logging scope for devices and technology"
+        },
+        {
+          "id": "rq-lm-05-2",
+          "prompt": "Is logging scope reevaluated at least quarterly to maintain efficacy and storage stability?",
+          "intent": "Evaluate whether logging scope is reevaluated on a regular cadence",
+          "field_key": "lm_05_scope_reevaluated_regularly",
+          "evaluation_focus": "Regular scope reevaluation for efficacy and storage stability"
         }
       ]
     },
     {
       "capability_id": "lm-06",
-      "capability_name": "Network logging",
+      "capability_name": "Log records",
       "questions": [
         {
           "id": "rq-lm-06-1",
-          "prompt": "Do all network technology send network and access logs automatically to a centralized logging entity?",
-          "intent": "Evaluate whether all network technology sends logs automatically to centralized logging.",
-          "field_key": "lm_06_network_logs_centralized",
-          "evaluation_focus": "Automatic centralized network and access logging"
-        }
-      ]
-    },
-    {
-      "capability_id": "lm-07",
-      "capability_name": "Application Security logging",
-      "questions": [
-        {
-          "id": "rq-lm-07-1",
-          "prompt": "Do all application technology send application and access logs automatically to a centralized logging entity?",
-          "intent": "Evaluate whether all application technology sends logs automatically to centralized logging.",
-          "field_key": "lm_07_application_logs_centralized",
-          "evaluation_focus": "Automatic centralized application and access logging"
-        }
-      ]
-    },
-    {
-      "capability_id": "lm-08",
-      "capability_name": "Data access monitoring",
-      "questions": [
-        {
-          "id": "rq-lm-08-1",
-          "prompt": "Do all data asset technology send data and access logs automatically to a centralized logging entity?",
-          "intent": "Evaluate whether all data asset technology sends logs automatically to centralized logging.",
-          "field_key": "lm_08_data_access_logs_centralized",
-          "evaluation_focus": "Automatic centralized data and access logging"
-        }
-      ]
-    },
-    {
-      "capability_id": "lm-09",
-      "capability_name": "Logging Scope",
-      "questions": [
-        {
-          "id": "rq-lm-09-1",
-          "prompt": "Does the enterprise have a clear scope defined of which devices and technology will send logs to the logging server?",
-          "intent": "Evaluate whether a clear logging scope is defined for devices and technology.",
-          "field_key": "lm_09_logging_scope_defined",
-          "evaluation_focus": "Clear defined logging scope for devices and technology"
-        },
-        {
-          "id": "rq-lm-09-2",
-          "prompt": "Is the scope reevaluated frequently to maintain efficacy and stability of log system storage to prevent storage hog?",
-          "intent": "Evaluate whether logging scope is reevaluated frequently for efficacy and storage stability.",
-          "field_key": "lm_09_scope_reevaluated_frequently",
-          "evaluation_focus": "Frequent scope reevaluation for efficacy and storage stability"
-        }
-      ]
-    },
-    {
-      "capability_id": "lm-10",
-      "capability_name": "Log Records",
-      "questions": [
-        {
-          "id": "rq-lm-10-1",
           "prompt": "Does the logging solution produce audit logs for all technology that sends logs to it?",
-          "intent": "Evaluate whether the logging solution produces audit logs for all log-producing technology.",
-          "field_key": "lm_10_audit_logs_all_technology",
+          "intent": "Evaluate whether audit logs are produced for all log-producing technology",
+          "field_key": "lm_06_audit_logs_all_technology",
           "evaluation_focus": "Audit logs for all log-producing technology"
         }
       ]
     },
     {
-      "capability_id": "lm-11",
-      "capability_name": "Log Protection",
+      "capability_id": "lm-07",
+      "capability_name": "Log protection",
       "questions": [
         {
-          "id": "rq-lm-11-1",
-          "prompt": "Does the log management system store all logs securely and prevent unauthorized changes to the logs?",
-          "intent": "Evaluate whether logs are stored securely and protected from unauthorized changes.",
-          "field_key": "lm_11_secure_log_storage",
+          "id": "rq-lm-07-1",
+          "prompt": "Does the log management system store all logs securely and prevent unauthorized changes to logs?",
+          "intent": "Evaluate whether logs are stored securely and protected from unauthorized changes",
+          "field_key": "lm_07_secure_log_storage",
           "evaluation_focus": "Secure log storage and prevention of unauthorized log changes"
         }
       ]
     },
     {
-      "capability_id": "lm-12",
+      "capability_id": "lm-08",
       "capability_name": "Log management team",
       "questions": [
         {
-          "id": "rq-lm-12-1",
+          "id": "rq-lm-08-1",
           "prompt": "Does the enterprise have a clear hierarchy of T1, T2, and T3 analysts to process logs?",
-          "intent": "Evaluate whether a clear T1, T2, and T3 analyst hierarchy processes logs.",
-          "field_key": "lm_12_analyst_hierarchy",
+          "intent": "Evaluate whether a T1/T2/T3 analyst hierarchy processes logs",
+          "field_key": "lm_08_analyst_hierarchy",
           "evaluation_focus": "T1, T2, and T3 analyst hierarchy for log processing"
+        }
+      ]
+    },
+    {
+      "capability_id": "lm-09",
+      "capability_name": "AI-assisted log analysis",
+      "questions": [
+        {
+          "id": "rq-lm-09-1",
+          "prompt": "Does the organization use AI to assist log summarization or pattern detection across large log volumes?",
+          "intent": "Evaluate whether AI assists log summarization and pattern detection",
+          "field_key": "lm_09_ai_log_summarization",
+          "evaluation_focus": "AI-assisted log summarization and pattern detection"
+        },
+        {
+          "id": "rq-lm-09-2",
+          "prompt": "Can analysts use AI-generated investigation queries that they review before execution?",
+          "intent": "Evaluate whether AI-generated investigation queries are reviewed by analysts",
+          "field_key": "lm_09_ai_investigation_queries",
+          "evaluation_focus": "AI-generated investigation queries with analyst review"
+        },
+        {
+          "id": "rq-lm-09-3",
+          "prompt": "Are policies in place governing approved AI use in log analysis workflows?",
+          "intent": "Evaluate whether AI use in log analysis is governed",
+          "field_key": "lm_09_ai_log_analysis_governance",
+          "evaluation_focus": "Governance for AI use in log analysis workflows"
         }
       ]
     }

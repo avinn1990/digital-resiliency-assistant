@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "Optional domain labels for grouping evaluation services in the UI service picker.",
+  "domain_order": [
+    "Governance & Compliance",
+    "Identity & Access",
+    "Engineering & Platform",
+    "Infrastructure & Operations",
+    "Data & Content",
+    "People & Culture",
+    "Risk & Resilience"
+  ],
+  "services": {
+    "information-security-strategy-planning": "Governance & Compliance",
+    "enterprise-risk-management": "Governance & Compliance",
+    "policy-compliance-management": "Governance & Compliance",
+    "identity-management": "Identity & Access",
+    "authentication-session-credential-management": "Identity & Access",
+    "access-privileged-access-management": "Identity & Access",
+    "pki-cryptographic-key-management": "Identity & Access",
+    "application-development-testing": "Engineering & Platform",
+    "code-management": "Engineering & Platform",
+    "container-management": "Engineering & Platform",
+    "production-workload-management": "Engineering & Platform",
+    "change-management": "Engineering & Platform",
+    "configuration-management": "Engineering & Platform",
+    "automation-orchestration-integration": "Engineering & Platform",
+    "network-management": "Infrastructure & Operations",
+    "log-management": "Infrastructure & Operations",
+    "security-operations": "Infrastructure & Operations",
+    "incident-management": "Infrastructure & Operations",
+    "facilities-management": "Infrastructure & Operations",
+    "enterprise-asset-management": "Infrastructure & Operations",
+    "data-management": "Data & Content",
+    "content-management": "Data & Content",
+    "security-awareness-culture": "People & Culture",
+    "security-architecture-management": "Risk & Resilience",
+    "vulnerability-remediation-management": "Risk & Resilience",
+    "business-continuity-management": "Risk & Resilience"
+  }
+}

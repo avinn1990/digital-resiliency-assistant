@@ -1,16 +1,17 @@
 {
   "service_id": "identity-management",
   "service_name": "Identity Management Service",
-  "version": "1.0",
-  "description": "Evaluates identity management service maturity—identity stores, subject and object profiles, provisioning and deprovisioning, third-party vendor identity lifecycle, break glass, and SOC logging of identity lifecycle changes.",
+  "version": "1.1",
+  "description": "Evaluates identity management service maturity—identity stores, subject and object profiles, human and machine identity lifecycle, third-party vendor identity, break glass, KPIs/KRIs, and SOC logging of identity lifecycle changes.",
   "capabilities": [
     {
       "id": "idm-00",
       "name": "Service exists and is in good condition",
-      "description": "An identity management service exists and is reviewed frequently for efficacy.",
+      "short_name": "service existence",
+      "description": "An identity management service exists and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise identity management service exists",
-        "Frequent service efficacy review"
+        "Regular service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,18 +19,23 @@
     {
       "id": "idm-01",
       "name": "KPIs/KRIs",
-      "description": "Identity management KPIs and KRIs are documented and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Identity management KPIs and KRIs—including provisioning velocity, orphaned identity rate, and machine identity coverage—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Orphaned and stale identity metrics",
+        "Mean time to deprovision after role change or termination",
+        "Machine and workload identity inventory metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "idm-02",
-      "name": "Identity Store",
-      "description": "A centralized identity store manages enterprise and third-party users with automation, configuration review, enforcement point integration, and SCIM automation.",
+      "name": "Identity store",
+      "short_name": "identity store",
+      "description": "A centralized identity store manages enterprise, third-party, and machine identities with automation, cloud IdP integration, SCIM, configuration review, and enforcement point integration.",
       "evaluation_focus": [
         "Centralized identity management server",
         "Enterprise-wide vs FTE-only user scope",
@@ -37,7 +43,8 @@
         "Automated subject profile creation",
         "Identity store configuration review",
         "Enforcement point integration with identity store",
-        "SCIM automation for user information"
+        "SCIM automation for user information",
+        "Cloud identity provider and directory federation"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -45,6 +52,7 @@
     {
       "id": "idm-03",
       "name": "Identity store custodians",
+      "short_name": "store custodians",
       "description": "Separate roles manage the identity store and the identities themselves.",
       "evaluation_focus": [
         "Separate roles for identity store and identity management"
@@ -54,99 +62,87 @@
     },
     {
       "id": "idm-04",
-      "name": "Subject Profiles",
-      "description": "Subject profiles are created via a formalized process considering attributes like environment and context, scoped appropriately, automated, reviewed, and used in policy creation.",
+      "name": "Subject and object profiles",
+      "short_name": "identity profiles",
+      "description": "Subject and object profiles are created via formalized processes considering environment, context, and scope; automated where appropriate; reviewed regularly; and used in policy creation at enforcement points.",
       "evaluation_focus": [
         "Formalized subject profile creation process",
+        "Formalized object profile creation process",
         "Enterprise-wide vs FTE-only subject scope",
-        "Automated subject profile creation",
-        "Subject profile creation review",
-        "Enforcement points use subject profiles in policy"
+        "Enterprise-wide vs enterprise-assets-only object scope",
+        "Automated subject and object profile creation",
+        "Subject and object profile creation review",
+        "Enforcement points use profiles in policy"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "idm-05",
-      "name": "Object Profiles",
-      "description": "Object profiles are created via a formalized process considering attributes like environment and context, scoped appropriately, automated, reviewed, and used in policy creation.",
+      "name": "Identity provisioning and deprovisioning",
+      "short_name": "identity lifecycle",
+      "description": "Identity provisioning and deprovisioning based on profiles and triggers are formalized, automated, and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Formalized object profile creation process",
-        "Enterprise-wide vs enterprise-assets-only object scope",
-        "Automated object profile creation",
-        "Object profile creation review",
-        "Enforcement points use object profiles in policy"
+        "Formalized identity provisioning process",
+        "Formalized identity deprovisioning process",
+        "Automated identity provisioning from profile",
+        "Automated identity deprovisioning from triggers",
+        "Provisioning and deprovisioning process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "idm-06",
-      "name": "Identity Provisioning",
-      "description": "Identity provisioning based on profiles is formalized, automated, and reviewed for efficacy.",
+      "name": "Third-party vendor identity lifecycle",
+      "short_name": "vendor identity",
+      "description": "Third-party identity provisioning and deprovisioning are documented, automated from profile and triggers, and reviewed at least quarterly.",
       "evaluation_focus": [
-        "Formalized identity provisioning process",
-        "Automated identity provisioning from profile",
-        "Provisioning process review"
+        "Formalized third-party provisioning process",
+        "Formalized third-party deprovisioning process",
+        "Automated third-party identity provisioning",
+        "Automated third-party identity deprovisioning",
+        "Third-party identity lifecycle process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "idm-07",
-      "name": "Identity Deprovisioning",
-      "description": "Identity deprovisioning based on triggers is formalized, automated, and reviewed for efficacy.",
+      "name": "Machine and workload identity lifecycle",
+      "short_name": "machine identity",
+      "description": "Service principals, workloads, automation accounts, and non-human identities are inventoried, provisioned, and deprovisioned with lifecycle governance—not ad hoc shared accounts.",
       "evaluation_focus": [
-        "Formalized identity deprovisioning process",
-        "Automated identity deprovisioning from triggers",
-        "Deprovisioning process review"
+        "Formalized machine and workload identity provisioning",
+        "Automated machine identity deprovisioning on workload retirement",
+        "Machine identity inventory and ownership attribution",
+        "Governance of automation and AI agent identities as first-class subjects"
       ],
       "resiliency_weight": 1,
-      "pillar": "Process/Service"
+      "pillar": "Technology"
     },
     {
       "id": "idm-08",
-      "name": "Third Party Vendor Identity provisioning",
-      "description": "Third-party identity provisioning is documented, automated from profile, and reviewed for efficacy.",
+      "name": "Emergency break glass",
+      "short_name": "break glass",
+      "description": "An emergency break glass process exists when the identity store is unreachable and is reviewed at least quarterly.",
       "evaluation_focus": [
-        "Formalized third-party provisioning process",
-        "Automated third-party identity provisioning",
-        "Third-party provisioning process review"
+        "Emergency break glass process exists",
+        "Regular break glass process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "idm-09",
-      "name": "Third Party Vendor Identity de-provisioning",
-      "description": "Third-party identity deprovisioning is documented, automated from triggers, and reviewed for efficacy.",
-      "evaluation_focus": [
-        "Formalized third-party deprovisioning process",
-        "Automated third-party identity deprovisioning",
-        "Third-party deprovisioning process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "idm-10",
-      "name": "Emergency Break Glass",
-      "description": "An emergency break glass process exists when the identity store is unreachable and is reviewed frequently.",
-      "evaluation_focus": [
-        "Emergency break glass process exists",
-        "Frequent break glass process review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "idm-11",
-      "name": "Identity life cycle logging",
-      "description": "Identity management and lifecycle changes are logged securely to the SOC, including dynamic profile changes.",
+      "name": "Identity lifecycle logging",
+      "short_name": "identity logging",
+      "description": "Identity management and lifecycle changes are logged securely to the SOC, including dynamic profile changes and anomalous identity modifications.",
       "evaluation_focus": [
         "Documented identity lifecycle logging to SOC",
         "Secure identity lifecycle logging to SOC",
-        "Dynamic identity profile changes to SOC"
+        "Dynamic identity profile changes to SOC",
+        "Anomalous identity lifecycle change detection"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"

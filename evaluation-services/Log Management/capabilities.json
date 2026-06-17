@@ -1,16 +1,17 @@
 {
   "service_id": "log-management",
   "service_name": "Log Management",
-  "version": "1.0",
-  "description": "Evaluates log management maturity—service governance, KPIs/KRIs, logging systems, identity and technology log collection, anomaly detection, scope, records, protection, and analyst hierarchy.",
+  "version": "1.1",
+  "description": "Evaluates log management maturity—service governance, KPIs/KRIs, logging systems, unified enterprise log collection, anomaly detection, scope, records, protection, analyst hierarchy, and AI-assisted log analysis.",
   "capabilities": [
     {
       "id": "lm-00",
       "name": "Service exists and is in good condition",
-      "description": "A log management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "A log management service exists, is scoped appropriately, and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise log management service exists",
-        "Frequent log management service efficacy review"
+        "Regular log management service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +19,13 @@
     {
       "id": "lm-01",
       "name": "KPIs/KRIs",
-      "description": "Log management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Log management KPIs and KRIs—including log ingestion coverage, pipeline latency, and storage utilization—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for log management",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Log ingestion coverage and pipeline latency metrics",
+        "Storage utilization and retention compliance"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,12 +33,13 @@
     {
       "id": "lm-02",
       "name": "Log management system",
-      "description": "A logging system manages and correlates logs enterprise-wide with automation, configuration review, and integrations.",
+      "short_name": "log management system",
+      "description": "A logging system manages and correlates logs enterprise-wide with automation, quarterly configuration review, and integrations.",
       "evaluation_focus": [
         "Logging system to manage and correlate all logs",
         "Raw log consumption from all enterprise segments",
         "Automation to process large volumes of logs",
-        "Frequent logging system configuration review",
+        "Regular logging system configuration review",
         "Integration with compliance, vulnerability, and asset management"
       ],
       "resiliency_weight": 1,
@@ -42,10 +47,15 @@
     },
     {
       "id": "lm-03",
-      "name": "Identity logs",
-      "description": "All identity technology sends identity and access logs automatically to centralized logging.",
+      "name": "Unified enterprise log collection",
+      "short_name": "log collection",
+      "description": "Identity, endpoint, network, application, and data asset technologies send access and activity logs automatically to centralized logging.",
       "evaluation_focus": [
-        "Automatic centralized identity and access logging"
+        "Automatic centralized identity and access logging",
+        "Automatic centralized endpoint device and access logging",
+        "Automatic centralized network and access logging",
+        "Automatic centralized application and access logging",
+        "Automatic centralized data and access logging"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -53,6 +63,7 @@
     {
       "id": "lm-04",
       "name": "Anomaly detection",
+      "short_name": "anomaly detection",
       "description": "The logging solution monitors and identifies anomalies with configurable automated responses.",
       "evaluation_focus": [
         "Anomaly monitoring and identification capability",
@@ -63,58 +74,20 @@
     },
     {
       "id": "lm-05",
-      "name": "Endpoint device logging",
-      "description": "All endpoint device technology sends device and access logs automatically to centralized logging.",
-      "evaluation_focus": [
-        "Automatic centralized endpoint device and access logging"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "lm-06",
-      "name": "Network logging",
-      "description": "All network technology sends network and access logs automatically to centralized logging.",
-      "evaluation_focus": [
-        "Automatic centralized network and access logging"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "lm-07",
-      "name": "Application Security logging",
-      "description": "All application technology sends application and access logs automatically to centralized logging.",
-      "evaluation_focus": [
-        "Automatic centralized application and access logging"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "lm-08",
-      "name": "Data access monitoring",
-      "description": "All data asset technology sends data and access logs automatically to centralized logging.",
-      "evaluation_focus": [
-        "Automatic centralized data and access logging"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "lm-09",
-      "name": "Logging Scope",
-      "description": "A clear logging scope is defined and reevaluated frequently to maintain efficacy and storage stability.",
+      "name": "Logging scope",
+      "short_name": "logging scope",
+      "description": "A clear logging scope is defined and reevaluated at least quarterly to maintain efficacy and storage stability.",
       "evaluation_focus": [
         "Clear defined logging scope for devices and technology",
-        "Frequent scope reevaluation for efficacy and storage stability"
+        "Regular scope reevaluation for efficacy and storage stability"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
-      "id": "lm-10",
-      "name": "Log Records",
+      "id": "lm-06",
+      "name": "Log records",
+      "short_name": "log records",
       "description": "The logging solution produces audit logs for all technology that sends logs to it.",
       "evaluation_focus": [
         "Audit logs for all log-producing technology"
@@ -123,8 +96,9 @@
       "pillar": "Technology"
     },
     {
-      "id": "lm-11",
-      "name": "Log Protection",
+      "id": "lm-07",
+      "name": "Log protection",
+      "short_name": "log protection",
       "description": "The log management system stores logs securely and prevents unauthorized changes.",
       "evaluation_focus": [
         "Secure log storage and prevention of unauthorized log changes"
@@ -133,14 +107,28 @@
       "pillar": "Technology"
     },
     {
-      "id": "lm-12",
+      "id": "lm-08",
       "name": "Log management team",
+      "short_name": "log management team",
       "description": "A clear hierarchy of T1, T2, and T3 analysts processes logs.",
       "evaluation_focus": [
         "T1, T2, and T3 analyst hierarchy for log processing"
       ],
       "resiliency_weight": 1,
       "pillar": "People"
+    },
+    {
+      "id": "lm-09",
+      "name": "AI-assisted log analysis",
+      "short_name": "AI log analysis",
+      "description": "AI assists log summarization, anomaly explanation, and investigation query generation with analyst oversight.",
+      "evaluation_focus": [
+        "AI-assisted log summarization and pattern detection",
+        "AI-generated investigation queries with analyst review",
+        "Governance for AI use in log analysis workflows"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
     }
   ],
   "evaluation": {

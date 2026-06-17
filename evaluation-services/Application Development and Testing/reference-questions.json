@@ -9,16 +9,16 @@
         {
           "id": "rq-adt-00-1",
           "prompt": "Does the enterprise have an application development management service?",
-          "intent": "Evaluate whether the enterprise has an application development management service.",
+          "intent": "Evaluate whether an application development management service exists",
           "field_key": "adt_00_application_development_service_exists",
           "evaluation_focus": "Enterprise application development management service exists"
         },
         {
           "id": "rq-adt-00-2",
-          "prompt": "Is the application development management service reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the application development management service is reviewed frequently for efficacy.",
-          "field_key": "adt_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent application development management service efficacy review"
+          "prompt": "Is the application development management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the service is reviewed on a regular cadence for efficacy",
+          "field_key": "adt_00_service_reviewed_regularly",
+          "evaluation_focus": "Regular application development management service efficacy review"
         }
       ]
     },
@@ -28,71 +28,99 @@
       "questions": [
         {
           "id": "rq-adt-01-1",
-          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the Application Development?",
-          "intent": "Evaluate whether KPIs and KRIs for application development are formalized and documented.",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for application development?",
+          "intent": "Evaluate whether application development KPIs and KRIs are documented",
           "field_key": "adt_01_kpis_kris_documented",
           "evaluation_focus": "Documented KPIs and KRIs for application development"
         },
         {
           "id": "rq-adt-01-2",
-          "prompt": "Are the KPIs and KRIs for the Application Development reviewed frequently?",
-          "intent": "Evaluate whether application development KPIs and KRIs are reviewed frequently.",
-          "field_key": "adt_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "prompt": "Are application development KPIs and KRIs reviewed at least quarterly?",
+          "intent": "Evaluate whether KPIs and KRIs are reviewed on a regular cadence",
+          "field_key": "adt_01_kpis_reviewed_regularly",
+          "evaluation_focus": "Regular KPI/KRI review"
+        },
+        {
+          "id": "rq-adt-01-3",
+          "prompt": "Do KPIs or KRIs track defect escape rate, CI/CD security gate pass rate, or mean time to remediate vulnerabilities found in development?",
+          "intent": "Evaluate whether modern SDLC security and quality metrics are tracked",
+          "field_key": "adt_01_sdlc_security_metrics",
+          "evaluation_focus": "Defect escape and security gate metrics"
+        },
+        {
+          "id": "rq-adt-01-4",
+          "prompt": "How does the organization measure vulnerability remediation velocity for findings discovered during development and testing?",
+          "intent": "Evaluate whether vulnerability remediation velocity in SDLC is measured",
+          "field_key": "adt_01_vulnerability_remediation_velocity",
+          "evaluation_focus": "Vulnerability remediation velocity in SDLC"
         }
       ]
     },
     {
       "capability_id": "adt-02",
-      "capability_name": "Secure Application development",
+      "capability_name": "Secure application development strategy",
       "questions": [
         {
           "id": "rq-adt-02-1",
-          "prompt": "Does the enterprise have a strategy on application development?",
-          "intent": "Evaluate whether the enterprise has an application development strategy.",
+          "prompt": "Does the enterprise have a documented application development strategy?",
+          "intent": "Evaluate whether an application development strategy exists",
           "field_key": "adt_02_development_strategy_exists",
           "evaluation_focus": "Application development strategy exists"
         },
         {
           "id": "rq-adt-02-2",
-          "prompt": "Does the development strategy incorporate security at the early stages?",
-          "intent": "Evaluate whether the development strategy incorporates security at early stages.",
+          "prompt": "Does the development strategy incorporate security at early stages (design, requirements, and architecture)?",
+          "intent": "Evaluate whether security is incorporated at early development stages",
           "field_key": "adt_02_security_at_early_stages",
           "evaluation_focus": "Security incorporated at early development stages"
         },
         {
           "id": "rq-adt-02-3",
-          "prompt": "Does the strategy include automation of code and secure provisioning?",
-          "intent": "Evaluate whether the strategy includes automation of code and secure provisioning.",
+          "prompt": "Does the strategy include automation of code delivery and secure environment provisioning?",
+          "intent": "Evaluate whether the strategy covers automation and secure provisioning",
           "field_key": "adt_02_automation_and_secure_provisioning",
           "evaluation_focus": "Automation of code and secure provisioning"
         },
         {
           "id": "rq-adt-02-4",
-          "prompt": "Are the policies and strategies for application development reviewed frequently for efficacy?",
-          "intent": "Evaluate whether application development policies and strategies are reviewed frequently for efficacy.",
-          "field_key": "adt_02_policies_strategies_reviewed_frequently",
-          "evaluation_focus": "Frequent review of application development policies and strategies"
+          "prompt": "Does the application development strategy account for AI-accelerated attack and defense trends, including faster vulnerability discovery and pre-release verification requirements?",
+          "intent": "Evaluate whether the strategy reflects an AI-era threat model",
+          "field_key": "adt_02_ai_era_threat_model",
+          "evaluation_focus": "AI-era threat model reflected in development strategy"
+        },
+        {
+          "id": "rq-adt-02-5",
+          "prompt": "Are application development policies and strategies reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether policies and strategies are reviewed on a regular cadence",
+          "field_key": "adt_02_policies_strategies_reviewed_regularly",
+          "evaluation_focus": "Regular review of application development policies and strategies"
         }
       ]
     },
     {
       "capability_id": "adt-03",
-      "capability_name": "Application development owners",
+      "capability_name": "Application ownership and governance",
       "questions": [
         {
           "id": "rq-adt-03-1",
-          "prompt": "Does the enterprise have clear business owners for specific applications? Are there separation of duties policies in place?",
-          "intent": "Evaluate whether clear business owners exist for applications and separation of duties policies are in place.",
+          "prompt": "Does the enterprise have clear business owners for applications and documented separation of duties between owners and developers?",
+          "intent": "Evaluate whether business owners and separation of duties policies exist",
           "field_key": "adt_03_business_owners_separation_of_duties",
           "evaluation_focus": "Clear business owners and separation of duties policies"
         },
         {
           "id": "rq-adt-03-2",
-          "prompt": "Do application developers and testers have access only to their specific development environment at staging and not on production?",
-          "intent": "Evaluate whether developers and testers have access only to staging environments and not production.",
+          "prompt": "Do application developers and testers have access only to staging or development environments—not production?",
+          "intent": "Evaluate whether developers and testers are limited to non-production environments",
           "field_key": "adt_03_staging_only_access",
           "evaluation_focus": "Developers and testers limited to staging environments"
+        },
+        {
+          "id": "rq-adt-03-3",
+          "prompt": "Are formal business analysts engaged to review and translate application requirements accurately before development?",
+          "intent": "Evaluate whether formal business analysts support requirements governance",
+          "field_key": "adt_03_formal_business_analysts",
+          "evaluation_focus": "Formal business analysts for requirements review and translation"
         }
       ]
     },
@@ -102,36 +130,36 @@
       "questions": [
         {
           "id": "rq-adt-04-1",
-          "prompt": "Does the enterprise adopt DevSecOps Software?",
-          "intent": "Evaluate whether the enterprise adopts DevSecOps software.",
+          "prompt": "Does the enterprise adopt DevSecOps software to manage application delivery pipelines?",
+          "intent": "Evaluate whether DevSecOps software is adopted",
           "field_key": "adt_04_devsecops_software_adopted",
           "evaluation_focus": "DevSecOps software adoption"
         },
         {
           "id": "rq-adt-04-2",
-          "prompt": "Does the DevSecOps software have capability to provide automation support for various application development milestones?",
-          "intent": "Evaluate whether DevSecOps software provides automation support for application development milestones.",
+          "prompt": "Does DevSecOps software automate support for key application development milestones (build, test, deploy)?",
+          "intent": "Evaluate whether DevSecOps software automates development milestones",
           "field_key": "adt_04_devsecops_automation_milestones",
           "evaluation_focus": "Automation support for application development milestones"
         },
         {
           "id": "rq-adt-04-3",
-          "prompt": "Is the CI/CD pipeline utilized for all applications?",
-          "intent": "Evaluate whether the CI/CD pipeline is utilized for all applications.",
+          "prompt": "Is the CI/CD pipeline utilized for all applications (or all in-scope critical applications)?",
+          "intent": "Evaluate whether CI/CD is utilized broadly across applications",
           "field_key": "adt_04_cicd_all_applications",
           "evaluation_focus": "CI/CD pipeline utilized for all applications"
         },
         {
           "id": "rq-adt-04-4",
-          "prompt": "Does the DevSecOps software configuration get reviewed frequently for efficacy?",
-          "intent": "Evaluate whether DevSecOps software configuration is reviewed frequently for efficacy.",
-          "field_key": "adt_04_devsecops_config_reviewed_frequently",
-          "evaluation_focus": "Frequent DevSecOps software configuration review"
+          "prompt": "Is DevSecOps software configuration reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether DevSecOps configuration is reviewed on a regular cadence",
+          "field_key": "adt_04_devsecops_config_reviewed_regularly",
+          "evaluation_focus": "Regular DevSecOps software configuration review"
         },
         {
           "id": "rq-adt-04-5",
-          "prompt": "Does the DevSecOps software get integrated with multiple other platforms like workload management, application health monitoring, compliance management, and vulnerability management systems to make sure applications are deployed securely?",
-          "intent": "Evaluate whether DevSecOps software integrates with workload management, monitoring, compliance, and vulnerability systems.",
+          "prompt": "Is DevSecOps software integrated with workload management, application health monitoring, compliance management, and vulnerability management systems?",
+          "intent": "Evaluate whether DevSecOps integrates with adjacent security and operations platforms",
           "field_key": "adt_04_devsecops_platform_integrations",
           "evaluation_focus": "Integration with workload management, monitoring, compliance, and vulnerability systems"
         }
@@ -139,196 +167,156 @@
     },
     {
       "capability_id": "adt-05",
-      "capability_name": "Application testing software",
+      "capability_name": "Application security testing",
       "questions": [
         {
           "id": "rq-adt-05-1",
-          "prompt": "Does the enterprise adopt application testing Software?",
-          "intent": "Evaluate whether the enterprise adopts application testing software.",
-          "field_key": "adt_05_testing_software_adopted",
-          "evaluation_focus": "Application testing software adoption"
+          "prompt": "Does the enterprise use application security testing tools that support static (SAST) and dynamic (DAST) analysis in CI/CD for all new applications?",
+          "intent": "Evaluate whether SAST and DAST run in CI/CD for new applications",
+          "field_key": "adt_05_sast_dast_cicd_all_applications",
+          "evaluation_focus": "Static and dynamic testing in CI/CD for all applications"
         },
         {
           "id": "rq-adt-05-2",
-          "prompt": "Does the software support various features like static and dynamic testing?",
-          "intent": "Evaluate whether the testing software supports static and dynamic testing features.",
-          "field_key": "adt_05_static_dynamic_testing_features",
-          "evaluation_focus": "Static and dynamic testing features"
+          "prompt": "Are static and dynamic security tests automated as part of the CI/CD pipeline with defined pass/fail gates?",
+          "intent": "Evaluate whether static and dynamic testing is automated with security gates",
+          "field_key": "adt_05_automated_sast_dast_gates",
+          "evaluation_focus": "Automated static and dynamic testing"
         },
         {
           "id": "rq-adt-05-3",
-          "prompt": "Is testing as part of the CI/CD pipeline utilized for all applications?",
-          "intent": "Evaluate whether testing in the CI/CD pipeline is utilized for all applications.",
-          "field_key": "adt_05_testing_cicd_all_applications",
-          "evaluation_focus": "Testing in CI/CD pipeline for all applications"
+          "prompt": "Can application testing tools proactively identify issues in builds based on security playbooks or threat models?",
+          "intent": "Evaluate whether proactive issue identification uses playbooks or threat models",
+          "field_key": "adt_05_proactive_issue_identification",
+          "evaluation_focus": "Proactive issue identification based on playbooks"
         },
         {
           "id": "rq-adt-05-4",
-          "prompt": "Does the application testing software have capability to perform all types of code analysis as well as manual testing?",
-          "intent": "Evaluate whether application testing software performs all types of code analysis and manual testing.",
-          "field_key": "adt_05_code_analysis_and_manual_testing",
-          "evaluation_focus": "Comprehensive code analysis and manual testing capability"
+          "prompt": "Are testing tools integrated with other platforms (for example vulnerability management or code repositories) to provide contextual analysis of findings?",
+          "intent": "Evaluate whether testing tools integrate for contextual analysis",
+          "field_key": "adt_05_testing_platform_integrations",
+          "evaluation_focus": "Integration with other platforms for contextual analysis"
         },
         {
           "id": "rq-adt-05-5",
-          "prompt": "Does the testing software configuration get reviewed frequently for efficacy?",
-          "intent": "Evaluate whether testing software configuration is reviewed frequently for efficacy.",
-          "field_key": "adt_05_testing_config_reviewed_frequently",
-          "evaluation_focus": "Frequent testing software configuration review"
-        },
-        {
-          "id": "rq-adt-05-6",
-          "prompt": "Does the testing software get integrated with multiple other platforms to provide contextual analysis based on valid tests performed on application builds?",
-          "intent": "Evaluate whether testing software integrates with other platforms for contextual analysis.",
-          "field_key": "adt_05_testing_platform_integrations",
-          "evaluation_focus": "Integration with other platforms for contextual analysis"
+          "prompt": "Does the organization use AI-assisted pre-release security analysis (for example augmented SAST triage, fuzzing guidance, or exploit-path prediction) before production deployment?",
+          "intent": "Evaluate whether AI-assisted pre-release security analysis is used",
+          "field_key": "adt_05_ai_pre_release_security_analysis",
+          "evaluation_focus": "AI-assisted pre-release security analysis"
         }
       ]
     },
     {
       "capability_id": "adt-06",
-      "capability_name": "Proactive issue identification",
+      "capability_name": "Developer access and production isolation",
       "questions": [
         {
           "id": "rq-adt-06-1",
-          "prompt": "Does the application testing software have capability to proactively identify issues in application builds based on specific playbooks?",
-          "intent": "Evaluate whether application testing software proactively identifies issues based on playbooks.",
-          "field_key": "adt_06_proactive_issue_identification",
-          "evaluation_focus": "Proactive issue identification based on playbooks"
-        },
-        {
-          "id": "rq-adt-06-2",
-          "prompt": "Can the discovery of issues and faults be automated?",
-          "intent": "Evaluate whether discovery of issues and faults can be automated.",
-          "field_key": "adt_06_automated_fault_discovery",
-          "evaluation_focus": "Automated discovery of issues and faults"
-        }
-      ]
-    },
-    {
-      "capability_id": "adt-07",
-      "capability_name": "Static Testing",
-      "questions": [
-        {
-          "id": "rq-adt-07-1",
-          "prompt": "Does the application testing software have capability to perform static testing for all new applications as part of the CI/CD pipeline?",
-          "intent": "Evaluate whether static testing is performed for all new applications in CI/CD.",
-          "field_key": "adt_07_static_testing_all_apps_cicd",
-          "evaluation_focus": "Static testing for all new applications in CI/CD"
-        },
-        {
-          "id": "rq-adt-07-2",
-          "prompt": "Can the static testing be automated?",
-          "intent": "Evaluate whether static testing can be automated.",
-          "field_key": "adt_07_static_testing_automated",
-          "evaluation_focus": "Automated static testing"
-        }
-      ]
-    },
-    {
-      "capability_id": "adt-08",
-      "capability_name": "Dynamic Testing",
-      "questions": [
-        {
-          "id": "rq-adt-08-1",
-          "prompt": "Does the application testing software have capability to perform dynamic testing for all new applications as part of the CI/CD pipeline?",
-          "intent": "Evaluate whether dynamic testing is performed for all new applications in CI/CD.",
-          "field_key": "adt_08_dynamic_testing_all_apps_cicd",
-          "evaluation_focus": "Dynamic testing for all new applications in CI/CD"
-        },
-        {
-          "id": "rq-adt-08-2",
-          "prompt": "Can the dynamic testing be automated?",
-          "intent": "Evaluate whether dynamic testing can be automated.",
-          "field_key": "adt_08_dynamic_testing_automated",
-          "evaluation_focus": "Automated dynamic testing"
-        }
-      ]
-    },
-    {
-      "capability_id": "adt-09",
-      "capability_name": "Application development and testing user management. Removal of developer access from production network",
-      "questions": [
-        {
-          "id": "rq-adt-09-1",
-          "prompt": "Does the enterprise utilize CI/CD pipelines to manage user access to developer and production environments?",
-          "intent": "Evaluate whether CI/CD pipelines manage user access to developer and production environments.",
-          "field_key": "adt_09_cicd_manages_user_access",
+          "prompt": "Do CI/CD pipelines manage user access to developer and production environments?",
+          "intent": "Evaluate whether CI/CD pipelines govern environment access",
+          "field_key": "adt_06_cicd_manages_user_access",
           "evaluation_focus": "CI/CD pipelines manage user access to developer and production environments"
         },
         {
-          "id": "rq-adt-09-2",
-          "prompt": "Are developer accounts removed from all applications once deployment to production is complete?",
-          "intent": "Evaluate whether developer accounts are removed from all applications after production deployment.",
-          "field_key": "adt_09_dev_accounts_removed_after_deployment",
-          "evaluation_focus": "Developer accounts removed from all applications after production deployment"
-        },
-        {
-          "id": "rq-adt-09-3",
-          "prompt": "Is the developer account removal performed automatically?",
-          "intent": "Evaluate whether developer account removal is performed automatically.",
-          "field_key": "adt_09_dev_account_removal_automated",
+          "id": "rq-adt-06-2",
+          "prompt": "Are developer accounts removed from all applications automatically once deployment to production is complete?",
+          "intent": "Evaluate whether developer account removal after production deployment is automated",
+          "field_key": "adt_06_dev_accounts_removed_automatically",
           "evaluation_focus": "Automated developer account removal"
         },
         {
-          "id": "rq-adt-09-4",
-          "prompt": "Does the code scanning software detect developer account anomalies in production code and highlight them to the vulnerability management system for remediation?",
-          "intent": "Evaluate whether code scanning detects developer account anomalies in production code for remediation.",
-          "field_key": "adt_09_code_scanning_dev_account_anomalies",
+          "id": "rq-adt-06-3",
+          "prompt": "Does code scanning detect developer account anomalies or credentials embedded in production code and route findings to vulnerability management for remediation?",
+          "intent": "Evaluate whether code scanning detects dev account anomalies in production code",
+          "field_key": "adt_06_code_scanning_dev_account_anomalies",
           "evaluation_focus": "Code scanning detects dev account anomalies in production code"
         }
       ]
     },
     {
-      "capability_id": "adt-10",
-      "capability_name": "Application development owners and business analysts",
+      "capability_id": "adt-07",
+      "capability_name": "DevSecOps architect",
       "questions": [
         {
-          "id": "rq-adt-10-1",
-          "prompt": "Does the enterprise have clear separation of duties for all application business owners and developers?",
-          "intent": "Evaluate whether clear separation of duties exists for all application business owners and developers.",
-          "field_key": "adt_10_separation_of_duties_all_apps",
-          "evaluation_focus": "Separation of duties for all application business owners and developers"
-        },
-        {
-          "id": "rq-adt-10-2",
-          "prompt": "Does the enterprise formally hire business analysts to make sure application requirements are reviewed and translated accurately to development features?",
-          "intent": "Evaluate whether the enterprise formally hires business analysts for requirements review and translation.",
-          "field_key": "adt_10_formal_business_analysts",
-          "evaluation_focus": "Formal business analysts for requirements review and translation"
+          "id": "rq-adt-07-1",
+          "prompt": "Does the enterprise have a formal DevSecOps architect responsible for secure design standards across enterprise-wide applications?",
+          "intent": "Evaluate whether a formal DevSecOps architect supports enterprise applications",
+          "field_key": "adt_07_devsecops_architect",
+          "evaluation_focus": "Formal DevSecOps architect for enterprise-wide applications"
         }
       ]
     },
     {
-      "capability_id": "adt-11",
-      "capability_name": "Application Architect",
+      "capability_id": "adt-08",
+      "capability_name": "Expert and third-party code review",
       "questions": [
         {
-          "id": "rq-adt-11-1",
-          "prompt": "Does the enterprise formally hire a DevSecOps Architect to cater to enterprise-wide applications?",
-          "intent": "Evaluate whether the enterprise formally hires a DevSecOps Architect for enterprise-wide applications.",
-          "field_key": "adt_11_devsecops_architect",
-          "evaluation_focus": "Formal DevSecOps Architect for enterprise-wide applications"
-        }
-      ]
-    },
-    {
-      "capability_id": "adt-12",
-      "capability_name": "Expert Analysis",
-      "questions": [
-        {
-          "id": "rq-adt-12-1",
-          "prompt": "Does the enterprise formally hire external experts to review code for all applications?",
-          "intent": "Evaluate whether the enterprise formally hires external experts to review code.",
-          "field_key": "adt_12_external_expert_code_review",
+          "id": "rq-adt-08-1",
+          "prompt": "Does the enterprise engage external experts to formally review code for all applications or critical applications?",
+          "intent": "Evaluate whether external expert code review is performed for in-scope applications",
+          "field_key": "adt_08_external_expert_code_review",
           "evaluation_focus": "Formal external expert code review"
         },
         {
-          "id": "rq-adt-12-2",
-          "prompt": "Are external code reviews performed formally for all applications or only critical ones?",
-          "intent": "Evaluate whether external code reviews are performed for all applications or only critical ones.",
-          "field_key": "adt_12_external_review_scope",
-          "evaluation_focus": "External code review scope for all or critical applications"
+          "id": "rq-adt-08-2",
+          "prompt": "Does external or peer code review explicitly cover AI-generated or AI-assisted code paths and high-risk changes before release?",
+          "intent": "Evaluate whether review covers AI-generated or AI-assisted code",
+          "field_key": "adt_08_ai_generated_code_review",
+          "evaluation_focus": "Review coverage for AI-generated or AI-assisted code"
+        }
+      ]
+    },
+    {
+      "capability_id": "adt-09",
+      "capability_name": "Software supply chain security",
+      "questions": [
+        {
+          "id": "rq-adt-09-1",
+          "prompt": "Does the CI/CD pipeline generate a software bill of materials (SBOM) for application builds before release?",
+          "intent": "Evaluate whether SBOMs are generated in CI/CD",
+          "field_key": "adt_09_sbom_generation_in_cicd",
+          "evaluation_focus": "Software bill of materials (SBOM) generation in CI/CD"
+        },
+        {
+          "id": "rq-adt-09-2",
+          "prompt": "Are open-source and third-party dependencies scanned for known vulnerabilities as part of the CI/CD pipeline?",
+          "intent": "Evaluate whether dependency vulnerability scanning runs in CI/CD",
+          "field_key": "adt_09_dependency_vulnerability_scanning",
+          "evaluation_focus": "Dependency and open-source vulnerability scanning in pipeline"
+        },
+        {
+          "id": "rq-adt-09-3",
+          "prompt": "Are policies enforced to block or remediate releases that include prohibited, outdated, or unapproved third-party components?",
+          "intent": "Evaluate whether third-party component policies are enforced before release",
+          "field_key": "adt_09_third_party_component_policy",
+          "evaluation_focus": "Third-party component policy enforcement before release"
+        }
+      ]
+    },
+    {
+      "capability_id": "adt-10",
+      "capability_name": "AI-assisted development governance",
+      "questions": [
+        {
+          "id": "rq-adt-10-1",
+          "prompt": "Does the organization maintain a policy distinguishing approved AI coding tools from shadow or unapproved tools used in development?",
+          "intent": "Evaluate whether approved versus shadow AI coding tools are governed",
+          "field_key": "adt_10_approved_vs_shadow_ai_coding_tools",
+          "evaluation_focus": "Approved versus shadow AI coding tool policy"
+        },
+        {
+          "id": "rq-adt-10-2",
+          "prompt": "Are AI-generated or AI-assisted code changes subject to the same review, testing, and security gate requirements as human-written code?",
+          "intent": "Evaluate whether AI-generated code meets review and testing requirements",
+          "field_key": "adt_10_ai_generated_code_review_requirements",
+          "evaluation_focus": "Review and testing requirements for AI-generated code"
+        },
+        {
+          "id": "rq-adt-10-3",
+          "prompt": "Are guardrails in place for AI use in development and testing workflows (for example prohibiting secrets in prompts, restricting training data exposure, or limiting autonomous deployment)?",
+          "intent": "Evaluate whether guardrails govern AI use in development workflows",
+          "field_key": "adt_10_ai_dev_workflow_guardrails",
+          "evaluation_focus": "Guardrails for AI use in development and testing workflows"
         }
       ]
     }

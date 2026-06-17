@@ -1,16 +1,17 @@
 {
   "service_id": "security-operations",
   "service_name": "Security Operations",
-  "version": "1.0",
-  "description": "Evaluates security operations (SOC) maturity\u2014service governance, KPIs/KRIs, SOC systems and team, escalation, behavioural analysis, correlation, compliance visibility, scanning, real-time monitoring, threat containment, threat intelligence, and trend analysis.",
+  "version": "1.1",
+  "description": "Evaluates security operations (SOC) maturity—service governance, KPIs/KRIs, SOC systems and team, escalation, unified detection and monitoring, correlation, cross-service visibility, threat containment, threat intelligence, trend analysis, and AI SecOps.",
   "capabilities": [
     {
       "id": "soc-00",
       "name": "Service exists and is in good condition",
-      "description": "A SOC service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "A SOC service exists, is scoped appropriately, and is reviewed on a regular cadence for efficacy.",
       "evaluation_focus": [
         "Enterprise SOC service exists",
-        "Frequent SOC service efficacy review"
+        "Regular SOC service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +19,14 @@
     {
       "id": "soc-01",
       "name": "KPIs/KRIs",
-      "description": "SOC KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "SOC KPIs and KRIs—including mean time to detect (MTTD), mean time to respond (MTTR), alert fidelity, and AI triage accuracy—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for SOC service",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Mean time to detect and respond metrics",
+        "Alert fidelity and false-positive rates",
+        "AI triage accuracy and analyst efficiency metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,13 +34,15 @@
     {
       "id": "soc-02",
       "name": "SOC System",
-      "description": "A unified SOC system processes logs enterprise-wide, deploys SOAR, is reviewed, and integrates with other security systems.",
+      "short_name": "SOC system",
+      "description": "A unified SOC system processes logs enterprise-wide, deploys SOAR, supports trend dashboards, is reviewed quarterly, and integrates with other security systems.",
       "evaluation_focus": [
         "Unified SOC system processing raw logs",
         "Enterprise-wide or multiple SOC deployment scope",
         "SOAR initiatives as part of SOC",
         "SOC config and log processing review",
-        "Integration with vulnerability, patch management, and enforcement points"
+        "Integration with vulnerability, patch management, and enforcement points",
+        "Enterprise trend identification on SOC dashboards"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -43,6 +50,7 @@
     {
       "id": "soc-03",
       "name": "SOC team",
+      "short_name": "SOC team",
       "description": "A clear T1, T2, and T3 analyst hierarchy captures anomalies with defined FTE or contractor staffing.",
       "evaluation_focus": [
         "T1, T2, and T3 analyst hierarchy for incident analysis",
@@ -54,23 +62,28 @@
     {
       "id": "soc-04",
       "name": "Escalation process",
-      "description": "A formalized incident escalation process is automated where possible and reviewed frequently.",
+      "short_name": "escalation",
+      "description": "A formalized incident escalation process is automated where possible and reviewed at least quarterly.",
       "evaluation_focus": [
         "Formalized documented incident escalation process",
         "Automated incident escalation by SOC system",
-        "Frequent incident escalation process review"
+        "Regular incident escalation process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
     },
     {
       "id": "soc-05",
-      "name": "Behavioural Analysis",
-      "description": "The SOC system performs behavioural analysis automatically with frequent accuracy review.",
+      "name": "SOC detection and monitoring",
+      "short_name": "detection and monitoring",
+      "description": "The SOC performs behavioural analysis, software-based scanning, and real-time log monitoring with quarterly accuracy review.",
       "evaluation_focus": [
         "Behavioural analysis capability",
         "Automatic behavioural analysis",
-        "Frequent behavioural analysis results review"
+        "Software-based scanning capability",
+        "Automatic software-based scanning",
+        "Real-time log monitoring capability",
+        "Regular detection accuracy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -78,6 +91,7 @@
     {
       "id": "soc-06",
       "name": "Correlation",
+      "short_name": "correlation",
       "description": "The SOC correlates identity, device, network, threat, application, and data logs with threat hunting activities.",
       "evaluation_focus": [
         "Identity log correlation",
@@ -93,39 +107,20 @@
     },
     {
       "id": "soc-07",
-      "name": "Device compliance Visibility",
-      "description": "Compliance visibility logs are sent to the SOC for correlation.",
+      "name": "Cross-service visibility and KPI monitoring",
+      "short_name": "cross-service visibility",
+      "description": "Compliance visibility logs and KPI/KRI artifacts from other management services feed the SOC for correlation and measurement.",
       "evaluation_focus": [
-        "Compliance visibility logs sent to SOC"
+        "Compliance visibility logs sent to SOC",
+        "SOC monitors KPI/KRI artifacts for other management services"
       ],
       "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Process/Service"
     },
     {
       "id": "soc-08",
-      "name": "Software based scanning",
-      "description": "The SOC performs software-based scanning automatically with frequent accuracy review.",
-      "evaluation_focus": [
-        "Software-based scanning capability",
-        "Automatic software-based scanning",
-        "Frequent software scanning results review"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "soc-09",
-      "name": "Real time monitoring",
-      "description": "The SOC monitors logs in real time.",
-      "evaluation_focus": [
-        "Real-time log monitoring capability"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "soc-10",
-      "name": "Rapid Threat containment",
+      "name": "Rapid threat containment",
+      "short_name": "threat containment",
       "description": "The SOC blocks access based on compromise threats with automatic blocking and unblocking.",
       "evaluation_focus": [
         "Block access based on compromise threats",
@@ -135,36 +130,28 @@
       "pillar": "Technology"
     },
     {
-      "id": "soc-11",
-      "name": "Monitoring KPI/KRI of various management services",
-      "description": "The SOC monitors artifacts necessary for other services' KPIs and KRIs.",
-      "evaluation_focus": [
-        "SOC monitors KPI/KRI artifacts for other management services"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Process/Service"
-    },
-    {
-      "id": "soc-12",
-      "name": "Threat intelligence Management",
-      "description": "A threat intelligence platform ingests information automatically, is reviewed, and integrates with SOC and other segments.",
+      "id": "soc-09",
+      "name": "Threat intelligence management",
+      "short_name": "threat intelligence",
+      "description": "A threat intelligence platform ingests information automatically, is reviewed quarterly, and integrates with SOC and other segments.",
       "evaluation_focus": [
         "Threat intelligence platform and management service",
         "Automatic threat intelligence ingestion and remediation recommendations",
-        "Frequent threat intelligence accuracy and relevance review",
+        "Regular threat intelligence accuracy and relevance review",
         "Threat intelligence integration with SOC and other segments"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
-      "id": "soc-13",
-      "name": "Application trend analysis with ADM",
-      "description": "The SOC identifies enterprise trends automatically on dashboards with frequent accuracy review.",
+      "id": "soc-10",
+      "name": "AI SecOps",
+      "short_name": "AI SecOps",
+      "description": "AI assists alert triage, investigation summarization, and playbook selection while maintaining analyst oversight and governance.",
       "evaluation_focus": [
-        "Identify enterprise trends on SOC dashboard",
-        "Automatic trend identification",
-        "Frequent trend accuracy review"
+        "AI-assisted alert triage and prioritization",
+        "AI-generated investigation summaries with analyst review",
+        "Governance for AI use in SOC workflows"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"

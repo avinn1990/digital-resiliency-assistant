@@ -17,10 +17,10 @@ class RoleRegistryTests(unittest.TestCase):
             resolve_role_id("CISO / Head of Security"), "ciso-head-of-security"
         )
 
-    def test_ciso_role_maps_to_both_services(self) -> None:
+    def test_ciso_role_maps_to_strategy_and_governance_services(self) -> None:
         service_ids = services_for_role_id("ciso-head-of-security")
         self.assertIn("information-security-strategy-planning", service_ids)
-        self.assertIn("enterprise-security-governance", service_ids)
+        self.assertIn("policy-compliance-management", service_ids)
 
     def test_display_name_for_role_id(self) -> None:
         self.assertEqual(
@@ -35,9 +35,9 @@ class RoleRegistryTests(unittest.TestCase):
 
     def test_service_role_ids_present(self) -> None:
         iss_role_ids = role_ids_for_service("information-security-strategy-planning")
-        esg_role_ids = role_ids_for_service("enterprise-security-governance")
+        pcm_role_ids = role_ids_for_service("policy-compliance-management")
         self.assertIn("ciso-head-of-security", iss_role_ids)
-        self.assertIn("ciso-head-of-security", esg_role_ids)
+        self.assertIn("ciso-head-of-security", pcm_role_ids)
         self.assertNotIn("security-pmo-portfolio-manager", iss_role_ids)
 
     def test_deprecated_role_ids_normalize(self) -> None:

@@ -15,10 +15,10 @@
         },
         {
           "id": "rq-ctm-00-2",
-          "prompt": "Is the container management service reviewed frequently for efficacy?",
-          "intent": "Evaluate whether the container management service is reviewed frequently for efficacy.",
+          "prompt": "Is the container management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the container management service is reviewed at least quarterly for efficacy.",
           "field_key": "ctm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent container management service efficacy review"
+          "evaluation_focus": "Regular container management service efficacy review"
         }
       ]
     },
@@ -35,10 +35,10 @@
         },
         {
           "id": "rq-ctm-01-2",
-          "prompt": "Are the KPIs and KRIs for the Container Management reviewed frequently?",
-          "intent": "Evaluate whether container management KPIs and KRIs are reviewed frequently.",
+          "prompt": "Are the KPIs and KRIs for the Container Management reviewed at least quarterly?",
+          "intent": "Evaluate whether container management KPIs and KRIs are reviewed at least quarterly.",
           "field_key": "ctm_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "evaluation_focus": "Regular KPI/KRI review"
         }
       ]
     },
@@ -62,10 +62,10 @@
         },
         {
           "id": "rq-ctm-02-3",
-          "prompt": "Are the container management policies reviewed frequently for efficacy?",
-          "intent": "Evaluate whether container management policies are reviewed frequently for efficacy.",
+          "prompt": "Are the container management policies reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether container management policies are reviewed at least quarterly for efficacy.",
           "field_key": "ctm_02_policies_reviewed_frequently",
-          "evaluation_focus": "Frequent container management policy review"
+          "evaluation_focus": "Regular container management policy review"
         }
       ]
     },
@@ -96,10 +96,10 @@
         },
         {
           "id": "rq-ctm-03-4",
-          "prompt": "Does the container management and orchestration configuration get reviewed frequently for efficacy?",
-          "intent": "Evaluate whether container management and orchestration configuration is reviewed frequently.",
+          "prompt": "Does the container management and orchestration configuration get reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether container management and orchestration configuration is reviewed at least quarterly.",
           "field_key": "ctm_03_config_reviewed_frequently",
-          "evaluation_focus": "Frequent container management and orchestration configuration review"
+          "evaluation_focus": "Regular container management and orchestration configuration review"
         },
         {
           "id": "rq-ctm-03-5",
@@ -107,6 +107,13 @@
           "intent": "Evaluate whether the container platform integrates with asset, vulnerability, and compliance systems.",
           "field_key": "ctm_03_platform_integrations",
           "evaluation_focus": "Integration with asset, vulnerability, and compliance management systems"
+        },
+        {
+          "id": "rq-ctm-03-6",
+          "prompt": "Does the organization verify container image provenance and block deployment of images from untrusted registries or with known supply chain risk?",
+          "intent": "Evaluate container image provenance and supply chain controls",
+          "field_key": "ctm_03_image_provenance_supply_chain",
+          "evaluation_focus": "Container image provenance and supply chain verification"
         }
       ]
     },
@@ -164,10 +171,10 @@
         },
         {
           "id": "rq-ctm-05-4",
-          "prompt": "Are container security practices reviewed frequently to measure efficacy?",
-          "intent": "Evaluate whether container security practices are reviewed frequently.",
+          "prompt": "Are container security practices reviewed at least quarterly to measure efficacy?",
+          "intent": "Evaluate whether container security practices are reviewed at least quarterly.",
           "field_key": "ctm_05_security_practices_reviewed",
-          "evaluation_focus": "Frequent container security practice review"
+          "evaluation_focus": "Regular container security practice review"
         },
         {
           "id": "rq-ctm-05-5",

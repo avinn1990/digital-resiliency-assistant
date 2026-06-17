@@ -1,16 +1,16 @@
 {
   "service_id": "container-management",
   "service_name": "Container Management",
-  "version": "1.0",
-  "description": "Evaluates container management maturity—service governance, KPIs/KRIs, lifecycle policies, container management and orchestration software, resource management, and container security.",
+  "description": "Evaluates container management maturity—service governance, KPIs/KRIs, lifecycle policies, container management and orchestration software, supply chain image provenance, resource management, and container security.",
   "capabilities": [
     {
       "id": "ctm-00",
       "name": "Service exists and is in good condition",
-      "description": "A container management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "A container management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise container management service exists",
-        "Frequent container management service efficacy review"
+        "Regular container management service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +18,12 @@
     {
       "id": "ctm-01",
       "name": "KPIs/KRIs",
-      "description": "Container management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Container management KPIs and KRIs—including image vulnerability age, cluster compliance, and resource efficiency—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for container management",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Image vulnerability and cluster compliance metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,11 +31,12 @@
     {
       "id": "ctm-02",
       "name": "Container testing, development and deployment policies",
-      "description": "Enterprise-wide container management and lifecycle policies apply across the organization and are reviewed frequently.",
+      "short_name": "container lifecycle policies",
+      "description": "Enterprise-wide container management and lifecycle policies apply across the organization and are reviewed at least quarterly.",
       "evaluation_focus": [
         "Enterprise-wide container management and lifecycle policies",
         "Enterprise-wide policy application",
-        "Frequent container management policy review"
+        "Regular container management policy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -41,13 +44,15 @@
     {
       "id": "ctm-03",
       "name": "Container management software",
-      "description": "Container management and orchestration software manages container infrastructure enterprise-wide, automates lifecycle, is reviewed frequently, and integrates with asset, vulnerability, and compliance systems.",
+      "short_name": "orchestration platform",
+      "description": "Container management and orchestration software manages container infrastructure enterprise-wide, automates lifecycle, enforces supply chain image provenance, and integrates with asset, vulnerability, and compliance systems.",
       "evaluation_focus": [
         "Container management software for container infrastructure",
         "Enterprise-specific or multi-type orchestrator deployment",
         "Automated container lifecycle management",
-        "Frequent container management and orchestration configuration review",
-        "Integration with asset, vulnerability, and compliance management systems"
+        "Regular container management and orchestration configuration review",
+        "Integration with asset, vulnerability, and compliance management systems",
+        "Container image provenance and supply chain verification"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -55,6 +60,7 @@
     {
       "id": "ctm-04",
       "name": "Container Resource management",
+      "short_name": "resource management",
       "description": "The container management system performs efficient resource management based on policies for all or critical containers with automated deployment of best practices.",
       "evaluation_focus": [
         "Efficient resource management based on container policies",
@@ -67,18 +73,30 @@
     {
       "id": "ctm-05",
       "name": "Container Security",
-      "description": "Container security deploys function-specific controls across the ecosystem, supports automated response to compromises and policy changes, is reviewed frequently, and may be native or integrated with external providers.",
+      "short_name": "container security",
+      "description": "Container security deploys function-specific controls across the ecosystem, supports automated response to compromises and policy changes, and is reviewed at least quarterly.",
       "evaluation_focus": [
         "Function-specific security for container systems",
         "Container security scope across ecosystem or specific vendors",
         "Automated container security deployment",
-        "Frequent container security practice review",
-        "Native or externally integrated container security features"
+        "Regular container security practice review",
+        "Native or externally integrated container security features",
+        "Runtime threat detection and policy enforcement for workloads"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     }
   ],
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ],
+  "version": "1.1",
   "evaluation": {
     "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
     "normalized_scale": 5,
@@ -131,14 +149,5 @@
     ],
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
-  },
-  "target_audience_role_ids": [
-    "it-director-head-of-it",
-    "security-architecture-lead",
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "grc-lead",
-    "compliance-audit-lead",
-    "security-program-strategy-lead"
-  ]
+  }
 }

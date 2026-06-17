@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { CanonicalRole, EvaluationServiceSummary, UserProfile } from "../types";
 import { roleDisplayName, servicesForRole } from "../roles";
+import { groupServicesByDomain } from "../serviceDomains";
 
 type Props = {
   profile: UserProfile;
@@ -58,6 +59,11 @@ export function ServicesPage({
       .map(([k]) => k);
   }, [selected]);
 
+  const groupedServices = useMemo(
+    () => groupServicesByDomain(visibleServices),
+    [visibleServices]
+  );
+
   const canContinue = selectedIds.length > 0 && !servicesLoading;
 
   return (
@@ -101,36 +107,41 @@ export function ServicesPage({
             </div>
           ) : (
             <div className="af-service-list">
-              {visibleServices.map((s) => (
-                <label key={s.service_id} className="af-service relevant">
-                  <input
-                    type="checkbox"
-                    checked={!!selected[s.service_id]}
-                    onChange={(e) =>
-                      setSelected((prev) => ({
-                        ...prev,
-                        [s.service_id]: e.target.checked,
-                      }))
-                    }
-                  />
-                  <div className="af-service-main">
-                    <div className="af-service-title">
-                      {s.service_name ?? s.service_id}
-                      {s.version ? (
-                        <span className="af-pill">v{s.version}</span>
-                      ) : null}
-                    </div>
-                    {s.description && (
-                      <div className="af-service-desc">{s.description}</div>
-                    )}
-                    <div className="af-service-meta">
-                      <span className="af-mono">{s.service_id}</span>
-                      {!noRoleMapping && (
-                        <span className="af-pill ok">Mapped to your role</span>
-                      )}
-                    </div>
-                  </div>
-                </label>
+              {groupedServices.map(({ domain, services: domainServices }) => (
+                <section key={domain} className="af-service-domain-group">
+                  <h2 className="af-service-domain-title">{domain}</h2>
+                  {domainServices.map((s) => (
+                    <label key={s.service_id} className="af-service relevant">
+                      <input
+                        type="checkbox"
+                        checked={!!selected[s.service_id]}
+                        onChange={(e) =>
+                          setSelected((prev) => ({
+                            ...prev,
+                            [s.service_id]: e.target.checked,
+                          }))
+                        }
+                      />
+                      <div className="af-service-main">
+                        <div className="af-service-title">
+                          {s.service_name ?? s.service_id}
+                          {s.version ? (
+                            <span className="af-pill">v{s.version}</span>
+                          ) : null}
+                        </div>
+                        {s.description && (
+                          <div className="af-service-desc">{s.description}</div>
+                        )}
+                        <div className="af-service-meta">
+                          <span className="af-mono">{s.service_id}</span>
+                          {!noRoleMapping && (
+                            <span className="af-pill ok">Mapped to your role</span>
+                          )}
+                        </div>
+                      </div>
+                    </label>
+                  ))}
+                </section>
               ))}
             </div>
           )}

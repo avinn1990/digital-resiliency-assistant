@@ -4,21 +4,21 @@
   "capability_questions": [
     {
       "capability_id": "bcm-00",
-      "capability_name": "Service exists and in good condition",
+      "capability_name": "Service exists and is in good condition",
       "questions": [
         {
           "id": "rq-bcm-00-1",
           "prompt": "Does the enterprise have a Business Continuity Management service?",
-          "intent": "Evaluate: Does the enterprise have a Business Continuity Management service.",
+          "intent": "Evaluate whether an enterprise business continuity management service exists.",
           "field_key": "bcm_00_business_continuity_management_service_exists",
           "evaluation_focus": "Enterprise business continuity management service exists"
         },
         {
           "id": "rq-bcm-00-2",
-          "prompt": "Is the Business Continuity Management service reviewed frequently for efficacy?",
-          "intent": "Evaluate: Is the Business Continuity Management service reviewed frequently for efficacy.",
-          "field_key": "bcm_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent business continuity management service efficacy review"
+          "prompt": "Is the Business Continuity Management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the BCM service is reviewed on a regular quarterly cadence.",
+          "field_key": "bcm_00_service_reviewed_quarterly",
+          "evaluation_focus": "Regular business continuity management service efficacy review"
         }
       ]
     },
@@ -28,17 +28,24 @@
       "questions": [
         {
           "id": "rq-bcm-01-1",
-          "prompt": "Does the enterprise formalize and document all KPIs and KRIs for the BCP service?",
-          "intent": "Evaluate: Does the enterprise formalize and document all KPIs and KRIs for the BCP service.",
+          "prompt": "Does the enterprise formalize and document KPIs and KRIs for the BCP service—including RTO/RPO attainment, exercise completion, and recovery test success?",
+          "intent": "Evaluate whether BCM KPIs and KRIs are documented with recovery-oriented metrics.",
           "field_key": "bcm_01_kpis_kris_documented",
           "evaluation_focus": "Documented KPIs and KRIs for the BCP service"
         },
         {
           "id": "rq-bcm-01-2",
-          "prompt": "Are the KPIs and KRIs for the BCP service reviewed frequently?",
-          "intent": "Evaluate: Are the KPIs and KRIs for the BCP service reviewed frequently.",
-          "field_key": "bcm_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review for the BCP service"
+          "prompt": "Are the KPIs and KRIs for the BCP service reviewed at least quarterly?",
+          "intent": "Evaluate whether BCM KPIs and KRIs are reviewed on a quarterly cadence.",
+          "field_key": "bcm_01_kpis_reviewed_quarterly",
+          "evaluation_focus": "Regular KPI/KRI review for the BCP service"
+        },
+        {
+          "id": "rq-bcm-01-3",
+          "prompt": "Do you track RTO/RPO attainment and recovery test outcomes as part of BCM metrics?",
+          "intent": "Evaluate whether RTO, RPO, and recovery test metrics are measured.",
+          "field_key": "bcm_01_rto_rpo_recovery_metrics",
+          "evaluation_focus": "RTO and RPO attainment metrics"
         }
       ]
     },
@@ -49,16 +56,16 @@
         {
           "id": "rq-bcm-02-1",
           "prompt": "Does the enterprise formalize and document business continuity management and operational resilience policies and procedures?",
-          "intent": "Evaluate: Does the enterprise formalize and document business continuity management and operational resilience policies and procedures.",
+          "intent": "Evaluate whether BCM policies and procedures are formalized and documented.",
           "field_key": "bcm_02_bcp_policies_procedures_documented",
           "evaluation_focus": "Formalized documented business continuity and operational resilience policies and procedures"
         },
         {
           "id": "rq-bcm-02-2",
-          "prompt": "Does the enterprise review and update the policies and procedures at least annually?",
-          "intent": "Evaluate: Does the enterprise review and update the policies and procedures at least annually.",
-          "field_key": "bcm_02_policies_updated_annually",
-          "evaluation_focus": "Annual or more frequent review and update of policies and procedures"
+          "prompt": "Does the enterprise review and update BCM policies and procedures at least quarterly?",
+          "intent": "Evaluate whether BCM policies and procedures are reviewed quarterly.",
+          "field_key": "bcm_02_policies_updated_quarterly",
+          "evaluation_focus": "Regular review and update of policies and procedures"
         }
       ]
     },
@@ -68,17 +75,17 @@
       "questions": [
         {
           "id": "rq-bcm-03-1",
-          "prompt": "Does the enterprise have strategies to reduce the impact of, withstand, and recover from business disruptions within risk appetite?",
-          "intent": "Evaluate: Does the enterprise have strategies to reduce the impact of, withstand, and recover from business disruptions within risk appetite.",
+          "prompt": "Does the enterprise have strategies to reduce the impact of, withstand, and recover from business disruptions—including cyber and ransomware events—within risk appetite?",
+          "intent": "Evaluate whether BCM strategy addresses cyber and ransomware disruption scenarios within risk appetite.",
           "field_key": "bcm_03_bcp_strategy_within_risk_appetite",
           "evaluation_focus": "Strategies to reduce impact, withstand, and recover from business disruptions within risk appetite"
         },
         {
           "id": "rq-bcm-03-2",
-          "prompt": "Does the BCP strategy get reviewed frequently for efficacy?",
-          "intent": "Evaluate: Does the BCP strategy get reviewed frequently for efficacy.",
-          "field_key": "bcm_03_bcp_strategy_reviewed_frequently",
-          "evaluation_focus": "Frequent BCP strategy efficacy review"
+          "prompt": "Is the BCP strategy reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether the BCP strategy is reviewed on a quarterly cadence.",
+          "field_key": "bcm_03_bcp_strategy_reviewed_quarterly",
+          "evaluation_focus": "Regular BCP strategy efficacy review"
         }
       ]
     },
@@ -88,17 +95,17 @@
       "questions": [
         {
           "id": "rq-bcm-04-1",
-          "prompt": "Does the enterprise formalize and document a business continuity plan based on the results of the operational resilience strategies and capabilities?",
-          "intent": "Evaluate: Does the enterprise formalize and document a business continuity plan based on the results of the operational resilience strategies and capabilities.",
+          "prompt": "Does the enterprise formalize and document a business continuity plan based on operational resilience strategies and capabilities?",
+          "intent": "Evaluate whether a formal business continuity plan exists based on resilience strategies.",
           "field_key": "bcm_04_business_continuity_plan_documented",
           "evaluation_focus": "Formalized documented business continuity plan based on operational resilience strategies and capabilities"
         },
         {
           "id": "rq-bcm-04-2",
-          "prompt": "How frequently is the business continuity plan reviewed?",
-          "intent": "Evaluate: How frequently is the business continuity plan reviewed.",
-          "field_key": "bcm_04_business_continuity_plan_review_cadence",
-          "evaluation_focus": "Defined review cadence for the business continuity plan"
+          "prompt": "Is the business continuity plan reviewed at least quarterly?",
+          "intent": "Evaluate whether the business continuity plan is reviewed quarterly.",
+          "field_key": "bcm_04_business_continuity_plan_review_quarterly",
+          "evaluation_focus": "Regular review cadence for the business continuity plan"
         }
       ]
     },
@@ -109,21 +116,21 @@
         {
           "id": "rq-bcm-05-1",
           "prompt": "Does the enterprise exercise and test business continuity and operational resilience plans at least annually or upon significant changes?",
-          "intent": "Evaluate: Does the enterprise exercise and test business continuity and operational resilience plans at least annually or upon significant changes.",
+          "intent": "Evaluate whether BCP and operational resilience plans are exercised annually or on change.",
           "field_key": "bcm_05_plans_exercised_annually",
           "evaluation_focus": "Annual or change-triggered exercise and testing of business continuity and operational resilience plans"
         },
         {
           "id": "rq-bcm-05-2",
-          "prompt": "Are the business continuity and operational resilience plans reviewed frequently for efficacy?",
-          "intent": "Evaluate: Are the business continuity and operational resilience plans reviewed frequently for efficacy.",
-          "field_key": "bcm_05_plans_reviewed_frequently",
-          "evaluation_focus": "Frequent review of business continuity and operational resilience plans for efficacy"
+          "prompt": "Are business continuity and operational resilience plans reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether BCP plans are reviewed quarterly for efficacy.",
+          "field_key": "bcm_05_plans_reviewed_quarterly",
+          "evaluation_focus": "Regular review of business continuity and operational resilience plans for efficacy"
         },
         {
           "id": "rq-bcm-05-3",
-          "prompt": "Are business continuity and operational resilience plans and processes automated?",
-          "intent": "Evaluate: Are business continuity and operational resilience plans and processes automated.",
+          "prompt": "Are business continuity and operational resilience plans and processes automated where appropriate?",
+          "intent": "Evaluate whether BCM plans and processes are automated.",
           "field_key": "bcm_05_plans_and_processes_automated",
           "evaluation_focus": "Automation of business continuity and operational resilience plans and processes"
         }
@@ -135,50 +142,71 @@
       "questions": [
         {
           "id": "rq-bcm-06-1",
-          "prompt": "Does the enterprise have communication with stakeholders and participants in the course of business continuity and resilience procedures?",
-          "intent": "Evaluate: Does the enterprise have communication with stakeholders and participants in the course of business continuity and resilience procedures.",
+          "prompt": "Does the enterprise have communication plans for stakeholders and participants during business continuity and resilience procedures?",
+          "intent": "Evaluate whether stakeholder communication plans exist for BCM procedures.",
           "field_key": "bcm_06_stakeholder_communication",
           "evaluation_focus": "Communication with stakeholders and participants during business continuity and resilience procedures"
         },
         {
           "id": "rq-bcm-06-2",
-          "prompt": "Are the communication plans reviewed frequently for efficacy?",
-          "intent": "Evaluate: Are the communication plans reviewed frequently for efficacy.",
-          "field_key": "bcm_06_communication_plans_reviewed_frequently",
-          "evaluation_focus": "Frequent communication plan efficacy review"
+          "prompt": "Are BCM communication plans reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate whether communication plans are reviewed quarterly.",
+          "field_key": "bcm_06_communication_plans_reviewed_quarterly",
+          "evaluation_focus": "Regular communication plan efficacy review"
         }
       ]
     },
     {
       "capability_id": "bcm-07",
-      "capability_name": "Disaster Response Plan",
+      "capability_name": "Disaster response plan and exercises",
       "questions": [
         {
           "id": "rq-bcm-07-1",
           "prompt": "Does the enterprise formalize and document a disaster response plan to recover from natural and man-made disasters?",
-          "intent": "Evaluate: Does the enterprise formalize and document a disaster response plan to recover from natural and man-made disasters.",
+          "intent": "Evaluate whether a formal disaster response plan is documented.",
           "field_key": "bcm_07_disaster_response_plan_documented",
           "evaluation_focus": "Formalized documented disaster response plan for natural and man-made disasters"
         },
         {
           "id": "rq-bcm-07-2",
-          "prompt": "Does the enterprise update the plan at least annually or upon significant changes?",
-          "intent": "Evaluate: Does the enterprise update the plan at least annually or upon significant changes.",
+          "prompt": "Is the disaster response plan updated at least quarterly or upon significant changes?",
+          "intent": "Evaluate whether the disaster response plan is updated quarterly or on change.",
           "field_key": "bcm_07_disaster_response_plan_updated",
-          "evaluation_focus": "Annual or change-triggered update of the disaster response plan"
+          "evaluation_focus": "Regular or change-triggered update of the disaster response plan"
+        },
+        {
+          "id": "rq-bcm-07-3",
+          "prompt": "Does the enterprise exercise the disaster response plan annually or upon significant changes, including coordination with local emergency authorities where possible?",
+          "intent": "Evaluate whether disaster response plans are exercised with external coordination where possible.",
+          "field_key": "bcm_07_disaster_response_plan_exercised",
+          "evaluation_focus": "Annual or change-triggered disaster response plan exercise including local emergency authorities where possible"
         }
       ]
     },
     {
       "capability_id": "bcm-08",
-      "capability_name": "Response Plan Exercise",
+      "capability_name": "Cyber resilience and ransomware recovery",
       "questions": [
         {
           "id": "rq-bcm-08-1",
-          "prompt": "Does the enterprise exercise the disaster response plan annually or upon significant changes, including if possible local emergency authorities?",
-          "intent": "Evaluate: Does the enterprise exercise the disaster response plan annually or upon significant changes, including if possible local emergency authorities.",
-          "field_key": "bcm_08_disaster_response_plan_exercised",
-          "evaluation_focus": "Annual or change-triggered disaster response plan exercise including local emergency authorities where possible"
+          "prompt": "Does the enterprise have documented cyber resilience and ransomware recovery playbooks?",
+          "intent": "Evaluate whether cyber resilience and ransomware recovery playbooks are documented.",
+          "field_key": "bcm_08_cyber_resilience_playbooks",
+          "evaluation_focus": "Documented cyber resilience and ransomware recovery playbooks"
+        },
+        {
+          "id": "rq-bcm-08-2",
+          "prompt": "Do you validate backups and test immutable or isolated recovery paths as part of ransomware preparedness?",
+          "intent": "Evaluate whether backup validation and immutable recovery testing are performed.",
+          "field_key": "bcm_08_backup_validation_recovery_testing",
+          "evaluation_focus": "Backup validation and immutable recovery testing"
+        },
+        {
+          "id": "rq-bcm-08-3",
+          "prompt": "Are cyber recovery procedures reviewed and exercised at least quarterly?",
+          "intent": "Evaluate whether cyber recovery procedures are reviewed and exercised quarterly.",
+          "field_key": "bcm_08_cyber_recovery_reviewed_quarterly",
+          "evaluation_focus": "Quarterly review and exercise of cyber recovery procedures"
         }
       ]
     },
@@ -189,7 +217,7 @@
         {
           "id": "rq-bcm-09-1",
           "prompt": "Does the enterprise supplement business-critical equipment with redundant equipment independently located at a reasonable minimum distance in accordance with applicable industry standards?",
-          "intent": "Evaluate: Does the enterprise supplement business-critical equipment with redundant equipment independently located at a reasonable minimum distance in accordance with applicable industry standards.",
+          "intent": "Evaluate whether business-critical equipment has geographically separated redundancy.",
           "field_key": "bcm_09_equipment_redundancy",
           "evaluation_focus": "Redundant business-critical equipment independently located at reasonable minimum distance per industry standards"
         }

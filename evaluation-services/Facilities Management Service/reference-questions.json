@@ -15,10 +15,10 @@
         },
         {
           "id": "rq-fac-00-2",
-          "prompt": "Is the facilities management service reviewed frequently for efficacy?",
-          "intent": "Evaluate is the facilities management service reviewed frequently for efficacy?",
+          "prompt": "Is the facilities management service reviewed at least quarterly for efficacy?",
+          "intent": "Evaluate is the facilities management service reviewed at least quarterly for efficacy?",
           "field_key": "fac_00_service_reviewed_frequently",
-          "evaluation_focus": "Frequent service efficacy review"
+          "evaluation_focus": "Regular service efficacy review"
         }
       ]
     },
@@ -35,10 +35,10 @@
         },
         {
           "id": "rq-fac-01-2",
-          "prompt": "Are the KPIs and KRIs for facilities management reviewed frequently?",
-          "intent": "Evaluate are the KPIs and KRIs for facilities management reviewed frequently?",
+          "prompt": "Are the KPIs and KRIs for facilities management reviewed at least quarterly?",
+          "intent": "Evaluate are the KPIs and KRIs for facilities management reviewed at least quarterly?",
           "field_key": "fac_01_kpis_reviewed_frequently",
-          "evaluation_focus": "Frequent KPI/KRI review"
+          "evaluation_focus": "Regular KPI/KRI review"
         }
       ]
     },
@@ -75,10 +75,10 @@
         },
         {
           "id": "rq-fac-03-2",
-          "prompt": "Is equipment identification physically reviewed frequently for accuracy?",
-          "intent": "Evaluate is equipment identification physically reviewed frequently for accuracy?",
+          "prompt": "Is equipment identification physically reviewed at least quarterly for accuracy?",
+          "intent": "Evaluate is equipment identification physically reviewed at least quarterly for accuracy?",
           "field_key": "fac_03_equipment_identification_reviewed",
-          "evaluation_focus": "Frequent physical equipment identification review"
+          "evaluation_focus": "Regular physical equipment identification review"
         }
       ]
     },

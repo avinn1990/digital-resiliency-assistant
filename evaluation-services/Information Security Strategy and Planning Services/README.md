@@ -34,3 +34,10 @@ Used by `services/llm-conversation` via `shared/python/openai_env.py`.
 ```bash
 python3 "evaluation-services/Information Security Strategy and Planning Services/validate_evaluation_content.py"
 ```
+
+## Changelog
+
+### 1.5
+
+- Absorbed Enterprise Security Governance capabilities (segmentation governance, external expert input, AI-era governance)
+- Enhanced governance model and KPIs with ESG depth

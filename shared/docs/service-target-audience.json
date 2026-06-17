@@ -2,44 +2,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "Maps service_id to canonical role_id values from shared/docs/canonical-roles.json.",
   "services": {
-    "policy-management": {
-      "service_name": "Policy Management Service",
-      "role_ids": [
-        "grc-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "compliance-audit-lead",
-        "it-director-head-of-it",
-        "enterprise-risk-manager"
-      ]
-    },
-    "update-patch-management": {
-      "service_name": "Update and Patch Management Service",
-      "role_ids": [
-        "it-director-head-of-it",
-        "security-architecture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "tprm-lead",
-        "compliance-audit-lead",
-        "grc-lead"
-      ]
-    },
-    "vulnerability-management-pentesting": {
-      "service_name": "Vulnerability Management and Pentesting Service",
-      "role_ids": [
-        "security-architecture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "it-director-head-of-it",
-        "tprm-lead",
-        "compliance-audit-lead",
-        "grc-lead"
-      ]
-    },
-    "access-management": {
-      "service_name": "Access Management Service",
+    "access-privileged-access-management": {
+      "service_name": "Access and Privileged Access Management",
       "role_ids": [
         "ciso-head-of-security",
         "deputy-ciso-security-director",
@@ -48,6 +12,41 @@
         "grc-lead",
         "compliance-audit-lead",
         "security-program-strategy-lead"
+      ]
+    },
+    "application-development-testing": {
+      "service_name": "Application Development and Testing",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
+    "authentication-session-credential-management": {
+      "service_name": "Authentication, Session and Credential Management",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
+    "automation-orchestration-integration": {
+      "service_name": "Automation, Orchestration and Integration",
+      "role_ids": [
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-program-strategy-lead",
+        "grc-lead"
       ]
     },
     "business-continuity-management": {
@@ -62,57 +61,20 @@
         "security-program-strategy-lead"
       ]
     },
-    "authentication-service": {
-      "service_name": "Authentication Service",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "certificate-management": {
-      "service_name": "Certificate Management Service",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "credential-management": {
-      "service_name": "Credential Management Service",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "identity-management": {
-      "service_name": "Identity Management Service",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead",
-        "tprm-lead"
-      ]
-    },
     "change-management": {
       "service_name": "Change Management Service",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
+    "code-management": {
+      "service_name": "Code Management",
       "role_ids": [
         "it-director-head-of-it",
         "security-architecture-lead",
@@ -135,6 +97,18 @@
         "security-program-strategy-lead"
       ]
     },
+    "container-management": {
+      "service_name": "Container Management",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
     "content-management": {
       "service_name": "Content Management Service",
       "role_ids": [
@@ -147,40 +121,17 @@
         "security-program-strategy-lead"
       ]
     },
-    "privileged-access-management": {
-      "service_name": "Privileged Access Management Service",
+    "data-management": {
+      "service_name": "Data Management",
       "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "session-management": {
-      "service_name": "Session Management Service",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "compliance-management-service": {
-      "service_name": "Compliance Management Service",
-      "role_ids": [
-        "compliance-audit-lead",
         "grc-lead",
         "ciso-head-of-security",
         "deputy-ciso-security-director",
+        "compliance-audit-lead",
         "enterprise-risk-manager",
         "it-director-head-of-it",
-        "security-architecture-lead"
+        "security-architecture-lead",
+        "security-program-strategy-lead"
       ]
     },
     "enterprise-asset-management": {
@@ -209,18 +160,6 @@
         "security-program-strategy-lead"
       ]
     },
-    "enterprise-security-governance": {
-      "service_name": "Enterprise Security Governance",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "grc-lead",
-        "enterprise-risk-manager",
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "compliance-audit-lead"
-      ]
-    },
     "facilities-management": {
       "service_name": "Facilities Management Service",
       "role_ids": [
@@ -228,6 +167,31 @@
         "deputy-ciso-security-director",
         "security-architecture-lead",
         "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "enterprise-risk-manager",
+        "security-program-strategy-lead"
+      ]
+    },
+    "identity-management": {
+      "service_name": "Identity Management Service",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead",
+        "tprm-lead"
+      ]
+    },
+    "incident-management": {
+      "service_name": "Incident Management",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
         "grc-lead",
         "compliance-audit-lead",
         "enterprise-risk-manager",
@@ -245,90 +209,6 @@
         "tprm-lead",
         "security-awareness-culture-lead",
         "finance-partner-security-budgeting"
-      ]
-    },
-    "application-development-testing": {
-      "service_name": "Application Development and Testing",
-      "role_ids": [
-        "it-director-head-of-it",
-        "security-architecture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "automation-orchestration-integration": {
-      "service_name": "Automation, Orchestration and Integration",
-      "role_ids": [
-        "security-architecture-lead",
-        "it-director-head-of-it",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-program-strategy-lead",
-        "grc-lead"
-      ]
-    },
-    "code-management": {
-      "service_name": "Code Management",
-      "role_ids": [
-        "it-director-head-of-it",
-        "security-architecture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "container-management": {
-      "service_name": "Container Management",
-      "role_ids": [
-        "it-director-head-of-it",
-        "security-architecture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "cryptographic-key-management": {
-      "service_name": "Cryptographic Key Management",
-      "role_ids": [
-        "security-architecture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "it-director-head-of-it",
-        "grc-lead",
-        "compliance-audit-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "data-management": {
-      "service_name": "Data Management",
-      "role_ids": [
-        "grc-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "compliance-audit-lead",
-        "enterprise-risk-manager",
-        "it-director-head-of-it",
-        "security-architecture-lead",
-        "security-program-strategy-lead"
-      ]
-    },
-    "incident-management": {
-      "service_name": "Incident Management",
-      "role_ids": [
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "security-architecture-lead",
-        "grc-lead",
-        "compliance-audit-lead",
-        "enterprise-risk-manager",
-        "security-program-strategy-lead"
       ]
     },
     "log-management": {
@@ -355,6 +235,30 @@
         "security-program-strategy-lead"
       ]
     },
+    "pki-cryptographic-key-management": {
+      "service_name": "PKI and Cryptographic Key Management",
+      "role_ids": [
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "it-director-head-of-it",
+        "grc-lead",
+        "compliance-audit-lead",
+        "security-program-strategy-lead"
+      ]
+    },
+    "policy-compliance-management": {
+      "service_name": "Policy and Compliance Management",
+      "role_ids": [
+        "grc-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "security-architecture-lead",
+        "compliance-audit-lead",
+        "it-director-head-of-it",
+        "enterprise-risk-manager"
+      ]
+    },
     "production-workload-management": {
       "service_name": "Production Workload Management",
       "role_ids": [
@@ -379,19 +283,8 @@
         "security-program-strategy-lead"
       ]
     },
-    "security-culture": {
-      "service_name": "Security Culture",
-      "role_ids": [
-        "security-awareness-culture-lead",
-        "ciso-head-of-security",
-        "deputy-ciso-security-director",
-        "grc-lead",
-        "security-program-strategy-lead",
-        "compliance-audit-lead"
-      ]
-    },
-    "security-training": {
-      "service_name": "Security Training",
+    "security-awareness-culture": {
+      "service_name": "Security Awareness and Culture",
       "role_ids": [
         "security-awareness-culture-lead",
         "ciso-head-of-security",
@@ -411,6 +304,18 @@
         "grc-lead",
         "compliance-audit-lead",
         "security-program-strategy-lead"
+      ]
+    },
+    "vulnerability-remediation-management": {
+      "service_name": "Vulnerability and Remediation Management",
+      "role_ids": [
+        "it-director-head-of-it",
+        "security-architecture-lead",
+        "ciso-head-of-security",
+        "deputy-ciso-security-director",
+        "tprm-lead",
+        "compliance-audit-lead",
+        "grc-lead"
       ]
     }
   }

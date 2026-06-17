@@ -1,16 +1,16 @@
 {
   "service_id": "production-workload-management",
   "service_name": "Production Workload Management",
-  "version": "1.0",
-  "description": "Evaluates production workload management maturity—service governance, KPIs/KRIs, application management processes, classifications, capacity expansion, production user authentication, security baselines, application security policies, API security, and application performance monitoring.",
+  "description": "Evaluates production workload management maturity—service governance, KPIs/KRIs, application management processes, zero-trust segmentation, classifications, capacity expansion, production user authentication, security baselines, application and API security, and application performance monitoring.",
   "capabilities": [
     {
       "id": "pwm-00",
       "name": "Service exists and is in good condition",
-      "description": "An application or production workload management service exists, is scoped appropriately, and is reviewed for efficacy.",
+      "short_name": "service existence",
+      "description": "An application or production workload management service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
         "Enterprise application or production workload management service exists",
-        "Frequent workload management service efficacy review"
+        "Regular workload management service efficacy review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -18,10 +18,12 @@
     {
       "id": "pwm-01",
       "name": "KPIs/KRIs",
-      "description": "Workload management KPIs and KRIs are formalized, documented, and reviewed frequently.",
+      "short_name": "KPIs and KRIs",
+      "description": "Workload management KPIs and KRIs—including availability, API security posture, and scaling effectiveness—are documented and reviewed at least quarterly.",
       "evaluation_focus": [
         "Documented KPIs and KRIs for workload management",
-        "Frequent KPI/KRI review"
+        "Regular KPI/KRI review",
+        "Application availability and API security metrics"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
@@ -29,11 +31,13 @@
     {
       "id": "pwm-02",
       "name": "Application management process",
+      "short_name": "application management",
       "description": "A formalized application management process covers capacity planning, fault identification, segmentation, provisioning, and application security enterprise-wide.",
       "evaluation_focus": [
         "Formalized documented application management process",
         "Enterprise-wide application management process deployment",
-        "Frequent application management process review"
+        "Zero-trust segmentation in production workload management",
+        "Regular application management process review"
       ],
       "resiliency_weight": 1,
       "pillar": "Process/Service"
@@ -41,11 +45,12 @@
     {
       "id": "pwm-03",
       "name": "Application classifications",
-      "description": "Applications, containers, systems, and VMs are classified, automation supports classification, classifications are reviewed frequently, and integrate with other technology such as object profiles.",
+      "short_name": "application classifications",
+      "description": "Applications, containers, systems, and VMs are classified, automation supports classification, classifications are reviewed at least quarterly, and integrate with other technology such as object profiles.",
       "evaluation_focus": [
         "Application classifications for applications, containers, systems, and VMs",
         "Automated application classification in workload management",
-        "Frequent application classification review",
+        "Regular application classification review",
         "Integration of classifications into other technology such as object profiles"
       ],
       "resiliency_weight": 1,
@@ -54,12 +59,13 @@
     {
       "id": "pwm-04",
       "name": "Workload Capacity expansion",
-      "description": "Enterprise applications can expand capacity based on workload demand enterprise-wide or for critical apps, support automatic or programmatic scaling, and scaling configuration is reviewed frequently.",
+      "short_name": "capacity expansion",
+      "description": "Enterprise applications can expand capacity based on workload demand enterprise-wide or for critical apps, support automatic or programmatic scaling, and scaling configuration is reviewed at least quarterly.",
       "evaluation_focus": [
         "Application capacity expansion based on workload increase",
         "Enterprise-wide or critical-application scaling scope",
         "Automatic or programmatic capacity expansion",
-        "Frequent scaling configuration review"
+        "Regular scaling configuration review"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -67,6 +73,7 @@
     {
       "id": "pwm-05",
       "name": "User Management on Production workload",
+      "short_name": "production user management",
       "description": "Formalized policies govern local and external authentication for applications and containers, with external authentication enabled via AD and embedded in golden images and provisioning templates.",
       "evaluation_focus": [
         "Formalized policy on local and external authentication",
@@ -79,41 +86,35 @@
     {
       "id": "pwm-06",
       "name": "Application Security Baseline",
-      "description": "Application baseline templates are generated for all applications, can be automated from flow discovery, and are reviewed frequently for accuracy.",
+      "short_name": "security baseline",
+      "description": "Application baseline templates are generated for all applications, can be automated from flow discovery, and are reviewed at least quarterly for accuracy.",
       "evaluation_focus": [
         "Application baseline templates for all applications",
         "Automated baseline generation from flow discovery",
-        "Frequent baseline template review for accuracy"
+        "Regular baseline template review for accuracy"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
       "id": "pwm-07",
-      "name": "Application and Interface Security Policy or its equivalent",
-      "description": "API security is treated as a core application security concern with formalized documented policies that are reviewed frequently.",
+      "name": "Application and API security",
+      "short_name": "application and API security",
+      "description": "API security is treated as a core application security concern with formalized documented policies, secure API deployment, and API gateway protection reviewed at least quarterly.",
       "evaluation_focus": [
         "API security as an important aspect of application security",
         "Formalized documented application security policies",
-        "Frequent application security policy review"
+        "Regular application security policy review",
+        "Secure API deployment for all applications",
+        "API gateways protecting workloads that expose APIs"
       ],
       "resiliency_weight": 1,
       "pillar": "Strategy"
     },
     {
       "id": "pwm-08",
-      "name": "Secure information exchange and API security",
-      "description": "Secure APIs are deployed for applications and API gateways protect workloads that expose APIs.",
-      "evaluation_focus": [
-        "Secure API deployment for all applications",
-        "API gateways protecting workloads that expose APIs"
-      ],
-      "resiliency_weight": 1,
-      "pillar": "Technology"
-    },
-    {
-      "id": "pwm-09",
       "name": "Application performance monitoring",
+      "short_name": "performance monitoring",
       "description": "Application performance monitoring is deployed enterprise-wide or for critical apps, automated during provisioning or development, and integrated with the SOC for availability context.",
       "evaluation_focus": [
         "Application performance monitoring deployment",
@@ -125,6 +126,16 @@
       "pillar": "Technology"
     }
   ],
+  "target_audience_role_ids": [
+    "it-director-head-of-it",
+    "security-architecture-lead",
+    "ciso-head-of-security",
+    "deputy-ciso-security-director",
+    "grc-lead",
+    "compliance-audit-lead",
+    "security-program-strategy-lead"
+  ],
+  "version": "1.1",
   "evaluation": {
     "resiliency_weight_policy": "Ask stakeholder for per-capability weights when adding a new evaluation service. This service uses weight 1 for all capabilities.",
     "normalized_scale": 5,
@@ -177,14 +188,5 @@
     ],
     "rollup_formula": "(sum(actual_i * weight_i) / sum(max_i * weight_i)) * normalized_scale",
     "pillar_policy": "Some services may have no Technology capabilities; in those cases, do not compute or report a Technology pillar score."
-  },
-  "target_audience_role_ids": [
-    "it-director-head-of-it",
-    "security-architecture-lead",
-    "ciso-head-of-security",
-    "deputy-ciso-security-director",
-    "grc-lead",
-    "compliance-audit-lead",
-    "security-program-strategy-lead"
-  ]
+  }
 }

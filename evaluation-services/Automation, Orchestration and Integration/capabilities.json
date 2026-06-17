@@ -1,31 +1,88 @@
 {
   "service_id": "automation-orchestration-integration",
   "service_name": "Automation, Orchestration and Integration",
-  "version": "1.0",
-  "description": "Evaluates automation, orchestration, and integration maturity—vendor lock-in risk management and AI-powered security operations for proactive incident response and automated remediation.",
+  "version": "1.1",
+  "description": "Evaluates automation, orchestration, and integration maturity—service governance, SOAR platform and orchestration, security playbook development, automated remediation workflows, cross-platform integration and vendor lock-in risk, and AI-assisted security automation governance.",
   "capabilities": [
     {
       "id": "aoi-00",
-      "name": "Vendor lock in",
-      "description": "The enterprise assesses vendor dependency across endpoints, devices, and applications and evaluates lock-in to justify or mitigate full dependency on a single vendor.",
+      "name": "Service exists and is in good condition",
+      "short_name": "service existence",
+      "description": "An automation, orchestration, and integration service exists, is scoped appropriately, and is reviewed at least quarterly for efficacy.",
       "evaluation_focus": [
-        "Dependency on a specific vendor for majority of endpoints, devices, or applications",
+        "Enterprise automation and orchestration service exists",
+        "Regular automation service efficacy review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "aoi-01",
+      "name": "SOAR platform and orchestration",
+      "short_name": "SOAR orchestration",
+      "description": "A security orchestration, automation, and response platform coordinates workflows across security tools, supports enterprise-wide coverage, and is reviewed at least quarterly.",
+      "evaluation_focus": [
+        "SOAR or equivalent orchestration platform adoption",
+        "Enterprise-wide orchestration coverage",
+        "Cross-tool workflow coordination",
+        "Regular SOAR platform configuration review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "aoi-02",
+      "name": "Security playbook development and maintenance",
+      "short_name": "playbook maturity",
+      "description": "Documented security playbooks cover common incident and remediation scenarios, are version-controlled, tested regularly, and reviewed at least quarterly for accuracy.",
+      "evaluation_focus": [
+        "Documented security playbooks for common scenarios",
+        "Playbook version control and change management",
+        "Regular playbook testing and tabletop exercises",
+        "Regular playbook accuracy and coverage review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Process/Service"
+    },
+    {
+      "id": "aoi-03",
+      "name": "Automated remediation and response workflows",
+      "short_name": "automated remediation",
+      "description": "Automated workflows execute approved playbooks for containment and remediation with human-in-the-loop gates for high-risk actions and quarterly effectiveness review.",
+      "evaluation_focus": [
+        "Automated containment and remediation workflows",
+        "Human-in-the-loop approval for high-risk actions",
+        "Workflow integration with ticketing and incident management",
+        "Regular automated workflow effectiveness review"
+      ],
+      "resiliency_weight": 1,
+      "pillar": "Technology"
+    },
+    {
+      "id": "aoi-04",
+      "name": "Cross-platform integration and vendor lock-in risk",
+      "short_name": "integration and lock-in",
+      "description": "Security automation integrates across endpoints, cloud, identity, and network platforms; vendor dependency is assessed and lock-in is justified or mitigated.",
+      "evaluation_focus": [
+        "Cross-platform security tool integration",
+        "Vendor dependency assessment across endpoints, devices, and applications",
         "Evaluation and justification or mitigation of vendor lock-in"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
     },
     {
-      "id": "aoi-01",
-      "name": "AiSecOPs",
-      "description": "The enterprise uses AI-powered techniques for timely proactive incident response, automated remediation, and frequent review of AI-driven responses for accuracy.",
+      "id": "aoi-05",
+      "name": "AI-assisted security automation governance",
+      "short_name": "AI automation governance",
+      "description": "Policies govern AI use in security automation and playbook execution, with analyst oversight and quarterly review of AI-driven action accuracy.",
       "evaluation_focus": [
-        "Timely proactive incident response using advanced techniques like AI",
-        "Automated AI-powered responses and remediations",
-        "Frequent review of AI-powered responses and remediations for accuracy"
+        "Governance for AI use in security automation workflows",
+        "Analyst oversight of AI-recommended playbook actions",
+        "Regular review of AI-driven automation accuracy"
       ],
       "resiliency_weight": 1,
-      "pillar": "Technology"
+      "pillar": "Strategy"
     }
   ],
   "evaluation": {
