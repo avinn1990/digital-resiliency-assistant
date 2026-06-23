@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { roleDisplayName } from "../roles";
+import { roleDisplayName, serviceDisplayName } from "../roles";
 import type { AssessmentDraft, CanonicalRole, EvaluationServiceSummary } from "../types";
 
 type Props = {
@@ -36,7 +36,7 @@ export function SummaryPage({ draft, roles, services, onDiscard }: Props) {
       const answered = countAnswered(svc?.responses ?? {});
       return {
         id,
-        name: meta?.service_name ?? id,
+        name: meta ? serviceDisplayName(meta) : serviceDisplayName({ service_id: id }),
         done: !!svc?.answeredAt,
         answered,
       };

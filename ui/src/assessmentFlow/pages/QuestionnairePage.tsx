@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { toFriendlyError } from "../../lib/userMessages";
 import { getEvaluationServiceContent } from "../api";
+import { serviceDisplayName } from "../roles";
 import type {
   AssessmentDraft,
   EvaluationServiceBundle,
@@ -179,7 +180,7 @@ export function QuestionnairePage({
                       onClick={() => setActiveServiceId(id)}
                     >
                       <div className="af-sidebar-item-title">
-                        {meta?.service_name ?? id}
+                        {meta ? serviceDisplayName(meta) : serviceDisplayName({ service_id: id })}
                       </div>
                       <div className="af-sidebar-item-meta">
                         {answeredAt ? (
@@ -201,9 +202,11 @@ export function QuestionnairePage({
                 <div>
                   <div className="af-kicker">Current service</div>
                   <div className="af-service-h2">
-                    {bundle?.service_name ??
-                      activeServiceMeta?.service_name ??
-                      activeServiceId}
+                    {bundle?.service_name
+                      ? serviceDisplayName({ service_id: activeServiceId, service_name: bundle.service_name })
+                      : activeServiceMeta
+                        ? serviceDisplayName(activeServiceMeta)
+                        : serviceDisplayName({ service_id: activeServiceId })}
                   </div>
                   {bundle?.description && (
                     <div className="context-help">{bundle.description}</div>

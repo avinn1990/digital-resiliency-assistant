@@ -1,3 +1,4 @@
+import { formatDisplayLabel, formatSlugLabel } from "../lib/displayText";
 import type { CanonicalRole, EvaluationServiceSummary } from "./types";
 
 export type { CanonicalRole };
@@ -17,7 +18,21 @@ export function roleDisplayName(
   roleId: string,
   roles: CanonicalRole[]
 ): string {
-  return roles.find((role) => role.role_id === roleId)?.display_name ?? roleId;
+  const match = roles.find((role) => role.role_id === roleId);
+  if (match?.display_name) {
+    return formatDisplayLabel(match.display_name);
+  }
+  return formatSlugLabel(roleId);
+}
+
+export function serviceDisplayName(service: {
+  service_id: string;
+  service_name?: string;
+}): string {
+  if (service.service_name?.trim()) {
+    return formatDisplayLabel(service.service_name);
+  }
+  return formatSlugLabel(service.service_id);
 }
 
 export function resolveRoleId(

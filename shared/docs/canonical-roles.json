@@ -14,12 +14,12 @@
     },
     {
       "role_id": "grc-lead",
-      "display_name": "GRC lead (governance, risk & compliance)",
+      "display_name": "GRC Lead (Governance, Risk & Compliance)",
       "aliases": ["GRC Leader", "Security GRC lead"]
     },
     {
       "role_id": "security-program-strategy-lead",
-      "display_name": "Security program, PMO & metrics lead",
+      "display_name": "Security Program, PMO & Metrics Lead",
       "aliases": [
         "Security Program / Strategy Lead",
         "Security PMO / portfolio manager",
@@ -28,37 +28,37 @@
     },
     {
       "role_id": "enterprise-risk-manager",
-      "display_name": "Enterprise risk manager",
+      "display_name": "Enterprise Risk Manager",
       "aliases": ["ERM owner", "Enterprise Risk Management owner"]
     },
     {
       "role_id": "compliance-audit-lead",
-      "display_name": "Compliance & audit lead",
+      "display_name": "Compliance & Audit Lead",
       "aliases": ["Compliance Officer", "Internal audit lead"]
     },
     {
       "role_id": "tprm-lead",
-      "display_name": "Third-party & vendor risk lead",
+      "display_name": "Third-Party & Vendor Risk Lead",
       "aliases": ["TPRM lead", "Vendor risk lead"]
     },
     {
       "role_id": "security-awareness-culture-lead",
-      "display_name": "Security awareness & culture lead",
+      "display_name": "Security Awareness & Culture Lead",
       "aliases": ["Security culture lead"]
     },
     {
       "role_id": "finance-partner-security-budgeting",
-      "display_name": "Finance partner (security budgeting)",
+      "display_name": "Finance Partner (Security Budgeting)",
       "aliases": ["Security finance partner"]
     },
     {
       "role_id": "security-architecture-lead",
-      "display_name": "Security architecture lead",
+      "display_name": "Security Architecture Lead",
       "aliases": ["Security architect"]
     },
     {
       "role_id": "it-director-head-of-it",
-      "display_name": "IT director / Head of IT",
+      "display_name": "IT Director / Head of IT",
       "aliases": ["Head of IT", "IT Director"]
     }
   ]

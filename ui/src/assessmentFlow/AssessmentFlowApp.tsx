@@ -620,7 +620,8 @@ export function AssessmentFlowApp() {
               servicesError={state.servicesError}
               servicesCount={state.services.length}
               company={state.onboardingProfile?.company}
-              role={profileRoleLabel || state.onboardingProfile?.role}
+              role={profileRoleLabel}
+              roles={allRoles}
               onStartNew={handleStartNewAssessment}
               onResume={resumeDraft}
               onViewSummary={viewSummary}

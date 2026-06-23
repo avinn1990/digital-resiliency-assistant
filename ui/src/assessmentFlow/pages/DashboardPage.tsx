@@ -1,5 +1,7 @@
 import type { AuthUser } from "../../auth/types";
 import type { UserDraftSummary } from "../assessmentsApi";
+import { roleDisplayName } from "../roles";
+import type { CanonicalRole } from "../types";
 
 type Props = {
   authUser: AuthUser | null;
@@ -11,6 +13,7 @@ type Props = {
   servicesCount: number;
   company?: string;
   role?: string;
+  roles: CanonicalRole[];
   onStartNew: () => void;
   onResume: (assessmentId: string) => void;
   onViewSummary: (assessmentId: string) => void;
@@ -21,11 +24,13 @@ type Props = {
 
 function DraftCard({
   draft,
+  roles,
   onOpen,
   onDiscard,
   openLabel,
 }: {
   draft: UserDraftSummary;
+  roles: CanonicalRole[];
   onOpen: () => void;
   onDiscard: () => void;
   openLabel: string;
@@ -34,7 +39,7 @@ function DraftCard({
     <div className="af-dashboard-card">
       <div className="af-dashboard-card-main">
         <div className="af-dashboard-card-title">
-          {draft.company} · {draft.role}
+          {draft.company} · {roleDisplayName(draft.role, roles)}
         </div>
         <div className="af-dashboard-card-meta">
           {draft.username} · last saved {new Date(draft.updatedAt).toLocaleString()}
@@ -73,6 +78,7 @@ export function DashboardPage({
   servicesCount,
   company,
   role,
+  roles,
   onStartNew,
   onResume,
   onViewSummary,
@@ -178,6 +184,7 @@ export function DashboardPage({
                     <DraftCard
                       key={draft.assessmentId}
                       draft={draft}
+                      roles={roles}
                       openLabel="Continue"
                       onOpen={() => onResume(draft.assessmentId)}
                       onDiscard={() => onDiscard(draft.assessmentId)}
@@ -195,6 +202,7 @@ export function DashboardPage({
                     <DraftCard
                       key={draft.assessmentId}
                       draft={draft}
+                      roles={roles}
                       openLabel="View summary"
                       onOpen={() => onViewSummary(draft.assessmentId)}
                       onDiscard={() => onDiscard(draft.assessmentId)}
