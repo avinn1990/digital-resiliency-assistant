@@ -311,7 +311,7 @@ export function AppShell() {
         {!chat.sessionId ? (
           waitingToResume ? (
             <section className="welcome-panel" aria-busy="true">
-              <h2>Restoring your assessment</h2>
+              <h2>Restoring Your Assessment</h2>
               <p className="context-help">
                 {draftLoading
                   ? "Loading your saved progress…"
@@ -324,7 +324,7 @@ export function AppShell() {
             </section>
           ) : waitingToStart ? (
             <section className="welcome-panel" aria-busy="true">
-              <h2>Starting your assessment</h2>
+              <h2>Starting Your Assessment</h2>
               <p className="context-help">
                 {chat.loading
                   ? "Connecting to the assessment chat…"

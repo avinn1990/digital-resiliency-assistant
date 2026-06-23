@@ -71,7 +71,7 @@ export function SummaryPage({ draft, roles, services, onDiscard }: Props) {
               <div className="af-v">{roleDisplayName(draft.profile.role, roles)}</div>
               <div className="af-k">Username</div>
               <div className="af-v">{draft.profile.username}</div>
-              <div className="af-k">Full name</div>
+              <div className="af-k">Full Name</div>
               <div className="af-v">{draft.profile.fullName}</div>
             </div>
 
@@ -84,7 +84,7 @@ export function SummaryPage({ draft, roles, services, onDiscard }: Props) {
                     {s.done ? (
                       <span className="af-pill ok">Complete</span>
                     ) : (
-                      <span className="af-pill">In progress</span>
+                      <span className="af-pill">In Progress</span>
                     )}
                     <span className="af-pill">{s.answered} answered</span>
                   </div>
@@ -120,7 +120,7 @@ export function SummaryPage({ draft, roles, services, onDiscard }: Props) {
               This deletes the saved draft from your browser.
             </p>
             <button type="button" className="btn-secondary" onClick={onDiscard}>
-              Discard draft
+              Discard Draft
             </button>
           </div>
         </div>

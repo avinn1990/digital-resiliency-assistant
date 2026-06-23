@@ -24,7 +24,7 @@ export function AssessmentPanel({ result, onDismiss }: Props) {
           <p className="success-eyebrow" role="status">
             Assessment complete
           </p>
-          <h2 id="assessment-title">Your results</h2>
+          <h2 id="assessment-title">Your Results</h2>
         </div>
         {onDismiss && (
           <button
@@ -39,7 +39,7 @@ export function AssessmentPanel({ result, onDismiss }: Props) {
       </div>
 
       <div className="assessment-score-card">
-        <p className="score-label">Overall score</p>
+        <p className="score-label">Overall Score</p>
         <div className="score-row">
           <span className="score-value">{result.overall_score}</span>
           <span className="score-max">out of 100</span>
@@ -51,7 +51,7 @@ export function AssessmentPanel({ result, onDismiss }: Props) {
 
       <p className="assessment-summary">{result.summary}</p>
 
-      <h3 className="controls-heading">By control area</h3>
+      <h3 className="controls-heading">By Control Area</h3>
       <ul className="control-results">
         {result.control_results.map((control) => (
           <li key={control.control_id} className="control-card">
@@ -70,7 +70,7 @@ export function AssessmentPanel({ result, onDismiss }: Props) {
             )}
             {control.recommendations.length > 0 && (
               <>
-                <p className="control-field-label">Suggested next steps</p>
+                <p className="control-field-label">Suggested Next Steps</p>
                 <ul className="control-recommendations">
                   {control.recommendations.map((rec, i) => (
                     <li key={i}>{rec}</li>

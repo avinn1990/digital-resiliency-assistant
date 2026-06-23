@@ -63,7 +63,7 @@ export function ChatWorkspace({
               onClick={onSave}
               disabled={!canSave || saving || loading || assessmentLoading}
             >
-              {saving ? "Saving…" : "Save progress"}
+              {saving ? "Saving…" : "Save Progress"}
             </button>
           )}
           <button
@@ -72,7 +72,7 @@ export function ChatWorkspace({
             onClick={onRunAssessment}
             disabled={loading || assessmentLoading}
           >
-            {assessmentLoading ? "Building your report…" : "Get my assessment"}
+            {assessmentLoading ? "Building your report…" : "Get My Assessment"}
           </button>
         </div>
         {saveMessage && (

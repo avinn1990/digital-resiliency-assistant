@@ -41,13 +41,13 @@ export function ChatHeader({
   return (
     <header className="chat-header">
       <a href="#main-content" className="skip-link">
-        Skip to chat
+        Skip to Chat
       </a>
       <div className="chat-header-top">
         <div>
           <p className="app-eyebrow">Digital Resiliency Assistant</p>
           <h1>
-            {sessionId ? "Assessment chat" : "Get started"}
+            {sessionId ? "Assessment Chat" : "Get Started"}
           </h1>
           {serviceName ? (
             <p className="chat-header-sub">Assessing {serviceName}</p>
@@ -68,12 +68,12 @@ export function ChatHeader({
           )}
           {signedIn && onClearProfile && (
             <button type="button" className="btn-ghost" onClick={onClearProfile}>
-              Change role
+              Change Role
             </button>
           )}
           {signedIn && onSignOut && (
             <button type="button" className="btn-ghost" onClick={onSignOut}>
-              Sign out
+              Sign Out
             </button>
           )}
           {sessionId && (
@@ -81,9 +81,9 @@ export function ChatHeader({
               type="button"
               className="btn-ghost"
               onClick={onNewChat}
-              aria-label="Start over with a new assessment"
+              aria-label="Start Over with a New Assessment"
             >
-              Start over
+              Start Over
             </button>
           )}
         </div>
