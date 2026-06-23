@@ -152,7 +152,7 @@ export function QuestionnairePage({
             <div className="af-kicker">
               Step 3 · Services completed {serviceProgress.done}/{serviceProgress.total}
             </div>
-            <h1 className="af-h1">Answer questions</h1>
+            <h1 className="af-h1">Answer Questions</h1>
             <p className="context-help">
               Assessment ID: <span className="af-mono">{draft.assessmentId}</span>
             </p>
@@ -200,7 +200,7 @@ export function QuestionnairePage({
             <div className="af-card af-card-page">
               <div className="af-service-header">
                 <div>
-                  <div className="af-kicker">Current service</div>
+                  <div className="af-kicker">Current Service</div>
                   <div className="af-service-h2">
                     {bundle?.service_name
                       ? serviceDisplayName({ service_id: activeServiceId, service_name: bundle.service_name })
@@ -266,7 +266,7 @@ export function QuestionnairePage({
                     setSavedMessage("Saved. You can close this tab and resume later.");
                   }}
                 >
-                  Save & continue later
+                  Save & Continue Later
                 </button>
 
                 <div className="af-spacer" />
@@ -277,7 +277,7 @@ export function QuestionnairePage({
                   onClick={markServiceComplete}
                   disabled={!canMarkComplete}
                 >
-                  Mark service complete
+                  Mark Service Complete
                 </button>
                 <button
                   type="button"

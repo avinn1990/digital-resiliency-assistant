@@ -46,7 +46,7 @@ function DraftCard({
         </div>
         <div className="af-dashboard-card-progress">
           <span className={`af-pill ${draft.status === "completed" ? "ok" : ""}`}>
-            {draft.status === "completed" ? "Completed" : "In progress"}
+            {draft.status === "completed" ? "Completed" : "In Progress"}
           </span>
           <span className="af-pill">
             {draft.mode === "chat" ? "Chat" : "Questionnaire"}
@@ -95,9 +95,9 @@ export function DashboardPage({
       <div className="af-page-inner af-dashboard">
         <div className="af-topbar">
           <div>
-            <div className="af-kicker">Your workspace</div>
+            <div className="af-kicker">Your Workspace</div>
             <h1 className="af-h1">
-              {authUser ? `Welcome back, ${authUser.name.split(" ")[0]}` : "Your assessments"}
+              {authUser ? `Welcome back, ${authUser.name.split(" ")[0]}` : "Your Assessments"}
             </h1>
             {authUser && <p className="context-help">{authUser.email}</p>}
             {company && role && (
@@ -110,10 +110,10 @@ export function DashboardPage({
             {authUser && (
               <>
                 <button type="button" className="btn-ghost" onClick={onClearProfile}>
-                  Change role
+                  Change Role
                 </button>
                 <button type="button" className="btn-ghost" onClick={onSignOut}>
-                  Sign out
+                  Sign Out
                 </button>
               </>
             )}
@@ -123,7 +123,7 @@ export function DashboardPage({
               onClick={onStartNew}
               disabled={servicesLoading}
             >
-              Start new assessment
+              Start New Assessment
             </button>
           </div>
         </div>
@@ -146,7 +146,7 @@ export function DashboardPage({
             : servicesLoading
               ? "Loading assessment services…"
               : hasExisting
-                ? `${pending.length} in progress · ${completed.length} completed`
+                ? `${pending.length} In Progress · ${completed.length} Completed`
                 : `${servicesCount} assessment service${servicesCount === 1 ? "" : "s"} available for your role.`}
         </div>
 
@@ -156,7 +156,7 @@ export function DashboardPage({
           </div>
         ) : !hasExisting ? (
           <div className="af-card af-card-page af-dashboard-empty">
-            <h2 className="af-h2">No assessments yet</h2>
+            <h2 className="af-h2">No Assessments Yet</h2>
             <p className="context-help">
               Start a new AI-guided assessment when you are ready. Your progress will
               appear here so you can continue later.
@@ -167,14 +167,14 @@ export function DashboardPage({
               onClick={onStartNew}
               disabled={servicesLoading}
             >
-              Start your first assessment
+              Start Your First Assessment
             </button>
           </div>
         ) : (
           <>
             {pending.length > 0 && (
               <section className="af-dashboard-section">
-                <h2 className="af-h2">Continue an assessment</h2>
+                <h2 className="af-h2">Continue an Assessment</h2>
                 <p className="context-help">
                   Pick up where you left off, or start a new assessment using the button
                   above.
@@ -203,7 +203,7 @@ export function DashboardPage({
                       key={draft.assessmentId}
                       draft={draft}
                       roles={roles}
-                      openLabel="View summary"
+                      openLabel="View Summary"
                       onOpen={() => onViewSummary(draft.assessmentId)}
                       onDiscard={() => onDiscard(draft.assessmentId)}
                     />
@@ -214,7 +214,7 @@ export function DashboardPage({
 
             {pending.length === 0 && (
               <div className="af-card af-card-page">
-                <h2 className="af-h2">Start another assessment</h2>
+                <h2 className="af-h2">Start Another Assessment</h2>
                 <p className="context-help">
                   You do not have any assessments in progress. Start a new AI chat
                   assessment when you are ready.
@@ -225,7 +225,7 @@ export function DashboardPage({
                   onClick={onStartNew}
                   disabled={servicesLoading}
                 >
-                  Start new assessment
+                  Start New Assessment
                 </button>
               </div>
             )}

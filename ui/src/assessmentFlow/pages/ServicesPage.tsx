@@ -24,7 +24,7 @@ export function ServicesPage({
   initialSelectedServiceIds,
   onConfirm,
   allowBackToDashboard,
-  confirmLabel = "Confirm & start questions",
+  confirmLabel = "Confirm & Start Questions",
 }: Props) {
   const profileRoleLabel = useMemo(
     () => roleDisplayName(profile.role, roles),
@@ -72,7 +72,7 @@ export function ServicesPage({
         <div className="af-topbar">
           <div>
             <div className="af-kicker">Step 2</div>
-            <h1 className="af-h1">Select services for your role</h1>
+            <h1 className="af-h1">Select Services for Your Role</h1>
             <p className="context-help">
               {noRoleMapping ? (
                 <>
@@ -134,7 +134,7 @@ export function ServicesPage({
                         )}
                         <div className="af-service-meta">
                           {!noRoleMapping && (
-                            <span className="af-pill ok">Mapped to your role</span>
+                            <span className="af-pill ok">Mapped to Your Role</span>
                           )}
                         </div>
                       </div>
@@ -156,7 +156,7 @@ export function ServicesPage({
               }
               disabled={servicesLoading || visibleServices.length === 0}
             >
-              Select all
+              Select All
             </button>
             <button
               type="button"

@@ -68,13 +68,13 @@ export const LANDING = {
   process: {
     headline: "How it works",
     steps: [
-      { title: "Sign in & onboard", detail: "Connect your account and confirm company, role, and services." },
-      { title: "Select services", detail: "Start with role-relevant services pre-selected—you can adjust anytime." },
-      { title: "Answer by service", detail: "Focused questionnaires with auto-save after each section." },
-      { title: "Review summary", detail: "See a clear rollup and continue refining when you're ready." },
+      { title: "Sign In & Onboard", detail: "Connect your account and confirm company, role, and services." },
+      { title: "Select Services", detail: "Start with role-relevant services pre-selected—you can adjust anytime." },
+      { title: "Answer by Service", detail: "Focused questionnaires with auto-save after each section." },
+      { title: "Review Summary", detail: "See a clear rollup and continue refining when you're ready." },
     ],
     chat: {
-      title: "Assessment assistant",
+      title: "Assessment Assistant",
       messages: [
         { from: "bot" as const, text: "Welcome back. Ready to continue with Identity & Access?" },
         { from: "user" as const, text: "Yes—show me the next few questions." },

@@ -17,7 +17,7 @@ export function ConnectionStatus({ status, sessionActive = false, onRetry }: Pro
   if (status === "ready") {
     return (
       <span className="connection-status online" role="status">
-        {sessionActive ? "Chat connected" : "Ready to chat"}
+        {sessionActive ? "Chat Connected" : "Ready to Chat"}
       </span>
     );
   }
@@ -28,7 +28,7 @@ export function ConnectionStatus({ status, sessionActive = false, onRetry }: Pro
         first reply may take a little longer.
         {onRetry && (
           <button type="button" className="link-btn" onClick={onRetry}>
-            Check again
+            Check Again
           </button>
         )}
       </span>
@@ -40,7 +40,7 @@ export function ConnectionStatus({ status, sessionActive = false, onRetry }: Pro
       deploy may need to finish syncing.
       {onRetry && (
         <button type="button" className="link-btn" onClick={onRetry}>
-          Check again
+          Check Again
         </button>
       )}
     </span>

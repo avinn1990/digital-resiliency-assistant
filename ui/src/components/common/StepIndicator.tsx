@@ -6,7 +6,7 @@ type Props = {
 
 export function StepIndicator({ currentStep }: Props) {
   return (
-    <nav className="step-indicator" aria-label="Assessment progress">
+    <nav className="step-indicator" aria-label="Assessment Progress">
       <ol>
         {STEPS.map((step) => {
           const state =

@@ -69,12 +69,12 @@ export function LandingAuthCard({ onSignedIn }: Props) {
         </>
       ) : (
         <a className="landing-btn landing-btn--primary" href="/chat">
-          Continue to chat assessment
+          Continue to Chat Assessment
         </a>
       )}
 
       <a className="landing-btn landing-btn--outline" href="/chat">
-        Explore without signing in
+        Explore Without Signing In
       </a>
     </div>
   );

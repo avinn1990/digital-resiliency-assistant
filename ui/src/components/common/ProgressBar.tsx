@@ -1,4 +1,5 @@
 import type { AssessmentFocus } from "../../services/types";
+import { formatDisplayLabel } from "../../lib/displayText";
 
 type Props = {
   current: number;
@@ -14,11 +15,15 @@ export function ProgressBar({
   assessmentFocus,
 }: Props) {
   const pct = total > 0 ? Math.min(100, Math.round((current / total) * 100)) : 0;
+  const capabilityLabel = assessmentFocus
+    ? formatDisplayLabel(assessmentFocus.capability_name)
+    : "";
+  const rubricLabel = assessmentFocus?.evaluation_focus
+    ? formatDisplayLabel(assessmentFocus.evaluation_focus)
+    : "";
   const ariaLabel = assessmentFocus
-    ? `Assessing ${assessmentFocus.capability_name}${
-        assessmentFocus.evaluation_focus
-          ? `, rubric ${assessmentFocus.evaluation_focus}`
-          : ""
+    ? `Assessing ${capabilityLabel}${
+        rubricLabel ? `, rubric ${rubricLabel}` : ""
       }`
     : `Progress ${current} of ${total}`;
 
@@ -28,18 +33,18 @@ export function ProgressBar({
         {assessmentFocus ? (
           <div className="progress-focus-lines">
             <span>
-              <strong>Capability:</strong> {assessmentFocus.capability_name}
+              <strong>Capability:</strong> {capabilityLabel}
             </span>
-            {assessmentFocus.evaluation_focus && (
+            {rubricLabel && (
               <span>
-                <strong>Rubric:</strong> {assessmentFocus.evaluation_focus}
+                <strong>Rubric:</strong> {rubricLabel}
               </span>
             )}
           </div>
         ) : (
-          <span>Assessment in progress</span>
+          <span>Assessment in Progress</span>
         )}
-        {completed && <span className="progress-ready">Ready for results</span>}
+        {completed && <span className="progress-ready">Ready for Results</span>}
       </div>
       <div className="progress-bar-track">
         <div className="progress-bar-fill" style={{ width: `${pct}%` }} />

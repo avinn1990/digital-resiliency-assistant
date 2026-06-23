@@ -53,8 +53,8 @@ export function UserProfilePage({
       <div className="af-page-inner">
         <div className="af-topbar">
           <div>
-            <div className="af-kicker">New assessment</div>
-            <h1 className="af-h1">Tell us about you</h1>
+            <div className="af-kicker">New Assessment</div>
+            <h1 className="af-h1">Tell Us About You</h1>
           </div>
           <a className="af-link" href="/dashboard">
             Back
@@ -116,7 +116,7 @@ export function UserProfilePage({
               disabled={servicesLoading || roles.length === 0}
             >
               <option value="" disabled>
-                {servicesLoading ? "Loading roles…" : "Select your role"}
+                {servicesLoading ? "Loading roles…" : "Select Your Role"}
               </option>
               {roles.map((item) => (
                 <option key={item.role_id} value={item.role_id}>
@@ -148,7 +148,7 @@ export function UserProfilePage({
           </div>
 
           <div className="af-side-note">
-            <h2>What happens next</h2>
+            <h2>What Happens Next</h2>
             <ol className="af-steps">
               <li>We suggest services relevant to your role (pre-selected).</li>
               <li>You answer questions per service, with autosave.</li>

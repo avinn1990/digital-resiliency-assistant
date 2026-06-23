@@ -153,7 +153,7 @@ export function OnboardingPage({
         <div className="af-topbar">
           <div>
             <div className="af-kicker">Welcome</div>
-            <h1 className="af-h1">Set up your workspace</h1>
+            <h1 className="af-h1">Set Up Your Workspace</h1>
             <p className="context-help">
               Hi {authUser.name.split(" ")[0]}, tell us where you work and what you do.
               We’ll show the assessment services mapped to your role.
@@ -161,7 +161,7 @@ export function OnboardingPage({
           </div>
           <div className="af-dashboard-top-actions">
             <button type="button" className="btn-ghost" onClick={onSignOut}>
-              Sign out
+              Sign Out
             </button>
           </div>
         </div>
@@ -197,7 +197,7 @@ export function OnboardingPage({
               disabled={servicesLoading || roles.length === 0}
             >
               <option value="" disabled>
-                {servicesLoading ? "Loading roles…" : "Select your role"}
+                {servicesLoading ? "Loading roles…" : "Select Your Role"}
               </option>
               {roles.map((item) => (
                 <option key={item.role_id} value={item.role_id}>
@@ -218,12 +218,12 @@ export function OnboardingPage({
               }
               disabled={!canContinue}
             >
-              Confirm & start chat
+              Confirm & Start Chat
             </button>
           </div>
 
           <div className="af-card af-card-page">
-            <h2 className="af-h2">Services for your role</h2>
+            <h2 className="af-h2">Services for Your Role</h2>
             {!roleId ? (
               <p className="context-help">
                 Select a role to see the assessment services associated with it.

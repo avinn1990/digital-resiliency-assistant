@@ -38,7 +38,7 @@ export function WelcomePanel({
 
   return (
     <section className="welcome-panel" aria-labelledby="welcome-title">
-      <h2 id="welcome-title">Ready to start your assessment</h2>
+      <h2 id="welcome-title">Ready to Start Your Assessment</h2>
       <ContextHelp>
         These are the services you selected. Click below when you are ready to
         begin the chat assessment.
@@ -90,7 +90,7 @@ export function WelcomePanel({
         disabled={!canStart}
         aria-describedby="start-help"
       >
-        {loading ? "Starting your chat…" : "Start assessment chat"}
+        {loading ? "Starting your chat…" : "Start Assessment Chat"}
       </button>
       <ContextHelp id="start-help">
         {backendHealth === "offline"

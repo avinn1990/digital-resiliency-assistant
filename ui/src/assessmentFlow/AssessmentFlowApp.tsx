@@ -684,7 +684,7 @@ export function AssessmentFlowApp() {
               servicesError={state.servicesError}
               initialSelectedServiceIds={state.selectedServiceIds}
               allowBackToDashboard
-              confirmLabel="Confirm & start chat"
+              confirmLabel="Confirm & Start Chat"
               onConfirm={startChatWithServices}
             />
           ) : (

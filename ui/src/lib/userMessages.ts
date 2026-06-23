@@ -42,9 +42,9 @@ export function toFriendlyError(err: unknown): string {
 }
 
 export const STEPS = [
-  { id: 1, label: "Start assessment", short: "Start" },
-  { id: 2, label: "Answer questions", short: "Chat" },
-  { id: 3, label: "View results", short: "Results" },
+  { id: 1, label: "Start Assessment", short: "Start" },
+  { id: 2, label: "Answer Questions", short: "Chat" },
+  { id: 3, label: "View Results", short: "Results" },
 ] as const;
 
 export type AppStep = 1 | 2 | 3;
