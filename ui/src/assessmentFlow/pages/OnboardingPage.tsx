@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { AuthUser } from "../../auth/types";
-import { roleDisplayName, servicesForRole, serviceDescriptionForDisplay } from "../roles";
+import { roleDisplayName, servicesForRole, serviceDescriptionForDisplay, serviceDisplayName } from "../roles";
 import { groupServicesByDomain } from "../serviceDomains";
 import type { CanonicalRole, EvaluationServiceSummary } from "../types";
 
@@ -92,7 +92,7 @@ export function OnboardingPage({
                     }))
                   }
                 />
-                <span>{service.service_name ?? service.service_id}</span>
+                <span>{serviceDisplayName(service)}</span>
               </label>
             </div>
             {serviceDescriptionForDisplay(service.description) && (
@@ -124,7 +124,7 @@ export function OnboardingPage({
                     }))
                   }
                 />
-                <span>{service.service_name ?? service.service_id}</span>
+                <span>{serviceDisplayName(service)}</span>
               </label>
             </div>
             {serviceDescriptionForDisplay(service.description) && (
@@ -201,7 +201,7 @@ export function OnboardingPage({
               </option>
               {roles.map((item) => (
                 <option key={item.role_id} value={item.role_id}>
-                  {item.display_name}
+                  {roleDisplayName(item.role_id, roles)}
                 </option>
               ))}
             </select>

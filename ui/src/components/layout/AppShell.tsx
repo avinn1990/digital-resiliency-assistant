@@ -6,6 +6,7 @@ import {
   updateAssessment,
 } from "../../assessmentFlow/assessmentsApi";
 import { listEvaluationServices } from "../../assessmentFlow/api";
+import { serviceDisplayName } from "../../assessmentFlow/roles";
 import type { AssessmentDraft, EvaluationServiceSummary } from "../../assessmentFlow/types";
 import { clearProfile, isSignedIn, signOut } from "../../auth/accountActions";
 import { fetchUserProfile } from "../../auth/profileApi";
@@ -175,7 +176,11 @@ export function AppShell() {
 
   const activeServiceName = useMemo(() => {
     const match = services.find((service) => service.service_id === chat.activeServiceId);
-    return match?.service_name ?? chat.activeServiceId;
+    if (match) return serviceDisplayName(match);
+    if (chat.activeServiceId) {
+      return serviceDisplayName({ service_id: chat.activeServiceId });
+    }
+    return "";
   }, [services, chat.activeServiceId]);
 
   const waitingToStart =

@@ -1,4 +1,5 @@
 import type { EvaluationServiceSummary } from "../../assessmentFlow/types";
+import { serviceDisplayName } from "../../assessmentFlow/roles";
 import type { BackendHealthStatus } from "../../services/health";
 import { canReachBackend } from "../../services/health";
 import { ConnectionStatus } from "../common/ConnectionStatus";
@@ -69,7 +70,7 @@ export function WelcomePanel({
           {selectedServices.map((service) => (
             <div key={service.service_id} className="af-onboarding-service">
               <div className="af-onboarding-service-title">
-                <span>{service.service_name ?? service.service_id}</span>
+                <span>{serviceDisplayName(service)}</span>
                 {service.version ? (
                   <span className="af-pill">v{service.version}</span>
                 ) : null}

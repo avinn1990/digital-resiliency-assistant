@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import type { CanonicalRole } from "../types";
-import { resolveRoleId } from "../roles";
+import { resolveRoleId, roleDisplayName } from "../roles";
 
 type Props = {
   roles: CanonicalRole[];
@@ -120,7 +120,7 @@ export function UserProfilePage({
               </option>
               {roles.map((item) => (
                 <option key={item.role_id} value={item.role_id}>
-                  {item.display_name}
+                  {roleDisplayName(item.role_id, roles)}
                 </option>
               ))}
               <option value="Other">Other</option>
