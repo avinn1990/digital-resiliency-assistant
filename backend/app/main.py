@@ -40,15 +40,19 @@ logger = logging.getLogger(__name__)
 CLEANUP_INTERVAL_SECONDS = 24 * 60 * 60
 
 
+def _open_db_session():
+    from app.db.session import get_session_factory
+
+    return get_session_factory()()
+
+
 async def _artifact_cleanup_loop() -> None:
     while True:
         await asyncio.sleep(CLEANUP_INTERVAL_SECONDS)
         if not settings.database_enabled or not settings.artifact_cleanup_enabled:
             continue
         try:
-            from app.db.session import SessionLocal
-
-            db = SessionLocal()
+            db = _open_db_session()
             try:
                 cleanup_expired_artifacts(db)
             finally:
@@ -61,13 +65,13 @@ async def _artifact_cleanup_loop() -> None:
 async def lifespan(app: FastAPI):
     cleanup_task: asyncio.Task | None = None
     if settings.database_enabled:
-        from app.db.session import init_db, SessionLocal
+        from app.db.session import init_db
 
         init_db()
         logger.info("Database tables initialized")
         if settings.artifact_cleanup_enabled:
             try:
-                db = SessionLocal()
+                db = _open_db_session()
                 try:
                     cleanup_expired_artifacts(db)
                 finally:
@@ -122,9 +126,7 @@ def run_artifact_cleanup() -> CleanupResult:
         raise HTTPException(status_code=404, detail="Not found")
     if not settings.database_enabled:
         raise HTTPException(status_code=503, detail="Database is not configured")
-    from app.db.session import SessionLocal
-
-    db = SessionLocal()
+    db = _open_db_session()
     try:
         return cleanup_expired_artifacts(db)
     finally:
