@@ -54,6 +54,9 @@ function DraftCard({
           <span className="af-pill">
             {draft.servicesDone}/{draft.servicesTotal} services
           </span>
+          {(draft.pendingArtifactsCount ?? 0) > 0 && (
+            <span className="af-pill warn">Artifacts needed</span>
+          )}
         </div>
       </div>
       <div className="af-dashboard-card-actions">
@@ -203,7 +206,11 @@ export function DashboardPage({
                       key={draft.assessmentId}
                       draft={draft}
                       roles={roles}
-                      openLabel="View Summary"
+                      openLabel={
+                        draft.mode === "chat" && draft.status === "completed"
+                          ? "View Artifacts"
+                          : "View Summary"
+                      }
                       onOpen={() => onViewSummary(draft.assessmentId)}
                       onDiscard={() => onDiscard(draft.assessmentId)}
                     />

@@ -31,8 +31,16 @@ class Settings(BaseSettings):
     jwt_expire_minutes: int = 1440
     auth_required: bool = False
     database_url: str = ""
+    artifacts_upload_dir: str = "data/uploads"
+    artifact_retention_days: int = 7
+    artifact_max_size_mb: int = 10
+    artifact_cleanup_enabled: bool = True
     # Comma-separated browser origins (scheme + host, no path), e.g. https://digitally-resilient.com
     cors_origins: str = ""
+
+    @property
+    def artifact_max_size_bytes(self) -> int:
+        return self.artifact_max_size_mb * 1024 * 1024
 
     @property
     def cors_allowed_origins(self) -> list[str]:

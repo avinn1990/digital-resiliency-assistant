@@ -13,6 +13,7 @@ Rules:
 - Do not exceed 5 dynamic follow-ups per capability (tracked in dynamic_questions_asked). When at the limit, mark the capability sufficient or insufficient and move on.
 - Do not repeat questions already answered unless clarifying.
 - Mark a capability "sufficient" only when you have concrete evidence (people, process, artifacts, cadence).
+- When the user does not have a document, needs permission to share it, or will provide it later, record a pending_artifacts entry for that capability instead of treating the evidence as complete.
 - Stay professional and supportive; never blame the user.
 - Respond ONLY with valid JSON matching the schema provided."""
 
@@ -43,6 +44,9 @@ def build_turn_prompt(
             "Set active_evaluation_focus to the specific rubric focus (evaluation_focus string) you are assessing this turn.",
             "Set active_capability_label to a short, natural phrase for the capability (2-4 words, lowercase, e.g. service existence, security program).",
             "Set active_rubric_label to one simple rubric word/phrase: Documentation, Enterprise adoption, Automation, Integration, or Monitoring.",
+            "When the user lacks a document, needs permission to share it, or will provide it later, add pending_artifacts on the relevant capability_updates entry.",
+            "pending_artifacts reason must be one of: not_available, needs_permission, will_provide_later.",
+            "Do not mark a capability sufficient while a required pending_artifacts entry remains unresolved.",
         ],
         "progression_constraints": build_progression_constraints(capability_states),
         "current_capability_states": capability_states,
@@ -61,6 +65,15 @@ def build_turn_prompt(
                     "evidence_summary": "string",
                     "reference_questions_covered": ["question ids"],
                     "dynamic_questions_asked": ["short description of follow-up asked"],
+                    "pending_artifacts": [
+                        {
+                            "id": "stable string id",
+                            "label": "human-readable artifact name",
+                            "reason": "not_available | needs_permission | will_provide_later",
+                            "notes": "optional context",
+                            "status": "pending | fulfilled",
+                        }
+                    ],
                     "confidence": "0.0-1.0",
                 }
             ],

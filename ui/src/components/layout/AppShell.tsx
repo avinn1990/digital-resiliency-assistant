@@ -4,6 +4,7 @@ import {
   createAssessment,
   getAssessment,
   updateAssessment,
+  uploadArtifact,
 } from "../../assessmentFlow/assessmentsApi";
 import { listEvaluationServices } from "../../assessmentFlow/api";
 import { serviceDisplayName } from "../../assessmentFlow/roles";
@@ -12,7 +13,8 @@ import { clearProfile, isSignedIn, signOut } from "../../auth/accountActions";
 import { fetchUserProfile } from "../../auth/profileApi";
 import { loadAuthToken, loadAuthUser } from "../../auth/storage";
 import { useChatSession } from "../../hooks/useChatSession";
-import { buildChatDraft } from "../../lib/chatDraft";
+import { buildChatDraft, aggregatePendingArtifacts } from "../../lib/chatDraft";
+import { ARTIFACT_RETENTION_NOTICE } from "../../lib/artifactUtils";
 import {
   buildChatPath,
   parseChatSearchParams,
@@ -20,7 +22,6 @@ import {
 } from "../../lib/chatNavigation";
 import { getCurrentStep, toFriendlyError } from "../../lib/userMessages";
 import { canReachBackend } from "../../services/health";
-import { AssessmentPanel } from "../assessment/AssessmentPanel";
 import { ChatHeader } from "../chat/ChatHeader";
 import { ChatWorkspace } from "../chat/ChatWorkspace";
 import { StatusAnnouncer } from "../common/StatusAnnouncer";
@@ -66,6 +67,8 @@ export function AppShell() {
   const [draftError, setDraftError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [finishing, setFinishing] = useState(false);
 
   useEffect(() => {
     setServicesLoading(true);
@@ -195,82 +198,155 @@ export function AppShell() {
     (draftLoading || Boolean(savedDraft?.chatState)) &&
     !draftError &&
     !chat.error;
-  const currentStep = getCurrentStep(chat.sessionId, !!chat.assessment);
+  const currentStep = getCurrentStep(chat.sessionId, false);
 
   const statusMessage = chat.loading
     ? "Loading, please wait."
-    : chat.assessing
-      ? "Running your assessment."
-      : chat.error
-        ? chat.error
-        : draftError
-          ? draftError
-          : chat.assessment
-            ? `Assessment complete. Overall score ${chat.assessment.overall_score} out of 100.`
+    : finishing
+      ? "Finishing your assessment."
+      : uploading
+        ? "Uploading your file."
+        : chat.error
+          ? chat.error
+          : draftError
+            ? draftError
             : saveMessage ?? "";
 
-  const handleSaveProgress = useCallback(async () => {
+  const ensureDraftSaved = useCallback(async () => {
     const authToken = loadAuthToken();
     const authUser = loadAuthUser();
     if (!authToken || !authUser) {
-      setSaveMessage("Sign in from your dashboard to save progress.");
-      return;
+      throw new Error("Sign in from your dashboard to save progress.");
     }
 
+    const onboarding = await fetchUserProfile(authToken);
+    if (!onboarding) {
+      throw new Error("Complete onboarding before saving your assessment.");
+    }
+
+    const profile = {
+      username: usernameFromEmail(authUser.email),
+      fullName: authUser.name,
+      company: onboarding.company,
+      role: onboarding.role,
+    };
+
+    const draft = buildChatDraft({
+      assessmentId: savedDraft?.assessmentId ?? (draftId || undefined),
+      profile,
+      ownerEmail: authUser.email,
+      selectedServiceIds: serviceIds,
+      snapshot: chat.getSnapshot(),
+      existingDraft: savedDraft,
+    });
+
+    const saved =
+      savedDraft || draftId
+        ? await updateAssessment(draft.assessmentId, draft, authToken)
+        : await (async () => {
+            try {
+              return await createAssessment(draft, authToken);
+            } catch (err) {
+              const message = err instanceof Error ? err.message : String(err);
+              if (/409|already exists/i.test(message)) {
+                return updateAssessment(draft.assessmentId, draft, authToken);
+              }
+              throw err;
+            }
+          })();
+
+    setSavedDraft(saved);
+    if (!draftId) {
+      navigate(
+        buildChatPath(serviceIds, saved.assessmentId, chat.activeServiceId),
+        { replace: true, state: {} }
+      );
+    }
+    return { saved, authToken };
+  }, [chat, draftId, savedDraft, serviceIds, navigate]);
+
+  const handleSaveProgress = useCallback(async () => {
     setSaving(true);
     setSaveMessage(null);
     try {
-      const onboarding = await fetchUserProfile(authToken);
-      if (!onboarding) {
-        setSaveMessage("Complete onboarding before saving your assessment.");
-        return;
-      }
-
-      const profile = {
-        username: usernameFromEmail(authUser.email),
-        fullName: authUser.name,
-        company: onboarding.company,
-        role: onboarding.role,
-      };
-
-      const draft = buildChatDraft({
-        assessmentId: savedDraft?.assessmentId ?? (draftId || undefined),
-        profile,
-        ownerEmail: authUser.email,
-        selectedServiceIds: serviceIds,
-        snapshot: chat.getSnapshot(),
-        existingDraft: savedDraft,
-      });
-
-      const saved =
-        savedDraft || draftId
-          ? await updateAssessment(draft.assessmentId, draft, authToken)
-          : await (async () => {
-              try {
-                return await createAssessment(draft, authToken);
-              } catch (err) {
-                const message = err instanceof Error ? err.message : String(err);
-                if (/409|already exists/i.test(message)) {
-                  return updateAssessment(draft.assessmentId, draft, authToken);
-                }
-                throw err;
-              }
-            })();
-
-      setSavedDraft(saved);
-      if (!draftId) {
-        navigate(
-          buildChatPath(serviceIds, saved.assessmentId, chat.activeServiceId),
-          { replace: true, state: {} }
-        );
-      }
+      await ensureDraftSaved();
       setSaveMessage("Progress saved. You can continue later from your dashboard.");
     } catch (err) {
       setSaveMessage(toFriendlyError(err));
     } finally {
       setSaving(false);
     }
-  }, [chat, draftId, savedDraft, serviceIds, navigate]);
+  }, [ensureDraftSaved]);
+
+  const handleUploadFiles = useCallback(
+    async (files: File[]) => {
+      if (files.length === 0) return;
+      setUploading(true);
+      setSaveMessage(null);
+      try {
+        const { saved, authToken } = await ensureDraftSaved();
+        const uploaded: Array<{ fileId: string; fileName: string }> = [];
+        let latestDraft = saved;
+
+        for (const file of files) {
+          const result = await uploadArtifact(saved.assessmentId, authToken, file, {
+            serviceId: chat.activeServiceId,
+            capabilityId: chat.assessmentFocus?.capability_id,
+          });
+          uploaded.push({ fileId: result.artifact.id, fileName: result.artifact.fileName });
+          latestDraft = {
+            ...latestDraft,
+            pendingArtifacts: result.pendingArtifacts,
+            uploadedArtifacts: result.uploadedArtifacts,
+          };
+        }
+
+        setSavedDraft(latestDraft);
+        const names = uploaded.map((item) => item.fileName).join(", ");
+        chat.appendUserMessage(`Uploaded: ${names}`, uploaded);
+        setSaveMessage(`Uploaded ${names}. ${ARTIFACT_RETENTION_NOTICE}`);
+      } catch (err) {
+        setSaveMessage(toFriendlyError(err));
+      } finally {
+        setUploading(false);
+      }
+    },
+    [chat, ensureDraftSaved]
+  );
+
+  const handleFinishAssessment = useCallback(async () => {
+    setFinishing(true);
+    setSaveMessage(null);
+    try {
+      const { saved, authToken } = await ensureDraftSaved();
+      const pendingArtifacts = aggregatePendingArtifacts(
+        chat.getSnapshot(),
+        saved.pendingArtifacts ?? []
+      );
+      const finishedDraft = buildChatDraft({
+        assessmentId: saved.assessmentId,
+        profile: saved.profile,
+        ownerEmail: saved.ownerEmail,
+        selectedServiceIds: serviceIds,
+        snapshot: chat.getSnapshot(),
+        existingDraft: saved,
+        pendingArtifacts,
+        uploadedArtifacts: saved.uploadedArtifacts,
+      });
+      const persisted = await updateAssessment(
+        finishedDraft.assessmentId,
+        finishedDraft,
+        authToken
+      );
+      navigate(`/assessment/${encodeURIComponent(persisted.assessmentId)}/artifacts`, {
+        replace: true,
+      });
+    } catch (err) {
+      setSaveMessage(toFriendlyError(err));
+    } finally {
+      setFinishing(false);
+    }
+  }, [chat, ensureDraftSaved, navigate, serviceIds]);
 
   return (
     <div className="app-shell">
@@ -348,28 +424,24 @@ export function AppShell() {
             />
           )
         ) : (
-          <div className="app-main-split">
-            <ChatWorkspace
-              messages={chat.messages}
-              loading={chat.loading}
-              completed={chat.completed}
-              onSend={chat.submitUserMessage}
-              onRunAssessment={chat.executeAssessment}
-              assessmentLoading={chat.assessing}
-              canSave={signedIn && chat.messages.length > 0}
-              saving={saving}
-              saveMessage={saveMessage}
-              onSave={() => {
-                void handleSaveProgress();
-              }}
-            />
-            {chat.assessment && (
-              <AssessmentPanel
-                result={chat.assessment}
-                onDismiss={chat.clearAssessment}
-              />
-            )}
-          </div>
+          <ChatWorkspace
+            messages={chat.messages}
+            loading={chat.loading}
+            completed={chat.completed}
+            onSend={chat.submitUserMessage}
+            onUploadFiles={signedIn ? handleUploadFiles : undefined}
+            uploading={uploading}
+            onFinishAssessment={() => {
+              void handleFinishAssessment();
+            }}
+            finishing={finishing}
+            canSave={signedIn && chat.messages.length > 0}
+            saving={saving}
+            saveMessage={saveMessage}
+            onSave={() => {
+              void handleSaveProgress();
+            }}
+          />
         )}
         {(chat.sessionId && chat.error) || draftError ? (
           <div className="error-banner floating" role="alert">

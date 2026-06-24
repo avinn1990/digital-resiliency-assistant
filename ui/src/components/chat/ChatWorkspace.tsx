@@ -8,8 +8,10 @@ type Props = {
   loading: boolean;
   completed: boolean;
   onSend: (text: string) => void;
-  onRunAssessment: () => void;
-  assessmentLoading: boolean;
+  onUploadFiles?: (files: File[]) => void;
+  uploading?: boolean;
+  onFinishAssessment: () => void;
+  finishing?: boolean;
   canSave?: boolean;
   saving?: boolean;
   saveMessage?: string | null;
@@ -21,8 +23,10 @@ export function ChatWorkspace({
   loading,
   completed,
   onSend,
-  onRunAssessment,
-  assessmentLoading,
+  onUploadFiles,
+  uploading = false,
+  onFinishAssessment,
+  finishing = false,
   canSave = false,
   saving = false,
   saveMessage = null,
@@ -37,8 +41,8 @@ export function ChatWorkspace({
       <div className="chat-workspace-footer">
         {completed ? (
           <div className="chat-hint success" role="status">
-            <strong>All set.</strong> Run your assessment below, or add more
-            detail if something changed.
+            <strong>All set.</strong> Finish your assessment below to review any
+            documents still needed, or add more detail if something changed.
           </div>
         ) : (
           <ContextHelp>
@@ -48,7 +52,9 @@ export function ChatWorkspace({
         )}
         <ChatComposer
           onSend={onSend}
-          disabled={loading || assessmentLoading}
+          onUploadFiles={onUploadFiles}
+          uploading={uploading}
+          disabled={loading || finishing}
           placeholder={
             completed
               ? "Add more detail (optional)…"
@@ -61,7 +67,7 @@ export function ChatWorkspace({
               type="button"
               className="btn-secondary"
               onClick={onSave}
-              disabled={!canSave || saving || loading || assessmentLoading}
+              disabled={!canSave || saving || loading || finishing || uploading}
             >
               {saving ? "Saving…" : "Save Progress"}
             </button>
@@ -69,10 +75,10 @@ export function ChatWorkspace({
           <button
             type="button"
             className="btn-primary"
-            onClick={onRunAssessment}
-            disabled={loading || assessmentLoading}
+            onClick={onFinishAssessment}
+            disabled={loading || finishing || uploading}
           >
-            {assessmentLoading ? "Building your report…" : "Get My Assessment"}
+            {finishing ? "Finishing…" : "Finish Assessment"}
           </button>
         </div>
         {saveMessage && (

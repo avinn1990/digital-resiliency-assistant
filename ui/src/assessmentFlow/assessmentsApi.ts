@@ -12,6 +12,18 @@ export type UserDraftSummary = {
   status: "pending" | "completed";
   servicesDone: number;
   servicesTotal: number;
+  pendingArtifactsCount?: number;
+};
+
+export type ArtifactsListResponse = {
+  pendingArtifacts: import("./types").PendingArtifact[];
+  uploadedArtifacts: import("./types").UploadedArtifact[];
+};
+
+export type UploadArtifactResponse = {
+  artifact: import("./types").UploadedArtifact;
+  pendingArtifacts: import("./types").PendingArtifact[];
+  uploadedArtifacts: import("./types").UploadedArtifact[];
 };
 
 async function request<T>(
@@ -89,4 +101,75 @@ export function deleteAssessment(assessmentId: string, authToken: string) {
     { method: "DELETE" },
     authToken
   );
+}
+
+export async function listArtifacts(assessmentId: string, authToken: string) {
+  return request<ArtifactsListResponse>(
+    `/assessments/${encodeURIComponent(assessmentId)}/artifacts`,
+    undefined,
+    authToken
+  );
+}
+
+export async function uploadArtifact(
+  assessmentId: string,
+  authToken: string,
+  file: File,
+  options?: {
+    serviceId?: string;
+    capabilityId?: string;
+    pendingArtifactId?: string;
+  }
+) {
+  const formData = new FormData();
+  formData.append("file", file);
+  if (options?.serviceId) formData.append("service_id", options.serviceId);
+  if (options?.capabilityId) formData.append("capability_id", options.capabilityId);
+  if (options?.pendingArtifactId) {
+    formData.append("pending_artifact_id", options.pendingArtifactId);
+  }
+
+  const apiBase = await getApiBase();
+  const response = await fetch(
+    `${apiBase}/assessments/${encodeURIComponent(assessmentId)}/artifacts`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authToken.trim()}`,
+      },
+      body: formData,
+    }
+  );
+
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(detail || `Upload failed: ${response.status}`);
+  }
+
+  return response.json() as Promise<UploadArtifactResponse>;
+}
+
+export async function getArtifactDownloadRequest(
+  assessmentId: string,
+  fileId: string,
+  authToken: string
+) {
+  const apiBase = await getApiBase();
+  const response = await fetch(
+    `${apiBase}/assessments/${encodeURIComponent(assessmentId)}/artifacts/${encodeURIComponent(fileId)}`,
+    {
+      headers: {
+        Authorization: `Bearer ${authToken.trim()}`,
+      },
+    }
+  );
+  if (!response.ok) {
+    const detail = await response.text();
+    throw new Error(detail || `Download failed: ${response.status}`);
+  }
+  const blob = await response.blob();
+  const disposition = response.headers.get("content-disposition") ?? "";
+  const match = disposition.match(/filename="?([^";]+)"?/i);
+  const fileName = match?.[1] ?? fileId;
+  return { blob, fileName };
 }

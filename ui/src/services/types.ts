@@ -12,6 +12,7 @@ export type ChatMessage = {
   role: ChatRole;
   content: string;
   timestamp: string;
+  attachments?: Array<{ fileId: string; fileName: string }>;
 };
 
 export type SessionProgress = {

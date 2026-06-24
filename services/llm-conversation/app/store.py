@@ -80,6 +80,7 @@ def initial_capability_states(capabilities: list[dict[str, Any]]) -> dict[str, A
             "evidence_summary": "",
             "reference_questions_covered": [],
             "dynamic_questions_asked": [],
+            "pending_artifacts": [],
             "confidence": 0.0,
         }
         for cap in capabilities

@@ -45,6 +45,7 @@ import { QuestionnairePage } from "./pages/QuestionnairePage";
 import { ServicesPage } from "./pages/ServicesPage";
 import { SplashAuthPage } from "./pages/SplashAuthPage";
 import { SummaryPage } from "./pages/SummaryPage";
+import { PendingArtifactsPage } from "./pages/PendingArtifactsPage";
 import { UserProfilePage } from "./pages/UserProfilePage";
 
 type AppState = {
@@ -510,7 +511,14 @@ export function AssessmentFlowApp() {
   }
 
   function viewSummary(assessmentId: string) {
+    const summary = state.assessments.find((draft) => draft.assessmentId === assessmentId);
     setState((s) => ({ ...s, activeAssessmentId: assessmentId, activeDraft: null }));
+    if (summary?.mode === "chat") {
+      navigate(`/assessment/${encodeURIComponent(assessmentId)}/artifacts`, {
+        replace: true,
+      });
+      return;
+    }
     navigate(`/assessment/${encodeURIComponent(assessmentId)}/summary`, {
       replace: true,
     });
@@ -745,6 +753,29 @@ export function AssessmentFlowApp() {
                 }
               />
             </>
+          ) : (
+            <Navigate to="/dashboard" replace />
+          )
+        }
+      />
+
+      <Route
+        path="/assessment/:assessmentId/artifacts"
+        element={
+          state.activeDraftLoading ? (
+            <div className="af-page">
+              <div className="af-page-inner context-help">Loading assessment…</div>
+            </div>
+          ) : state.activeDraft && state.authToken ? (
+            <PendingArtifactsPage
+              draft={state.activeDraft}
+              roles={allRoles}
+              services={state.services}
+              authToken={state.authToken}
+              onDraftChange={(draft) => {
+                persistDraft(draft);
+              }}
+            />
           ) : (
             <Navigate to="/dashboard" replace />
           )

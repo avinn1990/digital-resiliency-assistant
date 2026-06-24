@@ -146,6 +146,10 @@ services:
           type: web
           name: dra-llm-conversation-dev
           envVarKey: RENDER_EXTERNAL_URL
+    disk:
+      name: dra-backend-dev-data
+      mountPath: data
+      sizeGB: 1
       - key: AUTH_REQUIRED
         value: "true"
       - key: DATABASE_URL

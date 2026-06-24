@@ -31,7 +31,16 @@ export function MessageBubble({ message }: Props) {
             {formatTime(message.timestamp)}
           </time>
         </div>
-        <div className="message-bubble">{message.content}</div>
+        <div className="message-bubble">
+          {message.content}
+          {message.attachments && message.attachments.length > 0 && (
+            <ul className="message-attachments">
+              {message.attachments.map((attachment) => (
+                <li key={attachment.fileId}>{attachment.fileName}</li>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -3,6 +3,7 @@ from typing import Annotated
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
+from app.artifacts.routes import router as artifacts_router
 from app.assessments.schemas import AssessmentDraftBody, AssessmentSummaryResponse
 from app.assessments.service import (
     create_assessment,
@@ -16,6 +17,7 @@ from app.auth.models import AuthUser
 from app.db.session import get_db
 
 router = APIRouter()
+router.include_router(artifacts_router)
 
 
 @router.get("", response_model=list[AssessmentSummaryResponse])

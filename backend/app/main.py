@@ -1,11 +1,14 @@
 import asyncio
 import logging
+from contextlib import asynccontextmanager
 
 import httpx
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
+from app.artifacts.cleanup import cleanup_expired_artifacts
+from app.artifacts.schemas import CleanupResult
 from app.assessments.routes import router as assessments_router
 from app.auth import router as auth_router
 from app.auth.deps import get_current_user
@@ -34,10 +37,60 @@ from app.session_registry import is_llm_session, register_llm_session
 
 logger = logging.getLogger(__name__)
 
+CLEANUP_INTERVAL_SECONDS = 24 * 60 * 60
+
+
+async def _artifact_cleanup_loop() -> None:
+    while True:
+        await asyncio.sleep(CLEANUP_INTERVAL_SECONDS)
+        if not settings.database_enabled or not settings.artifact_cleanup_enabled:
+            continue
+        try:
+            from app.db.session import SessionLocal
+
+            db = SessionLocal()
+            try:
+                cleanup_expired_artifacts(db)
+            finally:
+                db.close()
+        except Exception:
+            logger.exception("Scheduled artifact cleanup failed")
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    cleanup_task: asyncio.Task | None = None
+    if settings.database_enabled:
+        from app.db.session import init_db, SessionLocal
+
+        init_db()
+        logger.info("Database tables initialized")
+        if settings.artifact_cleanup_enabled:
+            try:
+                db = SessionLocal()
+                try:
+                    cleanup_expired_artifacts(db)
+                finally:
+                    db.close()
+            except Exception:
+                logger.exception("Startup artifact cleanup failed")
+            cleanup_task = asyncio.create_task(_artifact_cleanup_loop())
+    else:
+        logger.warning("DATABASE_URL is not set — assessment persistence is disabled")
+    yield
+    if cleanup_task is not None:
+        cleanup_task.cancel()
+        try:
+            await cleanup_task
+        except asyncio.CancelledError:
+            pass
+
+
 app = FastAPI(
     title="Digital Resiliency Assistant API",
     description="Gateway for conversation, framework, and assessment services",
     version="0.1.0",
+    lifespan=lifespan,
 )
 
 # Explicit origins for the production UI custom domain; regex covers Render *.onrender.com hosts.
@@ -63,15 +116,19 @@ app.include_router(users_router, prefix="/users", tags=["users"])
 app.include_router(assessments_router, prefix="/assessments", tags=["assessments"])
 
 
-@app.on_event("startup")
-def on_startup() -> None:
+@app.post("/internal/artifacts/cleanup", response_model=CleanupResult)
+def run_artifact_cleanup() -> CleanupResult:
+    if not settings.artifact_cleanup_enabled:
+        raise HTTPException(status_code=404, detail="Not found")
     if not settings.database_enabled:
-        logger.warning("DATABASE_URL is not set — assessment persistence is disabled")
-        return
-    from app.db.session import init_db
+        raise HTTPException(status_code=503, detail="Database is not configured")
+    from app.db.session import SessionLocal
 
-    init_db()
-    logger.info("Database tables initialized")
+    db = SessionLocal()
+    try:
+        return cleanup_expired_artifacts(db)
+    finally:
+        db.close()
 
 
 def _uses_llm(framework_id: str) -> bool:

@@ -67,6 +67,25 @@ def get_draft_progress(draft: AssessmentDraftBody) -> tuple[int, int]:
     return services_done, services_total
 
 
+def get_pending_artifacts_count(draft: AssessmentDraftBody) -> int:
+    if draft.pendingArtifacts:
+        return sum(1 for item in draft.pendingArtifacts if item.status == "pending")
+    if not draft.chatState:
+        return 0
+    count = 0
+    snapshots = draft.chatState.get("serviceSnapshots") or {}
+    for snapshot in snapshots.values():
+        capability_states = snapshot.get("capabilityStates") or {}
+        for state in capability_states.values():
+            pending = state.get("pending_artifacts") or []
+            count += sum(
+                1
+                for item in pending
+                if isinstance(item, dict) and item.get("status", "pending") == "pending"
+            )
+    return count
+
+
 def draft_to_summary(record: AssessmentRecord) -> AssessmentSummaryResponse:
     draft = AssessmentDraftBody.model_validate(record.payload)
     services_done, services_total = get_draft_progress(draft)
@@ -81,6 +100,7 @@ def draft_to_summary(record: AssessmentRecord) -> AssessmentSummaryResponse:
         status=get_draft_status(draft),
         servicesDone=services_done,
         servicesTotal=services_total,
+        pendingArtifactsCount=get_pending_artifacts_count(draft),
     )
 
 

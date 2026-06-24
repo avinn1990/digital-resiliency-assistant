@@ -52,6 +52,30 @@ export type UserProfile = {
   role: string;
 };
 
+export type PendingArtifact = {
+  id: string;
+  serviceId: string;
+  capabilityId: string;
+  label: string;
+  reason: "not_available" | "needs_permission" | "will_provide_later";
+  notes?: string;
+  status: "pending" | "fulfilled";
+  fileId?: string;
+  requestedAt: string;
+  fulfilledAt?: string;
+};
+
+export type UploadedArtifact = {
+  id: string;
+  fileName: string;
+  contentType: string;
+  sizeBytes: number;
+  serviceId?: string;
+  capabilityId?: string;
+  uploadedAt: string;
+  expired?: boolean;
+};
+
 export type AssessmentMode = "questionnaire" | "chat";
 
 export type ChatServiceSnapshot = {
@@ -95,5 +119,7 @@ export type AssessmentDraft = {
     }
   >;
   chatState?: ChatAssessmentState;
+  pendingArtifacts?: PendingArtifact[];
+  uploadedArtifacts?: UploadedArtifact[];
 };
 

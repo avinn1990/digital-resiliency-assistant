@@ -7,7 +7,7 @@ from typing import Any
 MAX_FOLLOW_UPS_PER_CAPABILITY = 5
 
 LIST_MERGE_FIELDS = frozenset(
-    {"reference_questions_covered", "dynamic_questions_asked"}
+    {"reference_questions_covered", "dynamic_questions_asked", "pending_artifacts"}
 )
 
 _FOLLOW_UP_LIMIT_NOTE = (
@@ -25,6 +25,37 @@ def merge_list_values(existing: list[Any], incoming: list[Any]) -> list[Any]:
     return merged
 
 
+def merge_pending_artifacts(existing: list[Any], incoming: list[Any]) -> list[Any]:
+    merged = [dict(item) for item in existing if isinstance(item, dict)]
+    by_id = {item.get("id"): item for item in merged if item.get("id")}
+    for item in incoming:
+        if not isinstance(item, dict):
+            continue
+        artifact_id = item.get("id")
+        label = (item.get("label") or "").strip().lower()
+        if artifact_id and artifact_id in by_id:
+            by_id[artifact_id].update(item)
+            continue
+        duplicate = next(
+            (
+                existing_item
+                for existing_item in merged
+                if (existing_item.get("label") or "").strip().lower() == label
+                and label
+            ),
+            None,
+        )
+        if duplicate is not None:
+            duplicate.update(item)
+            if artifact_id:
+                by_id[artifact_id] = duplicate
+            continue
+        merged.append(dict(item))
+        if artifact_id:
+            by_id[artifact_id] = merged[-1]
+    return merged
+
+
 def merge_capability_state_update(
     existing: dict[str, Any], update: dict[str, Any]
 ) -> dict[str, Any]:
@@ -35,7 +66,10 @@ def merge_capability_state_update(
         if key in LIST_MERGE_FIELDS and isinstance(value, list):
             prev = result.get(key)
             base = prev if isinstance(prev, list) else []
-            result[key] = merge_list_values(base, value)
+            if key == "pending_artifacts":
+                result[key] = merge_pending_artifacts(base, value)
+            else:
+                result[key] = merge_list_values(base, value)
         else:
             result[key] = value
     return result

@@ -375,6 +375,17 @@ export function useChatSession(options?: UseChatSessionOptions) {
     serviceSnapshots,
   ]);
 
+  const appendUserMessage = useCallback(
+    (content: string, attachments?: ChatMessage["attachments"]) => {
+      const message = createMessage("user", content);
+      if (attachments?.length) {
+        message.attachments = attachments;
+      }
+      setMessages((prev) => [...prev, message]);
+    },
+    []
+  );
+
   const connectionStatus: BackendHealthStatus = sessionId ? "ready" : backendHealth;
 
   return {
@@ -394,6 +405,7 @@ export function useChatSession(options?: UseChatSessionOptions) {
     beginSession,
     restoreFromChatState,
     submitUserMessage,
+    appendUserMessage,
     executeAssessment,
     clearAssessment,
     resetSession,

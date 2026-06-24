@@ -32,6 +32,9 @@ export function toFriendlyError(err: unknown): string {
   if (/404|not found/i.test(raw)) {
     return "That resource wasn't found. Start a new chat or pick different services.";
   }
+  if (/410|removed after 7 days/i.test(raw)) {
+    return "This file was removed after 7 days. Please upload it again.";
+  }
   if (/cannot reach the backend|VITE_API_URL/i.test(raw)) {
     return "The agent isn't reachable. Make sure the API is running and the app is pointed at the right URL.";
   }

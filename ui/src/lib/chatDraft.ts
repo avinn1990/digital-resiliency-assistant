@@ -2,6 +2,7 @@ import type {
   AssessmentDraft,
   ChatAssessmentState,
   ChatServiceSnapshot,
+  PendingArtifact,
   UserProfile,
 } from "../assessmentFlow/types";
 import { createAssessmentId } from "../assessmentFlow/id";
@@ -17,6 +18,105 @@ export type ChatSessionSnapshot = {
   completedServiceIds: string[];
   serviceSnapshots: Record<string, ChatServiceSnapshot>;
 };
+
+type CapabilityState = {
+  pending_artifacts?: Array<{
+    id?: string;
+    label?: string;
+    reason?: PendingArtifact["reason"];
+    notes?: string;
+    status?: PendingArtifact["status"];
+    fileId?: string;
+    requestedAt?: string;
+    fulfilledAt?: string;
+  }>;
+};
+
+function normalizePendingArtifact(
+  raw: NonNullable<CapabilityState["pending_artifacts"]>[number],
+  serviceId: string,
+  capabilityId: string
+): PendingArtifact | null {
+  const label = raw.label?.trim();
+  if (!label) return null;
+  const now = new Date().toISOString();
+  return {
+    id:
+      raw.id?.trim() ||
+      `${serviceId}-${capabilityId}-${label.toLowerCase().replace(/\s+/g, "-")}`,
+    serviceId,
+    capabilityId,
+    label,
+    reason: raw.reason ?? "not_available",
+    notes: raw.notes,
+    status: raw.status ?? "pending",
+    fileId: raw.fileId,
+    requestedAt: raw.requestedAt ?? now,
+    fulfilledAt: raw.fulfilledAt,
+  };
+}
+
+export function aggregatePendingFromServiceSnapshot(
+  serviceId: string,
+  snapshot: ChatServiceSnapshot
+): PendingArtifact[] {
+  const capabilityStates = (snapshot.capabilityStates ?? {}) as Record<string, CapabilityState>;
+  const results: PendingArtifact[] = [];
+  for (const [capabilityId, state] of Object.entries(capabilityStates)) {
+    for (const item of state.pending_artifacts ?? []) {
+      const normalized = normalizePendingArtifact(item, serviceId, capabilityId);
+      if (normalized) results.push(normalized);
+    }
+  }
+  return results;
+}
+
+export function aggregatePendingArtifacts(
+  snapshot: ChatSessionSnapshot,
+  existing: PendingArtifact[] = []
+): PendingArtifact[] {
+  const byId = new Map(existing.map((item) => [item.id, item]));
+
+  const addItems = (items: PendingArtifact[]) => {
+    for (const item of items) {
+      const current = byId.get(item.id);
+      if (!current) {
+        byId.set(item.id, item);
+        continue;
+      }
+      byId.set(item.id, {
+        ...current,
+        ...item,
+        status:
+          item.status === "fulfilled" || current.status === "fulfilled"
+            ? "fulfilled"
+            : "pending",
+        fileId: item.fileId ?? current.fileId,
+        fulfilledAt: item.fulfilledAt ?? current.fulfilledAt,
+      });
+    }
+  };
+
+  for (const [serviceId, serviceSnapshot] of Object.entries(snapshot.serviceSnapshots)) {
+    addItems(aggregatePendingFromServiceSnapshot(serviceId, serviceSnapshot));
+  }
+
+  if (snapshot.activeServiceId) {
+    const activeSnapshot: ChatServiceSnapshot = {
+      messages: snapshot.messages.map((message) => ({
+        role: message.role,
+        content: message.content,
+      })),
+      progress: snapshot.progress,
+      completed: snapshot.completed,
+      capabilityStates:
+        snapshot.serviceSnapshots[snapshot.activeServiceId]?.capabilityStates,
+    };
+    addItems(aggregatePendingFromServiceSnapshot(snapshot.activeServiceId, activeSnapshot));
+  }
+
+  return Array.from(byId.values()).sort((a, b) => a.label.localeCompare(b.label));
+}
 
 function toBackendMessages(messages: ChatMessage[]) {
   return messages.map((message) => ({
@@ -60,6 +160,8 @@ export function buildChatDraft(params: {
   selectedServiceIds: string[];
   snapshot: ChatSessionSnapshot;
   existingDraft?: AssessmentDraft | null;
+  pendingArtifacts?: PendingArtifact[];
+  uploadedArtifacts?: AssessmentDraft["uploadedArtifacts"];
 }): AssessmentDraft {
   const now = new Date().toISOString();
   const assessmentId =
@@ -70,6 +172,11 @@ export function buildChatDraft(params: {
       role: params.profile.role,
       username: params.profile.username,
     });
+
+  const pendingArtifacts =
+    params.pendingArtifacts ??
+    params.existingDraft?.pendingArtifacts ??
+    aggregatePendingArtifacts(params.snapshot);
 
   return {
     assessmentId,
@@ -82,6 +189,9 @@ export function buildChatDraft(params: {
     currentServiceId: params.snapshot.activeServiceId,
     responsesByService: params.existingDraft?.responsesByService ?? {},
     chatState: buildChatAssessmentState(params.snapshot),
+    pendingArtifacts,
+    uploadedArtifacts:
+      params.uploadedArtifacts ?? params.existingDraft?.uploadedArtifacts ?? [],
   };
 }
 
