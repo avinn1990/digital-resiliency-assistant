@@ -20,10 +20,14 @@ import {
   parseChatSearchParams,
   type ChatLocationState,
 } from "../../lib/chatNavigation";
-import { getCurrentStep, toFriendlyError } from "../../lib/userMessages";
+import { formatTimeEstimate } from "../../lib/engagementUtils";
+import { getCurrentStep, ENGAGEMENT_COPY, toFriendlyError } from "../../lib/userMessages";
 import { canReachBackend } from "../../services/health";
+import { AssessmentPanel } from "../assessment/AssessmentPanel";
+import { EngagementBanner } from "../chat/EngagementBanner";
 import { ChatHeader } from "../chat/ChatHeader";
 import { ChatWorkspace } from "../chat/ChatWorkspace";
+import { ServiceCompletionPreview } from "../chat/ServiceCompletionPreview";
 import { StatusAnnouncer } from "../common/StatusAnnouncer";
 import { WelcomePanel } from "../setup/WelcomePanel";
 
@@ -50,9 +54,15 @@ export function AppShell() {
     return new URLSearchParams(location.search).get("draft")?.trim() ?? "";
   }, [location.search]);
 
+  const autosaveTimerRef = useRef<number | null>(null);
+  const lastAutosavedCountRef = useRef(0);
+  const ensureDraftSavedRef = useRef<(() => Promise<unknown>) | null>(null);
+  const activeServiceNameRef = useRef("");
+
   const chat = useChatSession({
     serviceIds,
     activeServiceId: urlActiveServiceId,
+    activeServiceNameRef,
     onActiveServiceChange: (nextActive) => {
       navigate(buildChatPath(serviceIds, draftId, nextActive), {
         replace: true,
@@ -186,6 +196,24 @@ export function AppShell() {
     return "";
   }, [services, chat.activeServiceId]);
 
+  activeServiceNameRef.current = activeServiceName;
+
+  const completedServiceDisplayName = useMemo(() => {
+    const id = chat.pendingServiceTransition?.completedServiceId;
+    if (!id) return "";
+    const match = services.find((service) => service.service_id === id);
+    if (match) return serviceDisplayName(match);
+    return serviceDisplayName({ service_id: id });
+  }, [services, chat.pendingServiceTransition?.completedServiceId]);
+
+  const serviceIndex = chat.completedServiceIds.length + 1;
+  const serviceTotal = chat.completedServiceIds.length + chat.serviceQueue.length;
+  const remainingCapabilities = Math.max(
+    chat.progress.total - chat.progress.current,
+    0
+  );
+  const timeEstimate = formatTimeEstimate(remainingCapabilities);
+
   const waitingToStart =
     !draftId &&
     startChatRequested &&
@@ -198,7 +226,11 @@ export function AppShell() {
     (draftLoading || Boolean(savedDraft?.chatState)) &&
     !draftError &&
     !chat.error;
-  const currentStep = getCurrentStep(chat.sessionId, false);
+  const currentStep = getCurrentStep(
+    chat.sessionId,
+    Boolean(chat.assessment),
+    chat.allServicesCompleted
+  );
 
   const statusMessage = chat.loading
     ? "Loading, please wait."
@@ -264,6 +296,33 @@ export function AppShell() {
     }
     return { saved, authToken };
   }, [chat, draftId, savedDraft, serviceIds, navigate]);
+
+  ensureDraftSavedRef.current = () => ensureDraftSaved();
+
+  useEffect(() => {
+    if (!signedIn || !chat.sessionId || chat.messages.length === 0) return;
+    if (chat.loading) return;
+    if (lastAutosavedCountRef.current === chat.messages.length) return;
+    lastAutosavedCountRef.current = chat.messages.length;
+
+    if (autosaveTimerRef.current) {
+      window.clearTimeout(autosaveTimerRef.current);
+    }
+    autosaveTimerRef.current = window.setTimeout(() => {
+      void ensureDraftSavedRef
+        .current?.()
+        .then(() => setSaveMessage(ENGAGEMENT_COPY.autosaveSaved))
+        .catch(() => {
+          /* manual save still available */
+        });
+    }, 400);
+
+    return () => {
+      if (autosaveTimerRef.current) {
+        window.clearTimeout(autosaveTimerRef.current);
+      }
+    };
+  }, [signedIn, chat.sessionId, chat.messages.length, chat.loading]);
 
   const handleSaveProgress = useCallback(async () => {
     setSaving(true);
@@ -348,6 +407,8 @@ export function AppShell() {
     }
   }, [chat, ensureDraftSaved, navigate, serviceIds]);
 
+  const milestoneMessage = chat.milestoneBanner;
+
   return (
     <div className="app-shell">
       <ChatHeader
@@ -358,14 +419,20 @@ export function AppShell() {
         assessmentFocus={chat.assessmentFocus}
         completed={chat.completed}
         connectionStatus={chat.connectionStatus}
+        serviceIndex={serviceIndex}
+        serviceTotal={serviceTotal}
+        timeEstimate={timeEstimate}
+        topicProgress={chat.engagementMeta.capability_topic_progress}
+        pillarProgress={chat.engagementMeta.pillar_progress}
         onNewChat={() => {
           chat.resetSession();
           setSavedDraft(null);
           setSaveMessage(null);
+          lastAutosavedCountRef.current = 0;
           navigate(
-          buildChatPath(serviceIds, undefined, chat.activeServiceId),
-          { replace: true, state: {} }
-        );
+            buildChatPath(serviceIds, undefined, chat.activeServiceId),
+            { replace: true, state: {} }
+          );
         }}
         onRetryHealth={chat.refreshHealth}
         signedIn={signedIn}
@@ -384,6 +451,19 @@ export function AppShell() {
       <StatusAnnouncer message={statusMessage} />
 
       <main id="main-content" className="app-main" tabIndex={-1}>
+        {milestoneMessage && (
+          <EngagementBanner
+            message={milestoneMessage}
+            onDismiss={chat.dismissMilestoneBanner}
+          />
+        )}
+        {chat.pillarBanner && (
+          <EngagementBanner
+            message={chat.pillarBanner}
+            onDismiss={chat.dismissPillarBanner}
+          />
+        )}
+
         {!chat.sessionId ? (
           waitingToResume ? (
             <section className="welcome-panel" aria-busy="true">
@@ -423,25 +503,45 @@ export function AppShell() {
               error={chat.error ?? draftError}
             />
           )
-        ) : (
-          <ChatWorkspace
-            messages={chat.messages}
-            loading={chat.loading}
-            completed={chat.completed}
-            onSend={chat.submitUserMessage}
-            onUploadFiles={signedIn ? handleUploadFiles : undefined}
-            uploading={uploading}
-            onFinishAssessment={() => {
-              void handleFinishAssessment();
-            }}
-            finishing={finishing}
-            canSave={signedIn && chat.messages.length > 0}
-            saving={saving}
-            saveMessage={saveMessage}
-            onSave={() => {
-              void handleSaveProgress();
-            }}
+        ) : chat.pendingServiceTransition ? (
+          <ServiceCompletionPreview
+            serviceName={completedServiceDisplayName}
+            capabilitiesAssessed={chat.pendingServiceTransition.capabilitiesAssessed}
+            pendingArtifactCount={chat.pendingServiceTransition.pendingArtifactCount}
+            servicesRemaining={chat.pendingServiceTransition.servicesRemaining}
+            assessmentResult={chat.pendingServiceTransition.assessmentResult}
+            assessing={chat.pendingServiceTransition.assessing}
+            onContinue={chat.continueToNextService}
           />
+        ) : (
+          <>
+            <ChatWorkspace
+              messages={chat.messages}
+              loading={chat.loading}
+              completed={chat.completed}
+              onSend={chat.submitUserMessage}
+              onUploadFiles={signedIn ? handleUploadFiles : undefined}
+              uploading={uploading}
+              onFinishAssessment={() => {
+                void handleFinishAssessment();
+              }}
+              finishing={finishing}
+              canSave={signedIn && chat.messages.length > 0}
+              saving={saving}
+              saveMessage={saveMessage}
+              saveLabel={
+                chat.completed
+                  ? ENGAGEMENT_COPY.saveProgress
+                  : ENGAGEMENT_COPY.saveAndBreak
+              }
+              onSave={() => {
+                void handleSaveProgress();
+              }}
+            />
+            {chat.assessment && chat.allServicesCompleted && (
+              <AssessmentPanel result={chat.assessment} />
+            )}
+          </>
         )}
         {(chat.sessionId && chat.error) || draftError ? (
           <div className="error-banner floating" role="alert">

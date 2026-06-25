@@ -4,7 +4,7 @@ export const LANDING = {
   hero: {
     headline: "Measure what matters, without the busywork.",
     subhead:
-      "Role-based questions organized by the services you own. Answer one service at a time, auto-save as you go, and finish with a clear summary.",
+      "Role-based questions organized by the services you own. Most services take 15–25 minutes; you can pause anytime. Short answers are fine—we'll ask follow-ups only when needed.",
     values: [
       { icon: "shield" as const, title: "Private & confidential", detail: "Your responses stay in your workspace." },
       { icon: "compass" as const, title: "Guided & structured", detail: "AI-assisted flow tailored to your role." },
@@ -33,7 +33,7 @@ export const LANDING = {
     headline: "Built for practitioners who need signal, not noise",
     items: [
       { icon: "calendar" as const, title: "Service-by-service", detail: "Work through only what applies to your role." },
-      { icon: "save" as const, title: "Auto-save", detail: "Drafts persist after each service and while you type." },
+      { icon: "save" as const, title: "Auto-save", detail: "Chat and questionnaire drafts save automatically as you go." },
       { icon: "chart" as const, title: "Clear summary", detail: "End with an organized view of your answers." },
       { icon: "chat" as const, title: "Chat when you need it", detail: "Optional AI guidance alongside structured questions." },
     ],

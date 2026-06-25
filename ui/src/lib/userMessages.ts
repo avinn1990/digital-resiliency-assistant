@@ -54,9 +54,21 @@ export type AppStep = 1 | 2 | 3;
 
 export function getCurrentStep(
   sessionId: string | null,
-  hasAssessment: boolean
+  hasAssessment: boolean,
+  chatCompleted?: boolean
 ): AppStep {
   if (!sessionId) return 1;
-  if (hasAssessment) return 3;
+  if (hasAssessment || chatCompleted) return 3;
   return 2;
 }
+
+export const ENGAGEMENT_COPY = {
+  autosaveSaved: "Saved just now",
+  autosaveSaving: "Saving…",
+  saveAndBreak: "Save & take a break",
+  saveProgress: "Save Progress",
+  serviceTransition: (serviceName: string, nextIndex: number, total: number) =>
+    `Great work on ${serviceName}. Ready for service ${nextIndex} of ${total}?`,
+  pillarComplete: (pillar: string) =>
+    `Section complete: ${pillar}. Moving to the next area.`,
+} as const;

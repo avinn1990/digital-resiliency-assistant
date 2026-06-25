@@ -15,6 +15,7 @@ type Props = {
   canSave?: boolean;
   saving?: boolean;
   saveMessage?: string | null;
+  saveLabel?: string;
   onSave?: () => void;
 };
 
@@ -30,6 +31,7 @@ export function ChatWorkspace({
   canSave = false,
   saving = false,
   saveMessage = null,
+  saveLabel = "Save Progress",
   onSave,
 }: Props) {
   return (
@@ -69,7 +71,7 @@ export function ChatWorkspace({
               onClick={onSave}
               disabled={!canSave || saving || loading || finishing || uploading}
             >
-              {saving ? "Saving…" : "Save Progress"}
+              {saving ? "Saving…" : saveLabel}
             </button>
           )}
           <button

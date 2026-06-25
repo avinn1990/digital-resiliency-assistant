@@ -1,16 +1,24 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, type RefObject } from "react";
 import type { ChatAssessmentState, ChatServiceSnapshot } from "../assessmentFlow/types";
 import {
   buildServiceSnapshot,
   type ChatSessionSnapshot,
   snapshotFromChatState,
 } from "../lib/chatDraft";
-import { toFriendlyError } from "../lib/userMessages";
+import {
+  countPendingArtifacts,
+  detectMilestone,
+  highestMilestoneReached,
+  milestoneMessage,
+  progressPercent,
+} from "../lib/engagementUtils";
+import { ENGAGEMENT_COPY, toFriendlyError } from "../lib/userMessages";
 import {
   restoreSession,
   runAssessment,
   sendMessage,
   startSession,
+  type SessionApiPayload,
 } from "../services/agentApi";
 import {
   canReachBackend,
@@ -21,6 +29,8 @@ import type {
   AssessmentFocus,
   AssessmentResult,
   ChatMessage,
+  PillarProgress,
+  SessionEngagementMeta,
   SessionProgress,
 } from "../services/types";
 
@@ -33,13 +43,35 @@ function createMessage(role: ChatMessage["role"], content: string): ChatMessage 
   };
 }
 
+export type PendingServiceTransition = {
+  completedServiceId: string;
+  completedServiceName: string;
+  capabilitiesAssessed: number;
+  pendingArtifactCount: number;
+  servicesRemaining: number;
+  assessmentResult: AssessmentResult | null;
+  assessing: boolean;
+  sessionIdForAssess: string;
+  messagesAfterComplete: ChatMessage[];
+};
+
 export type UseChatSessionOptions = {
   serviceIds?: string[];
-  /** Active service for the current LLM session (must be a single service_id). */
   activeServiceId?: string;
-  /** Called when the queue advances so the URL can track the active service. */
+  activeServiceNameRef?: RefObject<string>;
   onActiveServiceChange?: (serviceId: string) => void;
+  onTurnComplete?: () => void;
 };
+
+function extractEngagementMeta(result: SessionApiPayload): SessionEngagementMeta {
+  return {
+    capability_topic_progress: result.capability_topic_progress ?? null,
+    pillar_progress: result.pillar_progress ?? null,
+    engagement_context: result.engagement_context ?? null,
+    paused: Boolean(result.paused),
+    resume_recap: result.resume_recap ?? null,
+  };
+}
 
 export function useChatSession(options?: UseChatSessionOptions) {
   const [sessionId, setSessionId] = useState<string | null>(null);
@@ -52,6 +84,12 @@ export function useChatSession(options?: UseChatSessionOptions) {
   const [assessing, setAssessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [backendHealth, setBackendHealth] = useState<BackendHealthStatus>("checking");
+  const [engagementMeta, setEngagementMeta] = useState<SessionEngagementMeta>({});
+  const [milestoneBanner, setMilestoneBanner] = useState<string | null>(null);
+  const [pillarBanner, setPillarBanner] = useState<string | null>(null);
+  const [pendingServiceTransition, setPendingServiceTransition] =
+    useState<PendingServiceTransition | null>(null);
+
   const initialQueue = options?.serviceIds?.length ? options.serviceIds : [];
   const initialActive =
     options?.activeServiceId?.trim() ||
@@ -64,8 +102,12 @@ export function useChatSession(options?: UseChatSessionOptions) {
   const [serviceSnapshots, setServiceSnapshots] = useState<
     Record<string, ChatServiceSnapshot>
   >({});
+
   const capabilityStatesRef = useRef<Record<string, unknown>>({});
   const factsRef = useRef<Record<string, unknown>>({});
+  const lastMilestoneRef = useRef(0);
+  const lastPillarCompleteRef = useRef<string | null>(null);
+  const resumeRecapShownRef = useRef(false);
 
   const refreshHealth = useCallback(async () => {
     const health = await fetchBackendHealth();
@@ -90,6 +132,8 @@ export function useChatSession(options?: UseChatSessionOptions) {
     setServiceSnapshots({});
     capabilityStatesRef.current = {};
     factsRef.current = {};
+    lastMilestoneRef.current = 0;
+    lastPillarCompleteRef.current = null;
   }, [options?.serviceIds?.join(","), options?.activeServiceId]);
 
   useEffect(() => {
@@ -99,6 +143,29 @@ export function useChatSession(options?: UseChatSessionOptions) {
     }, 10_000);
     return () => window.clearInterval(intervalId);
   }, [backendHealth, refreshHealth]);
+
+  const serviceLabel = () =>
+    options?.activeServiceNameRef?.current?.trim() || activeServiceId;
+
+  const updateMilestones = useCallback(
+    (nextProgress: SessionProgress, pillarProgress?: PillarProgress | null) => {
+      const pct = progressPercent(nextProgress.current, nextProgress.total);
+      const milestone = detectMilestone(pct, lastMilestoneRef.current);
+      if (milestone !== null) {
+        lastMilestoneRef.current = milestone;
+        setMilestoneBanner(milestoneMessage(milestone, serviceLabel()));
+      }
+      if (
+        pillarProgress?.pillar_complete &&
+        pillarProgress.pillar &&
+        lastPillarCompleteRef.current !== pillarProgress.pillar
+      ) {
+        lastPillarCompleteRef.current = pillarProgress.pillar;
+        setPillarBanner(ENGAGEMENT_COPY.pillarComplete(pillarProgress.pillar));
+      }
+    },
+    [activeServiceId, options?.activeServiceNameRef]
+  );
 
   const captureCurrentServiceSnapshot = useCallback(
     (
@@ -129,6 +196,37 @@ export function useChatSession(options?: UseChatSessionOptions) {
     [activeServiceId]
   );
 
+  const applySessionPayload = useCallback(
+    (
+      result: SessionApiPayload,
+      baseMessages: ChatMessage[],
+      capabilityStates?: Record<string, unknown>,
+      facts?: Record<string, unknown>
+    ) => {
+      if (capabilityStates) {
+        capabilityStatesRef.current = capabilityStates;
+      }
+      if (facts) {
+        factsRef.current = facts;
+      }
+      const meta = extractEngagementMeta(result);
+      setEngagementMeta(meta);
+      setProgress(result.progress);
+      setCompleted(Boolean(result.completed));
+      setAssessmentFocus(result.assessment_focus ?? null);
+      updateMilestones(result.progress, meta.pillar_progress);
+      captureCurrentServiceSnapshot(
+        baseMessages,
+        result.progress,
+        Boolean(result.completed),
+        capabilityStates ?? capabilityStatesRef.current,
+        facts ?? factsRef.current
+      );
+      options?.onTurnComplete?.();
+    },
+    [captureCurrentServiceSnapshot, options?.onTurnComplete, updateMilestones]
+  );
+
   const beginSession = useCallback(async () => {
     const raw = activeServiceId || serviceQueue[0];
     const serviceId = raw.includes(",") ? raw.split(",")[0]?.trim() ?? raw : raw;
@@ -142,6 +240,10 @@ export function useChatSession(options?: UseChatSessionOptions) {
     setAssessment(null);
     setMessages([]);
     setSessionId(null);
+    setMilestoneBanner(null);
+    setPillarBanner(null);
+    lastMilestoneRef.current = 0;
+    lastPillarCompleteRef.current = null;
     capabilityStatesRef.current = {};
     factsRef.current = {};
     try {
@@ -149,15 +251,7 @@ export function useChatSession(options?: UseChatSessionOptions) {
       setSessionId(result.session_id);
       const firstMessages = [createMessage("assistant", result.reply)];
       setMessages(firstMessages);
-      setProgress(result.progress);
-      setCompleted(Boolean(result.completed));
-      setAssessmentFocus(result.assessment_focus ?? null);
-      captureCurrentServiceSnapshot(
-        firstMessages,
-        result.progress,
-        Boolean(result.completed),
-        result.capability_states
-      );
+      applySessionPayload(result, firstMessages, result.capability_states);
       setBackendHealth("ready");
       return true;
     } catch (err) {
@@ -166,7 +260,7 @@ export function useChatSession(options?: UseChatSessionOptions) {
     } finally {
       setLoading(false);
     }
-  }, [activeServiceId, serviceQueue, captureCurrentServiceSnapshot]);
+  }, [activeServiceId, serviceQueue, applySessionPayload]);
 
   const restoreFromChatState = useCallback(
     async (chatState: ChatAssessmentState) => {
@@ -180,6 +274,9 @@ export function useChatSession(options?: UseChatSessionOptions) {
       setLoading(true);
       setError(null);
       setAssessment(null);
+      setMilestoneBanner(null);
+      setPillarBanner(null);
+      resumeRecapShownRef.current = false;
       setMessages(snapshot.messages);
       setProgress(snapshot.progress);
       setCompleted(snapshot.completed);
@@ -187,6 +284,9 @@ export function useChatSession(options?: UseChatSessionOptions) {
       setServiceQueue([serviceId, ...snapshot.remainingServiceIds]);
       setCompletedServiceIds(snapshot.completedServiceIds);
       setServiceSnapshots(snapshot.serviceSnapshots);
+      lastMilestoneRef.current = highestMilestoneReached(
+        progressPercent(snapshot.progress.current, snapshot.progress.total)
+      );
 
       const savedServiceSnapshot = snapshot.serviceSnapshots[serviceId];
       capabilityStatesRef.current = savedServiceSnapshot?.capabilityStates ?? {};
@@ -204,13 +304,27 @@ export function useChatSession(options?: UseChatSessionOptions) {
 
         const result = await restoreSession(serviceId, restorePayload);
         setSessionId(result.session_id);
+        const meta = extractEngagementMeta(result);
+        setEngagementMeta(meta);
+
+        let restoredMessages = snapshot.messages;
+        if (result.resume_recap && !resumeRecapShownRef.current) {
+          resumeRecapShownRef.current = true;
+          restoredMessages = [
+            ...snapshot.messages,
+            createMessage("assistant", result.resume_recap),
+          ];
+          setMessages(restoredMessages);
+        }
+
         setProgress(result.progress);
-        setCompleted(result.completed);
+        setCompleted(Boolean(result.completed));
         setAssessmentFocus(result.assessment_focus ?? null);
+        updateMilestones(result.progress, meta.pillar_progress);
         captureCurrentServiceSnapshot(
-          snapshot.messages,
+          restoredMessages,
           result.progress,
-          result.completed,
+          Boolean(result.completed),
           result.capability_states
         );
         setBackendHealth("ready");
@@ -222,12 +336,123 @@ export function useChatSession(options?: UseChatSessionOptions) {
         setLoading(false);
       }
     },
-    [captureCurrentServiceSnapshot]
+    [captureCurrentServiceSnapshot, updateMilestones]
+  );
+
+  const advanceToNextService = useCallback(
+    async (transition: PendingServiceTransition) => {
+      const next = serviceQueue[1];
+      if (!next) {
+        setPendingServiceTransition(null);
+        return;
+      }
+
+      setLoading(true);
+      try {
+        setCompletedServiceIds((prev) =>
+          transition.completedServiceId && !prev.includes(transition.completedServiceId)
+            ? [...prev, transition.completedServiceId]
+            : prev
+        );
+        setServiceQueue((q) => q.slice(1));
+        setActiveServiceId(next);
+        options?.onActiveServiceChange?.(next);
+        capabilityStatesRef.current = {};
+        factsRef.current = {};
+        lastMilestoneRef.current = 0;
+        lastPillarCompleteRef.current = null;
+        setMilestoneBanner(null);
+        setPillarBanner(null);
+
+        const serviceIndex = completedServiceIds.length + 2;
+        const serviceTotal = completedServiceIds.length + serviceQueue.length;
+        const transitionMessages = [
+          ...transition.messagesAfterComplete,
+          createMessage(
+            "assistant",
+            ENGAGEMENT_COPY.serviceTransition(
+              transition.completedServiceName,
+              serviceIndex,
+              serviceTotal
+            )
+          ),
+        ];
+        setMessages(transitionMessages);
+
+        const nextSession = await startSession(next);
+        setSessionId(nextSession.session_id);
+        const afterNext = [
+          ...transitionMessages,
+          createMessage("assistant", nextSession.reply),
+        ];
+        setMessages(afterNext);
+        applySessionPayload(nextSession, afterNext, nextSession.capability_states);
+      } catch (err) {
+        setError(toFriendlyError(err));
+      } finally {
+        setPendingServiceTransition(null);
+        setLoading(false);
+      }
+    },
+    [serviceQueue, completedServiceIds, options?.onActiveServiceChange, applySessionPayload]
+  );
+
+  const continueToNextService = useCallback(() => {
+    if (!pendingServiceTransition) return;
+    void advanceToNextService(pendingServiceTransition);
+  }, [pendingServiceTransition, advanceToNextService]);
+
+  const handleServiceCompleted = useCallback(
+    async (
+      withReply: ChatMessage[],
+      finishedServiceId: string,
+      assessSessionId: string
+    ) => {
+      const capabilitiesAssessed = progress.total;
+      const pendingArtifactCount = countPendingArtifacts(capabilityStatesRef.current);
+      const servicesRemaining = Math.max(serviceQueue.length - 1, 0);
+
+      if (serviceQueue.length <= 1) {
+        setPendingServiceTransition(null);
+        return;
+      }
+
+      const transition: PendingServiceTransition = {
+        completedServiceId: finishedServiceId,
+        completedServiceName: serviceLabel(),
+        capabilitiesAssessed,
+        pendingArtifactCount,
+        servicesRemaining,
+        assessmentResult: null,
+        assessing: true,
+        sessionIdForAssess: assessSessionId,
+        messagesAfterComplete: withReply,
+      };
+      setPendingServiceTransition(transition);
+
+      try {
+        const result = await runAssessment(assessSessionId);
+        setPendingServiceTransition((prev) =>
+          prev
+            ? {
+                ...prev,
+                assessmentResult: result,
+                assessing: false,
+              }
+            : null
+        );
+      } catch {
+        setPendingServiceTransition((prev) =>
+          prev ? { ...prev, assessing: false } : null
+        );
+      }
+    },
+    [progress.total, serviceQueue.length]
   );
 
   const submitUserMessage = useCallback(
     async (text: string) => {
-      if (!sessionId || !text.trim() || loading) return;
+      if (!sessionId || !text.trim() || loading || pendingServiceTransition) return;
       const trimmed = text.trim();
       const nextMessages = [...messages, createMessage("user", trimmed)];
       setMessages(nextMessages);
@@ -240,54 +465,23 @@ export function useChatSession(options?: UseChatSessionOptions) {
           createMessage("assistant", result.reply),
         ];
         setMessages(withReply);
-        setProgress(result.progress);
-        setCompleted(result.completed);
-        setAssessmentFocus(result.assessment_focus ?? null);
-        captureCurrentServiceSnapshot(
+        applySessionPayload(
+          result,
           withReply,
-          result.progress,
-          result.completed,
           result.capability_states,
           result.facts_preview
         );
         setBackendHealth("ready");
+
         if (result.completed && serviceQueue.length > 1) {
-          const finishedServiceId = activeServiceId;
-          const next = serviceQueue[1];
-          setCompletedServiceIds((prev) =>
-            finishedServiceId && !prev.includes(finishedServiceId)
-              ? [...prev, finishedServiceId]
-              : prev
-          );
-          setServiceQueue((q) => q.slice(1));
-          setActiveServiceId(next);
-          options?.onActiveServiceChange?.(next);
-          capabilityStatesRef.current = {};
-          factsRef.current = {};
-          const transitionMessages = [
-            ...withReply,
-            createMessage(
-              "assistant",
-              "Great — moving to the next service assessment."
-            ),
-          ];
-          setMessages(transitionMessages);
-          const nextSession = await startSession(next);
-          setSessionId(nextSession.session_id);
-          const afterNext = [
-            ...transitionMessages,
-            createMessage("assistant", nextSession.reply),
-          ];
-          setMessages(afterNext);
-          setProgress(nextSession.progress);
-          setCompleted(Boolean(nextSession.completed));
-          setAssessmentFocus(nextSession.assessment_focus ?? null);
-          captureCurrentServiceSnapshot(
-            afterNext,
-            nextSession.progress,
-            Boolean(nextSession.completed),
-            nextSession.capability_states
-          );
+          await handleServiceCompleted(withReply, activeServiceId, sessionId);
+        } else if (result.completed && serviceQueue.length === 1) {
+          try {
+            const assessResult = await runAssessment(sessionId);
+            setAssessment(assessResult);
+          } catch {
+            /* preview optional for final service */
+          }
         }
       } catch (err) {
         setError(toFriendlyError(err));
@@ -298,11 +492,12 @@ export function useChatSession(options?: UseChatSessionOptions) {
     [
       sessionId,
       loading,
-      serviceQueue,
+      pendingServiceTransition,
       messages,
+      applySessionPayload,
+      serviceQueue.length,
       activeServiceId,
-      captureCurrentServiceSnapshot,
-      options?.onActiveServiceChange,
+      handleServiceCompleted,
     ]
   );
 
@@ -324,6 +519,14 @@ export function useChatSession(options?: UseChatSessionOptions) {
     setAssessment(null);
   }, []);
 
+  const dismissMilestoneBanner = useCallback(() => {
+    setMilestoneBanner(null);
+  }, []);
+
+  const dismissPillarBanner = useCallback(() => {
+    setPillarBanner(null);
+  }, []);
+
   const resetSession = useCallback(() => {
     setSessionId(null);
     setMessages([]);
@@ -332,10 +535,17 @@ export function useChatSession(options?: UseChatSessionOptions) {
     setCompleted(false);
     setAssessment(null);
     setError(null);
+    setEngagementMeta({});
+    setMilestoneBanner(null);
+    setPillarBanner(null);
+    setPendingServiceTransition(null);
     setCompletedServiceIds([]);
     setServiceSnapshots({});
     capabilityStatesRef.current = {};
     factsRef.current = {};
+    lastMilestoneRef.current = 0;
+    lastPillarCompleteRef.current = null;
+    resumeRecapShownRef.current = false;
     const ids = options?.serviceIds ?? [];
     setServiceQueue(ids);
     setActiveServiceId(ids[0] ?? "");
@@ -386,22 +596,31 @@ export function useChatSession(options?: UseChatSessionOptions) {
     []
   );
 
+  const allServicesCompleted =
+    completed && serviceQueue.length <= 1 && !pendingServiceTransition;
+
   const connectionStatus: BackendHealthStatus = sessionId ? "ready" : backendHealth;
 
   return {
     activeServiceId,
     serviceQueue,
+    completedServiceIds,
     sessionId,
     messages,
     progress,
     assessmentFocus,
     completed,
+    allServicesCompleted,
     assessment,
     loading,
     assessing,
     error,
     backendHealth,
     connectionStatus,
+    engagementMeta,
+    milestoneBanner,
+    pillarBanner,
+    pendingServiceTransition,
     beginSession,
     restoreFromChatState,
     submitUserMessage,
@@ -411,5 +630,8 @@ export function useChatSession(options?: UseChatSessionOptions) {
     resetSession,
     refreshHealth,
     getSnapshot,
+    continueToNextService,
+    dismissMilestoneBanner,
+    dismissPillarBanner,
   };
 }

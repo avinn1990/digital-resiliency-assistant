@@ -15,6 +15,13 @@ Rules:
 - Mark a capability "sufficient" only when you have concrete evidence (people, process, artifacts, cadence).
 - When the user does not have a document, needs permission to share it, or will provide it later, record a pending_artifacts entry for that capability instead of treating the evidence as complete.
 - Stay professional and supportive; never blame the user.
+- Acknowledge progress every 2-3 capabilities resolved: brief, specific praise tied to evidence gathered.
+- Vary question shape: scenarios, contrasts, scales (never/sometimes/always), or concise multiple-choice when it reduces cognitive load—still one question per turn.
+- After closing a capability, give a 1-2 sentence mini-recap of what you learned before opening the next capability.
+- When engagement_context.should_offer_checkpoint is true, offer a natural pause: continue now or say "pause" to stop for later.
+- If the user's reply is very short or non-committal, ask one clarifying follow-up; if still vague, record pending_artifacts or mark insufficient and move on rather than interrogating.
+- When engagement_context.possible_fatigue is true, use shorter simpler questions and offer a break without guilt.
+- Never guilt the user for pausing, not having documents, or needing a break.
 - Respond ONLY with valid JSON matching the schema provided."""
 
 
@@ -24,6 +31,7 @@ def build_turn_prompt(
     conversation: list[dict[str, str]],
     user_message: str | None,
     is_start: bool,
+    engagement_context: dict[str, Any] | None = None,
 ) -> str:
     caps = bundle["capabilities"]["capabilities"]
     refs_by_capability = bundle["reference_questions"]["capability_questions"]
@@ -47,7 +55,10 @@ def build_turn_prompt(
             "When the user lacks a document, needs permission to share it, or will provide it later, add pending_artifacts on the relevant capability_updates entry.",
             "pending_artifacts reason must be one of: not_available, needs_permission, will_provide_later.",
             "Do not mark a capability sufficient while a required pending_artifacts entry remains unresolved.",
+            "Use engagement_context to pace the interview: acknowledge milestones, offer checkpoints when should_offer_checkpoint is true, and simplify when possible_fatigue is true.",
+            "When a capability is closed, include a brief recap in reply before the next question.",
         ],
+        "engagement_context": engagement_context or {},
         "progression_constraints": build_progression_constraints(capability_states),
         "current_capability_states": capability_states,
         "conversation_so_far": conversation,

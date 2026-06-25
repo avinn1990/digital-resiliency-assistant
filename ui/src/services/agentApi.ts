@@ -2,8 +2,11 @@ import { getApiBase } from "../lib/apiBase";
 import type {
   AssessmentFocus,
   AssessmentResult,
+  EngagementContext,
   FrameworkSummary,
+  PillarProgress,
   SessionProgress,
+  TopicProgress,
 } from "./types";
 
 const RETRYABLE_HTTP = /502|503|504|bad gateway|service unavailable/i;
@@ -61,17 +64,25 @@ export function normalizeFrameworkId(frameworkId: string): string {
   return first ?? trimmed;
 }
 
+export type SessionApiPayload = {
+  session_id?: string;
+  framework_id?: string;
+  reply: string;
+  progress: SessionProgress;
+  completed?: boolean;
+  paused?: boolean;
+  capability_states?: Record<string, unknown>;
+  assessment_focus?: AssessmentFocus | null;
+  engagement_context?: EngagementContext | null;
+  capability_topic_progress?: TopicProgress | null;
+  pillar_progress?: PillarProgress | null;
+  resume_recap?: string | null;
+  facts_preview?: Record<string, unknown>;
+};
+
 export function startSession(frameworkId: string) {
   const serviceId = normalizeFrameworkId(frameworkId);
-  return requestWithRetry<{
-    session_id: string;
-    framework_id: string;
-    reply: string;
-    progress: SessionProgress;
-    completed?: boolean;
-    capability_states?: Record<string, unknown>;
-    assessment_focus?: AssessmentFocus | null;
-  }>("/sessions", {
+  return requestWithRetry<SessionApiPayload & { session_id: string; framework_id: string }>("/sessions", {
     method: "POST",
     body: JSON.stringify({ framework_id: serviceId }),
   });
@@ -79,29 +90,14 @@ export function startSession(frameworkId: string) {
 
 export function restoreSession(frameworkId: string, snapshot: Record<string, unknown>) {
   const serviceId = normalizeFrameworkId(frameworkId);
-  return requestWithRetry<{
-    session_id: string;
-    framework_id: string;
-    reply: string;
-    progress: SessionProgress;
-    completed: boolean;
-    capability_states?: Record<string, unknown>;
-    assessment_focus?: AssessmentFocus | null;
-  }>("/sessions/restore", {
+  return requestWithRetry<SessionApiPayload & { session_id: string; framework_id: string }>("/sessions/restore", {
     method: "POST",
     body: JSON.stringify({ framework_id: serviceId, snapshot }),
   });
 }
 
 export function sendMessage(sessionId: string, message: string) {
-  return requestWithRetry<{
-    reply: string;
-    completed: boolean;
-    progress: SessionProgress;
-    capability_states?: Record<string, unknown>;
-    facts_preview?: Record<string, unknown>;
-    assessment_focus?: AssessmentFocus | null;
-  }>(`/sessions/${sessionId}/messages`, {
+  return requestWithRetry<SessionApiPayload>(`/sessions/${sessionId}/messages`, {
     method: "POST",
     body: JSON.stringify({ message }),
   });

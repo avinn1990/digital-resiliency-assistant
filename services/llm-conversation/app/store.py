@@ -14,6 +14,8 @@ class LlmSession:
     facts: dict[str, Any] = field(default_factory=dict)
     confidence: dict[str, float] = field(default_factory=dict)
     completed: bool = False
+    paused: bool = False
+    user_message_lengths: list[int] = field(default_factory=list)
     evaluation_path: str = ""
     updated_at: str = field(
         default_factory=lambda: datetime.now(timezone.utc).isoformat()

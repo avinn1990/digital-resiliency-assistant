@@ -1,9 +1,14 @@
 import type { AppStep } from "../../lib/userMessages";
-import type { AssessmentFocus } from "../../services/types";
+import type {
+  AssessmentFocus,
+  PillarProgress,
+  TopicProgress,
+} from "../../services/types";
 import type { BackendHealthStatus } from "../../services/health";
 import { ConnectionStatus } from "../common/ConnectionStatus";
 import { ProgressBar } from "../common/ProgressBar";
 import { StepIndicator } from "../common/StepIndicator";
+import { formatServiceQueueLabel } from "../../lib/engagementUtils";
 
 type Props = {
   frameworkName?: string;
@@ -20,6 +25,11 @@ type Props = {
   onSignOut?: () => void;
   onClearProfile?: () => void;
   onOpenWorkspace?: () => void;
+  serviceIndex?: number;
+  serviceTotal?: number;
+  timeEstimate?: string;
+  topicProgress?: TopicProgress | null;
+  pillarProgress?: PillarProgress | null;
 };
 
 export function ChatHeader({
@@ -37,7 +47,17 @@ export function ChatHeader({
   onSignOut,
   onClearProfile,
   onOpenWorkspace,
+  serviceIndex = 1,
+  serviceTotal = 1,
+  timeEstimate,
+  topicProgress,
+  pillarProgress,
 }: Props) {
+  const queueLabel =
+    serviceName && serviceTotal > 0
+      ? formatServiceQueueLabel(serviceIndex, serviceTotal, serviceName)
+      : serviceName || frameworkName || null;
+
   return (
     <header className="chat-header">
       <a href="#main-content" className="skip-link">
@@ -49,10 +69,8 @@ export function ChatHeader({
           <h1>
             {sessionId ? "Assessment Chat" : "Get Started"}
           </h1>
-          {serviceName ? (
-            <p className="chat-header-sub">Assessing {serviceName}</p>
-          ) : frameworkName ? (
-            <p className="chat-header-sub">Using {frameworkName}</p>
+          {queueLabel ? (
+            <p className="chat-header-sub">{queueLabel}</p>
           ) : null}
         </div>
         <div className="chat-header-actions">
@@ -97,6 +115,9 @@ export function ChatHeader({
           total={progress.total}
           completed={completed}
           assessmentFocus={assessmentFocus}
+          timeEstimate={timeEstimate}
+          topicProgress={topicProgress}
+          pillarProgress={pillarProgress}
         />
       )}
     </header>

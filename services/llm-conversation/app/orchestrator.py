@@ -24,6 +24,14 @@ def _require_openai() -> None:
             detail=f"{ENV_OPENAI_API_KEY} must be set before starting an LLM session.",
         )
 from app.loader import load_evaluation_bundle
+from app.engagement import (
+    build_capability_topic_progress,
+    build_engagement_context,
+    build_pause_reply,
+    build_pillar_progress,
+    build_resume_recap,
+    detect_pause_intent,
+)
 from app.progression import (
     all_capabilities_resolved,
     enforce_follow_up_limits,
@@ -174,28 +182,42 @@ def _session_response(
     active_capability_label: str | None = None,
     active_rubric_label: str | None = None,
     facts_preview: dict[str, Any] | None = None,
+    resume_recap: str | None = None,
 ) -> dict[str, Any]:
+    focus = _build_assessment_focus(
+        bundle,
+        session,
+        active_capability_id=active_capability_id,
+        active_evaluation_focus=active_evaluation_focus,
+        active_capability_label=active_capability_label,
+        active_rubric_label=active_rubric_label,
+    )
+    active_id = active_capability_id or (focus or {}).get("capability_id")
+    engagement_context = build_engagement_context(bundle, session)
     payload: dict[str, Any] = {
         "session_id": session.session_id,
         "framework_id": session.framework_id,
         "service_id": session.service_id,
         "reply": reply,
         "completed": session.completed,
+        "paused": session.paused,
         "progress": _progress(session),
         "capability_states": session.capability_states,
-        "assessment_focus": _build_assessment_focus(
-            bundle,
-            session,
-            active_capability_id=active_capability_id,
-            active_evaluation_focus=active_evaluation_focus,
-            active_capability_label=active_capability_label,
-            active_rubric_label=active_rubric_label,
+        "assessment_focus": focus,
+        "engagement_context": engagement_context,
+        "capability_topic_progress": build_capability_topic_progress(
+            bundle, session.capability_states, active_id
+        ),
+        "pillar_progress": build_pillar_progress(
+            bundle, session.capability_states, active_id
         ),
     }
     if facts_preview is not None:
         payload["facts_preview"] = facts_preview
     if active_capability_id:
         payload["active_capability_id"] = active_capability_id
+    if resume_recap:
+        payload["resume_recap"] = resume_recap
     return payload
 
 
@@ -237,11 +259,14 @@ async def restore_session(framework_id: str, snapshot: dict[str, Any]) -> dict[s
         (message["content"] for message in reversed(messages) if message.get("role") == "assistant"),
         "",
     )
+    focus = _build_assessment_focus(bundle, session)
+    recap = build_resume_recap(bundle, session, focus)
 
     return _session_response(
         bundle,
         session,
         reply=last_assistant,
+        resume_recap=recap,
     )
 
 
@@ -276,6 +301,7 @@ async def start_session(framework_id: str) -> dict[str, Any]:
         conversation=[],
         user_message=None,
         is_start=True,
+        engagement_context=build_engagement_context(bundle, session),
     )
     result = await complete_json(prompt)
 
@@ -307,12 +333,27 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
     bundle = load_evaluation_bundle(service_id=session.service_id)
     session.messages.append({"role": "user", "content": user_message})
 
+    if detect_pause_intent(user_message):
+        session.paused = True
+        focus = _build_assessment_focus(bundle, session)
+        reply = build_pause_reply(
+            bundle["capabilities"]["service_name"],
+            _progress(session),
+            focus,
+        )
+        session.messages.append({"role": "assistant", "content": reply})
+        session.updated_at = datetime.now(timezone.utc).isoformat()
+        return _session_response(bundle, session, reply=reply)
+
     prompt = build_turn_prompt(
         bundle=bundle,
         capability_states=session.capability_states,
         conversation=session.messages,
         user_message=user_message,
         is_start=False,
+        engagement_context=build_engagement_context(
+            bundle, session, user_message=user_message
+        ),
     )
     result = await complete_json(prompt)
 

@@ -606,3 +606,50 @@
   padding-left: 1.1rem;
   color: var(--text-muted-on-surface);
 }
+
+.engagement-banner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.08);
+  color: var(--text);
+  font-size: 0.9rem;
+}
+
+.engagement-banner p {
+  margin: 0;
+}
+
+.engagement-banner-dismiss {
+  flex-shrink: 0;
+  font-size: 0.8rem;
+}
+
+.service-completion-preview {
+  padding: 1rem 0;
+}
+
+.service-completion-header h2 {
+  margin: 0.25rem 0 0.5rem;
+  font-size: 1.2rem;
+}
+
+.service-completion-summary {
+  margin: 0 0 1rem;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  max-width: 42rem;
+}
+
+.service-completion-results {
+  margin: 1rem 0;
+}
+
+.service-completion-actions {
+  margin-top: 1rem;
+}
