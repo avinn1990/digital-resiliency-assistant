@@ -1,17 +1,22 @@
-"""Server-side capability progression: list merge and follow-up limits."""
+"""Server-side capability progression: list merge and operating context."""
 
 from __future__ import annotations
 
 from typing import Any
 
-MAX_FOLLOW_UPS_PER_CAPABILITY = 5
+OPERATING_CONTEXT_KEY = "operating_context"
 
 LIST_MERGE_FIELDS = frozenset(
     {"reference_questions_covered", "dynamic_questions_asked", "pending_artifacts"}
 )
 
-_FOLLOW_UP_LIMIT_NOTE = (
-    " (Maximum follow-up questions reached; capability closed.)"
+OPERATING_CONTEXT_LIST_KEYS = frozenset(
+    {
+        "technology_modes",
+        "integration_channels",
+        "policies_artifacts",
+        "coverage_gaps",
+    }
 )
 
 
@@ -23,6 +28,29 @@ def merge_list_values(existing: list[Any], incoming: list[Any]) -> list[Any]:
             merged.append(item)
             seen.add(item)
     return merged
+
+
+def merge_operating_context(
+    existing: dict[str, Any] | None, incoming: dict[str, Any] | None
+) -> dict[str, Any]:
+    base = dict(existing) if isinstance(existing, dict) else {}
+    if not isinstance(incoming, dict):
+        return base
+
+    for key, value in incoming.items():
+        if value is None:
+            continue
+        if key in OPERATING_CONTEXT_LIST_KEYS and isinstance(value, list):
+            prev = base.get(key)
+            base_list = prev if isinstance(prev, list) else []
+            base[key] = merge_list_values(base_list, value)
+        elif isinstance(value, dict) and isinstance(base.get(key), dict):
+            nested = dict(base[key])
+            nested.update(value)
+            base[key] = nested
+        else:
+            base[key] = value
+    return base
 
 
 def merge_pending_artifacts(existing: list[Any], incoming: list[Any]) -> list[Any]:
@@ -80,57 +108,28 @@ def follow_up_count(state: dict[str, Any]) -> int:
     return len(asked) if isinstance(asked, list) else 0
 
 
-def enforce_follow_up_limits(
-    capability_states: dict[str, Any],
-    *,
-    max_follow_ups: int = MAX_FOLLOW_UPS_PER_CAPABILITY,
-) -> list[str]:
-    """Close capabilities that used the maximum number of follow-ups."""
-    closed: list[str] = []
-    for capability_id, state in capability_states.items():
-        status = state.get("status")
-        if status in ("sufficient", "insufficient"):
-            continue
-        if follow_up_count(state) < max_follow_ups:
-            continue
-        state["status"] = "insufficient"
-        summary = (state.get("evidence_summary") or "").strip()
-        if _FOLLOW_UP_LIMIT_NOTE.strip() not in summary:
-            state["evidence_summary"] = f"{summary}{_FOLLOW_UP_LIMIT_NOTE}".strip()
-        closed.append(capability_id)
-    return closed
+def enforce_follow_up_limits(capability_states: dict[str, Any]) -> list[str]:
+    """Follow-up limits removed — probing continues until evidence is sufficient."""
+    return []
 
 
 def build_progression_constraints(
     capability_states: dict[str, Any],
-    *,
-    max_follow_ups: int = MAX_FOLLOW_UPS_PER_CAPABILITY,
 ) -> dict[str, Any]:
-    at_limit: list[dict[str, Any]] = []
-    near_limit: list[dict[str, Any]] = []
-
+    probing: list[dict[str, Any]] = []
     for capability_id, state in capability_states.items():
         if state.get("status") in ("sufficient", "insufficient"):
             continue
         count = follow_up_count(state)
-        if count >= max_follow_ups:
-            at_limit.append(
-                {"capability_id": capability_id, "follow_ups_used": count}
-            )
-        elif count == max_follow_ups - 1:
-            near_limit.append(
-                {
-                    "capability_id": capability_id,
-                    "follow_ups_used": count,
-                    "follow_ups_remaining": 1,
-                }
+        if count:
+            probing.append(
+                {"capability_id": capability_id, "probes_asked": count}
             )
 
     return {
-        "max_follow_ups_per_capability": max_follow_ups,
+        "follow_ups_unlimited": True,
         "reference_questions_unlimited": True,
-        "capabilities_at_follow_up_limit": at_limit,
-        "capabilities_with_one_follow_up_remaining": near_limit,
+        "capabilities_with_active_probing": probing,
     }
 
 

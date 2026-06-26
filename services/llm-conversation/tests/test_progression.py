@@ -1,10 +1,12 @@
 import unittest
 
 from app.progression import (
-    MAX_FOLLOW_UPS_PER_CAPABILITY,
+    OPERATING_CONTEXT_KEY,
+    build_progression_constraints,
     enforce_follow_up_limits,
     merge_capability_state_update,
     merge_list_values,
+    merge_operating_context,
     merge_pending_artifacts,
 )
 
@@ -37,32 +39,53 @@ class ProgressionTests(unittest.TestCase):
         )
         self.assertEqual(result["status"], "exploring")
 
-    def test_enforce_follow_up_limits_closes_at_max(self) -> None:
+    def test_enforce_follow_up_limits_is_no_op(self) -> None:
         states = {
-            "issp-04": {
+            "erm-01": {
                 "status": "exploring",
-                "dynamic_questions_asked": [f"f{i}" for i in range(5)],
+                "dynamic_questions_asked": [f"f{i}" for i in range(12)],
                 "evidence_summary": "Partial evidence.",
             }
         }
         closed = enforce_follow_up_limits(states)
-        self.assertEqual(closed, ["issp-04"])
-        self.assertEqual(states["issp-04"]["status"], "insufficient")
-        self.assertIn("Maximum follow-up", states["issp-04"]["evidence_summary"])
-
-    def test_enforce_follow_up_limits_preserves_sufficient(self) -> None:
-        states = {
-            "issp-04": {
-                "status": "sufficient",
-                "dynamic_questions_asked": [f"f{i}" for i in range(6)],
-            }
-        }
-        closed = enforce_follow_up_limits(states)
         self.assertEqual(closed, [])
-        self.assertEqual(states["issp-04"]["status"], "sufficient")
+        self.assertEqual(states["erm-01"]["status"], "exploring")
 
-    def test_max_follow_ups_constant(self) -> None:
-        self.assertEqual(MAX_FOLLOW_UPS_PER_CAPABILITY, 5)
+    def test_build_progression_constraints_reports_unlimited_probing(self) -> None:
+        constraints = build_progression_constraints(
+            {
+                "erm-01": {
+                    "status": "exploring",
+                    "dynamic_questions_asked": ["probe-1", "probe-2"],
+                }
+            }
+        )
+        self.assertTrue(constraints["follow_ups_unlimited"])
+        self.assertEqual(
+            constraints["capabilities_with_active_probing"],
+            [{"capability_id": "erm-01", "probes_asked": 2}],
+        )
+
+    def test_merge_operating_context_merges_lists_and_scalars(self) -> None:
+        existing = {
+            "primary_subject": "service",
+            "technology_modes": ["excel_spreadsheets"],
+            "scope": "partial",
+        }
+        incoming = {
+            "technology_modes": ["shared_drive"],
+            "automation_level": "partial_macros",
+        }
+        merged = merge_operating_context(existing, incoming)
+        self.assertEqual(merged["primary_subject"], "service")
+        self.assertEqual(
+            merged["technology_modes"],
+            ["excel_spreadsheets", "shared_drive"],
+        )
+        self.assertEqual(merged["automation_level"], "partial_macros")
+
+    def test_operating_context_key_constant(self) -> None:
+        self.assertEqual(OPERATING_CONTEXT_KEY, "operating_context")
 
     def test_merge_pending_artifacts_by_id(self) -> None:
         existing = [

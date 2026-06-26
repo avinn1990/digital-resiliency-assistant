@@ -11,41 +11,98 @@
           "prompt": "Does the enterprise have a risk management service?",
           "intent": "Evaluate whether an enterprise risk management service exists",
           "field_key": "erm_00_risk_management_service_exists",
-          "evaluation_focus": "Existence of an enterprise risk management service"
+          "evaluation_focus": "Existence of an enterprise risk management service",
+          "assessment_dimension": "implemented",
+          "dependency_type": "independent",
+          "probe_on": ["yes", "partial", "informal"],
+          "probe_hints": [
+            "How is the risk management service organized — dedicated team, shared function, or third party?",
+            "What does the service cover today?",
+            "What tools, processes, or technology support the service?"
+          ],
+          "operating_context_keys": ["primary_subject", "service_description", "technology_modes"]
         }
       ]
     },
     {
       "capability_id": "erm-01",
-      "capability_name": "Enterprise Risk Management Platform",
+      "capability_name": "Risk Monitoring & Visualization Technology",
       "questions": [
         {
           "id": "rq-erm-01-1",
-          "prompt": "Does the enterprise use a risk management platform to monitor and visualize risk?",
-          "intent": "Evaluate use of a risk management platform to monitor and visualize risk",
+          "prompt": "Does the enterprise use technology to monitor and visualize risk?",
+          "intent": "Evaluate how the enterprise monitors and visualizes risk using technology, including spreadsheets, tools, dashboards, and integrated ecosystems",
           "field_key": "erm_01_risk_management_platform_monitor_visualize",
-          "evaluation_focus": "Platform used to monitor and visualize risk"
+          "evaluation_focus": "Technology used to monitor and visualize risk",
+          "assessment_dimension": "monitored",
+          "dependency_type": "independent",
+          "default_subject": "technology_ecosystem",
+          "subject_fallbacks": ["service", "platform"],
+          "probe_on": ["yes", "partial", "informal", "no_dedicated_platform"],
+          "probe_hints": [
+            "What tools or technology do you use today — GRC platform, spreadsheets, dashboards, internal tools?",
+            "Who maintains them and how often are they updated?",
+            "What risk views or reports do stakeholders actually use?"
+          ],
+          "operating_context_keys": ["technology_modes", "ecosystem_description", "primary_subject"],
+          "reframe_rules": {
+            "no": "Probe what technology (including spreadsheets and manual tools) is used for monitoring and visualization.",
+            "no_dedicated_platform": "Treat spreadsheets, shared registers, and internal tools as technology; probe the ecosystem."
+          }
         },
         {
           "id": "rq-erm-01-2",
-          "prompt": "Does the scope of the risk management platform cover the entire enterprise and its managed entities or does it cover a smaller scope?",
-          "intent": "Evaluate whether the risk management platform scope is enterprise-wide or limited",
+          "prompt": "Does the scope of risk monitoring and visualization cover the entire enterprise and its managed entities, or a smaller scope?",
+          "intent": "Evaluate whether risk monitoring and visualization scope is enterprise-wide or limited",
           "field_key": "erm_01_platform_scope_enterprise_vs_partial",
-          "evaluation_focus": "Enterprise-wide vs limited platform scope"
+          "evaluation_focus": "Enterprise-wide vs limited technology scope",
+          "assessment_dimension": "implemented",
+          "dependency_type": "subject_bound",
+          "default_subject": "technology_ecosystem",
+          "subject_fallbacks": ["service", "platform"],
+          "probe_on": ["partial", "yes", "informal"],
+          "probe_hints": [
+            "Which business units, regions, or entities are covered vs excluded?",
+            "Are managed entities and subsidiaries included?",
+            "How consistent is coverage across the organization?"
+          ],
+          "operating_context_keys": ["scope", "coverage_gaps"]
         },
         {
           "id": "rq-erm-01-3",
-          "prompt": "Does the platform have capability to automate the risk calculation and management?",
-          "intent": "Evaluate platform automation for risk calculation and management",
+          "prompt": "Is risk calculation and management automated through technology?",
+          "intent": "Evaluate automation of risk calculation and management via the technology ecosystem",
           "field_key": "erm_01_platform_automate_risk_calculation_management",
-          "evaluation_focus": "Automation of risk calculation and management"
+          "evaluation_focus": "Automation of risk calculation and management",
+          "assessment_dimension": "automatable",
+          "dependency_type": "mode_bound",
+          "default_subject": "technology_ecosystem",
+          "subject_fallbacks": ["service", "platform"],
+          "probe_on": ["yes", "partial", "manual", "informal"],
+          "probe_hints": [
+            "What is automated — formulas, macros, scripts, workflows, or platform features?",
+            "What remains manual?",
+            "How often are calculations or registers refreshed?"
+          ],
+          "operating_context_keys": ["automation_level", "technology_modes"]
         },
         {
           "id": "rq-erm-01-4",
-          "prompt": "Can the platform integrate with other management platforms to share risk information?",
-          "intent": "Evaluate platform integration with other management platforms to share risk information",
+          "prompt": "How is risk information shared across teams, systems, or tools?",
+          "intent": "Evaluate integration and sharing of risk information across the technology ecosystem",
           "field_key": "erm_01_platform_integrate_share_risk_information",
-          "evaluation_focus": "Integration with other management platforms"
+          "evaluation_focus": "Integration and sharing of risk information across systems",
+          "assessment_dimension": "integrated",
+          "dependency_type": "ecosystem_bound",
+          "default_subject": "technology_ecosystem",
+          "subject_fallbacks": ["service", "platform"],
+          "probe_on": ["yes", "partial", "manual", "siloed"],
+          "probe_hints": [
+            "What channels are used — exports, APIs, shared drives, meetings, email?",
+            "Which other systems consume risk data?",
+            "Are integrations automated or manual?"
+          ],
+          "operating_context_keys": ["integration_channels", "technology_modes"]
         }
       ]
     },
@@ -58,28 +115,68 @@
           "prompt": "Is there a formal risk management process documented?",
           "intent": "Evaluate whether a formal risk management process is documented",
           "field_key": "erm_02_formal_risk_management_process_documented",
-          "evaluation_focus": "Documented formal risk management process"
+          "evaluation_focus": "Documented formal risk management process",
+          "assessment_dimension": "documented",
+          "dependency_type": "independent",
+          "probe_on": ["yes", "partial", "informal"],
+          "probe_hints": [
+            "Where is the process documented — policy, playbook, wiki, or other?",
+            "Who owns and approves the documentation?",
+            "When was it last updated?"
+          ],
+          "operating_context_keys": ["policies_artifacts", "process_documentation"]
         },
         {
           "id": "rq-erm-02-2",
           "prompt": "Is the risk management process implemented enterprise-wide for all relevant risks?",
           "intent": "Evaluate enterprise-wide implementation of the risk management process",
           "field_key": "erm_02_process_implemented_enterprise_wide",
-          "evaluation_focus": "Enterprise-wide process implementation"
+          "evaluation_focus": "Enterprise-wide process implementation",
+          "assessment_dimension": "implemented",
+          "dependency_type": "subject_bound",
+          "default_subject": "process",
+          "subject_fallbacks": ["service", "program"],
+          "probe_on": ["partial", "yes", "informal"],
+          "probe_hints": [
+            "Which risk domains or business units follow the process vs exceptions?",
+            "How is adherence monitored?",
+            "What risks are out of scope today?"
+          ],
+          "operating_context_keys": ["scope", "coverage_gaps"]
         },
         {
           "id": "rq-erm-02-3",
-          "prompt": "Does the risk management platform, or the the risk management team automate risk management process?",
-          "intent": "Evaluate automation of the risk management process by platform or team",
+          "prompt": "Is the risk management process automated through technology, team workflows, or both?",
+          "intent": "Evaluate automation of the risk management process via technology ecosystem or team",
           "field_key": "erm_02_platform_or_team_automate_process",
-          "evaluation_focus": "Process automation via platform or team"
+          "evaluation_focus": "Process automation via platform or team",
+          "assessment_dimension": "automatable",
+          "dependency_type": "mode_bound",
+          "default_subject": "process",
+          "subject_fallbacks": ["technology_ecosystem", "service", "team"],
+          "probe_on": ["yes", "partial", "manual", "informal"],
+          "probe_hints": [
+            "What parts are automated — workflows, reminders, calculations, approvals?",
+            "What technology supports automation (tools, spreadsheets, scripts)?",
+            "What remains manual?"
+          ],
+          "operating_context_keys": ["automation_level", "technology_modes"]
         },
         {
           "id": "rq-erm-02-4",
-          "prompt": "How many times are the risk management process reviewed?",
+          "prompt": "How often is the risk management process reviewed?",
           "intent": "Evaluate how frequently the risk management process is reviewed",
           "field_key": "erm_02_process_review_frequency",
-          "evaluation_focus": "Process review frequency"
+          "evaluation_focus": "Process review frequency",
+          "assessment_dimension": "monitored",
+          "dependency_type": "independent",
+          "probe_on": ["yes", "partial", "informal", "unknown"],
+          "probe_hints": [
+            "What triggers a review — calendar, incidents, audits, leadership?",
+            "Who participates in reviews?",
+            "What changes resulted from the last review?"
+          ],
+          "operating_context_keys": ["review_cadence", "governance_owners"]
         }
       ]
     },
@@ -92,28 +189,66 @@
           "prompt": "Are there scenarios when the proper risk cannot be mitigated and the risk needs to be accepted? If yes, how are risk exceptions handled?",
           "intent": "Evaluate risk exception handling when mitigation is not possible",
           "field_key": "erm_03_risk_acceptance_exception_handling",
-          "evaluation_focus": "Risk acceptance and exception handling"
+          "evaluation_focus": "Risk acceptance and exception handling",
+          "assessment_dimension": "implemented",
+          "dependency_type": "independent",
+          "probe_on": ["yes", "partial", "informal"],
+          "probe_hints": [
+            "What is the exception or acceptance workflow?",
+            "Who approves exceptions and at what level?",
+            "Where are exceptions recorded?"
+          ],
+          "operating_context_keys": ["exception_workflow", "policies_artifacts"]
         },
         {
           "id": "rq-erm-03-2",
           "prompt": "Is there a documented enterprise-wide policy on how risk exceptions are recorded?",
           "intent": "Evaluate documented enterprise-wide policy for recording risk exceptions",
           "field_key": "erm_03_documented_exception_recording_policy",
-          "evaluation_focus": "Documented enterprise-wide exception recording policy"
+          "evaluation_focus": "Documented enterprise-wide exception recording policy",
+          "assessment_dimension": "documented",
+          "dependency_type": "independent",
+          "probe_on": ["yes", "partial", "informal", "no"],
+          "probe_hints": [
+            "What policy or standard governs exception recording?",
+            "Is recording consistent across business units?",
+            "What fields or evidence are required for an exception?"
+          ],
+          "operating_context_keys": ["policies_artifacts", "exception_workflow"]
         },
         {
           "id": "rq-erm-03-3",
-          "prompt": "Does the risk management platform automate risk exceptions?",
-          "intent": "Evaluate whether the risk management platform automates risk exceptions",
+          "prompt": "Are risk exceptions tracked or automated through technology or team process?",
+          "intent": "Evaluate how risk exceptions are tracked or automated via technology ecosystem or team process",
           "field_key": "erm_03_platform_automated_risk_exception",
-          "evaluation_focus": "Platform automation for risk exceptions"
+          "evaluation_focus": "Technology or process support for risk exceptions",
+          "assessment_dimension": "automatable",
+          "dependency_type": "mode_bound",
+          "default_subject": "technology_ecosystem",
+          "subject_fallbacks": ["service", "team", "process"],
+          "probe_on": ["yes", "partial", "manual", "informal"],
+          "probe_hints": [
+            "What tool or register tracks exceptions — GRC, spreadsheet, ticket system?",
+            "What is automated vs manual in the exception lifecycle?",
+            "How are exceptions linked to the risk register?"
+          ],
+          "operating_context_keys": ["technology_modes", "automation_level", "exception_workflow"]
         },
         {
           "id": "rq-erm-03-4",
           "prompt": "Is the risk register reviewed frequently once exceptions are generated?",
           "intent": "Evaluate whether the risk register is reviewed frequently after exceptions are generated",
           "field_key": "erm_03_register_reviewed_after_exceptions",
-          "evaluation_focus": "Risk register review after exceptions"
+          "evaluation_focus": "Risk register review after exceptions",
+          "assessment_dimension": "monitored",
+          "dependency_type": "independent",
+          "probe_on": ["yes", "partial", "informal", "unknown"],
+          "probe_hints": [
+            "How often is the register reviewed after new exceptions?",
+            "Who owns register review?",
+            "What actions follow from review?"
+          ],
+          "operating_context_keys": ["review_cadence", "governance_owners"]
         }
       ]
     },

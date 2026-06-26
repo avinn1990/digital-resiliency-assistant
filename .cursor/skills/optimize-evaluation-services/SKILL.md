@@ -253,7 +253,7 @@ When proposing interview rule changes, fill in **why / benefit / risk**:
 | Current rule | Why it exists | When change might help | Risk if changed |
 |--------------|---------------|------------------------|-----------------|
 | Full conversation history | Cross-capability evidence; avoids re-asking | Long sessions; token cost | Lost context; inconsistent scores |
-| Max 5 follow-ups per capability | Bounds length and cost | Deep technical capabilities | User fatigue; longer sessions |
+| Dynamic follow-ups | Unlimited; probe using question metadata until evidence is sufficient | Deep technical capabilities | Longer sessions; token cost |
 | Append-merge state lists | Prevents forgetting covered questions | — | Replacing lists caused regressions |
 | Strict 1:1 capability↔questions | Deterministic progression; loader validation | — | Validation failure if violated |
 

@@ -1,7 +1,7 @@
 {
   "service_id": "enterprise-risk-management",
   "service_name": "Enterprise Risk Management",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Evaluates enterprise risk management service maturity, platform and process coverage, program and teams, cybersecurity risk leadership, enterprise risk scales, quantified risk for flows, subjects, devices, objects, and supply chain, risk register and exceptions, and SOC correlation of risk profile changes.",
   "capabilities": [
     {
@@ -16,13 +16,13 @@
     },
     {
       "id": "erm-01",
-      "name": "Enterprise Risk Management Platform",
-      "description": "The enterprise uses a risk management platform to monitor, visualize, automate, and integrate risk information across scope.",
+      "name": "Risk Monitoring & Visualization Technology",
+      "description": "The enterprise uses technology — including spreadsheets, tools, dashboards, and integrated ecosystems — to monitor, visualize, automate, and share risk information across scope.",
       "evaluation_focus": [
-        "Platform used to monitor and visualize risk",
-        "Enterprise-wide vs limited platform scope",
+        "Technology used to monitor and visualize risk",
+        "Enterprise-wide vs limited technology scope",
         "Automation of risk calculation and management",
-        "Integration with other management platforms"
+        "Integration and sharing of risk information across systems"
       ],
       "resiliency_weight": 1,
       "pillar": "Technology"
@@ -34,7 +34,7 @@
       "evaluation_focus": [
         "Documented formal risk management process",
         "Enterprise-wide process implementation",
-        "Process automation via platform or team",
+        "Process automation via technology ecosystem or team",
         "Process review frequency"
       ],
       "resiliency_weight": 1,
@@ -43,11 +43,11 @@
     {
       "id": "erm-03",
       "name": "Risk Register and Risk Exception Process",
-      "description": "Risk exceptions when mitigation is not possible are handled with documented policy, platform support, and register review.",
+      "description": "Risk exceptions when mitigation is not possible are handled with documented policy, technology or team support, and register review.",
       "evaluation_focus": [
         "Risk acceptance and exception handling",
         "Documented enterprise-wide exception recording policy",
-        "Platform automation for risk exceptions",
+        "Technology or process support for risk exceptions",
         "Risk register review after exceptions"
       ],
       "resiliency_weight": 1,

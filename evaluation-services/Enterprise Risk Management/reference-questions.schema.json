@@ -30,7 +30,47 @@
                 "prompt": { "type": "string", "minLength": 1 },
                 "intent": { "type": "string", "minLength": 1 },
                 "field_key": { "type": "string", "pattern": "^erm_" },
-                "evaluation_focus": { "type": "string" }
+                "evaluation_focus": { "type": "string" },
+                "assessment_dimension": {
+                  "type": "string",
+                  "enum": [
+                    "documented",
+                    "implemented",
+                    "automatable",
+                    "integrated",
+                    "monitored"
+                  ]
+                },
+                "dependency_type": {
+                  "type": "string",
+                  "enum": [
+                    "independent",
+                    "subject_bound",
+                    "mode_bound",
+                    "ecosystem_bound"
+                  ]
+                },
+                "default_subject": { "type": "string" },
+                "subject_fallbacks": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "probe_on": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "probe_hints": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "operating_context_keys": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "reframe_rules": {
+                  "type": "object",
+                  "additionalProperties": { "type": "string" }
+                }
               },
               "additionalProperties": false
             }

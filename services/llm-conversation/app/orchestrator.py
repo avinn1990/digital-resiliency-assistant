@@ -59,10 +59,18 @@ def _apply_progression_rules(session: LlmSession) -> None:
 
 
 def _merge_facts(session: LlmSession, extracted: dict[str, Any]) -> None:
+    from app.progression import OPERATING_CONTEXT_KEY, merge_operating_context
+
     for key, value in extracted.items():
-        if value is not None and value != "":
+        if value is None or value == "":
+            continue
+        if key == OPERATING_CONTEXT_KEY and isinstance(value, dict):
+            session.facts[key] = merge_operating_context(
+                session.facts.get(key), value
+            )
+        else:
             session.facts[key] = value
-            session.confidence[key] = 0.85
+        session.confidence[key] = 0.85
 
 
 def _progress(session: LlmSession) -> dict[str, int]:
@@ -302,6 +310,7 @@ async def start_session(framework_id: str) -> dict[str, Any]:
         user_message=None,
         is_start=True,
         engagement_context=build_engagement_context(bundle, session),
+        current_facts=session.facts,
     )
     result = await complete_json(prompt)
 
@@ -354,6 +363,7 @@ async def handle_message(session: LlmSession, user_message: str) -> dict[str, An
         engagement_context=build_engagement_context(
             bundle, session, user_message=user_message
         ),
+        current_facts=session.facts,
     )
     result = await complete_json(prompt)
 

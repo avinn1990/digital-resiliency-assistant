@@ -10,6 +10,12 @@ from pathlib import Path
 
 SERVICE_DIR = Path(__file__).resolve().parent
 QUESTION_ID_RE = re.compile(r"^rq-(erm-\d{2})-\d+$")
+VALID_ASSESSMENT_DIMENSIONS = frozenset(
+    {"documented", "implemented", "automatable", "integrated", "monitored"}
+)
+VALID_DEPENDENCY_TYPES = frozenset(
+    {"independent", "subject_bound", "mode_bound", "ecosystem_bound"}
+)
 
 
 def load(name: str) -> dict:
@@ -76,6 +82,34 @@ def main() -> int:
                     file=sys.stderr,
                 )
                 return 1
+
+            dimension = q.get("assessment_dimension")
+            if dimension is not None and dimension not in VALID_ASSESSMENT_DIMENSIONS:
+                print(
+                    f"error: question {qid!r} has invalid assessment_dimension {dimension!r}",
+                    file=sys.stderr,
+                )
+                return 1
+
+            dependency = q.get("dependency_type")
+            if dependency is not None and dependency not in VALID_DEPENDENCY_TYPES:
+                print(
+                    f"error: question {qid!r} has invalid dependency_type {dependency!r}",
+                    file=sys.stderr,
+                )
+                return 1
+
+            for list_key in ("subject_fallbacks", "probe_on", "probe_hints", "operating_context_keys"):
+                value = q.get(list_key)
+                if value is not None and (
+                    not isinstance(value, list)
+                    or not all(isinstance(item, str) and item for item in value)
+                ):
+                    print(
+                        f"error: question {qid!r} field {list_key!r} must be a non-empty string list",
+                        file=sys.stderr,
+                    )
+                    return 1
 
     missing = cap_ids - covered_caps
     extra = covered_caps - cap_ids

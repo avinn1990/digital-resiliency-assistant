@@ -160,7 +160,7 @@ When touching `services/llm-conversation/`:
 |------|--------|
 | Capability ↔ question | Strict 1:1; questions grouped in `capability_questions[]`; do not score across capabilities |
 | Reference questions | Unlimited per capability; sent as `reference_questions_by_capability` |
-| Dynamic follow-ups | Max **5 per capability**; server enforces via `dynamic_questions_asked` |
+| Dynamic follow-ups | Unlimited per capability; probe using question metadata until evidence is sufficient |
 | State merge | `reference_questions_covered` and `dynamic_questions_asked` are **append-merged**, not replaced |
 | Conversation history | Full history to model (no arbitrary truncation) |
 | Progression | Capability `sufficient` only with concrete evidence; session completes when all sufficient or insufficient |
